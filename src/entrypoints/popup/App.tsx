@@ -2,12 +2,14 @@ import { useState } from 'react';
 import reactLogo from '@/assets/react.svg';
 import wxtLogo from '/wxt.svg';
 import './App.css';
+import {Counter} from '@/components/counter/counter';
 
 function App() {
   const [count, setCount] = useState(0);
   console.log('Hello popup!');
   return (
     <>
+      <Counter />
       <div>
         <a href="https://wxt.dev" target="_blank">
           <img src={wxtLogo} className="logo" alt="WXT logo" />
