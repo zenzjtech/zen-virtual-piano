@@ -8,4 +8,7 @@ export default defineConfig({
     permissions: ['storage'],
   },  
   srcDir: 'src',  
+  runner: {
+    disabled: true,
+  }
 });
