@@ -1,0 +1,8 @@
+1. The project is using yarn as a package manager. The config file is located at `package.json`.
+2. The project is using wxt as a build tool. The config file is located at `wxt.config.js`.
+3. The project uses the following key technologies:
+   - React (v19) with TypeScript for UI components
+   - Material UI (v6) for component library
+   - Redux Toolkit for state management
+   - Redux Chrome Storage for persistent state
+   - Tailwind CSS for styling
