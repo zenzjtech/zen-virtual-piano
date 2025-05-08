@@ -1,6 +1,6 @@
 {
-  "name": "wxt-react-starter",
-  "description": "manifest.json description",
+  "name": "wxt-react-redux-mui",
+  "description": "A WXT browser extension template using React, Redux, and Material UI.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
