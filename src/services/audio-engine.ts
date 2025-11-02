@@ -34,42 +34,42 @@ export class AudioEngine {
       // This means C2 will use C1.mp3, C3 will use C2.mp3, etc.
       const urlsMap: Record<string, string> = {};
       
-      // C notes (every octave)
-      urlsMap.C0 = samples['/src/assets/audio/piano/classical/C1.mp3'] || '';
-      urlsMap.C1 = samples['/src/assets/audio/piano/classical/C2.mp3'] || '';
-      urlsMap.C2 = samples['/src/assets/audio/piano/classical/C3.mp3'] || '';
-      urlsMap.C3 = samples['/src/assets/audio/piano/classical/C4.mp3'] || '';
-      urlsMap.C4 = samples['/src/assets/audio/piano/classical/C5.mp3'] || '';
-      urlsMap.C5 = samples['/src/assets/audio/piano/classical/C6.mp3'] || '';
-      urlsMap.C6 = samples['/src/assets/audio/piano/classical/C7.mp3'] || '';
-      urlsMap.C7 = samples['/src/assets/audio/piano/classical/C8.mp3'] || '';
+      // C notes (every octave) - C2 uses C1.mp3, C3 uses C2.mp3, etc.
+      urlsMap.C1 = samples['/src/assets/audio/piano/classical/C1.mp3'] || '';
+      urlsMap.C2 = samples['/src/assets/audio/piano/classical/C1.mp3'] || '';
+      urlsMap.C3 = samples['/src/assets/audio/piano/classical/C2.mp3'] || '';
+      urlsMap.C4 = samples['/src/assets/audio/piano/classical/C3.mp3'] || '';
+      urlsMap.C5 = samples['/src/assets/audio/piano/classical/C4.mp3'] || '';
+      urlsMap.C6 = samples['/src/assets/audio/piano/classical/C5.mp3'] || '';
+      urlsMap.C7 = samples['/src/assets/audio/piano/classical/C6.mp3'] || '';
+      urlsMap.C8 = samples['/src/assets/audio/piano/classical/C7.mp3'] || '';
       
       // D# (Ds) notes (every minor third from C)
-      urlsMap['D#0'] = samples['/src/assets/audio/piano/classical/Ds1.mp3'] || '';
-      urlsMap['D#1'] = samples['/src/assets/audio/piano/classical/Ds2.mp3'] || '';
-      urlsMap['D#2'] = samples['/src/assets/audio/piano/classical/Ds3.mp3'] || '';
-      urlsMap['D#3'] = samples['/src/assets/audio/piano/classical/Ds4.mp3'] || '';
-      urlsMap['D#4'] = samples['/src/assets/audio/piano/classical/Ds5.mp3'] || '';
-      urlsMap['D#5'] = samples['/src/assets/audio/piano/classical/Ds6.mp3'] || '';
-      urlsMap['D#6'] = samples['/src/assets/audio/piano/classical/Ds7.mp3'] || '';
+      urlsMap['D#1'] = samples['/src/assets/audio/piano/classical/Ds1.mp3'] || '';
+      urlsMap['D#2'] = samples['/src/assets/audio/piano/classical/Ds1.mp3'] || '';
+      urlsMap['D#3'] = samples['/src/assets/audio/piano/classical/Ds2.mp3'] || '';
+      urlsMap['D#4'] = samples['/src/assets/audio/piano/classical/Ds3.mp3'] || '';
+      urlsMap['D#5'] = samples['/src/assets/audio/piano/classical/Ds4.mp3'] || '';
+      urlsMap['D#6'] = samples['/src/assets/audio/piano/classical/Ds5.mp3'] || '';
+      urlsMap['D#7'] = samples['/src/assets/audio/piano/classical/Ds6.mp3'] || '';
       
       // F# (Fs) notes (tritone from C)
-      urlsMap['F#0'] = samples['/src/assets/audio/piano/classical/Fs1.mp3'] || '';
-      urlsMap['F#1'] = samples['/src/assets/audio/piano/classical/Fs2.mp3'] || '';
-      urlsMap['F#2'] = samples['/src/assets/audio/piano/classical/Fs3.mp3'] || '';
-      urlsMap['F#3'] = samples['/src/assets/audio/piano/classical/Fs4.mp3'] || '';
-      urlsMap['F#4'] = samples['/src/assets/audio/piano/classical/Fs5.mp3'] || '';
-      urlsMap['F#5'] = samples['/src/assets/audio/piano/classical/Fs6.mp3'] || '';
-      urlsMap['F#6'] = samples['/src/assets/audio/piano/classical/Fs7.mp3'] || '';
+      urlsMap['F#1'] = samples['/src/assets/audio/piano/classical/Fs1.mp3'] || '';
+      urlsMap['F#2'] = samples['/src/assets/audio/piano/classical/Fs1.mp3'] || '';
+      urlsMap['F#3'] = samples['/src/assets/audio/piano/classical/Fs2.mp3'] || '';
+      urlsMap['F#4'] = samples['/src/assets/audio/piano/classical/Fs3.mp3'] || '';
+      urlsMap['F#5'] = samples['/src/assets/audio/piano/classical/Fs4.mp3'] || '';
+      urlsMap['F#6'] = samples['/src/assets/audio/piano/classical/Fs5.mp3'] || '';
+      urlsMap['F#7'] = samples['/src/assets/audio/piano/classical/Fs6.mp3'] || '';
       
       // A notes (major sixth from C)
-      urlsMap.A0 = samples['/src/assets/audio/piano/classical/A1.mp3'] || '';
-      urlsMap.A1 = samples['/src/assets/audio/piano/classical/A2.mp3'] || '';
-      urlsMap.A2 = samples['/src/assets/audio/piano/classical/A3.mp3'] || '';
-      urlsMap.A3 = samples['/src/assets/audio/piano/classical/A4.mp3'] || '';
-      urlsMap.A4 = samples['/src/assets/audio/piano/classical/A5.mp3'] || '';
-      urlsMap.A5 = samples['/src/assets/audio/piano/classical/A6.mp3'] || '';
-      urlsMap.A6 = samples['/src/assets/audio/piano/classical/A7.mp3'] || '';
+      urlsMap.A1 = samples['/src/assets/audio/piano/classical/A1.mp3'] || '';
+      urlsMap.A2 = samples['/src/assets/audio/piano/classical/A1.mp3'] || '';
+      urlsMap.A3 = samples['/src/assets/audio/piano/classical/A2.mp3'] || '';
+      urlsMap.A4 = samples['/src/assets/audio/piano/classical/A3.mp3'] || '';
+      urlsMap.A5 = samples['/src/assets/audio/piano/classical/A4.mp3'] || '';
+      urlsMap.A6 = samples['/src/assets/audio/piano/classical/A5.mp3'] || '';
+      urlsMap.A7 = samples['/src/assets/audio/piano/classical/A6.mp3'] || '';
       
       console.log('Loading piano samples...', urlsMap);
       
