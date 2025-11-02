@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import reactLogo from '@/assets/react.svg';
-import wxtLogo from '/wxt.svg';
+import wxtLogo from '@/public/wxt.svg';
 import './App.css';
 import {Counter} from '@/components/counter/counter';
 
