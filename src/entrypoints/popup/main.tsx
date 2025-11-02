@@ -11,13 +11,17 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { ThemeProvider } from '@mui/material/styles';
+import { muiTheme } from '@/theme/mui-theme';
 
 (async () => {
   const store = await instantiateGlobalStore()  
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <ThemeProvider theme={muiTheme}>
+          <App />
+        </ThemeProvider>
       </Provider>
     </React.StrictMode>,
   );  
