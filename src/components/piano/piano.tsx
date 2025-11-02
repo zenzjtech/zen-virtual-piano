@@ -10,6 +10,9 @@ const PianoContainer = styled(Paper)(({ theme }) => ({
   backgroundColor: '#1a1a1a',
   borderRadius: theme.spacing(2),
   boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+  maxWidth: '95vw',
+  overflowX: 'auto',
+  overflowY: 'hidden',
 }));
 
 const KeyboardWrapper = styled(Box)({
@@ -17,6 +20,7 @@ const KeyboardWrapper = styled(Box)({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '2px',
+  minWidth: 'fit-content',
 });
 
 const WhiteKeysContainer = styled(Box)({
@@ -38,11 +42,15 @@ export const Piano: React.FC = () => {
   const keyboardMapRef = useRef(createKeyboardMap());
   const pressedKeysRef = useRef<Set<string>>(new Set());
 
-  // Calculate positions for black keys
-  const getBlackKeyOffset = (index: number): number => {
-    // Position black keys between white keys
+  // Calculate positions for black keys based on their position in the pattern
+  const getBlackKeyOffset = (blackKey: typeof KEY_MAPPINGS[0]): number => {
     const whiteKeyWidth = 62; // 60px + 2px gap
-    const whiteKeysBefore = Math.floor(index / 2);
+    
+    // Find which white key this black key comes after
+    const blackKeyIndex = KEY_MAPPINGS.indexOf(blackKey);
+    const whiteKeysBefore = KEY_MAPPINGS.slice(0, blackKeyIndex).filter(k => !k.isBlack).length;
+    
+    // Position between the white keys
     return whiteKeysBefore * whiteKeyWidth + 41; // Centered between white keys
   };
 
@@ -130,8 +138,8 @@ export const Piano: React.FC = () => {
         </WhiteKeysContainer>
 
         {/* Black Keys */}
-        {blackKeys.map((key, index) => (
-          <BlackKeyContainer key={key.note} offset={getBlackKeyOffset(index)}>
+        {blackKeys.map((key) => (
+          <BlackKeyContainer key={key.note} offset={getBlackKeyOffset(key)}>
             <PianoKeyComponent
               pianoKey={key}
               isPressed={!!pressedKeys[key.note]}

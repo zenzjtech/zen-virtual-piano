@@ -7,18 +7,22 @@ All Sprint 1 goals have been successfully implemented. The Virtual Piano MVP is 
 ## ✅ Completed Features
 
 ### 1. **Basic Piano Keyboard UI**
-- Visual keyboard with 17 keys (11 white, 6 black)
-- Spans 2 octaves (C4 to E5)
+- Visual keyboard with **49 keys** (29 white, 20 black)
+- Spans **4 octaves** (C2 to C6)
 - Realistic piano appearance with proper key dimensions
 - Dark themed container with elegant styling
+- Horizontal scroll support for full keyboard display
 
 ### 2. **Keyboard Input Mapping**
-- Full QWERTY keyboard integration
-- Mappings:
-  - White keys: `a s d f g h j k l ;`
-  - Black keys: `w e t y u o p`
+- Full QWERTY keyboard integration across 4 octaves
+- Mappings by octave:
+  - **C2-B2**: `z x c v b n m` (sharps: `s d g h j`)
+  - **C3-B3**: `q w e r t y u` (sharps: `2 3 5 6 7`)
+  - **C4-B4**: `i o p [ ]` (sharps: `9 0 =`)
+  - **C5-C6**: `a k f , / '` (sharps: `l ; 1 4 8 - .`)
 - Prevention of key repeat events
 - Clean key press/release handling
+- Total: 49 keys mapped
 
 ### 3. **Single Piano Sound**
 - Web Audio API implementation
@@ -86,15 +90,17 @@ yarn dev
 - **Waveform**: Sine wave (MVP)
 - **Envelope**: 10ms attack, 100ms release
 
-### Keyboard Layout
-| Key | Note | Frequency |
-|-----|------|-----------|
-| a   | C4   | 261.63 Hz |
-| w   | C#4  | 277.18 Hz |
-| s   | D4   | 293.66 Hz |
-| e   | D#4  | 311.13 Hz |
-| d   | E4   | 329.63 Hz |
-| ... | ...  | ...       |
+### Keyboard Layout (Sample)
+| Key | Note | Frequency | Octave |
+|-----|------|-----------|--------|
+| z   | C2   | 65.41 Hz  | Low    |
+| q   | C3   | 130.81 Hz | Mid-Low|
+| i   | C4   | 261.63 Hz | Middle |
+| a   | C5   | 523.25 Hz | High   |
+| '   | C6   | 1046.50 Hz| Very High|
+| ... | ...  | ...       | ...    |
+
+**Full range**: 49 keys spanning C2 (65.41 Hz) to C6 (1046.50 Hz)
 
 ## 🧪 Testing Checklist
 
@@ -133,15 +139,15 @@ Based on the roadmap, Sprint 2 will focus on:
 - [ ] Instrument selector dropdown UI
 - [ ] Volume control slider
 - [ ] Optimize audio quality (better waveforms, samples)
-- [ ] Expand keyboard range (3+ octaves)
+- [ ] ~~Expand keyboard range~~ ✅ Already completed (4 octaves)
 
 ## 📝 Known Issues & Limitations
 
 1. **Audio Quality**: Simple sine wave sounds robotic (intended for MVP)
-2. **Key Range**: Only 17 keys (will expand in Sprint 2)
-3. **No UI Controls**: Volume/instrument selection coming in Sprint 2
-4. **No Recording**: Scheduled for Sprint 3
-5. **Browser Dependency**: Requires modern browser with Web Audio API support
+2. **No UI Controls**: Volume/instrument selection coming in Sprint 2
+3. **No Recording**: Scheduled for Sprint 3
+4. **Browser Dependency**: Requires modern browser with Web Audio API support
+5. **Wide Layout**: 49 keys require horizontal scrolling on smaller screens
 
 ## 🛠️ Code Quality
 

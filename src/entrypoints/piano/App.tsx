@@ -23,11 +23,15 @@ function App() {
         <Typography variant="body1" color="text.secondary" textAlign="center">
           Play piano using your keyboard or click the keys with your mouse
         </Typography>
+        
+        <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ fontStyle: 'italic' }}>
+          4 Octaves • C2 to C6 • 49 Keys
+        </Typography>
 
         <Piano />
 
         <Typography variant="caption" color="text.secondary" sx={{ mt: 2 }}>
-          Sprint 1 MVP - Basic Piano Functionality
+          Extended keyboard range - Use number keys, letters, and symbols
         </Typography>
       </Box>
     </Container>
