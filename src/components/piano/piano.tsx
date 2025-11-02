@@ -6,13 +6,10 @@ import { getAudioEngine } from '@/services/audio-engine';
 
 const PianoContainer = styled(Paper)(({ theme }) => ({
   display: 'inline-block',
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   backgroundColor: '#1a1a1a',
-  borderRadius: theme.spacing(2),
+  borderRadius: theme.spacing(1.5),
   boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
-  maxWidth: '95vw',
-  overflowX: 'auto',
-  overflowY: 'hidden',
 }));
 
 const KeyboardWrapper = styled(Box)({
@@ -44,14 +41,14 @@ export const Piano: React.FC = () => {
 
   // Calculate positions for black keys based on their position in the pattern
   const getBlackKeyOffset = (blackKey: typeof KEY_MAPPINGS[0]): number => {
-    const whiteKeyWidth = 62; // 60px + 2px gap
+    const whiteKeyWidth = 34; // 32px + 2px gap
     
     // Find which white key this black key comes after
     const blackKeyIndex = KEY_MAPPINGS.indexOf(blackKey);
     const whiteKeysBefore = KEY_MAPPINGS.slice(0, blackKeyIndex).filter(k => !k.isBlack).length;
     
-    // Position between the white keys
-    return whiteKeysBefore * whiteKeyWidth + 41; // Centered between white keys
+    // Position between the white keys (centered)
+    return whiteKeysBefore * whiteKeyWidth + 22; // Centered between white keys
   };
 
   // Handle note play

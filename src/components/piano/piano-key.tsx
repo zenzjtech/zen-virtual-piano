@@ -13,8 +13,8 @@ interface PianoKeyProps {
 const WhiteKey = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isPressed',
 })<{ isPressed: boolean }>(({ theme, isPressed }) => ({
-  width: '60px',
-  height: '200px',
+  width: '32px',
+  height: '140px',
   backgroundColor: isPressed ? '#e0e0e0' : '#ffffff',
   border: '1px solid #000',
   borderRadius: '0 0 5px 5px',
@@ -38,8 +38,8 @@ const WhiteKey = styled(Box, {
 const BlackKey = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isPressed',
 })<{ isPressed: boolean }>(({ theme, isPressed }) => ({
-  width: '40px',
-  height: '120px',
+  width: '22px',
+  height: '90px',
   backgroundColor: isPressed ? '#333' : '#000',
   border: '1px solid #000',
   borderRadius: '0 0 3px 3px',
@@ -62,7 +62,7 @@ const BlackKey = styled(Box, {
 }));
 
 const KeyLabel = styled('span')<{ isBlack: boolean }>(({ isBlack }) => ({
-  fontSize: '12px',
+  fontSize: '10px',
   fontWeight: 'bold',
   color: isBlack ? '#fff' : '#666',
   textTransform: 'uppercase',
