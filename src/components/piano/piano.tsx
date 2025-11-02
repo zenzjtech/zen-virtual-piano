@@ -73,7 +73,8 @@ export const Piano: React.FC = () => {
   // Keyboard event handlers
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
+      // Use the actual key pressed (includes shift modifiers)
+      const key = e.key;
       
       // Prevent repeat events
       if (pressedKeysRef.current.has(key)) {
@@ -89,7 +90,7 @@ export const Piano: React.FC = () => {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
+      const key = e.key;
       pressedKeysRef.current.delete(key);
 
       const pianoKey = keyboardMapRef.current.get(key);

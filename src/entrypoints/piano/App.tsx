@@ -25,13 +25,13 @@ function App() {
         </Typography>
         
         <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ fontStyle: 'italic' }}>
-          4 Octaves • C2 to C6 • 49 Keys
+          5+ Octaves • C2 to C7 • 67 Keys
         </Typography>
 
         <Piano />
 
         <Typography variant="caption" color="text.secondary" sx={{ mt: 2 }}>
-          Extended keyboard range - Use number keys, letters, and symbols
+          Use numbers (1-0), letters (q-m), and Shift for sharps/flats
         </Typography>
       </Box>
     </Container>
