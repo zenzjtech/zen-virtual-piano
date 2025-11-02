@@ -1,8 +1,7 @@
 import { defineConfig } from 'wxt';
 
 // See https://wxt.dev/api/config.html
-export default defineConfig({
-  extensionApi: 'chrome',
+export default defineConfig({  
   modules: ['@wxt-dev/module-react'],
   manifest: {
     permissions: ['storage'],
@@ -13,5 +12,6 @@ export default defineConfig({
   },
   imports: {
     dirs: ['components', 'composables'] // Only include these directories
-  }  
+  },
+  modulesDir: 'src/modules',   
 });
