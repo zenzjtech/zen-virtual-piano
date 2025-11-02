@@ -1,38 +1,36 @@
-import { useState } from 'react';
-import reactLogo from '@/assets/react.svg';
-import wxtLogo from '@/public/wxt.svg';
+import { Box, Container, Typography } from '@mui/material';
+import { Piano } from '@/components/piano/piano';
 import './App.css';
-import {Counter} from '@/components/counter/counter';
 
 function App() {
-  const [count, setCount] = useState(0);
-  console.log('Hello popup!');
   return (
-    <>
-      <Counter />
-      <div>
-        <a href="https://wxt.dev" target="_blank">
-          <img src={wxtLogo} className="logo" alt="WXT logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>WXT + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} 
-                className="font-medium text-sky-500"
-                >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the WXT and React logos to learn more
-      </p>
-    </>
+    <Container maxWidth="lg">
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          gap: 4,
+          py: 4,
+        }}
+      >
+        <Typography variant="h3" component="h1" fontWeight="bold" color="primary">
+          🎹 Zen Virtual Piano
+        </Typography>
+        
+        <Typography variant="body1" color="text.secondary" textAlign="center">
+          Play piano using your keyboard or click the keys with your mouse
+        </Typography>
+
+        <Piano />
+
+        <Typography variant="caption" color="text.secondary" sx={{ mt: 2 }}>
+          Sprint 1 MVP - Basic Piano Functionality
+        </Typography>
+      </Box>
+    </Container>
   );
 }
 
