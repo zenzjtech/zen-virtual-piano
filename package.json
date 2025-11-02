@@ -1,6 +1,6 @@
 {
-  "name": "wxt-react-redux-mui",
-  "description": "A WXT browser extension template using React, Redux, and Material UI.",
+  "name": "zen-virtual-piano",
+  "description": "A Chrome extension that delivers a 67-key virtual piano (C2-C7) using the Chrome Piano keyboard layout.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -29,8 +29,7 @@
     "react-redux": "^9.2.0",
     "redux-logger": "^3.0.6",
     "reduxed-chrome-storage": "^3.0.10",
-    "tailwindcss": "^4.0.0",
-    "tone": "^15.1.22"
+    "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
@@ -38,7 +37,6 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "@types/redux-logger": "^3.0.13",
-    "@wxt-dev/module-react": "^1.1.2",
     "eslint": "^9.26.0",
     "eslint-plugin-react": "^7.37.5",
     "typescript": "^5.6.3",
