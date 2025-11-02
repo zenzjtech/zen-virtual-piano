@@ -474,18 +474,27 @@ The extension should open a new tab when the icon is clicked:
 ```
 
 ### Background Service Worker
-Handle icon click to open new tab:
+Handle icon click to open piano in new tab:
 
-```javascript
-// background.js
-chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.create({
-    url: chrome.runtime.getURL('index.html')
+```typescript
+// src/entrypoints/background/index.ts
+export default defineBackground(() => {
+  // Handle extension icon click to open piano in new tab
+  chrome.action.onClicked.addListener(() => {
+    chrome.tabs.create({
+      url: chrome.runtime.getURL('/piano.html')
+    });
   });
+  
+  console.log('Zen Virtual Piano background service worker initialized');
 });
 ```
 
-**Note**: Since WXT is being used, this configuration will be handled by the framework's conventions.
+**Implementation Details:**
+- Renamed `popup` entrypoint to `piano` to prevent WXT from auto-creating a popup
+- Background service worker handles `action.onClicked` event
+- Piano interface opens in a full browser tab for better screen space
+- Configuration in `wxt.config.ts` explicitly defines empty `action` object to disable default popup behavior
 
 ---
 
