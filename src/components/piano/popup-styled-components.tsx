@@ -1,4 +1,4 @@
-import { styled, Paper, Box, Chip, ListItem, ListItemButton } from '@mui/material';
+import { styled, Paper, Box, Chip, ListItem, ListItemButton, TextField, InputAdornment } from '@mui/material';
 import { PianoTheme } from './themes';
 
 /**
@@ -62,8 +62,9 @@ export const PopupHeaderBox = styled(Box, {
   background: pianoTheme.isLight
     ? 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.02) 100%)'
     : 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.1) 100%)',
-  position: 'relative',
-  zIndex: 2,
+  position: 'sticky',
+  top: 0,
+  zIndex: 10,
   // Enhanced depth
   boxShadow: `
     inset 0 1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.2 : 0.08}),
@@ -152,4 +153,52 @@ export const CharacteristicChips = styled(Box)(({ theme }) => ({
   gap: theme.spacing(0.5),
   marginTop: theme.spacing(0.5),
   flexWrap: 'wrap',
+}));
+
+export const SearchBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  padding: theme.spacing(1.5, 2.5),
+  borderBottom: `1px solid ${pianoTheme.colors.border}`,
+  background: pianoTheme.isLight
+    ? 'rgba(0, 0, 0, 0.02)'
+    : 'rgba(255, 255, 255, 0.02)',
+  position: 'sticky',
+  top: 0,
+  zIndex: 9,
+  backdropFilter: 'blur(8px)',
+}));
+
+export const SearchInput = styled(TextField, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  '& .MuiOutlinedInput-root': {
+    backgroundColor: pianoTheme.isLight
+      ? 'rgba(255, 255, 255, 0.5)'
+      : 'rgba(0, 0, 0, 0.2)',
+    borderRadius: '8px',
+    fontSize: '0.875rem',
+    transition: 'all 0.2s ease',
+    '& fieldset': {
+      borderColor: pianoTheme.colors.border,
+    },
+    '&:hover fieldset': {
+      borderColor: pianoTheme.colors.accent,
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: pianoTheme.colors.accent,
+      boxShadow: `0 0 8px ${pianoTheme.colors.accent}44`,
+    },
+  },
+  '& .MuiOutlinedInput-input': {
+    padding: theme.spacing(1, 1.5),
+    color: pianoTheme.colors.primary,
+    '&::placeholder': {
+      color: pianoTheme.colors.secondary,
+      opacity: 0.7,
+    },
+  },
+  '& .MuiInputAdornment-root': {
+    color: pianoTheme.colors.secondary,
+  },
 }));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Box,
   Typography,
@@ -14,6 +14,7 @@ import {
   Popper,
   ClickAwayListener,
   styled,
+  InputAdornment,
 } from '@mui/material';
 import {
   VolumeUp as VolumeIcon,
@@ -23,9 +24,11 @@ import {
   Devices as DevicesIcon,
   Add as AddIcon,
   Remove as RemoveIcon,
+  Search as SearchIcon,
+  Clear as ClearIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
-import { StyledPopupPaper, PopupHeaderBox, PopupContentBox } from './popup-styled-components';
+import { StyledPopupPaper, PopupHeaderBox, PopupContentBox, SearchBox, SearchInput } from './popup-styled-components';
 
 interface SoundSettingsPopupProps {
   open: boolean;
@@ -123,6 +126,59 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   availableMidiDevices = ['None', 'Virtual MIDI Device', 'USB MIDI Keyboard'],
   pianoTheme,
 }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Define searchable settings with names and descriptions
+  const settings = useMemo(() => ([
+    {
+      id: 'sustain',
+      name: 'Sustain',
+      description: 'Control how long notes ring after being played',
+      keywords: ['sustain', 'hold', 'duration', 'length', 'ring'],
+    },
+    {
+      id: 'transpose',
+      name: 'Transpose',
+      description: 'Shift pitch up or down by semitones',
+      keywords: ['transpose', 'pitch', 'semitone', 'key', 'shift'],
+    },
+    {
+      id: 'volume',
+      name: 'Volume',
+      description: 'Adjust overall sound volume',
+      keywords: ['volume', 'loudness', 'sound', 'level'],
+    },
+    {
+      id: 'midi',
+      name: 'MIDI Device',
+      description: 'Connect external MIDI keyboard',
+      keywords: ['midi', 'device', 'keyboard', 'external', 'controller'],
+    },
+    {
+      id: 'metronome',
+      name: 'Metronome',
+      description: 'Enable or disable metronome click',
+      keywords: ['metronome', 'click', 'tempo', 'beat', 'rhythm'],
+    },
+  ]), []);
+
+  // Filter settings based on search query
+  const visibleSettings = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return new Set(settings.map(s => s.id));
+    }
+    
+    const query = searchQuery.toLowerCase();
+    return new Set(
+      settings
+        .filter(setting => 
+          setting.name.toLowerCase().includes(query) ||
+          setting.description.toLowerCase().includes(query) ||
+          setting.keywords.some(keyword => keyword.includes(query))
+        )
+        .map(s => s.id)
+    );
+  }, [searchQuery, settings]);
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
     onSustainChange(value);
@@ -198,9 +254,41 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
             </Box>
           </PopupHeaderBox>
 
+          {/* Search Box */}
+          <SearchBox pianoTheme={pianoTheme}>
+            <SearchInput
+              fullWidth
+              size="small"
+              placeholder="Search settings..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              pianoTheme={pianoTheme}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon fontSize="small" />
+                  </InputAdornment>
+                ),
+                endAdornment: searchQuery && (
+                  <InputAdornment position="end">
+                    <IconButton
+                      size="small"
+                      onClick={() => setSearchQuery('')}
+                      edge="end"
+                      sx={{ color: pianoTheme.colors.secondary }}
+                    >
+                      <ClearIcon fontSize="small" />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </SearchBox>
+
           <PopupContentBox pianoTheme={pianoTheme}>
             <Stack spacing={2} divider={<Divider sx={{ borderColor: pianoTheme.colors.border }} />}>
               {/* Sustain Control */}
+              {visibleSettings.has('sustain') && (
               <ControlSection>
                 <ControlLabel>
                   <SustainIcon
@@ -262,8 +350,10 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   pianoTheme={pianoTheme}
                 />
               </ControlSection>
+              )}
 
               {/* Transpose Control */}
+              {visibleSettings.has('transpose') && (
               <ControlSection>
                 <ControlLabel>
                   <TransposeIcon
@@ -322,8 +412,10 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   </StyledIconButton>
                 </TransposeControls>
               </ControlSection>
+              )}
 
               {/* Volume Control */}
+              {visibleSettings.has('volume') && (
               <ControlSection>
                 <ControlLabel>
                   <VolumeIcon
@@ -364,8 +456,10 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   pianoTheme={pianoTheme}
                 />
               </ControlSection>
+              )}
 
               {/* MIDI Device Selection */}
+              {visibleSettings.has('midi') && (
               <ControlSection>
                 <ControlLabel>
                   <DevicesIcon
@@ -412,8 +506,10 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   ))}
                 </Select>
               </ControlSection>
+              )}
 
               {/* Metronome */}
+              {visibleSettings.has('metronome') && (
               <ControlSection>
                 <ControlLabel>
                   <MetronomeIcon
@@ -445,6 +541,22 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   {metronomeEnabled ? 'Metronome ON' : 'Metronome OFF'}
                 </Button>
               </ControlSection>
+              )}
+
+              {/* No results message */}
+              {visibleSettings.size === 0 && (
+                <Box sx={{ py: 4, textAlign: 'center' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: pianoTheme.colors.secondary,
+                      opacity: 0.7,
+                    }}
+                  >
+                    No settings found matching "{searchQuery}"
+                  </Typography>
+                </Box>
+              )}
             </Stack>
           </PopupContentBox>
         </StyledPopupPaper>
