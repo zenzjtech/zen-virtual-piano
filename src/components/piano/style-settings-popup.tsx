@@ -53,56 +53,12 @@ interface BackgroundTheme {
 
 const BACKGROUND_THEMES: BackgroundTheme[] = [
   {
-    id: 'white',
-    name: 'Pure White',
-    description: 'Clean white background',
-    color: '#FFFFFF',
-  },
-  {
-    id: 'light-gray',
-    name: 'Light Gray',
-    description: 'Soft light gray background',
-    color: '#F5F5F5',
-  },
-  {
-    id: 'warm',
-    name: 'Warm Beige',
-    description: 'Warm beige tone',
-    color: '#FFF8F0',
-  },
-  {
     id: 'cool',
     name: 'Cool Blue',
     description: 'Cool blue-gray tone',
     color: '#F0F4F8',
   },
-  {
-    id: 'dark',
-    name: 'Dark Gray',
-    description: 'Dark charcoal background',
-    color: '#2C2C2C',
-  },
-  {
-    id: 'gradient-sunset',
-    name: 'Sunset Gradient',
-    description: 'Warm sunset gradient',
-    color: '#FF9A8B',
-    gradient: 'linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)',
-  },
-  {
-    id: 'gradient-ocean',
-    name: 'Ocean Gradient',
-    description: 'Cool ocean gradient',
-    color: '#667EEA',
-    gradient: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
-  },
-  {
-    id: 'gradient-forest',
-    name: 'Forest Gradient',
-    description: 'Natural forest gradient',
-    color: '#56AB2F',
-    gradient: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)',
-  },
+  // Cultural & Spiritual Themes
   {
     id: 'gufeng-ink-jade',
     name: 'Ink & Jade (墨玉)',
@@ -165,6 +121,53 @@ const BACKGROUND_THEMES: BackgroundTheme[] = [
     description: 'Sacred Islamic art & calligraphy',
     color: '#00704A',
     gradient: 'linear-gradient(135deg, #F0E68C 0%, #DAA520 25%, #00704A 60%, #004D40 100%)',
+  },
+  // Other Themes
+  {
+    id: 'dark',
+    name: 'Dark Gray',
+    description: 'Dark charcoal background',
+    color: '#2C2C2C',
+  },
+  {
+    id: 'gradient-sunset',
+    name: 'Sunset Gradient',
+    description: 'Warm sunset gradient',
+    color: '#FF9A8B',
+    gradient: 'linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)',
+  },
+  {
+    id: 'gradient-ocean',
+    name: 'Ocean Gradient',
+    description: 'Cool ocean gradient',
+    color: '#667EEA',
+    gradient: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
+  },
+  {
+    id: 'gradient-forest',
+    name: 'Forest Gradient',
+    description: 'Natural forest gradient',
+    color: '#56AB2F',
+    gradient: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)',
+  },
+  // Basic Solid Colors
+  {
+    id: 'white',
+    name: 'Pure White',
+    description: 'Clean white background',
+    color: '#FFFFFF',
+  },
+  {
+    id: 'light-gray',
+    name: 'Light Gray',
+    description: 'Soft light gray background',
+    color: '#F5F5F5',
+  },
+  {
+    id: 'warm',
+    name: 'Warm Beige',
+    description: 'Warm beige tone',
+    color: '#FFF8F0',
   },
 ];
 
