@@ -16,7 +16,7 @@ const BoardContainer = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
-  color: '#ffffff',
+  color: pianoTheme.isLight ? '#1a1a1a' : '#ffffff',
   padding: theme.spacing(2, 3),
   borderRadius: 0,
   borderTopLeftRadius: theme.spacing(1),
@@ -55,14 +55,16 @@ const BoardContainer = styled(Paper, {
   },
 }));
 
-const CurrentNoteDisplay = styled(Box)(({ theme }) => ({
+const CurrentNoteDisplay = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   minWidth: '100px',
   padding: theme.spacing(1),
-  borderRight: '1px solid rgba(255, 255, 255, 0.2)',
+  borderRight: pianoTheme.isLight ? '1px solid rgba(0, 0, 0, 0.15)' : '1px solid rgba(255, 255, 255, 0.2)',
   paddingRight: theme.spacing(3),
   position: 'relative',
   zIndex: 3,
@@ -76,11 +78,13 @@ const NoteText = styled(Typography)({
   marginBottom: '4px',
 });
 
-const KeyText = styled(Typography)({
+const KeyText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
   fontSize: '1.2rem',
-  color: '#aaa',
+  color: pianoTheme.isLight ? '#555' : '#aaa',
   fontFamily: 'monospace',
-});
+}));
 
 const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   flex: 1,
@@ -91,22 +95,26 @@ const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   zIndex: 3,
 }));
 
-const PressedKeysText = styled(Typography)({
+const PressedKeysText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
   fontSize: '1.5rem',
   fontFamily: 'monospace',
-  color: '#ffffff',
+  color: pianoTheme.isLight ? '#1a1a1a' : '#ffffff',
   letterSpacing: '2px',
   minHeight: '32px',
   display: 'flex',
   alignItems: 'center',
-});
+}));
 
-const Label = styled(Typography)({
+const Label = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
   fontSize: '0.75rem',
-  color: '#888',
+  color: pianoTheme.isLight ? '#666' : '#888',
   textTransform: 'uppercase',
   letterSpacing: '1px',
-});
+}));
 
 const CornerPlate = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'cornerPosition' && prop !== 'pianoTheme',
@@ -188,19 +196,19 @@ export const StatisticsBoard: React.FC<StatisticsBoardProps> = ({
       )}
       
       {/* Current Note Display */}
-      <CurrentNoteDisplay>
+      <CurrentNoteDisplay pianoTheme={pianoTheme}>
         <NoteText variant="h3">
           {currentNote ? currentNote.note : '—'}
         </NoteText>
-        <KeyText variant="body1">
+        <KeyText variant="body1" pianoTheme={pianoTheme}>
           {currentNote ? currentNote.keyboardKey : ' '}
         </KeyText>
       </CurrentNoteDisplay>
 
       {/* Pressed Keys Display */}
       <PressedKeysDisplay>
-        <Label variant="caption">Pressed Keys</Label>
-        <PressedKeysText variant="h6">
+        <Label variant="caption" pianoTheme={pianoTheme}>Pressed Keys</Label>
+        <PressedKeysText variant="h6" pianoTheme={pianoTheme}>
           {pressedKeyboardKeys || 'Press any key...'}
         </PressedKeysText>
       </PressedKeysDisplay>

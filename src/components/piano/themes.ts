@@ -8,6 +8,9 @@ export interface PianoTheme {
   name: string;
   description: string;
   
+  // Theme brightness for text contrast
+  isLight: boolean;
+  
   // Container styling
   container: {
     background: string;
@@ -49,6 +52,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'wooden',
     name: 'Wooden Classic',
     description: 'Traditional wooden piano with brass accents',
+    isLight: false,
     container: {
       background: 'linear-gradient(135deg, #8B5A3C 0%, #6B4423 50%, #4A2F1A 100%)',
       border: '2px solid #5D3A1A',
@@ -96,6 +100,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'black',
     name: 'Midnight Black',
     description: 'Sleek modern black piano',
+    isLight: false,
     container: {
       background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)',
       border: '2px solid #333333',
@@ -136,6 +141,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'metal',
     name: 'Metallic Silver',
     description: 'Futuristic metal finish piano',
+    isLight: true,
     container: {
       background: 'linear-gradient(135deg, #B8C6D4 0%, #8A9BAE 50%, #6B7C8F 100%)',
       border: '2px solid #5D6E81',
@@ -183,6 +189,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'white',
     name: 'Pure White',
     description: 'Clean and minimal white piano',
+    isLight: true,
     container: {
       background: 'linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 50%, #EBEBEB 100%)',
       border: '2px solid #DDDDDD',

@@ -25,7 +25,7 @@ const BarContainer = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
-  color: '#ffffff',
+  color: pianoTheme.isLight ? '#1a1a1a' : '#ffffff',
   padding: theme.spacing(1.5, 2),
   borderRadius: 0,
   display: 'flex',
@@ -64,9 +64,11 @@ const BarContainer = styled(Paper, {
   },
 }));
 
-const SettingButton = styled(Button)(({ theme }) => ({
-  color: 'rgba(255, 255, 255, 0.7)',
-  borderColor: 'rgba(255, 255, 255, 0.15)',
+const SettingButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  color: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.7)',
+  borderColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.15)' : 'rgba(255, 255, 255, 0.15)',
   minWidth: '100px',
   padding: theme.spacing(1, 2),
   fontSize: '0.75rem',
@@ -77,9 +79,9 @@ const SettingButton = styled(Button)(({ theme }) => ({
   position: 'relative',
   zIndex: 3,
   '&:hover': {
-    borderColor: 'rgba(255, 255, 255, 0.3)',
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    color: '#fff',
+    borderColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.08)',
+    color: pianoTheme.isLight ? '#000' : '#fff',
   },
   '& .MuiButton-startIcon': {
     marginRight: theme.spacing(0.75),
@@ -106,6 +108,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         variant="outlined"
         startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}
         onClick={onRecord}
+        pianoTheme={pianoTheme}
       >
         Record
       </SettingButton>
@@ -114,6 +117,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         variant="outlined"
         startIcon={<KeyboardIcon sx={{ fontSize: '1rem' }} />}
         onClick={onKeyAssist}
+        pianoTheme={pianoTheme}
       >
         Key Assist
       </SettingButton>
@@ -122,6 +126,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         variant="outlined"
         startIcon={<SoundIcon sx={{ fontSize: '1rem' }} />}
         onClick={onSound}
+        pianoTheme={pianoTheme}
       >
         Sound
       </SettingButton>
@@ -130,6 +135,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         variant="outlined"
         startIcon={<StylesIcon sx={{ fontSize: '1rem' }} />}
         onClick={onStyles}
+        pianoTheme={pianoTheme}
       >
         Styles
       </SettingButton>
@@ -138,6 +144,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         variant="outlined"
         startIcon={<SaveIcon sx={{ fontSize: '1rem' }} />}
         onClick={onSave}
+        pianoTheme={pianoTheme}
       >
         Save
       </SettingButton>
@@ -146,6 +153,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         variant="outlined"
         startIcon={<MoreIcon sx={{ fontSize: '1rem' }} />}
         onClick={onMore}
+        pianoTheme={pianoTheme}
       >
         More
       </SettingButton>
