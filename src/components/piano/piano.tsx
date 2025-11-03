@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { Box, styled, Paper } from '@mui/material';
+import { Box, styled, Paper, Typography, alpha } from '@mui/material';
+import { KeyboardOutlined as KeyboardIcon } from '@mui/icons-material';
 import { PianoKeyComponent } from './piano-key';
 import { KEY_MAPPINGS, createKeyboardMap, KeyPressState, PianoKey } from './types';
 import { PianoTheme, getTheme } from './themes';
@@ -69,6 +70,63 @@ const BlackKeyContainer = styled(Box)<{ offset: number }>(({ offset }) => ({
   left: `${offset}px`,
   top: 0,
   zIndex: 2,
+}));
+
+const DisabledOverlay = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: pianoTheme.isLight
+    ? alpha('#ffffff', 0.75)
+    : alpha('#000000', 0.65),
+  backdropFilter: 'blur(2px)',
+  zIndex: 100,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: theme.spacing(1.5),
+  borderRadius: 0,
+  borderBottomLeftRadius: theme.spacing(2),
+  borderBottomRightRadius: theme.spacing(2),
+  transition: 'opacity 0.2s ease-in-out',
+  cursor: 'not-allowed',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    border: `2px dashed ${alpha(pianoTheme.colors.border, 0.3)}`,
+    borderRadius: 0,
+    borderBottomLeftRadius: theme.spacing(2),
+    borderBottomRightRadius: theme.spacing(2),
+    pointerEvents: 'none',
+  },
+}));
+
+const DisabledMessage = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  padding: theme.spacing(2, 3),
+  background: pianoTheme.isLight
+    ? alpha('#ffffff', 0.9)
+    : alpha('#1a1a1a', 0.9),
+  border: `1px solid ${pianoTheme.colors.border}`,
+  borderRadius: theme.spacing(1),
+  boxShadow: `
+    0 4px 12px ${alpha('#000000', 0.15)},
+    inset 0 1px 0 ${alpha('#ffffff', pianoTheme.isLight ? 0.5 : 0.1)}
+  `,
 }));
 
 const CornerPlate = styled(Box, {
@@ -269,6 +327,43 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
 
   return (
     <PianoContainer elevation={0} pianoTheme={pianoTheme}>
+      {/* Disabled Overlay */}
+      {!keyboardEnabled && (
+        <DisabledOverlay pianoTheme={pianoTheme}>
+          <DisabledMessage pianoTheme={pianoTheme}>
+            <KeyboardIcon
+              sx={{
+                fontSize: '2.5rem',
+                color: pianoTheme.colors.secondary,
+                opacity: 0.7,
+              }}
+            />
+            <Typography
+              variant="body1"
+              fontWeight="600"
+              sx={{
+                color: pianoTheme.colors.primary,
+                textAlign: 'center',
+                letterSpacing: '0.3px',
+              }}
+            >
+              Keyboard Input Disabled
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                color: pianoTheme.colors.secondary,
+                textAlign: 'center',
+                fontSize: '0.75rem',
+                opacity: 0.85,
+              }}
+            >
+              Close the popup to enable keyboard
+            </Typography>
+          </DisabledMessage>
+        </DisabledOverlay>
+      )}
+      
       {/* Decorative Corner Plates - Only bottom corners (top corners are on StatisticsBoard) */}
       {pianoTheme.cornerPlates && (
         <>
