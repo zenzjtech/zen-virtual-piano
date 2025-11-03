@@ -6,10 +6,13 @@ import {
   VolumeUp as SoundIcon,
   Palette as StylesIcon,
   Piano as InstrumentIcon,
+  PowerSettingsNew as PowerIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 
 interface SettingsBarProps {
+  onTogglePiano?: () => void;
+  isPianoEnabled?: boolean;
   onRecord?: () => void;
   onKeyAssist?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -138,6 +141,8 @@ const SettingButton = styled(Button, {
 }));
 
 export const SettingsBar: React.FC<SettingsBarProps> = ({
+  onTogglePiano,
+  isPianoEnabled = true,
   onRecord,
   onKeyAssist,
   onInstrument,
@@ -149,6 +154,23 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
     <BarContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Left group: Action buttons */}
       <Box sx={{ display: 'flex', gap: 1, zIndex: 3 }}>
+        <SettingButton
+          variant="outlined"
+          startIcon={<PowerIcon sx={{ fontSize: '1rem' }} />}
+          onClick={onTogglePiano}
+          pianoTheme={pianoTheme}
+          sx={{
+            color: isPianoEnabled ? pianoTheme.colors.secondary : '#f44336',
+            borderColor: isPianoEnabled ? pianoTheme.colors.border : '#f44336',
+            '&:hover': {
+              borderColor: isPianoEnabled ? pianoTheme.colors.accent : '#d32f2f',
+              color: isPianoEnabled ? pianoTheme.colors.accent : '#d32f2f',
+            },
+          }}
+        >
+          {isPianoEnabled ? 'Disable' : 'Enable'}
+        </SettingButton>
+        
         <SettingButton
           variant="outlined"
           startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}

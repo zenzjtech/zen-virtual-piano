@@ -50,14 +50,17 @@ function App() {
   const [keyAssistPopupAnchor, setKeyAssistPopupAnchor] = useState<HTMLElement | null>(null);
   const keyAssistPopupOpen = Boolean(keyAssistPopupAnchor);
   
+  // Piano enable/disable state
+  const [isPianoEnabled, setIsPianoEnabled] = useState(true);
+  
   // Refs for focus management - store trigger buttons
   const instrumentButtonRef = useRef<HTMLElement | null>(null);
   const soundButtonRef = useRef<HTMLElement | null>(null);
   const styleButtonRef = useRef<HTMLElement | null>(null);
   const keyAssistButtonRef = useRef<HTMLElement | null>(null);
   
-  // Determine if keyboard should be enabled (disabled when any popup is open)
-  const isKeyboardEnabled = !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen && !keyAssistPopupOpen;
+  // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
+  const isKeyboardEnabled = isPianoEnabled && !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen && !keyAssistPopupOpen;
   
   // Additional sound settings (local state for now, can be moved to Redux later)
   const [transpose, setTranspose] = useState(0);
@@ -117,6 +120,10 @@ function App() {
   }, []);
 
   // Settings bar handlers
+  const handleTogglePiano = () => {
+    setIsPianoEnabled(!isPianoEnabled);
+  };
+  
   const handleRecord = () => console.log('Record clicked');
   
   const handleKeyAssist = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -309,6 +316,8 @@ function App() {
 
               {/* Settings Bar */}
               <SettingsBar
+                onTogglePiano={handleTogglePiano}
+                isPianoEnabled={isPianoEnabled}
                 onRecord={handleRecord}
                 onKeyAssist={handleKeyAssist}
                 onInstrument={handleInstrument}
