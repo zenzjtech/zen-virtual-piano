@@ -4,7 +4,7 @@ import { Piano } from '@/components/piano/piano';
 import { StatusBoard } from '@/components/piano/status-board';
 import { SettingsBar } from '@/components/piano/settings-bar';
 import { InstrumentSelectorPopup } from '@/components/piano/instrument-selector-popup';
-import { SoundSettingsDialog } from '@/components/piano/sound-settings-dialog';
+import { SoundSettingsPopup } from '@/components/piano/sound-settings-popup';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
@@ -30,8 +30,9 @@ function App() {
   const [instrumentPopupAnchor, setInstrumentPopupAnchor] = useState<HTMLElement | null>(null);
   const instrumentPopupOpen = Boolean(instrumentPopupAnchor);
   
-  // Sound settings dialog state
-  const [soundSettingsOpen, setSoundSettingsOpen] = useState(false);
+  // Sound settings popup state
+  const [soundSettingsAnchor, setSoundSettingsAnchor] = useState<HTMLElement | null>(null);
+  const soundSettingsOpen = Boolean(soundSettingsAnchor);
   
   // Additional sound settings (local state for now, can be moved to Redux later)
   const [transpose, setTranspose] = useState(0);
@@ -67,8 +68,8 @@ function App() {
     setInstrumentPopupAnchor(null);
   };
   
-  const handleSound = () => {
-    setSoundSettingsOpen(true);
+  const handleSound = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setSoundSettingsAnchor(event.currentTarget);
   };
   
   const handleSoundSetChange = async (newSoundSetId: string) => {
@@ -280,10 +281,11 @@ function App() {
         pianoTheme={pianoTheme}
       />
 
-      {/* Sound Settings Dialog */}
-      <SoundSettingsDialog
+      {/* Sound Settings Popup */}
+      <SoundSettingsPopup
         open={soundSettingsOpen}
-        onClose={() => setSoundSettingsOpen(false)}
+        anchorEl={soundSettingsAnchor}
+        onClose={() => setSoundSettingsAnchor(null)}
         sustain={sustain}
         onSustainChange={(value) => {
           dispatch(setSustain(value));
