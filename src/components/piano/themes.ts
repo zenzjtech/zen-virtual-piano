@@ -19,6 +19,38 @@ export interface PianoTheme {
     border: string;       // Border/divider color
   };
   
+  // Theme-specific lighting configuration
+  lighting: {
+    // Ambient light properties
+    ambientGlow: string;           // Overall glow color and intensity
+    ambientOpacity: number;        // Opacity of ambient lighting (0-1)
+    
+    // Specular highlights (glossy reflections)
+    specularHighlight: string;     // Highlight color for glossy surfaces
+    specularIntensity: number;     // Intensity of specular highlights (0-1)
+    specularSize: string;          // Size of highlight (e.g., '30%', '50px')
+    
+    // Shadow configuration
+    shadowColor: string;           // Color of shadows
+    shadowDepth: string;           // Shadow depth (e.g., '4px', '8px')
+    shadowSoftness: string;        // Shadow blur radius
+    
+    // Reflections and refractions
+    reflectionGradient: string;    // Reflection overlay gradient
+    reflectionOpacity: number;     // Opacity of reflections (0-1)
+    
+    // Glow effects for interactive elements
+    interactiveGlow: string;       // Glow color for hover/active states
+    interactiveGlowSize: string;   // Size of interactive glow
+    
+    // Light direction (for creating depth)
+    lightAngle: number;            // Angle of light source in degrees
+    
+    // Material properties
+    materialFinish: 'matte' | 'glossy' | 'metallic' | 'wood';
+    glossiness: number;            // Overall glossiness (0-1)
+  };
+  
   // Container styling
   container: {
     background: string;
@@ -66,6 +98,36 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
       secondary: '#B8941E',      // Golden brass
       accent: '#D4AF37',         // Bright gold
       border: 'rgba(184, 148, 30, 0.3)',
+    },
+    lighting: {
+      // Warm, natural wood lighting with subtle glow
+      ambientGlow: 'rgba(212, 175, 55, 0.15)',
+      ambientOpacity: 0.6,
+      
+      // Soft specular highlights for polished wood
+      specularHighlight: 'rgba(255, 235, 200, 0.4)',
+      specularIntensity: 0.4,
+      specularSize: '40%',
+      
+      // Deep, warm shadows
+      shadowColor: 'rgba(74, 47, 26, 0.5)',
+      shadowDepth: '6px',
+      shadowSoftness: '12px',
+      
+      // Natural wood reflections
+      reflectionGradient: 'linear-gradient(165deg, rgba(255, 245, 220, 0.2) 0%, rgba(255, 235, 200, 0.1) 25%, transparent 50%)',
+      reflectionOpacity: 0.5,
+      
+      // Golden glow for interactions
+      interactiveGlow: 'rgba(212, 175, 55, 0.6)',
+      interactiveGlowSize: '16px',
+      
+      // Top-left light source (natural lighting)
+      lightAngle: 135,
+      
+      // Polished wood material
+      materialFinish: 'wood',
+      glossiness: 0.5,
     },
     container: {
       background: 'linear-gradient(135deg, #8B5A3C 0%, #6B4423 50%, #4A2F1A 100%)',
@@ -121,6 +183,36 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
       accent: '#CCCCCC',         // Bright gray
       border: 'rgba(255, 255, 255, 0.2)',
     },
+    lighting: {
+      // Cool, subtle ambient glow
+      ambientGlow: 'rgba(100, 120, 140, 0.1)',
+      ambientOpacity: 0.3,
+      
+      // Sharp, bright specular highlights for glossy finish
+      specularHighlight: 'rgba(255, 255, 255, 0.6)',
+      specularIntensity: 0.7,
+      specularSize: '25%',
+      
+      // Deep, sharp black shadows
+      shadowColor: 'rgba(0, 0, 0, 0.8)',
+      shadowDepth: '8px',
+      shadowSoftness: '16px',
+      
+      // Sharp, mirror-like reflections
+      reflectionGradient: 'linear-gradient(165deg, rgba(255, 255, 255, 0.15) 0%, rgba(200, 220, 240, 0.08) 20%, transparent 40%)',
+      reflectionOpacity: 0.6,
+      
+      // Cool blue-white glow
+      interactiveGlow: 'rgba(200, 220, 240, 0.5)',
+      interactiveGlowSize: '20px',
+      
+      // Direct overhead lighting
+      lightAngle: 180,
+      
+      // High-gloss glossy finish
+      materialFinish: 'glossy',
+      glossiness: 0.85,
+    },
     container: {
       background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)',
       border: '2px solid #333333',
@@ -167,6 +259,36 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
       secondary: '#5D6E81',      // Medium slate
       accent: '#34495E',         // Accent blue
       border: 'rgba(45, 62, 80, 0.2)',
+    },
+    lighting: {
+      // Bright, metallic ambient light
+      ambientGlow: 'rgba(184, 198, 212, 0.25)',
+      ambientOpacity: 0.7,
+      
+      // Strong, crisp specular highlights for brushed metal
+      specularHighlight: 'rgba(255, 255, 255, 0.8)',
+      specularIntensity: 0.8,
+      specularSize: '30%',
+      
+      // Medium depth metallic shadows
+      shadowColor: 'rgba(45, 62, 80, 0.4)',
+      shadowDepth: '5px',
+      shadowSoftness: '10px',
+      
+      // Brushed metal reflections with directional streaks
+      reflectionGradient: 'linear-gradient(165deg, rgba(255, 255, 255, 0.35) 0%, rgba(240, 245, 250, 0.2) 30%, transparent 60%)',
+      reflectionOpacity: 0.75,
+      
+      // Bright blue-silver glow
+      interactiveGlow: 'rgba(184, 198, 212, 0.7)',
+      interactiveGlowSize: '18px',
+      
+      // Angled lighting for dimension
+      lightAngle: 145,
+      
+      // Brushed metallic finish
+      materialFinish: 'metallic',
+      glossiness: 0.75,
     },
     container: {
       background: 'linear-gradient(135deg, #B8C6D4 0%, #8A9BAE 50%, #6B7C8F 100%)',
@@ -222,6 +344,36 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
       accent: '#555555',         // Accent gray
       border: 'rgba(0, 0, 0, 0.15)',
     },
+    lighting: {
+      // Soft, clean ambient light
+      ambientGlow: 'rgba(255, 255, 255, 0.3)',
+      ambientOpacity: 0.5,
+      
+      // Gentle specular highlights for matte finish
+      specularHighlight: 'rgba(255, 255, 255, 0.5)',
+      specularIntensity: 0.35,
+      specularSize: '45%',
+      
+      // Soft, subtle shadows
+      shadowColor: 'rgba(0, 0, 0, 0.15)',
+      shadowDepth: '3px',
+      shadowSoftness: '8px',
+      
+      // Minimal, diffused reflections
+      reflectionGradient: 'linear-gradient(165deg, rgba(255, 255, 255, 0.4) 0%, rgba(250, 250, 250, 0.2) 35%, transparent 65%)',
+      reflectionOpacity: 0.4,
+      
+      // Subtle gray glow
+      interactiveGlow: 'rgba(150, 150, 150, 0.3)',
+      interactiveGlowSize: '14px',
+      
+      // Soft, diffused lighting
+      lightAngle: 160,
+      
+      // Clean matte finish
+      materialFinish: 'matte',
+      glossiness: 0.3,
+    },
     container: {
       background: 'linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 50%, #EBEBEB 100%)',
       border: '2px solid #DDDDDD',
@@ -267,4 +419,66 @@ export function getTheme(themeId: string): PianoTheme {
 // Get list of all available themes
 export function getAllThemes(): PianoTheme[] {
   return Object.values(PIANO_THEMES);
+}
+
+// Generate theme-specific lighting CSS properties
+export function getLightingStyles(theme: PianoTheme) {
+  const { lighting } = theme;
+  
+  return {
+    // Ambient lighting overlay
+    ambientLightOverlay: {
+      background: lighting.ambientGlow,
+      opacity: lighting.ambientOpacity,
+      pointerEvents: 'none' as const,
+      position: 'absolute' as const,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 1,
+    },
+    
+    // Specular highlight overlay
+    specularHighlightOverlay: {
+      background: `radial-gradient(ellipse at ${getSpecularPosition(lighting.lightAngle)}, ${lighting.specularHighlight} 0%, transparent ${lighting.specularSize})`,
+      opacity: lighting.specularIntensity,
+      pointerEvents: 'none' as const,
+      position: 'absolute' as const,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 2,
+      mixBlendMode: 'overlay' as const,
+    },
+    
+    // Reflection overlay
+    reflectionOverlay: {
+      background: lighting.reflectionGradient,
+      opacity: lighting.reflectionOpacity,
+      pointerEvents: 'none' as const,
+      position: 'absolute' as const,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 3,
+      mixBlendMode: 'soft-light' as const,
+    },
+    
+    // Interactive glow for hover effects
+    interactiveGlow: `0 0 ${lighting.interactiveGlowSize} ${lighting.interactiveGlow}`,
+    
+    // Material-specific box shadow
+    materialShadow: `0 ${lighting.shadowDepth} ${lighting.shadowSoftness} ${lighting.shadowColor}`,
+  };
+}
+
+// Calculate specular highlight position based on light angle
+function getSpecularPosition(angle: number): string {
+  // Convert angle to position (0° = top, 90° = right, 180° = bottom, 270° = left)
+  const x = 50 + 30 * Math.cos((angle - 90) * Math.PI / 180);
+  const y = 50 + 30 * Math.sin((angle - 90) * Math.PI / 180);
+  return `${x}% ${y}%`;
 }

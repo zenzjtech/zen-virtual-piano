@@ -14,7 +14,12 @@ interface PianoKeyProps {
 
 const WhiteKey = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isPressed' && prop !== 'keyTheme',
-})<{ isPressed: boolean; keyTheme: PianoTheme }>(({ theme, isPressed, keyTheme }) => ({
+})<{ isPressed: boolean; keyTheme: PianoTheme }>(({ theme, isPressed, keyTheme }) => {
+  // Calculate material-specific properties
+  const materialGloss = keyTheme.lighting.glossiness;
+  const specularStrength = keyTheme.lighting.specularIntensity;
+  
+  return {
   width: '32px',
   height: '140px',
   background: isPressed 
@@ -32,22 +37,11 @@ const WhiteKey = styled(Box, {
   transition: 'all 0.08s ease',
   boxShadow: isPressed
     ? 'inset 0 3px 8px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(0,0,0,0.2)'
-    : keyTheme.whiteKey.boxShadow,
+    : `${keyTheme.whiteKey.boxShadow}, 0 ${keyTheme.lighting.shadowDepth} ${keyTheme.lighting.shadowSoftness} ${keyTheme.lighting.shadowColor}`,
   transform: isPressed ? 'translateY(2px)' : 'none',
   overflow: 'hidden',
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: '10%',
-    right: '10%',
-    height: '8px',
-    background: 'linear-gradient(to bottom, rgba(139, 115, 85, 0.6), transparent)',
-    borderRadius: '0 0 50% 50%',
-    opacity: isPressed ? 0 : 1,
-    animation: isPressed ? 'none' : 'damperTouch 0.3s ease-out',
-    pointerEvents: 'none',
-  },
+  // Specular highlight based on material finish
+  filter: `brightness(${1 + (specularStrength * 0.1)}) contrast(${1 + (materialGloss * 0.05)})`,
   '&::after': {
     content: '""',
     position: 'absolute',
@@ -86,16 +80,36 @@ const WhiteKey = styled(Box, {
       opacity: 0,
     },
   },
+  // Add theme-specific lighting overlay
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: keyTheme.lighting.reflectionGradient,
+    opacity: keyTheme.lighting.reflectionOpacity * 0.6,
+    pointerEvents: 'none',
+    zIndex: 1,
+    mixBlendMode: 'overlay',
+  },
   '&:hover': {
     background: isPressed 
       ? keyTheme.whiteKey.activeBackground
       : keyTheme.whiteKey.hoverBackground,
+    boxShadow: `${keyTheme.whiteKey.boxShadow}, ${keyTheme.lighting.interactiveGlow}`,
   },
-}));
+}});  // Close the return statement
 
 const BlackKey = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isPressed' && prop !== 'keyTheme',
-})<{ isPressed: boolean; keyTheme: PianoTheme }>(({ theme, isPressed, keyTheme }) => ({
+})<{ isPressed: boolean; keyTheme: PianoTheme }>(({ theme, isPressed, keyTheme }) => {
+  // Calculate material-specific properties for black keys
+  const materialGloss = keyTheme.lighting.glossiness;
+  const specularStrength = keyTheme.lighting.specularIntensity;
+  
+  return {
   width: '22px',
   height: '90px',
   background: isPressed 
@@ -114,9 +128,11 @@ const BlackKey = styled(Box, {
   transition: 'all 0.08s ease',
   boxShadow: isPressed
     ? 'inset 0 3px 8px rgba(0,0,0,0.8), inset 0 1px 3px rgba(255,255,255,0.1)'
-    : keyTheme.blackKey.boxShadow,
+    : `${keyTheme.blackKey.boxShadow}, 0 ${keyTheme.lighting.shadowDepth} ${keyTheme.lighting.shadowSoftness} ${keyTheme.lighting.shadowColor}`,
   transform: isPressed ? 'translateY(2px)' : 'none',
   overflow: 'hidden',
+  // Enhanced material finish for black keys
+  filter: `brightness(${1 + (specularStrength * 0.08)}) contrast(${1 + (materialGloss * 0.08)})`,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -172,8 +188,9 @@ const BlackKey = styled(Box, {
     background: isPressed 
       ? keyTheme.blackKey.activeBackground
       : keyTheme.blackKey.hoverBackground,
+    boxShadow: `${keyTheme.blackKey.boxShadow}, ${keyTheme.lighting.interactiveGlow}`,
   },
-}));
+}});  // Close the return statement for BlackKey
 
 const KeyLabel = styled('span', {
   shouldForwardProp: (prop) => prop !== 'isBlack' && prop !== 'keyTheme' && prop !== 'isPressed',
