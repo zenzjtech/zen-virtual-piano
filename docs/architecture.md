@@ -266,6 +266,24 @@ Manifest version: **V3** (modern standard)
 4. Use typed hooks in components
 5. Apply MUI or Tailwind for styling
 
+#### Piano Feature Modules
+
+The virtual piano experience is organised into dedicated modules for UI, theming, state, and sound configuration:
+
+```
+src/components/piano/
+├── statistics-board.tsx          # Top display showing current and pressed notes
+├── settings-bar.tsx              # Control bar with record/key assist/sound/styles actions
+├── sound-selector-dialog.tsx     # Modal dialog for choosing instrument sound sets
+├── themes.ts                     # Piano visual theme definitions (wood, black, metal, white)
+└── piano-settings-slice.ts       # Redux slice managing theme, sound set, and sustain state
+
+src/services/
+└── sound-sets.ts                 # Catalog of available sound sets and sample URL mapping helpers
+```
+
+Refer back here when extending the piano feature with new UI controls, additional themes, or more instrument libraries.
+
 ### Adding New Entry Points
 
 1. Create file/folder in `src/entrypoints/`
