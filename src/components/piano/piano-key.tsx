@@ -1,24 +1,26 @@
 import React from 'react';
 import { Box, styled } from '@mui/material';
 import { PianoKey as PianoKeyType } from './types';
+import { PianoTheme } from './themes';
 
 interface PianoKeyProps {
   pianoKey: PianoKeyType;
   isPressed: boolean;
+  theme: PianoTheme;
   onMouseDown: () => void;
   onMouseUp: () => void;
   onMouseLeave: () => void;
 }
 
 const WhiteKey = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'isPressed',
-})<{ isPressed: boolean }>(({ theme, isPressed }) => ({
+  shouldForwardProp: (prop) => prop !== 'isPressed' && prop !== 'keyTheme',
+})<{ isPressed: boolean; keyTheme: PianoTheme }>(({ theme, isPressed, keyTheme }) => ({
   width: '32px',
   height: '140px',
   background: isPressed 
-    ? 'linear-gradient(to bottom, #E8E4DC 0%, #F5F1E8 50%, #E8E4DC 100%)'
-    : 'linear-gradient(to bottom, #FFFEF9 0%, #F5F1E8 50%, #FFFEF9 100%)',
-  border: '1px solid #8B7355',
+    ? keyTheme.whiteKey.activeBackground
+    : keyTheme.whiteKey.background,
+  border: keyTheme.whiteKey.border,
   borderRadius: '0 0 5px 5px',
   position: 'relative',
   cursor: 'pointer',
@@ -29,8 +31,8 @@ const WhiteKey = styled(Box, {
   paddingBottom: theme.spacing(1),
   transition: 'all 0.08s ease',
   boxShadow: isPressed
-    ? 'inset 0 3px 8px rgba(74, 47, 26, 0.4), inset 0 1px 2px rgba(0,0,0,0.2)'
-    : '0 4px 8px rgba(74, 47, 26, 0.25), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8)',
+    ? 'inset 0 3px 8px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(0,0,0,0.2)'
+    : keyTheme.whiteKey.boxShadow,
   transform: isPressed ? 'translateY(2px)' : 'none',
   overflow: 'hidden',
   '&::before': {
@@ -86,20 +88,20 @@ const WhiteKey = styled(Box, {
   },
   '&:hover': {
     background: isPressed 
-      ? 'linear-gradient(to bottom, #E8E4DC 0%, #F5F1E8 50%, #E8E4DC 100%)'
-      : 'linear-gradient(to bottom, #F9F7F0 0%, #F0EBE0 50%, #F9F7F0 100%)',
+      ? keyTheme.whiteKey.activeBackground
+      : keyTheme.whiteKey.hoverBackground,
   },
 }));
 
 const BlackKey = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'isPressed',
-})<{ isPressed: boolean }>(({ theme, isPressed }) => ({
+  shouldForwardProp: (prop) => prop !== 'isPressed' && prop !== 'keyTheme',
+})<{ isPressed: boolean; keyTheme: PianoTheme }>(({ theme, isPressed, keyTheme }) => ({
   width: '22px',
   height: '90px',
   background: isPressed 
-    ? 'linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)'
-    : 'linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 70%, #0a0a0a 100%)',
-  border: '1px solid #000',
+    ? keyTheme.blackKey.activeBackground
+    : keyTheme.blackKey.background,
+  border: keyTheme.blackKey.border,
   borderRadius: '0 0 3px 3px',
   position: 'absolute',
   cursor: 'pointer',
@@ -112,7 +114,7 @@ const BlackKey = styled(Box, {
   transition: 'all 0.08s ease',
   boxShadow: isPressed
     ? 'inset 0 3px 8px rgba(0,0,0,0.8), inset 0 1px 3px rgba(255,255,255,0.1)'
-    : '0 6px 10px rgba(0,0,0,0.6), 0 3px 6px rgba(74, 47, 26, 0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+    : keyTheme.blackKey.boxShadow,
   transform: isPressed ? 'translateY(2px)' : 'none',
   overflow: 'hidden',
   '&::before': {
@@ -168,8 +170,8 @@ const BlackKey = styled(Box, {
   },
   '&:hover': {
     background: isPressed 
-      ? 'linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)'
-      : 'linear-gradient(to bottom, #1a1a1a 0%, #252525 70%, #1a1a1a 100%)',
+      ? keyTheme.blackKey.activeBackground
+      : keyTheme.blackKey.hoverBackground,
   },
 }));
 
@@ -185,6 +187,7 @@ const KeyLabel = styled('span')<{ isBlack: boolean }>(({ isBlack }) => ({
 export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
   pianoKey,
   isPressed,
+  theme,
   onMouseDown,
   onMouseUp,
   onMouseLeave,
@@ -194,6 +197,7 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
   return (
     <KeyComponent
       isPressed={isPressed}
+      keyTheme={theme}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseLeave}

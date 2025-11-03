@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { Box, styled, Paper } from '@mui/material';
 import { PianoKeyComponent } from './piano-key';
-import { KEY_MAPPINGS, createKeyboardMap, KeyPressState } from './types';
+import { KEY_MAPPINGS, createKeyboardMap, KeyPressState, PianoKey } from './types';
+import { PianoTheme, getTheme } from './themes';
 import { getAudioEngine } from '@/services/audio-engine';
 
-const PianoContainer = styled(Paper)(({ theme }) => ({
+const PianoContainer = styled(Paper, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   display: 'inline-block',
   padding: theme.spacing(3),
-  background: 'linear-gradient(135deg, #8B5A3C 0%, #6B4423 50%, #4A2F1A 100%)',
+  background: pianoTheme.container.background,
   borderRadius: theme.spacing(2),
-  boxShadow: '0 8px 32px rgba(74, 47, 26, 0.3), inset 0 1px 0 rgba(139, 90, 60, 0.4)',
-  border: '2px solid #5D3A1A',
+  boxShadow: pianoTheme.container.boxShadow,
+  border: pianoTheme.container.border,
   position: 'relative',
   '&::before': {
     content: '""',
@@ -20,22 +23,7 @@ const PianoContainer = styled(Paper)(({ theme }) => ({
     right: 0,
     bottom: 0,
     borderRadius: theme.spacing(2),
-    background: `
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 80px,
-        rgba(0, 0, 0, 0.03) 80px,
-        rgba(0, 0, 0, 0.03) 81px
-      ),
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 20px,
-        rgba(0, 0, 0, 0.02) 20px,
-        rgba(0, 0, 0, 0.02) 21px
-      )
-    `,
+    background: pianoTheme.container.beforeBackground || 'transparent',
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
@@ -47,7 +35,7 @@ const PianoContainer = styled(Paper)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 60%)',
+    background: pianoTheme.container.afterBackground || 'transparent',
     pointerEvents: 'none',
     zIndex: 2,
     borderRadius: theme.spacing(2),
@@ -77,8 +65,8 @@ const BlackKeyContainer = styled(Box)<{ offset: number }>(({ offset }) => ({
 }));
 
 const CornerPlate = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'cornerPosition',
-})<{ cornerPosition: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' }>(({ theme, cornerPosition }) => {
+  shouldForwardProp: (prop) => prop !== 'cornerPosition' && prop !== 'pianoTheme',
+})<{ cornerPosition: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'; pianoTheme: PianoTheme }>(({ theme, cornerPosition, pianoTheme }) => {
   const positions = {
     topLeft: { top: theme.spacing(1), left: theme.spacing(1) },
     topRight: { top: theme.spacing(1), right: theme.spacing(1) },
@@ -86,15 +74,21 @@ const CornerPlate = styled(Box, {
     bottomRight: { bottom: theme.spacing(1), right: theme.spacing(1) },
   };
 
+  const cornerStyle = pianoTheme.cornerPlates || {
+    background: 'transparent',
+    border: 'none',
+    boxShadow: 'none',
+  };
+
   return {
     position: 'absolute',
     ...positions[cornerPosition],
     width: '15px',
     height: '15px',
-    background: 'linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #B8941E 100%)',
-    border: '1px solid #8B7355',
+    background: cornerStyle.background,
+    border: cornerStyle.border,
     borderRadius: '50%',
-    boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3)',
+    boxShadow: cornerStyle.boxShadow,
     zIndex: 4,
     '&::before': {
       content: '""',
@@ -121,11 +115,21 @@ const CornerPlate = styled(Box, {
   };
 });
 
-export const Piano: React.FC = () => {
+interface PianoProps {
+  /** Visual theme for the piano */
+  themeId?: string;
+  /** Callback when pressed notes change */
+  onPressedNotesChange?: (notes: Map<string, PianoKey>, currentNote: PianoKey | null) => void;
+}
+
+export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotesChange }) => {
+  const pianoTheme = getTheme(themeId);
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
   const audioEngineRef = useRef(getAudioEngine());
   const keyboardMapRef = useRef(createKeyboardMap());
   const pressedKeysRef = useRef<Set<string>>(new Set());
+  const pressedNotesMapRef = useRef<Map<string, PianoKey>>(new Map());
+  const currentNoteRef = useRef<PianoKey | null>(null);
 
   // Calculate positions for black keys based on their position in the pattern
   const getBlackKeyOffset = (blackKey: typeof KEY_MAPPINGS[0]): number => {
@@ -143,7 +147,22 @@ export const Piano: React.FC = () => {
   const playNote = useCallback((note: string, frequency: number) => {
     setPressedKeys(prev => ({ ...prev, [note]: true }));
     audioEngineRef.current.playNote(note, frequency);
-  }, []);
+    
+    // Find the piano key and update tracking
+    const pianoKey = KEY_MAPPINGS.find(k => k.note === note);
+    if (pianoKey) {
+      pressedNotesMapRef.current.set(note, pianoKey);
+      currentNoteRef.current = pianoKey;
+      
+      // Notify parent
+      if (onPressedNotesChange) {
+        onPressedNotesChange(
+          new Map(pressedNotesMapRef.current),
+          currentNoteRef.current
+        );
+      }
+    }
+  }, [onPressedNotesChange]);
 
   // Handle note stop
   const stopNote = useCallback((note: string) => {
@@ -153,7 +172,25 @@ export const Piano: React.FC = () => {
       return newState;
     });
     audioEngineRef.current.stopNote(note);
-  }, []);
+    
+    // Update tracking
+    pressedNotesMapRef.current.delete(note);
+    
+    // If we just released the current note, clear it
+    if (currentNoteRef.current?.note === note) {
+      // Set current to the last remaining pressed note, or null
+      const remaining = Array.from(pressedNotesMapRef.current.values());
+      currentNoteRef.current = remaining[remaining.length - 1] || null;
+    }
+    
+    // Notify parent
+    if (onPressedNotesChange) {
+      onPressedNotesChange(
+        new Map(pressedNotesMapRef.current),
+        currentNoteRef.current
+      );
+    }
+  }, [onPressedNotesChange]);
 
   // Keyboard event handlers
   useEffect(() => {
@@ -207,12 +244,16 @@ export const Piano: React.FC = () => {
   const blackKeys = KEY_MAPPINGS.filter(key => key.isBlack);
 
   return (
-    <PianoContainer elevation={0}>
-      {/* Decorative Brass Corner Plates */}
-      <CornerPlate cornerPosition="topLeft" />
-      <CornerPlate cornerPosition="topRight" />
-      <CornerPlate cornerPosition="bottomLeft" />
-      <CornerPlate cornerPosition="bottomRight" />
+    <PianoContainer elevation={0} pianoTheme={pianoTheme}>
+      {/* Decorative Corner Plates */}
+      {pianoTheme.cornerPlates && (
+        <>
+          <CornerPlate cornerPosition="topLeft" pianoTheme={pianoTheme} />
+          <CornerPlate cornerPosition="topRight" pianoTheme={pianoTheme} />
+          <CornerPlate cornerPosition="bottomLeft" pianoTheme={pianoTheme} />
+          <CornerPlate cornerPosition="bottomRight" pianoTheme={pianoTheme} />
+        </>
+      )}
       
       <KeyboardWrapper>
         {/* White Keys */}
@@ -221,6 +262,7 @@ export const Piano: React.FC = () => {
             <PianoKeyComponent
               key={key.note}
               pianoKey={key}
+              theme={pianoTheme}
               isPressed={!!pressedKeys[key.note]}
               onMouseDown={() => playNote(key.note, key.frequency)}
               onMouseUp={() => stopNote(key.note)}
@@ -234,6 +276,7 @@ export const Piano: React.FC = () => {
           <BlackKeyContainer key={key.note} offset={getBlackKeyOffset(key)}>
             <PianoKeyComponent
               pianoKey={key}
+              theme={pianoTheme}
               isPressed={!!pressedKeys[key.note]}
               onMouseDown={() => playNote(key.note, key.frequency)}
               onMouseUp={() => stopNote(key.note)}

@@ -1,17 +1,42 @@
 import { useState } from 'react';
 import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
+import { StatisticsBoard } from '@/components/piano/statistics-board';
+import { SettingsBar } from '@/components/piano/settings-bar';
+import { PianoKey } from '@/components/piano/types';
 import { getAudioEngine } from '@/services/audio-engine';
 import './App.css';
 
 function App() {
   const [sustain, setSustain] = useState(0); // Default: 0s base + 10.5s offset = 10.5s total
+  const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
+  const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
+  const [pianoTheme, setPianoTheme] = useState('wooden'); // Current piano theme
 
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
     setSustain(value);
     getAudioEngine().setSustain(value);
   };
+
+  const handlePressedNotesChange = (notes: Map<string, PianoKey>, current: PianoKey | null) => {
+    setPressedNotes(notes);
+    setCurrentNote(current);
+  };
+
+  // Settings bar handlers (placeholder for now)
+  const handleRecord = () => console.log('Record clicked');
+  const handleKeyAssist = () => console.log('Key Assist clicked');
+  const handleSound = () => console.log('Sound clicked');
+  const handleStyles = () => {
+    // Cycle through themes for now
+    const themes = ['wooden', 'black', 'metal', 'white'];
+    const currentIndex = themes.indexOf(pianoTheme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    setPianoTheme(themes[nextIndex]);
+  };
+  const handleSave = () => console.log('Save clicked');
+  const handleMore = () => console.log('More clicked');
 
   return (
     <Box
@@ -131,9 +156,32 @@ function App() {
             />
           </Paper>
 
+          {/* Statistics Board */}
+          <Box sx={{ width: '100%', maxWidth: 900 }}>
+            <StatisticsBoard 
+              pressedNotes={pressedNotes}
+              currentNote={currentNote}
+            />
+          </Box>
+
+          {/* Settings Bar */}
+          <Box sx={{ width: '100%', maxWidth: 900 }}>
+            <SettingsBar
+              onRecord={handleRecord}
+              onKeyAssist={handleKeyAssist}
+              onSound={handleSound}
+              onStyles={handleStyles}
+              onSave={handleSave}
+              onMore={handleMore}
+            />
+          </Box>
+
           {/* Piano Component */}
           <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <Piano />
+            <Piano 
+              themeId={pianoTheme}
+              onPressedNotesChange={handlePressedNotesChange} 
+            />
           </Box>
 
           {/* Instructions */}
