@@ -3,7 +3,8 @@ import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/m
 import { Piano } from '@/components/piano/piano';
 import { StatusBoard } from '@/components/piano/status-board';
 import { SettingsBar } from '@/components/piano/settings-bar';
-import { SoundSelectorDialog } from '@/components/piano/sound-selector-dialog';
+import { InstrumentSelectorPopup } from '@/components/piano/instrument-selector-popup';
+import { SoundSettingsDialog } from '@/components/piano/sound-settings-dialog';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
@@ -24,7 +25,19 @@ function App() {
   // Local component state for UI interactions
   const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
   const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
-  const [soundDialogOpen, setSoundDialogOpen] = useState(false); // Sound selector dialog state
+  
+  // Instrument popup state
+  const [instrumentPopupAnchor, setInstrumentPopupAnchor] = useState<HTMLElement | null>(null);
+  const instrumentPopupOpen = Boolean(instrumentPopupAnchor);
+  
+  // Sound settings dialog state
+  const [soundSettingsOpen, setSoundSettingsOpen] = useState(false);
+  
+  // Additional sound settings (local state for now, can be moved to Redux later)
+  const [transpose, setTranspose] = useState(0);
+  const [volume, setVolume] = useState(80);
+  const [metronomeEnabled, setMetronomeEnabled] = useState(false);
+  const [midiDevice, setMidiDevice] = useState('none');
 
   // Sync audio engine with Redux state on mount
   useEffect(() => {
@@ -46,8 +59,16 @@ function App() {
   const handleRecord = () => console.log('Record clicked');
   const handleKeyAssist = () => console.log('Key Assist clicked');
   
+  const handleInstrument = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setInstrumentPopupAnchor(event.currentTarget);
+  };
+  
+  const handleInstrumentPopupClose = () => {
+    setInstrumentPopupAnchor(null);
+  };
+  
   const handleSound = () => {
-    setSoundDialogOpen(true);
+    setSoundSettingsOpen(true);
   };
   
   const handleSoundSetChange = async (newSoundSetId: string) => {
@@ -213,6 +234,7 @@ function App() {
               <SettingsBar
                 onRecord={handleRecord}
                 onKeyAssist={handleKeyAssist}
+                onInstrument={handleInstrument}
                 onSound={handleSound}
                 onStyles={handleStyles}
                 onSave={handleSave}
@@ -248,12 +270,32 @@ function App() {
         </Stack>
       </Container>
 
-      {/* Sound Selector Dialog */}
-      <SoundSelectorDialog
-        open={soundDialogOpen}
+      {/* Instrument Selector Popup */}
+      <InstrumentSelectorPopup
+        open={instrumentPopupOpen}
+        anchorEl={instrumentPopupAnchor}
         currentSoundSetId={soundSet}
-        onClose={() => setSoundDialogOpen(false)}
+        onClose={handleInstrumentPopupClose}
         onSoundSetChange={handleSoundSetChange}
+      />
+
+      {/* Sound Settings Dialog */}
+      <SoundSettingsDialog
+        open={soundSettingsOpen}
+        onClose={() => setSoundSettingsOpen(false)}
+        sustain={sustain}
+        onSustainChange={(value) => {
+          dispatch(setSustain(value));
+          getAudioEngine().setSustain(value);
+        }}
+        transpose={transpose}
+        onTransposeChange={setTranspose}
+        volume={volume}
+        onVolumeChange={setVolume}
+        metronomeEnabled={metronomeEnabled}
+        onMetronomeToggle={() => setMetronomeEnabled(!metronomeEnabled)}
+        midiDevice={midiDevice}
+        onMidiDeviceChange={setMidiDevice}
       />
     </Box>
   );

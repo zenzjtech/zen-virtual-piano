@@ -7,12 +7,14 @@ import {
   Palette as StylesIcon,
   Save as SaveIcon,
   MoreHoriz as MoreIcon,
+  Piano as InstrumentIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 
 interface SettingsBarProps {
   onRecord?: () => void;
   onKeyAssist?: () => void;
+  onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: () => void;
   onStyles?: () => void;
   onSave?: () => void;
@@ -142,6 +144,7 @@ const SettingButton = styled(Button, {
 export const SettingsBar: React.FC<SettingsBarProps> = ({
   onRecord,
   onKeyAssist,
+  onInstrument,
   onSound,
   onStyles,
   onSave,
@@ -166,6 +169,15 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         pianoTheme={pianoTheme}
       >
         Key Assist
+      </SettingButton>
+
+      <SettingButton
+        variant="outlined"
+        startIcon={<InstrumentIcon sx={{ fontSize: '1rem' }} />}
+        onClick={onInstrument}
+        pianoTheme={pianoTheme}
+      >
+        Instrument
       </SettingButton>
 
       <SettingButton
