@@ -76,6 +76,51 @@ const BlackKeyContainer = styled(Box)<{ offset: number }>(({ offset }) => ({
   zIndex: 2,
 }));
 
+const CornerPlate = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'cornerPosition',
+})<{ cornerPosition: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' }>(({ theme, cornerPosition }) => {
+  const positions = {
+    topLeft: { top: theme.spacing(1), left: theme.spacing(1) },
+    topRight: { top: theme.spacing(1), right: theme.spacing(1) },
+    bottomLeft: { bottom: theme.spacing(1), left: theme.spacing(1) },
+    bottomRight: { bottom: theme.spacing(1), right: theme.spacing(1) },
+  };
+
+  return {
+    position: 'absolute',
+    ...positions[cornerPosition],
+    width: '15px',
+    height: '15px',
+    background: 'linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #B8941E 100%)',
+    border: '1px solid #8B7355',
+    borderRadius: '50%',
+    boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3)',
+    zIndex: 4,
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: '2px',
+      left: '2px',
+      right: '2px',
+      bottom: '2px',
+      border: '1px solid rgba(184, 148, 30, 0.6)',
+      borderRadius: '50%',
+    },
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: '4px',
+      height: '4px',
+      background: 'radial-gradient(circle, #8B7355 0%, #6B5A3C 100%)',
+      borderRadius: '50%',
+      transform: 'translate(-50%, -50%)',
+      boxShadow: 'inset 0 1px 1px rgba(0, 0, 0, 0.5)',
+    },
+  };
+});
+
 export const Piano: React.FC = () => {
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
   const audioEngineRef = useRef(getAudioEngine());
@@ -163,6 +208,12 @@ export const Piano: React.FC = () => {
 
   return (
     <PianoContainer elevation={0}>
+      {/* Decorative Brass Corner Plates */}
+      <CornerPlate cornerPosition="topLeft" />
+      <CornerPlate cornerPosition="topRight" />
+      <CornerPlate cornerPosition="bottomLeft" />
+      <CornerPlate cornerPosition="bottomRight" />
+      
       <KeyboardWrapper>
         {/* White Keys */}
         <WhiteKeysContainer>
