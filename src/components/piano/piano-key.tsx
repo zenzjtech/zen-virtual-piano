@@ -32,6 +32,34 @@ const WhiteKey = styled(Box, {
     ? 'inset 0 3px 8px rgba(74, 47, 26, 0.4), inset 0 1px 2px rgba(0,0,0,0.2)'
     : '0 4px 8px rgba(74, 47, 26, 0.25), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8)',
   transform: isPressed ? 'translateY(2px)' : 'none',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: '10%',
+    right: '10%',
+    height: '8px',
+    background: 'linear-gradient(to bottom, rgba(139, 115, 85, 0.6), transparent)',
+    borderRadius: '0 0 50% 50%',
+    opacity: isPressed ? 0 : 1,
+    animation: isPressed ? 'none' : 'damperTouch 0.3s ease-out',
+    pointerEvents: 'none',
+  },
+  '@keyframes damperTouch': {
+    '0%': {
+      opacity: 0,
+      transform: 'translateY(-8px)',
+    },
+    '50%': {
+      opacity: 0.8,
+      transform: 'translateY(0)',
+    },
+    '100%': {
+      opacity: 0,
+      transform: 'translateY(0)',
+    },
+  },
   '&:hover': {
     background: isPressed 
       ? 'linear-gradient(to bottom, #E8E4DC 0%, #F5F1E8 50%, #E8E4DC 100%)'
@@ -62,6 +90,34 @@ const BlackKey = styled(Box, {
     ? 'inset 0 3px 8px rgba(0,0,0,0.8), inset 0 1px 3px rgba(255,255,255,0.1)'
     : '0 6px 10px rgba(0,0,0,0.6), 0 3px 6px rgba(74, 47, 26, 0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
   transform: isPressed ? 'translateY(2px)' : 'none',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: '15%',
+    right: '15%',
+    height: '6px',
+    background: 'linear-gradient(to bottom, rgba(139, 115, 85, 0.5), transparent)',
+    borderRadius: '0 0 50% 50%',
+    opacity: isPressed ? 0 : 1,
+    animation: isPressed ? 'none' : 'damperTouch 0.3s ease-out',
+    pointerEvents: 'none',
+  },
+  '@keyframes damperTouch': {
+    '0%': {
+      opacity: 0,
+      transform: 'translateY(-6px)',
+    },
+    '50%': {
+      opacity: 0.7,
+      transform: 'translateY(0)',
+    },
+    '100%': {
+      opacity: 0,
+      transform: 'translateY(0)',
+    },
+  },
   '&:hover': {
     background: isPressed 
       ? 'linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)'
