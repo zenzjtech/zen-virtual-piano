@@ -475,6 +475,296 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
       activeBackground: 'linear-gradient(180deg, #3A3A3A 0%, #2A2A2A 50%, #1A1A1A 100%)',
     },
   },
+
+  roseGold: {
+    id: 'roseGold',
+    name: 'Rose Gold Elegance',
+    description: 'Elegant rose gold metallic finish',
+    category: 'modern',
+    isLight: true,
+    colors: {
+      primary: '#5D4E4A',
+      secondary: '#8B7670',
+      accent: '#E8B4A8',
+      border: 'rgba(232, 180, 168, 0.3)',
+    },
+    lighting: {
+      ambientGlow: 'rgba(232, 180, 168, 0.2)',
+      ambientOpacity: 0.65,
+      specularHighlight: 'rgba(255, 230, 220, 0.7)',
+      specularIntensity: 0.75,
+      specularSize: '35%',
+      shadowColor: 'rgba(139, 118, 112, 0.35)',
+      shadowDepth: '5px',
+      shadowSoftness: '12px',
+      reflectionGradient: 'linear-gradient(165deg, rgba(255, 240, 235, 0.4) 0%, rgba(232, 180, 168, 0.25) 30%, transparent 60%)',
+      reflectionOpacity: 0.7,
+      interactiveGlow: 'rgba(232, 180, 168, 0.6)',
+      interactiveGlowSize: '18px',
+      lightAngle: 140,
+      materialFinish: 'metallic',
+      glossiness: 0.7,
+    },
+    container: {
+      background: 'linear-gradient(135deg, #E8B4A8 0%, #D4A094 35%, #B88A7E 70%, #9D7268 100%)',
+      border: '2px solid #B88A7E',
+      boxShadow: '0 8px 32px rgba(157, 114, 104, 0.35), inset 0 1px 0 rgba(232, 180, 168, 0.5)',
+      beforeBackground: `
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.08) 2px,
+          rgba(255, 255, 255, 0.08) 3px,
+          transparent 3px,
+          transparent 6px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(139, 118, 112, 0.06) 60px,
+          rgba(139, 118, 112, 0.06) 61px
+        )
+      `,
+      afterBackground: 'linear-gradient(135deg, rgba(255, 240, 235, 0.3) 0%, rgba(255, 240, 235, 0.15) 40%, transparent 70%)',
+    },
+    cornerPlates: {
+      background: 'linear-gradient(135deg, #F4D8CF 0%, #E8B4A8 50%, #D4A094 100%)',
+      border: '1px solid #B88A7E',
+      boxShadow: 'inset 0 1px 2px rgba(255, 240, 235, 0.5), 0 2px 4px rgba(157, 114, 104, 0.3)',
+    },
+    whiteKey: {
+      background: 'linear-gradient(180deg, #FFF8F5 0%, #F5EBE8 50%, #EBDDD8 100%)',
+      border: '1px solid #D4C0B8',
+      boxShadow: '0 2px 4px rgba(157, 114, 104, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+      hoverBackground: 'linear-gradient(180deg, #FFFAF8 0%, #F8F0ED 50%, #EDE3E0 100%)',
+      activeBackground: 'linear-gradient(180deg, #F0E0DC 0%, #E5D3CF 50%, #D8C3BD 100%)',
+    },
+    blackKey: {
+      background: 'linear-gradient(180deg, #5D4E4A 0%, #4A3D3A 50%, #3A2E2B 100%)',
+      border: '1px solid #2A1E1B',
+      boxShadow: '0 2px 4px rgba(58, 46, 43, 0.5), inset 0 1px 0 rgba(232, 180, 168, 0.2)',
+      hoverBackground: 'linear-gradient(180deg, #6D5E5A 0%, #5A4D4A 50%, #4A3E3B 100%)',
+      activeBackground: 'linear-gradient(180deg, #4A3D3A 0%, #3A2E2B 50%, #2A1E1B 100%)',
+    },
+  },
+
+  mahogany: {
+    id: 'mahogany',
+    name: 'Mahogany Grand',
+    description: 'Rich mahogany wood with burgundy undertones',
+    category: 'classic',
+    isLight: false,
+    colors: {
+      primary: '#E8D4C8',
+      secondary: '#B88A70',
+      accent: '#D4A880',
+      border: 'rgba(184, 138, 112, 0.3)',
+    },
+    lighting: {
+      ambientGlow: 'rgba(212, 168, 128, 0.18)',
+      ambientOpacity: 0.65,
+      specularHighlight: 'rgba(255, 230, 210, 0.45)',
+      specularIntensity: 0.5,
+      specularSize: '38%',
+      shadowColor: 'rgba(90, 45, 35, 0.55)',
+      shadowDepth: '7px',
+      shadowSoftness: '14px',
+      reflectionGradient: 'linear-gradient(165deg, rgba(255, 235, 215, 0.25) 0%, rgba(212, 168, 128, 0.15) 28%, transparent 55%)',
+      reflectionOpacity: 0.55,
+      interactiveGlow: 'rgba(212, 168, 128, 0.65)',
+      interactiveGlowSize: '17px',
+      lightAngle: 135,
+      materialFinish: 'wood',
+      glossiness: 0.6,
+    },
+    container: {
+      background: 'linear-gradient(135deg, #8B4545 0%, #6B3535 35%, #522828 70%, #3A1818 100%)',
+      border: '2px solid #6B3535',
+      boxShadow: '0 8px 32px rgba(58, 24, 24, 0.4), inset 0 1px 0 rgba(139, 69, 69, 0.45)',
+      beforeBackground: `
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 4px,
+          rgba(90, 45, 35, 0.2) 4px,
+          rgba(90, 45, 35, 0.2) 4.5px,
+          transparent 4.5px,
+          transparent 10px,
+          rgba(70, 35, 28, 0.15) 10px,
+          rgba(70, 35, 28, 0.15) 11px,
+          transparent 11px,
+          transparent 18px,
+          rgba(90, 45, 35, 0.12) 18px,
+          rgba(90, 45, 35, 0.12) 19px,
+          transparent 19px,
+          transparent 35px,
+          rgba(110, 55, 45, 0.22) 35px,
+          rgba(110, 55, 45, 0.22) 36px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 70px,
+          rgba(70, 35, 28, 0.1) 70px,
+          rgba(70, 35, 28, 0.1) 72px,
+          transparent 72px,
+          transparent 140px,
+          rgba(90, 45, 35, 0.08) 140px,
+          rgba(90, 45, 35, 0.08) 143px
+        ),
+        radial-gradient(
+          ellipse 120px 80px at 20% 30%,
+          rgba(70, 30, 25, 0.3) 0%,
+          rgba(90, 40, 32, 0.18) 35%,
+          transparent 60%
+        ),
+        radial-gradient(
+          ellipse 90px 65px at 70% 65%,
+          rgba(70, 30, 25, 0.25) 0%,
+          rgba(90, 40, 32, 0.15) 30%,
+          transparent 55%
+        )
+      `,
+      afterBackground: `
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.08) 35%,
+          transparent 65%
+        ),
+        repeating-radial-gradient(
+          ellipse at 45% 35%,
+          transparent 0px,
+          transparent 90px,
+          rgba(70, 30, 25, 0.04) 90px,
+          rgba(70, 30, 25, 0.04) 92px,
+          transparent 92px,
+          transparent 180px
+        )
+      `,
+    },
+    cornerPlates: {
+      background: 'linear-gradient(135deg, #D4A880 0%, #E8C4A0 50%, #C09870 100%)',
+      border: '1px solid #A08060',
+      boxShadow: 'inset 0 1px 2px rgba(255, 240, 220, 0.45), 0 2px 4px rgba(58, 24, 24, 0.35)',
+    },
+    whiteKey: {
+      background: 'linear-gradient(180deg, #FFFBF8 0%, #F8F3F0 50%, #F0EBE8 100%)',
+      border: '1px solid #D8C8C0',
+      boxShadow: '0 2px 4px rgba(58, 24, 24, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.85)',
+      hoverBackground: 'linear-gradient(180deg, #FFFEFA 0%, #FAF5F2 50%, #F2EDE8 100%)',
+      activeBackground: 'linear-gradient(180deg, #F0E8E0 0%, #E8DED8 50%, #DCD0C8 100%)',
+    },
+    blackKey: {
+      background: 'linear-gradient(180deg, #3A2820 0%, #2A1A15 50%, #1A0D08 100%)',
+      border: '1px solid #0A0503',
+      boxShadow: '0 2px 4px rgba(26, 13, 8, 0.6), inset 0 1px 0 rgba(139, 69, 69, 0.15)',
+      hoverBackground: 'linear-gradient(180deg, #4A3830 0%, #3A2820 50%, #2A1A15 100%)',
+      activeBackground: 'linear-gradient(180deg, #2A1A15 0%, #1A0D08 50%, #0A0503 100%)',
+    },
+  },
+
+  nordicIce: {
+    id: 'nordicIce',
+    name: 'Nordic Ice',
+    description: 'Cool Scandinavian-inspired icy white-blue',
+    category: 'modern',
+    isLight: true,
+    colors: {
+      primary: '#2C3E50',
+      secondary: '#5D6E7E',
+      accent: '#7F9CAF',
+      border: 'rgba(127, 156, 175, 0.25)',
+    },
+    lighting: {
+      ambientGlow: 'rgba(200, 220, 235, 0.25)',
+      ambientOpacity: 0.55,
+      specularHighlight: 'rgba(240, 250, 255, 0.6)',
+      specularIntensity: 0.5,
+      specularSize: '42%',
+      shadowColor: 'rgba(127, 156, 175, 0.2)',
+      shadowDepth: '4px',
+      shadowSoftness: '10px',
+      reflectionGradient: 'linear-gradient(165deg, rgba(240, 250, 255, 0.35) 0%, rgba(200, 220, 235, 0.2) 40%, transparent 70%)',
+      reflectionOpacity: 0.5,
+      interactiveGlow: 'rgba(200, 220, 235, 0.45)',
+      interactiveGlowSize: '15px',
+      lightAngle: 170,
+      materialFinish: 'matte',
+      glossiness: 0.35,
+    },
+    container: {
+      background: 'linear-gradient(135deg, #F0F8FF 0%, #E8F4FB 35%, #DCE8F0 70%, #CDD8E3 100%)',
+      border: '2px solid #C8D8E5',
+      boxShadow: '0 8px 32px rgba(127, 156, 175, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+      beforeBackground: `
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 3px,
+          rgba(200, 220, 235, 0.08) 3px,
+          rgba(200, 220, 235, 0.08) 4px,
+          transparent 4px,
+          transparent 8px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 3px,
+          rgba(200, 220, 235, 0.06) 3px,
+          rgba(200, 220, 235, 0.06) 4px,
+          transparent 4px,
+          transparent 8px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 100px,
+          rgba(127, 156, 175, 0.03) 100px,
+          rgba(127, 156, 175, 0.03) 102px
+        )
+      `,
+      afterBackground: `
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.6) 0%,
+          rgba(240, 250, 255, 0.35) 40%,
+          transparent 75%
+        ),
+        radial-gradient(
+          circle at 25% 25%,
+          rgba(200, 220, 235, 0.12) 0%,
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 75% 60%,
+          rgba(200, 220, 235, 0.1) 0%,
+          transparent 25%
+        )
+      `,
+    },
+    cornerPlates: {
+      background: 'linear-gradient(135deg, #E8F0F8 0%, #F8FCFF 50%, #DCE8F0 100%)',
+      border: '1px solid #B8C8D5',
+      boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(127, 156, 175, 0.15)',
+    },
+    whiteKey: {
+      background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FCFF 50%, #F0F8FF 100%)',
+      border: '1px solid #D8E8F0',
+      boxShadow: '0 2px 4px rgba(127, 156, 175, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1)',
+      hoverBackground: 'linear-gradient(180deg, #FAFCFF 0%, #F0F8FF 50%, #E8F4FB 100%)',
+      activeBackground: 'linear-gradient(180deg, #E8F4FB 0%, #DCE8F0 50%, #D0DCE8 100%)',
+    },
+    blackKey: {
+      background: 'linear-gradient(180deg, #5D6E7E 0%, #4A5968 50%, #3A4858 100%)',
+      border: '1px solid #2C3E50',
+      boxShadow: '0 2px 4px rgba(44, 62, 80, 0.35), inset 0 1px 0 rgba(200, 220, 235, 0.2)',
+      hoverBackground: 'linear-gradient(180deg, #6D7E8E 0%, #5A6978 50%, #4A5868 100%)',
+      activeBackground: 'linear-gradient(180deg, #4A5968 0%, #3A4858 50%, #2C3E50 100%)',
+    },
+  },
 };
 
 // Helper to get theme by id with fallback
