@@ -176,7 +176,7 @@ const CornerPlate = styled(Box, {
   };
 });
 
-export const StatisticsBoard: React.FC<StatisticsBoardProps> = ({
+export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   pressedNotes,
   currentNote,
   pianoTheme,

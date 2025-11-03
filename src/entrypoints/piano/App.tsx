@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
-import { StatisticsBoard } from '@/components/piano/statistics-board';
+import { StatusBoard } from '@/components/piano/status-board';
 import { SettingsBar } from '@/components/piano/settings-bar';
 import { SoundSelectorDialog } from '@/components/piano/sound-selector-dialog';
 import { PianoKey } from '@/components/piano/types';
@@ -203,7 +203,7 @@ function App() {
               }}
             >
               {/* Statistics Board */}
-              <StatisticsBoard 
+              <StatusBoard 
                 pressedNotes={pressedNotes}
                 currentNote={currentNote}
                 pianoTheme={pianoTheme}
