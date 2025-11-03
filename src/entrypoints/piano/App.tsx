@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Container, Typography, Slider, Paper } from '@mui/material';
+import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
 import { getAudioEngine } from '@/services/audio-engine';
 import './App.css';
@@ -14,66 +14,148 @@ function App() {
   };
 
   return (
-    <Container maxWidth="lg">
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          gap: 4,
-          py: 4,
-        }}
-      >
-        <Typography variant="h3" component="h1" fontWeight="bold" color="primary">
-          🎹 Zen Virtual Piano
-        </Typography>
-        
-        <Typography variant="body1" color="text.secondary" textAlign="center">
-          Play piano using your keyboard or click the keys with your mouse
-        </Typography>
-        
-        <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ fontStyle: 'italic' }}>
-          5+ Octaves • C2 to C7 • 67 Keys
-        </Typography>
-
-        {/* Sustain Control */}
-        <Paper
-          elevation={3}
+    <Box
+      sx={{
+        minHeight: '100vh',
+        backgroundColor: '#ffffff',
+        py: { xs: 4, md: 6 },
+      }}
+    >
+      <Container maxWidth="lg">
+        <Stack
+          spacing={{ xs: 4, md: 5 }}
+          alignItems="center"
           sx={{
-            p: 3,
-            width: '100%',
-            maxWidth: 400,
-            backgroundColor: 'background.paper',
+            textAlign: 'center',
           }}
         >
-          <Typography variant="subtitle2" gutterBottom color="text.primary">
-            Sustain: {sustain.toFixed(1)}s → Total: {(sustain + 10.5).toFixed(1)}s
-          </Typography>
-          <Slider
-            value={sustain}
-            onChange={handleSustainChange}
-            min={-10.5}
-            max={10}
-            step={0.1}
-            marks={[
-              { value: -10.5, label: 'Off' },
-              { value: 0, label: '0s' },
-              { value: 10, label: '10s' },              
-            ]}
-            valueLabelDisplay="auto"
-            valueLabelFormat={(value) => `${value.toFixed(1)}s`}
-          />
-        </Paper>
+          {/* Header Section */}
+          <Box sx={{ maxWidth: 700, px: 2 }}>
+            <Typography 
+              variant="h2" 
+              component="h1" 
+              fontWeight="600"
+              sx={{
+                color: 'grey.900',
+                mb: 2,
+                fontSize: { xs: '2rem', md: '2.75rem' },
+              }}
+            >
+              🎹 Zen Virtual Piano
+            </Typography>
+            
+            <Typography 
+              variant="h6" 
+              color="text.secondary" 
+              sx={{ 
+                mb: 1.5,
+                fontWeight: 400,
+                fontSize: { xs: '1rem', md: '1.125rem' },
+              }}
+            >
+              Play piano using your keyboard or click the keys with your mouse
+            </Typography>
+            
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                color: 'grey.600',
+                fontStyle: 'italic',
+              }}
+            >
+              5+ Octaves • C2 to C7 • 67 Keys
+            </Typography>
+          </Box>
 
-        <Piano />
+          {/* Sustain Control Card */}
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, md: 4 },
+              width: '100%',
+              maxWidth: 500,
+              backgroundColor: 'grey.50',
+              border: '1px solid',
+              borderColor: 'grey.200',
+              borderRadius: 2,
+            }}
+          >
+            <Typography 
+              variant="subtitle1" 
+              gutterBottom 
+              fontWeight="600"
+              sx={{ 
+                color: 'grey.900',
+                mb: 3,
+              }}
+            >
+              Sustain Control
+            </Typography>
+            <Typography 
+              variant="body2" 
+              color="text.secondary"
+              sx={{ mb: 2 }}
+            >
+              Adjust: {sustain.toFixed(1)}s • Total: {(sustain + 10.5).toFixed(1)}s
+            </Typography>
+            <Slider
+              value={sustain}
+              onChange={handleSustainChange}
+              min={-10.5}
+              max={10}
+              step={0.1}
+              marks={[
+                { value: -10.5, label: 'Off' },
+                { value: 0, label: '0s' },
+                { value: 10, label: '10s' },              
+              ]}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `${value.toFixed(1)}s`}
+              sx={{
+                '& .MuiSlider-thumb': {
+                  '&:hover, &.Mui-focusVisible': {
+                    boxShadow: '0px 0px 0px 8px rgba(76, 175, 80, 0.16)',
+                  },
+                  '&.Mui-active': {
+                    boxShadow: '0px 0px 0px 12px rgba(76, 175, 80, 0.16)',
+                  },
+                },
+                '& .MuiSlider-mark': {
+                  backgroundColor: 'grey.400',
+                },
+                '& .MuiSlider-markLabel': {
+                  color: 'grey.600',
+                  fontSize: '0.75rem',
+                },
+              }}
+            />
+          </Paper>
 
-        <Typography variant="caption" color="text.secondary" sx={{ mt: 2 }}>
-          Use numbers (1-0), letters (q-m), and Shift for sharps/flats
-        </Typography>
-      </Box>
-    </Container>
+          {/* Piano Component */}
+          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <Piano />
+          </Box>
+
+          {/* Instructions */}
+          <Paper
+            elevation={0}
+            sx={{
+              px: 3,
+              py: 2,
+              backgroundColor: 'transparent',
+              border: '1px solid',
+              borderColor: 'grey.200',
+              borderRadius: 2,
+              maxWidth: 600,
+            }}
+          >
+            <Typography variant="body2" color="text.secondary">
+              💡 <strong>Keyboard Shortcuts:</strong> Use numbers (1-0), letters (q-m), and Shift for sharps/flats
+            </Typography>
+          </Paper>
+        </Stack>
+      </Container>
+    </Box>
   );
 }
 

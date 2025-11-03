@@ -6,10 +6,11 @@ import { getAudioEngine } from '@/services/audio-engine';
 
 const PianoContainer = styled(Paper)(({ theme }) => ({
   display: 'inline-block',
-  padding: theme.spacing(2),
-  backgroundColor: '#1a1a1a',
-  borderRadius: theme.spacing(1.5),
-  boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+  padding: theme.spacing(3),
+  backgroundColor: theme.palette.grey[100],
+  borderRadius: theme.spacing(2),
+  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+  border: `1px solid ${theme.palette.grey[200]}`,
 }));
 
 const KeyboardWrapper = styled(Box)({
@@ -119,7 +120,7 @@ export const Piano: React.FC = () => {
   const blackKeys = KEY_MAPPINGS.filter(key => key.isBlack);
 
   return (
-    <PianoContainer elevation={10}>
+    <PianoContainer elevation={0}>
       <KeyboardWrapper>
         {/* White Keys */}
         <WhiteKeysContainer>
