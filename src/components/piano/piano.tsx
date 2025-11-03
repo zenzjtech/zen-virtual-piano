@@ -7,10 +7,38 @@ import { getAudioEngine } from '@/services/audio-engine';
 const PianoContainer = styled(Paper)(({ theme }) => ({
   display: 'inline-block',
   padding: theme.spacing(3),
-  backgroundColor: theme.palette.grey[100],
+  background: 'linear-gradient(135deg, #8B5A3C 0%, #6B4423 50%, #4A2F1A 100%)',
   borderRadius: theme.spacing(2),
-  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-  border: `1px solid ${theme.palette.grey[200]}`,
+  boxShadow: '0 8px 32px rgba(74, 47, 26, 0.3), inset 0 1px 0 rgba(139, 90, 60, 0.4)',
+  border: '2px solid #5D3A1A',
+  position: 'relative',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: theme.spacing(2),
+    background: `
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(0, 0, 0, 0.03) 80px,
+        rgba(0, 0, 0, 0.03) 81px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 0, 0, 0.02) 20px,
+        rgba(0, 0, 0, 0.02) 21px
+      )
+    `,
+    pointerEvents: 'none',
+    opacity: 0.6,
+  },
 }));
 
 const KeyboardWrapper = styled(Box)({
