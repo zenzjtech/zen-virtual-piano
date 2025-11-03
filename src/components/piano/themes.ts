@@ -7,6 +7,7 @@ export interface PianoTheme {
   id: string;
   name: string;
   description: string;
+  category?: string;
   
   // Theme brightness for text contrast
   isLight: boolean;
@@ -92,6 +93,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'wooden',
     name: 'Wooden Classic',
     description: 'Traditional wooden piano with brass accents',
+    category: 'classic',
     isLight: false,
     colors: {
       primary: '#E8D4B8',        // Warm cream
@@ -237,6 +239,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'black',
     name: 'Midnight Black',
     description: 'Sleek modern black piano',
+    category: 'modern',
     isLight: false,
     colors: {
       primary: '#E8E8E8',        // Light gray
@@ -314,6 +317,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'metal',
     name: 'Metallic Silver',
     description: 'Futuristic metal finish piano',
+    category: 'modern',
     isLight: true,
     colors: {
       primary: '#2C3E50',        // Dark slate blue
@@ -398,6 +402,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     id: 'white',
     name: 'Pure White',
     description: 'Clean and minimal white piano',
+    category: 'modern',
     isLight: true,
     colors: {
       primary: '#333333',        // Dark gray

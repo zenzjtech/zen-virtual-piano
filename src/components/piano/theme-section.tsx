@@ -8,8 +8,10 @@ import {
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { PianoTheme } from './themes';
-import { BackgroundTheme } from './background-themes';
+import { BackgroundTheme, BACKGROUND_THEME_CATEGORIES } from './background-themes';
 import { ThemeListItem } from './theme-list-item';
+import { useThemeGroups } from '../../hooks/use-theme-groups';
+import { CategoryHeader } from './category-header';
 
 interface ThemeSectionProps {
   title: string;
@@ -21,6 +23,10 @@ interface ThemeSectionProps {
   type: 'piano' | 'background';
   expanded: boolean;
   onToggleExpand: () => void;
+  /** Enable category grouping (default: true) */
+  enableGrouping?: boolean;
+  /** Optional category order for grouping */
+  categoryOrder?: string[];
 }
 
 export const ThemeSection: React.FC<ThemeSectionProps> = ({
@@ -33,7 +39,20 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
   type,
   expanded,
   onToggleExpand,
+  enableGrouping = true,
+  categoryOrder,
 }) => {
+  // Group themes by category if enabled
+  const themeGroups = useThemeGroups(themes as any, categoryOrder);
+  const shouldGroup = enableGrouping && themeGroups.length > 1;
+
+  // Get category metadata for background themes
+  const getCategoryInfo = (category: string) => {
+    if (type === 'background' && category in BACKGROUND_THEME_CATEGORIES) {
+      return BACKGROUND_THEME_CATEGORIES[category as keyof typeof BACKGROUND_THEME_CATEGORIES];
+    }
+    return undefined;
+  };
   return (
     <Box>
       <Box
@@ -80,17 +99,43 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
       </Box>
       <Collapse in={expanded} timeout={300}>
         <List sx={{ py: 0 }}>
-          {themes.map((theme, index) => (
-            <ThemeListItem
-              key={theme.id}
-              theme={theme}
-              isSelected={theme.id === currentTheme}
-              onSelect={onThemeSelect}
-              pianoTheme={pianoTheme}
-              type={type}
-              index={index}
-            />
-          ))}
+          {shouldGroup ? (
+            // Render grouped themes with category headers
+            themeGroups.map((group, groupIndex) => (
+              <React.Fragment key={group.category}>
+                <CategoryHeader
+                  category={group.category}
+                  categoryInfo={getCategoryInfo(group.category)}
+                  pianoTheme={pianoTheme}
+                  index={groupIndex}
+                />
+                {group.themes.map((theme, themeIndex) => (
+                  <ThemeListItem
+                    key={theme.id}
+                    theme={theme}
+                    isSelected={theme.id === currentTheme}
+                    onSelect={onThemeSelect}
+                    pianoTheme={pianoTheme}
+                    type={type}
+                    index={themeIndex}
+                  />
+                ))}
+              </React.Fragment>
+            ))
+          ) : (
+            // Render themes without grouping
+            themes.map((theme, index) => (
+              <ThemeListItem
+                key={theme.id}
+                theme={theme}
+                isSelected={theme.id === currentTheme}
+                onSelect={onThemeSelect}
+                pianoTheme={pianoTheme}
+                type={type}
+                index={index}
+              />
+            ))
+          )}
         </List>
       </Collapse>
     </Box>

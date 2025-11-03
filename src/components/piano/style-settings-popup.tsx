@@ -145,6 +145,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   type="piano"
                   expanded={pianoThemeExpanded}
                   onToggleExpand={() => setPianoThemeExpanded(!pianoThemeExpanded)}
+                  enableGrouping={false}
                 />
               )}
 
@@ -172,6 +173,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   type="background"
                   expanded={backgroundThemeExpanded}
                   onToggleExpand={() => setBackgroundThemeExpanded(!backgroundThemeExpanded)}
+                  categoryOrder={['basics', 'cultural', 'gradients']}
                 />
               )}
 
