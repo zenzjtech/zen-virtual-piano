@@ -252,11 +252,9 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
 
   return (
     <PianoContainer elevation={0} pianoTheme={pianoTheme}>
-      {/* Decorative Corner Plates */}
+      {/* Decorative Corner Plates - Only bottom corners (top corners are on StatisticsBoard) */}
       {pianoTheme.cornerPlates && (
         <>
-          <CornerPlate cornerPosition="topLeft" pianoTheme={pianoTheme} />
-          <CornerPlate cornerPosition="topRight" pianoTheme={pianoTheme} />
           <CornerPlate cornerPosition="bottomLeft" pianoTheme={pianoTheme} />
           <CornerPlate cornerPosition="bottomRight" pianoTheme={pianoTheme} />
         </>

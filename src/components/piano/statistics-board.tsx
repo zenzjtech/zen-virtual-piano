@@ -108,6 +108,55 @@ const Label = styled(Typography)({
   letterSpacing: '1px',
 });
 
+const CornerPlate = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'cornerPosition' && prop !== 'pianoTheme',
+})<{ cornerPosition: 'topLeft' | 'topRight'; pianoTheme: PianoTheme }>(({ theme, cornerPosition, pianoTheme }) => {
+  const positions = {
+    topLeft: { top: theme.spacing(1), left: theme.spacing(1) },
+    topRight: { top: theme.spacing(1), right: theme.spacing(1) },
+  };
+
+  const cornerStyle = pianoTheme.cornerPlates || {
+    background: 'transparent',
+    border: 'none',
+    boxShadow: 'none',
+  };
+
+  return {
+    position: 'absolute',
+    ...positions[cornerPosition],
+    width: '15px',
+    height: '15px',
+    background: cornerStyle.background,
+    border: cornerStyle.border,
+    borderRadius: '50%',
+    boxShadow: cornerStyle.boxShadow,
+    zIndex: 4,
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: '2px',
+      left: '2px',
+      right: '2px',
+      bottom: '2px',
+      border: '1px solid rgba(184, 148, 30, 0.6)',
+      borderRadius: '50%',
+    },
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: '4px',
+      height: '4px',
+      background: 'radial-gradient(circle, #8B7355 0%, #6B5A3C 100%)',
+      borderRadius: '50%',
+      transform: 'translate(-50%, -50%)',
+      boxShadow: 'inset 0 1px 1px rgba(0, 0, 0, 0.5)',
+    },
+  };
+});
+
 export const StatisticsBoard: React.FC<StatisticsBoardProps> = ({
   pressedNotes,
   currentNote,
@@ -120,6 +169,14 @@ export const StatisticsBoard: React.FC<StatisticsBoardProps> = ({
 
   return (
     <BoardContainer elevation={0} pianoTheme={pianoTheme}>
+      {/* Decorative Corner Plates */}
+      {pianoTheme.cornerPlates && (
+        <>
+          <CornerPlate cornerPosition="topLeft" pianoTheme={pianoTheme} />
+          <CornerPlate cornerPosition="topRight" pianoTheme={pianoTheme} />
+        </>
+      )}
+      
       {/* Current Note Display */}
       <CurrentNoteDisplay>
         <NoteText variant="h3">
