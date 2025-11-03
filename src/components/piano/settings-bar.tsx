@@ -5,8 +5,6 @@ import {
   Keyboard as KeyboardIcon,
   VolumeUp as SoundIcon,
   Palette as StylesIcon,
-  Save as SaveIcon,
-  MoreHoriz as MoreIcon,
   Piano as InstrumentIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
@@ -17,8 +15,6 @@ interface SettingsBarProps {
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onStyles?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onSave?: () => void;
-  onMore?: () => void;
   /** Piano theme for consistent styling */
   pianoTheme: PianoTheme;
 }
@@ -32,7 +28,7 @@ const BarContainer = styled(Paper, {
   borderRadius: 0,
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   gap: theme.spacing(1),
   // Enhanced realistic box shadow with recessed look
   boxShadow: `
@@ -147,74 +143,60 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onInstrument,
   onSound,
   onStyles,
-  onSave,
-  onMore,
   pianoTheme,
 }) => {
   return (
     <BarContainer elevation={0} pianoTheme={pianoTheme}>
-      <SettingButton
-        variant="outlined"
-        startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onRecord}
-        pianoTheme={pianoTheme}
-      >
-        Record
-      </SettingButton>
+      {/* Left group: Action buttons */}
+      <Box sx={{ display: 'flex', gap: 1, zIndex: 3 }}>
+        <SettingButton
+          variant="outlined"
+          startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}
+          onClick={onRecord}
+          pianoTheme={pianoTheme}
+        >
+          Record
+        </SettingButton>
+      </Box>
 
-      <SettingButton
-        variant="outlined"
-        startIcon={<KeyboardIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onKeyAssist}
-        pianoTheme={pianoTheme}
-      >
-        Key Assist
-      </SettingButton>
+      {/* Right group: Settings buttons */}
+      <Box sx={{ display: 'flex', gap: 1, zIndex: 3 }}>
+        <SettingButton
+          variant="outlined"
+          startIcon={<InstrumentIcon sx={{ fontSize: '1rem' }} />}
+          onClick={onInstrument}
+          pianoTheme={pianoTheme}
+        >
+          Instrument
+        </SettingButton>
 
-      <SettingButton
-        variant="outlined"
-        startIcon={<InstrumentIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onInstrument}
-        pianoTheme={pianoTheme}
-      >
-        Instrument
-      </SettingButton>
+        <SettingButton
+          variant="outlined"
+          startIcon={<SoundIcon sx={{ fontSize: '1rem' }} />}
+          onClick={onSound}
+          pianoTheme={pianoTheme}
+        >
+          Sound
+        </SettingButton>
 
-      <SettingButton
-        variant="outlined"
-        startIcon={<SoundIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onSound}
-        pianoTheme={pianoTheme}
-      >
-        Sound
-      </SettingButton>
+        <SettingButton
+          variant="outlined"
+          startIcon={<StylesIcon sx={{ fontSize: '1rem' }} />}
+          onClick={onStyles}
+          pianoTheme={pianoTheme}
+        >
+          Appearances
+        </SettingButton>
 
-      <SettingButton
-        variant="outlined"
-        startIcon={<StylesIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onStyles}
-        pianoTheme={pianoTheme}
-      >
-        Appearances
-      </SettingButton>
-
-      <SettingButton
-        variant="outlined"
-        startIcon={<SaveIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onSave}
-        pianoTheme={pianoTheme}
-      >
-        Save
-      </SettingButton>
-
-      <SettingButton
-        variant="outlined"
-        startIcon={<MoreIcon sx={{ fontSize: '1rem' }} />}
-        onClick={onMore}
-        pianoTheme={pianoTheme}
-      >
-        More
-      </SettingButton>
+        <SettingButton
+          variant="outlined"
+          startIcon={<KeyboardIcon sx={{ fontSize: '1rem' }} />}
+          onClick={onKeyAssist}
+          pianoTheme={pianoTheme}
+        >
+          Key Assist
+        </SettingButton>
+      </Box>
     </BarContainer>
   );
 };

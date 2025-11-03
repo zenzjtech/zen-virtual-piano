@@ -156,9 +156,6 @@ function App() {
   const handleBackgroundThemeChange = (themeId: string) => {
     dispatch(setBackgroundTheme(themeId));
   };
-  
-  const handleSave = () => console.log('Save clicked');
-  const handleMore = () => console.log('More clicked');
 
   // Get background theme styles and determine if it's a dark background
   const isDarkBackground = ['dark', 'gradient-ocean', 'gufeng-ink-jade', 'leela-peacock-divine', 'isha-earth-mystic', 'sacred-light-glory', 'islamic-emerald-gold'].includes(backgroundThemeId);
@@ -287,8 +284,6 @@ function App() {
                 onInstrument={handleInstrument}
                 onSound={handleSound}
                 onStyles={handleStyles}
-                onSave={handleSave}
-                onMore={handleMore}
                 pianoTheme={pianoTheme}
               />
 
