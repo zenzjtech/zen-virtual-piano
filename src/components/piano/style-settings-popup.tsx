@@ -21,7 +21,7 @@ import {
 } from './popup-styled-components';
 import { PopupSearchBar } from './popup-search-bar';
 import { ThemeSection } from './theme-section';
-import { useThemeFilter } from './use-theme-filter';
+import { useThemeFilter } from '../../hooks/use-theme-filter';
 
 interface StyleSettingsPopupProps {
   open: boolean;

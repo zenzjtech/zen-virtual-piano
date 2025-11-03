@@ -80,7 +80,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
       </Box>
       <Collapse in={expanded} timeout={300}>
         <List sx={{ py: 0 }}>
-          {themes.map((theme) => (
+          {themes.map((theme, index) => (
             <ThemeListItem
               key={theme.id}
               theme={theme}
@@ -88,6 +88,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
               onSelect={onThemeSelect}
               pianoTheme={pianoTheme}
               type={type}
+              index={index}
             />
           ))}
         </List>
