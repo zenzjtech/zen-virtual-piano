@@ -17,14 +17,16 @@ const BoardContainer = styled(Paper, {
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,
-  padding: theme.spacing(2, 3),
+  padding: theme.spacing(3, 4),
   borderRadius: 0,
-  borderTopLeftRadius: theme.spacing(1),
-  borderTopRightRadius: theme.spacing(1),
+  borderTopLeftRadius: theme.spacing(1.5),
+  borderTopRightRadius: theme.spacing(1.5),
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(3),
-  height: '80px',
+  gap: theme.spacing(4),
+  minHeight: '90px',
+  width: '100%',
+  boxSizing: 'border-box',
   // Enhanced realistic box shadow with multiple layers
   boxShadow: `
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
