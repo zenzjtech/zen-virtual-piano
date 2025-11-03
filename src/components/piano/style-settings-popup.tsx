@@ -145,6 +145,13 @@ const BACKGROUND_THEMES: BackgroundTheme[] = [
     color: '#4A90E2',
     gradient: 'linear-gradient(135deg, #667EEA 0%, #4A90E2 25%, #2E5F8F 60%, #1A3A5C 100%)',
   },
+  {
+    id: 'isha-earth-mystic',
+    name: 'Isha Earth Mystic (ईशा)',
+    description: 'Sadhguru\'s earthy spiritual path',
+    color: '#8B6F47',
+    gradient: 'linear-gradient(135deg, #D4A574 0%, #B8956A 25%, #8B6F47 55%, #6B5B4A 80%, #4A4458 100%)',
+  },
 ];
 
 export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
