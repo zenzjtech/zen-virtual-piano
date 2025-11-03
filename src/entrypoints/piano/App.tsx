@@ -13,7 +13,7 @@ import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
 import './App.css';
-import { trackPageEvent } from '@/utils/analytics';
+import { trackPageEvent, trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 
 function App() {
@@ -119,7 +119,15 @@ function App() {
 
   // Settings bar handlers
   const handleTogglePiano = () => {
-    dispatch(setIsPianoEnabled(!isPianoEnabled));
+    const newState = !isPianoEnabled;
+    dispatch(setIsPianoEnabled(newState));
+    
+    // Track analytics
+    const eventAction = newState ? ANALYTICS_ACTION.PIANO_ENABLED : ANALYTICS_ACTION.PIANO_DISABLED;
+    trackEvent(uid, eventAction, {
+      previous_state: isPianoEnabled,
+      new_state: newState,
+    });
   };
   
   const handleRecord = () => console.log('Record clicked');
