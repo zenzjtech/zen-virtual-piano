@@ -1,25 +1,58 @@
 import React from 'react';
 import { Box, Paper, Typography, styled } from '@mui/material';
 import { PianoKey } from './types';
+import { PianoTheme } from './themes';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
   pressedNotes: Map<string, PianoKey>;
   /** The most recently pressed note */
   currentNote: PianoKey | null;
+  /** Piano theme for consistent styling */
+  pianoTheme: PianoTheme;
 }
 
-const BoardContainer = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#1a1a1a',
+const BoardContainer = styled(Paper, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  background: pianoTheme.container.background,
   color: '#ffffff',
   padding: theme.spacing(2, 3),
-  borderRadius: theme.spacing(1),
+  borderRadius: 0,
+  borderTopLeftRadius: theme.spacing(1),
+  borderTopRightRadius: theme.spacing(1),
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing(3),
   minHeight: '80px',
-  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-  border: '1px solid #333',
+  boxShadow: 'none',
+  border: pianoTheme.container.border,
+  borderBottom: 'none',
+  position: 'relative',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: pianoTheme.container.beforeBackground || 'transparent',
+    pointerEvents: 'none',
+    opacity: 0.6,
+    zIndex: 1,
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: pianoTheme.container.afterBackground || 'transparent',
+    pointerEvents: 'none',
+    zIndex: 2,
+  },
 }));
 
 const CurrentNoteDisplay = styled(Box)(({ theme }) => ({
@@ -29,8 +62,10 @@ const CurrentNoteDisplay = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   minWidth: '100px',
   padding: theme.spacing(1),
-  borderRight: '1px solid #444',
+  borderRight: '1px solid rgba(255, 255, 255, 0.2)',
   paddingRight: theme.spacing(3),
+  position: 'relative',
+  zIndex: 3,
 }));
 
 const NoteText = styled(Typography)({
@@ -52,6 +87,8 @@ const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(0.5),
+  position: 'relative',
+  zIndex: 3,
 }));
 
 const PressedKeysText = styled(Typography)({
@@ -74,6 +111,7 @@ const Label = styled(Typography)({
 export const StatisticsBoard: React.FC<StatisticsBoardProps> = ({
   pressedNotes,
   currentNote,
+  pianoTheme,
 }) => {
   // Get the keyboard keys being pressed, sorted by order
   const pressedKeyboardKeys = Array.from(pressedNotes.values())
@@ -81,7 +119,7 @@ export const StatisticsBoard: React.FC<StatisticsBoardProps> = ({
     .join('');
 
   return (
-    <BoardContainer elevation={3}>
+    <BoardContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Current Note Display */}
       <CurrentNoteDisplay>
         <NoteText variant="h3">

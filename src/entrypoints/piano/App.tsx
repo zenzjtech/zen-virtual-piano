@@ -5,6 +5,7 @@ import { StatisticsBoard } from '@/components/piano/statistics-board';
 import { SettingsBar } from '@/components/piano/settings-bar';
 import { SoundSelectorDialog } from '@/components/piano/sound-selector-dialog';
 import { PianoKey } from '@/components/piano/types';
+import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain } from '@/components/piano/piano-settings-slice';
@@ -13,9 +14,12 @@ import './App.css';
 function App() {
   // Redux state for persistent settings
   const dispatch = useAppDispatch();
-  const pianoTheme = useAppSelector((state) => state.pianoSettings.theme);
+  const pianoThemeId = useAppSelector((state) => state.pianoSettings.theme);
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
+  
+  // Get the actual theme object
+  const pianoTheme = getTheme(pianoThemeId);
   
   // Local component state for UI interactions
   const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
@@ -57,7 +61,7 @@ function App() {
   const handleStyles = () => {
     // Cycle through themes
     const themes = ['wooden', 'black', 'metal', 'white'];
-    const currentIndex = themes.indexOf(pianoTheme);
+    const currentIndex = themes.indexOf(pianoThemeId);
     const nextIndex = (currentIndex + 1) % themes.length;
     dispatch(setTheme(themes[nextIndex]));
   };
@@ -183,32 +187,45 @@ function App() {
             />
           </Paper>
 
-          {/* Statistics Board */}
-          <Box sx={{ width: '100%', maxWidth: 900 }}>
-            <StatisticsBoard 
-              pressedNotes={pressedNotes}
-              currentNote={currentNote}
-            />
-          </Box>
+          {/* Integrated Piano Unit */}
+          <Box 
+            sx={{ 
+              width: '100%', 
+              display: 'flex', 
+              justifyContent: 'center',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'inline-flex',
+                flexDirection: 'column',
+                alignItems: 'stretch',
+              }}
+            >
+              {/* Statistics Board */}
+              <StatisticsBoard 
+                pressedNotes={pressedNotes}
+                currentNote={currentNote}
+                pianoTheme={pianoTheme}
+              />
 
-          {/* Settings Bar */}
-          <Box sx={{ width: '100%', maxWidth: 900 }}>
-            <SettingsBar
-              onRecord={handleRecord}
-              onKeyAssist={handleKeyAssist}
-              onSound={handleSound}
-              onStyles={handleStyles}
-              onSave={handleSave}
-              onMore={handleMore}
-            />
-          </Box>
+              {/* Settings Bar */}
+              <SettingsBar
+                onRecord={handleRecord}
+                onKeyAssist={handleKeyAssist}
+                onSound={handleSound}
+                onStyles={handleStyles}
+                onSave={handleSave}
+                onMore={handleMore}
+                pianoTheme={pianoTheme}
+              />
 
-          {/* Piano Component */}
-          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <Piano 
-              themeId={pianoTheme}
-              onPressedNotesChange={handlePressedNotesChange} 
-            />
+              {/* Piano Component */}
+              <Piano 
+                themeId={pianoThemeId}
+                onPressedNotesChange={handlePressedNotesChange} 
+              />
+            </Box>
           </Box>
 
           {/* Instructions */}

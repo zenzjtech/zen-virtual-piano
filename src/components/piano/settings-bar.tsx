@@ -8,6 +8,7 @@ import {
   Save as SaveIcon,
   MoreHoriz as MoreIcon,
 } from '@mui/icons-material';
+import { PianoTheme } from './themes';
 
 interface SettingsBarProps {
   onRecord?: () => void;
@@ -16,25 +17,56 @@ interface SettingsBarProps {
   onStyles?: () => void;
   onSave?: () => void;
   onMore?: () => void;
+  /** Piano theme for consistent styling */
+  pianoTheme: PianoTheme;
 }
 
-const BarContainer = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#2a2a2a',
+const BarContainer = styled(Paper, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  background: pianoTheme.container.background,
   color: '#ffffff',
   padding: theme.spacing(1.5, 2),
-  borderRadius: theme.spacing(1),
+  borderRadius: 0,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: theme.spacing(1),
-  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-  border: '1px solid #333',
+  boxShadow: 'none',
+  border: pianoTheme.container.border,
+  borderTop: 'none',
+  borderBottom: 'none',
   flexWrap: 'wrap',
+  position: 'relative',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: pianoTheme.container.beforeBackground || 'transparent',
+    pointerEvents: 'none',
+    opacity: 0.6,
+    zIndex: 1,
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: pianoTheme.container.afterBackground || 'transparent',
+    pointerEvents: 'none',
+    zIndex: 2,
+  },
 }));
 
 const SettingButton = styled(Button)(({ theme }) => ({
-  color: '#aaa',
-  borderColor: '#444',
+  color: 'rgba(255, 255, 255, 0.7)',
+  borderColor: 'rgba(255, 255, 255, 0.15)',
   minWidth: '100px',
   padding: theme.spacing(1, 2),
   fontSize: '0.75rem',
@@ -42,9 +74,11 @@ const SettingButton = styled(Button)(({ theme }) => ({
   letterSpacing: '1px',
   fontWeight: 500,
   transition: 'all 0.2s ease',
+  position: 'relative',
+  zIndex: 3,
   '&:hover': {
-    borderColor: '#666',
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
     color: '#fff',
   },
   '& .MuiButton-startIcon': {
@@ -64,9 +98,10 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onStyles,
   onSave,
   onMore,
+  pianoTheme,
 }) => {
   return (
-    <BarContainer elevation={3}>
+    <BarContainer elevation={0} pianoTheme={pianoTheme}>
       <SettingButton
         variant="outlined"
         startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}
