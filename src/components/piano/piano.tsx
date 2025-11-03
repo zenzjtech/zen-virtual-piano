@@ -356,9 +356,24 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
                 textAlign: 'center',
                 fontSize: '0.75rem',
                 opacity: 0.85,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.75,
+                flexWrap: 'wrap',
+                justifyContent: 'center',
               }}
             >
-              Close the popup to enable keyboard
+              Press <Box component="kbd" sx={{
+                px: 1,
+                py: 0.5,
+                borderRadius: '4px',
+                backgroundColor: pianoTheme.isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)',
+                border: `1px solid ${pianoTheme.colors.border}`,
+                fontSize: '0.7rem',
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                boxShadow: `0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)`,
+              }}>Esc</Box> or click away to enable
             </Typography>
           </DisabledMessage>
         </DisabledOverlay>
