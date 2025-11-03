@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
 import { StatisticsBoard } from '@/components/piano/statistics-board';
@@ -22,16 +22,21 @@ function App() {
   const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
   const [soundDialogOpen, setSoundDialogOpen] = useState(false); // Sound selector dialog state
 
+  // Sync audio engine with Redux state on mount
+  useEffect(() => {
+    getAudioEngine().setSustain(sustain);
+  }, [sustain]);
+
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
     dispatch(setSustain(value));
     getAudioEngine().setSustain(value);
   };
 
-  const handlePressedNotesChange = (notes: Map<string, PianoKey>, current: PianoKey | null) => {
+  const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
     setPressedNotes(notes);
     setCurrentNote(current);
-  };
+  }, []);
 
   // Settings bar handlers
   const handleRecord = () => console.log('Record clicked');
@@ -45,6 +50,8 @@ function App() {
     dispatch(setSoundSet(newSoundSetId));
     // Change the sound set in the audio engine
     await getAudioEngine().changeSoundSet(newSoundSetId);
+    // Reapply sustain setting after sound set change
+    getAudioEngine().setSustain(sustain);
   };
   
   const handleStyles = () => {
