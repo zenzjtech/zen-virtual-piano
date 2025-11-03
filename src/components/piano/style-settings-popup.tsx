@@ -131,6 +131,20 @@ const BACKGROUND_THEMES: BackgroundTheme[] = [
     color: '#8B9D83',
     gradient: 'linear-gradient(135deg, #D4D9D4 0%, #B4C4B4 35%, #8B9D83 70%, #6B7B68 100%)',
   },
+  {
+    id: 'leela-saffron-marigold',
+    name: 'Saffron & Marigold (केसर)',
+    description: 'Sacred Hindu temple colors',
+    color: '#FF9933',
+    gradient: 'linear-gradient(135deg, #FFE5CC 0%, #FFB366 30%, #FF9933 60%, #CC6600 100%)',
+  },
+  {
+    id: 'leela-peacock-divine',
+    name: 'Peacock Divine (मयूर)',
+    description: 'Krishna\'s celestial hues',
+    color: '#4A90E2',
+    gradient: 'linear-gradient(135deg, #667EEA 0%, #4A90E2 25%, #2E5F8F 60%, #1A3A5C 100%)',
+  },
 ];
 
 export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
