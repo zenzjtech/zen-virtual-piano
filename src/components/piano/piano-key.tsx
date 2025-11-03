@@ -217,7 +217,6 @@ const KeyLabel = styled('span', {
     fontSize: '10px',
     fontWeight: 'bold',
     color: isBlack ? blackKeyColor : whiteKeyColor,
-    textTransform: 'uppercase',
     textShadow: isBlack 
       ? '0 1px 1px rgba(0,0,0,0.5)' 
       : keyTheme.isLight 
