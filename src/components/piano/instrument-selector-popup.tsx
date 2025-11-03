@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   List,
   ListItemText,
@@ -22,6 +22,7 @@ import {
   StyledChip,
   CharacteristicChips,
 } from './popup-styled-components';
+import { PopupSearchBar } from './popup-search-bar';
 
 interface InstrumentSelectorPopupProps {
   open: boolean;
@@ -30,6 +31,8 @@ interface InstrumentSelectorPopupProps {
   onClose: () => void;
   onSoundSetChange: (soundSetId: string) => void;
   pianoTheme: PianoTheme;
+  /** Whether to show the search bar (default: true) */
+  showSearch?: boolean;
 }
 
 
@@ -40,8 +43,26 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
   onClose,
   onSoundSetChange,
   pianoTheme,
+  showSearch = true,
 }) => {
   const soundSets = getAllSoundSets();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter sound sets based on search query
+  const filteredSoundSets = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return soundSets;
+    }
+    
+    const query = searchQuery.toLowerCase();
+    return soundSets.filter(soundSet => 
+      soundSet.name.toLowerCase().includes(query) ||
+      soundSet.description.toLowerCase().includes(query) ||
+      soundSet.characteristics.brightness.toLowerCase().includes(query) ||
+      soundSet.characteristics.sustain.toLowerCase().includes(query) ||
+      soundSet.characteristics.attack.toLowerCase().includes(query)
+    );
+  }, [soundSets, searchQuery]);
 
   const handleSelect = (soundSetId: string) => {
     onSoundSetChange(soundSetId);
@@ -110,8 +131,20 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
             </Box>
           </PopupHeaderBox>
           
+          {/* Search Box */}
+          {showSearch && (
+            <PopupSearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search instruments..."
+              pianoTheme={pianoTheme}
+              isOpen={open}
+            />
+          )}
+          
           <List sx={{ py: 0 }}>
-            {soundSets.map((soundSet: SoundSet) => {
+            {filteredSoundSets.length > 0 ? (
+              filteredSoundSets.map((soundSet: SoundSet) => {
               const isSelected = soundSet.id === currentSoundSetId;
               
               return (
@@ -195,7 +228,20 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                   </StyledListItemButton>
                 </StyledListItem>
               );
-            })}
+              })
+            ) : (
+              <Box sx={{ py: 4, px: 3, textAlign: 'center' }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: pianoTheme.colors.secondary,
+                    opacity: 0.7,
+                  }}
+                >
+                  No instruments found matching "{searchQuery}"
+                </Typography>
+              </Box>
+            )}
           </List>
         </StyledPopupPaper>
       </ClickAwayListener>

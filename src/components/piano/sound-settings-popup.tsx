@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Box,
   Typography,
@@ -10,11 +10,9 @@ import {
   Button,
   Stack,
   Divider,
-  IconButton,
   Popper,
   ClickAwayListener,
   styled,
-  InputAdornment,
 } from '@mui/material';
 import {
   VolumeUp as VolumeIcon,
@@ -24,11 +22,10 @@ import {
   Devices as DevicesIcon,
   Add as AddIcon,
   Remove as RemoveIcon,
-  Search as SearchIcon,
-  Clear as ClearIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
-import { StyledPopupPaper, PopupHeaderBox, PopupContentBox, SearchBox, SearchInput } from './popup-styled-components';
+import { StyledPopupPaper, PopupHeaderBox, PopupContentBox } from './popup-styled-components';
+import { PopupSearchBar } from './popup-search-bar';
 
 interface SoundSettingsPopupProps {
   open: boolean;
@@ -127,19 +124,6 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   pianoTheme,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  // Auto-focus search input when popup opens
-  useEffect(() => {
-    if (open && searchInputRef.current) {
-      // Delay to ensure Popper is fully positioned and rendered
-      const timer = setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 200);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [open]);
 
   // Define searchable settings with names and descriptions
   const settings = useMemo(() => ([
@@ -268,37 +252,13 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
           </PopupHeaderBox>
 
           {/* Search Box */}
-          <SearchBox pianoTheme={pianoTheme}>
-            <SearchInput
-              fullWidth
-              size="small"
-              placeholder="Search settings..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              pianoTheme={pianoTheme}
-              inputRef={searchInputRef}
-              autoFocus
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
-                  </InputAdornment>
-                ),
-                endAdornment: searchQuery && (
-                  <InputAdornment position="end">
-                    <IconButton
-                      size="small"
-                      onClick={() => setSearchQuery('')}
-                      edge="end"
-                      sx={{ color: pianoTheme.colors.secondary }}
-                    >
-                      <ClearIcon fontSize="small" />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </SearchBox>
+          <PopupSearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search settings..."
+            pianoTheme={pianoTheme}
+            isOpen={open}
+          />
 
           <PopupContentBox pianoTheme={pianoTheme}>
             <Stack spacing={2} divider={<Divider sx={{ borderColor: pianoTheme.colors.border }} />}>
