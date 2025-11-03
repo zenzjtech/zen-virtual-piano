@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import {
   Typography,
   Box,
@@ -21,6 +21,7 @@ import {
 } from './popup-styled-components';
 import { PopupSearchBar } from './popup-search-bar';
 import { ThemeSection } from './theme-section';
+import { useThemeFilter } from './use-theme-filter';
 
 interface StyleSettingsPopupProps {
   open: boolean;
@@ -52,30 +53,9 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   const [pianoThemeExpanded, setPianoThemeExpanded] = useState(false);
   const [backgroundThemeExpanded, setBackgroundThemeExpanded] = useState(false);
 
-  // Filter themes based on search query
-  const filteredPianoThemes = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return pianoThemes;
-    }
-    
-    const query = searchQuery.toLowerCase();
-    return pianoThemes.filter(theme => 
-      theme.name.toLowerCase().includes(query) ||
-      theme.description.toLowerCase().includes(query)
-    );
-  }, [pianoThemes, searchQuery]);
-
-  const filteredBackgroundThemes = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return BACKGROUND_THEMES;
-    }
-    
-    const query = searchQuery.toLowerCase();
-    return BACKGROUND_THEMES.filter(theme => 
-      theme.name.toLowerCase().includes(query) ||
-      theme.description.toLowerCase().includes(query)
-    );
-  }, [searchQuery]);
+  // Filter themes based on search query using custom hook
+  const filteredPianoThemes = useThemeFilter(pianoThemes, searchQuery);
+  const filteredBackgroundThemes = useThemeFilter(BACKGROUND_THEMES, searchQuery);
 
 
   const showPianoThemes = filteredPianoThemes.length > 0;
