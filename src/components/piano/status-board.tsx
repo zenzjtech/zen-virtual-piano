@@ -196,6 +196,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
 }) => {
   // Track note history (last 20 notes)
   const [noteHistory, setNoteHistory] = useState<string[]>([]);
+  // Track the most recent note and key press
+  const [lastNote, setLastNote] = useState<PianoKey | null>(null);
 
   // Record notes when they're pressed
   useEffect(() => {
@@ -204,13 +206,10 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
         const newHistory = [currentNote.note, ...prev];
         return newHistory.slice(0, 20); // Keep only last 20 notes
       });
+      // Update the last pressed note and key
+      setLastNote(currentNote);
     }
   }, [currentNote]);
-
-  // Get the keyboard keys being pressed, sorted by order
-  const pressedKeyboardKeys = Array.from(pressedNotes.values())
-    .map(key => key.keyboardKey)
-    .join('');
 
   // Format history for display (show last 10)
   const historyText = noteHistory.slice(0, 10).join(' → ') || 'No history yet...';
@@ -228,18 +227,18 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
       {/* Current Note Display */}
       <CurrentNoteDisplay pianoTheme={pianoTheme}>
         <NoteText variant="h3">
-          {currentNote ? currentNote.note : '—'}
+          {lastNote ? lastNote.note : '—'}
         </NoteText>
         <KeyText variant="body1" pianoTheme={pianoTheme}>
-          {currentNote ? currentNote.keyboardKey : ' '}
+          {lastNote ? lastNote.keyboardKey : ' '}
         </KeyText>
       </CurrentNoteDisplay>
 
       {/* Pressed Keys Display */}
       <PressedKeysDisplay>
-        <Label variant="caption" pianoTheme={pianoTheme}>Pressed Keys</Label>
+        <Label variant="caption" pianoTheme={pianoTheme}>Last Pressed Key</Label>
         <PressedKeysText variant="h6" pianoTheme={pianoTheme}>
-          {pressedKeyboardKeys || 'Press any key...'}
+          {lastNote?.keyboardKey || 'Press any key...'}
         </PressedKeysText>
       </PressedKeysDisplay>
 
