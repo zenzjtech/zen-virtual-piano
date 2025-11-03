@@ -46,6 +46,20 @@ const WhiteKey = styled(Box, {
     animation: isPressed ? 'none' : 'damperTouch 0.3s ease-out',
     pointerEvents: 'none',
   },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '100%',
+    height: '100%',
+    background: 'radial-gradient(circle, rgba(76, 175, 80, 0.3) 0%, rgba(76, 175, 80, 0.15) 40%, transparent 70%)',
+    borderRadius: '50%',
+    transform: 'translate(-50%, -50%) scale(0)',
+    opacity: 0,
+    animation: isPressed ? 'ripple 0.4s ease-out' : 'none',
+    pointerEvents: 'none',
+  },
   '@keyframes damperTouch': {
     '0%': {
       opacity: 0,
@@ -58,6 +72,16 @@ const WhiteKey = styled(Box, {
     '100%': {
       opacity: 0,
       transform: 'translateY(0)',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'translate(-50%, -50%) scale(0)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'translate(-50%, -50%) scale(2.5)',
+      opacity: 0,
     },
   },
   '&:hover': {
@@ -104,6 +128,20 @@ const BlackKey = styled(Box, {
     animation: isPressed ? 'none' : 'damperTouch 0.3s ease-out',
     pointerEvents: 'none',
   },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '100%',
+    height: '100%',
+    background: 'radial-gradient(circle, rgba(76, 175, 80, 0.25) 0%, rgba(76, 175, 80, 0.12) 40%, transparent 70%)',
+    borderRadius: '50%',
+    transform: 'translate(-50%, -50%) scale(0)',
+    opacity: 0,
+    animation: isPressed ? 'ripple 0.4s ease-out' : 'none',
+    pointerEvents: 'none',
+  },
   '@keyframes damperTouch': {
     '0%': {
       opacity: 0,
@@ -116,6 +154,16 @@ const BlackKey = styled(Box, {
     '100%': {
       opacity: 0,
       transform: 'translateY(0)',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'translate(-50%, -50%) scale(0)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'translate(-50%, -50%) scale(2.5)',
+      opacity: 0,
     },
   },
   '&:hover': {
