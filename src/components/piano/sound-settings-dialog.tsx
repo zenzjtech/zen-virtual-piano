@@ -26,6 +26,7 @@ import {
   Add as AddIcon,
   Remove as RemoveIcon,
 } from '@mui/icons-material';
+import { PianoTheme } from './themes';
 
 interface SoundSettingsDialogProps {
   open: boolean;
@@ -46,14 +47,58 @@ interface SoundSettingsDialogProps {
   midiDevice?: string;
   onMidiDeviceChange?: (device: string) => void;
   availableMidiDevices?: string[];
+  // Piano theme
+  pianoTheme?: PianoTheme;
 }
 
-const StyledDialog = styled(Dialog)(({ theme }) => ({
+const StyledDialog = styled(Dialog, {
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme?: PianoTheme }>(({ theme, pianoTheme }) => ({
   '& .MuiDialog-paper': {
-    minWidth: '400px',
-    maxWidth: '500px',
-    backgroundColor: theme.palette.background.paper,
+    minWidth: '420px',
+    maxWidth: '540px',
+    backgroundColor: pianoTheme?.container.background || theme.palette.background.paper,
+    border: pianoTheme?.container.border || 'none',
+    borderRadius: '12px',
+    boxShadow: pianoTheme ? `
+      0 12px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.3 : 0.1}),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2)
+    ` : theme.shadows[24],
+    position: 'relative',
+    overflow: 'hidden',
+    // Texture overlay
+    '&::before': pianoTheme ? {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: pianoTheme.container.beforeBackground || 'transparent',
+      pointerEvents: 'none',
+      opacity: 0.2,
+      zIndex: 0,
+    } : {},
   },
+  '& .MuiDialogTitle-root': pianoTheme ? {
+    color: pianoTheme.colors.primary,
+    borderBottom: `1px solid ${pianoTheme.colors.border}`,
+    background: pianoTheme.isLight
+      ? 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.02) 100%)'
+      : 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.1) 100%)',
+    position: 'relative',
+    zIndex: 1,
+    boxShadow: `
+      inset 0 1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.2 : 0.08}),
+      0 2px 4px rgba(0, 0, 0, 0.1)
+    `,
+  } : {},
+  '& .MuiDialogContent-root': pianoTheme ? {
+    position: 'relative',
+    zIndex: 1,
+    backgroundColor: 'transparent',
+  } : {},
 }));
 
 const ControlSection = styled(Box)(({ theme }) => ({
@@ -88,6 +133,7 @@ export const SoundSettingsDialog: React.FC<SoundSettingsDialogProps> = ({
   midiDevice = 'none',
   onMidiDeviceChange,
   availableMidiDevices = ['None', 'Virtual MIDI Device', 'USB MIDI Keyboard'],
+  pianoTheme,
 }) => {
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
@@ -114,15 +160,42 @@ export const SoundSettingsDialog: React.FC<SoundSettingsDialogProps> = ({
   };
 
   return (
-    <StyledDialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <StyledDialog open={open} onClose={onClose} maxWidth="sm" fullWidth pianoTheme={pianoTheme}>
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pb: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <VolumeIcon />
-          <Typography variant="h6" fontWeight="600">
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <VolumeIcon
+            sx={{
+              color: pianoTheme?.colors.accent,
+              filter: pianoTheme ? `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))` : 'none',
+              fontSize: '1.5rem',
+            }}
+          />
+          <Typography
+            variant="h6"
+            fontWeight="600"
+            sx={{
+              color: pianoTheme?.colors.primary,
+              textShadow: pianoTheme ? `
+                0 1px 2px rgba(0, 0, 0, 0.3),
+                0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
+              ` : 'none',
+              letterSpacing: '0.5px',
+            }}
+          >
             Sound Settings
           </Typography>
         </Box>
-        <IconButton edge="end" color="inherit" onClick={onClose} aria-label="close">
+        <IconButton
+          edge="end"
+          onClick={onClose}
+          aria-label="close"
+          sx={{
+            color: pianoTheme?.colors.secondary,
+            '&:hover': {
+              backgroundColor: pianoTheme ? `${pianoTheme.colors.accent}22` : undefined,
+            },
+          }}
+        >
           <CloseIcon />
         </IconButton>
       </DialogTitle>

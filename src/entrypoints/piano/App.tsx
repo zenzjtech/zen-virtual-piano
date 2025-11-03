@@ -277,6 +277,7 @@ function App() {
         currentSoundSetId={soundSet}
         onClose={handleInstrumentPopupClose}
         onSoundSetChange={handleSoundSetChange}
+        pianoTheme={pianoTheme}
       />
 
       {/* Sound Settings Dialog */}
@@ -296,6 +297,7 @@ function App() {
         onMetronomeToggle={() => setMetronomeEnabled(!metronomeEnabled)}
         midiDevice={midiDevice}
         onMidiDeviceChange={setMidiDevice}
+        pianoTheme={pianoTheme}
       />
     </Box>
   );
