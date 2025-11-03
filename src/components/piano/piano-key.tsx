@@ -15,8 +15,10 @@ const WhiteKey = styled(Box, {
 })<{ isPressed: boolean }>(({ theme, isPressed }) => ({
   width: '32px',
   height: '140px',
-  backgroundColor: isPressed ? '#e0e0e0' : '#ffffff',
-  border: '1px solid #000',
+  background: isPressed 
+    ? 'linear-gradient(to bottom, #E8E4DC 0%, #F5F1E8 50%, #E8E4DC 100%)'
+    : 'linear-gradient(to bottom, #FFFEF9 0%, #F5F1E8 50%, #FFFEF9 100%)',
+  border: '1px solid #8B7355',
   borderRadius: '0 0 5px 5px',
   position: 'relative',
   cursor: 'pointer',
@@ -25,13 +27,15 @@ const WhiteKey = styled(Box, {
   alignItems: 'flex-end',
   justifyContent: 'center',
   paddingBottom: theme.spacing(1),
-  transition: 'all 0.05s ease',
+  transition: 'all 0.08s ease',
   boxShadow: isPressed
-    ? 'inset 0 2px 5px rgba(0,0,0,0.3)'
-    : '0 4px 6px rgba(0,0,0,0.1)',
+    ? 'inset 0 3px 8px rgba(74, 47, 26, 0.4), inset 0 1px 2px rgba(0,0,0,0.2)'
+    : '0 4px 8px rgba(74, 47, 26, 0.25), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8)',
   transform: isPressed ? 'translateY(2px)' : 'none',
   '&:hover': {
-    backgroundColor: isPressed ? '#e0e0e0' : '#f5f5f5',
+    background: isPressed 
+      ? 'linear-gradient(to bottom, #E8E4DC 0%, #F5F1E8 50%, #E8E4DC 100%)'
+      : 'linear-gradient(to bottom, #F9F7F0 0%, #F0EBE0 50%, #F9F7F0 100%)',
   },
 }));
 
@@ -40,7 +44,9 @@ const BlackKey = styled(Box, {
 })<{ isPressed: boolean }>(({ theme, isPressed }) => ({
   width: '22px',
   height: '90px',
-  backgroundColor: isPressed ? '#333' : '#000',
+  background: isPressed 
+    ? 'linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)'
+    : 'linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 70%, #0a0a0a 100%)',
   border: '1px solid #000',
   borderRadius: '0 0 3px 3px',
   position: 'absolute',
@@ -51,21 +57,25 @@ const BlackKey = styled(Box, {
   justifyContent: 'center',
   paddingBottom: theme.spacing(0.5),
   zIndex: 2,
-  transition: 'all 0.05s ease',
+  transition: 'all 0.08s ease',
   boxShadow: isPressed
-    ? 'inset 0 2px 5px rgba(255,255,255,0.2)'
-    : '0 4px 6px rgba(0,0,0,0.4)',
+    ? 'inset 0 3px 8px rgba(0,0,0,0.8), inset 0 1px 3px rgba(255,255,255,0.1)'
+    : '0 6px 10px rgba(0,0,0,0.6), 0 3px 6px rgba(74, 47, 26, 0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
   transform: isPressed ? 'translateY(2px)' : 'none',
   '&:hover': {
-    backgroundColor: isPressed ? '#333' : '#222',
+    background: isPressed 
+      ? 'linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)'
+      : 'linear-gradient(to bottom, #1a1a1a 0%, #252525 70%, #1a1a1a 100%)',
   },
 }));
 
 const KeyLabel = styled('span')<{ isBlack: boolean }>(({ isBlack }) => ({
   fontSize: '10px',
   fontWeight: 'bold',
-  color: isBlack ? '#fff' : '#666',
+  color: isBlack ? '#888' : '#8B7355',
   textTransform: 'uppercase',
+  textShadow: isBlack ? '0 1px 1px rgba(0,0,0,0.5)' : '0 1px 0 rgba(255,255,255,0.8)',
+  opacity: 0.7,
 }));
 
 export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
