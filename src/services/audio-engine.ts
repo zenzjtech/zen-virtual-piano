@@ -1,9 +1,11 @@
 /**
  * Audio Engine Service
  * Uses Tone.js Sampler for realistic piano sounds with pitch-shifting
+ * Supports multiple sound sets and dynamic switching
  */
 
 import * as Tone from 'tone';
+import { SoundSet, getSoundSet, buildSampleUrlsMap } from './sound-sets';
 
 export class AudioEngine {
   private sampler: Tone.Sampler | null = null;
@@ -12,8 +14,12 @@ export class AudioEngine {
   private isLoaded: boolean = false;
   private sustainOffset: number = 10.5; // Extended release offset (like virtualpiano.net)
   private sustainTime: number = 10.5; // Default sustain time (like virtualpiano.net)
+  private currentSoundSet: SoundSet;
+  private isChangingSoundSet: boolean = false;
 
-  constructor() {
+  constructor(soundSetId: string = 'classical') {
+    this.currentSoundSet = getSoundSet(soundSetId);
+    
     // Initialize Tone.js with interactive latency for better responsiveness
     // Note: latencyHint must be set during context creation
     try {
@@ -30,66 +36,34 @@ export class AudioEngine {
   }
 
   /**
-   * Initialize Tone.js Sampler with classical piano samples
+   * Initialize Tone.js Sampler with the current sound set
    * Maps keyboard notes down by one octave to sample files
    * (e.g., C2 → C1.mp3, C3 → C2.mp3, etc.)
    */
   private async initAudio(): Promise<void> {
     try {
-      // Import all audio samples using Vite's glob import
-      // This ensures proper bundling and URL resolution
-      const samples = import.meta.glob('@/assets/audio/piano/classical/*.mp3', { 
+      // Import all audio samples using Vite's glob import with eager loading
+      // This ensures proper bundling and URL resolution for all sound sets
+      const samples = import.meta.glob('@/assets/audio/piano/**/*.mp3', { 
         eager: true,
         query: '?url',
         import: 'default'
       }) as Record<string, string>;
       
-      // Build the URLs map from imported samples
-      // Map sample files to notes one octave lower than the file names
-      // This means C2 will use C1.mp3, C3 will use C2.mp3, etc.
-      const urlsMap: Record<string, string> = {};
+      // Build the URLs map for the current sound set
+      const urlsMap = buildSampleUrlsMap(this.currentSoundSet, samples);
       
-      // C notes (every octave) - C2 uses C1.mp3, C3 uses C2.mp3, etc.
-      urlsMap.C1 = samples['/src/assets/audio/piano/classical/C1.mp3'] || '';
-      urlsMap.C2 = samples['/src/assets/audio/piano/classical/C1.mp3'] || '';
-      urlsMap.C3 = samples['/src/assets/audio/piano/classical/C2.mp3'] || '';
-      urlsMap.C4 = samples['/src/assets/audio/piano/classical/C3.mp3'] || '';
-      urlsMap.C5 = samples['/src/assets/audio/piano/classical/C4.mp3'] || '';
-      urlsMap.C6 = samples['/src/assets/audio/piano/classical/C5.mp3'] || '';
-      urlsMap.C7 = samples['/src/assets/audio/piano/classical/C6.mp3'] || '';
-      urlsMap.C8 = samples['/src/assets/audio/piano/classical/C7.mp3'] || '';
-      
-      // D# (Ds) notes (every minor third from C)
-      urlsMap['D#1'] = samples['/src/assets/audio/piano/classical/Ds1.mp3'] || '';
-      urlsMap['D#2'] = samples['/src/assets/audio/piano/classical/Ds1.mp3'] || '';
-      urlsMap['D#3'] = samples['/src/assets/audio/piano/classical/Ds2.mp3'] || '';
-      urlsMap['D#4'] = samples['/src/assets/audio/piano/classical/Ds3.mp3'] || '';
-      urlsMap['D#5'] = samples['/src/assets/audio/piano/classical/Ds4.mp3'] || '';
-      urlsMap['D#6'] = samples['/src/assets/audio/piano/classical/Ds5.mp3'] || '';
-      urlsMap['D#7'] = samples['/src/assets/audio/piano/classical/Ds6.mp3'] || '';
-      
-      // F# (Fs) notes (tritone from C)
-      urlsMap['F#1'] = samples['/src/assets/audio/piano/classical/Fs1.mp3'] || '';
-      urlsMap['F#2'] = samples['/src/assets/audio/piano/classical/Fs1.mp3'] || '';
-      urlsMap['F#3'] = samples['/src/assets/audio/piano/classical/Fs2.mp3'] || '';
-      urlsMap['F#4'] = samples['/src/assets/audio/piano/classical/Fs3.mp3'] || '';
-      urlsMap['F#5'] = samples['/src/assets/audio/piano/classical/Fs4.mp3'] || '';
-      urlsMap['F#6'] = samples['/src/assets/audio/piano/classical/Fs5.mp3'] || '';
-      urlsMap['F#7'] = samples['/src/assets/audio/piano/classical/Fs6.mp3'] || '';
-      
-      // A notes (major sixth from C)
-      urlsMap.A1 = samples['/src/assets/audio/piano/classical/A1.mp3'] || '';
-      urlsMap.A2 = samples['/src/assets/audio/piano/classical/A1.mp3'] || '';
-      urlsMap.A3 = samples['/src/assets/audio/piano/classical/A2.mp3'] || '';
-      urlsMap.A4 = samples['/src/assets/audio/piano/classical/A3.mp3'] || '';
-      urlsMap.A5 = samples['/src/assets/audio/piano/classical/A4.mp3'] || '';
-      urlsMap.A6 = samples['/src/assets/audio/piano/classical/A5.mp3'] || '';
-      urlsMap.A7 = samples['/src/assets/audio/piano/classical/A6.mp3'] || '';
-      
-      console.log('Loading piano samples...', urlsMap);
+      console.log(`Loading ${this.currentSoundSet.name} samples...`, urlsMap);
       
       // Create separate Volume node for better audio control
-      this.volume = new Tone.Volume(-10);
+      if (!this.volume) {
+        this.volume = new Tone.Volume(-10);
+      }
+
+      // Dispose old sampler if it exists
+      if (this.sampler) {
+        this.sampler.dispose();
+      }
 
       // Tone.js will pitch-shift from nearest available sample
       this.sampler = new Tone.Sampler({
@@ -99,14 +73,16 @@ export class AudioEngine {
         release: 4, 
         onload: () => {
           this.isLoaded = true;
-          console.log('Piano samples loaded successfully');
+          this.isChangingSoundSet = false;
+          console.log(`${this.currentSoundSet.name} samples loaded successfully`);
         },
         onerror: (error) => {
-          console.error('Failed to load piano samples:', error);
+          console.error(`Failed to load ${this.currentSoundSet.name} samples:`, error);
+          this.isChangingSoundSet = false;
         },
       });
 
-      // Chain: Sampler -> Volume -> Destination (like virtualpiano.net)
+      // Chain: Sampler -> Volume -> Destination
       this.sampler.chain(this.volume, Tone.Destination);
 
     } catch (error) {
@@ -121,6 +97,36 @@ export class AudioEngine {
     if (Tone.context.state === 'suspended') {
       await Tone.context.resume();
     }
+  }
+
+  /**
+   * Change the sound set and reload samples
+   * @param soundSetId - ID of the sound set to load
+   */
+  async changeSoundSet(soundSetId: string): Promise<void> {
+    // Stop all currently playing notes
+    this.stopAll();
+    
+    this.isChangingSoundSet = true;
+    this.isLoaded = false;
+    this.currentSoundSet = getSoundSet(soundSetId);
+    
+    // Reinitialize audio with new sound set
+    await this.initAudio();
+  }
+
+  /**
+   * Get the current sound set
+   */
+  getCurrentSoundSet(): SoundSet {
+    return this.currentSoundSet;
+  }
+
+  /**
+   * Check if sound set is currently being changed
+   */
+  isChanging(): boolean {
+    return this.isChangingSoundSet;
   }
 
   /**
@@ -143,7 +149,7 @@ export class AudioEngine {
     }
 
     // Wait for samples to load before playing
-    if (!this.isLoaded) {
+    if (!this.isLoaded || this.isChangingSoundSet) {
       console.warn('Piano samples still loading...');
       return;
     }

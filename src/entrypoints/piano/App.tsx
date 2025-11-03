@@ -3,19 +3,28 @@ import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/m
 import { Piano } from '@/components/piano/piano';
 import { StatisticsBoard } from '@/components/piano/statistics-board';
 import { SettingsBar } from '@/components/piano/settings-bar';
+import { SoundSelectorDialog } from '@/components/piano/sound-selector-dialog';
 import { PianoKey } from '@/components/piano/types';
 import { getAudioEngine } from '@/services/audio-engine';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { setTheme, setSoundSet, setSustain } from '@/components/piano/piano-settings-slice';
 import './App.css';
 
 function App() {
-  const [sustain, setSustain] = useState(0); // Default: 0s base + 10.5s offset = 10.5s total
+  // Redux state for persistent settings
+  const dispatch = useAppDispatch();
+  const pianoTheme = useAppSelector((state) => state.pianoSettings.theme);
+  const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
+  const sustain = useAppSelector((state) => state.pianoSettings.sustain);
+  
+  // Local component state for UI interactions
   const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
   const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
-  const [pianoTheme, setPianoTheme] = useState('wooden'); // Current piano theme
+  const [soundDialogOpen, setSoundDialogOpen] = useState(false); // Sound selector dialog state
 
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
-    setSustain(value);
+    dispatch(setSustain(value));
     getAudioEngine().setSustain(value);
   };
 
@@ -24,17 +33,28 @@ function App() {
     setCurrentNote(current);
   };
 
-  // Settings bar handlers (placeholder for now)
+  // Settings bar handlers
   const handleRecord = () => console.log('Record clicked');
   const handleKeyAssist = () => console.log('Key Assist clicked');
-  const handleSound = () => console.log('Sound clicked');
+  
+  const handleSound = () => {
+    setSoundDialogOpen(true);
+  };
+  
+  const handleSoundSetChange = async (newSoundSetId: string) => {
+    dispatch(setSoundSet(newSoundSetId));
+    // Change the sound set in the audio engine
+    await getAudioEngine().changeSoundSet(newSoundSetId);
+  };
+  
   const handleStyles = () => {
-    // Cycle through themes for now
+    // Cycle through themes
     const themes = ['wooden', 'black', 'metal', 'white'];
     const currentIndex = themes.indexOf(pianoTheme);
     const nextIndex = (currentIndex + 1) % themes.length;
-    setPianoTheme(themes[nextIndex]);
+    dispatch(setTheme(themes[nextIndex]));
   };
+  
   const handleSave = () => console.log('Save clicked');
   const handleMore = () => console.log('More clicked');
 
@@ -203,6 +223,14 @@ function App() {
           </Paper>
         </Stack>
       </Container>
+
+      {/* Sound Selector Dialog */}
+      <SoundSelectorDialog
+        open={soundDialogOpen}
+        currentSoundSetId={soundSet}
+        onClose={() => setSoundDialogOpen(false)}
+        onSoundSetChange={handleSoundSetChange}
+      />
     </Box>
   );
 }
