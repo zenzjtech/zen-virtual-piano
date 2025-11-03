@@ -152,6 +152,13 @@ const BACKGROUND_THEMES: BackgroundTheme[] = [
     color: '#8B6F47',
     gradient: 'linear-gradient(135deg, #D4A574 0%, #B8956A 25%, #8B6F47 55%, #6B5B4A 80%, #4A4458 100%)',
   },
+  {
+    id: 'sacred-light-glory',
+    name: 'Sacred Light & Glory',
+    description: 'Divine radiance of stained glass',
+    color: '#8B7355',
+    gradient: 'linear-gradient(135deg, #FFF8E7 0%, #FFD700 20%, #E6B800 40%, #4169E1 70%, #2F4F7F 100%)',
+  },
 ];
 
 export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({

@@ -161,7 +161,7 @@ function App() {
   const handleMore = () => console.log('More clicked');
 
   // Get background theme styles and determine if it's a dark background
-  const isDarkBackground = ['dark', 'gradient-ocean', 'gufeng-ink-jade', 'leela-peacock-divine', 'isha-earth-mystic'].includes(backgroundThemeId);
+  const isDarkBackground = ['dark', 'gradient-ocean', 'gufeng-ink-jade', 'leela-peacock-divine', 'isha-earth-mystic', 'sacred-light-glory'].includes(backgroundThemeId);
   
   const getBackgroundStyle = () => {
     switch (backgroundThemeId) {
@@ -195,6 +195,8 @@ function App() {
         return { background: 'linear-gradient(135deg, #667EEA 0%, #4A90E2 25%, #2E5F8F 60%, #1A3A5C 100%)' };
       case 'isha-earth-mystic':
         return { background: 'linear-gradient(135deg, #D4A574 0%, #B8956A 25%, #8B6F47 55%, #6B5B4A 80%, #4A4458 100%)' };
+      case 'sacred-light-glory':
+        return { background: 'linear-gradient(135deg, #FFF8E7 0%, #FFD700 20%, #E6B800 40%, #4169E1 70%, #2F4F7F 100%)' };
       default:
         return { backgroundColor: '#FFFFFF' };
     }
