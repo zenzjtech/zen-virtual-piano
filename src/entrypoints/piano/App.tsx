@@ -11,12 +11,15 @@ import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName } from '@/components/piano/piano-settings-slice';
+import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName } from '@/store/reducers/piano-settings-slice';
 import './App.css';
+import { trackPageEvent } from '@/utils/analytics';
+import { ANALYTICS_ACTION } from '@/utils/constants';
 
 function App() {
   // Redux state for persistent settings
   const dispatch = useAppDispatch();
+  const uid = useAppSelector((state) => state.user.uid);    
   const pianoThemeId = useAppSelector((state) => state.pianoSettings.theme);
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
@@ -61,6 +64,10 @@ function App() {
   const [volume, setVolume] = useState(80);
   const [metronomeEnabled, setMetronomeEnabled] = useState(false);
   const [midiDevice, setMidiDevice] = useState('none');
+
+  useEffect(() => {    
+      trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
+  }, [uid]);
 
   // Sync audio engine with Redux state on mount
   useEffect(() => {

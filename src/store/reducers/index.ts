@@ -1,5 +1,7 @@
-import pianoSettings from '@/components/piano/piano-settings-slice'
+import pianoSettings from '@/store/reducers/piano-settings-slice'
+import user from '@/store/reducers/user-slice'
 
 export default {
     pianoSettings,
+    user,
 }

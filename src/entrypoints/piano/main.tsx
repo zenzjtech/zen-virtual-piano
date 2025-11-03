@@ -13,8 +13,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { muiTheme } from '@/theme/mui-theme';
+import { initMixpanel } from '@/utils/analytics.ts';
 
 (async () => {
+  initMixpanel();
   const store = await instantiateGlobalStore()  
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
