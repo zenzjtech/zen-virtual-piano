@@ -38,6 +38,19 @@ const PianoContainer = styled(Paper)(({ theme }) => ({
     `,
     pointerEvents: 'none',
     opacity: 0.6,
+    zIndex: 1,
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 60%)',
+    pointerEvents: 'none',
+    zIndex: 2,
+    borderRadius: theme.spacing(2),
   },
 }));
 
@@ -47,6 +60,7 @@ const KeyboardWrapper = styled(Box)({
   alignItems: 'flex-start',
   gap: '2px',
   minWidth: 'fit-content',
+  zIndex: 3,
 });
 
 const WhiteKeysContainer = styled(Box)({
