@@ -7,10 +7,25 @@ import * as Tone from 'tone';
 
 export class AudioEngine {
   private sampler: Tone.Sampler | null = null;
+  private volume: Tone.Volume | null = null;
   private activeNotes: Set<string> = new Set();
   private isLoaded: boolean = false;
+  private sustainOffset: number = 10.5; // Extended release offset (like virtualpiano.net)
+  private sustainTime: number = 10.5; // Default sustain time (like virtualpiano.net)
 
   constructor() {
+    // Initialize Tone.js with interactive latency for better responsiveness
+    // Note: latencyHint must be set during context creation
+    try {
+      // Only create new context if one doesn't exist
+      if (typeof Tone.context === 'undefined' || !Tone.context.rawContext) {
+        const context = new Tone.Context({ latencyHint: 'interactive' });
+        Tone.setContext(context);
+      }
+    } catch (e) {
+      // Context already exists, continue with default settings
+      console.log('Using existing Tone.js context');
+    }
     this.initAudio();
   }
 
@@ -73,12 +88,15 @@ export class AudioEngine {
       
       console.log('Loading piano samples...', urlsMap);
       
+      // Create separate Volume node for better audio control
+      this.volume = new Tone.Volume(-10);
+
       // Tone.js will pitch-shift from nearest available sample
       this.sampler = new Tone.Sampler({
         urls: urlsMap,        
         curve: "exponential",
         attack: 0,
-        release: 4,
+        release: 4, 
         onload: () => {
           this.isLoaded = true;
           console.log('Piano samples loaded successfully');
@@ -86,10 +104,10 @@ export class AudioEngine {
         onerror: (error) => {
           console.error('Failed to load piano samples:', error);
         },
-      }).toDestination();
+      });
 
-      // Set initial volume
-      this.sampler.volume.value = -10; // dB (roughly 30% linear volume)
+      // Chain: Sampler -> Volume -> Destination (like virtualpiano.net)
+      this.sampler.chain(this.volume, Tone.Destination);
 
     } catch (error) {
       console.error('Failed to initialize Tone.js sampler:', error);
@@ -139,14 +157,16 @@ export class AudioEngine {
   }
 
   /**
-   * Stop playing a note
+   * Stop playing a note with extended release offset
    */
   stopNote(note: string): void {
     if (!this.sampler || !this.activeNotes.has(note)) {
       return;
     }
 
-    this.sampler.triggerRelease(note);
+    // Use extended release timing like virtualpiano.net
+    const now = Tone.now();
+    this.sampler.triggerRelease(note, now + this.sustainOffset + this.sustainTime);
     this.activeNotes.delete(note);
   }
 
@@ -166,11 +186,27 @@ export class AudioEngine {
    * Set master volume (0-1)
    */
   setVolume(volume: number): void {
-    if (this.sampler) {
+    if (this.volume) {
       // Convert linear volume to dB
       const dbVolume = 20 * Math.log10(Math.max(0.01, Math.min(1, volume)));
-      this.sampler.volume.value = dbVolume;
+      this.volume.volume.value = dbVolume;
     }
+  }
+
+  /**
+   * Set note release time for sustain effect (in seconds)
+   * Higher values = longer sustain, lower values = shorter sustain
+   */
+  setSustain(sustainTime: number): void {
+    this.sustainTime = sustainTime;
+  }
+
+  /**
+   * Set the extended release offset (like virtualpiano.net)
+   * This adds extra time to the natural release for more realistic decay
+   */
+  setSustainOffset(offset: number): void {
+    this.sustainOffset = Math.max(0, offset);
   }
 
   /**
@@ -180,6 +216,9 @@ export class AudioEngine {
     this.stopAll();
     if (this.sampler) {
       this.sampler.dispose();
+    }
+    if (this.volume) {
+      this.volume.dispose();
     }
   }
 }
