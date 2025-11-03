@@ -11,7 +11,7 @@ import { PianoTheme } from './themes';
 
 interface SettingsBarProps {
   onRecord?: () => void;
-  onKeyAssist?: () => void;
+  onKeyAssist?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onStyles?: (event: React.MouseEvent<HTMLButtonElement>) => void;

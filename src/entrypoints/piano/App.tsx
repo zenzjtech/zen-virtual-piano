@@ -6,6 +6,7 @@ import { SettingsBar } from '@/components/piano/settings-bar';
 import { InstrumentSelectorPopup } from '@/components/piano/instrument-selector-popup';
 import { SoundSettingsPopup } from '@/components/piano/sound-settings-popup';
 import { StyleSettingsPopup } from '@/components/piano/style-settings-popup';
+import { KeyAssistPopup } from '@/components/piano/key-assist-popup';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
@@ -40,13 +41,22 @@ function App() {
   const [styleSettingsAnchor, setStyleSettingsAnchor] = useState<HTMLElement | null>(null);
   const styleSettingsOpen = Boolean(styleSettingsAnchor);
   
+  // Key Assist popup state
+  const [keyAssistPopupAnchor, setKeyAssistPopupAnchor] = useState<HTMLElement | null>(null);
+  const keyAssistPopupOpen = Boolean(keyAssistPopupAnchor);
+  
+  // Key Assist settings (local state, can be moved to Redux later)
+  const [showKeyboard, setShowKeyboard] = useState(false);
+  const [showNoteName, setShowNoteName] = useState(false);
+  
   // Refs for focus management - store trigger buttons
   const instrumentButtonRef = useRef<HTMLElement | null>(null);
   const soundButtonRef = useRef<HTMLElement | null>(null);
   const styleButtonRef = useRef<HTMLElement | null>(null);
+  const keyAssistButtonRef = useRef<HTMLElement | null>(null);
   
   // Determine if keyboard should be enabled (disabled when any popup is open)
-  const isKeyboardEnabled = !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen;
+  const isKeyboardEnabled = !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen && !keyAssistPopupOpen;
   
   // Additional sound settings (local state for now, can be moved to Redux later)
   const [transpose, setTranspose] = useState(0);
@@ -73,19 +83,22 @@ function App() {
         } else if (styleSettingsOpen) {
           handleStyleSettingsClose();
           event.preventDefault();
+        } else if (keyAssistPopupOpen) {
+          handleKeyAssistPopupClose();
+          event.preventDefault();
         }
       }
     };
 
     // Only add listener if any popup is open
-    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen) {
+    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen || keyAssistPopupOpen) {
       window.addEventListener('keydown', handleEscapeKey);
       
       return () => {
         window.removeEventListener('keydown', handleEscapeKey);
       };
     }
-  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen]);
+  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen, keyAssistPopupOpen]);
 
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
@@ -100,7 +113,19 @@ function App() {
 
   // Settings bar handlers
   const handleRecord = () => console.log('Record clicked');
-  const handleKeyAssist = () => console.log('Key Assist clicked');
+  
+  const handleKeyAssist = (event: React.MouseEvent<HTMLButtonElement>) => {
+    keyAssistButtonRef.current = event.currentTarget;
+    setKeyAssistPopupAnchor(event.currentTarget);
+  };
+  
+  const handleKeyAssistPopupClose = () => {
+    setKeyAssistPopupAnchor(null);
+    // Return focus to trigger button
+    setTimeout(() => {
+      keyAssistButtonRef.current?.focus();
+    }, 100);
+  };
   
   const handleInstrument = (event: React.MouseEvent<HTMLButtonElement>) => {
     instrumentButtonRef.current = event.currentTarget;
@@ -361,6 +386,18 @@ function App() {
         currentBackgroundTheme={backgroundThemeId}
         onPianoThemeChange={handlePianoThemeChange}
         onBackgroundThemeChange={handleBackgroundThemeChange}
+        pianoTheme={pianoTheme}
+      />
+
+      {/* Key Assist Popup */}
+      <KeyAssistPopup
+        open={keyAssistPopupOpen}
+        anchorEl={keyAssistPopupAnchor}
+        showKeyboard={showKeyboard}
+        showNoteName={showNoteName}
+        onClose={handleKeyAssistPopupClose}
+        onShowKeyboardChange={setShowKeyboard}
+        onShowNoteNameChange={setShowNoteName}
         pianoTheme={pianoTheme}
       />
     </Box>
