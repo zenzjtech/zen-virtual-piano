@@ -9,12 +9,15 @@ import {
   ClickAwayListener,
   Divider,
   Stack,
+  Collapse,
+  IconButton,
 } from '@mui/material';
 import {
   CheckCircle as CheckCircleIcon,
   Palette as PaletteIcon,
   Piano as PianoIcon,
   Wallpaper as BackgroundIcon,
+  ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material';
 import { getAllThemes, PianoTheme } from './themes';
 import {
@@ -115,6 +118,8 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
 }) => {
   const pianoThemes = getAllThemes();
   const [searchQuery, setSearchQuery] = useState('');
+  const [pianoThemeExpanded, setPianoThemeExpanded] = useState(false);
+  const [backgroundThemeExpanded, setBackgroundThemeExpanded] = useState(false);
 
   // Filter themes based on search query
   const filteredPianoThemes = useMemo(() => {
@@ -220,7 +225,25 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
               {/* Piano Theme Section */}
               {showPianoThemes && (
                 <Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                  <Box 
+                    sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 1, 
+                      mb: pianoThemeExpanded ? 1.5 : 0,
+                      cursor: 'pointer',
+                      padding: '8px',
+                      margin: '-8px',
+                      borderRadius: '6px',
+                      transition: 'background 0.2s ease',
+                      '&:hover': {
+                        background: pianoTheme.isLight
+                          ? 'rgba(0,0,0,0.03)'
+                          : 'rgba(255,255,255,0.05)',
+                      },
+                    }}
+                    onClick={() => setPianoThemeExpanded(!pianoThemeExpanded)}
+                  >
                     <PianoIcon
                       sx={{
                         color: pianoTheme.colors.secondary,
@@ -233,11 +256,23 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                       sx={{
                         color: pianoTheme.colors.primary,
                         letterSpacing: '0.3px',
+                        flex: 1,
                       }}
                     >
                       Piano Theme
                     </Typography>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        transform: pianoThemeExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.3s ease',
+                        color: pianoTheme.colors.secondary,
+                      }}
+                    >
+                      <ExpandMoreIcon fontSize="small" />
+                    </IconButton>
                   </Box>
+                  <Collapse in={pianoThemeExpanded} timeout={300}>
                   <List sx={{ py: 0 }}>
                     {filteredPianoThemes.map((theme: PianoTheme) => {
                       const isSelected = theme.id === currentPianoTheme;
@@ -327,6 +362,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                       );
                     })}
                   </List>
+                  </Collapse>
                 </Box>
               )}
 
@@ -338,7 +374,25 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
               {/* Background Theme Section */}
               {showBackgroundThemes && (
                 <Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                  <Box 
+                    sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 1, 
+                      mb: backgroundThemeExpanded ? 1.5 : 0,
+                      cursor: 'pointer',
+                      padding: '8px',
+                      margin: '-8px',
+                      borderRadius: '6px',
+                      transition: 'background 0.2s ease',
+                      '&:hover': {
+                        background: pianoTheme.isLight
+                          ? 'rgba(0,0,0,0.03)'
+                          : 'rgba(255,255,255,0.05)',
+                      },
+                    }}
+                    onClick={() => setBackgroundThemeExpanded(!backgroundThemeExpanded)}
+                  >
                     <BackgroundIcon
                       sx={{
                         color: pianoTheme.colors.secondary,
@@ -351,11 +405,23 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                       sx={{
                         color: pianoTheme.colors.primary,
                         letterSpacing: '0.3px',
+                        flex: 1,
                       }}
                     >
                       Background Theme
                     </Typography>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        transform: backgroundThemeExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.3s ease',
+                        color: pianoTheme.colors.secondary,
+                      }}
+                    >
+                      <ExpandMoreIcon fontSize="small" />
+                    </IconButton>
                   </Box>
+                  <Collapse in={backgroundThemeExpanded} timeout={300}>
                   <List sx={{ py: 0 }}>
                     {filteredBackgroundThemes.map((theme: BackgroundTheme) => {
                       const isSelected = theme.id === currentBackgroundTheme;
@@ -446,6 +512,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                       );
                     })}
                   </List>
+                  </Collapse>
                 </Box>
               )}
 
