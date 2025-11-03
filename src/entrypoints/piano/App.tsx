@@ -34,6 +34,9 @@ function App() {
   const [soundSettingsAnchor, setSoundSettingsAnchor] = useState<HTMLElement | null>(null);
   const soundSettingsOpen = Boolean(soundSettingsAnchor);
   
+  // Determine if keyboard should be enabled (disabled when any popup is open)
+  const isKeyboardEnabled = !instrumentPopupOpen && !soundSettingsOpen;
+  
   // Additional sound settings (local state for now, can be moved to Redux later)
   const [transpose, setTranspose] = useState(0);
   const [volume, setVolume] = useState(80);
@@ -246,7 +249,8 @@ function App() {
               {/* Piano Component */}
               <Piano 
                 themeId={pianoThemeId}
-                onPressedNotesChange={handlePressedNotesChange} 
+                onPressedNotesChange={handlePressedNotesChange}
+                keyboardEnabled={isKeyboardEnabled}
               />
             </Box>
           </Box>

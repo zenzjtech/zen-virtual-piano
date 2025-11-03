@@ -137,9 +137,11 @@ interface PianoProps {
   themeId?: string;
   /** Callback when pressed notes change */
   onPressedNotesChange?: (notes: Map<string, PianoKey>, currentNote: PianoKey | null) => void;
+  /** Whether keyboard input is enabled (default: true) */
+  keyboardEnabled?: boolean;
 }
 
-export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotesChange }) => {
+export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotesChange, keyboardEnabled = true }) => {
   const pianoTheme = getTheme(themeId);
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
   const audioEngineRef = useRef(getAudioEngine());
@@ -211,6 +213,11 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
 
   // Keyboard event handlers
   useEffect(() => {
+    // Only register keyboard listeners when keyboard input is enabled
+    if (!keyboardEnabled) {
+      return;
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       // Use the actual key pressed (includes shift modifiers)
       const key = e.key;
@@ -254,7 +261,7 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
       window.removeEventListener('click', handleFocus);
       audioEngineRef.current.stopAll();
     };
-  }, [playNote, stopNote]);
+  }, [playNote, stopNote, keyboardEnabled]);
 
   // Separate white and black keys
   const whiteKeys = KEY_MAPPINGS.filter(key => !key.isBlack);
