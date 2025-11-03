@@ -43,7 +43,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
   categoryOrder,
 }) => {
   // Group themes by category if enabled
-  const themeGroups = useThemeGroups(themes as any, categoryOrder);
+  const themeGroups = useThemeGroups<PianoTheme | BackgroundTheme>(themes, categoryOrder);
   const shouldGroup = enableGrouping && themeGroups.length > 1;
 
   // Get category metadata for background themes

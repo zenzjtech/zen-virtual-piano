@@ -7,7 +7,7 @@ export interface PianoTheme {
   id: string;
   name: string;
   description: string;
-  category?: string;
+  category: string;
   
   // Theme brightness for text contrast
   isLight: boolean;

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 interface Categorizable {
+  id: string;
   category: string;
   name: string;
   description: string;
