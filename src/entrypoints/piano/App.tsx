@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
 import { StatusBoard } from '@/components/piano/status-board';
@@ -34,6 +34,10 @@ function App() {
   const [soundSettingsAnchor, setSoundSettingsAnchor] = useState<HTMLElement | null>(null);
   const soundSettingsOpen = Boolean(soundSettingsAnchor);
   
+  // Refs for focus management - store trigger buttons
+  const instrumentButtonRef = useRef<HTMLElement | null>(null);
+  const soundButtonRef = useRef<HTMLElement | null>(null);
+  
   // Determine if keyboard should be enabled (disabled when any popup is open)
   const isKeyboardEnabled = !instrumentPopupOpen && !soundSettingsOpen;
   
@@ -52,12 +56,12 @@ function App() {
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        // Close any open popup
+        // Close any open popup and return focus
         if (instrumentPopupOpen) {
-          setInstrumentPopupAnchor(null);
+          handleInstrumentPopupClose();
           event.preventDefault();
         } else if (soundSettingsOpen) {
-          setSoundSettingsAnchor(null);
+          handleSoundSettingsClose();
           event.preventDefault();
         }
       }
@@ -89,15 +93,29 @@ function App() {
   const handleKeyAssist = () => console.log('Key Assist clicked');
   
   const handleInstrument = (event: React.MouseEvent<HTMLButtonElement>) => {
+    instrumentButtonRef.current = event.currentTarget;
     setInstrumentPopupAnchor(event.currentTarget);
   };
   
   const handleInstrumentPopupClose = () => {
     setInstrumentPopupAnchor(null);
+    // Return focus to trigger button
+    setTimeout(() => {
+      instrumentButtonRef.current?.focus();
+    }, 100);
   };
   
   const handleSound = (event: React.MouseEvent<HTMLButtonElement>) => {
+    soundButtonRef.current = event.currentTarget;
     setSoundSettingsAnchor(event.currentTarget);
+  };
+  
+  const handleSoundSettingsClose = () => {
+    setSoundSettingsAnchor(null);
+    // Return focus to trigger button
+    setTimeout(() => {
+      soundButtonRef.current?.focus();
+    }, 100);
   };
   
   const handleSoundSetChange = async (newSoundSetId: string) => {
@@ -314,7 +332,7 @@ function App() {
       <SoundSettingsPopup
         open={soundSettingsOpen}
         anchorEl={soundSettingsAnchor}
-        onClose={() => setSoundSettingsAnchor(null)}
+        onClose={handleSoundSettingsClose}
         sustain={sustain}
         onSustainChange={(value) => {
           dispatch(setSustain(value));

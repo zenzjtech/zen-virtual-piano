@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -127,6 +127,19 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   pianoTheme,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-focus search input when popup opens
+  useEffect(() => {
+    if (open && searchInputRef.current) {
+      // Small delay to ensure popup is fully rendered
+      const timer = setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
 
   // Define searchable settings with names and descriptions
   const settings = useMemo(() => ([
@@ -263,6 +276,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               pianoTheme={pianoTheme}
+              inputRef={searchInputRef}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

@@ -15,7 +15,7 @@ interface SettingsBarProps {
   onRecord?: () => void;
   onKeyAssist?: () => void;
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onSound?: () => void;
+  onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onStyles?: () => void;
   onSave?: () => void;
   onMore?: () => void;
