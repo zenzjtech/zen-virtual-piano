@@ -211,6 +211,11 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
     }
   }, [currentNote]);
 
+  // Check if the last note is currently being pressed
+  const isNoteActive = currentNote !== null && lastNote !== null && 
+    currentNote.note === lastNote.note && 
+    currentNote.keyboardKey === lastNote.keyboardKey;
+
   // Format history for display (show last 10)
   const historyText = noteHistory.slice(0, 10).join(' → ') || 'No history yet...';
 
@@ -226,10 +231,23 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
       
       {/* Current Note Display */}
       <CurrentNoteDisplay pianoTheme={pianoTheme}>
-        <NoteText variant="h3">
+        <NoteText 
+          variant="h3"
+          sx={{ 
+            opacity: isNoteActive ? 1 : 0.4,
+            transition: 'opacity 0.2s ease-out'
+          }}
+        >
           {lastNote ? lastNote.note : '—'}
         </NoteText>
-        <KeyText variant="body1" pianoTheme={pianoTheme}>
+        <KeyText 
+          variant="body1" 
+          pianoTheme={pianoTheme}
+          sx={{ 
+            opacity: isNoteActive ? 1 : 0.4,
+            transition: 'opacity 0.2s ease-out'
+          }}
+        >
           {lastNote ? lastNote.keyboardKey : ' '}
         </KeyText>
       </CurrentNoteDisplay>
