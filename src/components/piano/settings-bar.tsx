@@ -32,13 +32,23 @@ const BarContainer = styled(Paper, {
   alignItems: 'center',
   justifyContent: 'center',
   gap: theme.spacing(1),
-  boxShadow: 'none',
+  // Enhanced realistic box shadow with recessed look
+  boxShadow: `
+    inset 0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+    inset 2px 0 3px rgba(0, 0, 0, 0.1),
+    inset -2px 0 3px rgba(0, 0, 0, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.05)
+  `,
   border: pianoTheme.container.border,
   borderTop: 'none',
   borderBottom: 'none',
   flexWrap: 'wrap',
   position: 'relative',
   overflow: 'hidden',
+  // Subtle inner border highlight
+  borderLeft: `1px solid rgba(255, 255, 255, 0.05)`,
+  borderRight: `1px solid rgba(255, 255, 255, 0.05)`,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -78,13 +88,49 @@ const SettingButton = styled(Button, {
   transition: 'all 0.2s ease',
   position: 'relative',
   zIndex: 3,
+  background: pianoTheme.isLight 
+    ? 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.05) 100%)'
+    : 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.1) 100%)',
+  // Enhanced button with realistic depth and lighting
+  boxShadow: `
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2)
+  `,
+  // Subtle text shadow for depth
+  textShadow: `
+    0 1px 1px rgba(0, 0, 0, 0.3),
+    0 -1px 0 rgba(255, 255, 255, 0.05)
+  `,
   '&:hover': {
     borderColor: pianoTheme.colors.accent,
-    backgroundColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.08)',
+    background: pianoTheme.isLight 
+      ? 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.08) 100%)'
+      : 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.15) 100%)',
     color: pianoTheme.colors.accent,
+    // Enhanced glow on hover
+    boxShadow: `
+      0 0 12px rgba(212, 175, 55, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.25)
+    `,
+    transform: 'translateY(-1px)',
+    textShadow: `
+      0 0 8px rgba(212, 175, 55, 0.4),
+      0 1px 2px rgba(0, 0, 0, 0.4)
+    `,
+  },
+  '&:active': {
+    transform: 'translateY(1px)',
+    boxShadow: `
+      inset 0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05)
+    `,
   },
   '& .MuiButton-startIcon': {
     marginRight: theme.spacing(0.75),
+    filter: 'drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3))',
   },
   [theme.breakpoints.down('sm')]: {
     minWidth: '80px',

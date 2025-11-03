@@ -25,11 +25,20 @@ const BoardContainer = styled(Paper, {
   alignItems: 'center',
   gap: theme.spacing(3),
   height: '80px',
-  boxShadow: 'none',
+  // Enhanced realistic box shadow with multiple layers
+  boxShadow: `
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    inset 2px 0 4px rgba(0, 0, 0, 0.15),
+    inset -2px 0 4px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.3)
+  `,
   border: pianoTheme.container.border,
   borderBottom: 'none',
   position: 'relative',
   overflow: 'hidden',
+  // Top edge highlight (beveled edge effect)
+  borderTop: `1px solid rgba(255, 255, 255, 0.15)`,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -64,7 +73,14 @@ const CurrentNoteDisplay = styled(Box, {
   justifyContent: 'center',
   minWidth: '100px',
   padding: theme.spacing(1),
+  // Enhanced border with depth
   borderRight: `1px solid ${pianoTheme.colors.border}`,
+  borderRightWidth: '2px',
+  // Add subtle inner shadow for recessed effect
+  boxShadow: `
+    inset -1px 0 2px rgba(0, 0, 0, 0.2),
+    1px 0 0 rgba(255, 255, 255, 0.05)
+  `,
   paddingRight: theme.spacing(3),
   position: 'relative',
   zIndex: 3,
@@ -76,6 +92,14 @@ const NoteText = styled(Typography)({
   color: '#ff6b35',
   lineHeight: 1,
   marginBottom: '4px',
+  // Enhanced text with glow and depth
+  textShadow: `
+    0 0 10px rgba(255, 107, 53, 0.4),
+    0 0 20px rgba(255, 107, 53, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 1px 0 rgba(255, 150, 100, 0.3)
+  `,
+  filter: 'drop-shadow(0 0 8px rgba(255, 107, 53, 0.3))',
 });
 
 const KeyText = styled(Typography, {
@@ -84,6 +108,11 @@ const KeyText = styled(Typography, {
   fontSize: '1.2rem',
   color: pianoTheme.colors.secondary,
   fontFamily: 'monospace',
+  // Subtle embossed text effect
+  textShadow: `
+    0 1px 0 rgba(255, 255, 255, 0.1),
+    0 -1px 0 rgba(0, 0, 0, 0.5)
+  `,
 }));
 
 const PressedKeysDisplay = styled(Box)(({ theme }) => ({
@@ -94,6 +123,16 @@ const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 3,
   minWidth: 0, // Allow text overflow
+  padding: theme.spacing(1, 1.5),
+  background: 'rgba(0, 0, 0, 0.1)',
+  borderRadius: theme.spacing(0.5),
+  // Recessed panel effect
+  boxShadow: `
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.05)
+  `,
+  border: '1px solid rgba(0, 0, 0, 0.2)',
 }));
 
 const HistoryDisplay = styled(Box)(({ theme }) => ({
@@ -103,9 +142,22 @@ const HistoryDisplay = styled(Box)(({ theme }) => ({
   gap: theme.spacing(0.5),
   position: 'relative',
   zIndex: 3,
-  borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+  // Enhanced divider with depth
+  borderLeft: '2px solid rgba(255, 255, 255, 0.1)',
   paddingLeft: theme.spacing(3),
+  marginLeft: theme.spacing(2),
   minWidth: 0, // Allow text overflow
+  padding: theme.spacing(1, 1.5),
+  background: 'rgba(0, 0, 0, 0.1)',
+  borderRadius: theme.spacing(0.5),
+  // Recessed panel effect
+  boxShadow: `
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.05),
+    -1px 0 0 rgba(255, 255, 255, 0.05)
+  `,
+  border: '1px solid rgba(0, 0, 0, 0.2)',
 }));
 
 const PressedKeysText = styled(Typography, {
@@ -118,6 +170,11 @@ const PressedKeysText = styled(Typography, {
   minHeight: '32px',
   display: 'flex',
   alignItems: 'center',
+  // Subtle engraved text effect
+  textShadow: `
+    0 1px 1px rgba(0, 0, 0, 0.8),
+    0 -1px 0 rgba(255, 255, 255, 0.1)
+  `,
 }));
 
 const Label = styled(Typography, {
@@ -128,6 +185,12 @@ const Label = styled(Typography, {
   textTransform: 'uppercase',
   letterSpacing: '1px',
   opacity: 0.8,
+  // Etched label effect
+  textShadow: `
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 -1px 0 rgba(255, 255, 255, 0.1)
+  `,
+  fontWeight: 600,
 }));
 
 const CornerPlate = styled(Box, {
@@ -152,17 +215,32 @@ const CornerPlate = styled(Box, {
     background: cornerStyle.background,
     border: cornerStyle.border,
     borderRadius: '50%',
-    boxShadow: cornerStyle.boxShadow,
+    // Enhanced metallic look with multiple shadows
+    boxShadow: `
+      ${cornerStyle.boxShadow},
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.3)
+    `,
     zIndex: 4,
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     '&:hover': {
       transform: 'scale(1.2) rotate(15deg)',
-      boxShadow: `${cornerStyle.boxShadow}, 0 0 12px rgba(212, 175, 55, 0.6)`,
+      boxShadow: `
+        ${cornerStyle.boxShadow}, 
+        0 0 12px rgba(212, 175, 55, 0.6),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.4)
+      `,
     },
     '&:active': {
       transform: 'scale(0.95) rotate(-5deg)',
-      boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.4)',
+      boxShadow: `
+        inset 0 2px 4px rgba(0, 0, 0, 0.6),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.1)
+      `,
     },
     '&::before': {
       content: '""',
