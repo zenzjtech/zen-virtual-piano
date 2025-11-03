@@ -159,6 +159,13 @@ const BACKGROUND_THEMES: BackgroundTheme[] = [
     color: '#8B7355',
     gradient: 'linear-gradient(135deg, #FFF8E7 0%, #FFD700 20%, #E6B800 40%, #4169E1 70%, #2F4F7F 100%)',
   },
+  {
+    id: 'islamic-emerald-gold',
+    name: 'Emerald & Gold (الزمرد)',
+    description: 'Sacred Islamic art & calligraphy',
+    color: '#00704A',
+    gradient: 'linear-gradient(135deg, #F0E68C 0%, #DAA520 25%, #00704A 60%, #004D40 100%)',
+  },
 ];
 
 export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
