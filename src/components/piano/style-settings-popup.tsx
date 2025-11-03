@@ -103,6 +103,20 @@ const BACKGROUND_THEMES: BackgroundTheme[] = [
     color: '#56AB2F',
     gradient: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)',
   },
+  {
+    id: 'gufeng-ink-jade',
+    name: 'Ink & Jade (墨玉)',
+    description: 'Traditional Chinese ink and jade',
+    color: '#3C4F5C',
+    gradient: 'linear-gradient(135deg, #2C3E50 0%, #3C5A4E 50%, #4A6B5A 100%)',
+  },
+  {
+    id: 'gufeng-vermillion-gold',
+    name: 'Vermillion & Gold (朱金)',
+    description: 'Imperial palace colors',
+    color: '#C84B31',
+    gradient: 'linear-gradient(135deg, #8B3A3A 0%, #C84B31 35%, #D4AF37 70%, #F4E5A1 100%)',
+  },
 ];
 
 export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({

@@ -161,7 +161,7 @@ function App() {
   const handleMore = () => console.log('More clicked');
 
   // Get background theme styles and determine if it's a dark background
-  const isDarkBackground = ['dark', 'gradient-ocean'].includes(backgroundThemeId);
+  const isDarkBackground = ['dark', 'gradient-ocean', 'gufeng-ink-jade'].includes(backgroundThemeId);
   
   const getBackgroundStyle = () => {
     switch (backgroundThemeId) {
@@ -181,6 +181,10 @@ function App() {
         return { background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)' };
       case 'gradient-forest':
         return { background: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)' };
+      case 'gufeng-ink-jade':
+        return { background: 'linear-gradient(135deg, #2C3E50 0%, #3C5A4E 50%, #4A6B5A 100%)' };
+      case 'gufeng-vermillion-gold':
+        return { background: 'linear-gradient(135deg, #8B3A3A 0%, #C84B31 35%, #D4AF37 70%, #F4E5A1 100%)' };
       default:
         return { backgroundColor: '#FFFFFF' };
     }
