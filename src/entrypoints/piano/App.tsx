@@ -11,7 +11,7 @@ import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setTheme, setSoundSet, setSustain, setBackgroundTheme } from '@/components/piano/piano-settings-slice';
+import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName } from '@/components/piano/piano-settings-slice';
 import './App.css';
 
 function App() {
@@ -21,6 +21,8 @@ function App() {
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
   const backgroundThemeId = useAppSelector((state) => state.pianoSettings.backgroundTheme);
+  const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
+  const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
   
   // Get the actual theme object
   const pianoTheme = getTheme(pianoThemeId);
@@ -44,10 +46,6 @@ function App() {
   // Key Assist popup state
   const [keyAssistPopupAnchor, setKeyAssistPopupAnchor] = useState<HTMLElement | null>(null);
   const keyAssistPopupOpen = Boolean(keyAssistPopupAnchor);
-  
-  // Key Assist settings (local state, can be moved to Redux later)
-  const [showKeyboard, setShowKeyboard] = useState(false);
-  const [showNoteName, setShowNoteName] = useState(false);
   
   // Refs for focus management - store trigger buttons
   const instrumentButtonRef = useRef<HTMLElement | null>(null);
@@ -398,8 +396,8 @@ function App() {
         showKeyboard={showKeyboard}
         showNoteName={showNoteName}
         onClose={handleKeyAssistPopupClose}
-        onShowKeyboardChange={setShowKeyboard}
-        onShowNoteNameChange={setShowNoteName}
+        onShowKeyboardChange={(value) => dispatch(setShowKeyboard(value))}
+        onShowNoteNameChange={(value) => dispatch(setShowNoteName(value))}
         pianoTheme={pianoTheme}
       />
     </Box>
