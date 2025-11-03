@@ -257,6 +257,11 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     color: pianoTheme.colors.accent,
                                     fontSize: '1.25rem',
                                     filter: `drop-shadow(0 0 4px ${pianoTheme.colors.accent}66)`,
+                                    transition: 'all 0.3s ease',
+                                    '.MuiListItemButton-root:hover &': {
+                                      transform: 'scale(1.15)',
+                                      filter: `drop-shadow(0 0 8px ${pianoTheme.colors.accent}99)`,
+                                    },
                                   }}
                                 />
                               ) : (
@@ -268,6 +273,14 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     background: theme.container.background,
                                     border: `2px solid ${theme.container.border}`,
                                     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
+                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    '.MuiListItemButton-root:hover &': {
+                                      transform: 'scale(1.3) rotate(180deg)',
+                                      boxShadow: `
+                                        0 0 12px ${theme.colors.accent}88,
+                                        0 2px 8px rgba(0, 0, 0, 0.4)
+                                      `,
+                                    },
                                   }}
                                 />
                               )}
@@ -282,6 +295,11 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     color: pianoTheme.colors.primary,
                                     textShadow: `0 1px 1px rgba(0, 0, 0, 0.2)`,
                                     letterSpacing: '0.3px',
+                                    transition: 'all 0.2s ease',
+                                    '.MuiListItemButton-root:hover &': {
+                                      letterSpacing: '0.5px',
+                                      color: pianoTheme.colors.accent,
+                                    },
                                   }}
                                 >
                                   {theme.name}
@@ -294,6 +312,10 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     fontSize: '0.75rem',
                                     color: pianoTheme.colors.secondary,
                                     opacity: 0.85,
+                                    transition: 'opacity 0.2s ease',
+                                    '.MuiListItemButton-root:hover &': {
+                                      opacity: 1,
+                                    },
                                   }}
                                 >
                                   {theme.description}
@@ -353,6 +375,11 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     color: pianoTheme.colors.accent,
                                     fontSize: '1.25rem',
                                     filter: `drop-shadow(0 0 4px ${pianoTheme.colors.accent}66)`,
+                                    transition: 'all 0.3s ease',
+                                    '.MuiListItemButton-root:hover &': {
+                                      transform: 'scale(1.15)',
+                                      filter: `drop-shadow(0 0 8px ${pianoTheme.colors.accent}99)`,
+                                    },
                                   }}
                                 />
                               ) : (
@@ -364,6 +391,15 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     background: theme.gradient || theme.color,
                                     border: `2px solid ${pianoTheme.colors.border}`,
                                     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
+                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    '.MuiListItemButton-root:hover &': {
+                                      transform: 'scale(1.4) rotate(5deg)',
+                                      borderRadius: '8px',
+                                      boxShadow: `
+                                        0 0 16px ${theme.color}88,
+                                        0 4px 12px rgba(0, 0, 0, 0.4)
+                                      `,
+                                    },
                                   }}
                                 />
                               )}
@@ -378,6 +414,11 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     color: pianoTheme.colors.primary,
                                     textShadow: `0 1px 1px rgba(0, 0, 0, 0.2)`,
                                     letterSpacing: '0.3px',
+                                    transition: 'all 0.2s ease',
+                                    '.MuiListItemButton-root:hover &': {
+                                      letterSpacing: '0.5px',
+                                      color: pianoTheme.colors.accent,
+                                    },
                                   }}
                                 >
                                   {theme.name}
@@ -390,6 +431,10 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                                     fontSize: '0.75rem',
                                     color: pianoTheme.colors.secondary,
                                     opacity: 0.85,
+                                    transition: 'opacity 0.2s ease',
+                                    '.MuiListItemButton-root:hover &': {
+                                      opacity: 1,
+                                    },
                                   }}
                                 >
                                   {theme.description}
