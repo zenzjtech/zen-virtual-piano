@@ -1,8 +1,8 @@
 {
   "name": "zen-virtual-piano",
-  "description": "A Chrome extension that delivers a 67-key (C2-C7) virtual piano and other instruments.",
+  "description": "67-key virtual piano (C2-C7) with multiple instruments, recording & practice tools for musicians and learners",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "wxt",
