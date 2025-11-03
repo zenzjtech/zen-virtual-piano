@@ -4,6 +4,7 @@ import { defineConfig } from 'wxt';
 export default defineConfig({  
   modules: ['@wxt-dev/module-react'],
   manifest: {
+    name: 'Zen Virtual Piano',
     permissions: ['storage'],
     action: {
       // Remove default_popup to allow action.onClicked event
