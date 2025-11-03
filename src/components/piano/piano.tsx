@@ -97,6 +97,16 @@ const CornerPlate = styled(Box, {
     borderRadius: '50%',
     boxShadow: cornerStyle.boxShadow,
     zIndex: 4,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      transform: 'scale(1.2) rotate(15deg)',
+      boxShadow: `${cornerStyle.boxShadow}, 0 0 12px rgba(212, 175, 55, 0.6)`,
+    },
+    '&:active': {
+      transform: 'scale(0.95) rotate(-5deg)',
+      boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.4)',
+    },
     '&::before': {
       content: '""',
       position: 'absolute',
