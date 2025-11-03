@@ -13,6 +13,7 @@ import {
   Popper,
   ClickAwayListener,
   styled,
+  IconButton,
 } from '@mui/material';
 import {
   VolumeUp as VolumeIcon,
