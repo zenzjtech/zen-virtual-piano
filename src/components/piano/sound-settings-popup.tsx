@@ -132,10 +132,10 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   // Auto-focus search input when popup opens
   useEffect(() => {
     if (open && searchInputRef.current) {
-      // Small delay to ensure popup is fully rendered
+      // Delay to ensure Popper is fully positioned and rendered
       const timer = setTimeout(() => {
         searchInputRef.current?.focus();
-      }, 100);
+      }, 200);
       
       return () => clearTimeout(timer);
     }
@@ -277,6 +277,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
               onChange={(e) => setSearchQuery(e.target.value)}
               pianoTheme={pianoTheme}
               inputRef={searchInputRef}
+              autoFocus
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
