@@ -7,11 +7,15 @@ import { InstrumentSelectorPopup } from '@/components/piano/instrument-selector-
 import { SoundSettingsPopup } from '@/components/piano/sound-settings-popup';
 import { StyleSettingsPopup } from '@/components/piano/style-settings-popup';
 import { KeyAssistPopup } from '@/components/piano/key-assist-popup';
+import { SheetSearchDialog } from '@/components/piano/music-sheet/sheet-search-dialog';
+import { MusicStand } from '@/components/piano/music-sheet/music-stand';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
+import { openSearchDialog, closeSearchDialog, switchToManualMode, addSheets } from '@/store/reducers/music-sheet-slice';
+import { getBuiltInSheets } from '@/services/sheet-library';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
@@ -27,6 +31,11 @@ function App() {
   const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
   const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
+  
+  // Music sheet state
+  const isSheetSearchOpen = useAppSelector((state) => state.musicSheet.isSearchDialogOpen);
+  const isMusicStandVisible = useAppSelector((state) => state.musicSheet.isMusicStandVisible);
+  const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   
   // Get the actual theme object
   const pianoTheme = getTheme(pianoThemeId);
@@ -51,14 +60,18 @@ function App() {
   const [keyAssistPopupAnchor, setKeyAssistPopupAnchor] = useState<HTMLElement | null>(null);
   const keyAssistPopupOpen = Boolean(keyAssistPopupAnchor);
   
+  // Sheet search popup state
+  const [sheetSearchAnchor, setSheetSearchAnchor] = useState<HTMLElement | null>(null);
+  
   // Refs for focus management - store trigger buttons
   const instrumentButtonRef = useRef<HTMLElement | null>(null);
   const soundButtonRef = useRef<HTMLElement | null>(null);
   const styleButtonRef = useRef<HTMLElement | null>(null);
   const keyAssistButtonRef = useRef<HTMLElement | null>(null);
+  const sheetButtonRef = useRef<HTMLElement | null>(null);
   
   // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
-  const isKeyboardEnabled = isPianoEnabled && !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen && !keyAssistPopupOpen;
+  const isKeyboardEnabled = isPianoEnabled && !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen && !keyAssistPopupOpen && !isSheetSearchOpen;
   
   // Additional sound settings (local state for now, can be moved to Redux later)
   const [transpose, setTranspose] = useState(0);
@@ -69,6 +82,12 @@ function App() {
   useEffect(() => {    
       trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
   }, [uid]);
+
+  // Load built-in sheet library on mount
+  useEffect(() => {
+    const sheets = getBuiltInSheets();
+    dispatch(addSheets(sheets));
+  }, [dispatch]);
 
   // Sync audio engine with Redux state on mount
   useEffect(() => {
@@ -92,6 +111,9 @@ function App() {
         } else if (keyAssistPopupOpen) {
           handleKeyAssistPopupClose();
           event.preventDefault();
+        } else if (isSheetSearchOpen) {
+          handleSheetSearchClose();
+          event.preventDefault();
         } 
         // Priority 2: Enable piano if it's disabled and no popups are open
         else if (!isPianoEnabled) {
@@ -107,14 +129,14 @@ function App() {
     };
 
     // Add listener if any popup is open OR if piano is disabled
-    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen || keyAssistPopupOpen || !isPianoEnabled) {
+    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen || keyAssistPopupOpen || isSheetSearchOpen || !isPianoEnabled) {
       window.addEventListener('keydown', handleEscapeKey);
       
       return () => {
         window.removeEventListener('keydown', handleEscapeKey);
       };
     }
-  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen, keyAssistPopupOpen, isPianoEnabled, dispatch, uid]);
+  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen, keyAssistPopupOpen, isSheetSearchOpen, isPianoEnabled, dispatch, uid]);
 
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
@@ -125,7 +147,12 @@ function App() {
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
     setPressedNotes(notes);
     setCurrentNote(current);
-  }, []);
+    
+    // Auto-switch to manual mode when user presses any key during sheet playback
+    if (isSheetPlaying && current !== null) {
+      dispatch(switchToManualMode());
+    }
+  }, [isSheetPlaying, dispatch]);
 
   // Settings bar handlers
   const handleTogglePiano = () => {
@@ -208,6 +235,21 @@ function App() {
   
   const handleBackgroundThemeChange = (themeId: string) => {
     dispatch(setBackgroundTheme(themeId));
+  };
+  
+  const handleSheets = (event: React.MouseEvent<HTMLButtonElement>) => {
+    sheetButtonRef.current = event.currentTarget;
+    setSheetSearchAnchor(event.currentTarget);
+    dispatch(openSearchDialog());
+  };
+  
+  const handleSheetSearchClose = () => {
+    setSheetSearchAnchor(null);
+    dispatch(closeSearchDialog());
+    // Return focus to trigger button
+    setTimeout(() => {
+      sheetButtonRef.current?.focus();
+    }, 100);
   };
 
   // Get background theme styles and determine if it's a dark background
@@ -308,6 +350,11 @@ function App() {
             </Typography>
           </Box>
 
+          {/* Music Stand - appears when sheet is loaded */}
+          {isMusicStandVisible && (
+            <MusicStand pianoTheme={pianoTheme} />
+          )}
+
           {/* Integrated Piano Unit */}
           <Box 
             sx={{ 
@@ -339,6 +386,7 @@ function App() {
                 onInstrument={handleInstrument}
                 onSound={handleSound}
                 onStyles={handleStyles}
+                onSheets={handleSheets}
                 pianoTheme={pianoTheme}
               />
 
@@ -430,6 +478,14 @@ function App() {
         onClose={handleKeyAssistPopupClose}
         onShowKeyboardChange={(value) => dispatch(setShowKeyboard(value))}
         onShowNoteNameChange={(value) => dispatch(setShowNoteName(value))}
+        pianoTheme={pianoTheme}
+      />
+
+      {/* Sheet Search Dialog */}
+      <SheetSearchDialog
+        open={isSheetSearchOpen}
+        anchorEl={sheetSearchAnchor}
+        onClose={handleSheetSearchClose}
         pianoTheme={pianoTheme}
       />
     </Box>

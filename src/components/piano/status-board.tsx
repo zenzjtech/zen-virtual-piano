@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Paper, Typography, styled } from '@mui/material';
 import { PianoKey } from './types';
 import { PianoTheme } from './themes';
+import { useAppSelector } from '@/store/hook';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -274,6 +275,11 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   currentNote,
   pianoTheme,
 }) => {
+  // Get music sheet state
+  const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
+  const playback = useAppSelector((state) => state.musicSheet.playback);
+  const statusDisplayMode = useAppSelector((state) => state.musicSheet.statusDisplayMode);
+  
   // Track note history (last 20 notes)
   const [noteHistory, setNoteHistory] = useState<string[]>([]);
   // Track the most recent note and key press
@@ -298,6 +304,10 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
 
   // Format history for display (show last 10)
   const historyText = noteHistory.slice(0, 10).join(' → ') || 'No history yet...';
+  
+  // Determine what to display based on mode
+  const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
+  const showBoth = statusDisplayMode === 'both';
 
   return (
     <BoardContainer elevation={0} pianoTheme={pianoTheme}>
@@ -309,44 +319,91 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
         </>
       )}
       
-      {/* Current Note Display */}
-      <CurrentNoteDisplay pianoTheme={pianoTheme}>
-        <NoteText 
-          variant="h3"
-          sx={{ 
-            opacity: isNoteActive ? 1 : 0.4,
-            transition: 'opacity 0.2s ease-out'
-          }}
-        >
-          {lastNote ? lastNote.note : '—'}
-        </NoteText>
-        <KeyText 
-          variant="body1" 
-          pianoTheme={pianoTheme}
-          sx={{ 
-            opacity: isNoteActive ? 1 : 0.4,
-            transition: 'opacity 0.2s ease-out'
-          }}
-        >
-          {lastNote ? lastNote.keyboardKey : ' '}
-        </KeyText>
-      </CurrentNoteDisplay>
+      {/* Sheet Mode Display */}
+      {isSheetMode ? (
+        <>
+          {/* Current Sheet Info */}
+          <CurrentNoteDisplay pianoTheme={pianoTheme}>
+            <Typography 
+              variant="h6"
+              sx={{ 
+                color: pianoTheme.colors.primary,
+                fontWeight: 600,
+                textAlign: 'center',
+                lineHeight: 1.2,
+              }}
+            >
+              🎼
+            </Typography>
+            <KeyText variant="caption" pianoTheme={pianoTheme}>
+              {playback.isPlaying ? 'Playing' : playback.isPaused ? 'Paused' : 'Ready'}
+            </KeyText>
+          </CurrentNoteDisplay>
 
-      {/* Pressed Keys Display */}
-      <PressedKeysDisplay>
-        <Label variant="caption" pianoTheme={pianoTheme}>Last Pressed Key</Label>
-        <PressedKeysText variant="h6" pianoTheme={pianoTheme}>
-          {lastNote?.keyboardKey || 'Press any key...'}
-        </PressedKeysText>
-      </PressedKeysDisplay>
+          {/* Sheet Title and Progress */}
+          <PressedKeysDisplay>
+            <Label variant="caption" pianoTheme={pianoTheme}>Now Playing</Label>
+            <PressedKeysText variant="h6" pianoTheme={pianoTheme} sx={{ fontSize: '1.2rem' }}>
+              {currentSheet.title}
+            </PressedKeysText>
+            <Typography variant="caption" sx={{ color: pianoTheme.colors.secondary, mt: 0.5 }}>
+              {currentSheet.artist}
+            </Typography>
+          </PressedKeysDisplay>
 
-      {/* History Display */}
-      <HistoryDisplay>
-        <Label variant="caption" pianoTheme={pianoTheme}>History</Label>
-        <PressedKeysText variant="h6" pianoTheme={pianoTheme} sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {historyText}
-        </PressedKeysText>
-      </HistoryDisplay>
+          {/* Playback Progress */}
+          <HistoryDisplay>
+            <Label variant="caption" pianoTheme={pianoTheme}>Progress</Label>
+            <PressedKeysText variant="h6" pianoTheme={pianoTheme}>
+              Page {playback.currentPage + 1}/{currentSheet.pages.length} • Measure {playback.currentMeasure + 1}
+            </PressedKeysText>
+            <Typography variant="caption" sx={{ color: pianoTheme.colors.secondary, mt: 0.5 }}>
+              {Math.round(playback.progress * 100)}% • {playback.tempo} BPM
+            </Typography>
+          </HistoryDisplay>
+        </>
+      ) : (
+        <>
+          {/* Manual Play Mode - Current Note Display */}
+          <CurrentNoteDisplay pianoTheme={pianoTheme}>
+            <NoteText 
+              variant="h3"
+              sx={{ 
+                opacity: isNoteActive ? 1 : 0.4,
+                transition: 'opacity 0.2s ease-out'
+              }}
+            >
+              {lastNote ? lastNote.note : '—'}
+            </NoteText>
+            <KeyText 
+              variant="body1" 
+              pianoTheme={pianoTheme}
+              sx={{ 
+                opacity: isNoteActive ? 1 : 0.4,
+                transition: 'opacity 0.2s ease-out'
+              }}
+            >
+              {lastNote ? lastNote.keyboardKey : ' '}
+            </KeyText>
+          </CurrentNoteDisplay>
+
+          {/* Pressed Keys Display */}
+          <PressedKeysDisplay>
+            <Label variant="caption" pianoTheme={pianoTheme}>Last Pressed Key</Label>
+            <PressedKeysText variant="h6" pianoTheme={pianoTheme}>
+              {lastNote?.keyboardKey || 'Press any key...'}
+            </PressedKeysText>
+          </PressedKeysDisplay>
+
+          {/* History Display */}
+          <HistoryDisplay>
+            <Label variant="caption" pianoTheme={pianoTheme}>History</Label>
+            <PressedKeysText variant="h6" pianoTheme={pianoTheme} sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {historyText}
+            </PressedKeysText>
+          </HistoryDisplay>
+        </>
+      )}
     </BoardContainer>
   );
 };
