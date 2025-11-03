@@ -133,8 +133,9 @@ export class AudioEngine {
    * Play a note using Tone.Sampler
    * @param note - Musical note (e.g., 'C4', 'D#4')
    * @param frequency - Not used with sampler, kept for API compatibility
+   * @param velocity - Velocity value (0.0 to 1.0), defaults to 1.0 (maximum volume)
    */
-  playNote(note: string, frequency?: number): void {
+  playNote(note: string, frequency?: number, velocity: number = 1.0): void {
     if (!this.sampler) {
       console.warn('Sampler not initialized');
       return;
@@ -154,11 +155,15 @@ export class AudioEngine {
       return;
     }
 
+    // Clamp velocity to valid range (0.0 to 1.0)
+    const clampedVelocity = Math.max(0.0, Math.min(1.0, velocity));
+
     // Tone.js Sampler will automatically:
     // 1. Find the nearest available sample (C, D#, F#, or A)
     // 2. Apply pitch-shifting algorithm to reach the target note
     // 3. Use Web Audio API to output the sound
-    this.sampler.triggerAttack(note);
+    // 4. Apply velocity to control volume (0.0 = silent, 1.0 = max volume)
+    this.sampler.triggerAttack(note, undefined, clampedVelocity);
     this.activeNotes.add(note);
   }
 

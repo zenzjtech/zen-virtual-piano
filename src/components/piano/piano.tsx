@@ -207,6 +207,47 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
   const pressedKeysRef = useRef<Set<string>>(new Set());
   const pressedNotesMapRef = useRef<Map<string, PianoKey>>(new Map());
   const currentNoteRef = useRef<PianoKey | null>(null);
+  
+  // Track key interaction times for velocity calculation
+  // For keyboard: time of first keydown detection
+  // For mouse: time when mouse enters the key area before click
+  const keyInteractionStartTimes = useRef<Map<string, number>>(new Map());
+  const keyPressStartTimes = useRef<Map<string, number>>(new Map());
+  
+  // Velocity configuration (in milliseconds)
+  // Simulates piano hammer speed - time from approach to full press
+  const velocityConfig = {
+    minDuration: 30,    // Very fast press (< 30ms) = velocity 1.0 (loud, forte)
+    maxDuration: 200,   // Slow press (> 200ms) = velocity 0.3 (soft, piano)
+    minVelocity: 0.3,   // Minimum velocity for very slow/deliberate presses
+    maxVelocity: 1.0,   // Maximum velocity for very fast/hard presses
+    keyboardDefault: 0.8, // Default velocity for direct keyboard input (moderately loud)
+  };
+  
+  /**
+   * Calculate velocity based on attack duration (approach to press)
+   * Simulates the speed at which a piano key is pressed
+   * Faster approach = higher velocity (louder sound)
+   * Slower approach = lower velocity (softer sound)
+   */
+  const calculateVelocity = useCallback((duration: number): number => {
+    const { minDuration, maxDuration, minVelocity, maxVelocity } = velocityConfig;
+    
+    // Very fast press - maximum velocity (fortissimo)
+    if (duration <= minDuration) {
+      return maxVelocity;
+    }
+    
+    // Very slow press - minimum velocity (pianissimo)
+    if (duration >= maxDuration) {
+      return minVelocity;
+    }
+    
+    // Linear interpolation between min and max
+    // Inverse relationship: shorter duration = higher velocity
+    const normalizedDuration = (duration - minDuration) / (maxDuration - minDuration);
+    return maxVelocity - (normalizedDuration * (maxVelocity - minVelocity));
+  }, []);
 
   // Calculate positions for black keys based on their position in the pattern
   const getBlackKeyOffset = (blackKey: typeof KEY_MAPPINGS[0]): number => {
@@ -221,9 +262,9 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
   };
 
   // Handle note play
-  const playNote = useCallback((note: string, frequency: number) => {
+  const playNote = useCallback((note: string, frequency: number, velocity: number = 1.0) => {
     setPressedKeys(prev => ({ ...prev, [note]: true }));
-    audioEngineRef.current.playNote(note, frequency);
+    audioEngineRef.current.playNote(note, frequency, velocity);
     
     // Find the piano key and update tracking
     const pianoKey = KEY_MAPPINGS.find(k => k.note === note);
@@ -289,12 +330,38 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
       if (pianoKey) {
         e.preventDefault();
         pressedKeysRef.current.add(key);
-        playNote(pianoKey.note, pianoKey.frequency);
+        
+        const now = performance.now();
+        let velocity = velocityConfig.keyboardDefault;
+        
+        // Check if we have an interaction start time (from hover or previous interaction)
+        const interactionStart = keyInteractionStartTimes.current.get(key);
+        if (interactionStart) {
+          // Calculate velocity based on time from interaction to press
+          const duration = now - interactionStart;
+          velocity = calculateVelocity(duration);
+          keyInteractionStartTimes.current.delete(key);
+        }
+        
+        // Record the actual press time for duration tracking
+        keyPressStartTimes.current.set(key, now);
+        
+        // Play note with calculated velocity
+        playNote(pianoKey.note, pianoKey.frequency, velocity);
       }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       const key = e.key;
+      
+      // Calculate and log the press duration for debugging
+      const startTime = keyPressStartTimes.current.get(key);
+      if (startTime !== undefined) {
+        const pressDuration = performance.now() - startTime;
+        console.log(`Key "${key}" held for ${pressDuration.toFixed(0)}ms`);
+        keyPressStartTimes.current.delete(key);
+      }
+      
       pressedKeysRef.current.delete(key);
 
       const pianoKey = keyboardMapRef.current.get(key);
@@ -320,6 +387,38 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
       audioEngineRef.current.stopAll();
     };
   }, [playNote, stopNote, keyboardEnabled]);
+
+  // Mouse interaction handlers for velocity tracking
+  const handleMouseEnter = useCallback((note: string) => {
+    // Record when mouse enters the key area (for velocity calculation)
+    keyInteractionStartTimes.current.set(note, performance.now());
+  }, []);
+  
+  const handleMouseDown = useCallback((note: string, frequency: number) => {
+    const now = performance.now();
+    let velocity = velocityConfig.keyboardDefault; // Default for mouse clicks
+    
+    // Check if we have an interaction start time (from mouse enter)
+    const interactionStart = keyInteractionStartTimes.current.get(note);
+    if (interactionStart) {
+      // Calculate velocity based on time from mouse enter to click
+      const duration = now - interactionStart;
+      velocity = calculateVelocity(duration);
+      console.log(`Mouse click on ${note}: ${duration.toFixed(0)}ms approach → velocity: ${velocity.toFixed(2)}`);
+    }
+    
+    playNote(note, frequency, velocity);
+  }, [playNote, calculateVelocity]);
+  
+  const handleMouseUp = useCallback((note: string) => {
+    stopNote(note);
+  }, [stopNote]);
+  
+  const handleMouseLeave = useCallback((note: string) => {
+    // Clean up interaction tracking and stop note
+    keyInteractionStartTimes.current.delete(note);
+    stopNote(note);
+  }, [stopNote]);
 
   // Separate white and black keys
   const whiteKeys = KEY_MAPPINGS.filter(key => !key.isBlack);
@@ -396,9 +495,10 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
               pianoKey={key}
               theme={pianoTheme}
               isPressed={!!pressedKeys[key.note]}
-              onMouseDown={() => playNote(key.note, key.frequency)}
-              onMouseUp={() => stopNote(key.note)}
-              onMouseLeave={() => stopNote(key.note)}
+              onMouseEnter={() => handleMouseEnter(key.note)}
+              onMouseDown={() => handleMouseDown(key.note, key.frequency)}
+              onMouseUp={() => handleMouseUp(key.note)}
+              onMouseLeave={() => handleMouseLeave(key.note)}
             />
           ))}
         </WhiteKeysContainer>
@@ -410,9 +510,10 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
               pianoKey={key}
               theme={pianoTheme}
               isPressed={!!pressedKeys[key.note]}
-              onMouseDown={() => playNote(key.note, key.frequency)}
-              onMouseUp={() => stopNote(key.note)}
-              onMouseLeave={() => stopNote(key.note)}
+              onMouseEnter={() => handleMouseEnter(key.note)}
+              onMouseDown={() => handleMouseDown(key.note, key.frequency)}
+              onMouseUp={() => handleMouseUp(key.note)}
+              onMouseLeave={() => handleMouseLeave(key.note)}
             />
           </BlackKeyContainer>
         ))}

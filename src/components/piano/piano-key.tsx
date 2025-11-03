@@ -7,6 +7,7 @@ interface PianoKeyProps {
   pianoKey: PianoKeyType;
   isPressed: boolean;
   theme: PianoTheme;
+  onMouseEnter: () => void;
   onMouseDown: () => void;
   onMouseUp: () => void;
   onMouseLeave: () => void;
@@ -248,6 +249,7 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
   pianoKey,
   isPressed,
   theme,
+  onMouseEnter,
   onMouseDown,
   onMouseUp,
   onMouseLeave,
@@ -258,6 +260,7 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
     <KeyComponent
       isPressed={isPressed}
       keyTheme={theme}
+      onMouseEnter={onMouseEnter}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseLeave}
