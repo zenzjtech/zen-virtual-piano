@@ -75,11 +75,11 @@ function App() {
     getAudioEngine().setSustain(sustain);
   }, [sustain]);
 
-  // Handle Escape key to close popups
+  // Handle Escape key to close popups or enable piano
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        // Close any open popup and return focus
+        // Priority 1: Close any open popup and return focus
         if (instrumentPopupOpen) {
           handleInstrumentPopupClose();
           event.preventDefault();
@@ -92,19 +92,29 @@ function App() {
         } else if (keyAssistPopupOpen) {
           handleKeyAssistPopupClose();
           event.preventDefault();
+        } 
+        // Priority 2: Enable piano if it's disabled and no popups are open
+        else if (!isPianoEnabled) {
+          dispatch(setIsPianoEnabled(true));
+          trackEvent(uid, ANALYTICS_ACTION.PIANO_ENABLED, {
+            previous_state: false,
+            new_state: true,
+            trigger: 'escape_key',
+          });
+          event.preventDefault();
         }
       }
     };
 
-    // Only add listener if any popup is open
-    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen || keyAssistPopupOpen) {
+    // Add listener if any popup is open OR if piano is disabled
+    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen || keyAssistPopupOpen || !isPianoEnabled) {
       window.addEventListener('keydown', handleEscapeKey);
       
       return () => {
         window.removeEventListener('keydown', handleEscapeKey);
       };
     }
-  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen, keyAssistPopupOpen]);
+  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen, keyAssistPopupOpen, isPianoEnabled, dispatch, uid]);
 
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
