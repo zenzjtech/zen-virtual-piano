@@ -185,6 +185,10 @@ function App() {
         return { background: 'linear-gradient(135deg, #2C3E50 0%, #3C5A4E 50%, #4A6B5A 100%)' };
       case 'gufeng-vermillion-gold':
         return { background: 'linear-gradient(135deg, #8B3A3A 0%, #C84B31 35%, #D4AF37 70%, #F4E5A1 100%)' };
+      case 'zen-sakura-dawn':
+        return { background: 'linear-gradient(135deg, #FFF5F7 0%, #FFE5EC 25%, #FFB7C5 60%, #FFA8B8 100%)' };
+      case 'zen-bamboo-stone':
+        return { background: 'linear-gradient(135deg, #D4D9D4 0%, #B4C4B4 35%, #8B9D83 70%, #6B7B68 100%)' };
       default:
         return { backgroundColor: '#FFFFFF' };
     }
