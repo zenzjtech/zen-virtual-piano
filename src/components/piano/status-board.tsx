@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Paper, Typography, styled } from '@mui/material';
 import { PianoKey } from './types';
 import { PianoTheme } from './themes';
@@ -24,7 +24,7 @@ const BoardContainer = styled(Paper, {
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing(3),
-  minHeight: '80px',
+  height: '80px',
   boxShadow: 'none',
   border: pianoTheme.container.border,
   borderBottom: 'none',
@@ -93,6 +93,19 @@ const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   gap: theme.spacing(0.5),
   position: 'relative',
   zIndex: 3,
+  minWidth: 0, // Allow text overflow
+}));
+
+const HistoryDisplay = styled(Box)(({ theme }) => ({
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(0.5),
+  position: 'relative',
+  zIndex: 3,
+  borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+  paddingLeft: theme.spacing(3),
+  minWidth: 0, // Allow text overflow
 }));
 
 const PressedKeysText = styled(Typography, {
@@ -181,10 +194,26 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   currentNote,
   pianoTheme,
 }) => {
+  // Track note history (last 20 notes)
+  const [noteHistory, setNoteHistory] = useState<string[]>([]);
+
+  // Record notes when they're pressed
+  useEffect(() => {
+    if (currentNote) {
+      setNoteHistory(prev => {
+        const newHistory = [currentNote.note, ...prev];
+        return newHistory.slice(0, 20); // Keep only last 20 notes
+      });
+    }
+  }, [currentNote]);
+
   // Get the keyboard keys being pressed, sorted by order
   const pressedKeyboardKeys = Array.from(pressedNotes.values())
     .map(key => key.keyboardKey)
     .join('');
+
+  // Format history for display (show last 10)
+  const historyText = noteHistory.slice(0, 10).join(' → ') || 'No history yet...';
 
   return (
     <BoardContainer elevation={0} pianoTheme={pianoTheme}>
@@ -213,6 +242,14 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
           {pressedKeyboardKeys || 'Press any key...'}
         </PressedKeysText>
       </PressedKeysDisplay>
+
+      {/* History Display */}
+      <HistoryDisplay>
+        <Label variant="caption" pianoTheme={pianoTheme}>History</Label>
+        <PressedKeysText variant="h6" pianoTheme={pianoTheme} sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {historyText}
+        </PressedKeysText>
+      </HistoryDisplay>
     </BoardContainer>
   );
 };
