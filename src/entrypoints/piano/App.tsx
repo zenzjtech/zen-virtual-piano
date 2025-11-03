@@ -48,6 +48,31 @@ function App() {
     getAudioEngine().setSustain(sustain);
   }, [sustain]);
 
+  // Handle Escape key to close popups
+  useEffect(() => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        // Close any open popup
+        if (instrumentPopupOpen) {
+          setInstrumentPopupAnchor(null);
+          event.preventDefault();
+        } else if (soundSettingsOpen) {
+          setSoundSettingsAnchor(null);
+          event.preventDefault();
+        }
+      }
+    };
+
+    // Only add listener if any popup is open
+    if (instrumentPopupOpen || soundSettingsOpen) {
+      window.addEventListener('keydown', handleEscapeKey);
+      
+      return () => {
+        window.removeEventListener('keydown', handleEscapeKey);
+      };
+    }
+  }, [instrumentPopupOpen, soundSettingsOpen]);
+
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
     dispatch(setSustain(value));
