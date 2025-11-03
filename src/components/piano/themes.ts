@@ -134,22 +134,83 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
       border: '2px solid #5D3A1A',
       boxShadow: '0 8px 32px rgba(74, 47, 26, 0.3), inset 0 1px 0 rgba(139, 90, 60, 0.4)',
       beforeBackground: `
+        /* Wood grain texture - vertical grain lines */
         repeating-linear-gradient(
           90deg,
           transparent,
-          transparent 80px,
-          rgba(0, 0, 0, 0.03) 80px,
-          rgba(0, 0, 0, 0.03) 81px
+          transparent 3px,
+          rgba(74, 47, 26, 0.15) 3px,
+          rgba(74, 47, 26, 0.15) 3.5px,
+          transparent 3.5px,
+          transparent 8px,
+          rgba(60, 38, 21, 0.12) 8px,
+          rgba(60, 38, 21, 0.12) 9px,
+          transparent 9px,
+          transparent 15px,
+          rgba(74, 47, 26, 0.08) 15px,
+          rgba(74, 47, 26, 0.08) 16px,
+          transparent 16px,
+          transparent 25px,
+          rgba(90, 56, 35, 0.18) 25px,
+          rgba(90, 56, 35, 0.18) 26px,
+          transparent 26px,
+          transparent 40px,
+          rgba(74, 47, 26, 0.1) 40px,
+          rgba(74, 47, 26, 0.1) 41px
         ),
+        /* Wood grain texture - horizontal subtle variations */
         repeating-linear-gradient(
           0deg,
           transparent,
-          transparent 20px,
-          rgba(0, 0, 0, 0.02) 20px,
-          rgba(0, 0, 0, 0.02) 21px
+          transparent 60px,
+          rgba(60, 38, 21, 0.08) 60px,
+          rgba(60, 38, 21, 0.08) 62px,
+          transparent 62px,
+          transparent 120px,
+          rgba(74, 47, 26, 0.06) 120px,
+          rgba(74, 47, 26, 0.06) 123px
+        ),
+        /* Wood knots and imperfections */
+        radial-gradient(
+          ellipse 80px 60px at 15% 25%,
+          rgba(60, 38, 21, 0.25) 0%,
+          rgba(74, 47, 26, 0.15) 30%,
+          transparent 50%
+        ),
+        radial-gradient(
+          ellipse 100px 70px at 75% 60%,
+          rgba(60, 38, 21, 0.2) 0%,
+          rgba(74, 47, 26, 0.12) 35%,
+          transparent 55%
+        ),
+        radial-gradient(
+          ellipse 60px 50px at 40% 80%,
+          rgba(50, 32, 18, 0.22) 0%,
+          rgba(70, 45, 25, 0.14) 30%,
+          transparent 50%
         )
       `,
-      afterBackground: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 60%)',
+      afterBackground: `
+        /* Natural wood color variations and highlights */
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0.06) 30%,
+          transparent 60%
+        ),
+        /* Subtle wood growth rings */
+        repeating-radial-gradient(
+          circle at 30% 40%,
+          transparent 0px,
+          transparent 80px,
+          rgba(60, 38, 21, 0.03) 80px,
+          rgba(60, 38, 21, 0.03) 82px,
+          transparent 82px,
+          transparent 160px,
+          rgba(74, 47, 26, 0.04) 160px,
+          rgba(74, 47, 26, 0.04) 163px
+        )
+      `,
     },
     cornerPlates: {
       background: 'linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #B8941E 100%)',
