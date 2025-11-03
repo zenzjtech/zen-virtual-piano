@@ -11,7 +11,7 @@ import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName } from '@/store/reducers/piano-settings-slice';
+import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
 import './App.css';
 import { trackPageEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
@@ -26,6 +26,7 @@ function App() {
   const backgroundThemeId = useAppSelector((state) => state.pianoSettings.backgroundTheme);
   const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
   const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
+  const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   
   // Get the actual theme object
   const pianoTheme = getTheme(pianoThemeId);
@@ -49,9 +50,6 @@ function App() {
   // Key Assist popup state
   const [keyAssistPopupAnchor, setKeyAssistPopupAnchor] = useState<HTMLElement | null>(null);
   const keyAssistPopupOpen = Boolean(keyAssistPopupAnchor);
-  
-  // Piano enable/disable state
-  const [isPianoEnabled, setIsPianoEnabled] = useState(true);
   
   // Refs for focus management - store trigger buttons
   const instrumentButtonRef = useRef<HTMLElement | null>(null);
@@ -121,7 +119,7 @@ function App() {
 
   // Settings bar handlers
   const handleTogglePiano = () => {
-    setIsPianoEnabled(!isPianoEnabled);
+    dispatch(setIsPianoEnabled(!isPianoEnabled));
   };
   
   const handleRecord = () => console.log('Record clicked');
