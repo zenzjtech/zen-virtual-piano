@@ -11,6 +11,14 @@ export interface PianoTheme {
   // Theme brightness for text contrast
   isLight: boolean;
   
+  // Color palette for text and UI elements
+  colors: {
+    primary: string;      // Main text color
+    secondary: string;    // Secondary text/labels
+    accent: string;       // Accent color
+    border: string;       // Border/divider color
+  };
+  
   // Container styling
   container: {
     background: string;
@@ -53,6 +61,12 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     name: 'Wooden Classic',
     description: 'Traditional wooden piano with brass accents',
     isLight: false,
+    colors: {
+      primary: '#E8D4B8',        // Warm cream
+      secondary: '#B8941E',      // Golden brass
+      accent: '#D4AF37',         // Bright gold
+      border: 'rgba(184, 148, 30, 0.3)',
+    },
     container: {
       background: 'linear-gradient(135deg, #8B5A3C 0%, #6B4423 50%, #4A2F1A 100%)',
       border: '2px solid #5D3A1A',
@@ -101,6 +115,12 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     name: 'Midnight Black',
     description: 'Sleek modern black piano',
     isLight: false,
+    colors: {
+      primary: '#E8E8E8',        // Light gray
+      secondary: '#999999',      // Medium gray
+      accent: '#CCCCCC',         // Bright gray
+      border: 'rgba(255, 255, 255, 0.2)',
+    },
     container: {
       background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)',
       border: '2px solid #333333',
@@ -142,6 +162,12 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     name: 'Metallic Silver',
     description: 'Futuristic metal finish piano',
     isLight: true,
+    colors: {
+      primary: '#2C3E50',        // Dark slate blue
+      secondary: '#5D6E81',      // Medium slate
+      accent: '#34495E',         // Accent blue
+      border: 'rgba(45, 62, 80, 0.2)',
+    },
     container: {
       background: 'linear-gradient(135deg, #B8C6D4 0%, #8A9BAE 50%, #6B7C8F 100%)',
       border: '2px solid #5D6E81',
@@ -190,6 +216,12 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
     name: 'Pure White',
     description: 'Clean and minimal white piano',
     isLight: true,
+    colors: {
+      primary: '#333333',        // Dark gray
+      secondary: '#666666',      // Medium gray
+      accent: '#555555',         // Accent gray
+      border: 'rgba(0, 0, 0, 0.15)',
+    },
     container: {
       background: 'linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 50%, #EBEBEB 100%)',
       border: '2px solid #DDDDDD',

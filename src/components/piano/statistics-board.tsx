@@ -16,7 +16,7 @@ const BoardContainer = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
-  color: pianoTheme.isLight ? '#1a1a1a' : '#ffffff',
+  color: pianoTheme.colors.primary,
   padding: theme.spacing(2, 3),
   borderRadius: 0,
   borderTopLeftRadius: theme.spacing(1),
@@ -64,7 +64,7 @@ const CurrentNoteDisplay = styled(Box, {
   justifyContent: 'center',
   minWidth: '100px',
   padding: theme.spacing(1),
-  borderRight: pianoTheme.isLight ? '1px solid rgba(0, 0, 0, 0.15)' : '1px solid rgba(255, 255, 255, 0.2)',
+  borderRight: `1px solid ${pianoTheme.colors.border}`,
   paddingRight: theme.spacing(3),
   position: 'relative',
   zIndex: 3,
@@ -82,7 +82,7 @@ const KeyText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
   fontSize: '1.2rem',
-  color: pianoTheme.isLight ? '#555' : '#aaa',
+  color: pianoTheme.colors.secondary,
   fontFamily: 'monospace',
 }));
 
@@ -100,7 +100,7 @@ const PressedKeysText = styled(Typography, {
 })<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
   fontSize: '1.5rem',
   fontFamily: 'monospace',
-  color: pianoTheme.isLight ? '#1a1a1a' : '#ffffff',
+  color: pianoTheme.colors.primary,
   letterSpacing: '2px',
   minHeight: '32px',
   display: 'flex',
@@ -111,9 +111,10 @@ const Label = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
   fontSize: '0.75rem',
-  color: pianoTheme.isLight ? '#666' : '#888',
+  color: pianoTheme.colors.secondary,
   textTransform: 'uppercase',
   letterSpacing: '1px',
+  opacity: 0.8,
 }));
 
 const CornerPlate = styled(Box, {

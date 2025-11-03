@@ -25,7 +25,7 @@ const BarContainer = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
-  color: pianoTheme.isLight ? '#1a1a1a' : '#ffffff',
+  color: pianoTheme.colors.primary,
   padding: theme.spacing(1.5, 2),
   borderRadius: 0,
   display: 'flex',
@@ -67,8 +67,8 @@ const BarContainer = styled(Paper, {
 const SettingButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
-  color: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.7)',
-  borderColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.15)' : 'rgba(255, 255, 255, 0.15)',
+  color: pianoTheme.colors.secondary,
+  borderColor: pianoTheme.colors.border,
   minWidth: '100px',
   padding: theme.spacing(1, 2),
   fontSize: '0.75rem',
@@ -79,9 +79,9 @@ const SettingButton = styled(Button, {
   position: 'relative',
   zIndex: 3,
   '&:hover': {
-    borderColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.3)',
+    borderColor: pianoTheme.colors.accent,
     backgroundColor: pianoTheme.isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.08)',
-    color: pianoTheme.isLight ? '#000' : '#fff',
+    color: pianoTheme.colors.accent,
   },
   '& .MuiButton-startIcon': {
     marginRight: theme.spacing(0.75),

@@ -175,14 +175,40 @@ const BlackKey = styled(Box, {
   },
 }));
 
-const KeyLabel = styled('span')<{ isBlack: boolean }>(({ isBlack }) => ({
-  fontSize: '10px',
-  fontWeight: 'bold',
-  color: isBlack ? '#888' : '#8B7355',
-  textTransform: 'uppercase',
-  textShadow: isBlack ? '0 1px 1px rgba(0,0,0,0.5)' : '0 1px 0 rgba(255,255,255,0.8)',
-  opacity: 0.7,
-}));
+const KeyLabel = styled('span', {
+  shouldForwardProp: (prop) => prop !== 'isBlack' && prop !== 'keyTheme',
+})<{ isBlack: boolean; keyTheme: PianoTheme }>(({ isBlack, keyTheme }) => {
+  // Get theme-specific colors with guaranteed contrast
+  let whiteKeyColor: string;
+  let blackKeyColor: string;
+  
+  // White keys need dark text for contrast
+  if (keyTheme.id === 'wooden') {
+    whiteKeyColor = '#8B7355';  // Bronze/brown for wooden theme
+  } else if (keyTheme.id === 'black') {
+    whiteKeyColor = '#444444';  // Dark gray for black theme (more contrast)
+  } else if (keyTheme.id === 'metal') {
+    whiteKeyColor = '#34495E';  // Dark slate blue for metal theme
+  } else {
+    whiteKeyColor = '#555555';  // Dark gray for white theme
+  }
+  
+  // Black keys need light text for contrast on all themes
+  blackKeyColor = '#CCCCCC';  // Light gray - works on all dark key backgrounds
+  
+  return {
+    fontSize: '10px',
+    fontWeight: 'bold',
+    color: isBlack ? blackKeyColor : whiteKeyColor,
+    textTransform: 'uppercase',
+    textShadow: isBlack 
+      ? '0 1px 1px rgba(0,0,0,0.5)' 
+      : keyTheme.isLight 
+        ? '0 1px 0 rgba(255,255,255,0.6)'
+        : '0 1px 0 rgba(255,255,255,0.8)',
+    opacity: isBlack ? 0.9 : 0.75,
+  };
+});
 
 export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
   pianoKey,
@@ -203,7 +229,7 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
       onMouseLeave={onMouseLeave}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <KeyLabel isBlack={pianoKey.isBlack}>{pianoKey.label}</KeyLabel>
+      <KeyLabel isBlack={pianoKey.isBlack} keyTheme={theme}>{pianoKey.label}</KeyLabel>
     </KeyComponent>
   );
 };
