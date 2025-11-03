@@ -16,7 +16,7 @@ interface SettingsBarProps {
   onKeyAssist?: () => void;
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onStyles?: () => void;
+  onStyles?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSave?: () => void;
   onMore?: () => void;
   /** Piano theme for consistent styling */
@@ -195,7 +195,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         onClick={onStyles}
         pianoTheme={pianoTheme}
       >
-        Styles
+        Appearances
       </SettingButton>
 
       <SettingButton

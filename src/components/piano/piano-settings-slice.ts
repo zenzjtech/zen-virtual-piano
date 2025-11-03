@@ -4,12 +4,14 @@ export interface PianoSettingsState {
   theme: string;
   soundSet: string;
   sustain: number;
+  backgroundTheme: string;
 }
 
 const initialState: PianoSettingsState = {
   theme: 'wooden',
   soundSet: 'classical',
   sustain: 0,
+  backgroundTheme: 'white',
 };
 
 export const pianoSettingsSlice = createSlice({
@@ -25,9 +27,12 @@ export const pianoSettingsSlice = createSlice({
     setSustain: (state, action: PayloadAction<number>) => {
       state.sustain = action.payload;
     },
+    setBackgroundTheme: (state, action: PayloadAction<string>) => {
+      state.backgroundTheme = action.payload;
+    },
   },
 });
 
-export const { setTheme, setSoundSet, setSustain } = pianoSettingsSlice.actions;
+export const { setTheme, setSoundSet, setSustain, setBackgroundTheme } = pianoSettingsSlice.actions;
 
 export default pianoSettingsSlice.reducer;
