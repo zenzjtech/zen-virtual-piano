@@ -75,8 +75,10 @@ export class AudioEngine {
       
       // Tone.js will pitch-shift from nearest available sample
       this.sampler = new Tone.Sampler({
-        urls: urlsMap,
-        release: 1,
+        urls: urlsMap,        
+        curve: "exponential",
+        attack: 0,
+        release: 4,
         onload: () => {
           this.isLoaded = true;
           console.log('Piano samples loaded successfully');
