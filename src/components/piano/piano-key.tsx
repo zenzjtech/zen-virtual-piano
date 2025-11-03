@@ -176,8 +176,8 @@ const BlackKey = styled(Box, {
 }));
 
 const KeyLabel = styled('span', {
-  shouldForwardProp: (prop) => prop !== 'isBlack' && prop !== 'keyTheme',
-})<{ isBlack: boolean; keyTheme: PianoTheme }>(({ isBlack, keyTheme }) => {
+  shouldForwardProp: (prop) => prop !== 'isBlack' && prop !== 'keyTheme' && prop !== 'isPressed',
+})<{ isBlack: boolean; keyTheme: PianoTheme; isPressed: boolean }>(({ isBlack, keyTheme, isPressed }) => {
   // Get theme-specific colors with guaranteed contrast
   let whiteKeyColor: string;
   let blackKeyColor: string;
@@ -206,7 +206,25 @@ const KeyLabel = styled('span', {
       : keyTheme.isLight 
         ? '0 1px 0 rgba(255,255,255,0.6)'
         : '0 1px 0 rgba(255,255,255,0.8)',
-    opacity: isBlack ? 0.9 : 0.75,
+    opacity: isPressed ? 1 : (isBlack ? 0.9 : 0.75),
+    transition: 'all 0.15s ease',
+    transform: isPressed ? 'scale(1.1)' : 'scale(1)',
+    animation: isPressed ? 'labelPulse 0.3s ease-out' : 'none',
+    '@keyframes labelPulse': {
+      '0%': {
+        transform: 'scale(1)',
+        opacity: isBlack ? 0.9 : 0.75,
+      },
+      '50%': {
+        transform: 'scale(1.15)',
+        opacity: 1,
+        filter: 'brightness(1.3)',
+      },
+      '100%': {
+        transform: 'scale(1.1)',
+        opacity: 1,
+      },
+    },
   };
 });
 
@@ -229,7 +247,7 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
       onMouseLeave={onMouseLeave}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <KeyLabel isBlack={pianoKey.isBlack} keyTheme={theme}>{pianoKey.label}</KeyLabel>
+      <KeyLabel isBlack={pianoKey.isBlack} keyTheme={theme} isPressed={isPressed}>{pianoKey.label}</KeyLabel>
     </KeyComponent>
   );
 };
