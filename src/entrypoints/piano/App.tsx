@@ -317,6 +317,8 @@ function App() {
                 themeId={pianoThemeId}
                 onPressedNotesChange={handlePressedNotesChange}
                 keyboardEnabled={isKeyboardEnabled}
+                showKeyboard={showKeyboard}
+                showNoteName={showNoteName}
               />
             </Box>
           </Box>

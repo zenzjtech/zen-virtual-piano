@@ -197,9 +197,19 @@ interface PianoProps {
   onPressedNotesChange?: (notes: Map<string, PianoKey>, currentNote: PianoKey | null) => void;
   /** Whether keyboard input is enabled (default: true) */
   keyboardEnabled?: boolean;
+  /** Show keyboard shortcuts on keys */
+  showKeyboard?: boolean;
+  /** Show note names on keys */
+  showNoteName?: boolean;
 }
 
-export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotesChange, keyboardEnabled = true }) => {
+export const Piano: React.FC<PianoProps> = ({ 
+  themeId = 'wooden', 
+  onPressedNotesChange, 
+  keyboardEnabled = true,
+  showKeyboard = false,
+  showNoteName = false,
+}) => {
   const pianoTheme = getTheme(themeId);
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
   const audioEngineRef = useRef(getAudioEngine());
@@ -499,6 +509,8 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
               onMouseDown={() => handleMouseDown(key.note, key.frequency)}
               onMouseUp={() => handleMouseUp(key.note)}
               onMouseLeave={() => handleMouseLeave(key.note)}
+              showKeyboard={showKeyboard}
+              showNoteName={showNoteName}
             />
           ))}
         </WhiteKeysContainer>
@@ -514,6 +526,8 @@ export const Piano: React.FC<PianoProps> = ({ themeId = 'wooden', onPressedNotes
               onMouseDown={() => handleMouseDown(key.note, key.frequency)}
               onMouseUp={() => handleMouseUp(key.note)}
               onMouseLeave={() => handleMouseLeave(key.note)}
+              showKeyboard={showKeyboard}
+              showNoteName={showNoteName}
             />
           </BlackKeyContainer>
         ))}

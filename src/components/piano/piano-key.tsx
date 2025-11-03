@@ -11,6 +11,10 @@ interface PianoKeyProps {
   onMouseDown: () => void;
   onMouseUp: () => void;
   onMouseLeave: () => void;
+  /** Show keyboard shortcuts on keys */
+  showKeyboard?: boolean;
+  /** Show note names on keys */
+  showNoteName?: boolean;
 }
 
 const WhiteKey = styled(Box, {
@@ -215,7 +219,7 @@ const KeyLabel = styled('span', {
   blackKeyColor = '#CCCCCC';  // Light gray - works on all dark key backgrounds
   
   return {
-    fontSize: '10px',
+    fontSize: isBlack ? '8px' : '10px',  // Smaller font for black keys (less space)
     fontWeight: 'bold',
     color: isBlack ? blackKeyColor : whiteKeyColor,
     textShadow: isBlack 
@@ -227,6 +231,14 @@ const KeyLabel = styled('span', {
     transition: 'all 0.15s ease',
     transform: isPressed ? 'scale(1.1)' : 'scale(1)',
     animation: isPressed ? 'labelPulse 0.3s ease-out' : 'none',
+    userSelect: 'none',
+    pointerEvents: 'none',
+    textAlign: 'center',
+    lineHeight: 1.2,
+    maxWidth: isBlack ? '18px' : '28px',  // Prevent overflow
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
     '@keyframes labelPulse': {
       '0%': {
         transform: 'scale(1)',
@@ -253,8 +265,21 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
   onMouseDown,
   onMouseUp,
   onMouseLeave,
+  showKeyboard = false,
+  showNoteName = false,
 }) => {
   const KeyComponent = pianoKey.isBlack ? BlackKey : WhiteKey;
+  
+  // Determine what label to display
+  let labelText = '';
+  if (showKeyboard) {
+    // Show keyboard shortcut (e.g., 'a', 'Q', '1')
+    labelText = pianoKey.label || '';
+  } else if (showNoteName) {
+    // Show note name (e.g., 'C4', 'D#5')
+    labelText = pianoKey.note;
+  }
+  // If both are false, labelText remains empty and nothing is displayed
 
   return (
     <KeyComponent
@@ -266,7 +291,11 @@ export const PianoKeyComponent: React.FC<PianoKeyProps> = ({
       onMouseLeave={onMouseLeave}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <KeyLabel isBlack={pianoKey.isBlack} keyTheme={theme} isPressed={isPressed}>{pianoKey.label}</KeyLabel>
+      {labelText && (
+        <KeyLabel isBlack={pianoKey.isBlack} keyTheme={theme} isPressed={isPressed}>
+          {labelText}
+        </KeyLabel>
+      )}
     </KeyComponent>
   );
 };
