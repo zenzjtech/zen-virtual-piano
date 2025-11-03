@@ -171,14 +171,14 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
           {isPianoEnabled ? 'Disable' : 'Enable'}
         </SettingButton>
         
-        <SettingButton
+        {/* <SettingButton
           variant="outlined"
           startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}
           onClick={onRecord}
           pianoTheme={pianoTheme}
         >
           Record
-        </SettingButton>
+        </SettingButton> */}
       </Box>
 
       {/* Right group: Settings buttons */}
