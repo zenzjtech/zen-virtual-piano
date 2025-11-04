@@ -39,7 +39,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   useEffect(() => {
     if (currentNote) {
       setNoteHistory(prev => {
-        const newHistory = [currentNote.note, ...prev];
+        const newHistory = [currentNote.keyboardKey, ...prev];
         return newHistory;
       });
       // Update the last pressed note and key
