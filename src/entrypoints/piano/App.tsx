@@ -20,6 +20,7 @@ import { getBuiltInSheets } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
+import { useSheetNavigation } from '@/hooks/use-sheet-navigation';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -100,6 +101,9 @@ function App() {
       handleSheetSearchClose,
     }
   );
+
+  // Handle Enter/Backspace navigation for sheet mode
+  useSheetNavigation();
 
 
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
