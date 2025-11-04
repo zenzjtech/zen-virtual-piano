@@ -11,6 +11,8 @@ import {
   HistoryDisplay,
 } from './status-board-styled';
 import { NoteHistoryDisplay } from './note-history-display';
+import { SheetButton } from './sheet-button';
+import { useSheetSearch } from '@/hooks/use-sheet-search';
 
 interface ManualModeDisplayProps {
   lastNote: PianoKey | null;
@@ -25,6 +27,9 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
   historyText,
   pianoTheme,
 }) => {
+  // Sheet search hook
+  const { handleSheetSearchOpen } = useSheetSearch();
+  
   return (
     <>
       {/* Manual Play Mode - Current Note Display */}
@@ -60,6 +65,9 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
 
       {/* History Display */}
       <NoteHistoryDisplay pianoTheme={pianoTheme} historyText={historyText} />
+      
+      {/* Sheet Button */}
+      <SheetButton onClick={handleSheetSearchOpen} pianoTheme={pianoTheme} />      
     </>
   );
 };

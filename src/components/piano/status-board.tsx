@@ -20,7 +20,7 @@ interface StatisticsBoardProps {
 export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   pressedNotes,
   currentNote,
-  pianoTheme,
+  pianoTheme
 }) => {
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
@@ -81,7 +81,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             currentSheet={currentSheet}
             pianoTheme={pianoTheme}
             totalPages={totalPages}
-            historyText={historyText}
+            historyText={historyText}            
           />
         ) : (
           <ManualModeDisplay

@@ -8,6 +8,8 @@ import {
 } from './status-board-styled';
 import { NoteHistoryDisplay } from './note-history-display';
 import { PlayerControlsContainer } from './player-controls-container';
+import { SheetButton } from './sheet-button';
+import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { useAppSelector } from '@/store/hook';
 
 interface SheetModeDisplayProps {
@@ -23,6 +25,9 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
   totalPages,
   historyText,
 }) => {
+  // Sheet search hook
+  const { handleSheetSearchOpen } = useSheetSearch();
+  
   // Get playback state from Redux
   const playback = useAppSelector((state) => state.musicSheet.playback);
 
@@ -54,6 +59,8 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
 
       {/* History Display */}
       <NoteHistoryDisplay pianoTheme={pianoTheme} historyText={historyText} />
+      {/* Sheet Button */}
+      <SheetButton onClick={handleSheetSearchOpen} pianoTheme={pianoTheme} />      
     </>
   );
 };

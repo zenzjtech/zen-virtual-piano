@@ -7,7 +7,6 @@ import {
   Palette as StylesIcon,
   Piano as InstrumentIcon,
   PowerSettingsNew as PowerIcon,
-  LibraryMusic as SheetMusicIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 
@@ -19,7 +18,6 @@ interface SettingsBarProps {
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onStyles?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onSheets?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Piano theme for consistent styling */
   pianoTheme: PianoTheme;
 }
@@ -150,7 +148,6 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onInstrument,
   onSound,
   onStyles,
-  onSheets,
   pianoTheme,
 }) => {
   return (
@@ -211,15 +208,6 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
           pianoTheme={pianoTheme}
         >
           Appearances
-        </SettingButton>
-
-        <SettingButton
-          variant="outlined"
-          startIcon={<SheetMusicIcon sx={{ fontSize: '1rem' }} />}
-          onClick={onSheets}
-          pianoTheme={pianoTheme}
-        >
-          Sheets
         </SettingButton>
 
         <SettingButton

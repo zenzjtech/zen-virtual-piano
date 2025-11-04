@@ -15,12 +15,13 @@ import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
-import { openSearchDialog, closeSearchDialog, switchToManualMode, addSheets } from '@/store/reducers/music-sheet-slice';
+import { switchToManualMode, addSheets } from '@/store/reducers/music-sheet-slice';
 import { getBuiltInSheets } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetNavigation } from '@/hooks/use-sheet-navigation';
+import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -39,7 +40,6 @@ function App() {
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   
   // Music sheet state
-  const isSheetSearchOpen = useAppSelector((state) => state.musicSheet.isSearchDialogOpen);
   const isMusicStandVisible = useAppSelector((state) => state.musicSheet.isMusicStandVisible);
   const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   
@@ -55,7 +55,9 @@ function App() {
   const soundSettingsPopup = usePopupManager();
   const styleSettingsPopup = usePopupManager();
   const keyAssistPopup = usePopupManager();
-  const sheetSearchPopup = usePopupManager();
+  
+  // Sheet search hook
+  const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchClose } = useSheetSearch();
   
   // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
   const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen;
@@ -77,12 +79,6 @@ function App() {
   useEffect(() => {
     getAudioEngine().setSustain(sustain);
   }, [sustain]);
-
-  // Sheet search close handler with Redux dispatch
-  const handleSheetSearchClose = useCallback(() => {
-    sheetSearchPopup.handleClose();
-    dispatch(closeSearchDialog());
-  }, [sheetSearchPopup, dispatch]);
 
   // Handle Escape key to close popups or enable piano
   useEscapeKeyHandler(
@@ -147,11 +143,6 @@ function App() {
     dispatch(setBackgroundTheme(themeId));
   };
 
-  const handleSheets = (event: React.MouseEvent<HTMLButtonElement>) => {
-    sheetSearchPopup.handleOpen(event);
-    dispatch(openSearchDialog());
-  };
-
   // Get background theme styles and determine if it's a dark background
   const isDarkBackground = isDarkBackgroundTheme(backgroundThemeId);
 
@@ -213,8 +204,7 @@ function App() {
                 onKeyAssist={keyAssistPopup.handleOpen}
                 onInstrument={instrumentPopup.handleOpen}
                 onSound={soundSettingsPopup.handleOpen}
-                onStyles={styleSettingsPopup.handleOpen}
-                onSheets={handleSheets}
+                onStyles={styleSettingsPopup.handleOpen}                
                 pianoTheme={pianoTheme}
               />
 
@@ -312,7 +302,7 @@ function App() {
       {/* Sheet Search Dialog */}
       <SheetSearchDialog
         open={isSheetSearchOpen}
-        anchorEl={sheetSearchPopup.anchorEl}
+        anchorEl={sheetSearchAnchorEl}
         onClose={handleSheetSearchClose}
         pianoTheme={pianoTheme}
       />
