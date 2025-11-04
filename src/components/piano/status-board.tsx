@@ -81,7 +81,9 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             currentSheet={currentSheet}
             pianoTheme={pianoTheme}
             totalPages={totalPages}
-            historyText={historyText}            
+            historyText={historyText}
+            lastNote={lastNote}
+            isNoteActive={isNoteActive}
           />
         ) : (
           <ManualModeDisplay

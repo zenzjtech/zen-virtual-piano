@@ -79,7 +79,7 @@ export const CurrentNoteDisplay = styled(Box, {
 }));
 
 export const NoteText = styled(Typography)({
-  fontSize: '1.3rem',
+  fontSize: '1rem',
   fontWeight: 'bold',
   color: '#ff6b35',
   lineHeight: 1,
