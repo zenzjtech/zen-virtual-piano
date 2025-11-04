@@ -67,7 +67,10 @@ export const PopupSearchBar: React.FC<PopupSearchBarProps> = ({
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon fontSize="small" />
+              <SearchIcon
+                fontSize="small"
+                sx={{ color: pianoTheme.colors.secondary }}
+              />
             </InputAdornment>
           ),
           endAdornment: value && (
@@ -76,7 +79,16 @@ export const PopupSearchBar: React.FC<PopupSearchBarProps> = ({
                 size="small"
                 onClick={handleClear}
                 edge="end"
-                sx={{ color: pianoTheme.colors.secondary }}
+                sx={{
+                  color: pianoTheme.colors.secondary,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    color: pianoTheme.colors.accent,
+                    backgroundColor: pianoTheme.isLight
+                      ? 'rgba(0, 0, 0, 0.04)'
+                      : 'rgba(255, 255, 255, 0.08)',
+                  },
+                }}
                 aria-label="Clear search"
               >
                 <ClearIcon fontSize="small" />

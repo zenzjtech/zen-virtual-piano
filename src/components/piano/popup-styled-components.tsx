@@ -179,6 +179,7 @@ export const SearchInput = styled(TextField, {
     borderRadius: '8px',
     fontSize: '0.875rem',
     transition: 'all 0.2s ease',
+    color: pianoTheme.colors.primary,
     '& fieldset': {
       borderColor: pianoTheme.colors.border,
     },
@@ -193,12 +194,16 @@ export const SearchInput = styled(TextField, {
   '& .MuiOutlinedInput-input': {
     padding: theme.spacing(1, 1.5),
     color: pianoTheme.colors.primary,
+    fontWeight: 400,
     '&::placeholder': {
       color: pianoTheme.colors.secondary,
       opacity: 0.7,
     },
   },
   '& .MuiInputAdornment-root': {
+    color: pianoTheme.colors.secondary,
+  },
+  '& .MuiInputAdornment-root .MuiSvgIcon-root': {
     color: pianoTheme.colors.secondary,
   },
 }));
