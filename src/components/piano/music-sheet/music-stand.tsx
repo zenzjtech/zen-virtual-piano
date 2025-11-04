@@ -125,7 +125,7 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
             sx={{
               position: 'relative',
               width: '100%',
-              aspectRatio: '24 / 9',
+              aspectRatio: '14/4',
               backgroundImage: `url(${bookImage})`,
               backgroundSize: '100% 100%',
               backgroundPosition: 'center',

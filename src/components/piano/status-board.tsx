@@ -18,14 +18,14 @@ const BoardContainer = styled(Paper, {
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,
-  padding: theme.spacing(3, 4),
+  padding: theme.spacing(1.5, 2.5),
   borderRadius: 0,
   borderTopLeftRadius: theme.spacing(1.5),
   borderTopRightRadius: theme.spacing(1.5),
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(4),
-  minHeight: '90px',
+  gap: theme.spacing(1.5),
+  minHeight: '54px',
   width: '100%',
   boxSizing: 'border-box',
   // Enhanced realistic box shadow with multiple layers
@@ -74,8 +74,8 @@ const CurrentNoteDisplay = styled(Box, {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  minWidth: '100px',
-  padding: theme.spacing(1),
+  minWidth: '70px',
+  padding: theme.spacing(0.25),
   // Enhanced border with depth
   borderRight: `1px solid ${pianoTheme.colors.border}`,
   borderRightWidth: '2px',
@@ -84,17 +84,17 @@ const CurrentNoteDisplay = styled(Box, {
     inset -1px 0 2px rgba(0, 0, 0, 0.2),
     1px 0 0 rgba(255, 255, 255, 0.05)
   `,
-  paddingRight: theme.spacing(3),
+  paddingRight: theme.spacing(1.5),
   position: 'relative',
   zIndex: 3,
 }));
 
 const NoteText = styled(Typography)({
-  fontSize: '2rem',
+  fontSize: '1.3rem',
   fontWeight: 'bold',
   color: '#ff6b35',
   lineHeight: 1,
-  marginBottom: '4px',
+  marginBottom: '1px',
   // Enhanced text with glow and depth
   textShadow: `
     0 0 10px rgba(255, 107, 53, 0.4),
@@ -108,7 +108,7 @@ const NoteText = styled(Typography)({
 const KeyText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
-  fontSize: '1.2rem',
+  fontSize: '0.8rem',
   color: pianoTheme.colors.secondary,
   fontFamily: 'monospace',
   // Subtle embossed text effect
@@ -122,11 +122,11 @@ const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(0.5),
+  gap: theme.spacing(0.25),
   position: 'relative',
   zIndex: 3,
   minWidth: 0, // Allow text overflow
-  padding: theme.spacing(1, 1.5),
+  padding: theme.spacing(0.4, 0.8),
   background: 'rgba(0, 0, 0, 0.1)',
   borderRadius: theme.spacing(0.5),
   // Recessed panel effect
@@ -142,15 +142,15 @@ const HistoryDisplay = styled(Box)(({ theme }) => ({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(0.5),
+  gap: theme.spacing(0.25),
   position: 'relative',
   zIndex: 3,
   // Enhanced divider with depth
   borderLeft: '2px solid rgba(255, 255, 255, 0.1)',
-  paddingLeft: theme.spacing(3),
-  marginLeft: theme.spacing(2),
+  paddingLeft: theme.spacing(1.5),
+  marginLeft: theme.spacing(1),
   minWidth: 0, // Allow text overflow
-  padding: theme.spacing(1, 1.5),
+  padding: theme.spacing(0.4, 0.8),
   background: 'rgba(0, 0, 0, 0.1)',
   borderRadius: theme.spacing(0.5),
   // Recessed panel effect
@@ -166,11 +166,11 @@ const HistoryDisplay = styled(Box)(({ theme }) => ({
 const PressedKeysText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
-  fontSize: '1.5rem',
+  fontSize: '1rem',
   fontFamily: 'monospace',
   color: pianoTheme.colors.primary,
-  letterSpacing: '2px',
-  minHeight: '32px',
+  letterSpacing: '0.5px',
+  minHeight: '18px',
   display: 'flex',
   alignItems: 'center',
   // Subtle engraved text effect
@@ -183,7 +183,7 @@ const PressedKeysText = styled(Typography, {
 const Label = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
-  fontSize: '0.75rem',
+  fontSize: '0.6rem',
   color: pianoTheme.colors.secondary,
   textTransform: 'uppercase',
   letterSpacing: '1px',
