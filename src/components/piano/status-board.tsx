@@ -93,6 +93,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             historyText={historyText}
             lastNote={lastNote}
             isNoteActive={isNoteActive}
+            onSheetSearchOpen={onSheetSearchOpen}
           />
         ) : (
           <ManualModeDisplay

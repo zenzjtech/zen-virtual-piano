@@ -5,7 +5,6 @@ import { PianoKey } from './types';
 import { NoteHistoryDisplay } from './note-history-display';
 import { PlayerControlsContainer } from './player-controls-container';
 import { ManualControlsSection } from './manual-controls-section';
-import { useSheetSearch } from '@/hooks/use-sheet-search';
 
 interface SheetModeDisplayProps {
   currentSheet: MusicSheet;
@@ -14,6 +13,7 @@ interface SheetModeDisplayProps {
   historyText: string;
   lastNote: PianoKey | null;
   isNoteActive: boolean;
+  onSheetSearchOpen: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
@@ -23,9 +23,8 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
   historyText,
   lastNote,
   isNoteActive,
+  onSheetSearchOpen,
 }) => {
-  // Sheet search hook
-  const { handleSheetSearchOpen } = useSheetSearch();
   
   return (
     <>
@@ -43,7 +42,7 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
         lastNote={lastNote}
         isNoteActive={isNoteActive}
         pianoTheme={pianoTheme}
-        onSheetSearchOpen={handleSheetSearchOpen}
+        onSheetSearchOpen={onSheetSearchOpen}
       />
     </>
   );
