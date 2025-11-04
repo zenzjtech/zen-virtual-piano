@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store/hook';
 import { BoardContainer, CornerPlate } from './status-board-styled';
 import { SheetModeDisplay } from './status-board-sheet-mode';
 import { ManualModeDisplay } from './status-board-manual-mode';
+import { TransitionWrapper } from './status-board-transition';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -64,21 +65,23 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
         </>
       )}
       
-      {/* Display Mode - Sheet or Manual */}
-      {isSheetMode ? (
-        <SheetModeDisplay
-          currentSheet={currentSheet}
-          playback={playback}
-          pianoTheme={pianoTheme}
-        />
-      ) : (
-        <ManualModeDisplay
-          lastNote={lastNote}
-          isNoteActive={isNoteActive}
-          historyText={historyText}
-          pianoTheme={pianoTheme}
-        />
-      )}
+      {/* Display Mode - Sheet or Manual with Transitions */}
+      <TransitionWrapper transitionKey={isSheetMode ? 'sheet' : 'manual'}>
+        {isSheetMode ? (
+          <SheetModeDisplay
+            currentSheet={currentSheet}
+            playback={playback}
+            pianoTheme={pianoTheme}
+          />
+        ) : (
+          <ManualModeDisplay
+            lastNote={lastNote}
+            isNoteActive={isNoteActive}
+            historyText={historyText}
+            pianoTheme={pianoTheme}
+          />
+        )}
+      </TransitionWrapper>
     </BoardContainer>
   );
 };

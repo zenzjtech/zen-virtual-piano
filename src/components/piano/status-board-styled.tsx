@@ -75,6 +75,7 @@ export const CurrentNoteDisplay = styled(Box, {
   paddingRight: theme.spacing(1.5),
   position: 'relative',
   zIndex: 3,
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 }));
 
 export const NoteText = styled(Typography)({
@@ -91,6 +92,7 @@ export const NoteText = styled(Typography)({
     0 1px 0 rgba(255, 150, 100, 0.3)
   `,
   filter: 'drop-shadow(0 0 8px rgba(255, 107, 53, 0.3))',
+  transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
 });
 
 export const KeyText = styled(Typography, {
@@ -104,6 +106,7 @@ export const KeyText = styled(Typography, {
     0 1px 0 rgba(255, 255, 255, 0.1),
     0 -1px 0 rgba(0, 0, 0, 0.5)
   `,
+  transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
 }));
 
 export const PressedKeysDisplay = styled(Box)(({ theme }) => ({
@@ -124,6 +127,7 @@ export const PressedKeysDisplay = styled(Box)(({ theme }) => ({
     0 1px 0 rgba(255, 255, 255, 0.05)
   `,
   border: '1px solid rgba(0, 0, 0, 0.2)',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 }));
 
 export const HistoryDisplay = styled(Box)(({ theme }) => ({
@@ -149,6 +153,7 @@ export const HistoryDisplay = styled(Box)(({ theme }) => ({
     -1px 0 0 rgba(255, 255, 255, 0.05)
   `,
   border: '1px solid rgba(0, 0, 0, 0.2)',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 }));
 
 export const PressedKeysText = styled(Typography, {
@@ -166,6 +171,7 @@ export const PressedKeysText = styled(Typography, {
     0 1px 1px rgba(0, 0, 0, 0.8),
     0 -1px 0 rgba(255, 255, 255, 0.1)
   `,
+  transition: 'color 0.3s ease, opacity 0.3s ease',
 }));
 
 export const Label = styled(Typography, {
@@ -182,6 +188,7 @@ export const Label = styled(Typography, {
     0 -1px 0 rgba(255, 255, 255, 0.1)
   `,
   fontWeight: 600,
+  transition: 'opacity 0.3s ease',
 }));
 
 export const CornerPlate = styled(Box, {
