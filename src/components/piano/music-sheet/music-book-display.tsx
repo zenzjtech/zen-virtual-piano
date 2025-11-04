@@ -6,6 +6,7 @@ import { PianoTheme } from '../themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
 import bookImage from '@/assets/image/music-sheet/1.png';
 import { useAppConfig } from '#imports';
+import { useSheetPlayback } from '@/hooks/use-sheet-playback';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -67,6 +68,8 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   pianoTheme,
   onClose,
 }) => {
+  useSheetPlayback();
+
   const appConfig = useAppConfig();
   
   // Get all measures from the sheet (stored in first page)
