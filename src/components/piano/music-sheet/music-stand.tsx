@@ -224,7 +224,7 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
                                 : 'inherit',
                           }}
                         >
-                          {note.key}{' '}
+                          {note.originalNotation || note.key}{' '}
                         </span>
                       ))}
                       {' | '}

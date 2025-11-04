@@ -115,10 +115,12 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
         const chordNotes = measureStr.substring(i + 1, chordEnd);
         const chord: string[] = [];
         
+        const chordOriginalNotations: string[] = [];
         for (const chordChar of chordNotes) {
           const noteName = VP_NOTE_MAP[chordChar];
           if (noteName) {
             chord.push(noteName);
+            chordOriginalNotations.push(chordChar);
           } else {
             warnings.push(`Unknown note in chord: ${chordChar}`);
           }
@@ -129,6 +131,7 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
             key: chord[0], // Use first note as primary
             duration: 1,
             chord: chord,
+            originalNotation: '[' + chordOriginalNotations.join('') + ']',
           });
         }
         
@@ -152,6 +155,7 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
         notes.push({
           key: noteName,
           duration: 1,
+          originalNotation: char,
         });
       } else {
         warnings.push(`Unknown character: ${char}`);

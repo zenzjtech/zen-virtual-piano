@@ -13,6 +13,8 @@ export interface Note {
   key: string;
   /** Duration in beats (1 = quarter note, 0.5 = eighth note, etc.) */
   duration: number;
+  /** Original keyboard notation character (e.g., "t", "u", "y") */
+  originalNotation?: string;
   /** Whether this is a rest instead of a note */
   rest?: boolean;
   /** For chords: simultaneous notes */
