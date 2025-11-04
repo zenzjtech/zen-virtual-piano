@@ -58,20 +58,32 @@ export const CurrentNoteDisplay = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   minWidth: '70px',
   padding: theme.spacing(0.75, 1),
-  background: 'rgba(0, 0, 0, 0.1)',
+  // Dynamic background based on theme brightness
+  background: pianoTheme.isLight 
+    ? 'rgba(0, 0, 0, 0.1)' 
+    : 'rgba(255, 255, 255, 0.08)',
   borderRadius: theme.spacing(0.5),
-  // Recessed panel effect matching other displays
-  boxShadow: `
-    inset 0 2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    0 1px 0 rgba(255, 255, 255, 0.05)
-  `,
-  border: '1px solid rgba(0, 0, 0, 0.2)',
+  // Recessed panel effect with theme-aware shadows
+  boxShadow: pianoTheme.isLight 
+    ? `
+      inset 0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+      0 1px 0 rgba(255, 255, 255, 0.05)
+    `
+    : `
+      inset 0 2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.1)
+    `,
+  // Theme-aware border
+  border: pianoTheme.isLight 
+    ? '1px solid rgba(0, 0, 0, 0.2)' 
+    : '1px solid rgba(255, 255, 255, 0.2)',
   position: 'relative',
   zIndex: 3,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
