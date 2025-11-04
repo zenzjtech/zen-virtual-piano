@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Box, Paper, IconButton, Typography, Collapse } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { MusicSheet, PlaybackState } from './types';
@@ -72,6 +72,11 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
 
   const appConfig = useAppConfig();
   
+  // Track page changes for animations
+  const [prevPageSet, setPrevPageSet] = useState(-1);
+  const [pageDirection, setPageDirection] = useState<'left' | 'right'>('right');
+  const [showContent, setShowContent] = useState(true);
+  
   // Get all measures from the sheet (stored in first page)
   const allMeasures = currentSheet.pages[0]?.measures || [];
   
@@ -91,6 +96,25 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   const pageSetIndex = Math.floor(playback.currentPage / 2);
   const leftPageIndex = pageSetIndex * 2;
   const rightPageIndex = leftPageIndex + 1;
+  
+  // Detect page changes and trigger animations
+  useEffect(() => {
+    if (prevPageSet !== -1 && prevPageSet !== pageSetIndex) {
+      // Determine direction
+      setPageDirection(pageSetIndex > prevPageSet ? 'right' : 'left');
+      
+      // Gentle fade out
+      setShowContent(false);
+      
+      // Fade back in after subtle delay
+      const timer = setTimeout(() => {
+        setShowContent(true);
+      }, 300);
+      
+      return () => clearTimeout(timer);
+    }
+    setPrevPageSet(pageSetIndex);
+  }, [pageSetIndex, prevPageSet]);
   
   const leftPage = leftPageIndex < totalPages ? {
     measures: allMeasures,
@@ -128,6 +152,9 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
             bottom: 0,
             display: 'flex',
             gap: 2,
+            transition: 'opacity 0.6s ease-in-out, transform 0.6s ease-in-out',
+            opacity: showContent ? 1 : 0,
+            transform: showContent ? 'translateX(0)' : `translateX(${pageDirection === 'right' ? '-8px' : '8px'})`,
           }}
         >
           {/* Left Page */}
