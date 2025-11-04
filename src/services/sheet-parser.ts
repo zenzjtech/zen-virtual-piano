@@ -87,8 +87,14 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
   const warnings: string[] = [];
   const measures: Measure[] = [];
   
+  // Preprocess: normalize whitespace (replace newlines, tabs, multiple spaces with single space)
+  const cleanedNotation = notation
+    .replace(/[\r\n\t]+/g, ' ')  // Replace newlines, carriage returns, tabs with space
+    .replace(/\s+/g, ' ')         // Replace multiple spaces with single space
+    .trim();
+  
   // Split by measure separator |
-  const measureStrings = notation.split('|').map(m => m.trim()).filter(m => m.length > 0);
+  const measureStrings = cleanedNotation.split('|').map(m => m.trim()).filter(m => m.length > 0);
   
   for (const measureStr of measureStrings) {
     const notes: Note[] = [];
