@@ -325,29 +325,7 @@ function App() {
               }}
             >
               🎹 Zen Virtual Piano
-            </Typography>
-            
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                mb: 1.5,
-                fontWeight: 400,
-                fontSize: { xs: '1rem', md: '1.125rem' },
-                color: isDarkBackground ? 'rgba(255, 255, 255, 0.8)' : 'text.secondary',
-              }}
-            >
-              Play piano using your keyboard or click the keys with your mouse
-            </Typography>
-            
-            <Typography 
-              variant="body2" 
-              sx={{ 
-                color: isDarkBackground ? 'rgba(255, 255, 255, 0.65)' : 'grey.600',
-                fontStyle: 'italic',
-              }}
-            >
-              5+ Octaves • C2 to C7 • 67 Keys
-            </Typography>
+            </Typography>          
           </Box>
 
           {/* Music Stand - appears when sheet is loaded */}
@@ -402,7 +380,7 @@ function App() {
           </Box>
 
           {/* Instructions */}
-          <Paper
+          {/* <Paper
             elevation={0}
             sx={{
               px: 3,
@@ -422,7 +400,7 @@ function App() {
             >
               💡 <strong>Keyboard Shortcuts:</strong> Use numbers (1-0), letters (q-m), and Shift for sharps/flats
             </Typography>
-          </Paper>
+          </Paper> */}
         </Stack>
       </Container>
 
