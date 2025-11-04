@@ -96,6 +96,17 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
         fontSize: { xs: '0.85rem', md: '1rem' },
         lineHeight: 1.8,
         color: 'text.primary',
+        '@keyframes glow': {
+          '0%': {
+            textShadow: '0 0 2px rgba(255, 255, 255, 0.5)',
+          },
+          '50%': {
+            textShadow: `0 0 10px ${pianoTheme.colors.accent}`,
+          },
+          '100%': {
+            textShadow: '0 0 2px rgba(255, 255, 255, 0.5)',
+          },
+        },
       }}
     >
       {displayLines.map((line, lineIdx) => (
@@ -120,6 +131,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
                   fontWeight: isCurrentNote ? 'bold' : 'normal',
                   color: isCurrentNote ? pianoTheme.colors.accent : 'inherit',
                   opacity: token.isMeasureSeparator ? 0.5 : 1,
+                  animation: isCurrentNote ? 'glow 1s infinite' : 'none',
                 }}
               >
                 {token.text}
