@@ -21,13 +21,10 @@ interface MusicBookDisplayProps {
 function calculateLineRanges(measures: any[], maxCharsPerLine: number, linesPerPage: number) {
   // Convert measures to tokens
   const tokens: string[] = [];
-  measures.forEach((measure, measureIdx) => {
+  measures.forEach((measure) => {
     measure.notes.forEach((note: any) => {
       tokens.push((note.originalNotation || note.key) + ' ');
     });
-    if (measureIdx < measures.length - 1) {
-      tokens.push('| ');
-    }
   });
   
   // Split into lines

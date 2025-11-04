@@ -44,11 +44,10 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
     
     // Count total lines
     const tokens: string[] = [];
-    allMeasures.forEach((measure, idx) => {
+    allMeasures.forEach((measure) => {
       measure.notes.forEach((note) => {
         tokens.push((note.originalNotation || note.key) + ' ');
       });
-      if (idx < allMeasures.length - 1) tokens.push('| ');
     });
     
     let lineCount = 0;

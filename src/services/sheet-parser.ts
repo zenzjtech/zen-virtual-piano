@@ -170,7 +170,7 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
       i++;
     }
     
-    // Add measure
+    // Add measure with separator note at the end (except for last measure)
     if (notes.length > 0) {
       measures.push({
         notes,
@@ -179,8 +179,26 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
     }
   }
   
+  // Add measure separator notes between measures
+  const measuresWithSeparators: Measure[] = [];
+  measures.forEach((measure, idx) => {
+    measuresWithSeparators.push(measure);
+    
+    // Add separator after each measure except the last
+    if (idx < measures.length - 1) {
+      measuresWithSeparators.push({
+        notes: [{
+          key: '|',
+          duration: 0,
+          originalNotation: '|',
+        }],
+        duration: 0,
+      });
+    }
+  });
+  
   return {
-    measures,
+    measures: measuresWithSeparators,
     tempo,
     warnings,
   };
@@ -191,14 +209,10 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
  */
 function measuresToTextTokens(measures: Measure[]): string[] {
   const tokens: string[] = [];
-  measures.forEach((measure, measureIdx) => {
+  measures.forEach((measure) => {
     measure.notes.forEach((note) => {
       tokens.push((note.originalNotation || note.key) + ' ');
     });
-    // Add measure separator
-    if (measureIdx < measures.length - 1) {
-      tokens.push('| ');
-    }
   });
   return tokens;
 }

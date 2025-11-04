@@ -43,15 +43,8 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
           text: (note.originalNotation || note.key) + ' ',
           measureIndex: measureIdx,
           noteIndex: noteIdx,
-          isMeasureSeparator: false,
+          isMeasureSeparator: note.originalNotation === '|',
         });
-      });
-      // Add measure separator
-      result.push({
-        text: '| ',
-        measureIndex: measureIdx,
-        noteIndex: -1,
-        isMeasureSeparator: true,
       });
     });
     return result;
