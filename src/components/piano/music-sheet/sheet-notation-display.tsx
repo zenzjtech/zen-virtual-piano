@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { Measure } from './types';
 import { PianoTheme } from '../themes';
+import { useAppConfig } from '#imports';
 
 interface SheetNotationDisplayProps {
   measures: Measure[];
@@ -29,6 +30,8 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
   isPlaying,
   pianoTheme,
 }) => {
+  const appConfig = useAppConfig();
+
   // Convert measures into flat tokens with position tracking
   const tokens = useMemo(() => {
     const result: NoteToken[] = [];
@@ -54,7 +57,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
 
   // Divide tokens into lines based on character count
   const lines = useMemo(() => {
-    const maxCharsPerLine = 80; // Adjust this value for desired line length
+    const maxCharsPerLine = appConfig.musicStand.musicSheet.maxCharsPerLine;
     const result: NoteToken[][] = [];
     let currentLine: NoteToken[] = [];
     let currentLength = 0;
