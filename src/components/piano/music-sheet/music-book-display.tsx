@@ -4,7 +4,7 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
-import bookImage from '@/assets/image/music-sheet.png';
+import bookImage from '@/assets/image/music-sheet/1.png';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -24,7 +24,16 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   pianoTheme,
   onClose,
 }) => {
-  const currentPage = currentSheet.pages[playback.currentPage];
+  // Calculate 2-page spread
+  const pageSetIndex = Math.floor(playback.currentPage / 2);
+  const leftPageIndex = pageSetIndex * 2;
+  const rightPageIndex = leftPageIndex + 1;
+  
+  const leftPage = currentSheet.pages[leftPageIndex];
+  const rightPage = rightPageIndex < currentSheet.pages.length 
+    ? currentSheet.pages[rightPageIndex] 
+    : null;
+  
   const totalPages = currentSheet.pages.length;
 
   return (
@@ -35,11 +44,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           position: 'relative',
           width: '100%',
           aspectRatio: '14/4',
-          backgroundImage: `url(${bookImage})`,
-          backgroundSize: '100% 100%',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backgroundColor: 'rgba(139, 69, 19, 0.1)',
           borderRadius: 2,
           overflow: 'hidden',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
@@ -49,10 +54,10 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         <Box
           sx={{
             position: 'absolute',
-            top: '15%',
-            left: '12%',
-            right: '12%',
-            bottom: '15%',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             display: 'flex',
             gap: 2,
           }}
@@ -64,6 +69,10 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
               display: 'flex',
               flexDirection: 'column',
               p: 2,
+              backgroundImage: `url(${bookImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: 1,
             }}
           >
             <Typography
@@ -85,33 +94,80 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
                 fontSize: { xs: '0.7rem', md: '0.8rem' },
               }}
             >
-              {currentSheet.artist}
+              {currentSheet.artist} - Page {leftPageIndex + 1}
             </Typography>
 
-            {/* Sheet Notation Display */}
+            {/* Sheet Notation Display - Left Page */}
             <SheetNotationDisplay
-              measures={currentPage?.measures || []}
-              currentMeasure={playback.currentMeasure}
-              currentNoteIndex={playback.currentNoteIndex}
-              isPlaying={playback.isPlaying}
+              measures={leftPage?.measures || []}
+              currentMeasure={playback.currentPage === leftPageIndex ? playback.currentMeasure : -1}
+              currentNoteIndex={playback.currentPage === leftPageIndex ? playback.currentNoteIndex : -1}
+              isPlaying={playback.isPlaying && playback.currentPage === leftPageIndex}
               pianoTheme={pianoTheme}
             />
           </Box>
 
-          {/* Right Page - Page info */}
+          {/* Right Page */}
           <Box
             sx={{
               flex: 1,
               display: 'flex',
               flexDirection: 'column',
               p: 2,
-              justifyContent: 'center',
-              alignItems: 'center',
+              backgroundImage: `url(${bookImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: 1,
+              opacity: rightPage ? 1 : 0.3,
             }}
           >
-            <Typography variant="caption" color="text.disabled">
-              Page {playback.currentPage + 1} of {totalPages}
-            </Typography>
+            {rightPage ? (
+              <>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 600,
+                    mb: 1,
+                    fontSize: { xs: '0.9rem', md: '1.1rem' },
+                    color: 'text.primary',
+                  }}
+                >
+                  {currentSheet.title}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    mb: 2,
+                    color: 'text.secondary',
+                    fontSize: { xs: '0.7rem', md: '0.8rem' },
+                  }}
+                >
+                  {currentSheet.artist} - Page {rightPageIndex + 1}
+                </Typography>
+
+                {/* Sheet Notation Display - Right Page */}
+                <SheetNotationDisplay
+                  measures={rightPage.measures || []}
+                  currentMeasure={playback.currentPage === rightPageIndex ? playback.currentMeasure : -1}
+                  currentNoteIndex={playback.currentPage === rightPageIndex ? playback.currentNoteIndex : -1}
+                  isPlaying={playback.isPlaying && playback.currentPage === rightPageIndex}
+                  pianoTheme={pianoTheme}
+                />
+              </>
+            ) : (
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                }}
+              >
+                <Typography variant="caption" color="text.disabled">
+                  End of sheet
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Box>
 

@@ -231,22 +231,30 @@ export const musicSheetSlice = createSlice({
 
     // Navigation
     /**
-     * Go to next page
+     * Go to next page (navigates by 2 pages for 2-page spread)
      */
     nextPage: (state) => {
-      if (state.currentSheet && state.playback.currentPage < state.currentSheet.pages.length - 1) {
-        state.playback.currentPage++;
-        state.playback.currentMeasure = 0;
-        state.playback.currentNoteIndex = 0;
+      if (state.currentSheet) {
+        const currentPageSet = Math.floor(state.playback.currentPage / 2);
+        const nextPageSetStart = (currentPageSet + 1) * 2;
+        
+        if (nextPageSetStart < state.currentSheet.pages.length) {
+          state.playback.currentPage = nextPageSetStart;
+          state.playback.currentMeasure = 0;
+          state.playback.currentNoteIndex = 0;
+        }
       }
     },
 
     /**
-     * Go to previous page
+     * Go to previous page (navigates by 2 pages for 2-page spread)
      */
     previousPage: (state) => {
       if (state.playback.currentPage > 0) {
-        state.playback.currentPage--;
+        const currentPageSet = Math.floor(state.playback.currentPage / 2);
+        const prevPageSetStart = Math.max(0, (currentPageSet - 1) * 2);
+        
+        state.playback.currentPage = prevPageSetStart;
         state.playback.currentMeasure = 0;
         state.playback.currentNoteIndex = 0;
       }
