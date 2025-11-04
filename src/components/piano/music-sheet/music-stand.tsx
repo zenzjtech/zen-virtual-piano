@@ -96,7 +96,7 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        mb: 2,
+        mb: 1.4,
         animation: 'slideDown 0.4s ease-out',
         '@keyframes slideDown': {
           from: {

@@ -312,11 +312,11 @@ function App() {
 
       <Container maxWidth="lg">
         <Stack
-          spacing={{ xs: 4, md: 5 }}
+          spacing={{ xs: 3, md: 4 }}
           alignItems="center"
           sx={{
             textAlign: 'center',
-            py: { xs: 4, md: 6 },
+            py: { xs: 2, md: 4 },
           }}
         >
 
