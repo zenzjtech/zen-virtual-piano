@@ -9,39 +9,36 @@ import {
   Loop as LoopIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
+import { useAppSelector } from '@/store/hook';
+import { usePlayerControls } from '@/hooks/use-player-controls';
 
 interface PlaybackControlsProps {
-  isPlaying: boolean;
-  currentPage: number;
   totalPages: number;
-  loopEnabled: boolean;
   pianoTheme: PianoTheme;
-  onPlayPause: () => void;
-  onStop: () => void;
-  onPreviousPage: () => void;
-  onNextPage: () => void;
-  onToggleLoop: () => void;
 }
 
 export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
-  isPlaying,
-  currentPage,
   totalPages,
-  loopEnabled,
   pianoTheme,
-  onPlayPause,
-  onStop,
-  onPreviousPage,
-  onNextPage,
-  onToggleLoop,
 }) => {
+  // Get playback state from Redux
+  const playback = useAppSelector((state) => state.musicSheet.playback);
+  
+  // Get player control handlers
+  const {
+    handlePlayPause,
+    handleStop,
+    handlePreviousPage,
+    handleNextPage,
+    handleToggleLoop,
+  } = usePlayerControls();
   return (
     <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center' }}>
       <Tooltip title="Previous Page (← LeftArrow / Backspace)">
         <span>
           <IconButton
-            onClick={onPreviousPage}
-            disabled={currentPage === 0}
+            onClick={handlePreviousPage}
+            disabled={playback.currentPage === 0}
             size="small"
             sx={{ color: pianoTheme.colors.primary }}
           >
@@ -50,9 +47,9 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </span>
       </Tooltip>
 
-      <Tooltip title={isPlaying ? 'Pause' : 'Play'}>
+      <Tooltip title={playback.isPlaying ? 'Pause' : 'Play'}>
         <IconButton
-          onClick={onPlayPause}
+          onClick={() => handlePlayPause(playback.isPlaying)}
           size="small"
           sx={{
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -62,13 +59,13 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
             },
           }}
         >
-          {isPlaying ? <PauseIcon fontSize="small" /> : <PlayIcon fontSize="small" />}
+          {playback.isPlaying ? <PauseIcon fontSize="small" /> : <PlayIcon fontSize="small" />}
         </IconButton>
       </Tooltip>
 
       <Tooltip title="Stop">
         <IconButton
-          onClick={onStop}
+          onClick={handleStop}
           size="small"
           sx={{ color: pianoTheme.colors.primary }}
         >
@@ -79,8 +76,8 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
       <Tooltip title="Next Page (→ RightArrow / Enter)">
         <span>
           <IconButton
-            onClick={onNextPage}
-            disabled={currentPage >= totalPages - 1}
+            onClick={handleNextPage}
+            disabled={playback.currentPage >= totalPages - 1}
             size="small"
             sx={{ color: pianoTheme.colors.primary }}
           >
@@ -89,12 +86,12 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </span>
       </Tooltip>
 
-      <Tooltip title={loopEnabled ? 'Loop: ON' : 'Loop: OFF'}>
+      <Tooltip title={playback.loopEnabled ? 'Loop: ON' : 'Loop: OFF'}>
         <IconButton
-          onClick={onToggleLoop}
+          onClick={handleToggleLoop}
           size="small"
           sx={{
-            color: loopEnabled
+            color: playback.loopEnabled
               ? pianoTheme.colors.primary
               : 'rgba(255, 255, 255, 0.5)',
           }}

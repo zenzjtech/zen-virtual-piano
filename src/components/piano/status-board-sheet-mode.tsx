@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
-import { MusicSheet, PlaybackState } from '@/components/piano/music-sheet/types';
+import { Typography } from '@mui/material';
+import { MusicSheet } from '@/components/piano/music-sheet/types';
 import { PianoTheme } from './themes';
 import {
   CurrentNoteDisplay,
@@ -8,34 +8,23 @@ import {
 } from './status-board-styled';
 import { NoteHistoryDisplay } from './note-history-display';
 import { PlayerControlsContainer } from './player-controls-container';
+import { useAppSelector } from '@/store/hook';
 
 interface SheetModeDisplayProps {
   currentSheet: MusicSheet;
-  playback: PlaybackState;
   pianoTheme: PianoTheme;
   totalPages: number;
   historyText: string;
-  onPlayPause: () => void;
-  onStop: () => void;
-  onPreviousPage: () => void;
-  onNextPage: () => void;
-  onTempoChange: (tempo: number) => void;
-  onToggleLoop: () => void;
 }
 
 export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
   currentSheet,
-  playback,
   pianoTheme,
   totalPages,
   historyText,
-  onPlayPause,
-  onStop,
-  onPreviousPage,
-  onNextPage,
-  onTempoChange,
-  onToggleLoop,
 }) => {
+  // Get playback state from Redux
+  const playback = useAppSelector((state) => state.musicSheet.playback);
 
   return (
     <>
@@ -59,18 +48,8 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
 
       {/* Player Controls */}
       <PlayerControlsContainer
-        isPlaying={playback.isPlaying}
-        currentPage={playback.currentPage}
         totalPages={totalPages}
-        loopEnabled={playback.loopEnabled}
-        tempo={playback.tempo}
         pianoTheme={pianoTheme}
-        onPlayPause={onPlayPause}
-        onStop={onStop}
-        onPreviousPage={onPreviousPage}
-        onNextPage={onNextPage}
-        onToggleLoop={onToggleLoop}
-        onTempoChange={onTempoChange}
       />
 
       {/* History Display */}

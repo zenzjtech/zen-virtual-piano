@@ -1,21 +1,25 @@
 import React from 'react';
 import { Box, Typography, Slider } from '@mui/material';
 import { PianoTheme } from './themes';
+import { useAppSelector } from '@/store/hook';
+import { usePlayerControls } from '@/hooks/use-player-controls';
 
 interface TempoControlProps {
-  tempo: number;
   pianoTheme: PianoTheme;
-  onTempoChange: (tempo: number) => void;
 }
 
 export const TempoControl: React.FC<TempoControlProps> = ({
-  tempo,
   pianoTheme,
-  onTempoChange,
 }) => {
-  const handleTempoChange = (_event: Event, newValue: number | number[]) => {
+  // Get tempo from Redux
+  const tempo = useAppSelector((state) => state.musicSheet.playback.tempo);
+  
+  // Get tempo change handler
+  const { handleTempoChange } = usePlayerControls();
+
+  const onTempoChange = (_event: Event, newValue: number | number[]) => {
     const newTempo = Array.isArray(newValue) ? newValue[0] : newValue;
-    onTempoChange(newTempo);
+    handleTempoChange(newTempo);
   };
 
   return (
@@ -31,7 +35,7 @@ export const TempoControl: React.FC<TempoControlProps> = ({
       </Typography>
       <Slider
         value={tempo}
-        onChange={handleTempoChange}
+        onChange={onTempoChange}
         min={40}
         max={240}
         step={5}
