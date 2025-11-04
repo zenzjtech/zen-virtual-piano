@@ -91,7 +91,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
           sx={{
             width: 450,
             maxWidth: '90vw',
-            maxHeight: '70vh',
+            maxHeight: '50vh',
             display: 'flex',
             flexDirection: 'column',
           }}
