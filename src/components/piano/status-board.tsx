@@ -5,8 +5,8 @@ import { useAppSelector } from '@/store/hook';
 import { BoardContainer, CornerPlate } from './status-board-styled';
 import { SheetModeDisplay } from './status-board-sheet-mode';
 import { ManualModeDisplay } from './status-board-manual-mode';
-import { TransitionWrapper } from './status-board-transition';
 import { useTotalPages } from '@/hooks/use-total-pages';
+import { Box } from '@mui/material';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -57,10 +57,6 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   
   // Determine what to display based on mode
   const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
-  const showBoth = statusDisplayMode === 'both';
-  
-  // Create a unique transition key that includes the sheet ID so content updates when sheet changes
-  const transitionKey = isSheetMode ? `sheet-${currentSheet?.id}` : 'manual';
 
   return (
     <BoardContainer elevation={0} pianoTheme={pianoTheme}>
@@ -72,8 +68,15 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
         </>
       )}
       
-      {/* Display Mode - Sheet or Manual with Transitions */}
-      <TransitionWrapper transitionKey={transitionKey}>
+      {/* Display Mode - Sheet or Manual */}
+      <Box
+        sx={{
+          display: 'flex',
+          flex: 1,
+          alignItems: 'center',
+          gap: 1.5,
+        }}
+      >
         {isSheetMode ? (
           <SheetModeDisplay
             currentSheet={currentSheet}
@@ -89,7 +92,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             pianoTheme={pianoTheme}
           />
         )}
-      </TransitionWrapper>
+      </Box>
     </BoardContainer>
   );
 };
