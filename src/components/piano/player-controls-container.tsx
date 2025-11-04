@@ -15,17 +15,22 @@ export const PlayerControlsContainer: React.FC<PlayerControlsContainerProps> = (
   pianoTheme,
 }) => {
   return (
-    <PressedKeysDisplay>
-      <Box sx={{ width: '100%' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-          <PlaybackControls
+    <PressedKeysDisplay
+        sx={{
+            justifyContent: 'center'
+        }}
+    >      
+        <Box sx={{ 
+            display: 'flex',
+            flexDirection: 'row', gap: 1,                        
+        }}>
+            <PlaybackControls
             totalPages={totalPages}
             pianoTheme={pianoTheme}
-          />
+            />
 
-          <TempoControl pianoTheme={pianoTheme} />
-        </Box>
-      </Box>
+            <TempoControl pianoTheme={pianoTheme} />
+        </Box>      
     </PressedKeysDisplay>
   );
 };
