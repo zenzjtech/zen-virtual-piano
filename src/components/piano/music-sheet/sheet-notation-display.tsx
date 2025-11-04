@@ -19,6 +19,7 @@ interface NoteToken {
   measureIndex: number;
   noteIndex: number;
   isMeasureSeparator: boolean;
+  globalIndex: number;
 }
 
 /**
@@ -38,6 +39,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
   // Convert measures into flat tokens with position tracking
   const tokens = useMemo(() => {
     const result: NoteToken[] = [];
+    let globalIdx = 0;
     measures.forEach((measure, measureIdx) => {
       measure.notes.forEach((note, noteIdx) => {
         result.push({
@@ -45,6 +47,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
           measureIndex: measureIdx,
           noteIndex: noteIdx,
           isMeasureSeparator: note.originalNotation === '|',
+          globalIndex: globalIdx++,
         });
       });
     });
@@ -88,15 +91,21 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
     return lines.slice(lineRange.start, lineRange.end);
   }, [lines, lineRange]);
 
-  const currentLineIndex = useMemo(() => {
+  const currentTokenGlobalIndex = useMemo(() => {
     if (!isPlaying) return -1;
-    return displayLines.findIndex(line => 
-      line.some(token => 
-        token.measureIndex === currentMeasure && 
-        token.noteIndex === currentNoteIndex
-      )
+    const token = tokens.find(token => 
+      token.measureIndex === currentMeasure && 
+      token.noteIndex === currentNoteIndex
     );
-  }, [displayLines, isPlaying, currentMeasure, currentNoteIndex]);
+    return token ? token.globalIndex : -1;
+  }, [tokens, isPlaying, currentMeasure, currentNoteIndex]);
+
+  const currentLineIndex = useMemo(() => {
+    if (currentTokenGlobalIndex === -1) return -1;
+    return lines.findIndex(line => 
+      line.some(token => token.globalIndex === currentTokenGlobalIndex)
+    );
+  }, [lines, currentTokenGlobalIndex]);
 
   return (
     <Box
@@ -135,10 +144,10 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
             py: 0.25,
             borderRadius: 1,
             transition: 'background-color 0.3s ease-in-out',
-            backgroundColor: lineIdx === currentLineIndex ? alpha(pianoTheme.colors.accent, 0.1) : 'transparent',
+            backgroundColor: lineIdx + (lineRange?.start ?? 0) === currentLineIndex ? alpha(pianoTheme.colors.accent, 0.1) : 'transparent',
           }}
         >          
-          {lineIdx === currentLineIndex && (
+          {lineIdx + (lineRange?.start ?? 0) === currentLineIndex && (
             <ArrowRightIcon 
               sx={{ 
                 position: 'absolute',
@@ -149,10 +158,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
             />
           )}
           {line.map((token, tokenIdx) => {
-            const isCurrentNote =
-              isPlaying &&
-              token.measureIndex === currentMeasure &&
-              token.noteIndex === currentNoteIndex;
+            const isCurrentNote = token.globalIndex === currentTokenGlobalIndex;
 
             return (
               <span
