@@ -91,12 +91,14 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
   // Preprocess for paragraph breaks (extended pauses)
   const processedNotation = notation.replace(/\n\s*\n/g, ' | | ');
 
-  const tokens = processedNotation.match(/(\[[a-zA-Z0-9\s]+\])|[a-zA-Z0-9]|-|\|/g) || [];
+  const tokens = processedNotation.match(/\s*\|\s*|\[[a-zA-Z0-9\s]+\]|[a-zA-Z0-9]|-/g) || [];
 
   for (const token of tokens) {
     // Handle pauses
-    if (token.startsWith('|')) {
-      currentMeasure.push({ key: 'pause', duration: 1, rest: true, originalNotation: '|' });
+    if (token.includes('|')) {
+      const spaceCount = token.length - token.replace(/ /g, '').length;
+      let duration = 1 + (spaceCount * 0.5); // Base duration + 0.5 for each space
+      currentMeasure.push({ key: 'pause', duration, rest: true, originalNotation: token });
       continue;
     }
 
