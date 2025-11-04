@@ -86,119 +86,79 @@ const VP_NOTE_MAP: Record<string, string> = {
 export function parseVPNotation(notation: string, tempo: number = 120): ParsedNotation {
   const warnings: string[] = [];
   const measures: Measure[] = [];
-  
-  // Preprocess: normalize whitespace (replace newlines, tabs, multiple spaces with single space)
-  const cleanedNotation = notation
-    .replace(/[\r\n\t]+/g, ' ')  // Replace newlines, carriage returns, tabs with space
-    .replace(/\s+/g, ' ')         // Replace multiple spaces with single space
-    .trim();
-  
-  // Split by measure separator |
-  const measureStrings = cleanedNotation.split('|').map(m => m.trim()).filter(m => m.length > 0);
-  
-  for (const measureStr of measureStrings) {
-    const notes: Note[] = [];
-    let i = 0;
-    
-    while (i < measureStr.length) {
-      const char = measureStr[i];
-      
-      // Skip whitespace
-      if (char === ' ') {
-        i++;
-        continue;
-      }
-      
-      // Handle chord notation [abc]
-      if (char === '[') {
-        const chordEnd = measureStr.indexOf(']', i);
-        if (chordEnd === -1) {
-          warnings.push(`Unclosed chord bracket at position ${i}`);
-          i++;
-          continue;
-        }
-        
-        const chordNotes = measureStr.substring(i + 1, chordEnd);
+  let currentMeasure: Note[] = [];
+
+  // Preprocess for paragraph breaks (extended pauses)
+  const processedNotation = notation.replace(/\n\s*\n/g, ' | | ');
+
+  const tokens = processedNotation.match(/(\[[a-zA-Z0-9\s]+\])|[a-zA-Z0-9]|-|\|/g) || [];
+
+  for (const token of tokens) {
+    // Handle pauses
+    if (token.startsWith('|')) {
+      currentMeasure.push({ key: 'pause', duration: 1, rest: true, originalNotation: '|' });
+      continue;
+    }
+
+    // Handle bracketed notation
+    if (token.startsWith('[')) {
+      const content = token.substring(1, token.length - 1);
+      // Simultaneous notes (chord)
+      if (!content.includes(' ')) {
         const chord: string[] = [];
-        
         const chordOriginalNotations: string[] = [];
-        for (const chordChar of chordNotes) {
-          const noteName = VP_NOTE_MAP[chordChar];
+        for (const char of content) {
+          const noteName = VP_NOTE_MAP[char];
           if (noteName) {
             chord.push(noteName);
-            chordOriginalNotations.push(chordChar);
+            chordOriginalNotations.push(char);
           } else {
-            warnings.push(`Unknown note in chord: ${chordChar}`);
+            warnings.push(`Unknown note in chord: ${char}`);
           }
         }
-        
         if (chord.length > 0) {
-          notes.push({
-            key: chord[0], // Use first note as primary
-            duration: 1,
-            chord: chord,
-            originalNotation: '[' + chordOriginalNotations.join('') + ']',
-          });
+          currentMeasure.push({ key: chord[0], duration: 1, chord, originalNotation: `[${chordOriginalNotations.join('')}]` });
         }
-        
-        i = chordEnd + 1;
-        continue;
-      }
-      
-      // Handle sustain/hold -
-      if (char === '-') {
-        if (notes.length > 0) {
-          // Extend duration of previous note
-          notes[notes.length - 1].duration += 0.5;
+      } else { // Fast sequence
+        for (const char of content.split('')) {
+          if (char === ' ') continue;
+          const noteName = VP_NOTE_MAP[char];
+          if (noteName) {
+            currentMeasure.push({ key: noteName, duration: 0.25, originalNotation: char });
+          } else {
+            warnings.push(`Unknown note in sequence: ${char}`);
+          }
         }
-        i++;
-        continue;
       }
-      
-      // Handle regular note
-      const noteName = VP_NOTE_MAP[char];
-      if (noteName) {
-        notes.push({
-          key: noteName,
-          duration: 1,
-          originalNotation: char,
-        });
-      } else {
-        warnings.push(`Unknown character: ${char}`);
-      }
-      
-      i++;
+      continue;
     }
-    
-    // Add measure with separator note at the end (except for last measure)
-    if (notes.length > 0) {
-      measures.push({
-        notes,
-        duration: notes.reduce((sum, note) => sum + note.duration, 0),
-      });
+
+    // Handle sustain/hold
+    if (token === '-') {
+      if (currentMeasure.length > 0) {
+        currentMeasure[currentMeasure.length - 1].duration += 0.5;
+      }
+      continue;
+    }
+
+    // Handle regular note
+    const noteName = VP_NOTE_MAP[token];
+    if (noteName) {
+      currentMeasure.push({ key: noteName, duration: 1, originalNotation: token });
+    } else {
+      warnings.push(`Unknown character: ${token}`);
     }
   }
-  
-  // Add measure separator notes between measures
-  const measuresWithSeparators: Measure[] = [];
-  measures.forEach((measure, idx) => {
-    measuresWithSeparators.push(measure);
-    
-    // Add separator after each measure except the last
-    if (idx < measures.length - 1) {
-      measuresWithSeparators.push({
-        notes: [{
-          key: '|',
-          duration: 0,
-          originalNotation: '|',
-        }],
-        duration: 0,
-      });
-    }
-  });
-  
+
+  if (currentMeasure.length > 0) {
+    measures.push({
+      notes: currentMeasure,
+      duration: currentMeasure.reduce((sum, note) => sum + note.duration, 0),
+    });
+  }
+
   return {
-    measures: measuresWithSeparators,
+    measures,
     tempo,
     warnings,
   };

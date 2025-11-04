@@ -37,9 +37,27 @@ export const useSheetPlayback = () => {
         }
 
         const noteDuration = (60 / playback.tempo) * 1000 * note.duration;
-        const pianoKey = keyboardMapRef.current.get(note.originalNotation || note.key);
-        if (pianoKey) {
-          getAudioEngine().playNote(pianoKey.note);
+        if (note.rest) {
+          // It's a pause, so we do nothing but wait for the duration.
+        } else if (note.chord) {
+          note.chord.forEach(chordNoteKey => {
+            getAudioEngine().playNote(chordNoteKey);
+          });
+          setTimeout(() => {
+            if (note.chord) {
+              note.chord.forEach(chordNoteKey => {
+                getAudioEngine().stopNote(chordNoteKey);
+              });
+            }
+          }, noteDuration);
+        } else {
+          const pianoKey = keyboardMapRef.current.get(note.originalNotation || note.key);
+          if (pianoKey) {
+            getAudioEngine().playNote(pianoKey.note);
+            setTimeout(() => {
+              getAudioEngine().stopNote(pianoKey.note);
+            }, noteDuration);
+          }
         }
 
         timeoutRef.current = setTimeout(() => {
