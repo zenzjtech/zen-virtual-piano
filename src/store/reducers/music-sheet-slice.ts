@@ -134,7 +134,7 @@ export const musicSheetSlice = createSlice({
         state.userData.recentlyPlayed = [
           sheetId,
           ...state.userData.recentlyPlayed.filter(id => id !== sheetId)
-        ].slice(0, 10); // Keep only last 10
+        ];
         
         // Update timestamp
         state.userData.lastPlayedTimestamps[sheetId] = Date.now();

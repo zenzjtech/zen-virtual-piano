@@ -40,7 +40,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
     if (currentNote) {
       setNoteHistory(prev => {
         const newHistory = [currentNote.note, ...prev];
-        return newHistory.slice(0, 20); // Keep only last 20 notes
+        return newHistory;
       });
       // Update the last pressed note and key
       setLastNote(currentNote);
@@ -53,7 +53,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
     currentNote.keyboardKey === lastNote.keyboardKey;
 
   // Format history for display (show last 10)
-  const historyText = noteHistory.slice(0, 10).join(' → ') || 'No history yet...';
+  const historyText = noteHistory.join('') || 'No history yet...';
   
   // Determine what to display based on mode
   const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
