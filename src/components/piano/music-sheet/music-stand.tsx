@@ -131,6 +131,7 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
               borderRadius: 2,
               overflow: 'hidden',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
