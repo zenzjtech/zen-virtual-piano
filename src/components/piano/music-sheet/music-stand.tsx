@@ -306,7 +306,20 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
                   </IconButton>
                 </span>
               </Tooltip>
-              
+
+              <Tooltip title="Next Page">
+                <span>
+                  <IconButton
+                    onClick={handleNextPage}
+                    disabled={playback.currentPage >= totalPages - 1}
+                    size="small"
+                    sx={{ color: pianoTheme.colors.primary }}
+                  >
+                    <NextIcon />
+                  </IconButton>
+                </span>
+              </Tooltip>
+                            
               <Tooltip title={playback.isPlaying ? 'Pause' : 'Play'}>
                 <IconButton
                   onClick={handlePlayPause}
@@ -331,19 +344,6 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
                 >
                   <StopIcon />
                 </IconButton>
-              </Tooltip>
-              
-              <Tooltip title="Next Page">
-                <span>
-                  <IconButton
-                    onClick={handleNextPage}
-                    disabled={playback.currentPage >= totalPages - 1}
-                    size="small"
-                    sx={{ color: pianoTheme.colors.primary }}
-                  >
-                    <NextIcon />
-                  </IconButton>
-                </span>
               </Tooltip>
             </Box>
             
