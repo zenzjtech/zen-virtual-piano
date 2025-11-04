@@ -10,6 +10,7 @@ import {
   PressedKeysText,
   HistoryDisplay,
 } from './status-board-styled';
+import { NoteHistoryDisplay } from './note-history-display';
 
 interface ManualModeDisplayProps {
   lastNote: PianoKey | null;
@@ -58,16 +59,7 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
       </PressedKeysDisplay>
 
       {/* History Display */}
-      <HistoryDisplay>
-        <Label variant="caption" pianoTheme={pianoTheme}>History</Label>
-        <PressedKeysText 
-          variant="h6" 
-          pianoTheme={pianoTheme} 
-          sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
-        >
-          {historyText}
-        </PressedKeysText>
-      </HistoryDisplay>
+      <NoteHistoryDisplay pianoTheme={pianoTheme} historyText={historyText} />
     </>
   );
 };
