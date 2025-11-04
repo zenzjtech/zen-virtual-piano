@@ -84,6 +84,9 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   // Determine what to display based on mode
   const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
   const showBoth = statusDisplayMode === 'both';
+  
+  // Create a unique transition key that includes the sheet ID so content updates when sheet changes
+  const transitionKey = isSheetMode ? `sheet-${currentSheet?.id}` : 'manual';
 
   return (
     <BoardContainer elevation={0} pianoTheme={pianoTheme}>
@@ -96,7 +99,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
       )}
       
       {/* Display Mode - Sheet or Manual with Transitions */}
-      <TransitionWrapper transitionKey={isSheetMode ? 'sheet' : 'manual'}>
+      <TransitionWrapper transitionKey={transitionKey}>
         {isSheetMode ? (
           <SheetModeDisplay
             currentSheet={currentSheet}
