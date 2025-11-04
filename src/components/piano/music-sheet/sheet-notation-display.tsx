@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Box } from '@mui/material';
+import { Box, alpha } from '@mui/material';
 import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
 import { Measure } from './types';
 import { PianoTheme } from '../themes';
@@ -133,6 +133,9 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
             mb: 0.5,
             px: 0.5,
             py: 0.25,
+            borderRadius: 1,
+            transition: 'background-color 0.3s ease-in-out',
+            backgroundColor: lineIdx === currentLineIndex ? alpha(pianoTheme.colors.accent, 0.1) : 'transparent',
           }}
         >          
           {lineIdx === currentLineIndex && (
