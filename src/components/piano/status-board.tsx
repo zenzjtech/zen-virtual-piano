@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { PianoKey } from './types';
 import { PianoTheme } from './themes';
-import { useAppSelector } from '@/store/hook';
+import { useAppSelector, useAppDispatch } from '@/store/hook';
 import { BoardContainer, CornerPlate } from './status-board-styled';
 import { SheetModeDisplay } from './status-board-sheet-mode';
 import { ManualModeDisplay } from './status-board-manual-mode';
 import { useTotalPages } from '@/hooks/use-total-pages';
 import { Box } from '@mui/material';
+import {
+  playSheet,
+  pauseSheet,
+  stopSheet,
+  previousPage,
+  nextPage,
+  setTempo,
+  toggleLoop,
+} from '@/store/reducers/music-sheet-slice';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -22,6 +31,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   currentNote,
   pianoTheme,
 }) => {
+  const dispatch = useAppDispatch();
+  
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
   const playback = useAppSelector((state) => state.musicSheet.playback);
@@ -58,6 +69,35 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   // Determine what to display based on mode
   const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
 
+  // Player control handlers
+  const handlePlayPause = () => {
+    if (playback.isPlaying) {
+      dispatch(pauseSheet());
+    } else {
+      dispatch(playSheet());
+    }
+  };
+  
+  const handleStop = () => {
+    dispatch(stopSheet());
+  };
+  
+  const handlePreviousPage = () => {
+    dispatch(previousPage());
+  };
+  
+  const handleNextPage = () => {
+    dispatch(nextPage());
+  };
+  
+  const handleTempoChange = (tempo: number) => {
+    dispatch(setTempo(tempo));
+  };
+  
+  const handleToggleLoop = () => {
+    dispatch(toggleLoop());
+  };
+
   return (
     <BoardContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Decorative Corner Plates */}
@@ -84,6 +124,12 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             pianoTheme={pianoTheme}
             totalPages={totalPages}
             historyText={historyText}
+            onPlayPause={handlePlayPause}
+            onStop={handleStop}
+            onPreviousPage={handlePreviousPage}
+            onNextPage={handleNextPage}
+            onTempoChange={handleTempoChange}
+            onToggleLoop={handleToggleLoop}
           />
         ) : (
           <ManualModeDisplay
