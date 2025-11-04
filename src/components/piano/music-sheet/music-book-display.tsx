@@ -99,12 +99,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
     measures: allMeasures,
     lineRange: pageRanges[rightPageIndex],
     pageNumber: rightPageIndex + 1,
-  } : null;
-
-  console.log('[MusicBookDisplay] totalLines:', totalLines, 'totalPages:', totalPages);
-  console.log('[MusicBookDisplay] pageRanges:', pageRanges);
-  console.log('[MusicBookDisplay] currentPage:', playback.currentPage);
-  console.log('[MusicBookDisplay] leftPageIndex:', leftPageIndex, 'rightPageIndex:', rightPageIndex);
+  } : null;    
 
   return (
     <Collapse in={!isMinimized}>
