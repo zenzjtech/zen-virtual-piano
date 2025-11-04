@@ -9,6 +9,7 @@ import { StyleSettingsPopup } from '@/components/piano/style-settings-popup';
 import { KeyAssistPopup } from '@/components/piano/key-assist-popup';
 import { SheetSearchDialog } from '@/components/piano/music-sheet/sheet-search-dialog';
 import { MusicStand } from '@/components/piano/music-sheet/music-stand';
+import { Header } from '@/components/piano/header';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
@@ -301,32 +302,23 @@ function App() {
       sx={{
         minHeight: '100vh',
         ...getBackgroundStyle(),
-        py: { xs: 4, md: 6 },
       }}
     >
+      {/* Sticky Header */}
+      <Header 
+        backgroundThemeId={backgroundThemeId}
+        isDarkBackground={isDarkBackground}
+      />
+
       <Container maxWidth="lg">
         <Stack
           spacing={{ xs: 4, md: 5 }}
           alignItems="center"
           sx={{
             textAlign: 'center',
+            py: { xs: 4, md: 6 },
           }}
         >
-          {/* Header Section */}
-          <Box sx={{ maxWidth: 700, px: 2 }}>
-            <Typography 
-              variant="h2" 
-              component="h1" 
-              fontWeight="600"
-              sx={{
-                color: isDarkBackground ? 'rgba(255, 255, 255, 0.95)' : 'grey.900',
-                mb: 2,
-                fontSize: { xs: '2rem', md: '2.75rem' },
-              }}
-            >
-              🎹 Zen Virtual Piano
-            </Typography>          
-          </Box>
 
           {/* Music Stand - appears when sheet is loaded */}
           {isMusicStandVisible && (
