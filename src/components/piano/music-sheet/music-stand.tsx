@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import {
@@ -16,6 +16,7 @@ import {
 import { PianoTheme } from '../themes';
 import { MusicBookDisplay } from './music-book-display';
 import { PlayerControls } from './player-controls';
+import { useAppConfig } from '#imports';
 
 interface MusicStandProps {
   pianoTheme: PianoTheme;
@@ -27,6 +28,7 @@ interface MusicStandProps {
  */
 export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
   const dispatch = useAppDispatch();
+  const appConfig = useAppConfig();
   
   // Redux state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
@@ -35,7 +37,33 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
   
   if (!currentSheet) return null;
   
-  const totalPages = currentSheet.pages.length;
+  // Calculate totalPages dynamically based on config
+  const totalPages = useMemo(() => {
+    const allMeasures = currentSheet.pages[0]?.measures || [];
+    const { maxCharsPerLine, linesPerPage } = appConfig.musicStand.musicSheet;
+    
+    // Count total lines
+    const tokens: string[] = [];
+    allMeasures.forEach((measure, idx) => {
+      measure.notes.forEach((note) => {
+        tokens.push((note.originalNotation || note.key) + ' ');
+      });
+      if (idx < allMeasures.length - 1) tokens.push('| ');
+    });
+    
+    let lineCount = 0;
+    let currentLength = 0;
+    tokens.forEach((token) => {
+      if (currentLength + token.length > maxCharsPerLine && currentLength > 0) {
+        lineCount++;
+        currentLength = 0;
+      }
+      currentLength += token.length;
+    });
+    if (currentLength > 0) lineCount++;
+    
+    return Math.ceil(lineCount / linesPerPage);
+  }, [currentSheet, appConfig.musicStand.musicSheet]);
   
   // Event handlers
   const handlePlayPause = () => {

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box, Paper, IconButton, Typography, Collapse } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
 import bookImage from '@/assets/image/music-sheet/1.png';
+import { useAppConfig } from '#imports';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -12,6 +13,51 @@ interface MusicBookDisplayProps {
   isMinimized: boolean;
   pianoTheme: PianoTheme;
   onClose: () => void;
+}
+
+/**
+ * Calculate line ranges dynamically based on config
+ */
+function calculateLineRanges(measures: any[], maxCharsPerLine: number, linesPerPage: number) {
+  // Convert measures to tokens
+  const tokens: string[] = [];
+  measures.forEach((measure, measureIdx) => {
+    measure.notes.forEach((note: any) => {
+      tokens.push((note.originalNotation || note.key) + ' ');
+    });
+    if (measureIdx < measures.length - 1) {
+      tokens.push('| ');
+    }
+  });
+  
+  // Split into lines
+  const lines: string[][] = [];
+  let currentLine: string[] = [];
+  let currentLength = 0;
+  
+  tokens.forEach((token) => {
+    if (currentLength + token.length > maxCharsPerLine && currentLine.length > 0) {
+      lines.push(currentLine);
+      currentLine = [];
+      currentLength = 0;
+    }
+    currentLine.push(token);
+    currentLength += token.length;
+  });
+  if (currentLine.length > 0) {
+    lines.push(currentLine);
+  }
+  
+  // Calculate page ranges
+  const pageRanges: Array<{ start: number; end: number }> = [];
+  for (let i = 0; i < lines.length; i += linesPerPage) {
+    pageRanges.push({
+      start: i,
+      end: Math.min(i + linesPerPage, lines.length),
+    });
+  }
+  
+  return { totalLines: lines.length, pageRanges };
 }
 
 /**
@@ -24,17 +70,39 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   pianoTheme,
   onClose,
 }) => {
+  const appConfig = useAppConfig();
+  
+  // Get all measures from the sheet (stored in first page)
+  const allMeasures = currentSheet.pages[0]?.measures || [];
+  
+  // Calculate pagination dynamically based on current config
+  const { totalLines, pageRanges } = useMemo(() => 
+    calculateLineRanges(
+      allMeasures,
+      appConfig.musicStand.musicSheet.maxCharsPerLine,
+      appConfig.musicStand.musicSheet.linesPerPage
+    ),
+    [allMeasures, appConfig.musicStand.musicSheet.maxCharsPerLine, appConfig.musicStand.musicSheet.linesPerPage]
+  );
+  
+  const totalPages = pageRanges.length;
+  
   // Calculate 2-page spread
   const pageSetIndex = Math.floor(playback.currentPage / 2);
   const leftPageIndex = pageSetIndex * 2;
   const rightPageIndex = leftPageIndex + 1;
   
-  const leftPage = currentSheet.pages[leftPageIndex];
-  const rightPage = rightPageIndex < currentSheet.pages.length 
-    ? currentSheet.pages[rightPageIndex] 
-    : null;
+  const leftPage = leftPageIndex < totalPages ? {
+    measures: allMeasures,
+    lineRange: pageRanges[leftPageIndex],
+    pageNumber: leftPageIndex + 1,
+  } : null;
   
-  const totalPages = currentSheet.pages.length;
+  const rightPage = rightPageIndex < totalPages ? {
+    measures: allMeasures,
+    lineRange: pageRanges[rightPageIndex],
+    pageNumber: rightPageIndex + 1,
+  } : null;
 
   return (
     <Collapse in={!isMinimized}>
@@ -104,6 +172,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
               currentNoteIndex={playback.currentPage === leftPageIndex ? playback.currentNoteIndex : -1}
               isPlaying={playback.isPlaying && playback.currentPage === leftPageIndex}
               pianoTheme={pianoTheme}
+              lineRange={leftPage?.lineRange}
             />
           </Box>
 
@@ -152,6 +221,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
                   currentNoteIndex={playback.currentPage === rightPageIndex ? playback.currentNoteIndex : -1}
                   isPlaying={playback.isPlaying && playback.currentPage === rightPageIndex}
                   pianoTheme={pianoTheme}
+                  lineRange={rightPage.lineRange}
                 />
               </>
             ) : (

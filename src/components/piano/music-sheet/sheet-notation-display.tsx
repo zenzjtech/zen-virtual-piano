@@ -10,6 +10,7 @@ interface SheetNotationDisplayProps {
   currentNoteIndex: number;
   isPlaying: boolean;
   pianoTheme: PianoTheme;
+  lineRange?: { start: number; end: number };
 }
 
 interface NoteToken {
@@ -29,6 +30,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
   currentNoteIndex,
   isPlaying,
   pianoTheme,
+  lineRange,
 }) => {
   const appConfig = useAppConfig();
 
@@ -84,6 +86,14 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
     return result;
   }, [tokens]);
 
+  // Filter lines based on lineRange (for line-based pagination)
+  const displayLines = useMemo(() => {
+    if (!lineRange) {
+      return lines;
+    }
+    return lines.slice(lineRange.start, lineRange.end);
+  }, [lines, lineRange]);
+
   return (
     <Box
       sx={{
@@ -95,7 +105,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
         color: 'text.primary',
       }}
     >
-      {lines.map((line, lineIdx) => (
+      {displayLines.map((line, lineIdx) => (
         <Box
           key={lineIdx}
           sx={{

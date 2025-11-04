@@ -181,17 +181,94 @@ export function parseVPNotation(notation: string, tempo: number = 120): ParsedNo
 }
 
 /**
- * Split measures into pages (6 measures per page)
+ * Convert measures to text tokens for line wrapping calculation
  */
-export function createPages(measures: Measure[]): SheetPage[] {
-  const pages: SheetPage[] = [];
-  const measuresPerPage = 6;
+function measuresToTextTokens(measures: Measure[]): string[] {
+  const tokens: string[] = [];
+  measures.forEach((measure, measureIdx) => {
+    measure.notes.forEach((note) => {
+      tokens.push((note.originalNotation || note.key) + ' ');
+    });
+    // Add measure separator
+    if (measureIdx < measures.length - 1) {
+      tokens.push('| ');
+    }
+  });
+  return tokens;
+}
+
+/**
+ * Split text tokens into lines based on character limit
+ */
+function tokensToLines(tokens: string[], maxCharsPerLine: number): string[][] {
+  const lines: string[][] = [];
+  let currentLine: string[] = [];
+  let currentLength = 0;
+
+  tokens.forEach((token) => {
+    const tokenLength = token.length;
+    
+    // If adding this token would exceed the limit and we have content, start new line
+    if (currentLength + tokenLength > maxCharsPerLine && currentLine.length > 0) {
+      lines.push(currentLine);
+      currentLine = [];
+      currentLength = 0;
+    }
+    
+    currentLine.push(token);
+    currentLength += tokenLength;
+  });
+
+  // Add the last line if it has content
+  if (currentLine.length > 0) {
+    lines.push(currentLine);
+  }
+
+  return lines;
+}
+
+/**
+ * Map lines back to measures for page structure
+ */
+function linesToMeasures(lines: string[][], allMeasures: Measure[]): Measure[] {
+  // For now, just return all measures since we're displaying by lines
+  // This maintains compatibility with existing structure
+  return allMeasures;
+}
+
+/**
+ * Split measures into pages based on LINE COUNT (after character wrapping)
+ * This ensures consistent page sizes regardless of measure boundaries
+ */
+export function createPages(measures: Measure[], maxCharsPerLine: number = 35, linesPerPage: number = 8): SheetPage[] {
+  // Convert measures to text tokens
+  const tokens = measuresToTextTokens(measures);
   
-  for (let i = 0; i < measures.length; i += measuresPerPage) {
-    const pageMeasures = measures.slice(i, i + measuresPerPage);
+  // Split tokens into lines based on character limit
+  const lines = tokensToLines(tokens, maxCharsPerLine);
+  
+  // Split lines into pages
+  const pages: SheetPage[] = [];
+  
+  for (let i = 0; i < lines.length; i += linesPerPage) {
+    const endLine = Math.min(i + linesPerPage, lines.length);
+    
     pages.push({
-      measures: pageMeasures,
-      pageNumber: Math.floor(i / measuresPerPage) + 1,
+      measures: measures, // Include all measures (display will filter by line range)
+      pageNumber: Math.floor(i / linesPerPage) + 1,
+      lineRange: {
+        start: i,
+        end: endLine,
+      },
+    });
+  }
+  
+  // If no pages were created (empty song), create one empty page
+  if (pages.length === 0) {
+    pages.push({
+      measures: measures,
+      pageNumber: 1,
+      lineRange: { start: 0, end: 0 },
     });
   }
   

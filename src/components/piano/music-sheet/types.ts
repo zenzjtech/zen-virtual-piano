@@ -39,6 +39,11 @@ export interface SheetPage {
   measures: Measure[];
   /** Page number (1-indexed) */
   pageNumber: number;
+  /** Line range for this page (0-indexed, for line-based pagination) */
+  lineRange?: {
+    start: number;
+    end: number;
+  };
 }
 
 /**

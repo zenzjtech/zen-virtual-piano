@@ -6,6 +6,7 @@ declare module 'wxt/utils/define-app-config' {
     musicStand: {
         musicSheet: {
             maxCharsPerLine: number;
+            linesPerPage: number;
         }
     }
   }
@@ -14,7 +15,8 @@ declare module 'wxt/utils/define-app-config' {
 export default defineAppConfig({
   musicStand: {
     musicSheet: {
-      maxCharsPerLine: 50,
+      maxCharsPerLine: 45,
+      linesPerPage: 6,
     },
   },
 })
