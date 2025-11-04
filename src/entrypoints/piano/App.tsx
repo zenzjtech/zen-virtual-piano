@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { Box, Container, Typography, Slider, Paper, Button, Stack } from '@mui/material';
+import { useState, useEffect, useCallback } from 'react';
+import { Box, Container, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
 import { StatusBoard } from '@/components/piano/status-board';
 import { SettingsBar } from '@/components/piano/settings-bar';
@@ -17,6 +17,10 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
 import { openSearchDialog, closeSearchDialog, switchToManualMode, addSheets } from '@/store/reducers/music-sheet-slice';
 import { getBuiltInSheets } from '@/services/sheet-library';
+import { usePopupManager } from '@/hooks/use-popup-manager';
+import { useSoundSettings } from '@/hooks/use-sound-settings';
+import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
+import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
@@ -45,40 +49,18 @@ function App() {
   const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
   const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
   
-  // Instrument popup state
-  const [instrumentPopupAnchor, setInstrumentPopupAnchor] = useState<HTMLElement | null>(null);
-  const instrumentPopupOpen = Boolean(instrumentPopupAnchor);
-  
-  // Sound settings popup state
-  const [soundSettingsAnchor, setSoundSettingsAnchor] = useState<HTMLElement | null>(null);
-  const soundSettingsOpen = Boolean(soundSettingsAnchor);
-  
-  // Style settings popup state
-  const [styleSettingsAnchor, setStyleSettingsAnchor] = useState<HTMLElement | null>(null);
-  const styleSettingsOpen = Boolean(styleSettingsAnchor);
-  
-  // Key Assist popup state
-  const [keyAssistPopupAnchor, setKeyAssistPopupAnchor] = useState<HTMLElement | null>(null);
-  const keyAssistPopupOpen = Boolean(keyAssistPopupAnchor);
-  
-  // Sheet search popup state
-  const [sheetSearchAnchor, setSheetSearchAnchor] = useState<HTMLElement | null>(null);
-  
-  // Refs for focus management - store trigger buttons
-  const instrumentButtonRef = useRef<HTMLElement | null>(null);
-  const soundButtonRef = useRef<HTMLElement | null>(null);
-  const styleButtonRef = useRef<HTMLElement | null>(null);
-  const keyAssistButtonRef = useRef<HTMLElement | null>(null);
-  const sheetButtonRef = useRef<HTMLElement | null>(null);
+  // Popup managers
+  const instrumentPopup = usePopupManager();
+  const soundSettingsPopup = usePopupManager();
+  const styleSettingsPopup = usePopupManager();
+  const keyAssistPopup = usePopupManager();
+  const sheetSearchPopup = usePopupManager();
   
   // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
-  const isKeyboardEnabled = isPianoEnabled && !instrumentPopupOpen && !soundSettingsOpen && !styleSettingsOpen && !keyAssistPopupOpen && !isSheetSearchOpen;
+  const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen;
   
-  // Additional sound settings (local state for now, can be moved to Redux later)
-  const [transpose, setTranspose] = useState(0);
-  const [volume, setVolume] = useState(80);
-  const [metronomeEnabled, setMetronomeEnabled] = useState(false);
-  const [midiDevice, setMidiDevice] = useState('none');
+  // Sound settings state
+  const soundSettings = useSoundSettings();
 
   useEffect(() => {    
       trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
@@ -95,55 +77,30 @@ function App() {
     getAudioEngine().setSustain(sustain);
   }, [sustain]);
 
+  // Sheet search close handler with Redux dispatch
+  const handleSheetSearchClose = useCallback(() => {
+    sheetSearchPopup.handleClose();
+    dispatch(closeSearchDialog());
+  }, [sheetSearchPopup, dispatch]);
+
   // Handle Escape key to close popups or enable piano
-  useEffect(() => {
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        // Priority 1: Close any open popup and return focus
-        if (instrumentPopupOpen) {
-          handleInstrumentPopupClose();
-          event.preventDefault();
-        } else if (soundSettingsOpen) {
-          handleSoundSettingsClose();
-          event.preventDefault();
-        } else if (styleSettingsOpen) {
-          handleStyleSettingsClose();
-          event.preventDefault();
-        } else if (keyAssistPopupOpen) {
-          handleKeyAssistPopupClose();
-          event.preventDefault();
-        } else if (isSheetSearchOpen) {
-          handleSheetSearchClose();
-          event.preventDefault();
-        } 
-        // Priority 2: Enable piano if it's disabled and no popups are open
-        else if (!isPianoEnabled) {
-          dispatch(setIsPianoEnabled(true));
-          trackEvent(uid, ANALYTICS_ACTION.PIANO_ENABLED, {
-            previous_state: false,
-            new_state: true,
-            trigger: 'escape_key',
-          });
-          event.preventDefault();
-        }
-      }
-    };
-
-    // Add listener if any popup is open OR if piano is disabled
-    if (instrumentPopupOpen || soundSettingsOpen || styleSettingsOpen || keyAssistPopupOpen || isSheetSearchOpen || !isPianoEnabled) {
-      window.addEventListener('keydown', handleEscapeKey);
-      
-      return () => {
-        window.removeEventListener('keydown', handleEscapeKey);
-      };
+  useEscapeKeyHandler(
+    {
+      instrumentPopupOpen: instrumentPopup.isOpen,
+      soundSettingsOpen: soundSettingsPopup.isOpen,
+      styleSettingsOpen: styleSettingsPopup.isOpen,
+      keyAssistPopupOpen: keyAssistPopup.isOpen,
+      isSheetSearchOpen,
+    },
+    {
+      handleInstrumentPopupClose: instrumentPopup.handleClose,
+      handleSoundSettingsClose: soundSettingsPopup.handleClose,
+      handleStyleSettingsClose: styleSettingsPopup.handleClose,
+      handleKeyAssistPopupClose: keyAssistPopup.handleClose,
+      handleSheetSearchClose,
     }
-  }, [instrumentPopupOpen, soundSettingsOpen, styleSettingsOpen, keyAssistPopupOpen, isSheetSearchOpen, isPianoEnabled, dispatch, uid]);
+  );
 
-  const handleSustainChange = (_event: Event, newValue: number | number[]) => {
-    const value = Array.isArray(newValue) ? newValue[0] : newValue;
-    dispatch(setSustain(value));
-    getAudioEngine().setSustain(value);
-  };
 
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
     setPressedNotes(notes);
@@ -169,65 +126,13 @@ function App() {
   };
   
   const handleRecord = () => console.log('Record clicked');
-  
-  const handleKeyAssist = (event: React.MouseEvent<HTMLButtonElement>) => {
-    keyAssistButtonRef.current = event.currentTarget;
-    setKeyAssistPopupAnchor(event.currentTarget);
-  };
-  
-  const handleKeyAssistPopupClose = () => {
-    setKeyAssistPopupAnchor(null);
-    // Return focus to trigger button
-    setTimeout(() => {
-      keyAssistButtonRef.current?.focus();
-    }, 100);
-  };
-  
-  const handleInstrument = (event: React.MouseEvent<HTMLButtonElement>) => {
-    instrumentButtonRef.current = event.currentTarget;
-    setInstrumentPopupAnchor(event.currentTarget);
-  };
-  
-  const handleInstrumentPopupClose = () => {
-    setInstrumentPopupAnchor(null);
-    // Return focus to trigger button
-    setTimeout(() => {
-      instrumentButtonRef.current?.focus();
-    }, 100);
-  };
-  
-  const handleSound = (event: React.MouseEvent<HTMLButtonElement>) => {
-    soundButtonRef.current = event.currentTarget;
-    setSoundSettingsAnchor(event.currentTarget);
-  };
-  
-  const handleSoundSettingsClose = () => {
-    setSoundSettingsAnchor(null);
-    // Return focus to trigger button
-    setTimeout(() => {
-      soundButtonRef.current?.focus();
-    }, 100);
-  };
-  
+
   const handleSoundSetChange = async (newSoundSetId: string) => {
     dispatch(setSoundSet(newSoundSetId));
     // Change the sound set in the audio engine
     await getAudioEngine().changeSoundSet(newSoundSetId);
     // Reapply sustain setting after sound set change
     getAudioEngine().setSustain(sustain);
-  };
-  
-  const handleStyles = (event: React.MouseEvent<HTMLButtonElement>) => {
-    styleButtonRef.current = event.currentTarget;
-    setStyleSettingsAnchor(event.currentTarget);
-  };
-  
-  const handleStyleSettingsClose = () => {
-    setStyleSettingsAnchor(null);
-    // Return focus to trigger button
-    setTimeout(() => {
-      styleButtonRef.current?.focus();
-    }, 100);
   };
   
   const handlePianoThemeChange = (themeId: string) => {
@@ -237,71 +142,20 @@ function App() {
   const handleBackgroundThemeChange = (themeId: string) => {
     dispatch(setBackgroundTheme(themeId));
   };
-  
+
   const handleSheets = (event: React.MouseEvent<HTMLButtonElement>) => {
-    sheetButtonRef.current = event.currentTarget;
-    setSheetSearchAnchor(event.currentTarget);
+    sheetSearchPopup.handleOpen(event);
     dispatch(openSearchDialog());
-  };
-  
-  const handleSheetSearchClose = () => {
-    setSheetSearchAnchor(null);
-    dispatch(closeSearchDialog());
-    // Return focus to trigger button
-    setTimeout(() => {
-      sheetButtonRef.current?.focus();
-    }, 100);
   };
 
   // Get background theme styles and determine if it's a dark background
-  const isDarkBackground = ['dark', 'gradient-ocean', 'gufeng-ink-jade', 'leela-peacock-divine', 'isha-earth-mystic', 'sacred-light-glory', 'islamic-emerald-gold'].includes(backgroundThemeId);
-  
-  const getBackgroundStyle = () => {
-    switch (backgroundThemeId) {
-      case 'white':
-        return { backgroundColor: '#FFFFFF' };
-      case 'light-gray':
-        return { backgroundColor: '#F5F5F5' };
-      case 'warm':
-        return { backgroundColor: '#FFF8F0' };
-      case 'cool':
-        return { backgroundColor: '#F0F4F8' };
-      case 'dark':
-        return { backgroundColor: '#2C2C2C' };
-      case 'gradient-sunset':
-        return { background: 'linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)' };
-      case 'gradient-ocean':
-        return { background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)' };
-      case 'gradient-forest':
-        return { background: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)' };
-      case 'gufeng-ink-jade':
-        return { background: 'linear-gradient(135deg, #2C3E50 0%, #3C5A4E 50%, #4A6B5A 100%)' };
-      case 'gufeng-vermillion-gold':
-        return { background: 'linear-gradient(135deg, #8B3A3A 0%, #C84B31 35%, #D4AF37 70%, #F4E5A1 100%)' };
-      case 'zen-sakura-dawn':
-        return { background: 'linear-gradient(135deg, #FFF5F7 0%, #FFE5EC 25%, #FFB7C5 60%, #FFA8B8 100%)' };
-      case 'zen-bamboo-stone':
-        return { background: 'linear-gradient(135deg, #D4D9D4 0%, #B4C4B4 35%, #8B9D83 70%, #6B7B68 100%)' };
-      case 'leela-saffron-marigold':
-        return { background: 'linear-gradient(135deg, #FFE5CC 0%, #FFB366 30%, #FF9933 60%, #CC6600 100%)' };
-      case 'leela-peacock-divine':
-        return { background: 'linear-gradient(135deg, #667EEA 0%, #4A90E2 25%, #2E5F8F 60%, #1A3A5C 100%)' };
-      case 'isha-earth-mystic':
-        return { background: 'linear-gradient(135deg, #D4A574 0%, #B8956A 25%, #8B6F47 55%, #6B5B4A 80%, #4A4458 100%)' };
-      case 'sacred-light-glory':
-        return { background: 'linear-gradient(135deg, #FFF8E7 0%, #FFD700 20%, #E6B800 40%, #4169E1 70%, #2F4F7F 100%)' };
-      case 'islamic-emerald-gold':
-        return { background: 'linear-gradient(135deg, #F0E68C 0%, #DAA520 25%, #00704A 60%, #004D40 100%)' };
-      default:
-        return { backgroundColor: '#FFFFFF' };
-    }
-  };
+  const isDarkBackground = isDarkBackgroundTheme(backgroundThemeId);
 
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        ...getBackgroundStyle(),
+        ...getBackgroundStyle(backgroundThemeId),
       }}
     >
       {/* Sticky Header */}
@@ -352,10 +206,10 @@ function App() {
                 onTogglePiano={handleTogglePiano}
                 isPianoEnabled={isPianoEnabled}
                 onRecord={handleRecord}
-                onKeyAssist={handleKeyAssist}
-                onInstrument={handleInstrument}
-                onSound={handleSound}
-                onStyles={handleStyles}
+                onKeyAssist={keyAssistPopup.handleOpen}
+                onInstrument={instrumentPopup.handleOpen}
+                onSound={soundSettingsPopup.handleOpen}
+                onStyles={styleSettingsPopup.handleOpen}
                 onSheets={handleSheets}
                 pianoTheme={pianoTheme}
               />
@@ -398,40 +252,40 @@ function App() {
 
       {/* Instrument Selector Popup */}
       <InstrumentSelectorPopup
-        open={instrumentPopupOpen}
-        anchorEl={instrumentPopupAnchor}
+        open={instrumentPopup.isOpen}
+        anchorEl={instrumentPopup.anchorEl}
         currentSoundSetId={soundSet}
-        onClose={handleInstrumentPopupClose}
+        onClose={instrumentPopup.handleClose}
         onSoundSetChange={handleSoundSetChange}
         pianoTheme={pianoTheme}
       />
 
       {/* Sound Settings Popup */}
       <SoundSettingsPopup
-        open={soundSettingsOpen}
-        anchorEl={soundSettingsAnchor}
-        onClose={handleSoundSettingsClose}
+        open={soundSettingsPopup.isOpen}
+        anchorEl={soundSettingsPopup.anchorEl}
+        onClose={soundSettingsPopup.handleClose}
         sustain={sustain}
         onSustainChange={(value) => {
           dispatch(setSustain(value));
           getAudioEngine().setSustain(value);
         }}
-        transpose={transpose}
-        onTransposeChange={setTranspose}
-        volume={volume}
-        onVolumeChange={setVolume}
-        metronomeEnabled={metronomeEnabled}
-        onMetronomeToggle={() => setMetronomeEnabled(!metronomeEnabled)}
-        midiDevice={midiDevice}
-        onMidiDeviceChange={setMidiDevice}
+        transpose={soundSettings.transpose}
+        onTransposeChange={soundSettings.setTranspose}
+        volume={soundSettings.volume}
+        onVolumeChange={soundSettings.setVolume}
+        metronomeEnabled={soundSettings.metronomeEnabled}
+        onMetronomeToggle={soundSettings.toggleMetronome}
+        midiDevice={soundSettings.midiDevice}
+        onMidiDeviceChange={soundSettings.setMidiDevice}
         pianoTheme={pianoTheme}
       />
 
       {/* Style Settings Popup */}
       <StyleSettingsPopup
-        open={styleSettingsOpen}
-        anchorEl={styleSettingsAnchor}
-        onClose={handleStyleSettingsClose}
+        open={styleSettingsPopup.isOpen}
+        anchorEl={styleSettingsPopup.anchorEl}
+        onClose={styleSettingsPopup.handleClose}
         currentPianoTheme={pianoThemeId}
         currentBackgroundTheme={backgroundThemeId}
         onPianoThemeChange={handlePianoThemeChange}
@@ -441,11 +295,11 @@ function App() {
 
       {/* Key Assist Popup */}
       <KeyAssistPopup
-        open={keyAssistPopupOpen}
-        anchorEl={keyAssistPopupAnchor}
+        open={keyAssistPopup.isOpen}
+        anchorEl={keyAssistPopup.anchorEl}
         showKeyboard={showKeyboard}
         showNoteName={showNoteName}
-        onClose={handleKeyAssistPopupClose}
+        onClose={keyAssistPopup.handleClose}
         onShowKeyboardChange={(value) => dispatch(setShowKeyboard(value))}
         onShowNoteNameChange={(value) => dispatch(setShowNoteName(value))}
         pianoTheme={pianoTheme}
@@ -454,7 +308,7 @@ function App() {
       {/* Sheet Search Dialog */}
       <SheetSearchDialog
         open={isSheetSearchOpen}
-        anchorEl={sheetSearchAnchor}
+        anchorEl={sheetSearchPopup.anchorEl}
         onClose={handleSheetSearchClose}
         pianoTheme={pianoTheme}
       />
