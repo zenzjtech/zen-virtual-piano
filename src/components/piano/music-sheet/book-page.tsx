@@ -12,6 +12,8 @@ interface BookPageProps {
   artist: string;
   /** Page number (1-indexed) */
   pageNumber: number;
+  /** Total number of pages */
+  totalPages: number;
   /** All measures */
   measures: Measure[];
   /** Line range for this page */
@@ -33,6 +35,7 @@ export const BookPage: React.FC<BookPageProps> = ({
   title,
   artist,
   pageNumber,
+  totalPages,
   measures,
   lineRange,
   playback,
@@ -103,7 +106,7 @@ export const BookPage: React.FC<BookPageProps> = ({
           fontSize: { xs: '0.7rem', md: '0.8rem' },
         }}
       >
-        {artist} - Page {pageNumber}
+        {artist} - Page {pageNumber} of {totalPages}
       </Typography>
 
       <SheetNotationDisplay
