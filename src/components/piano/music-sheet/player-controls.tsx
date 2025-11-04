@@ -76,7 +76,7 @@ export const PlayerControls: React.FC<PlayerControlsProps> = ({
 
         {/* Playback Controls */}
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Tooltip title="Previous Page">
+          <Tooltip title="Previous Page (← LeftArrow / Backspace)">
             <span>
               <IconButton
                 onClick={onPreviousPage}
@@ -89,7 +89,7 @@ export const PlayerControls: React.FC<PlayerControlsProps> = ({
             </span>
           </Tooltip>
 
-          <Tooltip title="Next Page">
+          <Tooltip title="Next Page (→ RightArrow / Enter)">
             <span>
               <IconButton
                 onClick={onNextPage}
