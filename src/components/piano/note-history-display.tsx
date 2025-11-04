@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { PianoTheme } from './themes';
 import { HistoryDisplay, Label, PressedKeysText } from './status-board-styled';
 
@@ -11,10 +11,20 @@ export const NoteHistoryDisplay: React.FC<NoteHistoryDisplayProps> = ({
   pianoTheme,
   historyText,
 }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when history changes
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [historyText]);
+
   return (
     <HistoryDisplay sx={{ pb: 1 }}>
       <Label variant="caption" pianoTheme={pianoTheme}>History</Label>
       <PressedKeysText
+        ref={scrollRef}
         variant="body2"
         pianoTheme={pianoTheme}
         sx={{ 
