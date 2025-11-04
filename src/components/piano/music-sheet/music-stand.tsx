@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import {
@@ -16,7 +16,7 @@ import {
 import { PianoTheme } from '../themes';
 import { MusicBookDisplay } from './music-book-display';
 import { PlayerControls } from './player-controls';
-import { useAppConfig } from '#imports';
+import { useTotalPages } from '@/hooks/use-total-pages';
 
 interface MusicStandProps {
   pianoTheme: PianoTheme;
@@ -28,49 +28,16 @@ interface MusicStandProps {
  */
 export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
   const dispatch = useAppDispatch();
-  const appConfig = useAppConfig();
   
   // Redux state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
   const playback = useAppSelector((state) => state.musicSheet.playback);
   const isMinimized = useAppSelector((state) => state.musicSheet.isMusicStandMinimized);
   
-  if (!currentSheet) return null;
+  // Calculate total pages using shared hook
+  const totalPages = useTotalPages(currentSheet);
   
-  // Calculate totalPages dynamically based on config
-  const totalPages = useMemo(() => {
-    const allMeasures = currentSheet.pages[0]?.measures || [];
-    const { maxCharsPerLine, linesPerPage } = appConfig.musicStand.musicSheet;
-    
-    // Count total lines
-    const tokens: string[] = [];
-    allMeasures.forEach((measure) => {
-      measure.notes.forEach((note) => {
-        tokens.push((note.originalNotation || note.key) + ' ');
-      });
-    });
-    
-    let lineCount = 0;
-    let currentLength = 0;
-    tokens.forEach((token) => {
-      if (currentLength + token.length > maxCharsPerLine && currentLength > 0) {
-        lineCount++;
-        currentLength = 0;
-      }
-      currentLength += token.length;
-    });
-    if (currentLength > 0) lineCount++;
-    
-    const calculatedPages = Math.ceil(lineCount / linesPerPage);
-    console.log('[MusicStand] Sheet:', currentSheet.title);
-    console.log('[MusicStand] Total measures:', allMeasures.length);
-    console.log('[MusicStand] Total tokens:', tokens.length);
-    console.log('[MusicStand] Total lines:', lineCount);
-    console.log('[MusicStand] Lines per page:', linesPerPage);
-    console.log('[MusicStand] Calculated pages:', calculatedPages);
-    
-    return calculatedPages;
-  }, [currentSheet, appConfig.musicStand.musicSheet]);
+  if (!currentSheet) return null;
   
   // Event handlers
   const handlePlayPause = () => {
