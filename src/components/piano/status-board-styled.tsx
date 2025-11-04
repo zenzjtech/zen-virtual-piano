@@ -5,8 +5,7 @@ export const BoardContainer = styled(Paper, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
 })<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
-  color: pianoTheme.colors.primary,
-  padding: theme.spacing(1.5, 2.5),
+  color: pianoTheme.colors.primary,  
   borderRadius: 0,
   borderTopLeftRadius: theme.spacing(1.5),
   borderTopRightRadius: theme.spacing(1.5),

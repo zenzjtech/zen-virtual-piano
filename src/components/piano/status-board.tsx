@@ -58,7 +58,13 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
 
   return (
-    <BoardContainer elevation={0} pianoTheme={pianoTheme}>
+    <BoardContainer 
+      elevation={0} pianoTheme={pianoTheme}
+      sx={{
+        px: 3,
+        py: 3
+      }}
+    >
       {/* Decorative Corner Plates */}
       {pianoTheme.cornerPlates && (
         <>
