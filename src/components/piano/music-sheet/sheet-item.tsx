@@ -64,6 +64,9 @@ export const SheetItem: React.FC<SheetItemProps> = ({
     >
       <StyledListItemButton
         onClick={() => onSelect(sheet.id)}
+        sx={{
+          py: 0
+        }}
         pianoTheme={pianoTheme}
       >
         <ListItemIcon sx={{ minWidth: 40 }}>
@@ -91,7 +94,7 @@ export const SheetItem: React.FC<SheetItemProps> = ({
             </Box>
           }
           secondary={
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5, mt: 0.5 }}>
               <Typography
                 variant="caption"
                 sx={{
@@ -99,7 +102,7 @@ export const SheetItem: React.FC<SheetItemProps> = ({
                   opacity: 0.85,
                 }}
               >
-                {sheet.artist}
+                {sheet.artist + ' | '}
               </Typography>
               {sheet.durationSeconds && (
                 <Typography
