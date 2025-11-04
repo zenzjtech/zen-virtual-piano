@@ -23,11 +23,14 @@ export const SheetSearchFooter: React.FC<SheetSearchFooterProps> = ({
   return (
     <Box
       sx={{
-        borderTop: 1,
-        borderColor: 'divider',
+        borderTop: `1px solid ${pianoTheme.colors.border}`,
         px: 2,
         py: 1.5,
-        backgroundColor: (theme) => theme.palette.action.hover,
+        background: pianoTheme.isLight
+          ? 'rgba(0, 0, 0, 0.02)'
+          : 'rgba(255, 255, 255, 0.02)',
+        position: 'relative',
+        zIndex: 2,
       }}
     >
       <Link
@@ -41,8 +44,10 @@ export const SheetSearchFooter: React.FC<SheetSearchFooterProps> = ({
           color: pianoTheme.colors.accent,
           fontSize: '0.875rem',
           fontWeight: 500,
+          transition: 'all 0.2s ease',
           '&:hover': {
             textDecoration: 'underline',
+            filter: 'brightness(1.2)',
           },
         }}
       >

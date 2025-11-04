@@ -41,8 +41,9 @@ export const SheetSection: React.FC<SheetSectionProps> = ({
           pt: 1,
           pb: 0.5,
           display: 'block',
-          color: 'text.secondary',
+          color: pianoTheme.colors.secondary,
           fontWeight: 600,
+          letterSpacing: '0.5px',
         }}
       >
         {title}
@@ -62,14 +63,20 @@ export const SheetSection: React.FC<SheetSectionProps> = ({
         ) : (
           emptyMessage && (
             <Box sx={{ textAlign: 'center', py: 3, px: 2 }}>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                sx={{
+                  color: pianoTheme.colors.secondary,
+                  opacity: 0.7,
+                }}
+              >
                 {emptyMessage}
               </Typography>
             </Box>
           )
         )}
       </List>
-      {showDivider && <Divider sx={{ my: 1 }} />}
+      {showDivider && <Divider sx={{ my: 1, borderColor: pianoTheme.colors.border }} />}
     </>
   );
 };

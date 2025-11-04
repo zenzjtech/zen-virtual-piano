@@ -98,23 +98,39 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
         >
           {/* Header */}
           <PopupHeaderBox pianoTheme={pianoTheme}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <MusicNoteIcon sx={{ color: pianoTheme.colors.accent }} />
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <MusicNoteIcon
+                sx={{
+                  color: pianoTheme.colors.accent,
+                  fontSize: '1.5rem',
+                  filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
+                }}
+              />
+              <Typography
+                variant="h6"
+                fontWeight="600"
+                sx={{
+                  color: pianoTheme.colors.primary,
+                  textShadow: `
+                    0 1px 2px rgba(0, 0, 0, 0.3),
+                    0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
+                  `,
+                  letterSpacing: '0.5px',
+                }}
+              >
                 Music Sheets
               </Typography>
             </Box>
           </PopupHeaderBox>
           
           {/* Search Bar */}
-          <Box sx={{ px: 2, pt: 2, pb: 1 }}>
-            <PopupSearchBar
-              value={searchQuery}
-              onChange={setSearchQuery}
-              placeholder="Search songs, artists, or tags..."
-              pianoTheme={pianoTheme}
-            />
-          </Box>
+          <PopupSearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search songs, artists, or tags..."
+            pianoTheme={pianoTheme}
+            isOpen={open}
+          />
           
           {/* Content */}
           <Box sx={{ 
@@ -123,7 +139,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             px: 1,
           }}>
             {/* Empty State */}
-            {allSheets.length === 0 && <SheetEmptyState />}
+            {allSheets.length === 0 && <SheetEmptyState pianoTheme={pianoTheme} />}
             
             {/* Search Results */}
             {searchQuery.trim() && allSheets.length > 0 && (

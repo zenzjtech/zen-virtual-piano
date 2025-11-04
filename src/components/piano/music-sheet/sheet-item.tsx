@@ -50,7 +50,13 @@ export const SheetItem: React.FC<SheetItemProps> = ({
           edge="end"
           size="small"
           onClick={(e) => onToggleFavorite(sheet.id, e)}
-          sx={{ color: isSheetFavorite ? 'warning.main' : 'text.secondary' }}
+          sx={{
+            color: isSheetFavorite ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              color: pianoTheme.colors.accent,
+            },
+          }}
         >
           {isSheetFavorite ? <StarIcon /> : <StarBorderIcon />}
         </IconButton>
@@ -66,7 +72,14 @@ export const SheetItem: React.FC<SheetItemProps> = ({
         <ListItemText
           primary={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: 500,
+                  color: pianoTheme.colors.primary,
+                  letterSpacing: '0.3px',
+                }}
+              >
                 {sheet.title}
               </Typography>
               <Chip
@@ -79,11 +92,24 @@ export const SheetItem: React.FC<SheetItemProps> = ({
           }
           secondary={
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: pianoTheme.colors.secondary,
+                  opacity: 0.85,
+                }}
+              >
                 {sheet.artist}
               </Typography>
               {sheet.durationSeconds && (
-                <Typography variant="caption" sx={{ color: 'text.disabled', fontSize: '0.7rem' }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: pianoTheme.colors.secondary,
+                    opacity: 0.6,
+                    fontSize: '0.7rem',
+                  }}
+                >
                   ~{Math.ceil(sheet.durationSeconds / 60)} min • {sheet.tempo} BPM
                 </Typography>
               )}
