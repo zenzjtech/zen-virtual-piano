@@ -62,16 +62,16 @@ export const CurrentNoteDisplay = styled(Box, {
   alignItems: 'center',
   justifyContent: 'center',
   minWidth: '70px',
-  padding: theme.spacing(0.25),
-  // Enhanced border with depth
-  borderRight: `1px solid ${pianoTheme.colors.border}`,
-  borderRightWidth: '2px',
-  // Add subtle inner shadow for recessed effect
+  padding: theme.spacing(0.75, 1),
+  background: 'rgba(0, 0, 0, 0.1)',
+  borderRadius: theme.spacing(0.5),
+  // Recessed panel effect matching other displays
   boxShadow: `
-    inset -1px 0 2px rgba(0, 0, 0, 0.2),
-    1px 0 0 rgba(255, 255, 255, 0.05)
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.05)
   `,
-  paddingRight: theme.spacing(1.5),
+  border: '1px solid rgba(0, 0, 0, 0.2)',
   position: 'relative',
   zIndex: 3,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
