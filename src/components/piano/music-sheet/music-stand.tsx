@@ -113,7 +113,6 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
       <Box
         sx={{
           width: '100%',
-          maxWidth: 900,
           display: 'flex',
           flexDirection: 'column',
           gap: 1,
@@ -126,9 +125,9 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
             sx={{
               position: 'relative',
               width: '100%',
-              aspectRatio: '16 / 9',
+              aspectRatio: '24 / 9',
               backgroundImage: `url(${bookImage})`,
-              backgroundSize: 'contain',
+              backgroundSize: '100% 100%',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
