@@ -398,7 +398,7 @@ dispatch(setTempo(140));
 
 ### Acknowledgments
 
-- Book background image: `src/assets/image/book.png` (existing asset)
+- Book background image: `src/assets/image/music-sheet.png` (existing asset)
 - Virtual Piano notation format: VirtualPiano.net community standard
 - Material UI components for consistent design
 

@@ -26,7 +26,7 @@ import {
   toggleMusicStandMinimized,
 } from '@/store/reducers/music-sheet-slice';
 import { PianoTheme } from '../themes';
-import bookImage from '@/assets/image/book.png';
+import bookImage from '@/assets/image/music-sheet.png';
 
 interface MusicStandProps {
   pianoTheme: PianoTheme;
