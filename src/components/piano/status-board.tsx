@@ -15,12 +15,15 @@ interface StatisticsBoardProps {
   currentNote: PianoKey | null;
   /** Piano theme for consistent styling */
   pianoTheme: PianoTheme;
+  /** Handler to open sheet search dialog */
+  onSheetSearchOpen: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   pressedNotes,
   currentNote,
-  pianoTheme
+  pianoTheme,
+  onSheetSearchOpen
 }) => {
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
@@ -97,6 +100,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             isNoteActive={isNoteActive}
             historyText={historyText}
             pianoTheme={pianoTheme}
+            onSheetSearchOpen={onSheetSearchOpen}
           />
         )}
       </Box>

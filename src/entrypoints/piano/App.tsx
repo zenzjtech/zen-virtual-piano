@@ -57,7 +57,7 @@ function App() {
   const keyAssistPopup = usePopupManager();
   
   // Sheet search hook
-  const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchClose } = useSheetSearch();
+  const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchOpen, handleSheetSearchClose } = useSheetSearch();
   
   // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
   const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen;
@@ -194,6 +194,7 @@ function App() {
                 pressedNotes={pressedNotes}
                 currentNote={currentNote}
                 pianoTheme={pianoTheme}
+                onSheetSearchOpen={handleSheetSearchOpen}
               />
 
               {/* Settings Bar */}

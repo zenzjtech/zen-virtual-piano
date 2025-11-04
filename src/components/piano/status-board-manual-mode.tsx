@@ -8,13 +8,13 @@ import {
 } from './status-board-styled';
 import { NoteHistoryDisplay } from './note-history-display';
 import { ManualControlsSection } from './manual-controls-section';
-import { useSheetSearch } from '@/hooks/use-sheet-search';
 
 interface ManualModeDisplayProps {
   lastNote: PianoKey | null;
   isNoteActive: boolean;
   historyText: string;
   pianoTheme: PianoTheme;
+  onSheetSearchOpen: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
@@ -22,9 +22,8 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
   isNoteActive,
   historyText,
   pianoTheme,
+  onSheetSearchOpen,
 }) => {
-  // Sheet search hook
-  const { handleSheetSearchOpen } = useSheetSearch();
   
   return (
     <>
@@ -44,7 +43,7 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
         lastNote={lastNote}
         isNoteActive={isNoteActive}
         pianoTheme={pianoTheme}
-        onSheetSearchOpen={handleSheetSearchOpen}
+        onSheetSearchOpen={onSheetSearchOpen}
       />   
     </>
   );
