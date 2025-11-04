@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
+import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
 import { Measure } from './types';
 import { PianoTheme } from '../themes';
 import { useAppConfig } from '#imports';
@@ -87,6 +88,16 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
     return lines.slice(lineRange.start, lineRange.end);
   }, [lines, lineRange]);
 
+  const currentLineIndex = useMemo(() => {
+    if (!isPlaying) return -1;
+    return displayLines.findIndex(line => 
+      line.some(token => 
+        token.measureIndex === currentMeasure && 
+        token.noteIndex === currentNoteIndex
+      )
+    );
+  }, [displayLines, isPlaying, currentMeasure, currentNoteIndex]);
+
   return (
     <Box
       sx={{
@@ -107,17 +118,33 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
             textShadow: '0 0 2px rgba(255, 255, 255, 0.5)',
           },
         },
+        '@keyframes bounce': {
+          '0%': { transform: 'scale(0.5)', opacity: 0 },
+          '60%': { transform: 'scale(1.2)', opacity: 1 },
+          '100%': { transform: 'scale(1)', opacity: 1 },
+        },
       }}
     >
       {displayLines.map((line, lineIdx) => (
         <Box
           key={lineIdx}
           sx={{
+            position: 'relative',
             mb: 0.5,
             px: 0.5,
             py: 0.25,
           }}
-        >
+        >          
+          {lineIdx === currentLineIndex && (
+            <ArrowRightIcon 
+              sx={{ 
+                position: 'absolute',
+                left: theme => theme.spacing(1.5),
+                fontSize: '1.5rem',
+                animation: 'bounce 0.5s ease-out',
+              }} 
+            />
+          )}
           {line.map((token, tokenIdx) => {
             const isCurrentNote =
               isPlaying &&
