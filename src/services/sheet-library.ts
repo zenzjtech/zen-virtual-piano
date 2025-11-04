@@ -12,6 +12,16 @@ import { parseVPNotation, createPages, estimateDuration } from './sheet-parser';
  */
 const SHEET_DATA = [
   {
+    id: 'kiss-the-rain-v2',
+    title: 'Kiss the Rain v2',
+    artist: 'Yiruma',
+    difficulty: 'hard' as const,
+    tempo: 96,
+    timeSignature: '4/4',
+    tags: ['contemporary', 'yiruma', 'romantic'],
+    notation: 'o s d [td] f f | o s o s d f [wd] h h | o a o h j k [ek] l [sfl] s f z z x z l [0k] o a o 0 l k h [ih] j j | s g s h g [0g] h h o a o s d [yf] g [pdg] p d p h g [wf] o a g f [wd] o s d [td] f f | o s o s d f [wd] h h | o a o h j k [ek] l [sfl] s f z z x z l [0k] o a o 0 l k h [ih] j j | s g s h g [0g] h h o a o s d [yf] g [pdg] p [ws] y a [ts] u o s f s f h [ij] s g s i a s j [0h] o a o e a s h [yh] g [odg] f [wf] d o s d [td] f f | o t s f h [ij] s f s r k k j [0h] o a f g [eh] g f [yg] o h o [yj] s k l [ox] d h d [oz] o s d [td] f f | o s o s d f [wd] h h | o a o h j k [ek] l [sfl] s f z z x z l [0k] o a o 0 l k l k h [ih] j j | s g s j h g [0g] h h o a o s d [yf] g [pdg] p [ws] y a [ts] u o s f l k h [ih] j j | s g h g [0g] h h | o a s d [yf] g g p [ws] y a [ts] u o s t u o s f',
+  },
+  {
     id: 'twinkle-twinkle',
     title: 'Twinkle Twinkle Little Star',
     artist: 'Traditional',
