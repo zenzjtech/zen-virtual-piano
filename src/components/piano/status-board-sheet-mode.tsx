@@ -16,6 +16,7 @@ interface SheetModeDisplayProps {
   playback: PlaybackState;
   pianoTheme: PianoTheme;
   totalPages: number;
+  historyText: string;
 }
 
 export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
@@ -23,6 +24,7 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
   playback,
   pianoTheme,
   totalPages,
+  historyText,
 }) => {
   return (
     <>
@@ -55,15 +57,16 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
         </Typography>
       </PressedKeysDisplay>
 
-      {/* Playback Progress */}
+      {/* History Display */}
       <HistoryDisplay>
-        <Label variant="caption" pianoTheme={pianoTheme}>Progress</Label>
-        <PressedKeysText variant="h6" pianoTheme={pianoTheme}>
-          Page {playback.currentPage + 1}/{totalPages} • Measure {playback.currentMeasure + 1}
+        <Label variant="caption" pianoTheme={pianoTheme}>History</Label>
+        <PressedKeysText 
+          variant="h6" 
+          pianoTheme={pianoTheme} 
+          sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+        >
+          {historyText}
         </PressedKeysText>
-        <Typography variant="caption" sx={{ color: pianoTheme.colors.secondary, mt: 0.5 }}>
-          {Math.round(playback.progress * 100)}% • {playback.tempo} BPM
-        </Typography>
       </HistoryDisplay>
     </>
   );

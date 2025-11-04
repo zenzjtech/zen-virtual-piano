@@ -83,6 +83,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             playback={playback}
             pianoTheme={pianoTheme}
             totalPages={totalPages}
+            historyText={historyText}
           />
         ) : (
           <ManualModeDisplay

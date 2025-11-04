@@ -117,6 +117,7 @@ export const PressedKeysDisplay = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 3,
   minWidth: 0, // Allow text overflow
+  minHeight: '83px', // Maintain consistent height across modes
   padding: theme.spacing(0.4, 0.8),
   background: 'rgba(0, 0, 0, 0.1)',
   borderRadius: theme.spacing(0.5),
@@ -142,6 +143,7 @@ export const HistoryDisplay = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(1.5),
   marginLeft: theme.spacing(1),
   minWidth: 0, // Allow text overflow
+  minHeight: '83px', // Match height of PressedKeysDisplay with content
   padding: theme.spacing(0.4, 0.8),
   background: 'rgba(0, 0, 0, 0.1)',
   borderRadius: theme.spacing(0.5),
