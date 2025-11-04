@@ -61,7 +61,15 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
     });
     if (currentLength > 0) lineCount++;
     
-    return Math.ceil(lineCount / linesPerPage);
+    const calculatedPages = Math.ceil(lineCount / linesPerPage);
+    console.log('[MusicStand] Sheet:', currentSheet.title);
+    console.log('[MusicStand] Total measures:', allMeasures.length);
+    console.log('[MusicStand] Total tokens:', tokens.length);
+    console.log('[MusicStand] Total lines:', lineCount);
+    console.log('[MusicStand] Lines per page:', linesPerPage);
+    console.log('[MusicStand] Calculated pages:', calculatedPages);
+    
+    return calculatedPages;
   }, [currentSheet, appConfig.musicStand.musicSheet]);
   
   // Event handlers

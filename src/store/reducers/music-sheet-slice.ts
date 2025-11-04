@@ -232,17 +232,17 @@ export const musicSheetSlice = createSlice({
     // Navigation
     /**
      * Go to next page (navigates by 2 pages for 2-page spread)
+     * Note: Boundary checking is handled by the UI components which calculate totalPages dynamically
      */
     nextPage: (state) => {
       if (state.currentSheet) {
         const currentPageSet = Math.floor(state.playback.currentPage / 2);
         const nextPageSetStart = (currentPageSet + 1) * 2;
         
-        if (nextPageSetStart < state.currentSheet.pages.length) {
-          state.playback.currentPage = nextPageSetStart;
-          state.playback.currentMeasure = 0;
-          state.playback.currentNoteIndex = 0;
-        }
+        // Always allow navigation - boundary checking happens in UI
+        state.playback.currentPage = nextPageSetStart;
+        state.playback.currentMeasure = 0;
+        state.playback.currentNoteIndex = 0;
       }
     },
 

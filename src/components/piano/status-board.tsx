@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { PianoKey } from './types';
 import { PianoTheme } from './themes';
 import { useAppSelector } from '@/store/hook';
@@ -6,6 +6,7 @@ import { BoardContainer, CornerPlate } from './status-board-styled';
 import { SheetModeDisplay } from './status-board-sheet-mode';
 import { ManualModeDisplay } from './status-board-manual-mode';
 import { TransitionWrapper } from './status-board-transition';
+import { useAppConfig } from '#imports';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -25,6 +26,35 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
   const playback = useAppSelector((state) => state.musicSheet.playback);
   const statusDisplayMode = useAppSelector((state) => state.musicSheet.statusDisplayMode);
+  const appConfig = useAppConfig();
+  
+  // Calculate totalPages dynamically (same logic as MusicStand)
+  const totalPages = useMemo(() => {
+    if (!currentSheet) return 1;
+    
+    const allMeasures = currentSheet.pages[0]?.measures || [];
+    const { maxCharsPerLine, linesPerPage } = appConfig.musicStand.musicSheet;
+    
+    const tokens: string[] = [];
+    allMeasures.forEach((measure) => {
+      measure.notes.forEach((note) => {
+        tokens.push((note.originalNotation || note.key) + ' ');
+      });
+    });
+    
+    let lineCount = 0;
+    let currentLength = 0;
+    tokens.forEach((token) => {
+      if (currentLength + token.length > maxCharsPerLine && currentLength > 0) {
+        lineCount++;
+        currentLength = 0;
+      }
+      currentLength += token.length;
+    });
+    if (currentLength > 0) lineCount++;
+    
+    return Math.ceil(lineCount / linesPerPage);
+  }, [currentSheet, appConfig.musicStand.musicSheet]);
   
   // Track note history (last 20 notes)
   const [noteHistory, setNoteHistory] = useState<string[]>([]);
@@ -72,6 +102,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             currentSheet={currentSheet}
             playback={playback}
             pianoTheme={pianoTheme}
+            totalPages={totalPages}
           />
         ) : (
           <ManualModeDisplay

@@ -101,6 +101,11 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
     pageNumber: rightPageIndex + 1,
   } : null;
 
+  console.log('[MusicBookDisplay] totalLines:', totalLines, 'totalPages:', totalPages);
+  console.log('[MusicBookDisplay] pageRanges:', pageRanges);
+  console.log('[MusicBookDisplay] currentPage:', playback.currentPage);
+  console.log('[MusicBookDisplay] leftPageIndex:', leftPageIndex, 'rightPageIndex:', rightPageIndex);
+
   return (
     <Collapse in={!isMinimized}>
       <Paper
