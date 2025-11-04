@@ -47,6 +47,19 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </span>
       </Tooltip>
 
+      <Tooltip title="Next Page (→ RightArrow / Enter)">
+        <span>
+          <IconButton
+            onClick={handleNextPage}
+            disabled={playback.currentPage >= totalPages - 1}
+            size="small"
+            sx={{ color: pianoTheme.colors.primary }}
+          >
+            <NextIcon fontSize="small" />
+          </IconButton>
+        </span>
+      </Tooltip>      
+
       <Tooltip title={playback.isPlaying ? 'Pause' : 'Play'}>
         <IconButton
           onClick={() => handlePlayPause(playback.isPlaying)}
@@ -71,19 +84,6 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         >
           <StopIcon fontSize="small" />
         </IconButton>
-      </Tooltip>
-
-      <Tooltip title="Next Page (→ RightArrow / Enter)">
-        <span>
-          <IconButton
-            onClick={handleNextPage}
-            disabled={playback.currentPage >= totalPages - 1}
-            size="small"
-            sx={{ color: pianoTheme.colors.primary }}
-          >
-            <NextIcon fontSize="small" />
-          </IconButton>
-        </span>
       </Tooltip>
 
       <Tooltip title={playback.loopEnabled ? 'Loop: ON' : 'Loop: OFF'}>
