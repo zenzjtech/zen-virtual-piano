@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { createKeyboardMap } from './types';
-import { calculateVelocity, velocityConfig } from './piano-utils';
+import { createKeyboardMap } from '@/components/piano/types';
+import { calculateVelocity, velocityConfig } from '@/components/piano/piano-utils'
 import type { AudioEngine } from '@/services/audio-engine';
 
 interface UsePianoKeyboardOptions {

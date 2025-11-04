@@ -6,8 +6,8 @@ import { KEY_MAPPINGS, KeyPressState, PianoKey } from './types';
 import { getTheme } from './themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { getBlackKeyOffset } from './piano-utils';
-import { usePianoKeyboard } from './use-piano-keyboard';
-import { usePianoMouse } from './use-piano-mouse';
+import { usePianoKeyboard } from '@/hooks/use-piano-keyboard';
+import { usePianoMouse } from '../../hooks/use-piano-mouse';
 import {
   PianoContainer,
   KeyboardWrapper,

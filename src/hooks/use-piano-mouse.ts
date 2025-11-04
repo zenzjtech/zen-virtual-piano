@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { calculateVelocity, velocityConfig } from './piano-utils';
+import { calculateVelocity, velocityConfig } from '../components/piano/piano-utils';
 
 interface UsePianoMouseOptions {
   playNote: (note: string, frequency: number, velocity: number) => void;
