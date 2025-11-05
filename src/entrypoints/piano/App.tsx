@@ -43,6 +43,7 @@ function App() {
   const isMusicStandVisible = useAppSelector((state) => state.musicSheet.isMusicStandVisible);
   const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   const recentlyPlayed = useAppSelector((state) => state.musicSheet.userData.recentlyPlayed);
+  const hasManuallyClosedSheet = useAppSelector((state) => state.musicSheet.hasManuallyClosedSheet);
   
   // Get the actual theme object
   const pianoTheme = getTheme(pianoThemeId);
@@ -75,9 +76,13 @@ function App() {
   useEffect(() => {
     const sheets = getBuiltInSheets();
     dispatch(addSheets(sheets));
-    // Load last played sheet, or default to 'kiss-the-rain-v2'
-    const defaultSheetId = recentlyPlayed.length > 0 ? recentlyPlayed[0] : 'kiss-the-rain-v2';
-    dispatch(loadSheet(defaultSheetId));
+    
+    // Only auto-load sheet if user hasn't manually closed it before
+    if (!hasManuallyClosedSheet) {
+      // Load last played sheet, or default to 'kiss-the-rain-v2'
+      const defaultSheetId = recentlyPlayed.length > 0 ? recentlyPlayed[0] : 'kiss-the-rain-v2';
+      dispatch(loadSheet(defaultSheetId));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 

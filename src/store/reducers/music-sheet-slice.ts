@@ -43,6 +43,8 @@ export interface MusicSheetState {
   statusDisplayMode: StatusDisplayMode;
   /** Whether music stand is minimized (show controls only) */
   isMusicStandMinimized: boolean;
+  /** Whether user has manually closed sheet mode (prevents auto-load) */
+  hasManuallyClosedSheet: boolean;
 }
 
 /**
@@ -81,9 +83,10 @@ const initialState: MusicSheetState = {
   playback: initialPlaybackState,
   userData: initialUserData,
   isSearchDialogOpen: false,
-  isMusicStandVisible: true,
+  isMusicStandVisible: false,
   statusDisplayMode: 'pressed-notes', // Default: show pressed notes
   isMusicStandMinimized: false,
+  hasManuallyClosedSheet: false,
 };
 
 /**
@@ -130,6 +133,9 @@ export const musicSheetSlice = createSlice({
         state.playback.tempo = sheet.tempo;
         state.isMusicStandVisible = true;
         
+        // Clear the manual close flag since user is loading a sheet again
+        state.hasManuallyClosedSheet = false;
+        
         // Add to recently played (at the beginning)
         state.userData.recentlyPlayed = [
           sheetId,
@@ -151,6 +157,9 @@ export const musicSheetSlice = createSlice({
       state.currentSheet = null;
       state.playback = initialPlaybackState;
       state.isMusicStandVisible = false;
+      
+      // Mark that user has manually closed sheet mode
+      state.hasManuallyClosedSheet = true;
       
       // Switch back to pressed notes display
       state.statusDisplayMode = 'pressed-notes';
