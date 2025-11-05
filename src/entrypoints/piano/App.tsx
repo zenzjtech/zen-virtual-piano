@@ -90,7 +90,7 @@ function App() {
     // Only auto-load sheet if user hasn't manually closed it before
     if (!hasManuallyClosedSheet) {
       // Load last played sheet, or default to 'kiss-the-rain-v2'
-      const defaultSheetId = recentlyPlayed.length > 0 ? recentlyPlayed[0] : 'kiss-the-rain-v2';
+      const defaultSheetId = recentlyPlayed.length > 0 ? recentlyPlayed[0] : 'beethoven-fur-elise';
       dispatch(loadSheet(defaultSheetId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
