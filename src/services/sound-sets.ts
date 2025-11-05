@@ -58,6 +58,19 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       attack: 'soft',
     },
   },
+  
+  stage: {
+    id: 'stage',
+    name: 'Stage Piano',
+    description: 'Modern bright stage piano sound',
+    path: 'stage',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'medium',
+      attack: 'sharp',
+    },
+  },
 };
 
 /**
