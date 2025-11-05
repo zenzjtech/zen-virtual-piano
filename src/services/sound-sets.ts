@@ -7,7 +7,9 @@ export interface SoundSet {
   id: string;
   name: string;
   description: string;
-  /** Path to the audio folder (relative to assets/audio/piano/) */
+  /** Instrument type */
+  type: 'piano' | 'organ';
+  /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
   sampleNotes: string[];
@@ -24,6 +26,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     id: 'classical',
     name: 'Classical Piano',
     description: 'Warm traditional piano sound',
+    type: 'piano',
     path: 'classical',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
     characteristics: {
@@ -37,6 +40,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     id: 'grand-classical-1',
     name: 'Grand Piano I',
     description: 'Bright concert grand piano',
+    type: 'piano',
     path: 'grand-classical-1',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
     characteristics: {
@@ -50,6 +54,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     id: 'grand-classical-2',
     name: 'Grand Piano II',
     description: 'Rich and mellow grand piano',
+    type: 'piano',
     path: 'grand-classical-2',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
     characteristics: {
@@ -63,6 +68,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     id: 'stage',
     name: 'Stage Piano',
     description: 'Modern bright stage piano sound',
+    type: 'piano',
     path: 'stage',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
     characteristics: {
@@ -76,11 +82,26 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     id: 'upright',
     name: 'Upright Piano',
     description: 'Warm intimate upright piano tone',
+    type: 'piano',
     path: 'upright',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
     characteristics: {
       brightness: 'mellow',
       sustain: 'short',
+      attack: 'soft',
+    },
+  },
+  
+  'organ-standard': {
+    id: 'organ-standard',
+    name: 'Standard Organ',
+    description: 'Classic church organ sound',
+    type: 'organ',
+    path: 'standard',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'long',
       attack: 'soft',
     },
   },
@@ -109,7 +130,7 @@ export function buildSampleUrlsMap(
   samples: Record<string, string>
 ): Record<string, string> {
   const urlsMap: Record<string, string> = {};
-  const basePath = `/src/assets/audio/piano/${soundSet.path}`;
+  const basePath = `/src/assets/audio/${soundSet.type}/${soundSet.path}`;
   
   // C notes (every octave) - keyboard note maps to one octave lower in file
   // e.g., C2 keyboard note uses C1.mp3 file

@@ -44,7 +44,7 @@ export class AudioEngine {
     try {
       // Import all audio samples using Vite's glob import with eager loading
       // This ensures proper bundling and URL resolution for all sound sets
-      const samples = import.meta.glob('@/assets/audio/piano/**/*.mp3', { 
+      const samples = import.meta.glob('@/assets/audio/**/*.mp3', { 
         eager: true,
         query: '?url',
         import: 'default'
