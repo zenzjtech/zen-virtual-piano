@@ -44,6 +44,55 @@ export const authenticateWithGoogle = async (): Promise<GoogleUserInfo> => {
 };
 
 /**
+ * Checks for cached auth token and restores user session if available
+ * @returns Promise with Google user information or null if no valid session
+ */
+export const restoreAuthSession = async (): Promise<GoogleUserInfo | null> => {
+  return new Promise((resolve) => {
+    // Try to get cached token without showing interactive login
+    chrome.identity.getAuthToken({ interactive: false }, (token) => {
+      if (chrome.runtime.lastError || !token) {
+        // No cached token available
+        resolve(null);
+        return;
+      }
+
+      // Validate token by fetching user info
+      fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            // Token is invalid, remove it
+            chrome.identity.removeCachedAuthToken({ token }, () => {
+              resolve(null);
+            });
+            return;
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data) {
+            const userInfo: GoogleUserInfo = {
+              email: data.email,
+              name: data.name,
+              picture: data.picture,
+              id: data.id,
+            };
+            resolve(userInfo);
+          }
+        })
+        .catch((error) => {
+          console.error('Error restoring auth session:', error);
+          resolve(null);
+        });
+    });
+  });
+};
+
+/**
  * Signs out user by removing cached auth token
  */
 export const signOutFromGoogle = async (): Promise<void> => {

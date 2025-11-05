@@ -24,6 +24,7 @@ import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetNavigation } from '@/hooks/use-sheet-navigation';
 import { useSheetSearch } from '@/hooks/use-sheet-search';
+import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -73,6 +74,9 @@ function App() {
   
   // Sound settings state
   const soundSettings = useSoundSettings();
+
+  // Restore auth session on mount (if cached token exists)
+  useAuthRestore();
 
   useEffect(() => {    
       trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
