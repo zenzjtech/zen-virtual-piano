@@ -11,6 +11,7 @@ export const wooden: PianoTheme = {
     secondary: '#B8941E',      // Golden brass
     accent: '#D4AF37',         // Bright gold
     border: 'rgba(184, 148, 30, 0.3)',
+    containerSolid: '#6B4423', // Mid-tone brown wood
   },
   lighting: {
     // Warm, natural wood lighting with subtle glow

@@ -11,6 +11,7 @@ export const roseGold: PianoTheme = {
     secondary: '#8B7670',
     accent: '#E8B4A8',
     border: 'rgba(232, 180, 168, 0.3)',
+    containerSolid: '#B88A7E', // Rose gold metallic
   },
   lighting: {
     ambientGlow: 'rgba(232, 180, 168, 0.2)',

@@ -11,6 +11,7 @@ export const black: PianoTheme = {
     secondary: '#999999',      // Medium gray
     accent: '#CCCCCC',         // Bright gray
     border: 'rgba(255, 255, 255, 0.2)',
+    containerSolid: '#0a0a0a', // Deep black
   },
   lighting: {
     // Cool, subtle ambient glow

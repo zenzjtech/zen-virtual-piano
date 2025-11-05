@@ -11,6 +11,7 @@ export const white: PianoTheme = {
     secondary: '#666666',
     accent: '#555555',
     border: 'rgba(0, 0, 0, 0.15)',
+    containerSolid: '#F5F5F5', // Pure white-gray
   },
   lighting: {
     ambientGlow: 'rgba(255, 255, 255, 0.3)',

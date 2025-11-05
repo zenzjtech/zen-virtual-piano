@@ -11,6 +11,7 @@ export const nordicIce: PianoTheme = {
     secondary: '#5D6E7E',
     accent: '#7F9CAF',
     border: 'rgba(127, 156, 175, 0.25)',
+    containerSolid: '#DCE8F0', // Icy white-blue
   },
   lighting: {
     ambientGlow: 'rgba(200, 220, 235, 0.25)',

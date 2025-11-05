@@ -18,6 +18,7 @@ export interface PianoTheme {
     secondary: string;    // Secondary text/labels
     accent: string;       // Accent color
     border: string;       // Border/divider color
+    containerSolid: string; // Solid color representing main container color
   };
   
   // Theme-specific lighting configuration

@@ -11,6 +11,7 @@ export const metal: PianoTheme = {
     secondary: '#5D6E81',
     accent: '#34495E',
     border: 'rgba(45, 62, 80, 0.2)',
+    containerSolid: '#8A9BAE', // Metallic silver-blue
   },
   lighting: {
     ambientGlow: 'rgba(184, 198, 212, 0.25)',

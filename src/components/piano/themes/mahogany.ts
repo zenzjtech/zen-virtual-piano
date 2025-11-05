@@ -11,6 +11,7 @@ export const mahogany: PianoTheme = {
     secondary: '#B88A70',
     accent: '#D4A880',
     border: 'rgba(184, 138, 112, 0.3)',
+    containerSolid: '#522828', // Deep mahogany red-brown
   },
   lighting: {
     ambientGlow: 'rgba(212, 168, 128, 0.18)',
