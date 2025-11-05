@@ -13,6 +13,8 @@ export interface SoundSet {
   path: string;
   /** Sample notes available (used for pitch-shifting) */
   sampleNotes: string[];
+  /** Custom sustain offset added to the user's sustain setting (in seconds). Default: 0 */
+  sustainOffset?: number;
   /** Audio characteristics */
   characteristics: {
     brightness: 'bright' | 'balanced' | 'mellow';
@@ -141,6 +143,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     type: 'flute',
     path: 'pan',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    sustainOffset: -10,
     characteristics: {
       brightness: 'bright',
       sustain: 'medium',
@@ -155,6 +158,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     type: 'violin',
     path: 'standard',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    sustainOffset: -10,
     characteristics: {
       brightness: 'bright',
       sustain: 'long',

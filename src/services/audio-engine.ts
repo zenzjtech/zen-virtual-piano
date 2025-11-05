@@ -209,8 +209,10 @@ export class AudioEngine {
     }
 
     // Use extended release timing like virtualpiano.net
+    // Add instrument-specific sustain offset (e.g., -10 for flute/violin)
+    const instrumentSustainOffset = this.currentSoundSet.sustainOffset || 0;
     const now = Tone.now();
-    this.sampler.triggerRelease(note, now + this.sustainOffset + this.sustainTime);
+    this.sampler.triggerRelease(note, now + this.sustainOffset + this.sustainTime + instrumentSustainOffset);
     this.activeNotes.delete(note);
   }
 
