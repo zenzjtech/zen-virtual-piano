@@ -8,7 +8,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ';
+  type: 'piano' | 'organ' | 'flute';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -130,6 +130,20 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     characteristics: {
       brightness: 'bright',
       sustain: 'long',
+      attack: 'soft',
+    },
+  },
+  
+  'flute-pan': {
+    id: 'flute-pan',
+    name: 'Pan Flute',
+    description: 'Smooth pan flute sound',
+    type: 'flute',
+    path: 'pan',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'medium',
       attack: 'soft',
     },
   },
