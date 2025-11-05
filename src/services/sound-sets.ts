@@ -8,7 +8,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar';
+  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -176,6 +176,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     characteristics: {
       brightness: 'mellow',
       sustain: 'medium',
+      attack: 'sharp',
+    },
+  },
+  
+  'glockenspiel-standard': {
+    id: 'glockenspiel-standard',
+    name: 'Glockenspiel',
+    description: 'Bright metallic bell-like percussion',
+    type: 'glockenspiel',
+    path: 'standard',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    sustainOffset: -10,
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'short',
       attack: 'sharp',
     },
   },
