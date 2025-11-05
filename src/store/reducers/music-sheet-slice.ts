@@ -109,6 +109,21 @@ export const musicSheetSlice = createSlice({
     },
 
     /**
+     * Add a custom/scraped sheet to the library
+     * Stores both metadata and full sheet data
+     */
+    addCustomSheet: (state, action: PayloadAction<MusicSheet>) => {
+      const sheet = action.payload;
+      
+      // Add to custom sheets (full data)
+      state.userData.customSheets[sheet.id] = sheet;
+      
+      // Add metadata to sheets library for searchability
+      const { pages, notation, durationSeconds, ...metadata } = sheet;
+      state.sheets[sheet.id] = { ...metadata, durationSeconds };
+    },
+
+    /**
      * Remove a sheet from the library
      */
     removeSheet: (state, action: PayloadAction<string>) => {
@@ -130,8 +145,11 @@ export const musicSheetSlice = createSlice({
       const metadata = state.sheets[sheetId];
       
       if (metadata) {
-        // Load full sheet data with notation and pages
-        const fullSheet = getSheetWithNotation(sheetId);
+        // First check if it's a custom sheet
+        const customSheet = state.userData.customSheets[sheetId];
+        
+        // Determine which sheet to load (custom or built-in)
+        const fullSheet = customSheet || getSheetWithNotation(sheetId);
         
         if (fullSheet) {
           state.currentSheet = fullSheet;
@@ -375,6 +393,7 @@ export const musicSheetSlice = createSlice({
 // Export actions
 export const {
   addSheets,
+  addCustomSheet,
   removeSheet,
   loadSheet,
   unloadSheet,

@@ -7,13 +7,22 @@ export default defineConfig({
     name: 'Zen Virtual Piano',    
     permissions: [
       "identity",
-      "storage"
+      "storage",
+      "notifications"
       // Add other permissions your extension needs
     ],    
     action: {
       // Remove default_popup to allow action.onClicked event
       // Icon will open new tab via background service worker
     },
+    "web_accessible_resources": [
+      {
+        "resources": ["vp-download-ui.html", "vp-download-ui.js"],
+        "matches": [
+          "https://virtualpiano.net/*"
+        ],
+      }
+    ],    
     oauth2: {
       client_id: "234802539997-4d87d91srfv4abjmsfvsnkkmkb3aaqmk.apps.googleusercontent.com",
       scopes: [
