@@ -10,12 +10,14 @@ import { KeyAssistPopup } from '@/components/piano/key-assist-popup';
 import { SheetSearchDialog } from '@/components/piano/music-sheet/sheet-search-dialog';
 import { MusicStand } from '@/components/piano/music-sheet/music-stand';
 import { Header } from '@/components/piano/header';
+import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
 import { switchToManualMode, addSheets, loadSheet } from '@/store/reducers/music-sheet-slice';
+import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
 import { getBuiltInSheets } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
@@ -44,6 +46,10 @@ function App() {
   const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   const recentlyPlayed = useAppSelector((state) => state.musicSheet.userData.recentlyPlayed);
   const hasManuallyClosedSheet = useAppSelector((state) => state.musicSheet.hasManuallyClosedSheet);
+  
+  // Onboarding state
+  const isOnboardingVisible = useAppSelector((state) => state.onboarding.isOnboardingVisible);
+  const hasCompletedOnboarding = useAppSelector((state) => state.onboarding.hasCompletedOnboarding);
   
   // Get the actual theme object
   const pianoTheme = getTheme(pianoThemeId);
@@ -85,6 +91,24 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
+
+  // Show onboarding after music stand loads (with a slight delay for better UX)
+  useEffect(() => {
+    if (isMusicStandVisible && !hasCompletedOnboarding) {
+      const timer = setTimeout(() => {
+        dispatch(showOnboarding());
+      }, 500); // 500ms delay to let the music stand render first
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isMusicStandVisible, hasCompletedOnboarding, dispatch]);
+
+  // Auto-dismiss onboarding when user clicks sheet button
+  useEffect(() => {
+    if (isOnboardingVisible && isSheetSearchOpen) {
+      dispatch(completeOnboarding());
+    }
+  }, [isOnboardingVisible, isSheetSearchOpen, dispatch]);
 
   // Sync audio engine with Redux state on mount
   useEffect(() => {
@@ -326,6 +350,14 @@ function App() {
         onClose={handleSheetSearchClose}
         pianoTheme={pianoTheme}
       />
+
+      {/* Onboarding Overlay */}
+      {isOnboardingVisible && (
+        <OnboardingOverlay
+          pianoTheme={pianoTheme}
+          onClose={() => dispatch(completeOnboarding())}
+        />
+      )}
     </Box>
   );
 }
