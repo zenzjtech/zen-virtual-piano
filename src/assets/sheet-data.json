@@ -679,5 +679,305 @@
     "timeSignature": "3/4",
     "tags": ["new-age", "celtic"],
     "notation": "ttt yrrtt yrrtt yrt"
+  },
+  {
+    "id": "mozart-turkish-march",
+    "title": "Turkish March",
+    "artist": "Wolfgang Amadeus Mozart",
+    "difficulty": "hard",
+    "tempo": 120,
+    "timeSignature": "2/4",
+    "tags": ["classical", "mozart"],
+    "notation": "sapOps | dsasf | gfDfk\\njHjk jHjk jHjl\\nj l hjkjhj hjkjhj hjkjh G f\\nfghhjhgfd | fghhjhgfd\\nsdffgfdsa | sdffgfdsa\\napOps dsasf gfDfk\\njHjk jHjk jHjl\\nj k l k j H j f g d s asasasasap\\nfghhjhgfd | fghhjhgfd\\nsdffgfdsa | sdffgfdsa\\napOps dsasf gfDfk\\njHjk jHjk jHjl\\nj k l k j H j f g d s asasasasap"
+  },
+  {
+    "id": "muhtesem-yuzyil",
+    "title": "Muhtesem Yuzyil",
+    "artist": "Soner Akalin, Fahir Atakoglu & Aytekin Atas",
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": ["turkish", "soundtrack", "muhtesem-yuzyil"],
+    "notation": "d ddd h f g"
+  },
+  {
+    "id": "murat-gogebakan-ay-yuzlum",
+    "title": "Ay Yuzlum",
+    "artist": "Murat Gogebakan",
+    "difficulty": "medium",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": ["turkish", "pop"],
+    "notation": "gggh jJjh\\nfffg hjhgh\\nhhhj JJlJjJ\\njjj jJjhjhj\\nggfgfd Ddsd"
+  },
+  {
+    "id": "naruto-grief-and-sorrow",
+    "title": "Grief and Sorrow",
+    "artist": "Toshiro Masuda",
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "naruto"],
+    "notation": "[sfj] u p a s k j h [sfo] o s d f h [ipd] e y u i s d s [tip] s [oa] [oy]\\n[sfj] u p a s k j h [sfo] o s d f h [ipd] e y u i d s [tup]\\n[eti] [eti] [tup] [ryo] [yu] [yo] [tup] u p s a [pou] u\\n[eti] [eti] [tip] [ryo] [ryu] [ryo] [ryo] I [ryp] O j k x\\n[tup] [psf] d s [tup] [psf] d f [dj] l k j h [sfh] [psf] [oad] [yoa]\\n[tup] [psf] d s [tup] [psf] d f [dj] l k j h j [sfh] [psf] [oad] [yoa]\\n[tup] [psf] d s [tup] [psf] d f [dj] l k j h j [oaf] [odk] [ofj]\\n[tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [qe8] 4 [qe] 4 [qe] [wr9] [w9]\\n[tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [e80]\\ne r t u p a [pis] [piy] [pisy] [oua] [ou] u [oue]\\na p o [ryu] [ryu] o [pis] [piy] [pisy] [oua] ou u [tio] [ti] o [tip] O j k x\\n[tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [qe8] 4 [qe] 4 [qe] [wr9] [w9]\\n[tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [qe8] p u s p j f j l x b"
+  },
+  {
+    "id": "naruto-nakama",
+    "title": "Nakama",
+    "artist": "Toshiro Masuda",
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "naruto"],
+    "notation": "8 w y w u 8 w i w u 8 w y w u 8 w i w u\\n[8f] w y w u g [9d] w y w t s [4s] 8 q e t d\\n[8f] w t u o [ef] u p s h [qj] t i p g\\n[8f] w t u g [wd] y o a [qj] t i p k j [0h] r u o f d f [9d] e y i s h\\n[8f] w t l k h f h [qj] t i p k j [0h] r u o z x [ql] t i p j k l [wz] y o a x\\n[8f] w y w u g [9d]w y w t s [4s] 8 q e t d\\n[8f] w t u o [ef] u p s h [qj] t i p g\\n[8f] w t u g [wd] y o a f d [8s] w t u o 8 w t u o u"
+  },
+  {
+    "id": "naruto-shippuden-yukimaru-theme",
+    "title": "Yukimaru Theme",
+    "artist": "Yasuharu Takanashi",
+    "difficulty": "easy",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "naruto"],
+    "notation": "j l z x j j l z v x x v b v x x z x k l j\\n[6p] 0 e [0s] d 0 e f [4p] 8 q 8 e 8 q 8 [5p] 9 w [9s] [rd] 9 w h [8f] w t w u w [tf] h\\n[6j] 8 q 8 e 8 [qh] f\\n[6f] 0 e 0 t 0 e 0 [5d] 9 w [9f] [ea] 9 w s\\n[6p] 0 e 0 t 0 e 0 6 0 r 0 t 0 e 0\\n[6p] 0 e [0s] d 0 e f [4p] 8 q 8 e 8 q 8 [5p] 9 w [9s] [rd] 9 w h [8f] w t w u w [tf] h\\n[6j] 8 q 8 e 8 [qh] f\\n[6f] 0 e 0 t 0 e 0 [5d] 9 w [9f] [ea] 9 w s\\n[6p] 0 e 0 t 0 e 0 6 0 r 0 t 0 e 0 [60p]"
+  },
+  {
+    "id": "naruto-main-theme",
+    "title": "Naruto Main Theme",
+    "artist": "Toshiro Masuda",
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "naruto"],
+    "notation": "[tj] [uk] o h y [GI] p f u o d a t [uj] [ho] G y p l [kp] [pkdw] [ru] [drjo]\\n[tj] [uk] o h y [GI] y p f u o d a t [ju] [ho] G y p l [pkdw] [ru] [drjo]"
+  },
+  {
+    "id": "ne-yo-madoo",
+    "title": "Madoo",
+    "artist": "Ne-Yo",
+    "difficulty": "hard",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": ["pop", "r&b"],
+    "notation": "[tf] o s h l k w y o d k j h g 9 e i f s g q t i f s o\\n[8u] w t o s a 5 9 w y a p o i 2 6 q u t i 4 8 q u t\\n8 w t o a s a s 5 [9s] [ws] s s d f g [2f] 6 q s [4ips] 8 q [ip]\\n[8uo] w t o a s a s 5 [9s] [ws] s s d f g [2f] 6 q s [4ips] 8 q o o p\\n[6a] [0s] [ea] s a d s [5a] [9s] [wa] s a d s\\n[2a] [6s] [qa] s o o p [4a] [8s] [qa] s a d s\\n[6a] [0s] [ea] s s d s 5 [9s] [ws] s s d f g\\n[2f] 6 q s [4o] [8p] [qa] s d h\\nj [6ek] j g [5wh] g d [2qf] d [4qo] p a s d h\\nj [6ek] j g [5wh] g d [2qf] d f d [4qf] d f d f d f g\\n[8h] w t h h [5h] 9 w h h g f d 2 6 q g 4 8 q f g\\n[8h] w t h h [5h] 9 w h h g f d 2 6 q g 4 [8s] [qs]\\ns s a p a [8s] w t f h s 5 [9s] [ws] s s a p a [2s] 6 q f h s 4 [8s] [qs]\\ns s a p a [8s] w t f h s 5 [9s] [ws] s s a p a [2s] 6 q f h s 4 8 q\\n[tf] o s h l k w y o d k j h g 9 e i f s g q t i f s o\\n[8u] w t o s a 5 9 w y a p o i 2 6 q u t i 4 8 q u t p 8 w t u o s"
+  },
+  {
+    "id": "nightmare-on-elm-street",
+    "title": "A Nightmare on Elm Street Theme",
+    "artist": "Charles Bernstein",
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "horror", "a-nightmare-on-elm-street"],
+    "notation": "p d j H j f g p\\np d j H j f g j J S\\np d l z l J k g\\np d j H j f g j J S"
+  },
+  {
+    "id": "nokia-tune",
+    "title": "Nokia Tune",
+    "artist": "Francisco Tárrega",
+    "difficulty": "easy",
+    "tempo": 180,
+    "timeSignature": "4/4",
+    "tags": ["jingle", "ringtone"],
+    "notation": "fdIO[|]Sayu[|]apTupp"
+  },
+  {
+    "id": "noyan-hatirla-sevgili",
+    "title": "Hatirla Sevgili",
+    "artist": "Noyan",
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": ["turkish", "soundtrack", "hatirla-sevgili"],
+    "notation": "etuy tu\\netuy tr\\nrtytry\\nurtytre"
+  },
+  {
+    "id": "oasis-stop-crying-your-heart-out",
+    "title": "Stop Crying Your Heart Out",
+    "artist": "Oasis",
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": ["rock", "alternative"],
+    "notation": "G f d a\\na G f d a\\na G d a\\np a p a a | d f a\\na G f d a\\nr I u y r |\\na G f d a | u u y r\\na G d a | r I y r\\np d f G d | p d f G f\\np d f G f d | p d f f d | d f G d\\np d f G f d | f d f d G f a d\\nG f d a | I u y r"
+  },
+  {
+    "id": "onuncu-yil-marsi",
+    "title": "Onuncu Yil Marsi",
+    "artist": "Cemal Reşit Rey",
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["turkish", "march"],
+    "notation": "oapsapo ddadsap aas p asd\\nff d as sa\\nd d dDDdDd s sDdapp\\npsapddf sapdsda"
+  },
+  {
+    "id": "pearl-harbor-theme",
+    "title": "Tennessee",
+    "artist": "Hans Zimmer",
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "pearl-harbor"],
+    "notation": "w [tu] y t\\n3 7 [0o] I u\\n4 8 [qu] y t [80] w [wt]\\nt y 6 0 [es] a u\\n3 7 [0o] I r\\n8 w [tu] y t [5t] 9 [wr] e w\\n[9q] e [yi] u e q u y q 9 e [yi] u y [5wg] f d f\\n8 w [tu] y t\\n3 7 [0o] I u\\n[8t] u y w [30] o I r 9 [eo] u e o r [ak]\\n[8sl] w [tak] [sl] [uf] [3oh] 7 0 w\\n3 7 [0oh] w [4pj] 8 [qoh] [pj] [ts] [8uf] w t [5wyd] 9 [wak]\\n[6sl] 0 [eak] [sl] [uf] [3oh] 7 0 w\\n3 7 [0oh] w [9ig] e [yuf] [yd] [ts] [5uf] 9 w r 5 9 w r [5yd] 9 w r [5ak]\\n[8sl] w [tak] [sl] [uf] [3oh] 7 0 w\\n3 7 [0oh] w [4pj] 8 [qoh] [pj] [ts] [8uf] w t [5wyd]\\n[ak] [6sl] 0 [eak] [sl] [uf] [3oh] 7 0 w\\n3 7 [0oh] w\\n[9 e i g] [uf] [yd] [ts]\\n[4 8 i g] [uf] [yd] [ts]\\n[5 9 i g] [uf] [yd] [ts]\\n[8ts] w [ts]"
+  },
+  {
+    "id": "phantom-of-the-opera",
+    "title": "The Phantom of the Opera",
+    "artist": "Andrew Lloyd Webber",
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["musical", "soundtrack", "the-phantom-of-the-opera"],
+    "notation": "upu [2o] ii 5 y o y [6u]\\nupu [2o] ii 5 y o y [6u]\\n0 e t [2u] y y 5 y o y [6u]\\nu [6p] o i u y t r e W\\nq q 0 [60]"
+  },
+  {
+    "id": "pink-fckn-perfect",
+    "title": "F**kin' Perfect",
+    "artist": "P!nk",
+    "difficulty": "medium",
+    "tempo": 92,
+    "timeSignature": "4/4",
+    "tags": ["pop", "rock"],
+    "notation": "w e [5r] y | u y [9e] | w e [5r] y u o o y [8u] |\\nw e [5r] y | u y [9e] | w e [5r] y u o o y [8u] |\\no I [5o] o o o p o I [9o] o o p o I [0o] o o p o y [8t] |\\no I [5o] o o o p o I [9o] o o p o I [0o] o o p o y [8t] |\\n[5o] p o p a | p o [9o] p o p a | o p [0o] u o p [8o] u |\\n[5o] p o p a | p o [9o] p o p a | o p [0o] u u o p [8o] u u y 5"
+  },
+  {
+    "id": "pirates-of-the-caribbean",
+    "title": "He's a Pirate",
+    "artist": "Klaus Badelt & Hans Zimmer",
+    "difficulty": "medium",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "pirates-of-the-caribbean"],
+    "notation": "9 99 9999 9 99 9999 9 99 9999 9 99 9999 9yI\\netyy yuii iouu ytty\\netyy yuii iouu yty\\netyy yioo opPP popy\\nyuii opy yiuu iyu\\nyuii opy yiuu yty\\npppPp oooop\\nppppPp iiuy\\nyui opo iuiopo iop pou iuyuty\\nyui uio iopoiy yuiopP yoi ouy\\nu t p P p p p p o o i u i u T\\np P p p s p o o i u i u T\\nyui opo iuiopo iop pou iuyuty\\nyui uio iopoiy yuiopP yoi ouy\\netyy yuii iouu ytty\\netyy yuii iouu yty\\netyy yioo opPP popy\\nyuii opy yiuu iyu\\nyuii opy yiuu yty"
+  },
+  {
+    "id": "pokemon-intro",
+    "title": "Pokémon Theme",
+    "artist": "Jason Paige",
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "pokemon"],
+    "notation": "dddd d s p i | i d d s P s\\nDDDD D d s P | P d d s P d\\ndddd d s p i | i d d s P s\\nDDDD D d s P | P d d s P d\\ndgh dgh hg d s P\\nggh J j h g\\ndgh hh h g d s\\nPP dd s P d\\ndgh dgh hh g h g\\nhh j J j h g\\nd D JJ ddd JJ J J J j\\nddghh ddgh J h dg[dh]"
+  },
+  {
+    "id": "pokemon-lugias-song",
+    "title": "Lugia's Song",
+    "artist": "Ralph Schuckett & John Loeffler",
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "pokemon"],
+    "notation": "f h G d f a |\\nf h G a f h k | x z k h jkj f |\\nf k j d Gfdf |\\nf h G d f a |\\nf h G | a f h k | x z k h jkj f |\\nf k j d Gfdf |\\nf h G d f a |\\nf h G z kjk | x z k h | jkj f |\\nf k j d Gf |\\nf h G d f a |\\nf h G d apa | x z k h jkj f |\\nf k j d Gfdf"
+  },
+  {
+    "id": "portal-still-alive",
+    "title": "Still Alive",
+    "artist": "Jonathan Coulton",
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["game", "soundtrack", "portal"],
+    "notation": "gfddf ogfddfsdo dfgdasd oof\\nogfddf ogfddfsdo dfgdasdosdDdsP\\noOPDdssPsPPP oOPDgDDdsdDD\\nghHHhg DghhgD sPsDDd dff\\ngfddf ogfddfsdo dfgdasd oof\\nogfddf ogfddfsdo dfgdasdosdDdsP\\noOPDdssPsPPP oOPDgDDdsdDD\\nghHHhg DghhgD sPsDDd dff\\nzxzkh jkk\\nzzzxzkhjkk zzzxzkhjkk\\nzzxzkhjkk zzzxzkhjkk\\nlzz lkk"
+  },
+  {
+    "id": "rain-and-tears",
+    "title": "Rain and Tears",
+    "artist": "Aphrodite's Child",
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": ["rock", "ballad"],
+    "notation": "[tf] o s f [wd] o a d [es] u p s [0a] u o a [qp] i p s [to] u o s [qp] i p s [wa] y o a\\n[tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g f [wh] o a o\\n[tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g a [ts] o s o\\n[yd] p d f [ep] u p f [0f] o a o 0 o a f [yd] p d f [0f] o a o 0 o a f\\n[yd] p d f [ep] u p f [ep] 0 o a o w o a o\\n[tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g f a [osf]"
+  },
+  {
+    "id": "renesmees-lullaby",
+    "title": "Renesmee's Lullaby",
+    "artist": "Carter Burwell",
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "twilight"],
+    "notation": "[wtu] f a [ru] f k [eti] j k l k j [ryk] h [etuk]\\n0 e t [uf] a u t e 0 W\\nr [uf] k u r W q e t [ij] k l [ik] t [ej]\\n[wk] r y [oj] [ek] r u f\\n[etih] h g g [wruf] f d d [0ruf] f a f [rua] f\\n[etih] h g g [wruf] f d d [0ruf] k | [ru] f\\n[8wsh] [sh] [sg] [sg] | [80pf] [pf] [pd] [pd] | [0af] [af] a [af] [0a] f\\n[8wsh] [sh] [sg] [sg] | [80pf] [pf] [pd] [pd] | [0af] [fk] [ru]\\n[etu] f a [etu] [etu] [wtu] f k\\n[wtu] [wtu] [qtu] j k l k [qtu] [qtuj] [0k]\\nH 0 0 9 p u 9 0 [8q]\\np f [8q] 0 [80] s [8f] [9d] s [0f] | d s a | u\\n[8wo] o i i [80u] u y y [0u] u r u [0r] u\\n[8wo] o i i [80u] u y y [0u] u a [ru]\\nu [8wto] [to] [ti] [ti] [80eu] [eu] [ey] [ey] [0ru] [ru] r [ru] [0r]\\nu [8wto] [to] [ti] [ti] [80eu] [eu] [ey] [ey] [0ru] i u y t r"
+  },
+  {
+    "id": "renesmees-lullaby-v2",
+    "title": "Renesmee's Lullaby (v. 2)",
+    "artist": "Carter Burwell",
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "twilight"],
+    "notation": "[wtu] f a [ru] f k [eti] j k l k j [ryk] h [etuk]\\n0 e t [uf] a u t e 0 W\\nr [uf] k u r W q e t [ij] k l [ik] t [ej]\\n[wk] r y [oj] [ek] r u f\\n[etih] h g g [wruf] f d d [0ruf] f a f [rua] f\\n[etih] h g g [wruf] f d d [0ruf] k | [ru] f\\n[48wsh] [sh] [sg] [sg] | [3680pf] [pf] [pd] [pd] | [370af] [af] a [af] [70a] f\\n[48wsh] [sh] [sg] [sg] | [3680pf] [pf] [pd] [pd] | [370af] [fk] [ru]\\n[etu] f a [etu] [etu] [wtu] f k\\n[wtu] [wtu] [qtu] j k l k [qtu] [qtuj] [370k]\\nH [370] [370] [269] p u [269] [370] [48q]\\np f [48q] 0 [1580] s [158f] [269d] s [370f] | d s a | u\\n[48wo] o i i [3680u] u y y [370u] u r u [70r] u\\n[48wo] o i i [3680u] u y y [370u] u a [ru]\\nu [48wto] [to] [ti] [ti] [3680eu] [eu] [ey] [ey] [370ru] [ru] r [ru] [70r]\\nu [48wto] [to] [ti] [ti] [3680eu] [eu] [ey] [ey] [370ru] i u y t r"
+  },
+  {
+    "id": "requiem-for-a-dream",
+    "title": "Lux Aeterna",
+    "artist": "Clint Mansell",
+    "difficulty": "hard",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "requiem-for-a-dream"],
+    "notation": "[6e] [6e] [6e] [6e] 4q 4q 30 30 [6e] [6e] [6e] [6e] 4q 4q 30 30\\n[6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t\\n[6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t\\n[6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e\\nt e [6t] r t 6 t r [6t] r t 6 t r\\n[4t] r t 4 t r [3t] r r r [3t] r r r\\n[6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e\\nt e [6t] r t 6 t r [6t] r t 6 t r\\n[4t] r t 4 t r [3t] r r r [3t] r r r\\n[6t] r r e [6e] t t [6t] r r e [6e] t t\\n[4t] r r e 4e e e e 3e r r r [3r] t t t\\n[6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t\\n[6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t\\n[6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e\\nt e [6t] r t 6 t r [6t] r t 6 t r\\n[4t] r t 4 t r [3t] r r r [3t] r r r\\n[6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e\\nt e [6t] r t 6 t r [6t] r t 6 t r\\n[4t] r t 4 t r [3t] r r r [3t] r r r\\n[6t] r [6e] 0 [6t] r [6e] 0"
+  },
+  {
+    "id": "richard-clayderman-ballade-pour-adeline",
+    "title": "Ballade pour Adeline",
+    "artist": "Richard Clayderman",
+    "difficulty": "hard",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": ["classical", "instrumental"],
+    "notation": "[18t] osd tosd tosd tosd |\\n[8t] ofo tofo tofo tofo[8f] w [uf] w u | w [uof] w [pg] [9pg] |\\ne [ipg] e i [pg] [epg] [pg] [ipg] [pg] [epg] [ah] [wah] |\\ny [ah] y a y | [ah] [sj] [8of]w u w u w u 5 [1of] w [uof] w u |\\n[of] [wof] [of] | [8of] [of] [wof] [pg] [2pg] | e [ipg] e 9 [pg] [epg] [9pg] [9pg] |\\n[9pg] [9pg] [ah] [wah] | y [ah] y a d [ah] j [8of] | w u w 8 w [tu] |\\n| e u [ulx] f [skz] f [jl] f 0 r |\\n[hk] a [ogj] a [fh] a [qgj] t i t [wah] r [og] r |\\n[8u] ofoy odot oso[r7] o 6 0 |\\n| [sf] u [tad] u [ps] u 3 7 |\\n[oa] r [wip] r [uo] u [48ip] | o i o | 5 wty wtyi wyio wyio |\\n[5y]iod [wy]iod | [5o]dgh [wo]dgh |\\n[5d]ghz [wd]ghz | [5h]zcv [wh]zcv | [5h]kzv [1h]kzv |\\n[1hx] w | [uhx] w 8 w [uhx] w [jc] [2jc] |\\ne [ijc] e 9 [jc] [ejc] [jc] [ijc] [jc] | [ejc] |\\n[kv] [wkv] y [akv] y a d [kv] [lb] [shx] |\\n[DJV] Z J h [ijc] l j h [pdw] a o 5 |\\n[18hx] w [uhx] w 8 [w8hx] [w8hx] [w8hx] |\\n[w8hx] [w8hx] [w8hx] [w8hx] |\\n[kv] [wkv] y [akv] y a d h [kv] | [lb] [tkx] |\\no f h s j l c v [av] k z b [thx] | o f h s j l c v [av] k z b | [18hx]"
+  },
+  {
+    "id": "right-here-waiting",
+    "title": "Right Here Waiting",
+    "artist": "Richard Marx",
+    "difficulty": "easy",
+    "tempo": 88,
+    "timeSignature": "4/4",
+    "tags": ["pop", "ballad"],
+    "notation": "toshhgfd wyoddfgf eussdfdsapo\\n8wtooiuy 59wyyuiu 60ttyuiuytrt\\nshlvvcxz odhzzxcx pfllzxzlkjh\\ntoshhgfd wyoddfgf eussdfg q gfd w sas"
+  },
+  {
+    "id": "rihanna-take-a-bow",
+    "title": "Take a Bow",
+    "artist": "Rihanna",
+    "difficulty": "easy",
+    "tempo": 82,
+    "timeSignature": "4/4",
+    "tags": ["pop", "r&b"],
+    "notation": "u a f k r a D f T f j e H G f\\nu a f k r a D f T f j e H G f\\nu a f k r a D f T f j e H G f"
+  },
+  {
+    "id": "sailor-moon-intro",
+    "title": "Sailor Moon Theme",
+    "artist": "Takanori Arisawa",
+    "difficulty": "medium",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": ["anime", "soundtrack", "sailor-moon"],
+    "notation": "wtY oo ii Y y i\\nadgHHJHhgDh\\nosDllkkJH\\nHhghgDds\\nwtY oo ii YY y i\\nadgHHJHhgDh\\nosDllkkJH\\nHhghgDds\\nd J l zz l J j hghj\\nd J l zz l J j\\nwtY oo ii Y y i\\nadgHHJHhgDh\\nosDllkkJH\\nHhghgDds\\nHhghgDds\\nHhghgDds"
+  },
+  {
+    "id": "saw-theme",
+    "title": "Hello Zepp",
+    "artist": "Charlie Clouser",
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": ["movie", "soundtrack", "horror", "saw"],
+    "notation": "yui yuiuyuio\\nyui yuiuyuio\\nyui iop pas\\nyui iop popas\\nyui iop popas\\niuyuyty u i o poioiuy yyuuiiou yiou"
+  },
+  {
+    "id": "scott-joplin-the-entertainer",
+    "title": "The Entertainer",
+    "artist": "Scott Joplin",
+    "difficulty": "hard",
+    "tempo": 90,
+    "timeSignature": "2/4",
+    "tags": ["ragtime", "classical"],
+    "notation": "[dz] [fx] [sl] [pj] [ak] [oh]\\n[yd] [uf] [ts] [ep] [ar] [wi]\\n[9y] [0u] [8t] [6e] [7r] [6e] W [5w] | [oadh]\\ny Y u s u s u s\\n[sfl] [dgz] [DGZ] [fhx]\\n[sfl] [dgz] [fhx] [adk] [dgz] [sfl]\\ny Y u s u s u s\\n[psj] [osh] [GI] [pj] [sl] [fx] [zd] [sl] [pj] [dgz]\\ny Y u s u s u s\\n[sfl] [dgz] [DGZ] [fhx]\\n[sfl] [dgz] [fhx] [adk] [dgz] [sfl]\\n[sl] [dz] [fx] [sl] [dz] [fx]\\n[sl] [dz] [sl] [fx] [sl] [dz] [fx]\\n[sl] [dz] [sl] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl]"
   }
 ]
