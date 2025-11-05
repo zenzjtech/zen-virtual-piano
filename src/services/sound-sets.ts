@@ -106,6 +106,20 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
+  auditorium: {
+    id: 'auditorium',
+    name: 'Auditorium Piano',
+    description: 'Spacious concert hall piano sound',
+    type: 'piano',
+    path: 'auditorium',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'long',
+      attack: 'medium',
+    },
+  },
+  
   'organ-standard': {
     id: 'organ-standard',
     name: 'Standard Organ',
