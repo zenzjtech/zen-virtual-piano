@@ -5,6 +5,7 @@ export interface PianoSettingsState {
   soundSet: string;
   sustain: number;
   backgroundTheme: string;
+  musicSheetTheme: string;
   showKeyboard: boolean;
   showNoteName: boolean;
   isPianoEnabled: boolean;
@@ -15,6 +16,7 @@ const initialState: PianoSettingsState = {
   soundSet: 'classical',
   sustain: 0,
   backgroundTheme: 'warm',
+  musicSheetTheme: 'paper-1',
   showKeyboard: true,
   showNoteName: false,
   isPianoEnabled: true,
@@ -36,6 +38,9 @@ export const pianoSettingsSlice = createSlice({
     setBackgroundTheme: (state, action: PayloadAction<string>) => {
       state.backgroundTheme = action.payload;
     },
+    setMusicSheetTheme: (state, action: PayloadAction<string>) => {
+      state.musicSheetTheme = action.payload;
+    },
     setShowKeyboard: (state, action: PayloadAction<boolean>) => {
       state.showKeyboard = action.payload;
       // Ensure mutual exclusivity: if enabling keyboard, disable note names
@@ -56,6 +61,6 @@ export const pianoSettingsSlice = createSlice({
   },
 });
 
-export const { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } = pianoSettingsSlice.actions;
+export const { setTheme, setSoundSet, setSustain, setBackgroundTheme, setMusicSheetTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } = pianoSettingsSlice.actions;
 
 export default pianoSettingsSlice.reducer;

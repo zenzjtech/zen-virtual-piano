@@ -9,6 +9,7 @@ import {
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 import { BackgroundTheme, BACKGROUND_THEME_CATEGORIES } from './background-themes';
+import { MusicSheetTheme, MUSIC_SHEET_THEME_CATEGORIES } from './music-sheet-themes';
 import { ThemeListItem } from './theme-list-item';
 import { useThemeGroups } from '../../hooks/use-theme-groups';
 import { CategoryHeader } from './category-header';
@@ -16,11 +17,11 @@ import { CategoryHeader } from './category-header';
 interface ThemeSectionProps {
   title: string;
   icon: React.ReactNode;
-  themes: (PianoTheme | BackgroundTheme)[];
+  themes: (PianoTheme | BackgroundTheme | MusicSheetTheme)[];
   currentTheme: string;
   onThemeSelect: (themeId: string) => void;
   pianoTheme: PianoTheme;
-  type: 'piano' | 'background';
+  type: 'piano' | 'background' | 'musicsheet';
   expanded: boolean;
   onToggleExpand: () => void;
   /** Enable category grouping (default: true) */
@@ -43,11 +44,14 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
   categoryOrder,
 }) => {
   // Group themes by category if enabled
-  const themeGroups = useThemeGroups<PianoTheme | BackgroundTheme>(themes, categoryOrder);
+  const themeGroups = useThemeGroups<PianoTheme | BackgroundTheme | MusicSheetTheme>(themes, categoryOrder);
   const shouldGroup = enableGrouping && themeGroups.length > 1;
 
-  // Get category metadata for background themes
+  // Get category metadata for background and music sheet themes
   const getCategoryInfo = (category: string) => {
+    if (type === 'musicsheet') {
+      return MUSIC_SHEET_THEME_CATEGORIES[category as keyof typeof MUSIC_SHEET_THEME_CATEGORIES];
+    }
     if (type === 'background' && category in BACKGROUND_THEME_CATEGORIES) {
       return BACKGROUND_THEME_CATEGORIES[category as keyof typeof BACKGROUND_THEME_CATEGORIES];
     }

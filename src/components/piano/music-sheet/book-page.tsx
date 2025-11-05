@@ -3,7 +3,10 @@ import { Box, Typography } from '@mui/material';
 import { Measure, PlaybackState } from './types';
 import { PianoTheme } from '../themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
-import bookImage from '@/assets/image/music-sheet/1.png';
+import { MUSIC_SHEET_THEMES } from '../music-sheet-themes';
+import bookImage1 from '@/assets/image/music-sheet/1.png';
+import bookImage2 from '@/assets/image/music-sheet/2.png';
+import bookImage3 from '@/assets/image/music-sheet/3.png';
 
 interface BookPageProps {
   /** Sheet title */
@@ -22,6 +25,8 @@ interface BookPageProps {
   playback: PlaybackState;
   /** Piano theme */
   pianoTheme: PianoTheme;
+  /** Music sheet theme ID */
+  musicSheetThemeId: string;
   /** Whether this page is currently active in playback */
   isActivePage: boolean;
   /** Whether this is an empty page (end of sheet) */
@@ -40,9 +45,22 @@ export const BookPage: React.FC<BookPageProps> = ({
   lineRange,
   playback,
   pianoTheme,
+  musicSheetThemeId,
   isActivePage,
   isEmpty = false,
 }) => {
+  // Get the background image based on theme
+  const getBackgroundImage = () => {
+    switch (musicSheetThemeId) {
+      case 'paper-2':
+        return bookImage2;
+      case 'paper-3':
+        return bookImage3;
+      default:
+        return bookImage1;
+    }
+  };
+  const backgroundImage = getBackgroundImage();
   if (isEmpty) {
     return (
       <Box
@@ -51,7 +69,7 @@ export const BookPage: React.FC<BookPageProps> = ({
           display: 'flex',
           flexDirection: 'column',
           p: 2,
-          backgroundImage: `url(${bookImage})`,
+          backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           borderRadius: 1,
@@ -81,7 +99,7 @@ export const BookPage: React.FC<BookPageProps> = ({
         display: 'flex',
         flexDirection: 'column',
         p: 2,
-        backgroundImage: `url(${bookImage})`,
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderRadius: 1,

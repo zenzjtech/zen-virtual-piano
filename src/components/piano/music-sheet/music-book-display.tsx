@@ -14,6 +14,7 @@ interface MusicBookDisplayProps {
   playback: PlaybackState;
   isMinimized: boolean;
   pianoTheme: PianoTheme;
+  musicSheetThemeId: string;
   onClose: () => void;
 }
 
@@ -25,6 +26,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   playback,
   isMinimized,
   pianoTheme,
+  musicSheetThemeId,
   onClose,
 }) => {
   useSheetPlayback();
@@ -94,6 +96,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
             lineRange={hasLeftPage ? pageRanges[leftPageIndex] : undefined}
             playback={playback}
             pianoTheme={pianoTheme}
+            musicSheetThemeId={musicSheetThemeId}
             isActivePage={playback.currentPage === leftPageIndex}
           />
 
@@ -107,6 +110,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
             lineRange={hasRightPage ? pageRanges[rightPageIndex] : undefined}
             playback={playback}
             pianoTheme={pianoTheme}
+            musicSheetThemeId={musicSheetThemeId}
             isActivePage={playback.currentPage === rightPageIndex}
             isEmpty={!hasRightPage}
           />

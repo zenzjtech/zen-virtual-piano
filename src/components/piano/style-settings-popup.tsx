@@ -11,9 +11,11 @@ import {
   Palette as PaletteIcon,
   Piano as PianoIcon,
   Wallpaper as BackgroundIcon,
+  LibraryMusic as MusicSheetIcon,
 } from '@mui/icons-material';
 import { getAllThemes, PianoTheme } from './themes';
 import { BACKGROUND_THEMES } from './background-themes';
+import { MUSIC_SHEET_THEMES } from './music-sheet-themes';
 import {
   StyledPopupPaper,
   PopupHeaderBox,
@@ -28,9 +30,11 @@ interface StyleSettingsPopupProps {
   anchorEl: HTMLElement | null;
   currentPianoTheme: string;
   currentBackgroundTheme: string;
+  currentMusicSheetTheme: string;
   onClose: () => void;
   onPianoThemeChange: (themeId: string) => void;
   onBackgroundThemeChange: (themeId: string) => void;
+  onMusicSheetThemeChange: (themeId: string) => void;
   pianoTheme: PianoTheme;
   /** Whether to show the search bar (default: true) */
   showSearch?: boolean;
@@ -42,9 +46,11 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   anchorEl,
   currentPianoTheme,
   currentBackgroundTheme,
+  currentMusicSheetTheme,
   onClose,
   onPianoThemeChange,
   onBackgroundThemeChange,
+  onMusicSheetThemeChange,
   pianoTheme,
   showSearch = true,
 }) => {
@@ -52,15 +58,18 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [pianoThemeExpanded, setPianoThemeExpanded] = useState(false);
   const [backgroundThemeExpanded, setBackgroundThemeExpanded] = useState(false);
+  const [musicSheetThemeExpanded, setMusicSheetThemeExpanded] = useState(false);
 
   // Filter themes based on search query using custom hook
   const filteredPianoThemes = useThemeFilter(pianoThemes, searchQuery);
   const filteredBackgroundThemes = useThemeFilter(BACKGROUND_THEMES, searchQuery);
+  const filteredMusicSheetThemes = useThemeFilter(MUSIC_SHEET_THEMES, searchQuery);
 
 
   const showPianoThemes = filteredPianoThemes.length > 0;
   const showBackgroundThemes = filteredBackgroundThemes.length > 0;
-  const showNoResults = !showPianoThemes && !showBackgroundThemes && searchQuery.trim();
+  const showMusicSheetThemes = filteredMusicSheetThemes.length > 0;
+  const showNoResults = !showPianoThemes && !showBackgroundThemes && !showMusicSheetThemes && searchQuery.trim();
 
   return (
     <Popper
@@ -174,6 +183,34 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   expanded={backgroundThemeExpanded}
                   onToggleExpand={() => setBackgroundThemeExpanded(!backgroundThemeExpanded)}
                   categoryOrder={['basics', 'cultural', 'gradients']}
+                />
+              )}
+
+              {/* Divider between sections */}
+              {(showPianoThemes || showBackgroundThemes) && showMusicSheetThemes && (
+                <Divider sx={{ borderColor: pianoTheme.colors.border }} />
+              )}
+
+              {/* Music Sheet Theme Section */}
+              {showMusicSheetThemes && (
+                <ThemeSection
+                  title="Music Sheet Theme"
+                  icon={
+                    <MusicSheetIcon
+                      sx={{
+                        color: pianoTheme.colors.secondary,
+                        fontSize: '1.1rem',
+                      }}
+                    />
+                  }
+                  themes={filteredMusicSheetThemes}
+                  currentTheme={currentMusicSheetTheme}
+                  onThemeSelect={onMusicSheetThemeChange}
+                  pianoTheme={pianoTheme}
+                  type="musicsheet"
+                  expanded={musicSheetThemeExpanded}
+                  onToggleExpand={() => setMusicSheetThemeExpanded(!musicSheetThemeExpanded)}
+                  categoryOrder={['papers']}
                 />
               )}
 

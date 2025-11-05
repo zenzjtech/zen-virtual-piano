@@ -15,7 +15,7 @@ import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
+import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setMusicSheetTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
 import { addSheets, loadSheet, pauseSheet } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
 import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
@@ -39,6 +39,7 @@ function App() {
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
   const backgroundThemeId = useAppSelector((state) => state.pianoSettings.backgroundTheme);
+  const musicSheetThemeId = useAppSelector((state) => state.pianoSettings.musicSheetTheme);
   const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
   const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
@@ -193,6 +194,10 @@ function App() {
   const handleBackgroundThemeChange = (themeId: string) => {
     dispatch(setBackgroundTheme(themeId));
   };
+  
+  const handleMusicSheetThemeChange = (themeId: string) => {
+    dispatch(setMusicSheetTheme(themeId));
+  };
 
   // Get background theme styles and determine if it's a dark background
   const isDarkBackground = isDarkBackgroundTheme(backgroundThemeId);
@@ -335,8 +340,10 @@ function App() {
         onClose={styleSettingsPopup.handleClose}
         currentPianoTheme={pianoThemeId}
         currentBackgroundTheme={backgroundThemeId}
+        currentMusicSheetTheme={musicSheetThemeId}
         onPianoThemeChange={handlePianoThemeChange}
         onBackgroundThemeChange={handleBackgroundThemeChange}
+        onMusicSheetThemeChange={handleMusicSheetThemeChange}
         pianoTheme={pianoTheme}
       />
 
