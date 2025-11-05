@@ -43,9 +43,12 @@ extension/
 │   │   ├── react.svg
 │   │   └── tailwind.css     # Global Tailwind styles
 │   ├── components/          # Reusable React components
-│   │   └── counter/         # Example: Feature-based component organization
-│   │       ├── counter.tsx
-│   │       └── counterSlice.ts
+│   │   └── piano/           # Piano feature components
+│   │       ├── piano.tsx
+│   │       ├── settings-bar.tsx
+│   │       └── piano-settings-slice.ts
+│   ├── contexts/            # React context providers
+│   │   └── notification-context.tsx
 │   ├── entrypoints/         # WXT entry points (extension components)
 │   │   ├── background/      # Background service worker
 │   │   │   ├── index.ts
@@ -56,12 +59,24 @@ extension/
 │   │       ├── main.tsx
 │   │       ├── index.html
 │   │       └── style.css
+│   ├── hooks/               # Custom React hooks
+│   │   ├── use-piano-keyboard.ts
+│   │   ├── use-piano-mouse.ts
+│   │   ├── use-sheet-playback.ts
+│   │   ├── use-escape-key-handler.ts
+│   │   └── [14 total hooks]
+│   ├── services/            # Service layer (audio, API, etc.)
+│   │   ├── audio-engine.ts
+│   │   └── sound-sets.ts
 │   ├── public/              # Public assets (icons, manifest resources)
 │   │   └── icon/
-│   └── store/               # Redux store configuration
-│       ├── index.ts         # Store setup
-│       ├── hook.ts          # Typed Redux hooks
-│       └── reducers/        # Combined reducers
+│   ├── store/               # Redux store configuration
+│   │   ├── index.ts         # Store setup
+│   │   ├── hook.ts          # Typed Redux hooks
+│   │   └── reducers/        # Redux slices
+│   └── utils/               # Utility functions
+│       ├── analytics.ts
+│       └── constants.ts
 ├── docs/                    # Documentation
 ├── wxt.config.ts           # WXT configuration
 ├── tsconfig.json           # TypeScript configuration
@@ -212,6 +227,116 @@ Build output: `.output/` directory
 }
 ```
 
+## Custom Hooks Architecture
+
+The application uses a comprehensive set of custom hooks to encapsulate and reuse logic across components. Hooks are organized by functionality:
+
+### Piano Interaction Hooks
+
+**`usePianoKeyboard`** (`src/hooks/use-piano-keyboard.ts`)
+- Manages keyboard interactions with the piano
+- Handles key press state and velocity calculation based on timing
+- Provides audio playback control for keyboard input
+- Tracks interaction and press timing for expressive playing
+
+**`usePianoMouse`** (`src/hooks/use-piano-mouse.ts`)
+- Manages mouse interactions with piano keys
+- Calculates velocity based on hover-to-click timing
+- Provides handlers for mouse enter, down, up, and leave events
+- Enables expressive playing with mouse input
+
+### Music Sheet Hooks
+
+**`useSheetPlayback`** (`src/hooks/use-sheet-playback.ts`)
+- Core hook for automated sheet music playback
+- Manages note timing, tempo, and duration calculations
+- Handles chord playback and rest periods
+- Implements page auto-advance during playback
+- Supports loop mode for continuous playback
+
+**`useSheetKeyboardControls`** (`src/hooks/use-sheet-keyboard-controls.ts`)
+- Manages keyboard shortcuts for music sheet controls
+- Spacebar: Play/Pause toggle
+- Arrow Up/Down: Tempo adjustment (±5 BPM)
+- Arrow Left/Right or Backspace/Enter: Page navigation
+- Only active when a sheet is loaded
+
+**`usePlayerControls`** (`src/hooks/use-player-controls.ts`)
+- Provides handlers for player control actions
+- Dispatches Redux actions for play, pause, stop, tempo, and navigation
+- Used by UI components to control playback
+
+**`useSheetSearch`** (`src/hooks/use-sheet-search.ts`)
+- Manages sheet search dialog state
+- Integrates with popup manager for focus control
+- Dispatches Redux actions for search dialog
+
+**`useTotalPages`** (`src/hooks/use-total-pages.ts`)
+- Calculates total pages for a music sheet
+- Based on max chars per line and lines per page configuration
+- Memoized for performance
+
+### Keyboard & Input Hooks
+
+**`useEscapeKeyHandler`** (`src/hooks/use-escape-key-handler.ts`)
+- Centralized Escape key functionality with priority system
+- Priority 1: Close any open popup (instrument, sound, style, key assist, search)
+- Priority 2: Enable piano if disabled
+- Manages focus restoration after closing popups
+
+### UI & Interaction Hooks
+
+**`usePopupManager`** (`src/hooks/use-popup-manager.ts`)
+- Generic hook for managing popup/dialog state
+- Handles anchor element and open/close state
+- Automatic focus restoration to trigger button
+- Used by multiple dialog/popup components
+
+**`usePageTransition`** (`src/hooks/use-page-transition.ts`)
+- Manages page turn animations for music sheets
+- Determines animation direction (left/right)
+- Controls content visibility during transitions
+- Configurable transition duration (default: 300ms)
+
+### Theme & Style Hooks
+
+**`useThemeFilter`** (`src/hooks/use-theme-filter.ts`)
+- Generic filtering hook for theme lists
+- Searches by name and description
+- Case-insensitive matching
+- Memoized for performance
+
+**`useThemeGroups`** (`src/hooks/use-theme-groups.ts`)
+- Groups themes by category
+- Supports custom category ordering
+- Returns structured theme groups
+- Generic implementation for reusability
+
+### Settings & State Hooks
+
+**`useSoundSettings`** (`src/hooks/use-sound-settings.ts`)
+- Manages local sound settings state
+- Controls transpose, volume, metronome, and MIDI device
+- Non-persisted settings (local component state)
+
+### Authentication Hooks
+
+**`useAuthRestore`** (`src/hooks/use-auth-restore.ts`)
+- Restores authentication session on app mount
+- Checks for cached auth tokens
+- Updates Redux state with user info
+- Shows welcome notification on successful restore
+- Returns `isCheckingAuth` loading state
+
+### Hook Design Principles
+
+1. **Single Responsibility**: Each hook handles one specific concern
+2. **Composability**: Hooks can be composed together in components
+3. **Type Safety**: All hooks are fully typed with TypeScript
+4. **Redux Integration**: State management hooks use typed `useAppDispatch` and `useAppSelector`
+5. **Performance**: Use of `useMemo`, `useCallback`, and `useRef` to prevent unnecessary re-renders
+6. **Cleanup**: Proper cleanup in `useEffect` return functions for event listeners and timers
+
 ## Key Architectural Patterns
 
 ### 1. Feature-Based Organization
@@ -229,6 +354,7 @@ Components are organized by feature (e.g., `counter/`), keeping related code tog
 - Each component has a focused purpose
 - Slices manage specific state domains
 - Entry points handle distinct extension roles
+- Custom hooks encapsulate reusable logic
 
 ### 4. Declarative UI
 - React components describe UI state
@@ -260,11 +386,30 @@ Manifest version: **V3** (modern standard)
 
 ### Adding New Features
 
-1. Create component in `src/components/[feature]/`
-2. Define Redux slice if state is needed
-3. Add slice to combined reducers
-4. Use typed hooks in components
-5. Apply MUI or Tailwind for styling
+1. **Create component** in `src/components/[feature]/`
+2. **Define Redux slice** if global state is needed
+3. **Add slice** to combined reducers in `src/store/reducers/`
+4. **Extract reusable logic** into custom hooks in `src/hooks/`
+   - Name hooks with `use` prefix (e.g., `useFeatureName`)
+   - Keep hooks focused on single responsibility
+   - Use TypeScript interfaces for parameters and return types
+   - Include JSDoc comments describing the hook's purpose
+5. **Use typed hooks** in components (`useAppSelector`, `useAppDispatch`)
+6. **Apply styling** with MUI components or Tailwind classes
+
+### Creating Custom Hooks
+
+When creating a new custom hook:
+
+1. **Identify reusable logic**: Event handlers, state management, side effects
+2. **Choose appropriate location**: `src/hooks/use-[feature-name].ts`
+3. **Define clear interfaces**: Type parameters and return values
+4. **Document the hook**: Add JSDoc comments with usage examples
+5. **Follow naming conventions**: 
+   - Use kebab-case for file names (`use-feature-name.ts`)
+   - Use camelCase for hook names (`useFeatureName`)
+6. **Implement cleanup**: Return cleanup functions in `useEffect` when needed
+7. **Consider performance**: Use `useMemo`, `useCallback`, `useRef` appropriately
 
 #### Piano Feature Modules
 
