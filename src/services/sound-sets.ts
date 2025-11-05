@@ -8,7 +8,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel';
+  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel' | 'harp';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -192,6 +192,20 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       brightness: 'bright',
       sustain: 'short',
       attack: 'sharp',
+    },
+  },
+  
+  'harp-standard': {
+    id: 'harp-standard',
+    name: 'Harp',
+    description: 'Ethereal plucked string harp',
+    type: 'harp',
+    path: 'standard',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'medium',
+      attack: 'soft',
     },
   },
 };
