@@ -8,7 +8,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ' | 'flute';
+  type: 'piano' | 'organ' | 'flute' | 'violin';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -145,6 +145,20 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       brightness: 'bright',
       sustain: 'medium',
       attack: 'soft',
+    },
+  },
+  
+  'violin-standard': {
+    id: 'violin-standard',
+    name: 'Violin',
+    description: 'Classic string violin sound',
+    type: 'violin',
+    path: 'standard',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'long',
+      attack: 'medium',
     },
   },
 };
