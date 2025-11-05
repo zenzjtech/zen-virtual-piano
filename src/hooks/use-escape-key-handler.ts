@@ -10,6 +10,7 @@ interface PopupHandlers {
   handleStyleSettingsClose: () => void;
   handleKeyAssistPopupClose: () => void;
   handleSheetSearchClose: () => void;
+  handleKeyboardShortcutsClose?: () => void;
 }
 
 interface PopupStates {
@@ -18,6 +19,7 @@ interface PopupStates {
   styleSettingsOpen: boolean;
   keyAssistPopupOpen: boolean;
   isSheetSearchOpen: boolean;
+  isKeyboardShortcutsOpen?: boolean;
 }
 
 /**
@@ -39,6 +41,7 @@ export function useEscapeKeyHandler(
     styleSettingsOpen,
     keyAssistPopupOpen,
     isSheetSearchOpen,
+    isKeyboardShortcutsOpen,
   } = popupStates;
 
   const {
@@ -47,6 +50,7 @@ export function useEscapeKeyHandler(
     handleStyleSettingsClose,
     handleKeyAssistPopupClose,
     handleSheetSearchClose,
+    handleKeyboardShortcutsClose,
   } = handlers;
 
   useEffect(() => {
@@ -67,6 +71,9 @@ export function useEscapeKeyHandler(
           event.preventDefault();
         } else if (isSheetSearchOpen) {
           handleSheetSearchClose();
+          event.preventDefault();
+        } else if (isKeyboardShortcutsOpen && handleKeyboardShortcutsClose) {
+          handleKeyboardShortcutsClose();
           event.preventDefault();
         } 
         // Priority 2: Enable piano if it's disabled and no popups are open
@@ -89,6 +96,7 @@ export function useEscapeKeyHandler(
       styleSettingsOpen || 
       keyAssistPopupOpen || 
       isSheetSearchOpen || 
+      isKeyboardShortcutsOpen || 
       !isPianoEnabled;
 
     if (shouldListen) {
@@ -104,12 +112,14 @@ export function useEscapeKeyHandler(
     styleSettingsOpen,
     keyAssistPopupOpen,
     isSheetSearchOpen,
+    isKeyboardShortcutsOpen,
     isPianoEnabled,
     handleInstrumentPopupClose,
     handleSoundSettingsClose,
     handleStyleSettingsClose,
     handleKeyAssistPopupClose,
     handleSheetSearchClose,
+    handleKeyboardShortcutsClose,
     dispatch,
     uid,
   ]);

@@ -12,9 +12,10 @@ import blackPianoIcon from '@/assets/image/instrument/piano/black.png';
 interface HeaderProps {
   backgroundThemeId: string;
   isDarkBackground: boolean;
+  onShowKeyboardShortcuts: () => void;
 }
 
-export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => {
+export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts }: HeaderProps) => {
   const dispatch = useAppDispatch();
   const googleUser = useAppSelector(googleUserSelector);
   const isAuthenticated = useAppSelector(isAuthenticatedSelector);
@@ -94,7 +95,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => 
   };
 
   const handleHelp = () => {
-    console.log('Help clicked');
+    onShowKeyboardShortcuts();
   };
 
   const handleFullscreen = () => {

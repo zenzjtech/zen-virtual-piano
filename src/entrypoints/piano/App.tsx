@@ -11,6 +11,7 @@ import { SheetSearchDialog } from '@/components/piano/music-sheet/sheet-search-d
 import { MusicStand } from '@/components/piano/music-sheet/music-stand';
 import { Header } from '@/components/piano/header';
 import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
+import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-dialog';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
@@ -68,11 +69,14 @@ function App() {
   const styleSettingsPopup = usePopupManager();
   const keyAssistPopup = usePopupManager();
   
+  // Keyboard shortcuts dialog state
+  const [isKeyboardShortcutsOpen, setIsKeyboardShortcutsOpen] = useState(false);
+  
   // Sheet search hook
   const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchOpen, handleSheetSearchClose } = useSheetSearch();
   
   // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
-  const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen;
+  const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen && !isKeyboardShortcutsOpen;
   
   // Sound settings state
   const soundSettings = useSoundSettings();
@@ -132,6 +136,7 @@ function App() {
       styleSettingsOpen: styleSettingsPopup.isOpen,
       keyAssistPopupOpen: keyAssistPopup.isOpen,
       isSheetSearchOpen,
+      isKeyboardShortcutsOpen,
     },
     {
       handleInstrumentPopupClose: instrumentPopup.handleClose,
@@ -139,11 +144,39 @@ function App() {
       handleStyleSettingsClose: styleSettingsPopup.handleClose,
       handleKeyAssistPopupClose: keyAssistPopup.handleClose,
       handleSheetSearchClose,
+      handleKeyboardShortcutsClose: () => setIsKeyboardShortcutsOpen(false),
     }
   );
 
   // Handle all keyboard shortcuts for sheet mode (navigation, playback, tempo)
   useSheetKeyboardControls();
+
+  // Handle "?" key to show keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Only handle "?" when no popups are open and not typing in an input
+      if (
+        event.key === '?' &&
+        !instrumentPopup.isOpen &&
+        !soundSettingsPopup.isOpen &&
+        !styleSettingsPopup.isOpen &&
+        !keyAssistPopup.isOpen &&
+        !isSheetSearchOpen &&
+        !isKeyboardShortcutsOpen
+      ) {
+        const target = event.target as HTMLElement;
+        const isInputField = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
+        
+        if (!isInputField) {
+          event.preventDefault();
+          setIsKeyboardShortcutsOpen(true);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [instrumentPopup.isOpen, soundSettingsPopup.isOpen, styleSettingsPopup.isOpen, keyAssistPopup.isOpen, isSheetSearchOpen, isKeyboardShortcutsOpen]);
 
 
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
@@ -213,6 +246,7 @@ function App() {
       <Header 
         backgroundThemeId={backgroundThemeId}
         isDarkBackground={isDarkBackground}
+        onShowKeyboardShortcuts={() => setIsKeyboardShortcutsOpen(true)}
       />
 
       <Container maxWidth="lg">
@@ -374,6 +408,14 @@ function App() {
           onClose={() => dispatch(completeOnboarding())}
         />
       )}
+
+      {/* Keyboard Shortcuts Dialog */}
+      <KeyboardShortcutsDialog
+        open={isKeyboardShortcutsOpen}
+        onClose={() => setIsKeyboardShortcutsOpen(false)}
+        pianoTheme={pianoTheme}
+        isDarkBackground={isDarkBackground}
+      />
     </Box>
   );
 }
