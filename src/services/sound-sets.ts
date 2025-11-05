@@ -8,7 +8,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ' | 'flute' | 'violin';
+  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -163,6 +163,20 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       brightness: 'bright',
       sustain: 'long',
       attack: 'medium',
+    },
+  },
+  
+  'guitar-classical': {
+    id: 'guitar-classical',
+    name: 'Classical Guitar',
+    description: 'Warm acoustic classical guitar',
+    type: 'guitar',
+    path: 'classical',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'mellow',
+      sustain: 'medium',
+      attack: 'sharp',
     },
   },
 };
