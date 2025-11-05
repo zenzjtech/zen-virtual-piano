@@ -6,6 +6,7 @@ import {
   ClickAwayListener,
   Divider,
   Stack,
+  useTheme,
 } from '@mui/material';
 import {
   Palette as PaletteIcon,
@@ -54,6 +55,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   pianoTheme,
   showSearch = true,
 }) => {
+  const theme = useTheme();
   const pianoThemes = getAllThemes();
   const [searchQuery, setSearchQuery] = useState('');
   const [pianoThemeExpanded, setPianoThemeExpanded] = useState(false);
@@ -76,7 +78,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
       open={open}
       anchorEl={anchorEl}
       placement="bottom-start"
-      style={{ zIndex: 1300 }}
+      style={{ zIndex: theme.zIndex.modal }}
       modifiers={[
         {
           name: 'flip',

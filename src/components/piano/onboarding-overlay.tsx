@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Box, Typography, IconButton, Paper, styled, alpha } from '@mui/material';
+import { Box, Typography, IconButton, Paper, styled, alpha, useTheme } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 
@@ -127,14 +127,21 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
 }) => {
   const [sheetButtonRect, setSheetButtonRect] = React.useState<DOMRect | null>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
   // Get the position and size of the sheet button
   useEffect(() => {
+    const sheetButton = document.getElementById('sheet-search-button');
+    
+    // Store original z-index to restore later
+    const originalZIndex = sheetButton?.style.zIndex || '';
+    
     const updatePosition = () => {
-      const sheetButton = document.getElementById('sheet-search-button');
       if (sheetButton) {
         const rect = sheetButton.getBoundingClientRect();
         setSheetButtonRect(rect);
+        // Set high z-index during onboarding to make button clickable
+        sheetButton.style.zIndex = String(theme.zIndex.modal + 3);
       }
     };
 
@@ -148,6 +155,10 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
     return () => {
       window.removeEventListener('resize', updatePosition);
       window.removeEventListener('scroll', updatePosition);
+      // Reset z-index when onboarding closes
+      if (sheetButton) {
+        sheetButton.style.zIndex = originalZIndex;
+      }
     };
   }, []);
 

@@ -4,6 +4,7 @@ import {
   Box,
   Popper,
   ClickAwayListener,
+  useTheme,
 } from '@mui/material';
 import {
   MusicNote as MusicNoteIcon,
@@ -38,6 +39,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   onClose,
   pianoTheme,
 }) => {
+  const theme = useTheme();
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -66,7 +68,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
       open={open}
       anchorEl={anchorEl}
       placement="bottom-start"
-      style={{ zIndex: 1300 }}
+      style={{ zIndex: theme.zIndex.modal }}
       modifiers={[
         {
           name: 'flip',
