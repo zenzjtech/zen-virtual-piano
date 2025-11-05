@@ -38,26 +38,12 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
-  'grand-classical-1': {
-    id: 'grand-classical-1',
-    name: 'Grand Piano I',
-    description: 'Bright concert grand piano',
-    type: 'piano',
-    path: 'grand-classical-1',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'bright',
-      sustain: 'long',
-      attack: 'sharp',
-    },
-  },
-  
-  'grand-classical-2': {
-    id: 'grand-classical-2',
-    name: 'Grand Piano II',
+  'grand-classical': {
+    id: 'grand-classical',
+    name: 'Grand Piano',
     description: 'Rich and mellow grand piano',
     type: 'piano',
-    path: 'grand-classical-2',
+    path: 'grand-classical',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
     characteristics: {
       brightness: 'mellow',
