@@ -71,6 +71,19 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       attack: 'sharp',
     },
   },
+  
+  upright: {
+    id: 'upright',
+    name: 'Upright Piano',
+    description: 'Warm intimate upright piano tone',
+    path: 'upright',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'mellow',
+      sustain: 'short',
+      attack: 'soft',
+    },
+  },
 };
 
 /**
