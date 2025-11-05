@@ -81,7 +81,7 @@ const initialState: MusicSheetState = {
   playback: initialPlaybackState,
   userData: initialUserData,
   isSearchDialogOpen: false,
-  isMusicStandVisible: false,
+  isMusicStandVisible: true,
   statusDisplayMode: 'pressed-notes', // Default: show pressed notes
   isMusicStandMinimized: false,
 };

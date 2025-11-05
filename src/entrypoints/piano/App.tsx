@@ -15,7 +15,7 @@ import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
-import { switchToManualMode, addSheets } from '@/store/reducers/music-sheet-slice';
+import { switchToManualMode, addSheets, loadSheet } from '@/store/reducers/music-sheet-slice';
 import { getBuiltInSheets } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
@@ -74,6 +74,8 @@ function App() {
   useEffect(() => {
     const sheets = getBuiltInSheets();
     dispatch(addSheets(sheets));
+    // Load default sheet
+    dispatch(loadSheet('kiss-the-rain-v2'));
   }, [dispatch]);
 
   // Sync audio engine with Redux state on mount

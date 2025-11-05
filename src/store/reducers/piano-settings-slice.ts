@@ -14,8 +14,8 @@ const initialState: PianoSettingsState = {
   theme: 'wooden',
   soundSet: 'classical',
   sustain: 0,
-  backgroundTheme: 'white',
-  showKeyboard: false,
+  backgroundTheme: 'warm',
+  showKeyboard: true,
   showNoteName: false,
   isPianoEnabled: true,
 };
