@@ -16,7 +16,8 @@ import { getTheme } from '@/components/piano/themes';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
-import { switchToManualMode, addSheets, loadSheet } from '@/store/reducers/music-sheet-slice';
+import { addSheets, loadSheet, pauseSheet } from '@/store/reducers/music-sheet-slice';
+import { useNotification } from '@/contexts/notification-context';
 import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
 import { getBuiltInSheetMetadata } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
@@ -74,6 +75,9 @@ function App() {
   
   // Sound settings state
   const soundSettings = useSoundSettings();
+  
+  // Notification
+  const { showNotification } = useNotification();
 
   // Restore auth session on mount (if cached token exists)
   useAuthRestore();
@@ -145,11 +149,12 @@ function App() {
     setPressedNotes(notes);
     setCurrentNote(current);
     
-    // Auto-switch to manual mode when user presses any key during sheet playback
+    // Stop auto-play when user presses key
     if (isSheetPlaying && current !== null) {
-      dispatch(switchToManualMode());
+      dispatch(pauseSheet());
+      showNotification('Auto-play paused. You can now play manually.', 'info');
     }
-  }, [isSheetPlaying, dispatch]);
+  }, [isSheetPlaying, showNotification, dispatch]);
 
   // Settings bar handlers
   const handleTogglePiano = () => {
