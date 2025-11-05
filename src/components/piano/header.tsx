@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setGoogleUser, logout, googleUserSelector, isAuthenticatedSelector } from '@/store/reducers/user-slice';
 import { authenticateWithGoogle, signOutFromGoogle } from '@/utils/google-auth';
+import { useNotification } from '@/contexts/notification-context';
 import whitePianoIcon from '@/assets/image/instrument/piano/white.png';
 import brownPianoIcon from '@/assets/image/instrument/piano/brown.png';
 import blackPianoIcon from '@/assets/image/instrument/piano/black.png';
@@ -17,6 +18,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => 
   const dispatch = useAppDispatch();
   const googleUser = useAppSelector(googleUserSelector);
   const isAuthenticated = useAppSelector(isAuthenticatedSelector);
+  const { showNotification } = useNotification();
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(anchorEl);
@@ -65,8 +67,10 @@ export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => 
       try {
         const userInfo = await authenticateWithGoogle();
         dispatch(setGoogleUser(userInfo));
+        showNotification(`Welcome, ${userInfo.name}! 🎹`, 'success');
       } catch (error) {
         console.error('Authentication error:', error);
+        showNotification('Failed to sign in. Please try again.', 'error');
       } finally {
         setIsAuthenticating(false);
       }
@@ -82,8 +86,10 @@ export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => 
     try {
       await signOutFromGoogle();
       dispatch(logout());
+      showNotification('Signed out successfully', 'info');
     } catch (error) {
       console.error('Logout error:', error);
+      showNotification('Failed to sign out. Please try again.', 'error');
     }
   };
 

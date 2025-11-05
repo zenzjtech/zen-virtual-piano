@@ -14,6 +14,7 @@ import '@fontsource/roboto/700.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { muiTheme } from '@/theme/mui-theme';
 import { initMixpanel } from '@/utils/analytics.ts';
+import { NotificationProvider } from '@/contexts/notification-context';
 
 (async () => {
   initMixpanel();
@@ -22,7 +23,9 @@ import { initMixpanel } from '@/utils/analytics.ts';
     <React.StrictMode>
       <Provider store={store}>
         <ThemeProvider theme={muiTheme}>
-          <App />
+          <NotificationProvider>
+            <App />
+          </NotificationProvider>
         </ThemeProvider>
       </Provider>
     </React.StrictMode>,

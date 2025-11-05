@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setGoogleUser } from '@/store/reducers/user-slice';
 import { restoreAuthSession } from '@/utils/google-auth';
+import { useNotification } from '@/contexts/notification-context';
 
 /**
  * Hook to restore authentication session on app mount
@@ -11,6 +12,7 @@ export const useAuthRestore = () => {
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     const restoreAuth = async () => {
@@ -25,6 +27,7 @@ export const useAuthRestore = () => {
         if (userInfo) {
           dispatch(setGoogleUser(userInfo));
           console.log('✓ Auth session restored for:', userInfo.email);
+          showNotification(`Welcome back, ${userInfo.name}! 👋`, 'success');
         } else {
           console.log('No cached auth session found');
         }
@@ -36,7 +39,7 @@ export const useAuthRestore = () => {
     };
 
     restoreAuth();
-  }, [dispatch, isAuthenticated]);
+  }, [dispatch, isAuthenticated, showNotification]);
 
   return { isCheckingAuth };
 };
