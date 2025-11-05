@@ -12,6 +12,7 @@ export type BackgroundThemeId =
   | 'gradient-sunset'
   | 'gradient-ocean'
   | 'gradient-forest'
+  | 'morning-sky'
   | 'gufeng-ink-jade'
   | 'gufeng-vermillion-gold'
   | 'zen-sakura-dawn'
@@ -63,6 +64,8 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)' };
     case 'gradient-forest':
       return { background: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)' };
+    case 'morning-sky':
+      return { background: 'linear-gradient(135deg, #B8E8F5 0%, #D4F1F9 40%, #FFFFFF 100%)' };
     case 'gufeng-ink-jade':
       return { background: 'linear-gradient(135deg, #2C3E50 0%, #3C5A4E 50%, #4A6B5A 100%)' };
     case 'gufeng-vermillion-gold':

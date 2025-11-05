@@ -160,4 +160,12 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
     gradient: 'linear-gradient(135deg, #56AB2F 0%, #A8E063 100%)',
     category: 'gradients',
   },
+  {
+    id: 'morning-sky',
+    name: 'Morning Sky',
+    description: 'Peaceful morning sky gradient',
+    color: '#B8E8F5',
+    gradient: 'linear-gradient(135deg, #B8E8F5 0%, #D4F1F9 40%, #FFFFFF 100%)',
+    category: 'gradients',
+  },
 ];
