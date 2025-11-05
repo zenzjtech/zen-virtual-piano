@@ -15,14 +15,16 @@ import type {
   SheetUserData,
   StatusDisplayMode 
 } from '@/components/piano/music-sheet/types';
+import type { MusicSheetMetadata } from '@/services/sheet-library';
+import { getSheetWithNotation } from '@/services/sheet-library';
 
 /**
  * Music sheet state interface
  */
 export interface MusicSheetState {
   // Library
-  /** All available sheets (built-in + custom) */
-  sheets: Record<string, MusicSheet>;
+  /** All available sheet metadata (without notation/pages) */
+  sheets: Record<string, MusicSheetMetadata>;
   
   // Current session
   /** Currently loaded sheet */
@@ -98,9 +100,9 @@ export const musicSheetSlice = createSlice({
   reducers: {
     // Library management
     /**
-     * Add sheets to the library
+     * Add sheet metadata to the library
      */
-    addSheets: (state, action: PayloadAction<MusicSheet[]>) => {
+    addSheets: (state, action: PayloadAction<MusicSheetMetadata[]>) => {
       action.payload.forEach(sheet => {
         state.sheets[sheet.id] = sheet;
       });
@@ -121,32 +123,37 @@ export const musicSheetSlice = createSlice({
 
     // Sheet selection
     /**
-     * Load a sheet for display/playback
+     * Load a sheet for display/playback (loads full data with notation)
      */
     loadSheet: (state, action: PayloadAction<string>) => {
       const sheetId = action.payload;
-      const sheet = state.sheets[sheetId];
+      const metadata = state.sheets[sheetId];
       
-      if (sheet) {
-        state.currentSheet = sheet;
-        state.playback.currentSheetId = sheetId;
-        state.playback.tempo = sheet.tempo;
-        state.isMusicStandVisible = true;
+      if (metadata) {
+        // Load full sheet data with notation and pages
+        const fullSheet = getSheetWithNotation(sheetId);
         
-        // Clear the manual close flag since user is loading a sheet again
-        state.hasManuallyClosedSheet = false;
-        
-        // Add to recently played (at the beginning)
-        state.userData.recentlyPlayed = [
-          sheetId,
-          ...state.userData.recentlyPlayed.filter(id => id !== sheetId)
-        ];
-        
-        // Update timestamp
-        state.userData.lastPlayedTimestamps[sheetId] = Date.now();
-        
-        // Auto-switch status display to sheet progress
-        state.statusDisplayMode = 'sheet-progress';
+        if (fullSheet) {
+          state.currentSheet = fullSheet;
+          state.playback.currentSheetId = sheetId;
+          state.playback.tempo = fullSheet.tempo;
+          state.isMusicStandVisible = true;
+          
+          // Clear the manual close flag since user is loading a sheet again
+          state.hasManuallyClosedSheet = false;
+          
+          // Add to recently played (at the beginning)
+          state.userData.recentlyPlayed = [
+            sheetId,
+            ...state.userData.recentlyPlayed.filter(id => id !== sheetId)
+          ];
+          
+          // Update timestamp
+          state.userData.lastPlayedTimestamps[sheetId] = Date.now();
+          
+          // Auto-switch status display to sheet progress
+          state.statusDisplayMode = 'sheet-progress';
+        }
       }
     },
 

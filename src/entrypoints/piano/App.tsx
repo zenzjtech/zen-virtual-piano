@@ -18,7 +18,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
 import { switchToManualMode, addSheets, loadSheet } from '@/store/reducers/music-sheet-slice';
 import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
-import { getBuiltInSheets } from '@/services/sheet-library';
+import { getBuiltInSheetMetadata } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
@@ -84,7 +84,7 @@ function App() {
 
   // Load built-in sheet library on mount
   useEffect(() => {
-    const sheets = getBuiltInSheets();
+    const sheets = getBuiltInSheetMetadata();
     dispatch(addSheets(sheets));
     
     // Only auto-load sheet if user hasn't manually closed it before
