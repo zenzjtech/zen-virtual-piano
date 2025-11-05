@@ -174,7 +174,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => 
             <HelpOutline sx={{ fontSize: { xs: 20, sm: 22, md: 24 } }} />
           </IconButton>
 
-          <IconButton
+          {/* <IconButton
             onClick={handleFullscreen}
             sx={{
               color: iconColor,
@@ -202,7 +202,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground }: HeaderProps) => 
             aria-label="Settings"
           >
             <Settings sx={{ fontSize: { xs: 20, sm: 22, md: 24 } }} />
-          </IconButton>
+          </IconButton> */}
 
           <IconButton
             onClick={handleAccount}
