@@ -39,21 +39,46 @@ export class AudioEngine {
    * Initialize Tone.js Sampler with the current sound set
    * Maps keyboard notes down by one octave to sample files
    * (e.g., C2 → C1.mp3, C3 → C2.mp3, etc.)
+   * Uses lazy loading to only load audio files for the current instrument
    */
   private async initAudio(): Promise<void> {
     try {
-      // Import all audio samples using Vite's glob import with eager loading
-      // This ensures proper bundling and URL resolution for all sound sets
-      const samples = import.meta.glob('@/assets/audio/**/*.mp3', { 
-        eager: true,
+      // Import audio samples using Vite's lazy glob import
+      // This creates a map of import functions instead of eagerly loading all files
+      const sampleImporters = import.meta.glob('@/assets/audio/**/*.mp3', { 
         query: '?url',
         import: 'default'
-      }) as Record<string, string>;
+      });
+      
+      // Build the file path pattern for the current sound set
+      const basePath = `/src/assets/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}`;
+      
+      // Dynamically load only the files needed for the current sound set
+      const samples: Record<string, string> = {};
+      const loadPromises: Promise<void>[] = [];
+      
+      for (const [path, importer] of Object.entries(sampleImporters)) {
+        // Check if this file belongs to the current sound set
+        if (path.includes(`/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}/`)) {
+          const loadPromise = (importer as () => Promise<string>)().then((url) => {
+            samples[path] = url;
+          }).catch((error) => {
+            console.error(`Failed to load ${path}:`, error);
+          });
+          loadPromises.push(loadPromise);
+        }
+      }
+      
+      // Wait for all required samples to load
+      await Promise.all(loadPromises);
       
       // Build the URLs map for the current sound set
       const urlsMap = buildSampleUrlsMap(this.currentSoundSet, samples);
       
-      console.log(`Loading ${this.currentSoundSet.name} samples...`, urlsMap);
+      console.log(`Loading ${this.currentSoundSet.name} samples...`, {
+        loaded: Object.keys(samples).length,
+        urlsMap: Object.keys(urlsMap).length
+      });
       
       // Create separate Volume node for better audio control
       if (!this.volume) {
@@ -87,6 +112,7 @@ export class AudioEngine {
 
     } catch (error) {
       console.error('Failed to initialize Tone.js sampler:', error);
+      this.isChangingSoundSet = false;
     }
   }
 
