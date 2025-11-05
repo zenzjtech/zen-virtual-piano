@@ -6,6 +6,7 @@ import { BoardContainer, CornerPlate } from './status-board-styled';
 import { SheetModeDisplay } from './status-board-sheet-mode';
 import { ManualModeDisplay } from './status-board-manual-mode';
 import { useTotalPages } from '@/hooks/use-total-pages';
+import { useAppConfig } from '#imports';
 import { Box } from '@mui/material';
 
 interface StatisticsBoardProps {
@@ -25,6 +26,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   pianoTheme,
   onSheetSearchOpen
 }) => {
+  const appConfig = useAppConfig();
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
   const statusDisplayMode = useAppSelector((state) => state.musicSheet.statusDisplayMode);
@@ -42,6 +44,10 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
     if (currentNote) {
       setNoteHistory(prev => {
         const newHistory = [...prev, currentNote.keyboardKey];
+        // Limit history to the configured maximum
+        if (newHistory.length > appConfig.noteHistoryLimit) {
+          return newHistory.slice(newHistory.length - appConfig.noteHistoryLimit);
+        }
         return newHistory;
       });
       // Update the last pressed note and key

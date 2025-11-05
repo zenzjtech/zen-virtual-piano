@@ -8,7 +8,8 @@ declare module 'wxt/utils/define-app-config' {
             maxCharsPerLine: number;
             linesPerPage: number;
         }
-    }
+    },
+    noteHistoryLimit: number
   }
 }
 
@@ -19,4 +20,5 @@ export default defineAppConfig({
       linesPerPage: 6,
     },
   },
+  noteHistoryLimit: 500,
 })
