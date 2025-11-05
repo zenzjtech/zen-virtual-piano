@@ -34,14 +34,7 @@ interface ShortcutItem {
 const shortcuts: ShortcutItem[] = [
   // General
   { action: 'View keyboard shortcuts', keys: ['?'], category: 'General' },
-  
-  // Piano Keys
-  { action: 'Play white keys (C2-E3)', keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], category: 'Piano Keys' },
-  { action: 'Play white keys (F3-A4)', keys: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], category: 'Piano Keys' },
-  { action: 'Play white keys (B4-C6)', keys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], category: 'Piano Keys' },
-  { action: 'Play white keys (D6-C7)', keys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M'], category: 'Piano Keys' },
-  { action: 'Play black keys (sharps/flats)', keys: ['Shift', '+', 'key'], category: 'Piano Keys' },
-  
+
   // Sheet Mode
   { action: 'Play/Pause sheet', keys: ['Space'], category: 'Sheet Mode' },
   { action: 'Increase tempo', keys: ['↑'], category: 'Sheet Mode' },
@@ -53,6 +46,14 @@ const shortcuts: ShortcutItem[] = [
   
   // Navigation
   { action: 'Close dialog/popup', keys: ['Esc'], category: 'Navigation' },
+
+  // Piano Keys
+  { action: 'Play white keys (C2-E3)', keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], category: 'Piano Keys' },
+  { action: 'Play white keys (F3-A4)', keys: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], category: 'Piano Keys' },
+  { action: 'Play white keys (B4-C6)', keys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], category: 'Piano Keys' },
+  { action: 'Play white keys (D6-C7)', keys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M'], category: 'Piano Keys' },
+  { action: 'Play black keys (sharps/flats)', keys: ['Shift', '+', 'key'], category: 'Piano Keys' },
+    
 ];
 
 /**
