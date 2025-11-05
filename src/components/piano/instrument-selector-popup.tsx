@@ -7,6 +7,7 @@ import {
   Box,
   Popper,
   ClickAwayListener,
+  CircularProgress,
 } from '@mui/material';
 import {
   CheckCircle as CheckCircleIcon,
@@ -33,6 +34,8 @@ interface InstrumentSelectorPopupProps {
   pianoTheme: PianoTheme;
   /** Whether to show the search bar (default: true) */
   showSearch?: boolean;
+  /** Whether an instrument is currently loading */
+  isLoading?: boolean;
 }
 
 
@@ -44,6 +47,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
   onSoundSetChange,
   pianoTheme,
   showSearch = true,
+  isLoading = false,
 }) => {
   const soundSets = getAllSoundSets();
   const [searchQuery, setSearchQuery] = useState('');
@@ -106,28 +110,49 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
       <ClickAwayListener onClickAway={onClose}>
         <StyledPopupPaper elevation={8} pianoTheme={pianoTheme}>
           <PopupHeaderBox pianoTheme={pianoTheme}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <PianoIcon
-                sx={{
-                  color: pianoTheme.colors.accent,
-                  fontSize: '1.5rem',
-                  filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
-                }}
-              />
-              <Typography
-                variant="h6"
-                fontWeight="600"
-                sx={{
-                  color: pianoTheme.colors.primary,
-                  textShadow: `
-                    0 1px 2px rgba(0, 0, 0, 0.3),
-                    0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
-                  `,
-                  letterSpacing: '0.5px',
-                }}
-              >
-                Select Instrument
-              </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <PianoIcon
+                  sx={{
+                    color: pianoTheme.colors.accent,
+                    fontSize: '1.5rem',
+                    filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  fontWeight="600"
+                  sx={{
+                    color: pianoTheme.colors.primary,
+                    textShadow: `
+                      0 1px 2px rgba(0, 0, 0, 0.3),
+                      0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
+                    `,
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Select Instrument
+                </Typography>
+              </Box>
+              {isLoading && (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <CircularProgress
+                    size={16}
+                    sx={{
+                      color: pianoTheme.colors.accent,
+                    }}
+                  />
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: pianoTheme.colors.secondary,
+                      fontSize: '0.75rem',
+                    }}
+                  >
+                    Loading...
+                  </Typography>
+                </Box>
+              )}
             </Box>
           </PopupHeaderBox>
           
@@ -154,9 +179,17 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                     isSelected={isSelected}
                     onClick={() => handleSelect(soundSet.id)}
                     pianoTheme={pianoTheme}
+                    disabled={isLoading}
                   >
                     <ListItemIcon sx={{ minWidth: 40 }}>
-                      {isSelected ? (
+                      {isLoading && isSelected ? (
+                        <CircularProgress
+                          size={20}
+                          sx={{
+                            color: pianoTheme.colors.accent,
+                          }}
+                        />
+                      ) : isSelected ? (
                         <CheckCircleIcon
                           sx={{
                             color: pianoTheme.colors.accent,

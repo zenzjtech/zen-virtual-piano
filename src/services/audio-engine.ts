@@ -156,6 +156,13 @@ export class AudioEngine {
   }
 
   /**
+   * Check if audio is currently loaded and ready
+   */
+  isReady(): boolean {
+    return this.isLoaded && !this.isChangingSoundSet;
+  }
+
+  /**
    * Play a note using Tone.Sampler
    * @param note - Musical note (e.g., 'C4', 'D#4')
    * @param frequency - Not used with sampler, kept for API compatibility

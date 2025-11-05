@@ -49,6 +49,7 @@ function App() {
   // Local component state for UI interactions
   const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
   const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
+  const [isLoadingInstrument, setIsLoadingInstrument] = useState(false);
   
   // Popup managers
   const instrumentPopup = usePopupManager();
@@ -128,11 +129,18 @@ function App() {
   const handleRecord = () => console.log('Record clicked');
 
   const handleSoundSetChange = async (newSoundSetId: string) => {
+    setIsLoadingInstrument(true);
     dispatch(setSoundSet(newSoundSetId));
-    // Change the sound set in the audio engine
-    await getAudioEngine().changeSoundSet(newSoundSetId);
-    // Reapply sustain setting after sound set change
-    getAudioEngine().setSustain(sustain);
+    try {
+      // Change the sound set in the audio engine
+      await getAudioEngine().changeSoundSet(newSoundSetId);
+      // Reapply sustain setting after sound set change
+      getAudioEngine().setSustain(sustain);
+    } catch (error) {
+      console.error('Failed to change sound set:', error);
+    } finally {
+      setIsLoadingInstrument(false);
+    }
   };
   
   const handlePianoThemeChange = (themeId: string) => {
@@ -253,6 +261,7 @@ function App() {
         onClose={instrumentPopup.handleClose}
         onSoundSetChange={handleSoundSetChange}
         pianoTheme={pianoTheme}
+        isLoading={isLoadingInstrument}
       />
 
       {/* Sound Settings Popup */}
