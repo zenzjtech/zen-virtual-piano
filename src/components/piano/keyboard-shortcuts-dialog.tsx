@@ -14,7 +14,7 @@ import {
 import {
   Close as CloseIcon,
   Search as SearchIcon,
-  ArrowBack as ArrowBackIcon,
+  Keyboard as KeyboardIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 
@@ -53,7 +53,6 @@ const shortcuts: ShortcutItem[] = [
   { action: 'Play white keys (B4-C6)', keys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], category: 'Piano Keys' },
   { action: 'Play white keys (D6-C7)', keys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M'], category: 'Piano Keys' },
   { action: 'Play black keys (sharps/flats)', keys: ['Shift', '+', 'key'], category: 'Piano Keys' },
-    
 ];
 
 /**
@@ -89,10 +88,11 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
 
   const categories = Object.keys(groupedShortcuts);
 
-  // Theme-aware colors
+  // Theme-aware colors with brand green accent
+  const accentGreen = '#10b981'; // Bright green as primary accent
   const dialogBg = isDarkBackground
-    ? 'rgba(40, 40, 40, 0.95)'
-    : 'rgba(255, 255, 255, 0.95)';
+    ? 'rgba(40, 40, 40, 0.98)'
+    : 'rgba(255, 255, 255, 0.98)';
   const textPrimary = isDarkBackground
     ? 'rgba(255, 255, 255, 0.95)'
     : 'rgba(0, 0, 0, 0.87)';
@@ -107,7 +107,10 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
     : 'rgba(0, 0, 0, 0.03)';
   const sectionBg = isDarkBackground
     ? 'rgba(255, 255, 255, 0.03)'
-    : 'rgba(0, 0, 0, 0.03)';
+    : 'rgba(0, 0, 0, 0.02)';
+  const accentBg = isDarkBackground
+    ? 'rgba(16, 185, 129, 0.15)'
+    : 'rgba(16, 185, 129, 0.08)';
 
   return (
     <Dialog
@@ -118,20 +121,24 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
       PaperProps={{
         sx: {
           background: dialogBg,
-          backdropFilter: 'blur(12px)',
+          backdropFilter: 'blur(16px)',
           border: `1px solid ${borderColor}`,
-          borderRadius: '12px',
+          borderRadius: '16px',
           boxShadow: `
             0 8px 32px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, ${isDarkBackground ? 0.1 : 0.3}),
             inset 0 -1px 2px rgba(0, 0, 0, 0.2)
           `,
-          maxHeight: '80vh',
+          maxHeight: '85vh',
+          overflow: 'hidden',
         },
       }}
+      aria-labelledby="keyboard-shortcuts-dialog-title"
+      aria-describedby="keyboard-shortcuts-dialog-description"
     >
       {/* Header */}
       <DialogTitle
+        id="keyboard-shortcuts-dialog-title"
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -140,81 +147,86 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
           background: isDarkBackground
             ? 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.1) 100%)'
             : 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.02) 100%)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 10,
-          boxShadow: `
-            inset 0 1px 0 rgba(255, 255, 255, ${isDarkBackground ? 0.08 : 0.2}),
-            0 2px 4px rgba(0, 0, 0, 0.1)
-          `,
-          pb: 2,
+          px: 3,
+          py: 2.5,
         }}
       >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 40,
+            height: 40,
+            borderRadius: '10px',
+            background: accentBg,
+            border: `1px solid ${accentGreen}30`,
+          }}
+        >
+          <KeyboardIcon sx={{ color: accentGreen, fontSize: 20 }} />
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <Typography
+            variant="h6"
+            fontWeight="600"
+            sx={{
+              color: textPrimary,
+              letterSpacing: '0.3px',
+              mb: 0.5,
+            }}
+          >
+            Keyboard Shortcuts
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{
+              color: textSecondary,
+              display: 'block',
+            }}
+          >
+            {shortcuts.length} shortcuts available
+          </Typography>
+        </Box>
         <IconButton
           onClick={onClose}
           size="small"
+          aria-label="Close keyboard shortcuts dialog"
           sx={{
             color: textSecondary,
+            transition: 'all 0.2s ease',
             '&:hover': {
               color: textPrimary,
               backgroundColor: hoverBg,
+              transform: 'scale(1.05)',
             },
           }}
         >
-          <ArrowBackIcon />
-        </IconButton>
-        <Typography
-          variant="h6"
-          fontWeight="600"
-          sx={{
-            flex: 1,
-            color: textPrimary,
-            textShadow: `
-              0 1px 2px rgba(0, 0, 0, 0.3),
-              0 -1px 0 rgba(255, 255, 255, ${isDarkBackground ? 0.05 : 0.1})
-            `,
-            letterSpacing: '0.5px',
-          }}
-        >
-          Keyboard Shortcuts
-        </Typography>
-        <IconButton
-          onClick={onClose}
-          size="small"
-          sx={{
-            color: textSecondary,
-            '&:hover': {
-              color: textPrimary,
-              backgroundColor: hoverBg,
-            },
-          }}
-        >
-          <CloseIcon />
+          <CloseIcon fontSize="small" />
         </IconButton>
       </DialogTitle>
 
       {/* Search Bar */}
       <Box
         sx={{
-          p: 2,
+          p: 2.5,
           borderBottom: `1px solid ${borderColor}`,
           background: sectionBg,
-          position: 'sticky',
-          top: 64,
-          zIndex: 9,
-          backdropFilter: 'blur(8px)',
         }}
       >
         <TextField
           fullWidth
           size="small"
-          placeholder="Search shortcuts..."
+          placeholder="Search shortcuts by action, key, or category..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          autoComplete="off"
+          inputProps={{
+            'aria-label': 'Search keyboard shortcuts',
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon sx={{ color: textSecondary }} />
+                <SearchIcon sx={{ color: textSecondary, fontSize: 20 }} />
               </InputAdornment>
             ),
           }}
@@ -223,24 +235,32 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
               backgroundColor: isDarkBackground
                 ? 'rgba(0, 0, 0, 0.3)'
                 : 'rgba(255, 255, 255, 0.7)',
-              borderRadius: '8px',
+              borderRadius: '10px',
               fontSize: '0.875rem',
-              transition: 'all 0.2s ease',
+              transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
               color: textPrimary,
               '& fieldset': {
                 borderColor: borderColor,
+                transition: 'all 0.25s ease',
               },
               '&:hover fieldset': {
                 borderColor: textSecondary,
               },
-              '&.Mui-focused fieldset': {
-                borderColor: textPrimary,
-                boxShadow: `0 0 8px ${isDarkBackground ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}`,
+              '&.Mui-focused': {
+                backgroundColor: isDarkBackground
+                  ? 'rgba(0, 0, 0, 0.4)'
+                  : 'rgba(255, 255, 255, 0.9)',
+                '& fieldset': {
+                  borderColor: accentGreen,
+                  borderWidth: '2px',
+                  boxShadow: `0 0 0 3px ${accentGreen}20`,
+                },
               },
             },
             '& .MuiOutlinedInput-input': {
               color: textPrimary,
               fontWeight: 400,
+              py: 1.25,
               '&::placeholder': {
                 color: textSecondary,
                 opacity: 0.7,
@@ -252,19 +272,50 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
 
       {/* Content */}
       <DialogContent
+        id="keyboard-shortcuts-dialog-description"
         sx={{
-          position: 'relative',
-          zIndex: 2,
           p: 0,
+          overflowY: 'auto',
+          '&::-webkit-scrollbar': {
+            width: '8px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: 'transparent',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: isDarkBackground
+              ? 'rgba(255, 255, 255, 0.2)'
+              : 'rgba(0, 0, 0, 0.2)',
+            borderRadius: '4px',
+            '&:hover': {
+              background: isDarkBackground
+                ? 'rgba(255, 255, 255, 0.3)'
+                : 'rgba(0, 0, 0, 0.3)',
+            },
+          },
         }}
       >
         {categories.length === 0 ? (
-          <Box sx={{ p: 4, textAlign: 'center' }}>
+          <Box sx={{ p: 6, textAlign: 'center' }}>
+            <SearchIcon
+              sx={{
+                fontSize: 48,
+                color: textSecondary,
+                opacity: 0.5,
+                mb: 2,
+              }}
+            />
+            <Typography
+              variant="body1"
+              sx={{ color: textPrimary, mb: 1, fontWeight: 500 }}
+            >
+              No shortcuts found
+            </Typography>
             <Typography
               variant="body2"
               sx={{ color: textSecondary }}
             >
-              No shortcuts found matching "{searchQuery}"
+              Try searching with different keywords
             </Typography>
           </Box>
         ) : (
@@ -274,17 +325,22 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
               <Box
                 sx={{
                   px: 3,
-                  py: 1.5,
+                  py: 2,
                   backgroundColor: sectionBg,
+                  position: 'sticky',
+                  top: 0,
+                  zIndex: 1,
+                  backdropFilter: 'blur(8px)',
+                  borderBottom: `1px solid ${borderColor}`,
                 }}
               >
                 <Typography
                   variant="subtitle2"
-                  fontWeight="600"
+                  fontWeight="700"
                   sx={{
-                    color: textPrimary,
+                    color: accentGreen,
                     textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
+                    letterSpacing: '0.8px',
                     fontSize: '0.75rem',
                   }}
                 >
@@ -300,15 +356,20 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    gap: 2,
                     px: 3,
-                    py: 1.5,
+                    py: 2,
                     borderBottom:
                       categoryIndex === categories.length - 1 &&
                       index === groupedShortcuts[category].length - 1
                         ? 'none'
                         : `1px solid ${borderColor}`,
+                    transition: 'all 0.2s ease',
                     '&:hover': {
                       backgroundColor: hoverBg,
+                      borderLeftColor: accentGreen,
+                      borderLeftWidth: '3px',
+                      paddingLeft: 'calc(24px - 2px)',
                     },
                   }}
                 >
@@ -317,19 +378,22 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
                     sx={{
                       color: textPrimary,
                       flex: 1,
+                      fontWeight: 400,
+                      lineHeight: 1.6,
                     }}
                   >
                     {shortcut.action}
                   </Typography>
-                  <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                  <Box sx={{ display: 'flex', gap: 0.75, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
                     {shortcut.keys.map((key, keyIndex) => (
                       <React.Fragment key={keyIndex}>
-                        {keyIndex > 0 && keyIndex < shortcut.keys.length && (
+                        {keyIndex > 0 && (
                           <Typography
                             variant="caption"
                             sx={{
                               color: textSecondary,
-                              mx: 0.5,
+                              mx: 0.25,
+                              fontSize: '0.7rem',
                             }}
                           >
                             {shortcut.keys.length > 3 ? ',' : 'or'}
@@ -340,20 +404,35 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
                           size="small"
                           sx={{
                             backgroundColor: isDarkBackground
-                              ? 'rgba(255, 255, 255, 0.15)'
-                              : 'rgba(0, 0, 0, 0.08)',
+                              ? 'rgba(255, 255, 255, 0.12)'
+                              : 'rgba(0, 0, 0, 0.06)',
                             color: textPrimary,
                             fontWeight: 600,
                             fontSize: '0.7rem',
-                            height: '24px',
-                            minWidth: '32px',
-                            border: `1px solid ${borderColor}`,
+                            height: '26px',
+                            minWidth: '34px',
+                            fontFamily: 'monospace',
+                            border: `1.5px solid ${borderColor}`,
+                            borderRadius: '6px',
                             boxShadow: `
-                              0 1px 2px rgba(0, 0, 0, 0.1),
-                              inset 0 1px 0 rgba(255, 255, 255, ${isDarkBackground ? 0.05 : 0.2})
+                              0 2px 4px rgba(0, 0, 0, 0.08),
+                              inset 0 1px 0 rgba(255, 255, 255, ${isDarkBackground ? 0.08 : 0.3}),
+                              inset 0 -1px 0 rgba(0, 0, 0, 0.1)
                             `,
+                            transition: 'all 0.2s ease',
+                            '&:hover': {
+                              backgroundColor: isDarkBackground
+                                ? 'rgba(255, 255, 255, 0.18)'
+                                : 'rgba(0, 0, 0, 0.1)',
+                              transform: 'translateY(-1px)',
+                              boxShadow: `
+                                0 3px 6px rgba(0, 0, 0, 0.12),
+                                inset 0 1px 0 rgba(255, 255, 255, ${isDarkBackground ? 0.1 : 0.4}),
+                                inset 0 -1px 0 rgba(0, 0, 0, 0.15)
+                              `,
+                            },
                             '& .MuiChip-label': {
-                              padding: '0 8px',
+                              padding: '0 10px',
                             },
                           }}
                         />
