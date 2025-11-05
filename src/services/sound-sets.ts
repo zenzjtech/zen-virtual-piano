@@ -92,6 +92,20 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
+  jazz: {
+    id: 'jazz',
+    name: 'Jazz Piano',
+    description: 'Smooth jazz piano with warm tones',
+    type: 'piano',
+    path: 'jazz',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'balanced',
+      sustain: 'medium',
+      attack: 'soft',
+    },
+  },
+  
   'organ-standard': {
     id: 'organ-standard',
     name: 'Standard Organ',
