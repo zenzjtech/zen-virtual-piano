@@ -23,8 +23,8 @@ import { getBuiltInSheetMetadata } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
-import { useSheetNavigation } from '@/hooks/use-sheet-navigation';
 import { useSheetSearch } from '@/hooks/use-sheet-search';
+import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
 import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
@@ -141,8 +141,8 @@ function App() {
     }
   );
 
-  // Handle Enter/Backspace navigation for sheet mode
-  useSheetNavigation();
+  // Handle all keyboard shortcuts for sheet mode (navigation, playback, tempo)
+  useSheetKeyboardControls();
 
 
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {

@@ -165,6 +165,18 @@ Bottom Row: (D6 → C7)
 **Shift+Middle**: `S D G H J L` (C#5→C#6)  
 **Shift+Bottom**: `Z C V B` (D#6→A#6)
 
+## Sheet Mode Shortcuts
+
+When a music sheet is loaded, these keyboard shortcuts are available:
+
+| Key | Action |
+|-----|--------|
+| **Spacebar** | Play/Pause the sheet |
+| **↑** | Increase tempo by 5 BPM (max: 240) |
+| **↓** | Decrease tempo by 5 BPM (min: 40) |
+| **Enter** or **→** | Next page (2-page spread) |
+| **Backspace** or **←** | Previous page (2-page spread) |
+
 ## Tips for Playing
 
 1. **Left-to-Right**: Keys progress naturally left to right across keyboard
