@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Box, Container, Stack } from '@mui/material';
 import { Piano } from '@/components/piano/piano';
 import { StatusBoard } from '@/components/piano/status-board';
@@ -225,6 +225,12 @@ function App() {
     onStopNote: stopNoteCallback,
   });
 
+  // Track latest recording playback state in ref to avoid stale closures
+  const recordingPlaybackRef = useRef(recordingPlayback);
+  useEffect(() => {
+    recordingPlaybackRef.current = recordingPlayback;
+  }, [recordingPlayback]);
+
   // Mutual exclusivity between sheet music and recording playback
   usePlaybackMutex({
     isSheetPlaying,
@@ -244,11 +250,12 @@ function App() {
     }
     
     // Pause recording playback when user plays manually
-    if (recordingPlayback.isPlaying && current !== null) {
-      recordingPlayback.pause();
+    // Use ref to access latest playback state without recreating callback
+    if (recordingPlaybackRef.current.isPlaying && current !== null) {
+      recordingPlaybackRef.current.pause();
       showNotification('Playback paused. You can now play manually.', 'info');
     }
-  }, [isSheetPlaying, showNotification, dispatch, recordingPlayback]);
+  }, [isSheetPlaying, showNotification, dispatch]);
 
   // Settings bar handlers
   const handleTogglePiano = () => {
