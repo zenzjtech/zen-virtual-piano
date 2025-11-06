@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PianoKey } from './types';
 import { PianoTheme } from './themes';
 import { useAppSelector } from '@/store/hook';
@@ -38,22 +38,37 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   const [noteHistory, setNoteHistory] = useState<string[]>([]);
   // Track the most recent note and key press
   const [lastNote, setLastNote] = useState<PianoKey | null>(null);
+  // Track which notes were pressed in the previous render to detect new presses
+  const previousPressedNotesRef = useRef<Set<string>>(new Set());
 
-  // Record notes when they're pressed
+  // Record notes ONLY when currentNote changes
   useEffect(() => {
     if (currentNote) {
-      setNoteHistory(prev => {
-        const newHistory = [...prev, currentNote.keyboardKey];
-        // Limit history to the configured maximum
-        if (newHistory.length > appConfig.noteHistoryLimit) {
-          return newHistory.slice(newHistory.length - appConfig.noteHistoryLimit);
-        }
-        return newHistory;
-      });
+      // Check if this note was already in the pressed set (focus switch vs new press)
+      const wasAlreadyPressed = previousPressedNotesRef.current.has(currentNote.note);
+      
+      if (!wasAlreadyPressed) {
+        setNoteHistory(prev => {
+          const newHistory = [...prev, currentNote.keyboardKey];
+          // Limit history to the configured maximum
+          if (newHistory.length > appConfig.noteHistoryLimit) {
+            return newHistory.slice(newHistory.length - appConfig.noteHistoryLimit);
+          }
+          return newHistory;
+        });
+      }
+      
       // Update the last pressed note and key
       setLastNote(currentNote);
     }
-  }, [currentNote]);
+    
+    // Update the ref with current pressed notes AFTER processing
+    const currentPressedNotes = new Set<string>();
+    pressedNotes.forEach((key) => {
+      currentPressedNotes.add(key.note);
+    });
+    previousPressedNotesRef.current = currentPressedNotes;
+  }, [currentNote, pressedNotes, appConfig.noteHistoryLimit]);
 
   // Check if the last note is currently being pressed
   const isNoteActive = currentNote !== null && lastNote !== null && 
