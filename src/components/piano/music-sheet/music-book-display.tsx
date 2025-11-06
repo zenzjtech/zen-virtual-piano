@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box, Paper, IconButton, Collapse } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon } from '@mui/icons-material';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { toggleFavorite } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../themes';
 import { useAppConfig } from '#imports';
@@ -31,6 +33,9 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
 }) => {
   useSheetPlayback();
 
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
+  const isFavorite = favorites.includes(currentSheet.id);
   const appConfig = useAppConfig();
   
   // Get all measures from the sheet (stored in first page)
@@ -116,29 +121,58 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           />
         </Box>
 
-        {/* Close Button */}
-        <IconButton
-          onClick={onClose}
+        {/* Action Buttons */}
+        <Box
           sx={{
-            transform: 'scale(0.8)',
             position: 'absolute',
             top: theme => theme.spacing(1.5),
             right: theme => theme.spacing(1.5),
-            backgroundColor: pianoTheme.colors.containerSolid,
-            color: pianoTheme.colors.primary,
-            border: `1px solid ${pianoTheme.colors.border}`,
-            transition: 'all 0.2s ease',            
-            '&:hover': {
-              backgroundColor: `${pianoTheme.colors.accent}33`,
-              color: pianoTheme.colors.accent,
-              borderColor: pianoTheme.colors.accent,              
-              boxShadow: `0 0 12px ${pianoTheme.colors.accent}66`,
-            },
+            display: 'flex',
+            gap: 0.5,
           }}
-          size="small"
         >
-          <CloseIcon fontSize="small" />
-        </IconButton>
+          {/* Favorite Button */}
+          <IconButton
+            onClick={() => dispatch(toggleFavorite(currentSheet.id))}
+            sx={{
+              transform: 'scale(0.8)',
+              backgroundColor: pianoTheme.colors.containerSolid,
+              color: isFavorite ? pianoTheme.colors.accent : pianoTheme.colors.primary,
+              border: `1px solid ${pianoTheme.colors.border}`,
+              transition: 'all 0.2s ease',            
+              '&:hover': {
+                backgroundColor: `${pianoTheme.colors.accent}33`,
+                color: pianoTheme.colors.accent,
+                borderColor: pianoTheme.colors.accent,              
+                boxShadow: `0 0 12px ${pianoTheme.colors.accent}66`,
+              },
+            }}
+            size="small"
+          >
+            {isFavorite ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
+          </IconButton>
+
+          {/* Close Button */}
+          <IconButton
+            onClick={onClose}
+            sx={{
+              transform: 'scale(0.8)',
+              backgroundColor: pianoTheme.colors.containerSolid,
+              color: pianoTheme.colors.primary,
+              border: `1px solid ${pianoTheme.colors.border}`,
+              transition: 'all 0.2s ease',            
+              '&:hover': {
+                backgroundColor: `${pianoTheme.colors.accent}33`,
+                color: pianoTheme.colors.accent,
+                borderColor: pianoTheme.colors.accent,              
+                boxShadow: `0 0 12px ${pianoTheme.colors.accent}66`,
+              },
+            }}
+            size="small"
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Box>
       </Paper>
     </Collapse>
   );
