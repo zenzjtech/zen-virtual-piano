@@ -30,6 +30,8 @@ interface PresetSelectorProps {
   currentMusicSheetTheme: string;
   onPresetApply: (preset: ThemePreset) => void;
   searchQuery?: string;
+  /** Whether the preset section starts expanded (default: true) */
+  defaultExpanded?: boolean;
 }
 
 /**
@@ -43,7 +45,9 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
   currentMusicSheetTheme,
   onPresetApply,
   searchQuery = '',
+  defaultExpanded = true,
 }) => {
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [expandedCategory, setExpandedCategory] = useState<ThemePresetCategory | null>('classic');
   const categories = getPresetCategories();
 
@@ -74,7 +78,26 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
 
   return (
     <Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+      {/* Collapsible Header */}
+      <Box
+        onClick={() => setIsExpanded(!isExpanded)}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+          mb: isExpanded ? 1.5 : 0,
+          cursor: 'pointer',
+          padding: '8px',
+          margin: '-8px',
+          borderRadius: '6px',
+          transition: 'background 0.2s ease',
+          '&:hover': {
+            background: pianoTheme.isLight
+              ? 'rgba(0,0,0,0.03)'
+              : 'rgba(255,255,255,0.05)',
+          },
+        }}
+      >
         <PresetIcon
           sx={{
             color: pianoTheme.colors.secondary,
@@ -82,25 +105,36 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
           }}
         />
         <Typography
-          variant="subtitle2"
+          variant="subtitle1"
+          fontWeight="600"
           sx={{
-            color: pianoTheme.colors.secondary,
-            fontWeight: 600,
-            fontSize: '0.875rem',
-            letterSpacing: '0.5px',
-            textTransform: 'uppercase',
+            color: pianoTheme.colors.primary,
+            letterSpacing: '0.3px',
+            flex: 1,
           }}
         >
           Quick Presets
         </Typography>
+        <IconButton
+          size="small"
+          sx={{
+            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.3s ease',
+            color: pianoTheme.colors.secondary,
+          }}
+        >
+          <ExpandMoreIcon fontSize="small" />
+        </IconButton>
       </Box>
 
-      <Stack spacing={1.5}>
+      {/* Collapsible Content */}
+      <Collapse in={isExpanded} timeout={300}>
+        <Stack spacing={1.5} sx={{ mt: 2 }}>
         {categories.map(category => {
           const categoryPresets = filterPresets(getPresetsByCategory(category.id));
           if (categoryPresets.length === 0 && searchQuery.trim()) return null;
 
-          const isExpanded = expandedCategory === category.id;
+          const isCategoryExpanded = expandedCategory === category.id;
           const hasActivePreset = categoryPresets.some(isPresetActive);
 
           return (
@@ -167,8 +201,8 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
                 <IconButton
                   size="small"
                   sx={{
-                    transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                    transition: 'transform 0.2s ease',
+                    transform: isCategoryExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.3s ease',
                     color: pianoTheme.colors.secondary,
                   }}
                 >
@@ -177,7 +211,7 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
               </Box>
 
               {/* Preset Cards */}
-              <Collapse in={isExpanded} timeout="auto">
+              <Collapse in={isCategoryExpanded} timeout={300}>
                 <Stack spacing={1} sx={{ mt: 1, pl: 1 }}>
                   {categoryPresets.map(preset => {
                     const isActive = isPresetActive(preset);
@@ -292,7 +326,8 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
             </Box>
           );
         })}
-      </Stack>
+        </Stack>
+      </Collapse>
     </Box>
   );
 };
