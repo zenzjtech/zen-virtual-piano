@@ -5,13 +5,9 @@ import {
   Popper,
   ClickAwayListener,
   useTheme,
-  Chip,
-  ToggleButton,
 } from '@mui/material';
 import {
   MusicNote as MusicNoteIcon,
-  Favorite as FavoriteIcon,
-  FavoriteBorder as FavoriteBorderIcon,
 } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { loadSheet, toggleFavorite, setSearchFilters } from '@/store/reducers/music-sheet-slice';
@@ -22,9 +18,9 @@ import {
 } from '../popup-styled-components';
 import { PopupSearchBar } from '../popup-search-bar';
 import { useSheetSearch } from './use-sheet-search';
-import { SheetSection } from './sheet-section';
-import { SheetEmptyState } from './sheet-empty-state';
 import { SheetSearchFooter } from './sheet-search-footer';
+import { SheetSearchFilters } from './sheet-search-filters';
+import { SheetSearchContent } from './sheet-search-content';
 
 interface SheetSearchDialogProps {
   open: boolean;
@@ -201,133 +197,28 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
           />
           
           {/* Filters */}
-          <Box sx={{ px: 2, py: 1.5, borderBottom: `1px solid ${pianoTheme.colors.border}` }}>
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
-              {/* Favorites Toggle */}
-              <ToggleButton
-                value="favorites"
-                selected={showFavoritesOnly}
-                onChange={handleToggleFavoriteFilter}
-                size="small"
-                sx={{
-                  px: 1.5,
-                  py: 0.5,
-                  textTransform: 'none',
-                  fontSize: '0.75rem',
-                  borderColor: pianoTheme.colors.border,
-                  color: showFavoritesOnly ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
-                  '&.Mui-selected': {
-                    backgroundColor: `${pianoTheme.colors.accent}22`,
-                    borderColor: pianoTheme.colors.accent,
-                    color: pianoTheme.colors.accent,
-                    '&:hover': {
-                      backgroundColor: `${pianoTheme.colors.accent}33`,
-                    },
-                  },
-                }}
-              >
-                {showFavoritesOnly ? <FavoriteIcon fontSize="small" sx={{ mr: 0.5 }} /> : <FavoriteBorderIcon fontSize="small" sx={{ mr: 0.5 }} />}
-                Favorites
-              </ToggleButton>
-              
-              {/* Difficulty Chips */}
-              {(['easy', 'medium', 'hard'] as const).map(difficulty => (
-                <Chip
-                  key={difficulty}
-                  label={difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-                  size="small"
-                  onClick={() => handleToggleDifficulty(difficulty)}
-                  sx={{
-                    height: 28,
-                    fontSize: '0.75rem',
-                    textTransform: 'capitalize',
-                    color: selectedDifficulties.includes(difficulty) 
-                      ? pianoTheme.colors.accent 
-                      : pianoTheme.colors.secondary,
-                    borderColor: selectedDifficulties.includes(difficulty)
-                      ? pianoTheme.colors.accent
-                      : pianoTheme.colors.border,
-                    backgroundColor: selectedDifficulties.includes(difficulty)
-                      ? `${pianoTheme.colors.accent}22`
-                      : 'transparent',
-                    '&:hover': {
-                      backgroundColor: `${pianoTheme.colors.accent}33`,
-                      borderColor: pianoTheme.colors.accent,
-                    },
-                  }}
-                  variant="outlined"
-                />
-              ))}
-              
-              {/* Clear Filters */}
-              {hasActiveFilters && (
-                <Chip
-                  label="Clear Filters"
-                  size="small"
-                  onClick={handleClearFilters}
-                  sx={{
-                    height: 28,
-                    fontSize: '0.7rem',
-                    color: pianoTheme.colors.secondary,
-                    borderColor: pianoTheme.colors.border,
-                    '&:hover': {
-                      backgroundColor: `${pianoTheme.colors.accent}22`,
-                    },
-                  }}
-                  variant="outlined"
-                />
-              )}
-            </Box>
-          </Box>
+          <SheetSearchFilters
+            showFavoritesOnly={showFavoritesOnly}
+            selectedDifficulties={selectedDifficulties}
+            onToggleFavorite={handleToggleFavoriteFilter}
+            onToggleDifficulty={handleToggleDifficulty}
+            onClearFilters={handleClearFilters}
+            pianoTheme={pianoTheme}
+          />
           
           {/* Content */}
-          <Box sx={{ 
-            flex: 1, 
-            overflowY: 'auto',
-            px: 1,
-          }}>
-            {/* Empty State */}
-            {allSheets.length === 0 && <SheetEmptyState pianoTheme={pianoTheme} />}
-            
-            {/* Search Results */}
-            {searchQuery.trim() && allSheets.length > 0 && (
-              <SheetSection
-                title={`Search Results (${filteredSheets.length})`}
-                sheets={filteredSheets}
-                pianoTheme={pianoTheme}
-                favorites={favorites}
-                onSelectSheet={handleSelectSheet}
-                onToggleFavorite={handleToggleFavorite}
-                emptyMessage={`No sheets found matching "${searchQuery}"`}
-              />
-            )}
-            
-            {/* Recently Played */}
-            {!searchQuery.trim() && displayedRecentSheets.length > 0 && (
-              <SheetSection
-                title="⏱ Recently Played"
-                sheets={displayedRecentSheets}
-                pianoTheme={pianoTheme}
-                favorites={favorites}
-                onSelectSheet={handleSelectSheet}
-                onToggleFavorite={handleToggleFavorite}
-                showDivider
-              />
-            )}
-            
-            {/* All Sheets (when no search) */}
-            {!searchQuery.trim() && allSheets.length > 0 && (
-              <SheetSection
-                title={hasActiveFilters ? `📚 Filtered Sheets (${displayedAllSheets.length})` : `📚 All Sheets (${displayedAllSheets.length})`}
-                sheets={displayedAllSheets}
-                pianoTheme={pianoTheme}
-                favorites={favorites}
-                onSelectSheet={handleSelectSheet}
-                onToggleFavorite={handleToggleFavorite}
-                emptyMessage={hasActiveFilters ? "No sheets match the selected filters" : undefined}
-              />
-            )}
-          </Box>
+          <SheetSearchContent
+            searchQuery={searchQuery}
+            allSheets={allSheets}
+            filteredSheets={filteredSheets}
+            displayedRecentSheets={displayedRecentSheets}
+            displayedAllSheets={displayedAllSheets}
+            hasActiveFilters={hasActiveFilters}
+            favorites={favorites}
+            pianoTheme={pianoTheme}
+            onSelectSheet={handleSelectSheet}
+            onToggleFavorite={handleToggleFavorite}
+          />
           
           {/* Footer - External Search Link */}
           <SheetSearchFooter searchQuery={searchQuery} pianoTheme={pianoTheme} />
