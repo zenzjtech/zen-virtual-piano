@@ -8,6 +8,18 @@ import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import bookImage1 from '@/assets/image/music-sheet/1.png';
 import bookImage2 from '@/assets/image/music-sheet/2.png';
 import bookImage3 from '@/assets/image/music-sheet/3.png';
+import bookImage4 from '@/assets/image/music-sheet/4.png';
+import bookImage5 from '@/assets/image/music-sheet/5.png';
+import bookImage6 from '@/assets/image/music-sheet/6.png';
+import bookImage7 from '@/assets/image/music-sheet/7.png';
+import bookImage8 from '@/assets/image/music-sheet/8.png';
+import bookImage9 from '@/assets/image/music-sheet/9.png';
+import bookImage10 from '@/assets/image/music-sheet/10.png';
+import bookImage11 from '@/assets/image/music-sheet/11.png';
+import bookImage12 from '@/assets/image/music-sheet/12.png';
+import bookImage13 from '@/assets/image/music-sheet/13.png';
+import bookImage14 from '@/assets/image/music-sheet/14.png';
+import bookImage15 from '@/assets/image/music-sheet/15.png';
 
 interface BookPageProps {
   /** Sheet title */
@@ -57,6 +69,30 @@ export const BookPage: React.FC<BookPageProps> = ({
         return bookImage2;
       case 'paper-3':
         return bookImage3;
+      case 'paper-4':
+        return bookImage4;
+      case 'paper-5':
+        return bookImage5;
+      case 'paper-6':
+        return bookImage6;
+      case 'paper-7':
+        return bookImage7;
+      case 'paper-8':
+        return bookImage8;
+      case 'paper-9':
+        return bookImage9;
+      case 'paper-10':
+        return bookImage10;
+      case 'paper-11':
+        return bookImage11;
+      case 'paper-12':
+        return bookImage12;
+      case 'paper-13':
+        return bookImage13;
+      case 'paper-14':
+        return bookImage14;
+      case 'paper-15':
+        return bookImage15;
       default:
         return bookImage1;
     }
