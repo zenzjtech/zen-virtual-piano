@@ -11,6 +11,7 @@ import { usePageTransition } from '@/hooks/use-page-transition';
 import { BookPage } from './book-page';
 import { calculateLineRanges, calculatePageSpread } from './music-book-utils';
 import { ActionButton } from './action-button';
+import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -26,8 +27,8 @@ interface MusicBookDisplayProps {
  */
 const PreviousPageButton: React.FC<{
   onPrevious: () => void;
-  pianoTheme: PianoTheme;
-}> = ({ onPrevious, pianoTheme }) => (
+  musicSheetThemeId: string;
+}> = ({ onPrevious, musicSheetThemeId }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -40,7 +41,7 @@ const PreviousPageButton: React.FC<{
     <ActionButton
       onClick={onPrevious}
       icon={<ChevronLeftIcon fontSize="small" />}
-      pianoTheme={pianoTheme}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Previous page"
       tooltip="Previous Page (← / Backspace)"
     />
@@ -52,8 +53,8 @@ const PreviousPageButton: React.FC<{
  */
 const NextPageButton: React.FC<{
   onNext: () => void;
-  pianoTheme: PianoTheme;
-}> = ({ onNext, pianoTheme }) => (
+  musicSheetThemeId: string;
+}> = ({ onNext, musicSheetThemeId }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -65,7 +66,7 @@ const NextPageButton: React.FC<{
     <ActionButton
       onClick={onNext}
       icon={<ChevronRightIcon fontSize="small" />}
-      pianoTheme={pianoTheme}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Next page"
       tooltip="Next Page (→ / Enter)"
     />
@@ -79,8 +80,8 @@ const ActionButtons: React.FC<{
   isFavorite: boolean;
   onToggleFavorite: () => void;
   onClose: () => void;
-  pianoTheme: PianoTheme;
-}> = ({ isFavorite, onToggleFavorite, onClose, pianoTheme }) => (
+  musicSheetThemeId: string;
+}> = ({ isFavorite, onToggleFavorite, onClose, musicSheetThemeId }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -94,7 +95,7 @@ const ActionButtons: React.FC<{
       onClick={onToggleFavorite}
       icon={isFavorite ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
       isActive={isFavorite}
-      pianoTheme={pianoTheme}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     />
@@ -102,7 +103,7 @@ const ActionButtons: React.FC<{
     <ActionButton
       onClick={onClose}
       icon={<CloseIcon fontSize="small" />}
-      pianoTheme={pianoTheme}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Close sheet"
       tooltip="Close sheet"
     />
@@ -214,14 +215,14 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         {playback.currentPage > 0 && (
           <PreviousPageButton
             onPrevious={() => dispatch(previousPage())}
-            pianoTheme={pianoTheme}
+            musicSheetThemeId={musicSheetThemeId}
           />
         )}
 
         {rightPageIndex < totalPages && (
           <NextPageButton
             onNext={() => dispatch(nextPage())}
-            pianoTheme={pianoTheme}
+            musicSheetThemeId={musicSheetThemeId}
           />
         )}
 
@@ -230,7 +231,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           isFavorite={isFavorite}
           onToggleFavorite={() => dispatch(toggleFavorite(currentSheet.id))}
           onClose={onClose}
-          pianoTheme={pianoTheme}
+          musicSheetThemeId={musicSheetThemeId}
         />
       </Paper>
     </Collapse>
