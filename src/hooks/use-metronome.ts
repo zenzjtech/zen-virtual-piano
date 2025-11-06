@@ -5,8 +5,9 @@ import metronomeSound from '@/assets/audio/metronome.mp3?url';
  * Custom hook to manage metronome playback
  * @param enabled - Whether the metronome is playing
  * @param tempo - Tempo in BPM (beats per minute)
+ * @param volume - Volume level (0-100)
  */
-export function useMetronome(enabled: boolean, tempo: number) {
+export function useMetronome(enabled: boolean, tempo: number, volume: number = 50) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -14,7 +15,7 @@ export function useMetronome(enabled: boolean, tempo: number) {
     // Initialize audio element
     if (!audioRef.current) {
       audioRef.current = new Audio(metronomeSound);
-      audioRef.current.volume = 0.5; // Set a reasonable volume
+      audioRef.current.volume = volume / 100;
     }
 
     // Clean up function
@@ -29,6 +30,13 @@ export function useMetronome(enabled: boolean, tempo: number) {
       }
     };
   }, []);
+
+  // Update volume whenever it changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 100;
+    }
+  }, [volume]);
 
   useEffect(() => {
     // Stop any existing interval

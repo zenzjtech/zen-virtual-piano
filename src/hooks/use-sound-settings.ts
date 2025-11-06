@@ -9,6 +9,7 @@ export function useSoundSettings() {
   const [volume, setVolume] = useState(80);
   const [metronomeEnabled, setMetronomeEnabled] = useState(false);
   const [metronomeTempo, setMetronomeTempo] = useState(120);
+  const [metronomeVolume, setMetronomeVolume] = useState(50);
   const [midiDevice, setMidiDevice] = useState('none');
 
   const toggleMetronome = () => setMetronomeEnabled(!metronomeEnabled);
@@ -20,7 +21,9 @@ export function useSoundSettings() {
     setVolume,
     metronomeEnabled,
     metronomeTempo,
+    metronomeVolume,
     setMetronomeTempo,
+    setMetronomeVolume,
     toggleMetronome,
     midiDevice,
     setMidiDevice,

@@ -46,8 +46,10 @@ interface SoundSettingsPopupProps {
   // Metronome settings
   metronomeEnabled?: boolean;
   metronomeTempo?: number;
+  metronomeVolume?: number;
   onMetronomeToggle?: () => void;
   onMetronomeTempoChange?: (tempo: number) => void;
+  onMetronomeVolumeChange?: (volume: number) => void;
   // MIDI device settings
   midiDevice?: string;
   onMidiDeviceChange?: (device: string) => void;
@@ -123,8 +125,10 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   onVolumeChange,
   metronomeEnabled = false,
   metronomeTempo = 120,
+  metronomeVolume = 50,
   onMetronomeToggle,
   onMetronomeTempoChange,
+  onMetronomeVolumeChange,
   midiDevice = 'none',
   onMidiDeviceChange,
   availableMidiDevices = ['None', 'Virtual MIDI Device', 'USB MIDI Keyboard'],
@@ -526,28 +530,74 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                 >
                   Set tempo and control metronome playback
                 </Typography>
-                <StyledSlider
-                  value={metronomeTempo}
-                  onChange={(_event: Event, newValue: number | number[]) => {
-                    const value = Array.isArray(newValue) ? newValue[0] : newValue;
-                    if (onMetronomeTempoChange) {
-                      onMetronomeTempoChange(value);
-                    }
-                  }}
-                  min={40}
-                  max={240}
-                  step={1}
-                  marks={[
-                    { value: 40, label: '40' },
-                    { value: 120, label: '120' },
-                    { value: 240, label: '240' },
-                  ]}
-                  valueLabelDisplay="auto"
-                  valueLabelFormat={(value) => `${value} BPM`}
-                  size="small"
-                  pianoTheme={pianoTheme}
-                  sx={{ mb: 2 }}
-                />
+                <Box sx={{ mb: 2 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: pianoTheme.colors.secondary,
+                      fontWeight: 600,
+                      display: 'block',
+                      mb: 0.5,
+                    }}
+                  >
+                    Tempo
+                  </Typography>
+                  <StyledSlider
+                    value={metronomeTempo}
+                    onChange={(_event: Event, newValue: number | number[]) => {
+                      const value = Array.isArray(newValue) ? newValue[0] : newValue;
+                      if (onMetronomeTempoChange) {
+                        onMetronomeTempoChange(value);
+                      }
+                    }}
+                    min={40}
+                    max={240}
+                    step={1}
+                    marks={[
+                      { value: 40, label: '40' },
+                      { value: 120, label: '120' },
+                      { value: 240, label: '240' },
+                    ]}
+                    valueLabelDisplay="auto"
+                    valueLabelFormat={(value) => `${value} BPM`}
+                    size="small"
+                    pianoTheme={pianoTheme}
+                  />
+                </Box>
+                <Box sx={{ mb: 2 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: pianoTheme.colors.secondary,
+                      fontWeight: 600,
+                      display: 'block',
+                      mb: 0.5,
+                    }}
+                  >
+                    Volume: {metronomeVolume}%
+                  </Typography>
+                  <StyledSlider
+                    value={metronomeVolume}
+                    onChange={(_event: Event, newValue: number | number[]) => {
+                      const value = Array.isArray(newValue) ? newValue[0] : newValue;
+                      if (onMetronomeVolumeChange) {
+                        onMetronomeVolumeChange(value);
+                      }
+                    }}
+                    min={0}
+                    max={100}
+                    step={1}
+                    marks={[
+                      { value: 0, label: '0%' },
+                      { value: 50, label: '50%' },
+                      { value: 100, label: '100%' },
+                    ]}
+                    valueLabelDisplay="auto"
+                    valueLabelFormat={(value) => `${value}%`}
+                    size="small"
+                    pianoTheme={pianoTheme}
+                  />
+                </Box>
                 <Button
                   variant={metronomeEnabled ? "contained" : "outlined"}
                   onClick={onMetronomeToggle}

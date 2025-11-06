@@ -83,7 +83,7 @@ function App() {
   const soundSettings = useSoundSettings();
   
   // Metronome playback
-  useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo);
+  useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo, soundSettings.metronomeVolume);
   
   // Notification
   const { showNotification } = useNotification();
@@ -366,8 +366,10 @@ function App() {
         onVolumeChange={soundSettings.setVolume}
         metronomeEnabled={soundSettings.metronomeEnabled}
         metronomeTempo={soundSettings.metronomeTempo}
+        metronomeVolume={soundSettings.metronomeVolume}
         onMetronomeToggle={soundSettings.toggleMetronome}
         onMetronomeTempoChange={soundSettings.setMetronomeTempo}
+        onMetronomeVolumeChange={soundSettings.setMetronomeVolume}
         midiDevice={soundSettings.midiDevice}
         onMidiDeviceChange={soundSettings.setMidiDevice}
         pianoTheme={pianoTheme}
