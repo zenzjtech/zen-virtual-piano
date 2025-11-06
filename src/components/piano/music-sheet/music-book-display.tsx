@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Box, Paper, Collapse } from '@mui/material';
-import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { toggleFavorite, previousPage, nextPage } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
@@ -12,6 +12,7 @@ import { BookPage } from './book-page';
 import { calculateLineRanges, calculatePageSpread } from './music-book-utils';
 import { ActionButton } from './action-button';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
+import { ThemeGalleryDialog } from './theme-gallery-dialog';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -74,14 +75,15 @@ const NextPageButton: React.FC<{
 );
 
 /**
- * Action buttons container (favorite, close)
+ * Action buttons container (favorite, theme, close)
  */
 const ActionButtons: React.FC<{
   isFavorite: boolean;
   onToggleFavorite: () => void;
+  onThemeClick: () => void;
   onClose: () => void;
   musicSheetThemeId: string;
-}> = ({ isFavorite, onToggleFavorite, onClose, musicSheetThemeId }) => (
+}> = ({ isFavorite, onToggleFavorite, onThemeClick, onClose, musicSheetThemeId }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -98,6 +100,14 @@ const ActionButtons: React.FC<{
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+    />
+    
+    <ActionButton
+      onClick={onThemeClick}
+      icon={<PaletteIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Change theme"
+      tooltip="Change paper theme"
     />
     
     <ActionButton
@@ -127,6 +137,9 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
   const isFavorite = favorites.includes(currentSheet.id);
   const appConfig = useAppConfig();
+  
+  // Theme gallery state
+  const [isThemeGalleryOpen, setIsThemeGalleryOpen] = useState(false);
   
   // Get all measures from the sheet (stored in first page)
   const allMeasures = currentSheet.pages[0]?.measures || [];
@@ -230,10 +243,17 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         <ActionButtons
           isFavorite={isFavorite}
           onToggleFavorite={() => dispatch(toggleFavorite(currentSheet.id))}
+          onThemeClick={() => setIsThemeGalleryOpen(true)}
           onClose={onClose}
           musicSheetThemeId={musicSheetThemeId}
         />
       </Paper>
+      
+      {/* Theme Gallery Dialog */}
+      <ThemeGalleryDialog
+        open={isThemeGalleryOpen}
+        onClose={() => setIsThemeGalleryOpen(false)}
+      />
     </Collapse>
   );
 };
