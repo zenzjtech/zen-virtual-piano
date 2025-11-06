@@ -11,6 +11,7 @@ import { SheetSearchDialog } from '@/components/piano/music-sheet/sheet-search-d
 import { MusicStand } from '@/components/piano/music-sheet/music-stand';
 import { Header } from '@/components/piano/header';
 import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
+import { RecordingPlaybackBar } from '@/components/piano/recording-playback-bar';
 import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-dialog';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
@@ -28,6 +29,8 @@ import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
 import { useAuthRestore } from '@/hooks/use-auth-restore';
+import { usePianoRecording } from '@/hooks/use-piano-recording';
+import { useRecordingPlayback } from '@/hooks/use-recording-playback';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -87,6 +90,18 @@ function App() {
   
   // Notification
   const { showNotification } = useNotification();
+
+  // Piano recording hook
+  const {
+    isRecording,
+    toggleRecording,
+    recordNotePress,
+    recordNoteRelease,
+    downloadRecording,
+    clearRecording,
+    noteCount,
+    getFormattedDuration,
+  } = usePianoRecording();
 
   // Restore auth session on mount (if cached token exists)
   useAuthRestore();
@@ -183,6 +198,32 @@ function App() {
   }, [instrumentPopup.isOpen, soundSettingsPopup.isOpen, styleSettingsPopup.isOpen, keyAssistPopup.isOpen, isSheetSearchOpen, isKeyboardShortcutsOpen]);
 
 
+  // Define playNote and stopNote callbacks for playback
+  const playNoteCallback = useCallback((note: string, frequency: number, velocity: number) => {
+    // This will be called by the playback system
+    // Play the audio and update visual state
+    getAudioEngine().playNote(note, frequency, velocity);
+    const pianoKey = { note, frequency, isBlack: false, keyboardKey: '', label: '' };
+    setPressedNotes(prev => new Map(prev).set(note, pianoKey));
+    setCurrentNote(pianoKey);
+  }, []);
+
+  const stopNoteCallback = useCallback((note: string) => {
+    // Stop the audio and update visual state
+    getAudioEngine().stopNote(note);
+    setPressedNotes(prev => {
+      const newMap = new Map(prev);
+      newMap.delete(note);
+      return newMap;
+    });
+  }, []);
+
+  // Recording playback hook
+  const recordingPlayback = useRecordingPlayback({
+    onPlayNote: playNoteCallback,
+    onStopNote: stopNoteCallback,
+  });
+
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
     setPressedNotes(notes);
     setCurrentNote(current);
@@ -192,7 +233,13 @@ function App() {
       dispatch(pauseSheet());
       showNotification('Auto-play paused. You can now play manually.', 'info');
     }
-  }, [isSheetPlaying, showNotification, dispatch]);
+    
+    // Pause recording playback when user plays manually
+    if (recordingPlayback.isPlaying && current !== null) {
+      recordingPlayback.pause();
+      showNotification('Playback paused. You can now play manually.', 'info');
+    }
+  }, [isSheetPlaying, showNotification, dispatch, recordingPlayback]);
 
   // Settings bar handlers
   const handleTogglePiano = () => {
@@ -207,7 +254,45 @@ function App() {
     });
   };
   
-  const handleRecord = () => console.log('Record clicked');
+  const handleRecord = () => {
+    toggleRecording();
+    
+    if (!isRecording) {
+      showNotification('🔴 Recording started', 'info');
+      trackEvent(uid, ANALYTICS_ACTION.RECORD_STARTED, {});
+    } else {
+      const duration = getFormattedDuration();
+      showNotification(
+        `⏹️ Recording stopped (${noteCount} notes, ${duration})`,
+        'success'
+      );
+      trackEvent(uid, ANALYTICS_ACTION.RECORD_STOPPED, {
+        note_count: noteCount,
+        duration,
+      });
+      
+      // Auto-download if notes were recorded
+      if (noteCount > 0) {
+        setTimeout(() => {
+          downloadRecording();
+          showNotification('💾 Recording downloaded', 'success');
+        }, 500);
+      }
+    }
+  };
+
+  const handleClearRecording = () => {
+    recordingPlayback.stop();
+    clearRecording();
+    showNotification('🗑️ Recording cleared', 'info');
+    trackEvent(uid, 'Recording cleared', {});
+  };
+
+  const handleDownloadRecording = () => {
+    downloadRecording();
+    showNotification('💾 Recording downloaded', 'success');
+    trackEvent(uid, 'Recording downloaded', { note_count: noteCount });
+  };
 
   const handleSoundSetChange = async (newSoundSetId: string) => {
     setIsLoadingInstrument(true);
@@ -263,6 +348,27 @@ function App() {
           }}
         >
 
+          {/* Recording Playback Bar - appears when recording exists */}
+          {recordingPlayback.hasRecording && (
+            <RecordingPlaybackBar
+              isPlaying={recordingPlayback.isPlaying}
+              currentPosition={recordingPlayback.currentPosition}
+              totalDuration={recordingPlayback.totalDuration}
+              playbackSpeed={recordingPlayback.playbackSpeed}
+              loop={recordingPlayback.loop}
+              hasRecording={recordingPlayback.hasRecording}
+              currentPositionFormatted={recordingPlayback.currentPositionFormatted}
+              totalDurationFormatted={recordingPlayback.totalDurationFormatted}
+              pianoTheme={pianoTheme}
+              onTogglePlayback={recordingPlayback.togglePlayback}
+              onStop={recordingPlayback.stop}
+              onToggleLoop={recordingPlayback.toggleLoop}
+              onSpeedChange={recordingPlayback.setPlaybackSpeed}
+              onClear={handleClearRecording}
+              onDownload={handleDownloadRecording}
+            />
+          )}
+
           {/* Music Stand - appears when sheet is loaded */}
           {isMusicStandVisible && (
             <MusicStand pianoTheme={pianoTheme} />
@@ -296,6 +402,7 @@ function App() {
                 onTogglePiano={handleTogglePiano}
                 isPianoEnabled={isPianoEnabled}
                 onRecord={handleRecord}
+                isRecording={isRecording}
                 onKeyAssist={keyAssistPopup.handleOpen}
                 onInstrument={instrumentPopup.handleOpen}
                 onSound={soundSettingsPopup.handleOpen}
@@ -310,6 +417,8 @@ function App() {
                 keyboardEnabled={isKeyboardEnabled}
                 showKeyboard={showKeyboard}
                 showNoteName={showNoteName}
+                onRecordNotePress={recordNotePress}
+                onRecordNoteRelease={recordNoteRelease}
               />
             </Box>
           </Box>

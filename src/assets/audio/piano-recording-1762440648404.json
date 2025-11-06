@@ -1,0 +1,72 @@
+{
+  "notes": [
+    {
+      "note": "G5",
+      "timestamp": 3602,
+      "duration": 157,
+      "velocity": 0.8
+    },
+    {
+      "note": "D5",
+      "timestamp": 3865,
+      "duration": 201,
+      "velocity": 0.8
+    },
+    {
+      "note": "G4",
+      "timestamp": 4208,
+      "duration": 183,
+      "velocity": 0.8
+    },
+    {
+      "note": "D6",
+      "timestamp": 4736,
+      "duration": 319,
+      "velocity": 0.8
+    },
+    {
+      "note": "G4",
+      "timestamp": 5327,
+      "duration": 160,
+      "velocity": 0.8
+    },
+    {
+      "note": "C5",
+      "timestamp": 5601,
+      "duration": 318,
+      "velocity": 0.8
+    },
+    {
+      "note": "D5",
+      "timestamp": 6136,
+      "duration": 151,
+      "velocity": 0.8
+    },
+    {
+      "note": "C4",
+      "timestamp": 6473,
+      "duration": 150,
+      "velocity": 0.8
+    },
+    {
+      "note": "D5",
+      "timestamp": 6872,
+      "duration": 279,
+      "velocity": 0.8
+    },
+    {
+      "note": "E5",
+      "timestamp": 7689,
+      "duration": 238,
+      "velocity": 0.8
+    },
+    {
+      "note": "E5",
+      "timestamp": 8439,
+      "duration": 136,
+      "velocity": 0.8
+    }
+  ],
+  "timestamp": "2025-11-06T14:50:48.403Z",
+  "version": "1.0"
+}

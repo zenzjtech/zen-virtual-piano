@@ -14,6 +14,7 @@ interface SettingsBarProps {
   onTogglePiano?: () => void;
   isPianoEnabled?: boolean;
   onRecord?: () => void;
+  isRecording?: boolean;
   onKeyAssist?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -144,6 +145,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onTogglePiano,
   isPianoEnabled = true,
   onRecord,
+  isRecording = false,
   onKeyAssist,
   onInstrument,
   onSound,
@@ -171,14 +173,31 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
           {isPianoEnabled ? 'Disable' : 'Enable'}
         </SettingButton>
         
-        {/* <SettingButton
+        <SettingButton
           variant="outlined"
           startIcon={<RecordIcon sx={{ fontSize: '1rem' }} />}
           onClick={onRecord}
           pianoTheme={pianoTheme}
+          sx={{
+            color: isRecording ? '#f44336' : pianoTheme.colors.secondary,
+            borderColor: isRecording ? '#f44336' : pianoTheme.colors.border,
+            animation: isRecording ? 'pulse 1.5s ease-in-out infinite' : 'none',
+            '@keyframes pulse': {
+              '0%, 100%': {
+                opacity: 1,
+              },
+              '50%': {
+                opacity: 0.6,
+              },
+            },
+            '&:hover': {
+              borderColor: isRecording ? '#d32f2f' : pianoTheme.colors.accent,
+              color: isRecording ? '#d32f2f' : pianoTheme.colors.accent,
+            },
+          }}
         >
-          Record
-        </SettingButton> */}
+          {isRecording ? 'Stop' : 'Record'}
+        </SettingButton>
       </Box>
 
       {/* Right group: Settings buttons */}

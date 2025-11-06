@@ -29,6 +29,10 @@ interface PianoProps {
   showKeyboard?: boolean;
   /** Show note names on keys */
   showNoteName?: boolean;
+  /** Optional recording callback for note press */
+  onRecordNotePress?: (note: string, velocity?: number) => void;
+  /** Optional recording callback for note release */
+  onRecordNoteRelease?: (note: string) => void;
 }
 
 export const Piano: React.FC<PianoProps> = ({ 
@@ -37,6 +41,8 @@ export const Piano: React.FC<PianoProps> = ({
   keyboardEnabled = true,
   showKeyboard = false,
   showNoteName = false,
+  onRecordNotePress,
+  onRecordNoteRelease,
 }) => {
   const pianoTheme = getTheme(themeId);
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
@@ -48,6 +54,11 @@ export const Piano: React.FC<PianoProps> = ({
   const playNote = useCallback((note: string, frequency: number, velocity: number = 1.0) => {
     setPressedKeys(prev => ({ ...prev, [note]: true }));
     audioEngineRef.current.playNote(note, frequency, velocity);
+    
+    // Record note press if recording is enabled
+    if (onRecordNotePress) {
+      onRecordNotePress(note, velocity);
+    }
     
     // Find the piano key and update tracking
     const pianoKey = KEY_MAPPINGS.find(k => k.note === note);
@@ -63,7 +74,7 @@ export const Piano: React.FC<PianoProps> = ({
         );
       }
     }
-  }, [onPressedNotesChange]);
+  }, [onPressedNotesChange, onRecordNotePress]);
 
   // Handle note stop
   const stopNote = useCallback((note: string) => {
@@ -73,6 +84,11 @@ export const Piano: React.FC<PianoProps> = ({
       return newState;
     });
     audioEngineRef.current.stopNote(note);
+    
+    // Record note release if recording is enabled
+    if (onRecordNoteRelease) {
+      onRecordNoteRelease(note);
+    }
     
     // Update tracking
     pressedNotesMapRef.current.delete(note);
@@ -91,7 +107,7 @@ export const Piano: React.FC<PianoProps> = ({
         currentNoteRef.current
       );
     }
-  }, [onPressedNotesChange]);
+  }, [onPressedNotesChange, onRecordNoteRelease]);
 
   // Use custom hooks for keyboard and mouse interactions
   usePianoKeyboard({
