@@ -116,7 +116,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
       sx={{
         flex: 1,
         overflow: 'hidden',
-        fontFamily: 'monospace',
+        fontFamily: themeColors.notationFont,
         fontSize: { xs: '0.85rem', md: '1rem' },
         lineHeight: 1.8,
         color: themeColors.primary,

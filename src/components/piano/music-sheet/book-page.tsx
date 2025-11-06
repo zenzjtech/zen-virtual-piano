@@ -110,6 +110,7 @@ export const BookPage: React.FC<BookPageProps> = ({
       <Typography
         variant="h6"
         sx={{
+          fontFamily: themeColors.titleFont,
           fontWeight: 600,
           mb: 1,
           fontSize: { xs: '0.9rem', md: '1.1rem' },
@@ -121,6 +122,7 @@ export const BookPage: React.FC<BookPageProps> = ({
       <Typography
         variant="caption"
         sx={{
+          fontFamily: themeColors.bodyFont,
           mb: 2,
           color: themeColors.primary,
           opacity: 0.7,
