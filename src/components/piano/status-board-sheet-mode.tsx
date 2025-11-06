@@ -14,6 +14,8 @@ interface SheetModeDisplayProps {
   lastNote: PianoKey | null;
   isNoteActive: boolean;
   onSheetSearchOpen: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClearHistory: () => void;
+  isClearing: boolean;
 }
 
 export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
@@ -24,6 +26,8 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
   lastNote,
   isNoteActive,
   onSheetSearchOpen,
+  onClearHistory,
+  isClearing,
 }) => {
   
   return (
@@ -35,7 +39,12 @@ export const SheetModeDisplay: React.FC<SheetModeDisplayProps> = ({
       />
 
       {/* History Display */}
-      <NoteHistoryDisplay pianoTheme={pianoTheme} historyText={historyText} />
+      <NoteHistoryDisplay 
+        pianoTheme={pianoTheme} 
+        historyText={historyText} 
+        onClearHistory={onClearHistory}
+        isClearing={isClearing}
+      />
 
       {/* Manual Controls Section */}
       <ManualControlsSection

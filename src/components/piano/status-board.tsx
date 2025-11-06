@@ -8,6 +8,7 @@ import { ManualModeDisplay } from './status-board-manual-mode';
 import { useTotalPages } from '@/hooks/use-total-pages';
 import { useAppConfig } from '#imports';
 import { Box } from '@mui/material';
+import { useNotification } from '@/contexts/notification-context';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -27,6 +28,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   onSheetSearchOpen
 }) => {
   const appConfig = useAppConfig();
+  const { showNotification } = useNotification();
+  
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
   const statusDisplayMode = useAppSelector((state) => state.musicSheet.statusDisplayMode);
@@ -40,6 +43,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   const [lastNote, setLastNote] = useState<PianoKey | null>(null);
   // Track which notes were pressed in the previous render to detect new presses
   const previousPressedNotesRef = useRef<Set<string>>(new Set());
+  // Track if we're animating the history clear
+  const [isClearing, setIsClearing] = useState(false);
 
   // Record notes ONLY when currentNote changes
   useEffect(() => {
@@ -78,6 +83,19 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
   // Format history for display (show last 10)
   const historyText = noteHistory.join(' ') || 'No history yet...';
   
+  // Clear history handler
+  const handleClearHistory = () => {
+    // Start the clearing animation
+    setIsClearing(true);
+    
+    // After animation completes, actually clear the history
+    setTimeout(() => {
+      setNoteHistory([]);
+      setIsClearing(false);
+      showNotification('History cleared', 'success');
+    }, 300); // Match animation duration
+  };
+  
   // Determine what to display based on mode
   const isSheetMode = statusDisplayMode === 'sheet-progress' && currentSheet;
 
@@ -115,6 +133,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             lastNote={lastNote}
             isNoteActive={isNoteActive}
             onSheetSearchOpen={onSheetSearchOpen}
+            onClearHistory={handleClearHistory}
+            isClearing={isClearing}
           />
         ) : (
           <ManualModeDisplay
@@ -123,6 +143,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
             historyText={historyText}
             pianoTheme={pianoTheme}
             onSheetSearchOpen={onSheetSearchOpen}
+            onClearHistory={handleClearHistory}
+            isClearing={isClearing}
           />
         )}
       </Box>

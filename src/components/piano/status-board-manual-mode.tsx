@@ -15,6 +15,8 @@ interface ManualModeDisplayProps {
   historyText: string;
   pianoTheme: PianoTheme;
   onSheetSearchOpen: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClearHistory: () => void;
+  isClearing: boolean;
 }
 
 export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
@@ -23,6 +25,8 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
   historyText,
   pianoTheme,
   onSheetSearchOpen,
+  onClearHistory,
+  isClearing,
 }) => {
   
   return (
@@ -36,7 +40,12 @@ export const ManualModeDisplay: React.FC<ManualModeDisplayProps> = ({
       </PressedKeysDisplay>
 
       {/* History Display */}
-      <NoteHistoryDisplay pianoTheme={pianoTheme} historyText={historyText} />
+      <NoteHistoryDisplay 
+        pianoTheme={pianoTheme} 
+        historyText={historyText} 
+        onClearHistory={onClearHistory}
+        isClearing={isClearing}
+      />
       
       {/* Manual Controls Section */}
       <ManualControlsSection
