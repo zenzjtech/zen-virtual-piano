@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Typography,
   Box,
@@ -7,9 +7,6 @@ import {
   useTheme,
   Chip,
   ToggleButton,
-  MenuItem,
-  Select,
-  FormControl,
 } from '@mui/material';
 import {
   MusicNote as MusicNoteIcon,
@@ -49,11 +46,11 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
+  const dialogRef = useRef<HTMLDivElement>(null);
   
   // Get persisted filter preferences from Redux
   const savedFilters = useAppSelector((state) => state.musicSheet.searchFilters);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(savedFilters.showFavoritesOnly);
-  const [selectedArtist, setSelectedArtist] = useState<string | null>(savedFilters.selectedArtist);
   
   // Use custom hook for data management
   const {
@@ -62,12 +59,11 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     recentSheets,
     favoriteSheets,
     favorites,
-    allArtists,
   } = useSheetSearch({
     searchQuery,
     showFavoritesOnly,
     selectedTags: [],
-    selectedArtist,
+    selectedArtist: null,
   });
   
   // Event handlers
@@ -83,8 +79,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   
   const handleClearFilters = () => {
     setShowFavoritesOnly(false);
-    setSelectedArtist(null);
-    dispatch(setSearchFilters({ showFavoritesOnly: false, selectedArtist: null }));
+    dispatch(setSearchFilters({ showFavoritesOnly: false }));
   };
   
   const handleToggleFavoriteFilter = () => {
@@ -93,12 +88,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     dispatch(setSearchFilters({ showFavoritesOnly: newValue }));
   };
   
-  const handleArtistChange = (artist: string | null) => {
-    setSelectedArtist(artist);
-    dispatch(setSearchFilters({ selectedArtist: artist }));
-  };
-  
-  const hasActiveFilters = showFavoritesOnly || selectedArtist !== null;
+  const hasActiveFilters = showFavoritesOnly;
   
   // Filter recently played by favorites when favorite filter is active
   const displayedRecentSheets = showFavoritesOnly 
@@ -109,6 +99,16 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const recentlyPlayedIds = new Set(displayedRecentSheets.map(sheet => sheet.id));
   const displayedAllSheets = (hasActiveFilters ? filteredSheets : allSheets)
     .filter(sheet => !recentlyPlayedIds.has(sheet.id));
+  
+  // Handle click away, but ignore clicks on MUI Select menus
+  const handleClickAway = (event: MouseEvent | TouchEvent) => {
+    const target = event.target as HTMLElement;
+    // Check if click is on a MUI menu (Select dropdown)
+    if (target.closest('.MuiPopover-root') || target.closest('.MuiModal-root')) {
+      return;
+    }
+    onClose();
+  };
   
   return (
     <Popper
@@ -133,7 +133,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
         },
       ]}
     >
-      <ClickAwayListener onClickAway={onClose}>
+      <ClickAwayListener onClickAway={handleClickAway}>
         <StyledPopupPaper
           pianoTheme={pianoTheme}
           elevation={8}
@@ -210,38 +210,6 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
                 {showFavoritesOnly ? <FavoriteIcon fontSize="small" sx={{ mr: 0.5 }} /> : <FavoriteBorderIcon fontSize="small" sx={{ mr: 0.5 }} />}
                 Favorites
               </ToggleButton>
-              
-              {/* Artist Filter */}
-              {allArtists.length > 0 && (
-                <FormControl size="small" sx={{ minWidth: 120 }}>
-                  <Select
-                    value={selectedArtist || ''}
-                    onChange={(e) => handleArtistChange(e.target.value || null)}
-                    displayEmpty
-                    onClick={(e) => e.stopPropagation()}
-                    MenuProps={{
-                      disablePortal: false,
-                      onClick: (e) => e.stopPropagation(),
-                    }}
-                    sx={{
-                      fontSize: '0.75rem',
-                      height: 28,
-                      borderColor: pianoTheme.colors.border,
-                      color: selectedArtist ? pianoTheme.colors.primary : pianoTheme.colors.secondary,
-                      '& .MuiSelect-select': {
-                        py: 0.5,
-                      },
-                    }}
-                  >
-                    <MenuItem value="" sx={{ fontSize: '0.75rem' }}>All Artists</MenuItem>
-                    {allArtists.map(artist => (
-                      <MenuItem key={artist} value={artist} sx={{ fontSize: '0.75rem' }}>
-                        {artist}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
               
               {/* Clear Filters */}
               {hasActiveFilters && (
