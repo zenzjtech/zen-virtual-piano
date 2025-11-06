@@ -23,6 +23,7 @@ import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-
 import { getBuiltInSheetMetadata } from '@/services/sheet-library';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
+import { useMetronome } from '@/hooks/use-metronome';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
@@ -80,6 +81,9 @@ function App() {
   
   // Sound settings state
   const soundSettings = useSoundSettings();
+  
+  // Metronome playback
+  useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo);
   
   // Notification
   const { showNotification } = useNotification();
@@ -361,7 +365,9 @@ function App() {
         volume={soundSettings.volume}
         onVolumeChange={soundSettings.setVolume}
         metronomeEnabled={soundSettings.metronomeEnabled}
+        metronomeTempo={soundSettings.metronomeTempo}
         onMetronomeToggle={soundSettings.toggleMetronome}
+        onMetronomeTempoChange={soundSettings.setMetronomeTempo}
         midiDevice={soundSettings.midiDevice}
         onMidiDeviceChange={soundSettings.setMidiDevice}
         pianoTheme={pianoTheme}

@@ -8,6 +8,7 @@ export function useSoundSettings() {
   const [transpose, setTranspose] = useState(0);
   const [volume, setVolume] = useState(80);
   const [metronomeEnabled, setMetronomeEnabled] = useState(false);
+  const [metronomeTempo, setMetronomeTempo] = useState(120);
   const [midiDevice, setMidiDevice] = useState('none');
 
   const toggleMetronome = () => setMetronomeEnabled(!metronomeEnabled);
@@ -18,6 +19,8 @@ export function useSoundSettings() {
     volume,
     setVolume,
     metronomeEnabled,
+    metronomeTempo,
+    setMetronomeTempo,
     toggleMetronome,
     midiDevice,
     setMidiDevice,

@@ -23,6 +23,8 @@ import {
   Devices as DevicesIcon,
   Add as AddIcon,
   Remove as RemoveIcon,
+  PlayArrow as PlayIcon,
+  Pause as PauseIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
 import { StyledPopupPaper, PopupHeaderBox, PopupContentBox } from './popup-styled-components';
@@ -43,7 +45,9 @@ interface SoundSettingsPopupProps {
   onVolumeChange?: (value: number) => void;
   // Metronome settings
   metronomeEnabled?: boolean;
+  metronomeTempo?: number;
   onMetronomeToggle?: () => void;
+  onMetronomeTempoChange?: (tempo: number) => void;
   // MIDI device settings
   midiDevice?: string;
   onMidiDeviceChange?: (device: string) => void;
@@ -118,7 +122,9 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   volume = 80,
   onVolumeChange,
   metronomeEnabled = false,
+  metronomeTempo = 120,
   onMetronomeToggle,
+  onMetronomeTempoChange,
   midiDevice = 'none',
   onMidiDeviceChange,
   availableMidiDevices = ['None', 'Virtual MIDI Device', 'USB MIDI Keyboard'],
@@ -498,11 +504,55 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   >
                     Metronome
                   </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      ml: 'auto',
+                      color: pianoTheme.colors.secondary,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {metronomeTempo} BPM
+                  </Typography>
                 </ControlLabel>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mb: 1.5,
+                    fontSize: '0.875rem',
+                    color: pianoTheme.colors.secondary,
+                    opacity: 0.85,
+                  }}
+                >
+                  Set tempo and control metronome playback
+                </Typography>
+                <StyledSlider
+                  value={metronomeTempo}
+                  onChange={(_event: Event, newValue: number | number[]) => {
+                    const value = Array.isArray(newValue) ? newValue[0] : newValue;
+                    if (onMetronomeTempoChange) {
+                      onMetronomeTempoChange(value);
+                    }
+                  }}
+                  min={40}
+                  max={240}
+                  step={1}
+                  marks={[
+                    { value: 40, label: '40' },
+                    { value: 120, label: '120' },
+                    { value: 240, label: '240' },
+                  ]}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={(value) => `${value} BPM`}
+                  size="small"
+                  pianoTheme={pianoTheme}
+                  sx={{ mb: 2 }}
+                />
                 <Button
                   variant={metronomeEnabled ? "contained" : "outlined"}
                   onClick={onMetronomeToggle}
                   fullWidth
+                  startIcon={metronomeEnabled ? <PauseIcon /> : <PlayIcon />}
                   sx={{
                     textTransform: 'uppercase',
                     fontWeight: 600,
@@ -514,7 +564,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     },
                   }}
                 >
-                  {metronomeEnabled ? 'Metronome ON' : 'Metronome OFF'}
+                  {metronomeEnabled ? 'Stop' : 'Play'}
                 </Button>
               </ControlSection>
               )}
