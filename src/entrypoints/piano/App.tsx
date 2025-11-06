@@ -279,14 +279,6 @@ function App() {
         note_count: noteCount,
         duration,
       });
-      
-      // Auto-download if notes were recorded
-      if (noteCount > 0) {
-        setTimeout(() => {
-          downloadRecording();
-          showNotification('💾 Recording downloaded', 'success');
-        }, 500);
-      }
     }
   };
 
