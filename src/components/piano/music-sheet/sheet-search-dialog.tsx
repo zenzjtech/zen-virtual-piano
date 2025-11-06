@@ -101,10 +101,18 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   
   const hasActiveFilters = showFavoritesOnly || selectedDifficulties.length > 0;
   
-  // Filter recently played by favorites when favorite filter is active
-  const displayedRecentSheets = showFavoritesOnly 
-    ? recentSheets.filter(sheet => favorites.includes(sheet.id))
-    : recentSheets;
+  // Filter recently played by active filters
+  const displayedRecentSheets = recentSheets.filter(sheet => {
+    // Filter by favorites if enabled
+    if (showFavoritesOnly && !favorites.includes(sheet.id)) {
+      return false;
+    }
+    // Filter by difficulties if any selected
+    if (selectedDifficulties.length > 0 && !selectedDifficulties.includes(sheet.difficulty)) {
+      return false;
+    }
+    return true;
+  });
   
   // Exclude recently played sheets from the main list to avoid duplication
   const recentlyPlayedIds = new Set(displayedRecentSheets.map(sheet => sheet.id));
