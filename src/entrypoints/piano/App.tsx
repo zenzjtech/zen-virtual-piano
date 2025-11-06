@@ -31,6 +31,7 @@ import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
 import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useRecordingPlayback } from '@/hooks/use-recording-playback';
+import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -222,6 +223,14 @@ function App() {
   const recordingPlayback = useRecordingPlayback({
     onPlayNote: playNoteCallback,
     onStopNote: stopNoteCallback,
+  });
+
+  // Mutual exclusivity between sheet music and recording playback
+  usePlaybackMutex({
+    isSheetPlaying,
+    isRecordingPlaying: recordingPlayback.isPlaying,
+    pauseRecordingPlayback: recordingPlayback.pause,
+    showNotification,
   });
 
   const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
