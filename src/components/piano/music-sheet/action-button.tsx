@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import { PianoTheme } from '../themes';
 
 interface ActionButtonProps {
@@ -8,6 +8,7 @@ interface ActionButtonProps {
   isActive?: boolean;
   pianoTheme: PianoTheme;
   ariaLabel?: string;
+  tooltip?: string;
 }
 
 /**
@@ -19,8 +20,9 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   isActive = false,
   pianoTheme,
   ariaLabel,
+  tooltip,
 }) => {
-  return (
+  const button = (
     <IconButton
       onClick={onClick}
       aria-label={ariaLabel}
@@ -42,4 +44,14 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       {icon}
     </IconButton>
   );
+
+  if (tooltip) {
+    return (
+      <Tooltip title={tooltip} placement="top" arrow>
+        <span>{button}</span>
+      </Tooltip>
+    );
+  }
+
+  return button;
 };

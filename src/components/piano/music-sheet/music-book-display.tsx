@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box, Paper, Collapse } from '@mui/material';
-import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { toggleFavorite } from '@/store/reducers/music-sheet-slice';
+import { toggleFavorite, previousPage, nextPage } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../themes';
 import { useAppConfig } from '#imports';
@@ -20,6 +20,94 @@ interface MusicBookDisplayProps {
   musicSheetThemeId: string;
   onClose: () => void;
 }
+
+/**
+ * Navigation button for previous page
+ */
+const PreviousPageButton: React.FC<{
+  onPrevious: () => void;
+  pianoTheme: PianoTheme;
+}> = ({ onPrevious, pianoTheme }) => (
+  <Box
+    sx={{
+      position: 'absolute',
+      top: theme => theme.spacing(1.5),
+      left: '50%',
+      transform: 'translateX(-50%)',
+      marginLeft: theme => theme.spacing(-5),
+    }}
+  >
+    <ActionButton
+      onClick={onPrevious}
+      icon={<ChevronLeftIcon fontSize="small" />}
+      pianoTheme={pianoTheme}
+      ariaLabel="Previous page"
+      tooltip="Previous Page (← / Backspace)"
+    />
+  </Box>
+);
+
+/**
+ * Navigation button for next page
+ */
+const NextPageButton: React.FC<{
+  onNext: () => void;
+  pianoTheme: PianoTheme;
+}> = ({ onNext, pianoTheme }) => (
+  <Box
+    sx={{
+      position: 'absolute',
+      top: theme => theme.spacing(1.5),
+      left: '50%',
+      marginLeft: theme => theme.spacing(4),
+    }}
+  >
+    <ActionButton
+      onClick={onNext}
+      icon={<ChevronRightIcon fontSize="small" />}
+      pianoTheme={pianoTheme}
+      ariaLabel="Next page"
+      tooltip="Next Page (→ / Enter)"
+    />
+  </Box>
+);
+
+/**
+ * Action buttons container (favorite, close)
+ */
+const ActionButtons: React.FC<{
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+  onClose: () => void;
+  pianoTheme: PianoTheme;
+}> = ({ isFavorite, onToggleFavorite, onClose, pianoTheme }) => (
+  <Box
+    sx={{
+      position: 'absolute',
+      top: theme => theme.spacing(1.5),
+      right: theme => theme.spacing(1.5),
+      display: 'flex',
+      gap: 0.5,
+    }}
+  >
+    <ActionButton
+      onClick={onToggleFavorite}
+      icon={isFavorite ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
+      isActive={isFavorite}
+      pianoTheme={pianoTheme}
+      ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+    />
+    
+    <ActionButton
+      onClick={onClose}
+      icon={<CloseIcon fontSize="small" />}
+      pianoTheme={pianoTheme}
+      ariaLabel="Close sheet"
+      tooltip="Close sheet"
+    />
+  </Box>
+);
 
 /**
  * Displays sheet music in an open book layout
@@ -122,31 +210,28 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           />
         </Box>
 
+        {/* Navigation Buttons */}
+        {playback.currentPage > 0 && (
+          <PreviousPageButton
+            onPrevious={() => dispatch(previousPage())}
+            pianoTheme={pianoTheme}
+          />
+        )}
+
+        {rightPageIndex < totalPages && (
+          <NextPageButton
+            onNext={() => dispatch(nextPage())}
+            pianoTheme={pianoTheme}
+          />
+        )}
+
         {/* Action Buttons */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: theme => theme.spacing(1.5),
-            right: theme => theme.spacing(1.5),
-            display: 'flex',
-            gap: 0.5,
-          }}
-        >
-          <ActionButton
-            onClick={() => dispatch(toggleFavorite(currentSheet.id))}
-            icon={isFavorite ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
-            isActive={isFavorite}
-            pianoTheme={pianoTheme}
-            ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-          />
-          
-          <ActionButton
-            onClick={onClose}
-            icon={<CloseIcon fontSize="small" />}
-            pianoTheme={pianoTheme}
-            ariaLabel="Close sheet"
-          />
-        </Box>
+        <ActionButtons
+          isFavorite={isFavorite}
+          onToggleFavorite={() => dispatch(toggleFavorite(currentSheet.id))}
+          onClose={onClose}
+          pianoTheme={pianoTheme}
+        />
       </Paper>
     </Collapse>
   );
