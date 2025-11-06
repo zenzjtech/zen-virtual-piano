@@ -4,6 +4,7 @@ import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
 import { Measure } from './types';
 import { PianoTheme } from '../themes';
 import { useAppConfig } from '#imports';
+import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 
 interface SheetNotationDisplayProps {
   measures: Measure[];
@@ -11,6 +12,7 @@ interface SheetNotationDisplayProps {
   currentNoteIndex: number;
   isPlaying: boolean;
   pianoTheme: PianoTheme;
+  musicSheetThemeId: string;
   lineRange?: { start: number; end: number };
 }
 
@@ -32,9 +34,11 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
   currentNoteIndex,
   isPlaying,
   pianoTheme,
+  musicSheetThemeId,
   lineRange,
 }) => {
   const appConfig = useAppConfig();
+  const themeColors = getMusicSheetThemeColors(musicSheetThemeId);
 
   // Convert measures into flat tokens with position tracking
   const tokens = useMemo(() => {
@@ -115,13 +119,13 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
         fontFamily: 'monospace',
         fontSize: { xs: '0.85rem', md: '1rem' },
         lineHeight: 1.8,
-        color: 'text.primary',
+        color: themeColors.primary,
         '@keyframes glow': {
           '0%': {
             textShadow: '0 0 2px rgba(255, 255, 255, 0.5)',
           },
           '50%': {
-            textShadow: `0 0 10px ${pianoTheme.colors.accent}`,
+            textShadow: `0 0 10px ${themeColors.accent}`,
           },
           '100%': {
             textShadow: '0 0 2px rgba(255, 255, 255, 0.5)',
@@ -144,7 +148,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
             py: 0.25,
             borderRadius: 1,
             transition: 'background-color 0.3s ease-in-out',
-            backgroundColor: lineIdx + (lineRange?.start ?? 0) === currentLineIndex ? alpha(pianoTheme.colors.accent, 0.1) : 'transparent',
+            backgroundColor: lineIdx + (lineRange?.start ?? 0) === currentLineIndex ? `rgba(${themeColors.shadow}, 0.15)` : 'transparent',
           }}
         >          
           {lineIdx + (lineRange?.start ?? 0) === currentLineIndex && (
@@ -153,6 +157,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
                 position: 'absolute',
                 left: theme => theme.spacing(1.5),
                 fontSize: '1.5rem',
+                color: themeColors.accent,
                 animation: 'bounce 0.5s ease-out',
               }} 
             />
@@ -165,7 +170,7 @@ export const SheetNotationDisplay: React.FC<SheetNotationDisplayProps> = ({
                 key={`${lineIdx}-${tokenIdx}`}
                 style={{
                   fontWeight: isCurrentNote ? 'bold' : 'normal',
-                  color: isCurrentNote ? pianoTheme.colors.accent : 'inherit',
+                  color: isCurrentNote ? themeColors.accent : 'inherit',
                   opacity: token.isMeasureSeparator ? 0.5 : 1,
                   animation: isCurrentNote ? 'glow 1s infinite' : 'none',
                 }}

@@ -4,6 +4,7 @@ import { Measure, PlaybackState } from './types';
 import { PianoTheme } from '../themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
 import { MUSIC_SHEET_THEMES } from '../music-sheet-themes';
+import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import bookImage1 from '@/assets/image/music-sheet/1.png';
 import bookImage2 from '@/assets/image/music-sheet/2.png';
 import bookImage3 from '@/assets/image/music-sheet/3.png';
@@ -61,6 +62,7 @@ export const BookPage: React.FC<BookPageProps> = ({
     }
   };
   const backgroundImage = getBackgroundImage();
+  const themeColors = getMusicSheetThemeColors(musicSheetThemeId);
   if (isEmpty) {
     return (
       <Box
@@ -111,7 +113,7 @@ export const BookPage: React.FC<BookPageProps> = ({
           fontWeight: 600,
           mb: 1,
           fontSize: { xs: '0.9rem', md: '1.1rem' },
-          color: 'text.primary',
+          color: themeColors.primary,
         }}
       >
         {title}
@@ -120,7 +122,8 @@ export const BookPage: React.FC<BookPageProps> = ({
         variant="caption"
         sx={{
           mb: 2,
-          color: 'text.secondary',
+          color: themeColors.primary,
+          opacity: 0.7,
           fontSize: { xs: '0.7rem', md: '0.8rem' },
         }}
       >
@@ -133,6 +136,7 @@ export const BookPage: React.FC<BookPageProps> = ({
         currentNoteIndex={isActivePage ? playback.currentNoteIndex : -1}
         isPlaying={playback.isPlaying && isActivePage}
         pianoTheme={pianoTheme}
+        musicSheetThemeId={musicSheetThemeId}
         lineRange={lineRange}
       />
     </Box>
