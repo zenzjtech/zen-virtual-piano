@@ -8,6 +8,7 @@ export default defineConfig({
     permissions: [
       "identity",
       "storage",
+      "unlimitedStorage",
       "notifications"
       // Add other permissions your extension needs
     ],    
@@ -15,6 +16,9 @@ export default defineConfig({
       // Remove default_popup to allow action.onClicked event
       // Icon will open new tab via background service worker
     },
+    host_permissions: [
+      "https://zen-piano.web.app/*"      
+    ],
     "web_accessible_resources": [
       {
         "resources": ["vp-download-ui.html", "vp-download-ui.js"],
