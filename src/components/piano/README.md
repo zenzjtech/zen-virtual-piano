@@ -37,12 +37,18 @@ This directory contains all piano-related components and utilities.
 - **`theme-presets.ts`** - Curated harmonious combinations of piano, background, and music sheet themes
 
 ### Theme Presets
-The `theme-presets.ts` file contains 20 curated preset combinations organized by category:
-- **Classic** (4 presets) - Timeless traditional combinations
-- **Modern** (4 presets) - Contemporary minimalist styles
-- **Cultural** (8 presets) - Traditional and spiritual themes
-- **Nature** (2 presets) - Natural and organic themes
-- **Artistic** (2 presets) - Creative and expressive combinations
+The `theme-presets.ts` file contains 70 curated preset combinations organized by 11 categories:
+- **Classic** (7 presets) - Timeless traditional combinations
+- **Modern** (7 presets) - Contemporary minimalist styles
+- **Vintage** (5 presets) - Old-world charm and nostalgia
+- **Professional** (6 presets) - Concert halls and studios
+- **Romantic** (6 presets) - Soft, dreamy, and intimate
+- **Energetic** (6 presets) - Vibrant and lively combinations
+- **Minimalist** (6 presets) - Clean and simple aesthetics
+- **Luxurious** (7 presets) - Premium and opulent styles
+- **Cultural** (11 presets) - Traditional and spiritual themes
+- **Nature** (6 presets) - Natural and organic themes
+- **Artistic** (5 presets) - Creative and expressive combinations
 
 #### Preset Utilities
 ```typescript
@@ -140,6 +146,12 @@ Each preset is carefully curated to ensure:
 ### Categories
 - **Classic** - Traditional piano concert hall aesthetics
 - **Modern** - Clean, minimalist contemporary design
+- **Vintage** - Nostalgic, old-world charm with historical atmosphere
+- **Professional** - Formal settings like concert halls, studios, and offices
+- **Romantic** - Soft, intimate, and dreamy combinations
+- **Energetic** - Vibrant, lively, and dynamic color palettes
+- **Minimalist** - Pure simplicity with clean, uncluttered designs
+- **Luxurious** - Premium, opulent, and upscale aesthetics
 - **Cultural** - Inspired by world cultures and spiritual traditions
 - **Nature** - Earth tones and natural gradients
 - **Artistic** - Creative and expressive combinations
