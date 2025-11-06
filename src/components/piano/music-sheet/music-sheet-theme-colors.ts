@@ -75,16 +75,16 @@ export const getMusicSheetThemeColors = (themeId: string): MusicSheetThemeColors
         notationFont: '"Roboto Mono", Consolas, monospace',
       };
     
-    case 'paper-6': // Linen Paper - neutral gray-beige, clean fonts
+    case 'paper-6': // Linen Paper - warm peachy-beige, textured natural fonts
       return {
-        primary: '#4a4a4a',
-        accent: '#9e9e8c',
-        background: 'rgba(245, 245, 240, 0.85)',
-        border: 'rgba(158, 158, 140, 0.3)',
-        shadow: '158, 158, 140',
-        titleFont: '"Open Sans", "Helvetica Neue", Arial, sans-serif',
-        bodyFont: '"Open Sans", Arial, sans-serif',
-        notationFont: '"JetBrains Mono", Monaco, monospace',
+        primary: '#5a4a3e',
+        accent: '#b89876',
+        background: 'rgba(245, 235, 225, 0.85)',
+        border: 'rgba(184, 152, 118, 0.3)',
+        shadow: '184, 152, 118',
+        titleFont: '"Merriweather", Georgia, serif',
+        bodyFont: '"Merriweather", Georgia, serif',
+        notationFont: '"Courier New", Courier, monospace',
       };
     
     case 'paper-7': // Recycled Paper - earthy green-gray, eco fonts
