@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, Tooltip, Typography, Slider, styled, Paper } from '@mui/material';
+import { Box, IconButton, Tooltip, Typography, Slider, styled, Paper, keyframes } from '@mui/material';
 import {
   PlayArrow as PlayIcon,
   Pause as PauseIcon,
@@ -39,9 +39,39 @@ interface RecordingPlaybackBarProps {
   onDownload: () => void;
 }
 
+// Keyframe animations
+const slideUpFadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const pulse = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+`;
+
+const shimmer = keyframes`
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+`;
+
 const PlaybackContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme',
-})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isPlaying',
+})<{ pianoTheme: PianoTheme; isPlaying?: boolean }>(({ theme, pianoTheme, isPlaying }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,
   padding: theme.spacing(1.5, 2),
@@ -57,6 +87,16 @@ const PlaybackContainer = styled(Paper, {
   border: pianoTheme.container.border,
   position: 'relative',
   overflow: 'hidden',
+  animation: `${slideUpFadeIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1)`,
+  transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+  ...(isPlaying && {
+    boxShadow: `
+      inset 0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+      0 1px 0 rgba(255, 255, 255, 0.05),
+      0 0 20px rgba(${pianoTheme.colors.accent}, 0.15)
+    `,
+  }),
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -68,6 +108,7 @@ const PlaybackContainer = styled(Paper, {
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
+    transition: 'opacity 0.3s ease',
   },
   '&::after': {
     content: '""',
@@ -83,29 +124,58 @@ const PlaybackContainer = styled(Paper, {
 }));
 
 const ControlButton = styled(IconButton, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme',
-})<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isActive',
+})<{ pianoTheme: PianoTheme; isActive?: boolean }>(({ pianoTheme, isActive }) => ({
   color: pianoTheme.colors.secondary,
   zIndex: 3,
+  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+  transform: 'scale(1)',
   '&:hover': {
     color: pianoTheme.colors.accent,
+    transform: 'scale(1.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  },
+  '&:active': {
+    transform: 'scale(0.95)',
   },
   '&.Mui-disabled': {
     color: 'rgba(255, 255, 255, 0.3)',
   },
+  ...(isActive && {
+    animation: `${pulse} 2s ease-in-out infinite`,
+  }),
 }));
 
 const ProgressSlider = styled(Slider, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme',
-})<{ pianoTheme: PianoTheme }>(({ pianoTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isPlaying',
+})<{ pianoTheme: PianoTheme; isPlaying?: boolean }>(({ pianoTheme, isPlaying }) => ({
   color: pianoTheme.colors.accent,
   zIndex: 3,
+  transition: 'all 0.3s ease',
   '& .MuiSlider-thumb': {
     width: 12,
     height: 12,
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    ...(isPlaying && {
+      boxShadow: `0 0 8px ${pianoTheme.colors.accent}`,
+    }),
+  },
+  '& .MuiSlider-track': {
+    transition: 'all 0.3s ease',
+    ...(isPlaying && {
+      background: `linear-gradient(
+        90deg,
+        ${pianoTheme.colors.accent},
+        ${pianoTheme.colors.accent}80,
+        ${pianoTheme.colors.accent}
+      )`,
+      backgroundSize: '200% 100%',
+      animation: `${shimmer} 2s linear infinite`,
+    }),
   },
   '& .MuiSlider-rail': {
     opacity: 0.3,
+    transition: 'opacity 0.3s ease',
   },
 }));
 
@@ -124,10 +194,16 @@ const SpeedButton = styled(Box, {
   fontWeight: 600,
   zIndex: 3,
   cursor: 'pointer',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+  transform: 'scale(1)',
   '&:hover': {
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     borderColor: pianoTheme.colors.accent,
+    transform: 'scale(1.05)',
+    boxShadow: `0 2px 8px rgba(0, 0, 0, 0.2)`,
+  },
+  '&:active': {
+    transform: 'scale(0.98)',
   },
 }));
 
@@ -161,7 +237,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
   };
 
   return (
-    <PlaybackContainer elevation={2} pianoTheme={pianoTheme}>
+    <PlaybackContainer elevation={2} pianoTheme={pianoTheme} isPlaying={isPlaying}>
       {/* Controls Row */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, zIndex: 3 }}>
         {/* Playback Controls */}
@@ -171,6 +247,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
               onClick={onTogglePlayback}
               pianoTheme={pianoTheme}
               size="small"
+              isActive={isPlaying}
             >
               {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </ControlButton>
@@ -256,6 +333,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
           max={totalDuration || 100}
           disabled
           pianoTheme={pianoTheme}
+          isPlaying={isPlaying}
           size="small"
         />
       </Box>
