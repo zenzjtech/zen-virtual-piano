@@ -23,6 +23,10 @@ export const usePianoKeyboard = ({
   const keyboardMapRef = useRef(createKeyboardMap());
   const pressedKeysRef = useRef<Set<string>>(new Set());
   
+  // Track which note was actually played for each physical key code
+  // This is crucial because e.key changes with shift modifier but e.code stays the same
+  const keyCodeToNoteMap = useRef<Map<string, string>>(new Map());
+  
   // Track key interaction times for velocity calculation
   // For keyboard: time of first keydown detection
   const keyInteractionStartTimes = useRef<Map<string, number>>(new Map());
@@ -37,54 +41,61 @@ export const usePianoKeyboard = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       // Use the actual key pressed (includes shift modifiers)
       const key = e.key;
+      // Use physical key code for tracking to handle shift key issues
+      const code = e.code;
       
-      // Prevent repeat events
-      if (pressedKeysRef.current.has(key)) {
+      // Prevent repeat events using physical key code
+      if (pressedKeysRef.current.has(code)) {
         return;
       }
 
       const pianoKey = keyboardMapRef.current.get(key);
-      if (pianoKey) {
-        e.preventDefault();
-        pressedKeysRef.current.add(key);
-        
-        const now = performance.now();
-        let velocity = velocityConfig.keyboardDefault;
-        
-        // Check if we have an interaction start time (from hover or previous interaction)
-        const interactionStart = keyInteractionStartTimes.current.get(key);
-        if (interactionStart) {
-          // Calculate velocity based on time from interaction to press
-          const duration = now - interactionStart;
-          velocity = calculateVelocity(duration);
-          keyInteractionStartTimes.current.delete(key);
-        }
-        
-        // Record the actual press time for duration tracking
-        keyPressStartTimes.current.set(key, now);
-        
-        // Play note with calculated velocity
-        playNote(pianoKey.note, pianoKey.frequency, velocity);
+      if (!pianoKey) {
+        return;
       }
+      
+      e.preventDefault();
+      pressedKeysRef.current.add(code);
+      
+      // Store which note this physical key is playing
+      keyCodeToNoteMap.current.set(code, pianoKey.note);
+      
+      const now = performance.now();
+      let velocity = velocityConfig.keyboardDefault;
+      
+      // Check if we have an interaction start time (from hover or previous interaction)
+      const interactionStart = keyInteractionStartTimes.current.get(key);
+      if (interactionStart) {
+        // Calculate velocity based on time from interaction to press
+        const duration = now - interactionStart;
+        velocity = calculateVelocity(duration);
+        keyInteractionStartTimes.current.delete(key);
+      }
+      
+      // Record the actual press time for duration tracking using code
+      keyPressStartTimes.current.set(code, now);
+      
+      // Play note with calculated velocity
+      playNote(pianoKey.note, pianoKey.frequency, velocity);
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      const key = e.key;
+      const code = e.code;
       
-      // Calculate and log the press duration for debugging
-      const startTime = keyPressStartTimes.current.get(key);
-      if (startTime !== undefined) {
-        const pressDuration = performance.now() - startTime;
-        console.log(`Key "${key}" held for ${pressDuration.toFixed(0)}ms`);
-        keyPressStartTimes.current.delete(key);
-      }
+      // Clean up timing tracking
+      keyPressStartTimes.current.delete(code);
       
-      pressedKeysRef.current.delete(key);
+      // Always remove from pressed keys set using physical code
+      // This prevents stuck keys from blocking future presses
+      pressedKeysRef.current.delete(code);
 
-      const pianoKey = keyboardMapRef.current.get(key);
-      if (pianoKey) {
+      // Get the note that was actually played for this physical key
+      // Don't use e.key because shift state may have changed
+      const noteToStop = keyCodeToNoteMap.current.get(code);
+      if (noteToStop) {
         e.preventDefault();
-        stopNote(pianoKey.note);
+        stopNote(noteToStop);
+        keyCodeToNoteMap.current.delete(code);
       }
     };
 
