@@ -1,19 +1,33 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '@/store/hook';
-import type { MusicSheet } from './types';
+import type { MusicSheetMetadata } from '@/services/sheet-library';
 
 interface UseSheetSearchResult {
-  allSheets: MusicSheet[];
-  filteredSheets: MusicSheet[];
-  recentSheets: MusicSheet[];
-  favoriteSheets: MusicSheet[];
+  allSheets: MusicSheetMetadata[];
+  filteredSheets: MusicSheetMetadata[];
+  recentSheets: MusicSheetMetadata[];
+  favoriteSheets: MusicSheetMetadata[];
   favorites: string[];
+  allTags: string[];
+  allArtists: string[];
+}
+
+interface UseSheetSearchOptions {
+  searchQuery: string;
+  showFavoritesOnly?: boolean;
+  selectedTags?: string[];
+  selectedArtist?: string | null;
 }
 
 /**
  * Custom hook for managing sheet search data and filtering
  */
-export const useSheetSearch = (searchQuery: string): UseSheetSearchResult => {
+export const useSheetSearch = ({
+  searchQuery,
+  showFavoritesOnly = false,
+  selectedTags = [],
+  selectedArtist = null,
+}: UseSheetSearchOptions): UseSheetSearchResult => {
   // Get sheets from Redux
   const sheets = useAppSelector((state) => state.musicSheet.sheets);
   const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
@@ -22,19 +36,57 @@ export const useSheetSearch = (searchQuery: string): UseSheetSearchResult => {
   // Convert sheets object to array
   const allSheets = useMemo(() => Object.values(sheets), [sheets]);
   
-  // Filter sheets based on search query
+  // Get all unique tags across all sheets
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    allSheets.forEach(sheet => {
+      sheet.tags.forEach(tag => tagSet.add(tag));
+    });
+    return Array.from(tagSet).sort();
+  }, [allSheets]);
+  
+  // Get all unique artists
+  const allArtists = useMemo(() => {
+    const artistSet = new Set<string>();
+    allSheets.forEach(sheet => {
+      if (sheet.artist) artistSet.add(sheet.artist);
+    });
+    return Array.from(artistSet).sort();
+  }, [allSheets]);
+  
+  // Filter sheets based on search query and filters
   const filteredSheets = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return allSheets;
+    let result = allSheets;
+    
+    // Filter by favorites
+    if (showFavoritesOnly) {
+      result = result.filter(sheet => favorites.includes(sheet.id));
     }
     
-    const query = searchQuery.toLowerCase();
-    return allSheets.filter(sheet => 
-      sheet.title.toLowerCase().includes(query) ||
-      sheet.artist.toLowerCase().includes(query) ||
-      sheet.tags.some(tag => tag.toLowerCase().includes(query))
-    );
-  }, [allSheets, searchQuery]);
+    // Filter by tags
+    if (selectedTags.length > 0) {
+      result = result.filter(sheet =>
+        selectedTags.some(tag => sheet.tags.includes(tag))
+      );
+    }
+    
+    // Filter by artist
+    if (selectedArtist) {
+      result = result.filter(sheet => sheet.artist === selectedArtist);
+    }
+    
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(sheet => 
+        sheet.title.toLowerCase().includes(query) ||
+        sheet.artist.toLowerCase().includes(query) ||
+        sheet.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+    }
+    
+    return result;
+  }, [allSheets, searchQuery, showFavoritesOnly, selectedTags, selectedArtist, favorites]);
   
   // Get recently played sheets (max 5)
   const recentSheets = useMemo(() => {
@@ -57,5 +109,7 @@ export const useSheetSearch = (searchQuery: string): UseSheetSearchResult => {
     recentSheets,
     favoriteSheets,
     favorites,
+    allTags,
+    allArtists,
   };
 };

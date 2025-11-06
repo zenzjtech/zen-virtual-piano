@@ -1,12 +1,12 @@
 import React from 'react';
 import { List, Typography, Box, Divider } from '@mui/material';
 import { PianoTheme } from '../themes';
-import type { MusicSheet } from './types';
+import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { SheetItem } from './sheet-item';
 
 interface SheetSectionProps {
   title: string;
-  sheets: MusicSheet[];
+  sheets: MusicSheetMetadata[];
   pianoTheme: PianoTheme;
   favorites: string[];
   onSelectSheet: (sheetId: string) => void;

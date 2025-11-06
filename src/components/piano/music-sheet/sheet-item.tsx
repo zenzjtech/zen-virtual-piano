@@ -17,11 +17,11 @@ import {
   StyledListItem,
   StyledListItemButton,
 } from '../popup-styled-components';
-import type { MusicSheet } from './types';
+import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { getDifficultyColor, isFavorite } from './sheet-search-utils';
 
 interface SheetItemProps {
-  sheet: MusicSheet;
+  sheet: MusicSheetMetadata;
   pianoTheme: PianoTheme;
   favorites: string[];
   onSelect: (sheetId: string) => void;
@@ -94,27 +94,65 @@ export const SheetItem: React.FC<SheetItemProps> = ({
             </Box>
           }
           secondary={
-            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5, mt: 0.5 }}>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: pianoTheme.colors.secondary,
-                  opacity: 0.85,
-                }}
-              >
-                {sheet.artist + ' | '}
-              </Typography>
-              {sheet.durationSeconds && (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }}>
                 <Typography
                   variant="caption"
                   sx={{
                     color: pianoTheme.colors.secondary,
-                    opacity: 0.6,
-                    fontSize: '0.7rem',
+                    opacity: 0.85,
                   }}
                 >
-                  ~{Math.ceil(sheet.durationSeconds / 60)} min • {sheet.tempo} BPM
+                  {sheet.artist}
                 </Typography>
+                {sheet.durationSeconds && (
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: pianoTheme.colors.secondary,
+                      opacity: 0.6,
+                      fontSize: '0.7rem',
+                    }}
+                  >
+                    • ~{Math.ceil(sheet.durationSeconds / 60)} min • {sheet.tempo} BPM
+                  </Typography>
+                )}
+              </Box>
+              {/* Tags */}
+              {sheet.tags.length > 0 && (
+                <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
+                  {sheet.tags.slice(0, 3).map(tag => (
+                    <Chip
+                      key={tag}
+                      label={tag}
+                      size="small"
+                      sx={{
+                        height: 18,
+                        fontSize: '0.6rem',
+                        backgroundColor: `${pianoTheme.colors.accent}15`,
+                        color: pianoTheme.colors.secondary,
+                        borderColor: pianoTheme.colors.border,
+                        border: '1px solid',
+                        '& .MuiChip-label': {
+                          px: 0.75,
+                        },
+                      }}
+                    />
+                  ))}
+                  {sheet.tags.length > 3 && (
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        alignSelf: 'center',
+                        color: pianoTheme.colors.secondary,
+                        fontSize: '0.6rem',
+                        opacity: 0.6,
+                      }}
+                    >
+                      +{sheet.tags.length - 3}
+                    </Typography>
+                  )}
+                </Box>
               )}
             </Box>
           }

@@ -47,6 +47,13 @@ export interface MusicSheetState {
   isMusicStandMinimized: boolean;
   /** Whether user has manually closed sheet mode (prevents auto-load) */
   hasManuallyClosedSheet: boolean;
+  
+  // Filter preferences
+  /** User's last filter settings for sheet search */
+  searchFilters: {
+    showFavoritesOnly: boolean;
+    selectedArtist: string | null;
+  };
 }
 
 /**
@@ -89,6 +96,10 @@ const initialState: MusicSheetState = {
   statusDisplayMode: 'pressed-notes', // Default: show pressed notes
   isMusicStandMinimized: false,
   hasManuallyClosedSheet: false,
+  searchFilters: {
+    showFavoritesOnly: false,
+    selectedArtist: null,
+  },
 };
 
 /**
@@ -387,6 +398,21 @@ export const musicSheetSlice = createSlice({
       // Switch status display to show pressed notes
       state.statusDisplayMode = 'pressed-notes';
     },
+
+    /**
+     * Update search filter preferences
+     */
+    setSearchFilters: (state, action: PayloadAction<{
+      showFavoritesOnly?: boolean;
+      selectedArtist?: string | null;
+    }>) => {
+      if (action.payload.showFavoritesOnly !== undefined) {
+        state.searchFilters.showFavoritesOnly = action.payload.showFavoritesOnly;
+      }
+      if (action.payload.selectedArtist !== undefined) {
+        state.searchFilters.selectedArtist = action.payload.selectedArtist;
+      }
+    },
   },
 });
 
@@ -415,6 +441,7 @@ export const {
   toggleMusicStandMinimized,
   setStatusDisplayMode,
   switchToManualMode,
+  setSearchFilters,
 } = musicSheetSlice.actions;
 
 // Export reducer

@@ -5,12 +5,19 @@ import {
   Popper,
   ClickAwayListener,
   useTheme,
+  Chip,
+  ToggleButton,
+  MenuItem,
+  Select,
+  FormControl,
 } from '@mui/material';
 import {
   MusicNote as MusicNoteIcon,
+  Favorite as FavoriteIcon,
+  FavoriteBorder as FavoriteBorderIcon,
 } from '@mui/icons-material';
-import { useAppDispatch } from '@/store/hook';
-import { loadSheet, toggleFavorite } from '@/store/reducers/music-sheet-slice';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { loadSheet, toggleFavorite, setSearchFilters } from '@/store/reducers/music-sheet-slice';
 import { PianoTheme } from '../themes';
 import {
   StyledPopupPaper,
@@ -43,6 +50,11 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   
+  // Get persisted filter preferences from Redux
+  const savedFilters = useAppSelector((state) => state.musicSheet.searchFilters);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(savedFilters.showFavoritesOnly);
+  const [selectedArtist, setSelectedArtist] = useState<string | null>(savedFilters.selectedArtist);
+  
   // Use custom hook for data management
   const {
     allSheets,
@@ -50,7 +62,13 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     recentSheets,
     favoriteSheets,
     favorites,
-  } = useSheetSearch(searchQuery);
+    allArtists,
+  } = useSheetSearch({
+    searchQuery,
+    showFavoritesOnly,
+    selectedTags: [],
+    selectedArtist,
+  });
   
   // Event handlers
   const handleSelectSheet = (sheetId: string) => {
@@ -62,6 +80,35 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     event.stopPropagation();
     dispatch(toggleFavorite(sheetId));
   };
+  
+  const handleClearFilters = () => {
+    setShowFavoritesOnly(false);
+    setSelectedArtist(null);
+    dispatch(setSearchFilters({ showFavoritesOnly: false, selectedArtist: null }));
+  };
+  
+  const handleToggleFavoriteFilter = () => {
+    const newValue = !showFavoritesOnly;
+    setShowFavoritesOnly(newValue);
+    dispatch(setSearchFilters({ showFavoritesOnly: newValue }));
+  };
+  
+  const handleArtistChange = (artist: string | null) => {
+    setSelectedArtist(artist);
+    dispatch(setSearchFilters({ selectedArtist: artist }));
+  };
+  
+  const hasActiveFilters = showFavoritesOnly || selectedArtist !== null;
+  
+  // Filter recently played by favorites when favorite filter is active
+  const displayedRecentSheets = showFavoritesOnly 
+    ? recentSheets.filter(sheet => favorites.includes(sheet.id))
+    : recentSheets;
+  
+  // Exclude recently played sheets from the main list to avoid duplication
+  const recentlyPlayedIds = new Set(displayedRecentSheets.map(sheet => sheet.id));
+  const displayedAllSheets = (hasActiveFilters ? filteredSheets : allSheets)
+    .filter(sheet => !recentlyPlayedIds.has(sheet.id));
   
   return (
     <Popper
@@ -134,6 +181,89 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             isOpen={open}
           />
           
+          {/* Filters */}
+          <Box sx={{ px: 2, py: 1.5, borderBottom: `1px solid ${pianoTheme.colors.border}` }}>
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+              {/* Favorites Toggle */}
+              <ToggleButton
+                value="favorites"
+                selected={showFavoritesOnly}
+                onChange={handleToggleFavoriteFilter}
+                size="small"
+                sx={{
+                  px: 1.5,
+                  py: 0.5,
+                  textTransform: 'none',
+                  fontSize: '0.75rem',
+                  borderColor: pianoTheme.colors.border,
+                  color: showFavoritesOnly ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
+                  '&.Mui-selected': {
+                    backgroundColor: `${pianoTheme.colors.accent}22`,
+                    borderColor: pianoTheme.colors.accent,
+                    color: pianoTheme.colors.accent,
+                    '&:hover': {
+                      backgroundColor: `${pianoTheme.colors.accent}33`,
+                    },
+                  },
+                }}
+              >
+                {showFavoritesOnly ? <FavoriteIcon fontSize="small" sx={{ mr: 0.5 }} /> : <FavoriteBorderIcon fontSize="small" sx={{ mr: 0.5 }} />}
+                Favorites
+              </ToggleButton>
+              
+              {/* Artist Filter */}
+              {allArtists.length > 0 && (
+                <FormControl size="small" sx={{ minWidth: 120 }}>
+                  <Select
+                    value={selectedArtist || ''}
+                    onChange={(e) => handleArtistChange(e.target.value || null)}
+                    displayEmpty
+                    onClick={(e) => e.stopPropagation()}
+                    MenuProps={{
+                      disablePortal: false,
+                      onClick: (e) => e.stopPropagation(),
+                    }}
+                    sx={{
+                      fontSize: '0.75rem',
+                      height: 28,
+                      borderColor: pianoTheme.colors.border,
+                      color: selectedArtist ? pianoTheme.colors.primary : pianoTheme.colors.secondary,
+                      '& .MuiSelect-select': {
+                        py: 0.5,
+                      },
+                    }}
+                  >
+                    <MenuItem value="" sx={{ fontSize: '0.75rem' }}>All Artists</MenuItem>
+                    {allArtists.map(artist => (
+                      <MenuItem key={artist} value={artist} sx={{ fontSize: '0.75rem' }}>
+                        {artist}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              
+              {/* Clear Filters */}
+              {hasActiveFilters && (
+                <Chip
+                  label="Clear Filters"
+                  size="small"
+                  onClick={handleClearFilters}
+                  sx={{
+                    height: 28,
+                    fontSize: '0.7rem',
+                    color: pianoTheme.colors.secondary,
+                    borderColor: pianoTheme.colors.border,
+                    '&:hover': {
+                      backgroundColor: `${pianoTheme.colors.accent}22`,
+                    },
+                  }}
+                  variant="outlined"
+                />
+              )}
+            </Box>
+          </Box>
+          
           {/* Content */}
           <Box sx={{ 
             flex: 1, 
@@ -157,23 +287,10 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             )}
             
             {/* Recently Played */}
-            {!searchQuery.trim() && recentSheets.length > 0 && (
+            {!searchQuery.trim() && displayedRecentSheets.length > 0 && (
               <SheetSection
                 title="⏱ Recently Played"
-                sheets={recentSheets}
-                pianoTheme={pianoTheme}
-                favorites={favorites}
-                onSelectSheet={handleSelectSheet}
-                onToggleFavorite={handleToggleFavorite}
-                showDivider
-              />
-            )}
-            
-            {/* Favorites */}
-            {!searchQuery.trim() && favoriteSheets.length > 0 && (
-              <SheetSection
-                title="⭐ Favorites"
-                sheets={favoriteSheets}
+                sheets={displayedRecentSheets}
                 pianoTheme={pianoTheme}
                 favorites={favorites}
                 onSelectSheet={handleSelectSheet}
@@ -185,12 +302,13 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             {/* All Sheets (when no search) */}
             {!searchQuery.trim() && allSheets.length > 0 && (
               <SheetSection
-                title={`📚 All Sheets (${allSheets.length})`}
-                sheets={allSheets}
+                title={hasActiveFilters ? `📚 Filtered Sheets (${displayedAllSheets.length})` : `📚 All Sheets (${displayedAllSheets.length})`}
+                sheets={displayedAllSheets}
                 pianoTheme={pianoTheme}
                 favorites={favorites}
                 onSelectSheet={handleSelectSheet}
                 onToggleFavorite={handleToggleFavorite}
+                emptyMessage={hasActiveFilters ? "No sheets match the selected filters" : undefined}
               />
             )}
           </Box>
