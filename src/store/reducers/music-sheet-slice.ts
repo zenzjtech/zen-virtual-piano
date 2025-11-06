@@ -53,6 +53,7 @@ export interface MusicSheetState {
   searchFilters: {
     showFavoritesOnly: boolean;
     selectedArtist: string | null;
+    selectedDifficulties: ('easy' | 'medium' | 'hard')[];
   };
 }
 
@@ -99,6 +100,7 @@ const initialState: MusicSheetState = {
   searchFilters: {
     showFavoritesOnly: false,
     selectedArtist: null,
+    selectedDifficulties: [],
   },
 };
 
@@ -405,12 +407,16 @@ export const musicSheetSlice = createSlice({
     setSearchFilters: (state, action: PayloadAction<{
       showFavoritesOnly?: boolean;
       selectedArtist?: string | null;
+      selectedDifficulties?: ('easy' | 'medium' | 'hard')[];
     }>) => {
       if (action.payload.showFavoritesOnly !== undefined) {
         state.searchFilters.showFavoritesOnly = action.payload.showFavoritesOnly;
       }
       if (action.payload.selectedArtist !== undefined) {
         state.searchFilters.selectedArtist = action.payload.selectedArtist;
+      }
+      if (action.payload.selectedDifficulties !== undefined) {
+        state.searchFilters.selectedDifficulties = action.payload.selectedDifficulties;
       }
     },
   },

@@ -12,11 +12,12 @@ interface UseSheetSearchResult {
   allArtists: string[];
 }
 
-interface UseSheetSearchOptions {
+export interface UseSheetSearchOptions {
   searchQuery: string;
   showFavoritesOnly?: boolean;
   selectedTags?: string[];
   selectedArtist?: string | null;
+  selectedDifficulties?: ('easy' | 'medium' | 'hard')[];
 }
 
 /**
@@ -27,6 +28,7 @@ export const useSheetSearch = ({
   showFavoritesOnly = false,
   selectedTags = [],
   selectedArtist = null,
+  selectedDifficulties = [],
 }: UseSheetSearchOptions): UseSheetSearchResult => {
   // Get sheets from Redux
   const sheets = useAppSelector((state) => state.musicSheet.sheets);
@@ -73,6 +75,11 @@ export const useSheetSearch = ({
     // Filter by artist
     if (selectedArtist) {
       result = result.filter(sheet => sheet.artist === selectedArtist);
+    }
+    
+    // Filter by difficulties
+    if (selectedDifficulties.length > 0) {
+      result = result.filter(sheet => selectedDifficulties.includes(sheet.difficulty));
     }
     
     // Filter by search query

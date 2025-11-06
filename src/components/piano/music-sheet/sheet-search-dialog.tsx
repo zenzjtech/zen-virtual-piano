@@ -51,6 +51,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   // Get persisted filter preferences from Redux
   const savedFilters = useAppSelector((state) => state.musicSheet.searchFilters);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(savedFilters.showFavoritesOnly);
+  const [selectedDifficulties, setSelectedDifficulties] = useState<('easy' | 'medium' | 'hard')[]>(savedFilters.selectedDifficulties);
   
   // Use custom hook for data management
   const {
@@ -64,6 +65,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     showFavoritesOnly,
     selectedTags: [],
     selectedArtist: null,
+    selectedDifficulties,
   });
   
   // Event handlers
@@ -79,7 +81,8 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   
   const handleClearFilters = () => {
     setShowFavoritesOnly(false);
-    dispatch(setSearchFilters({ showFavoritesOnly: false }));
+    setSelectedDifficulties([]);
+    dispatch(setSearchFilters({ showFavoritesOnly: false, selectedDifficulties: [] }));
   };
   
   const handleToggleFavoriteFilter = () => {
@@ -88,7 +91,15 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     dispatch(setSearchFilters({ showFavoritesOnly: newValue }));
   };
   
-  const hasActiveFilters = showFavoritesOnly;
+  const handleToggleDifficulty = (difficulty: 'easy' | 'medium' | 'hard') => {
+    const newDifficulties = selectedDifficulties.includes(difficulty)
+      ? selectedDifficulties.filter(d => d !== difficulty)
+      : [...selectedDifficulties, difficulty];
+    setSelectedDifficulties(newDifficulties);
+    dispatch(setSearchFilters({ selectedDifficulties: newDifficulties }));
+  };
+  
+  const hasActiveFilters = showFavoritesOnly || selectedDifficulties.length > 0;
   
   // Filter recently played by favorites when favorite filter is active
   const displayedRecentSheets = showFavoritesOnly 
@@ -210,6 +221,35 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
                 {showFavoritesOnly ? <FavoriteIcon fontSize="small" sx={{ mr: 0.5 }} /> : <FavoriteBorderIcon fontSize="small" sx={{ mr: 0.5 }} />}
                 Favorites
               </ToggleButton>
+              
+              {/* Difficulty Chips */}
+              {(['easy', 'medium', 'hard'] as const).map(difficulty => (
+                <Chip
+                  key={difficulty}
+                  label={difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                  size="small"
+                  onClick={() => handleToggleDifficulty(difficulty)}
+                  sx={{
+                    height: 28,
+                    fontSize: '0.75rem',
+                    textTransform: 'capitalize',
+                    color: selectedDifficulties.includes(difficulty) 
+                      ? pianoTheme.colors.accent 
+                      : pianoTheme.colors.secondary,
+                    borderColor: selectedDifficulties.includes(difficulty)
+                      ? pianoTheme.colors.accent
+                      : pianoTheme.colors.border,
+                    backgroundColor: selectedDifficulties.includes(difficulty)
+                      ? `${pianoTheme.colors.accent}22`
+                      : 'transparent',
+                    '&:hover': {
+                      backgroundColor: `${pianoTheme.colors.accent}33`,
+                      borderColor: pianoTheme.colors.accent,
+                    },
+                  }}
+                  variant="outlined"
+                />
+              ))}
               
               {/* Clear Filters */}
               {hasActiveFilters && (
