@@ -4,6 +4,8 @@ import { PianoTheme } from './themes';
 /**
  * Shared styled components for popup UI elements
  * Used across instrument selector and sound settings popups
+ * 
+ * @see theme-presets.ts for theme combination presets
  */
 
 export const StyledPopupPaper = styled(Paper, {
