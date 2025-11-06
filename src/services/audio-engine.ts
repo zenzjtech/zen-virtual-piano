@@ -20,18 +20,22 @@ export class AudioEngine {
   constructor(soundSetId: string = 'classical') {
     this.currentSoundSet = getSoundSet(soundSetId);
     
-    // Initialize Tone.js with interactive latency for better responsiveness
+    // Initialize Tone.js with playback latency for minimal delay (~5ms)
     // Note: latencyHint must be set during context creation
     try {
       // Only create new context if one doesn't exist
       if (typeof Tone.context === 'undefined' || !Tone.context.rawContext) {
-        const context = new Tone.Context({ latencyHint: 'interactive' });
+        const context = new Tone.Context({ latencyHint: 'playback' });
         Tone.setContext(context);
       }
     } catch (e) {
       // Context already exists, continue with default settings
       console.log('Using existing Tone.js context');
     }
+    
+    // Resume context immediately (user interaction will have occurred)
+    this.resume();
+    
     this.initAudio();
   }
 
@@ -173,9 +177,6 @@ export class AudioEngine {
       console.warn('Sampler not initialized');
       return;
     }
-
-    // Resume context if needed
-    this.resume();
 
     // Don't trigger duplicate notes
     if (this.activeNotes.has(note)) {
