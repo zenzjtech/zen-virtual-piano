@@ -14,6 +14,7 @@ import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
 import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-dialog';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
+import { THEME_PRESETS } from '@/components/piano/theme-presets';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setMusicSheetTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
@@ -330,6 +331,14 @@ function App() {
 
   // Get background theme styles and determine if it's a dark background
   const isDarkBackground = isDarkBackgroundTheme(backgroundThemeId);
+  
+  // Find current preset based on all three theme attributes (for playback bar style)
+  const currentPreset = THEME_PRESETS.find(
+    (preset) =>
+      preset.pianoTheme === pianoThemeId &&
+      preset.backgroundTheme === backgroundThemeId &&
+      preset.musicSheetTheme === musicSheetThemeId
+  );
 
   return (
     <Box
@@ -353,6 +362,7 @@ function App() {
           currentPositionFormatted: recordingPlayback.currentPositionFormatted,
           totalDurationFormatted: recordingPlayback.totalDurationFormatted,
           pianoTheme: pianoTheme,
+          playbackBarStyle: currentPreset?.playbackBarStyle,
           onTogglePlayback: recordingPlayback.togglePlayback,
           onStop: recordingPlayback.stop,
           onToggleLoop: recordingPlayback.toggleLoop,

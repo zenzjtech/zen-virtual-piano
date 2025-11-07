@@ -72,6 +72,8 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
                 currentPositionFormatted={recordingPlayback.currentPositionFormatted}
                 totalDurationFormatted={recordingPlayback.totalDurationFormatted}
                 pianoTheme={recordingPlayback.pianoTheme}
+                playbackBarStyle={recordingPlayback.playbackBarStyle}
+                isDarkBackground={isDarkBackground}
                 compact
                 onTogglePlayback={recordingPlayback.onTogglePlayback}
                 onStop={recordingPlayback.onStop}

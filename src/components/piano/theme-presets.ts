@@ -6,9 +6,10 @@
 import type { HeaderTypographyStyle } from '../header/header-typography';
 import { QUOTE_STYLES, type QuoteStyle } from './quote-styles';
 import { HEADER_THEME_STYLES, type HeaderThemeStyle } from '../header/header-theme-styles';
+import { PLAYBACK_BAR_STYLES, type PlaybackBarStyle } from './playback-bar-styles';
 
 // Re-export for convenience
-export type { QuoteStyle, HeaderThemeStyle };
+export type { QuoteStyle, HeaderThemeStyle, PlaybackBarStyle };
 
 export interface ThemePreset {
   id: string;
@@ -21,6 +22,7 @@ export interface ThemePreset {
   headerStyle: HeaderTypographyStyle;
   headerThemeStyle: HeaderThemeStyle;
   quoteStyle: QuoteStyle;
+  playbackBarStyle: PlaybackBarStyle;
 }
 
 export type ThemePresetCategory = ThemePreset['category'];
@@ -38,6 +40,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   {
     id: 'vintage-scholar',
@@ -50,6 +53,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   {
     id: 'mahogany-warmth',
@@ -62,6 +66,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   {
     id: 'dark-symphony',
@@ -74,6 +79,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   
   // Modern Presets
@@ -88,7 +94,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   {
     id: 'nordic-serenity',
@@ -101,6 +107,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   {
     id: 'metal-cool',
@@ -113,6 +120,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   {
     id: 'rose-romance',
@@ -125,6 +133,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   
   // Cultural Presets
@@ -139,7 +148,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'chinese-imperial',
@@ -152,6 +161,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'ink-jade',
@@ -164,6 +174,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'hindu-sacred',
@@ -176,6 +187,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'peacock-divine',
@@ -188,6 +200,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'earth-mystic',
@@ -200,6 +213,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'divine-glory',
@@ -212,6 +226,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'islamic-elegance',
@@ -224,6 +239,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   
   // Nature Presets
@@ -238,7 +254,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'nature-serif',
     headerThemeStyle: HEADER_THEME_STYLES.nature,
     quoteStyle: QUOTE_STYLES.nature,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.nature,
   },
   {
     id: 'ocean-depths',
@@ -251,6 +267,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'nature-serif',
     headerThemeStyle: HEADER_THEME_STYLES.nature,
     quoteStyle: QUOTE_STYLES.nature,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.nature,
   },
   
   // Artistic Presets
@@ -265,7 +282,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.artistic,
     quoteStyle: QUOTE_STYLES.artistic,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
   },
   {
     id: 'morning-light',
@@ -278,6 +295,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.artistic,
     quoteStyle: QUOTE_STYLES.artistic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
   },
   
   // Vintage Presets
@@ -292,7 +310,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.vintage,
     quoteStyle: QUOTE_STYLES.vintage,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.vintage,
   },
   {
     id: 'vintage-library',
@@ -305,6 +323,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.vintage,
     quoteStyle: QUOTE_STYLES.vintage,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.vintage,
   },
   {
     id: 'vintage-attic',
@@ -317,6 +336,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.vintage,
     quoteStyle: QUOTE_STYLES.vintage,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.vintage,
   },
   {
     id: 'vintage-salon',
@@ -329,6 +349,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.vintage,
     quoteStyle: QUOTE_STYLES.vintage,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.vintage,
   },
   {
     id: 'vintage-conservatory',
@@ -341,6 +362,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.vintage,
     quoteStyle: QUOTE_STYLES.vintage,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.vintage,
   },
   
   // Professional Presets
@@ -355,7 +377,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.professional,
     quoteStyle: QUOTE_STYLES.professional,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.professional,
   },
   {
     id: 'recording-studio',
@@ -368,6 +390,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.professional,
     quoteStyle: QUOTE_STYLES.professional,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.professional,
   },
   {
     id: 'music-school',
@@ -380,6 +403,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.professional,
     quoteStyle: QUOTE_STYLES.professional,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.professional,
   },
   {
     id: 'office-piano',
@@ -392,6 +416,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.professional,
     quoteStyle: QUOTE_STYLES.professional,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.professional,
   },
   {
     id: 'theater-stage',
@@ -404,6 +429,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.professional,
     quoteStyle: QUOTE_STYLES.professional,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.professional,
   },
   {
     id: 'jazz-club',
@@ -416,6 +442,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.professional,
     quoteStyle: QUOTE_STYLES.professional,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.professional,
   },
   
   // Romantic Presets
@@ -430,7 +457,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.romantic,
     quoteStyle: QUOTE_STYLES.romantic,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.romantic,
   },
   {
     id: 'moonlight-sonata',
@@ -443,6 +470,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.romantic,
     quoteStyle: QUOTE_STYLES.romantic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.romantic,
   },
   {
     id: 'love-letters',
@@ -455,6 +483,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.romantic,
     quoteStyle: QUOTE_STYLES.romantic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.romantic,
   },
   {
     id: 'sunset-piano',
@@ -467,6 +496,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.romantic,
     quoteStyle: QUOTE_STYLES.romantic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.romantic,
   },
   {
     id: 'cherry-blossom',
@@ -479,6 +509,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.romantic,
     quoteStyle: QUOTE_STYLES.romantic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.romantic,
   },
   {
     id: 'candlelight',
@@ -491,6 +522,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.romantic,
     quoteStyle: QUOTE_STYLES.romantic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.romantic,
   },
   
   // Energetic Presets
@@ -505,7 +537,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'energetic-bold',
     headerThemeStyle: HEADER_THEME_STYLES.energetic,
     quoteStyle: QUOTE_STYLES.energetic,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.energetic,
   },
   {
     id: 'tropical-vibes',
@@ -518,6 +550,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'energetic-bold',
     headerThemeStyle: HEADER_THEME_STYLES.energetic,
     quoteStyle: QUOTE_STYLES.energetic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.energetic,
   },
   {
     id: 'sunrise-energy',
@@ -530,6 +563,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'energetic-bold',
     headerThemeStyle: HEADER_THEME_STYLES.energetic,
     quoteStyle: QUOTE_STYLES.energetic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.energetic,
   },
   {
     id: 'ocean-waves',
@@ -542,6 +576,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'energetic-bold',
     headerThemeStyle: HEADER_THEME_STYLES.energetic,
     quoteStyle: QUOTE_STYLES.energetic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.energetic,
   },
   {
     id: 'festival-lights',
@@ -554,6 +589,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'energetic-bold',
     headerThemeStyle: HEADER_THEME_STYLES.energetic,
     quoteStyle: QUOTE_STYLES.energetic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.energetic,
   },
   {
     id: 'spring-bloom',
@@ -566,6 +602,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'energetic-bold',
     headerThemeStyle: HEADER_THEME_STYLES.energetic,
     quoteStyle: QUOTE_STYLES.energetic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.energetic,
   },
   
   // Minimalist Presets
@@ -580,7 +617,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.minimalist,
     quoteStyle: QUOTE_STYLES.minimalist,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.minimalist,
   },
   {
     id: 'clean-slate',
@@ -593,6 +630,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.minimalist,
     quoteStyle: QUOTE_STYLES.minimalist,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.minimalist,
   },
   {
     id: 'zen-minimal',
@@ -605,6 +643,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.minimalist,
     quoteStyle: QUOTE_STYLES.minimalist,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.minimalist,
   },
   {
     id: 'arctic-minimal',
@@ -617,6 +656,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.minimalist,
     quoteStyle: QUOTE_STYLES.minimalist,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.minimalist,
   },
   {
     id: 'monochrome',
@@ -629,6 +669,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.minimalist,
     quoteStyle: QUOTE_STYLES.minimalist,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.minimalist,
   },
   {
     id: 'simple-beauty',
@@ -641,6 +682,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.minimalist,
     quoteStyle: QUOTE_STYLES.minimalist,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.minimalist,
   },
   
   // Luxurious Presets
@@ -655,7 +697,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   {
     id: 'royal-court',
@@ -668,6 +710,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   {
     id: 'diamond-nights',
@@ -680,6 +723,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   {
     id: 'emerald-palace',
@@ -692,6 +736,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   {
     id: 'platinum-suite',
@@ -704,6 +749,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   {
     id: 'velvet-lounge',
@@ -716,6 +762,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   {
     id: 'crystal-ballroom',
@@ -728,6 +775,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'luxurious-light',
     headerThemeStyle: HEADER_THEME_STYLES.luxurious,
     quoteStyle: QUOTE_STYLES.luxurious,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.luxurious,
   },
   
   // Additional Classic Presets
@@ -742,6 +790,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   {
     id: 'beethoven-legacy',
@@ -754,6 +803,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   {
     id: 'mozart-chamber',
@@ -766,6 +816,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
     quoteStyle: QUOTE_STYLES.classic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   
   // Additional Modern Presets
@@ -780,7 +831,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   {
     id: 'urban-loft',
@@ -793,6 +844,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   {
     id: 'scandinavian-design',
@@ -805,6 +857,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'modern-sans',
     headerThemeStyle: HEADER_THEME_STYLES.modern,
     quoteStyle: QUOTE_STYLES.modern,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern,
   },
   
   // Additional Cultural Presets
@@ -819,7 +872,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'temple-bells',
@@ -832,6 +885,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   {
     id: 'silk-road',
@@ -844,6 +898,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
   
   // Additional Nature Presets
@@ -858,7 +913,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'nature-serif',
     headerThemeStyle: HEADER_THEME_STYLES.nature,
     quoteStyle: QUOTE_STYLES.nature,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.nature,
   },
   {
     id: 'rainforest',
@@ -871,6 +926,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'nature-serif',
     headerThemeStyle: HEADER_THEME_STYLES.nature,
     quoteStyle: QUOTE_STYLES.nature,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.nature,
   },
   {
     id: 'desert-dunes',
@@ -883,6 +939,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'nature-serif',
     headerThemeStyle: HEADER_THEME_STYLES.nature,
     quoteStyle: QUOTE_STYLES.nature,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.nature,
   },
   {
     id: 'autumn-leaves',
@@ -895,6 +952,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'nature-serif',
     headerThemeStyle: HEADER_THEME_STYLES.nature,
     quoteStyle: QUOTE_STYLES.nature,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.nature,
   },
   
   // Additional Artistic Presets
@@ -909,7 +967,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.artistic,
     quoteStyle: QUOTE_STYLES.artistic,
-
+    playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
   },
   {
     id: 'abstract-expression',
@@ -922,6 +980,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.artistic,
     quoteStyle: QUOTE_STYLES.artistic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
   },
   {
     id: 'art-deco',
@@ -934,6 +993,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.artistic,
     quoteStyle: QUOTE_STYLES.artistic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
   },
 ];
 

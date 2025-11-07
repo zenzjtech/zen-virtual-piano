@@ -10,6 +10,7 @@ import {
   GetApp as DownloadIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
+import type { PlaybackBarStyle } from './playback-bar-styles';
 
 interface RecordingPlaybackBarProps {
   /** Whether playback is active */
@@ -32,6 +33,8 @@ interface RecordingPlaybackBarProps {
   pianoTheme: PianoTheme;
   /** Compact mode for header */
   compact?: boolean;
+  /** Playback bar style (optional, theme-aware) */
+  playbackBarStyle?: import('./playback-bar-styles').PlaybackBarStyle;
   /** Callbacks */
   onTogglePlayback: () => void;
   onStop: () => void;
@@ -72,59 +75,85 @@ const shimmer = keyframes`
 `;
 
 const PlaybackContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isPlaying' && prop !== 'compact',
-})<{ pianoTheme: PianoTheme; isPlaying?: boolean; compact?: boolean }>(({ theme, pianoTheme, isPlaying, compact }) => ({
-  background: pianoTheme.container.background,
-  color: pianoTheme.colors.primary,
-  padding: compact ? theme.spacing(0.5, 1.5) : theme.spacing(1.5, 2),
-  borderRadius: compact ? theme.spacing(0.75) : theme.spacing(1),
-  display: 'flex',
-  flexDirection: compact ? 'row' : 'column',
-  gap: compact ? theme.spacing(1.5) : theme.spacing(1),
-  alignItems: compact ? 'center' : 'stretch',
-  boxShadow: `
-    inset 0 2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.15),
-    0 1px 0 rgba(255, 255, 255, 0.05)
-  `,
-  border: pianoTheme.container.border,
-  position: 'relative',
-  overflow: 'hidden',
-  animation: `${slideUpFadeIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1)`,
-  transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
-  ...(isPlaying && {
-    boxShadow: `
-      inset 0 2px 4px rgba(0, 0, 0, 0.2),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.15),
-      0 1px 0 rgba(255, 255, 255, 0.05),
-      0 0 20px rgba(${pianoTheme.colors.accent}, 0.15)
-    `,
-  }),
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: pianoTheme.container.beforeBackground || 'transparent',
-    pointerEvents: 'none',
-    opacity: 0.6,
-    zIndex: 1,
-    transition: 'opacity 0.3s ease',
-  },
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: pianoTheme.container.afterBackground || 'transparent',
-    pointerEvents: 'none',
-    zIndex: 2,
-  },
-}));
+  shouldForwardProp: (prop) => 
+    prop !== 'pianoTheme' && 
+    prop !== 'isPlaying' && 
+    prop !== 'compact' && 
+    prop !== 'playbackBarStyle' &&
+    prop !== 'isDarkBackground',
+})<{ 
+  pianoTheme: PianoTheme; 
+  isPlaying?: boolean; 
+  compact?: boolean;
+  playbackBarStyle?: PlaybackBarStyle;
+  isDarkBackground?: boolean;
+}>(({ theme, pianoTheme, isPlaying, compact, playbackBarStyle, isDarkBackground = false }) => {
+  // Use playbackBarStyle if provided, otherwise use defaults
+  const containerBg = playbackBarStyle?.containerBackground
+    ? (isDarkBackground ? playbackBarStyle.containerBackground.dark : playbackBarStyle.containerBackground.light)
+    : pianoTheme.container.background;
+  const containerBorder = playbackBarStyle?.containerBorder
+    ? (isDarkBackground ? playbackBarStyle.containerBorder.dark : playbackBarStyle.containerBorder.light)
+    : pianoTheme.container.border;
+  const containerShadow = playbackBarStyle?.containerShadow
+    ? (isDarkBackground ? playbackBarStyle.containerShadow.dark : playbackBarStyle.containerShadow.light)
+    : `inset 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255, 255, 255, 0.05)`;
+  const containerBlur = playbackBarStyle?.containerBlur || 'blur(8px)';
+  const padding = playbackBarStyle?.containerPadding
+    ? (compact 
+        ? theme.spacing(playbackBarStyle.containerPadding.compact.y, playbackBarStyle.containerPadding.compact.x)
+        : theme.spacing(playbackBarStyle.containerPadding.normal.y, playbackBarStyle.containerPadding.normal.x))
+    : (compact ? theme.spacing(0.5, 1.5) : theme.spacing(1.5, 2));
+  const borderRadius = playbackBarStyle?.containerBorderRadius
+    ? (compact ? playbackBarStyle.containerBorderRadius.compact : playbackBarStyle.containerBorderRadius.normal)
+    : (compact ? theme.spacing(0.75) : theme.spacing(1));
+
+  return {
+    background: containerBg,
+    color: pianoTheme.colors.primary,
+    padding,
+    borderRadius,
+    display: 'flex',
+    flexDirection: compact ? 'row' : 'column',
+    gap: compact ? theme.spacing(1.5) : theme.spacing(1),
+    alignItems: compact ? 'center' : 'stretch',
+    boxShadow: containerShadow,
+    border: `1px solid ${containerBorder}`,
+    position: 'relative',
+    overflow: 'hidden',
+    animation: `${slideUpFadeIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1)`,
+    transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+    backdropFilter: containerBlur,
+    WebkitBackdropFilter: containerBlur,
+    ...(isPlaying && {
+      boxShadow: `${containerShadow}, 0 0 20px rgba(${pianoTheme.colors.accent}, 0.15)`,
+    }),
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: pianoTheme.container.beforeBackground || 'transparent',
+      pointerEvents: 'none',
+      opacity: 0.6,
+      zIndex: 1,
+      transition: 'opacity 0.3s ease',
+    },
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: pianoTheme.container.afterBackground || 'transparent',
+      pointerEvents: 'none',
+      zIndex: 2,
+    },
+  };
+});
 
 const ControlButton = styled(IconButton, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isActive',
@@ -210,7 +239,7 @@ const SpeedButton = styled(Box, {
   },
 }));
 
-export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
+export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDarkBackground?: boolean }> = ({
   isPlaying,
   currentPosition,
   totalDuration,
@@ -221,6 +250,8 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
   totalDurationFormatted,
   pianoTheme,
   compact = false,
+  playbackBarStyle,
+  isDarkBackground = false,
   onTogglePlayback,
   onStop,
   onToggleLoop,
@@ -243,7 +274,14 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
   if (compact) {
     // Compact layout for header
     return (
-      <PlaybackContainer elevation={2} pianoTheme={pianoTheme} isPlaying={isPlaying} compact>
+      <PlaybackContainer 
+        elevation={2} 
+        pianoTheme={pianoTheme} 
+        isPlaying={isPlaying} 
+        compact
+        playbackBarStyle={playbackBarStyle}
+        isDarkBackground={isDarkBackground}
+      >
         {/* Playback Controls */}
         <Box sx={{ display: 'flex', gap: 0.25, zIndex: 3 }}>
           <Tooltip title={isPlaying ? 'Pause' : 'Play'}>
@@ -362,7 +400,13 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
 
   // Original layout for standalone use
   return (
-    <PlaybackContainer elevation={2} pianoTheme={pianoTheme} isPlaying={isPlaying}>
+    <PlaybackContainer 
+      elevation={2} 
+      pianoTheme={pianoTheme} 
+      isPlaying={isPlaying}
+      playbackBarStyle={playbackBarStyle}
+      isDarkBackground={isDarkBackground}
+    >
       {/* Controls Row */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, zIndex: 3 }}>
         {/* Playback Controls */}

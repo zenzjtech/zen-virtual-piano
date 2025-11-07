@@ -19,6 +19,7 @@ export interface HeaderProps {
     currentPositionFormatted: string;
     totalDurationFormatted: string;
     pianoTheme: PianoTheme;
+    playbackBarStyle?: import('../piano/playback-bar-styles').PlaybackBarStyle;
     onTogglePlayback: () => void;
     onStop: () => void;
     onToggleLoop: () => void;
