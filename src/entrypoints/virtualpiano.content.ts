@@ -4,7 +4,6 @@
  * Injects UI for downloading sheet notation from virtualpiano.net sheet pages
  */
 
-import { instantiateGlobalStore } from '@/store';
 import { isVirtualPianoSheetPage } from '@/utils/virtualpiano-scraper';
 
 export default defineContentScript({
@@ -18,10 +17,6 @@ export default defineContentScript({
       console.log('Not a sheet page, exiting');
       return;
     }
-
-    // Initialize Redux store for access
-    const store = await instantiateGlobalStore();
-    console.log('Redux store initialized in content script');
 
     // Wait for page to be fully loaded
     if (document.readyState === 'loading') {
@@ -81,7 +76,7 @@ function injectDownloadUI() {
     if (event.source !== iframe.contentWindow) return;
 
     if (event.data.type === 'SCRAPE_AND_DOWNLOAD') {
-      await handleDownload();
+      await handleDownload(iframe);
     }
   });
 }
@@ -89,17 +84,22 @@ function injectDownloadUI() {
 /**
  * Handle sheet download action
  */
-async function handleDownload() {
+async function handleDownload(iframe: HTMLIFrameElement) {
   const { scrapeVirtualPianoSheet, convertToMusicSheet } = await import('@/utils/virtualpiano-scraper');
-  const { addCustomSheet } = await import('@/store/reducers/music-sheet-slice');
+
+  // Wait for iframe to be ready
+  if (!iframe.contentWindow) {
+    console.error('Iframe content window not available');
+    return;
+  }
 
   try {
     // Scrape sheet data
     const scrapedData = scrapeVirtualPianoSheet();
     
     if (!scrapedData) {
-      // Send error back to iframe
-      window.postMessage({
+      // Send error directly to iframe
+      iframe.contentWindow.postMessage({
         type: 'DOWNLOAD_ERROR',
         error: 'Could not extract sheet data from page'
       }, '*');
@@ -109,38 +109,18 @@ async function handleDownload() {
     // Convert to MusicSheet format
     const musicSheet = convertToMusicSheet(scrapedData);
 
-    // Get store and dispatch action
-    const store = await instantiateGlobalStore();
-    store.dispatch(addCustomSheet(musicSheet));
-
     // Copy notation to clipboard
     await navigator.clipboard.writeText(scrapedData.notation);
 
-    // Send success message to iframe
-    window.postMessage({
+    // Send success message directly to iframe with complete sheet data
+    iframe.contentWindow.postMessage({
       type: 'DOWNLOAD_SUCCESS',
-      sheet: {
-        title: musicSheet.title,
-        artist: musicSheet.artist,
-        difficulty: musicSheet.difficulty,
-        notation: scrapedData.notation,
-      }
+      sheet: musicSheet,
     }, '*');
-
-    // Send chrome notification
-    chrome.runtime.sendMessage({
-      type: 'SHOW_NOTIFICATION',
-      title: 'Sheet Downloaded!',
-      message: `"${musicSheet.title}" by ${musicSheet.artist} has been added to your library.`,
-      sheet: {
-        title: musicSheet.title,
-        artist: musicSheet.artist,
-      }
-    });
 
   } catch (error) {
     console.error('Error downloading sheet:', error);
-    window.postMessage({
+    iframe.contentWindow?.postMessage({
       type: 'DOWNLOAD_ERROR',
       error: error instanceof Error ? error.message : 'Unknown error'
     }, '*');

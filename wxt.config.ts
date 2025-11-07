@@ -8,8 +8,7 @@ export default defineConfig({
     permissions: [
       "identity",
       "storage",
-      "unlimitedStorage",
-      "notifications"
+      "unlimitedStorage"      
       // Add other permissions your extension needs
     ],    
     action: {

@@ -5,6 +5,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { DownloadState, DownloadMessage } from '../../../entrypoints/vp-download-ui/types';
 import { MESSAGE_TYPES, TIMING } from '../../../entrypoints/vp-download-ui/utils';
+import { useAppDispatch } from '../../../store/hook';
+import { addCustomSheet } from '../../../store/reducers/music-sheet-slice';
 
 interface UseDownloadStateReturn {
   downloadState: DownloadState;
@@ -16,11 +18,15 @@ interface UseDownloadStateReturn {
 export const useDownloadState = (): UseDownloadStateReturn => {
   const [downloadState, setDownloadState] = useState<DownloadState>({ status: 'idle' });
   const [showToast, setShowToast] = useState(false);
+  const dispatch = useAppDispatch();
 
   // Listen for messages from content script
   useEffect(() => {
     const handleMessage = (event: MessageEvent<DownloadMessage>) => {
       if (event.data.type === MESSAGE_TYPES.DOWNLOAD_SUCCESS) {
+        // Save complete sheet to Redux store
+        dispatch(addCustomSheet(event.data.sheet));
+
         setDownloadState({
           status: 'success',
           message: `"${event.data.sheet.title}" added to library & copied to clipboard!`,

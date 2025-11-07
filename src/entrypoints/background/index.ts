@@ -18,21 +18,7 @@ const main = () => {
   (async () => {
     const store = await instantiateGlobalStore();    
     getOrCreateUserId(store);    
-  })()
-
-  // Handle messages from content scripts
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === 'SHOW_NOTIFICATION') {
-      chrome.notifications.create({
-        type: 'basic',
-        iconUrl: chrome.runtime.getURL('/icon-96.png'),
-        title: message.title,
-        message: message.message,
-        priority: 2,
-      });
-    }
-  });
-   
+  })()   
   // globalErrorHandlerForServiceWorker()  
 }
 

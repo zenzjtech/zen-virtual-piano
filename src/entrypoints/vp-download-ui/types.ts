@@ -2,6 +2,8 @@
  * Type definitions for the VirtualPiano download UI
  */
 
+import { MusicSheet } from '../../components/music-sheet/types';
+
 export type DownloadStatus = 'idle' | 'downloading' | 'success' | 'error';
 
 export interface DownloadState {
@@ -9,16 +11,9 @@ export interface DownloadState {
   message?: string;
 }
 
-export interface SheetData {
-  title: string;
-  artist: string;
-  difficulty?: string;
-  notation: string;
-}
-
 export interface DownloadSuccessMessage {
   type: 'DOWNLOAD_SUCCESS';
-  sheet: SheetData;
+  sheet: MusicSheet;
 }
 
 export interface DownloadErrorMessage {
