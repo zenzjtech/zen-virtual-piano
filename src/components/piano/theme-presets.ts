@@ -244,8 +244,8 @@ export const THEME_PRESETS: ThemePreset[] = [
   {
     id: 'tibetan-enlightenment',
     name: 'Tibetan Enlightenment',
-    description: 'Sacred mountains with ancient wisdom scroll',
-    pianoTheme: 'wooden',
+    description: 'Sacred mountains with prayer wheel sanctuary',
+    pianoTheme: 'tibetanWood',
     backgroundTheme: 'tibet-sacred-mountains',
     musicSheetTheme: 'paper-10',
     category: 'cultural',

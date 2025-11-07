@@ -19,4 +19,5 @@ export {
   roseGold,
   mahogany,
   nordicIce,
+  tibetanWood,
 } from './themes/index';

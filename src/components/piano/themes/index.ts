@@ -14,6 +14,7 @@ export { white } from './white';
 export { roseGold } from './rose-gold';
 export { mahogany } from './mahogany';
 export { nordicIce } from './nordic-ice';
+export { tibetanWood } from './tibetan-wood';
 
 // Import themes for aggregation
 import { wooden } from './wooden';
@@ -23,6 +24,7 @@ import { white } from './white';
 import { roseGold } from './rose-gold';
 import { mahogany } from './mahogany';
 import { nordicIce } from './nordic-ice';
+import { tibetanWood } from './tibetan-wood';
 import { PianoTheme } from './types';
 
 // Aggregate themes into a single object
@@ -34,6 +36,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
   roseGold,
   mahogany,
   nordicIce,
+  tibetanWood,
 };
 
 // Helper to get theme by id with fallback
