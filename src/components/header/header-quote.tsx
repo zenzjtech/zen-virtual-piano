@@ -50,6 +50,17 @@ export const HeaderQuote = ({
   const authorOpacity = quoteStyle?.authorOpacity || 0.7;
   const fontStyle = quoteStyle?.fontStyle || 'normal';
   const textTransform = quoteStyle?.textTransform;
+  
+  // Visual enhancement properties
+  const containerBg = isDarkBackground 
+    ? quoteStyle?.containerBackground?.dark || 'rgba(255, 255, 255, 0.04)' 
+    : quoteStyle?.containerBackground?.light || 'rgba(0, 0, 0, 0.03)';
+  const containerShadow = isDarkBackground 
+    ? quoteStyle?.containerShadow?.dark || '0 2px 8px rgba(0, 0, 0, 0.15)' 
+    : quoteStyle?.containerShadow?.light || '0 2px 8px rgba(0, 0, 0, 0.06)';
+  const containerBlur = quoteStyle?.containerBlur || 'blur(8px)';
+  const containerPadding = quoteStyle?.containerPadding || { md: 1.5, lg: 2 };
+  const containerBorderRadius = quoteStyle?.containerBorderRadius || '12px';
 
   return (
     <Box
@@ -58,12 +69,20 @@ export const HeaderQuote = ({
         alignItems: 'center',
         justifyContent: 'center',
         maxWidth: '500px',
-        px: 3,
+        px: containerPadding,
+        py: { md: containerPadding.md - 0.5, lg: containerPadding.lg - 0.5 },
         textAlign: 'center',
-        opacity: textOpacity,
-        transition: 'opacity 0.3s ease',
+        backgroundColor: containerBg,
+        borderRadius: containerBorderRadius,
+        boxShadow: containerShadow,
+        backdropFilter: containerBlur,
+        WebkitBackdropFilter: containerBlur,
+        transition: 'all 0.3s ease',
         '&:hover': {
-          opacity: 1,
+          transform: 'translateY(-1px)',
+          boxShadow: isDarkBackground 
+            ? '0 4px 12px rgba(0, 0, 0, 0.25)' 
+            : '0 4px 12px rgba(0, 0, 0, 0.10)',
         },
       }}
     >
