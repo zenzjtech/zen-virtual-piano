@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Measure, PlaybackState } from './types';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
-import { MUSIC_SHEET_THEMES } from '../music-sheet-themes';
+import { MUSIC_SHEET_THEMES } from '../piano/music-sheet-themes';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import bookImage1 from '@/assets/image/music-sheet/1.png';
 import bookImage2 from '@/assets/image/music-sheet/2.png';

@@ -4,7 +4,7 @@
  * Contains popular songs in Virtual Piano notation format
  */
 
-import type { MusicSheet, SheetPage } from '@/components/piano/music-sheet/types';
+import type { MusicSheet, SheetPage } from '@/components/music-sheet/types';
 import { parseVPNotation, createPages, estimateDuration } from './sheet-parser';
 import appConfig from '@/app.config';
 import SHEET_DATA from '@/assets/sheet-data.json';

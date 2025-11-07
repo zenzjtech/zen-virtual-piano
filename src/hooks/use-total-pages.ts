@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useAppConfig } from '#imports';
-import type { MusicSheet } from '@/components/piano/music-sheet/types';
+import type { MusicSheet } from '@/components/music-sheet/types';
 
 /**
  * Custom hook to calculate total pages for a music sheet

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import {
   unloadSheet,
 } from '@/store/reducers/music-sheet-slice';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import { MusicBookDisplay } from './music-book-display';
 
 interface MusicStandProps {

@@ -4,7 +4,7 @@ import {
   Favorite as FavoriteIcon,
   FavoriteBorder as FavoriteBorderIcon,
 } from '@mui/icons-material';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 
 interface SheetSearchFiltersProps {
   showFavoritesOnly: boolean;

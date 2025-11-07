@@ -12,7 +12,7 @@
  * - [abc] : Chord (simultaneous notes)
  */
 
-import type { Measure, Note, ParsedNotation, SheetPage } from '@/components/piano/music-sheet/types';
+import type { Measure, Note, ParsedNotation, SheetPage } from '@/components/music-sheet/types';
 
 /**
  * Map Virtual Piano notation to actual note names

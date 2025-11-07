@@ -4,7 +4,7 @@ import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as Favorit
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { toggleFavorite, previousPage, nextPage } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import { useAppConfig } from '#imports';
 import { useSheetPlayback } from '@/hooks/use-sheet-playback';
 import { usePageTransition } from '@/hooks/use-page-transition';

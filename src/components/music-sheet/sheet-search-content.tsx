@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { MusicSheetMetadata } from '@/services/sheet-library';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import { SheetSection } from './sheet-section';
 import { SheetEmptyState } from './sheet-empty-state';
 

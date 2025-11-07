@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { MusicNote as MusicNoteIcon } from '@mui/icons-material';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 
 interface SheetEmptyStateProps {
   pianoTheme: PianoTheme;

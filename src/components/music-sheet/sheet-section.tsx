@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Typography, Box, Divider } from '@mui/material';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { SheetItem } from './sheet-item';
 

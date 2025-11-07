@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, CardContent, Typography, alpha } from '@mui/material';
 import { Check as CheckIcon } from '@mui/icons-material';
-import { MusicSheetTheme } from '../music-sheet-themes';
+import { MusicSheetTheme } from '../piano/music-sheet-themes';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import bookImage1 from '@/assets/image/music-sheet/1.png';
 import bookImage2 from '@/assets/image/music-sheet/2.png';

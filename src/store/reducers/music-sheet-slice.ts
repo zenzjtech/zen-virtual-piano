@@ -14,7 +14,7 @@ import type {
   PlaybackState, 
   SheetUserData,
   StatusDisplayMode 
-} from '@/components/piano/music-sheet/types';
+} from '@/components/music-sheet/types';
 import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { getSheetWithNotation } from '@/services/sheet-library';
 

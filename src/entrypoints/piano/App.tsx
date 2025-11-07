@@ -7,8 +7,8 @@ import { InstrumentSelectorPopup } from '@/components/piano/instrument-selector-
 import { SoundSettingsPopup } from '@/components/piano/sound-settings-popup';
 import { StyleSettingsPopup } from '@/components/piano/style-settings-popup';
 import { KeyAssistPopup } from '@/components/piano/key-assist-popup';
-import { SheetSearchDialog } from '@/components/piano/music-sheet/sheet-search-dialog';
-import { MusicStand } from '@/components/piano/music-sheet/music-stand';
+import { SheetSearchDialog } from '@/components/music-sheet/sheet-search-dialog';
+import { MusicStand } from '@/components/music-sheet/music-stand';
 import { Header } from '@/components/header';
 import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
 import { RecordingPlaybackBar } from '@/components/piano/recording-playback-bar';

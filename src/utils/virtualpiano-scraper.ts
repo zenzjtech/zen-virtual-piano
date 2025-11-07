@@ -4,7 +4,7 @@
  * Extracts sheet music data from virtualpiano.net pages
  */
 
-import type { MusicSheet } from '@/components/piano/music-sheet/types';
+import type { MusicSheet } from '@/components/music-sheet/types';
 import { parseVPNotation, estimateDuration } from '@/services/sheet-parser';
 
 export interface ScrapedSheetData {

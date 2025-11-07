@@ -11,12 +11,12 @@ import {
 } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { loadSheet, toggleFavorite, setSearchFilters } from '@/store/reducers/music-sheet-slice';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import {
   StyledPopupPaper,
   PopupHeaderBox,
-} from '../popup-styled-components';
-import { PopupSearchBar } from '../popup-search-bar';
+} from '../piano/popup-styled-components';
+import { PopupSearchBar } from '../piano/popup-search-bar';
 import { useSheetSearch } from './use-sheet-search';
 import { SheetSearchFooter } from './sheet-search-footer';
 import { SheetSearchFilters } from './sheet-search-filters';

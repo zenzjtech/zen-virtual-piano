@@ -1,5 +1,5 @@
 import React from 'react';
-import { MusicSheet } from '@/components/piano/music-sheet/types';
+import { MusicSheet } from '@/components/music-sheet/types';
 import { PianoTheme } from './themes';
 import { PianoKey } from './types';
 import { NoteHistoryDisplay } from './note-history-display';

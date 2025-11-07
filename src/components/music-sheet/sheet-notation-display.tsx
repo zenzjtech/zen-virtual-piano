@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Box, alpha } from '@mui/material';
 import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
 import { Measure } from './types';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import { useAppConfig } from '#imports';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 

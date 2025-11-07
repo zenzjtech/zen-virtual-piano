@@ -12,11 +12,11 @@ import {
   StarBorder as StarBorderIcon,
   MusicNote as MusicNoteIcon,
 } from '@mui/icons-material';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import {
   StyledListItem,
   StyledListItemButton,
-} from '../popup-styled-components';
+} from '../piano/popup-styled-components';
 import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { getDifficultyColor, isFavorite } from './sheet-search-utils';
 

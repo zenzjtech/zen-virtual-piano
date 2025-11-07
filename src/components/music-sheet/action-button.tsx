@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton, Tooltip } from '@mui/material';
-import { PianoTheme } from '../themes';
+import { PianoTheme } from '../piano/themes';
 import { MusicSheetThemeColors } from './music-sheet-theme-colors';
 
 interface ActionButtonProps {
