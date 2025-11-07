@@ -124,6 +124,7 @@ export const musicSheetSlice = createSlice({
     /**
      * Add a custom/scraped sheet to the library
      * Stores both metadata and full sheet data
+     * Automatically loads the sheet for immediate playback
      */
     addCustomSheet: (state, action: PayloadAction<MusicSheet>) => {
       const sheet = action.payload;
@@ -134,6 +135,24 @@ export const musicSheetSlice = createSlice({
       // Add metadata to sheets library for searchability
       const { pages, notation, durationSeconds, ...metadata } = sheet;
       state.sheets[sheet.id] = { ...metadata, durationSeconds };
+      
+      // Automatically set as current sheet for immediate playback
+      state.currentSheet = sheet;
+      state.playback.currentSheetId = sheet.id;
+      state.playback.tempo = sheet.tempo;
+      state.isMusicStandVisible = true;
+      
+      // Clear the manual close flag since user just downloaded a sheet
+      state.hasManuallyClosedSheet = false;
+      
+      // Add to recently played (at the beginning)
+      state.userData.recentlyPlayed = [
+        sheet.id,
+        ...state.userData.recentlyPlayed.filter(id => id !== sheet.id)
+      ];
+      
+      // Update timestamp
+      state.userData.lastPlayedTimestamps[sheet.id] = Date.now();
     },
 
     /**
