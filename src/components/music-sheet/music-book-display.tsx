@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Paper, Collapse, Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
+import { Box, Paper, Collapse } from '@mui/material';
 import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { toggleFavorite, previousPage, nextPage, deleteSheet } from '@/store/reducers/music-sheet-slice';
@@ -13,6 +13,7 @@ import { calculateLineRanges, calculatePageSpread } from './music-book-utils';
 import { ActionButton } from './action-button';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import { ThemeGalleryDialog } from './theme-gallery-dialog';
+import { DeleteSheetDialog } from './delete-sheet-dialog';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -273,53 +274,14 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
       />
       
       {/* Delete Confirmation Dialog */}
-      <Dialog
+      <DeleteSheetDialog
         open={isDeleteDialogOpen}
         onClose={() => setIsDeleteDialogOpen(false)}
-        maxWidth="xs"
-        fullWidth
-        PaperProps={{
-          sx: {
-            borderRadius: 3,
-            bgcolor: 'background.paper',
-          },
-        }}
-      >
-        <DialogTitle sx={{ fontWeight: 600 }}>
-          Delete Sheet?
-        </DialogTitle>
-        <DialogContent>
-          <Typography variant="body2" color="text.secondary">
-            {isCustomSheet ? (
-              <>
-                This will permanently remove <strong>{currentSheet.title}</strong> from your library.
-              </>
-            ) : (
-              <>
-                This will hide <strong>{currentSheet.title}</strong> from your library. The built-in sheet can be restored later.
-              </>
-            )}
-          </Typography>
-        </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 2 }}>
-          <Button
-            onClick={() => setIsDeleteDialogOpen(false)}
-            color="inherit"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              dispatch(deleteSheet(currentSheet.id));
-              setIsDeleteDialogOpen(false);
-            }}
-            variant="contained"
-            color="error"
-          >
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
+        onConfirm={() => dispatch(deleteSheet(currentSheet.id))}
+        sheetTitle={currentSheet.title}
+        sheetArtist={currentSheet.artist}
+        isCustomSheet={isCustomSheet}
+      />
     </Collapse>
   );
 };
