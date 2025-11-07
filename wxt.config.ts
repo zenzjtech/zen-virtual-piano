@@ -34,7 +34,7 @@ export default defineConfig({
         // Add other Google API scopes your extension requires
       ]
     },    
-    key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt9l7vHnrKinCfWsJsELIQAVQbvEdG+YWcMae39kAWN+lFQKK2zqomDgeBh8OPBps0AWbdqdn3q6KVHhyPOFgXVj05oQNgxYA5ED0zuJoH1dmm4w+IfyHalwC3zfKllivSwTOUk9X8AYZDD4wedYyX80r67ilJ7pB9zQhI5+PtyLqVsG4bWS3LhNOXAuYSNNvpMQ2x2EpKiAcYok2s28K5eWyOYzDn5aKSV9tY7t0vvP9+ORiiiXUFessiXLyOI57JrXYysUrDHic3vklu9lM+vWU22pZ3MNt0KATZAxmjpPXFr7T8zHHzBLF4rlRdqtSHj6lFYmMDRlJl+KoKkKVSwIDAQAB"
+    key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoQY0bEDzbjxFY0K5P2kXj432VctrsU+saHAe1Zx2pqiwNMmYKmu9vXxApD1WPwdqSGbZw+oO3iMtY0GoxggVqkGxjj32LbqAU1UraCO2qhep4AW//QhhBSGAk6vhru46XdG+mEkmSzCDDphxNc44mBt2ur5UgbxGHkC2Ty/oeIwaNnWOQdZRrBcrmh0VeBghzs+y6/blGem1zjhDPTqWAKuYJMRHtSWiK6vgBAoNyhfd597kEEmx1+HywBkgonJ2CvovzbtBaVZCYny3C+jWMxtN/TBLkItpOqLf3kbZw809TOETL51rB//EJ+cwLJajqzpj/KOFJHL/wG5PUEkArQIDAQAB"
   },  
   srcDir: 'src',  
   runner: {
