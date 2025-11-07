@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Paper, Collapse } from '@mui/material';
+import { Box, Paper, Collapse, Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
 import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { toggleFavorite, previousPage, nextPage, deleteSheet } from '@/store/reducers/music-sheet-slice';
@@ -150,6 +150,13 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   // Theme gallery state
   const [isThemeGalleryOpen, setIsThemeGalleryOpen] = useState(false);
   
+  // Delete confirmation state
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  
+  // Check if current sheet is custom
+  const customSheets = useAppSelector((state) => state.musicSheet.userData.customSheets);
+  const isCustomSheet = !!customSheets[currentSheet.id];
+  
   // Get all measures from the sheet (stored in first page)
   const allMeasures = currentSheet.pages[0]?.measures || [];
   
@@ -253,7 +260,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           isFavorite={isFavorite}
           onToggleFavorite={() => dispatch(toggleFavorite(currentSheet.id))}
           onThemeClick={() => setIsThemeGalleryOpen(true)}
-          onDelete={() => dispatch(deleteSheet(currentSheet.id))}
+          onDelete={() => setIsDeleteDialogOpen(true)}
           onClose={onClose}
           musicSheetThemeId={musicSheetThemeId}
         />
@@ -264,6 +271,55 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         open={isThemeGalleryOpen}
         onClose={() => setIsThemeGalleryOpen(false)}
       />
+      
+      {/* Delete Confirmation Dialog */}
+      <Dialog
+        open={isDeleteDialogOpen}
+        onClose={() => setIsDeleteDialogOpen(false)}
+        maxWidth="xs"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 3,
+            bgcolor: 'background.paper',
+          },
+        }}
+      >
+        <DialogTitle sx={{ fontWeight: 600 }}>
+          Delete Sheet?
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" color="text.secondary">
+            {isCustomSheet ? (
+              <>
+                This will permanently remove <strong>{currentSheet.title}</strong> from your library.
+              </>
+            ) : (
+              <>
+                This will hide <strong>{currentSheet.title}</strong> from your library. The built-in sheet can be restored later.
+              </>
+            )}
+          </Typography>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2 }}>
+          <Button
+            onClick={() => setIsDeleteDialogOpen(false)}
+            color="inherit"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={() => {
+              dispatch(deleteSheet(currentSheet.id));
+              setIsDeleteDialogOpen(false);
+            }}
+            variant="contained"
+            color="error"
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Collapse>
   );
 };
