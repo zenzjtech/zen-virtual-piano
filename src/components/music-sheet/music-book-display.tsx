@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Box, Paper, Collapse } from '@mui/material';
-import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { toggleFavorite, previousPage, nextPage } from '@/store/reducers/music-sheet-slice';
+import { toggleFavorite, previousPage, nextPage, deleteSheet } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../piano/themes';
 import { useAppConfig } from '#imports';
@@ -75,15 +75,16 @@ const NextPageButton: React.FC<{
 );
 
 /**
- * Action buttons container (favorite, theme, close)
+ * Action buttons container (favorite, theme, delete, close)
  */
 const ActionButtons: React.FC<{
   isFavorite: boolean;
   onToggleFavorite: () => void;
   onThemeClick: () => void;
+  onDelete: () => void;
   onClose: () => void;
   musicSheetThemeId: string;
-}> = ({ isFavorite, onToggleFavorite, onThemeClick, onClose, musicSheetThemeId }) => (
+}> = ({ isFavorite, onToggleFavorite, onThemeClick, onDelete, onClose, musicSheetThemeId }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -108,6 +109,14 @@ const ActionButtons: React.FC<{
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Change theme"
       tooltip="Change paper theme"
+    />
+    
+    <ActionButton
+      onClick={onDelete}
+      icon={<DeleteIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Delete sheet"
+      tooltip="Delete sheet"
     />
     
     <ActionButton
@@ -244,6 +253,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           isFavorite={isFavorite}
           onToggleFavorite={() => dispatch(toggleFavorite(currentSheet.id))}
           onThemeClick={() => setIsThemeGalleryOpen(true)}
+          onDelete={() => dispatch(deleteSheet(currentSheet.id))}
           onClose={onClose}
           musicSheetThemeId={musicSheetThemeId}
         />

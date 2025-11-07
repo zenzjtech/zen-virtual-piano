@@ -82,6 +82,7 @@ const initialUserData: SheetUserData = {
   customSheets: {},
   lastPlayedTimestamps: {},
   playCounts: {},
+  deletedSheets: [],
 };
 
 /**
@@ -166,6 +167,63 @@ export const musicSheetSlice = createSlice({
       // Remove from favorites and history
       state.userData.favorites = state.userData.favorites.filter(id => id !== sheetId);
       state.userData.recentlyPlayed = state.userData.recentlyPlayed.filter(id => id !== sheetId);
+    },
+
+    /**
+     * Delete a sheet (marks built-in as deleted, removes custom sheets)
+     * Automatically loads the next sheet in history
+     */
+    deleteSheet: (state, action: PayloadAction<string>) => {
+      const sheetId = action.payload;
+      const isCustomSheet = !!state.userData.customSheets[sheetId];
+      
+      if (isCustomSheet) {
+        // For custom sheets: actually remove them
+        delete state.userData.customSheets[sheetId];
+      } else {
+        // For built-in sheets: mark as deleted
+        if (!state.userData.deletedSheets.includes(sheetId)) {
+          state.userData.deletedSheets.push(sheetId);
+        }
+      }
+      
+      // Remove from favorites and history
+      state.userData.favorites = state.userData.favorites.filter(id => id !== sheetId);
+      state.userData.recentlyPlayed = state.userData.recentlyPlayed.filter(id => id !== sheetId);
+      
+      // If this was the current sheet, load the next one in history
+      if (state.currentSheet?.id === sheetId) {
+        // Find next valid sheet in history (not deleted)
+        const nextSheetId = state.userData.recentlyPlayed.find(
+          id => !state.userData.deletedSheets.includes(id) || !!state.userData.customSheets[id]
+        );
+        
+        if (nextSheetId) {
+          // Load the next sheet
+          const metadata = state.sheets[nextSheetId];
+          if (metadata) {
+            const customSheet = state.userData.customSheets[nextSheetId];
+            const fullSheet = customSheet || getSheetWithNotation(nextSheetId);
+            
+            if (fullSheet) {
+              state.currentSheet = fullSheet;
+              state.playback.currentSheetId = nextSheetId;
+              state.playback.tempo = fullSheet.tempo;
+              state.playback.currentPage = 0;
+              state.playback.currentMeasure = 0;
+              state.playback.currentNoteIndex = 0;
+              state.playback.progress = 0;
+            }
+          }
+        } else {
+          // No more sheets in history, unload current sheet
+          state.currentSheet = null;
+          state.playback = initialPlaybackState;
+          state.isMusicStandVisible = false;
+          state.hasManuallyClosedSheet = true;
+          state.statusDisplayMode = 'pressed-notes';
+        }
+      }
     },
 
     // Sheet selection
@@ -446,6 +504,7 @@ export const {
   addSheets,
   addCustomSheet,
   removeSheet,
+  deleteSheet,
   loadSheet,
   unloadSheet,
   playSheet,

@@ -34,9 +34,19 @@ export const useSheetSearch = ({
   const sheets = useAppSelector((state) => state.musicSheet.sheets);
   const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
   const recentlyPlayed = useAppSelector((state) => state.musicSheet.userData.recentlyPlayed);
+  const deletedSheets = useAppSelector((state) => state.musicSheet.userData.deletedSheets);
+  const customSheets = useAppSelector((state) => state.musicSheet.userData.customSheets);
   
-  // Convert sheets object to array
-  const allSheets = useMemo(() => Object.values(sheets), [sheets]);
+  // Convert sheets object to array, excluding deleted built-in sheets
+  // Custom sheets are never in deletedSheets, so they'll always appear
+  const allSheets = useMemo(() => {
+    return Object.values(sheets).filter(sheet => {
+      // If it's a custom sheet, always include it
+      if (customSheets[sheet.id]) return true;
+      // If it's a built-in sheet, exclude if deleted
+      return !deletedSheets.includes(sheet.id);
+    });
+  }, [sheets, deletedSheets, customSheets]);
   
   // Get all unique tags across all sheets
   const allTags = useMemo(() => {
@@ -95,20 +105,32 @@ export const useSheetSearch = ({
     return result;
   }, [allSheets, searchQuery, showFavoritesOnly, selectedTags, selectedArtist, favorites]);
   
-  // Get recently played sheets (max 5)
+  // Get recently played sheets (max 5), excluding deleted sheets
   const recentSheets = useMemo(() => {
     return recentlyPlayed
+      .filter(id => {
+        // Include custom sheets always
+        if (customSheets[id]) return true;
+        // Exclude deleted built-in sheets
+        return !deletedSheets.includes(id);
+      })
       .slice(0, 5)
       .map(id => sheets[id])
       .filter(Boolean);
-  }, [recentlyPlayed, sheets]);
+  }, [recentlyPlayed, sheets, deletedSheets, customSheets]);
   
-  // Get favorite sheets
+  // Get favorite sheets, excluding deleted sheets
   const favoriteSheets = useMemo(() => {
     return favorites
+      .filter(id => {
+        // Include custom sheets always
+        if (customSheets[id]) return true;
+        // Exclude deleted built-in sheets
+        return !deletedSheets.includes(id);
+      })
       .map(id => sheets[id])
       .filter(Boolean);
-  }, [favorites, sheets]);
+  }, [favorites, sheets, deletedSheets, customSheets]);
 
   return {
     allSheets,

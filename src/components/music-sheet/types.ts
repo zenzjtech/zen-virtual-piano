@@ -130,6 +130,8 @@ export interface SheetUserData {
   lastPlayedTimestamps: Record<string, number>;
   /** Play count for each sheet */
   playCounts: Record<string, number>;
+  /** Deleted built-in sheet IDs (hidden from library) */
+  deletedSheets: string[];
 }
 
 /**
