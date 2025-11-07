@@ -33,11 +33,23 @@ export function scrapeVirtualPianoSheet(): ScrapedSheetData | null {
       return null;
     }
 
-    // Extract title from the page title or H1
-    const pageTitle = document.title;
-    const titleMatch = pageTitle.match(/^(.+?)\s*(?:\((.+?)\))?\s*-\s*Virtual Piano/);
-    const title = titleMatch ? titleMatch[1].trim() : 'Unknown Title';
-    const artist = titleMatch && titleMatch[2] ? titleMatch[2].trim() : 'Unknown Artist';
+    // Extract title from H1 in sheet__head-wrapper (more accurate)
+    const h1Element = article.querySelector('.sheet__head-wrapper h1');
+    let title = h1Element?.textContent?.trim() || 'Unknown Title';
+    
+    // Extract artist from sheet__author link
+    const artistLink = article.querySelector('.sheet__head-wrapper .sheet__author a');
+    let artist = artistLink?.textContent?.trim() || 'Unknown Artist';
+    
+    // Fallback to page title parsing if direct extraction fails
+    if (title === 'Unknown Title' || artist === 'Unknown Artist') {
+      const pageTitle = document.title;
+      const titleMatch = pageTitle.match(/^(.+?)\s*(?:\((.+?)\))?\s*-\s*Virtual Piano/);
+      if (titleMatch) {
+        if (title === 'Unknown Title') title = titleMatch[1].trim();
+        if (artist === 'Unknown Artist' && titleMatch[2]) artist = titleMatch[2].trim();
+      }
+    }
 
     // Extract difficulty level (number)
     const difficultySpan = document.querySelector('#difficulty');
@@ -122,9 +134,9 @@ export function scrapeVirtualPianoSheet(): ScrapedSheetData | null {
     const verifiedElement = document.querySelector('#verified-by a');
     const verifiedBy = verifiedElement?.textContent?.trim();
 
-    // Get thumbnail (artist image)
-    const thumbnailImg = document.querySelector('.sheet__authors-artist img');
-    const thumbnailUrl = thumbnailImg?.getAttribute('src') || undefined;
+    // Get artist/author image URL from sheet__authors-artist section
+    const artistImg = document.querySelector('.sheet__authors-artist .icon img');
+    const thumbnailUrl = artistImg?.getAttribute('src') || undefined;
 
     return {
       title,
