@@ -11,7 +11,6 @@ import { SheetSearchDialog } from '@/components/music-sheet/sheet-search-dialog'
 import { MusicStand } from '@/components/music-sheet/music-stand';
 import { Header } from '@/components/header';
 import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
-import { RecordingPlaybackBar } from '@/components/piano/recording-playback-bar';
 import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-dialog';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
@@ -344,6 +343,23 @@ function App() {
         backgroundThemeId={backgroundThemeId}
         isDarkBackground={isDarkBackground}
         onShowKeyboardShortcuts={() => setIsKeyboardShortcutsOpen(true)}
+        recordingPlayback={recordingPlayback.hasRecording ? {
+          hasRecording: recordingPlayback.hasRecording,
+          isPlaying: recordingPlayback.isPlaying,
+          currentPosition: recordingPlayback.currentPosition,
+          totalDuration: recordingPlayback.totalDuration,
+          playbackSpeed: recordingPlayback.playbackSpeed,
+          loop: recordingPlayback.loop,
+          currentPositionFormatted: recordingPlayback.currentPositionFormatted,
+          totalDurationFormatted: recordingPlayback.totalDurationFormatted,
+          pianoTheme: pianoTheme,
+          onTogglePlayback: recordingPlayback.togglePlayback,
+          onStop: recordingPlayback.stop,
+          onToggleLoop: recordingPlayback.toggleLoop,
+          onSpeedChange: recordingPlayback.setPlaybackSpeed,
+          onClear: handleClearRecording,
+          onDownload: handleDownloadRecording,
+        } : undefined}
       />
 
       <Container maxWidth="lg">
@@ -355,27 +371,6 @@ function App() {
             py: { xs: 2, md: 4 },
           }}
         >
-
-          {/* Recording Playback Bar - appears when recording exists */}
-          {recordingPlayback.hasRecording && (
-            <RecordingPlaybackBar
-              isPlaying={recordingPlayback.isPlaying}
-              currentPosition={recordingPlayback.currentPosition}
-              totalDuration={recordingPlayback.totalDuration}
-              playbackSpeed={recordingPlayback.playbackSpeed}
-              loop={recordingPlayback.loop}
-              hasRecording={recordingPlayback.hasRecording}
-              currentPositionFormatted={recordingPlayback.currentPositionFormatted}
-              totalDurationFormatted={recordingPlayback.totalDurationFormatted}
-              pianoTheme={pianoTheme}
-              onTogglePlayback={recordingPlayback.togglePlayback}
-              onStop={recordingPlayback.stop}
-              onToggleLoop={recordingPlayback.toggleLoop}
-              onSpeedChange={recordingPlayback.setPlaybackSpeed}
-              onClear={handleClearRecording}
-              onDownload={handleDownloadRecording}
-            />
-          )}
 
           {/* Music Stand - appears when sheet is loaded */}
           {isMusicStandVisible && (

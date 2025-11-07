@@ -30,6 +30,8 @@ interface RecordingPlaybackBarProps {
   totalDurationFormatted: string;
   /** Piano theme */
   pianoTheme: PianoTheme;
+  /** Compact mode for header */
+  compact?: boolean;
   /** Callbacks */
   onTogglePlayback: () => void;
   onStop: () => void;
@@ -70,15 +72,16 @@ const shimmer = keyframes`
 `;
 
 const PlaybackContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isPlaying',
-})<{ pianoTheme: PianoTheme; isPlaying?: boolean }>(({ theme, pianoTheme, isPlaying }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isPlaying' && prop !== 'compact',
+})<{ pianoTheme: PianoTheme; isPlaying?: boolean; compact?: boolean }>(({ theme, pianoTheme, isPlaying, compact }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,
-  padding: theme.spacing(1.5, 2),
-  borderRadius: theme.spacing(1),
+  padding: compact ? theme.spacing(0.5, 1.5) : theme.spacing(1.5, 2),
+  borderRadius: compact ? theme.spacing(0.75) : theme.spacing(1),
   display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(1),
+  flexDirection: compact ? 'row' : 'column',
+  gap: compact ? theme.spacing(1.5) : theme.spacing(1),
+  alignItems: compact ? 'center' : 'stretch',
   boxShadow: `
     inset 0 2px 4px rgba(0, 0, 0, 0.2),
     inset 0 -2px 4px rgba(0, 0, 0, 0.15),
@@ -217,6 +220,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
   currentPositionFormatted,
   totalDurationFormatted,
   pianoTheme,
+  compact = false,
   onTogglePlayback,
   onStop,
   onToggleLoop,
@@ -236,6 +240,127 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps> = ({
     onSpeedChange(speeds[nextIndex]);
   };
 
+  if (compact) {
+    // Compact layout for header
+    return (
+      <PlaybackContainer elevation={2} pianoTheme={pianoTheme} isPlaying={isPlaying} compact>
+        {/* Playback Controls */}
+        <Box sx={{ display: 'flex', gap: 0.25, zIndex: 3 }}>
+          <Tooltip title={isPlaying ? 'Pause' : 'Play'}>
+            <ControlButton
+              onClick={onTogglePlayback}
+              pianoTheme={pianoTheme}
+              size="small"
+              isActive={isPlaying}
+            >
+              {isPlaying ? <PauseIcon fontSize="small" /> : <PlayIcon fontSize="small" />}
+            </ControlButton>
+          </Tooltip>
+
+          <Tooltip title="Stop">
+            <ControlButton
+              onClick={onStop}
+              pianoTheme={pianoTheme}
+              size="small"
+            >
+              <StopIcon fontSize="small" />
+            </ControlButton>
+          </Tooltip>
+
+          <Tooltip title={loop ? 'Loop: ON' : 'Loop: OFF'}>
+            <ControlButton
+              onClick={onToggleLoop}
+              pianoTheme={pianoTheme}
+              size="small"
+              sx={{
+                color: loop ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
+              }}
+            >
+              <LoopIcon fontSize="small" />
+            </ControlButton>
+          </Tooltip>
+        </Box>
+
+        {/* Progress Bar with Time */}
+        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', gap: 1, zIndex: 3, minWidth: 0 }}>
+          <Typography
+            variant="caption"
+            sx={{
+              color: pianoTheme.colors.secondary,
+              fontFamily: 'monospace',
+              fontSize: '0.65rem',
+              minWidth: '70px',
+              whiteSpace: 'nowrap',
+              zIndex: 3,
+            }}
+          >
+            {currentPositionFormatted}
+          </Typography>
+          
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            <ProgressSlider
+              value={currentPosition}
+              min={0}
+              max={totalDuration || 100}
+              disabled
+              pianoTheme={pianoTheme}
+              isPlaying={isPlaying}
+              size="small"
+            />
+          </Box>
+
+          <Typography
+            variant="caption"
+            sx={{
+              color: pianoTheme.colors.secondary,
+              fontFamily: 'monospace',
+              fontSize: '0.65rem',
+              minWidth: '70px',
+              whiteSpace: 'nowrap',
+              textAlign: 'right',
+              zIndex: 3,
+            }}
+          >
+            {totalDurationFormatted}
+          </Typography>
+        </Box>
+
+        {/* Speed Control */}
+        <Tooltip title="Playback Speed">
+          <SpeedButton pianoTheme={pianoTheme} onClick={handleSpeedClick}>
+            <SpeedIcon sx={{ fontSize: '0.9rem' }} />
+            <span style={{ fontSize: '0.7rem' }}>{playbackSpeed}x</span>
+          </SpeedButton>
+        </Tooltip>
+
+        {/* Action Buttons */}
+        <Box sx={{ display: 'flex', gap: 0.25, zIndex: 3 }}>
+          <Tooltip title="Download Recording">
+            <ControlButton
+              onClick={onDownload}
+              pianoTheme={pianoTheme}
+              size="small"
+            >
+              <DownloadIcon fontSize="small" />
+            </ControlButton>
+          </Tooltip>
+
+          <Tooltip title="Clear Recording">
+            <ControlButton
+              onClick={onClear}
+              pianoTheme={pianoTheme}
+              size="small"
+              sx={{ '&:hover': { color: '#f44336' } }}
+            >
+              <DeleteIcon fontSize="small" />
+            </ControlButton>
+          </Tooltip>
+        </Box>
+      </PlaybackContainer>
+    );
+  }
+
+  // Original layout for standalone use
   return (
     <PlaybackContainer elevation={2} pianoTheme={pianoTheme} isPlaying={isPlaying}>
       {/* Controls Row */}

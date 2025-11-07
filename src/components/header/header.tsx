@@ -8,12 +8,13 @@ import { HeaderLogo } from './header-logo';
 import { HeaderQuote } from './header-quote';
 import { HeaderActions } from './header-actions';
 import { UserMenu } from './user-menu';
+import { RecordingPlaybackBar } from '../piano/recording-playback-bar';
 import { useHeaderHandlers } from './use-header-handlers';
 import { getAppBarStyles, toolbarStyles } from './header-styles';
 import { THEME_PRESETS } from '../piano/theme-presets';
 import type { HeaderProps } from './types';
 
-export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts }: HeaderProps) => {
+export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts, recordingPlayback }: HeaderProps) => {
   const {
     googleUser,
     isAuthenticated,
@@ -57,14 +58,37 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
           />
         </Box>
 
-        {/* Center: Inspirational Quote */}
-        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-          <HeaderQuote
-            isDarkBackground={isDarkBackground}
-            headerStyle={currentPreset?.headerStyle}
-            category={currentPreset?.category}
-            quoteStyle={currentPreset?.quoteStyle}
-          />
+        {/* Center: Recording Playback Bar or Inspirational Quote */}
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          {recordingPlayback?.hasRecording ? (
+            <Box sx={{ maxWidth: '700px', width: '100%' }}>
+              <RecordingPlaybackBar
+                isPlaying={recordingPlayback.isPlaying}
+                currentPosition={recordingPlayback.currentPosition}
+                totalDuration={recordingPlayback.totalDuration}
+                playbackSpeed={recordingPlayback.playbackSpeed}
+                loop={recordingPlayback.loop}
+                hasRecording={recordingPlayback.hasRecording}
+                currentPositionFormatted={recordingPlayback.currentPositionFormatted}
+                totalDurationFormatted={recordingPlayback.totalDurationFormatted}
+                pianoTheme={recordingPlayback.pianoTheme}
+                compact
+                onTogglePlayback={recordingPlayback.onTogglePlayback}
+                onStop={recordingPlayback.onStop}
+                onToggleLoop={recordingPlayback.onToggleLoop}
+                onSpeedChange={recordingPlayback.onSpeedChange}
+                onClear={recordingPlayback.onClear}
+                onDownload={recordingPlayback.onDownload}
+              />
+            </Box>
+          ) : (
+            <HeaderQuote
+              isDarkBackground={isDarkBackground}
+              headerStyle={currentPreset?.headerStyle}
+              category={currentPreset?.category}
+              quoteStyle={currentPreset?.quoteStyle}
+            />
+          )}
         </Box>
 
         {/* Right: Action Buttons */}
