@@ -7,33 +7,62 @@ import {
   Fade,
   Alert,
   Snackbar,
+  Paper,
+  Chip,
 } from '@mui/material';
-import { Download, Check, MusicNote } from '@mui/icons-material';
+import { Download, Check, MusicNote, ErrorOutline } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 // Styled components
+const GlassCard = styled(Paper)(({ theme }) => ({
+  background: 'rgba(255, 255, 255, 0.95)',
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  borderRadius: 16,
+  border: `1px solid ${theme.palette.grey[200]}`,
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+  padding: theme.spacing(2.5),
+  transition: theme.transitions.create(['box-shadow', 'transform'], {
+    duration: theme.transitions.duration.standard,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+  '&:hover': {
+    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06)',
+    transform: 'translateY(-2px)',
+  },
+}));
+
 const RippleButton = styled(Button)(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
-  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  color: 'white',
-  padding: '12px 24px',
-  borderRadius: '12px',
-  fontWeight: 600,
-  fontSize: '14px',
+  background: `linear-gradient(135deg, ${theme.palette.secondary.light} 0%, ${theme.palette.secondary.main} 100%)`,
+  color: theme.palette.secondary.contrastText,
+  padding: theme.spacing(1.75, 3.5),
+  borderRadius: typeof theme.shape.borderRadius === 'number' ? theme.shape.borderRadius * 1.5 : 12,
+  fontWeight: theme.typography.fontWeightBold as number,
+  fontSize: '15px',
   textTransform: 'none',
-  boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
-  transition: 'all 0.3s ease',
+  letterSpacing: '0.02em',
+  boxShadow: `0 4px 20px ${theme.palette.secondary.main}5A`,
+  transition: theme.transitions.create(['box-shadow', 'transform'], {
+    duration: theme.transitions.duration.standard,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+  minHeight: 48,
   '&:hover': {
-    background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-    boxShadow: '0 6px 20px rgba(102, 126, 234, 0.6)',
-    transform: 'translateY(-2px)',
+    background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.secondary.dark} 100%)`,
+    boxShadow: `0 6px 28px ${theme.palette.secondary.main}80`,
+    transform: 'translateY(-2px) scale(1.02)',
   },
   '&:active': {
-    transform: 'translateY(0)',
+    transform: 'translateY(0) scale(0.98)',
+  },
+  '&.Mui-disabled': {
+    color: theme.palette.secondary.contrastText,
+    opacity: 0.85,
   },
   '& .MuiButton-startIcon': {
-    marginRight: '8px',
+    marginRight: theme.spacing(1.25),
   },
 }));
 
@@ -156,35 +185,121 @@ export default function DownloadUI() {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        padding: 2,
         backgroundColor: 'transparent',
       }}
     >
-      <Fade in={true} timeout={500}>
-        <RippleButton
-          onClick={handleDownloadClick}
-          disabled={downloadState.status === 'downloading' || downloadState.status === 'success'}
-          fullWidth
-          sx={{
-            bgcolor:
-              downloadState.status === 'success'
-                ? '#10b981'
-                : downloadState.status === 'error'
-                ? '#ef4444'
-                : undefined,
-          }}
-        >
-          {ripples.map(ripple => (
-            <RippleEffect
-              key={ripple.id}
-              style={{
-                left: ripple.x,
-                top: ripple.y,
+      <Fade in={true} timeout={600}>
+        <GlassCard elevation={0}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
+          >
+            {/* Header */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 0.5,
               }}
-            />
-          ))}
-          {getButtonContent()}
-        </RippleButton>
+            >
+              <MusicNote
+                sx={{
+                  color: 'secondary.main',
+                  fontSize: 20,
+                }}
+              />
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 600,
+                  color: 'text.primary',
+                  letterSpacing: '0.01em',
+                }}
+              >
+                Zen Virtual Piano
+              </Typography>
+            </Box>
+
+            {/* Download Button */}
+            <RippleButton
+              onClick={handleDownloadClick}
+              disabled={downloadState.status === 'downloading' || downloadState.status === 'success'}
+              fullWidth
+              sx={(theme) => ({
+                background:
+                  downloadState.status === 'success'
+                    ? `linear-gradient(135deg, ${theme.palette.success.light} 0%, ${theme.palette.success.main} 100%)`
+                    : downloadState.status === 'error'
+                    ? `linear-gradient(135deg, ${theme.palette.error.light} 0%, ${theme.palette.error.main} 100%)`
+                    : undefined,
+                boxShadow:
+                  downloadState.status === 'success'
+                    ? `0 4px 20px ${theme.palette.success.main}5A`
+                    : downloadState.status === 'error'
+                    ? `0 4px 20px ${theme.palette.error.main}5A`
+                    : undefined,
+              })}
+            >
+              {ripples.map(ripple => (
+                <RippleEffect
+                  key={ripple.id}
+                  style={{
+                    left: ripple.x,
+                    top: ripple.y,
+                  }}
+                />
+              ))}
+              {getButtonContent()}
+            </RippleButton>
+
+            {/* Status Chip */}
+            {downloadState.message && (
+              <Fade in={true} timeout={300}>
+                <Chip
+                  icon={
+                    downloadState.status === 'success' ? (
+                      <Check sx={{ fontSize: 16 }} />
+                    ) : (
+                      <ErrorOutline sx={{ fontSize: 16 }} />
+                    )
+                  }
+                  label={
+                    <Typography variant="caption" sx={{ fontSize: '12px' }}>
+                      {downloadState.status === 'success' ? 'Saved to library' : 'Try again'}
+                    </Typography>
+                  }
+                  size="small"
+                  sx={(theme) => ({
+                    height: 24,
+                    backgroundColor:
+                      downloadState.status === 'success'
+                        ? theme.palette.success.light
+                        : theme.palette.error.light,
+                    color:
+                      downloadState.status === 'success'
+                        ? theme.palette.success.dark
+                        : theme.palette.error.dark,
+                    border: `1px solid ${
+                      downloadState.status === 'success'
+                        ? theme.palette.success.main
+                        : theme.palette.error.main
+                    }`,
+                    opacity: 0.9,
+                    fontWeight: 500,
+                    '& .MuiChip-icon': {
+                      color: 'inherit',
+                    },
+                  })}
+                />
+              </Fade>
+            )}
+          </Box>
+        </GlassCard>
       </Fade>
 
       {/* Toast notification */}

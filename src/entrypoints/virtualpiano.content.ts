@@ -51,22 +51,23 @@ function injectDownloadUI() {
   container.id = 'zen-vp-download-ui';
   container.style.cssText = `
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 28px;
+    right: 28px;
     z-index: 999999;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    overflow: hidden;
+    border-radius: 16px;
+    overflow: visible;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   `;
 
   // Create iframe pointing to unlisted page
   const iframe = document.createElement('iframe');
   iframe.src = chrome.runtime.getURL('/vp-download-ui.html');
   iframe.style.cssText = `
-    width: 280px;
-    height: 80px;
+    width: 320px;
+    height: 180px;
     border: none;
     display: block;
+    background: transparent;
   `;
 
   container.appendChild(iframe);
