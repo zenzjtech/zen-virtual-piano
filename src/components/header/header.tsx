@@ -9,7 +9,7 @@ import { HeaderActions } from './header-actions';
 import { UserMenu } from './user-menu';
 import { useHeaderHandlers } from './use-header-handlers';
 import { getAppBarStyles, toolbarStyles } from './header-styles';
-import { THEME_PRESETS } from '../theme-presets';
+import { THEME_PRESETS } from '../piano/theme-presets';
 import type { HeaderProps } from './types';
 
 export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts }: HeaderProps) => {

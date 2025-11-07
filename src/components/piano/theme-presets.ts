@@ -3,7 +3,7 @@
  * Curated combinations of piano theme, background, and music sheet for optimal visual harmony
  */
 
-import type { HeaderTypographyStyle } from './header/header-typography';
+import type { HeaderTypographyStyle } from '../header/header-typography';
 
 export interface ThemePreset {
   id: string;
