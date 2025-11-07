@@ -3,11 +3,13 @@
  */
 
 import { AppBar, Toolbar } from '@mui/material';
+import { useAppSelector } from '@/store/hook';
 import { HeaderLogo } from './header-logo';
 import { HeaderActions } from './header-actions';
 import { UserMenu } from './user-menu';
 import { useHeaderHandlers } from './use-header-handlers';
 import { getAppBarStyles, toolbarStyles } from './header-styles';
+import { THEME_PRESETS } from '../theme-presets';
 import type { HeaderProps } from './types';
 
 export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts }: HeaderProps) => {
@@ -24,6 +26,18 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
     handleLogoClick,
   } = useHeaderHandlers({ onShowKeyboardShortcuts });
 
+  // Get current theme settings to find matching preset
+  const pianoTheme = useAppSelector((state) => state.pianoSettings.theme);
+  const musicSheetTheme = useAppSelector((state) => state.pianoSettings.musicSheetTheme);
+
+  // Find current preset based on all three theme attributes
+  const currentPreset = THEME_PRESETS.find(
+    (preset) =>
+      preset.pianoTheme === pianoTheme &&
+      preset.backgroundTheme === backgroundThemeId &&
+      preset.musicSheetTheme === musicSheetTheme
+  );
+
   return (
     <AppBar
       position="sticky"
@@ -35,6 +49,8 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
         <HeaderLogo
           backgroundThemeId={backgroundThemeId}
           isDarkBackground={isDarkBackground}
+          headerStyle={currentPreset?.headerStyle}
+          category={currentPreset?.category}
           onLogoClick={handleLogoClick}
         />
 

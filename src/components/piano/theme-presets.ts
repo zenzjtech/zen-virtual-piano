@@ -3,6 +3,8 @@
  * Curated combinations of piano theme, background, and music sheet for optimal visual harmony
  */
 
+import type { HeaderTypographyStyle } from './header/header-typography';
+
 export interface ThemePreset {
   id: string;
   name: string;
@@ -11,6 +13,7 @@ export interface ThemePreset {
   backgroundTheme: string;
   musicSheetTheme: string;
   category: 'classic' | 'modern' | 'cultural' | 'nature' | 'artistic' | 'vintage' | 'professional' | 'romantic' | 'energetic' | 'minimalist' | 'luxurious';
+  headerStyle: HeaderTypographyStyle;
 }
 
 export type ThemePresetCategory = ThemePreset['category'];
@@ -25,6 +28,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-1',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'vintage-scholar',
@@ -34,6 +38,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-3',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'mahogany-warmth',
@@ -43,6 +48,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-4',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'dark-symphony',
@@ -52,6 +58,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'dark',
     musicSheetTheme: 'paper-3',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   
   // Modern Presets
@@ -63,6 +70,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'white',
     musicSheetTheme: 'paper-2',
     category: 'modern',
+    headerStyle: 'modern-sans',
+
   },
   {
     id: 'nordic-serenity',
@@ -72,6 +81,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'morning-sky',
     musicSheetTheme: 'paper-6',
     category: 'modern',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'metal-cool',
@@ -81,6 +91,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'cool',
     musicSheetTheme: 'paper-12',
     category: 'modern',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'rose-romance',
@@ -90,6 +101,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'zen-sakura-dawn',
     musicSheetTheme: 'paper-5',
     category: 'modern',
+    headerStyle: 'modern-sans',
   },
   
   // Cultural Presets
@@ -101,6 +113,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'zen-bamboo-stone',
     musicSheetTheme: 'paper-8',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
+
   },
   {
     id: 'chinese-imperial',
@@ -110,6 +124,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gufeng-vermillion-gold',
     musicSheetTheme: 'paper-10',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'ink-jade',
@@ -119,6 +134,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gufeng-ink-jade',
     musicSheetTheme: 'paper-11',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'hindu-sacred',
@@ -128,6 +144,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'leela-saffron-marigold',
     musicSheetTheme: 'paper-13',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'peacock-divine',
@@ -137,6 +154,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'leela-peacock-divine',
     musicSheetTheme: 'paper-2',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'earth-mystic',
@@ -146,6 +164,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'isha-earth-mystic',
     musicSheetTheme: 'paper-3',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'divine-glory',
@@ -155,6 +174,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'sacred-light-glory',
     musicSheetTheme: 'paper-14',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'islamic-elegance',
@@ -164,6 +184,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'islamic-emerald-gold',
     musicSheetTheme: 'paper-12',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   
   // Nature Presets
@@ -175,6 +196,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-forest',
     musicSheetTheme: 'paper-7',
     category: 'nature',
+    headerStyle: 'nature-serif',
+
   },
   {
     id: 'ocean-depths',
@@ -184,6 +207,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-ocean',
     musicSheetTheme: 'paper-9',
     category: 'nature',
+    headerStyle: 'nature-serif',
   },
   
   // Artistic Presets
@@ -195,6 +219,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-sunset',
     musicSheetTheme: 'paper-15',
     category: 'artistic',
+    headerStyle: 'artistic-italic',
+
   },
   {
     id: 'morning-light',
@@ -204,6 +230,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'morning-sky',
     musicSheetTheme: 'paper-6',
     category: 'artistic',
+    headerStyle: 'artistic-italic',
   },
   
   // Vintage Presets
@@ -215,6 +242,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-10',
     category: 'vintage',
+    headerStyle: 'classic-serif',
+
   },
   {
     id: 'vintage-library',
@@ -224,6 +253,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-14',
     category: 'vintage',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'vintage-attic',
@@ -233,6 +263,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-11',
     category: 'vintage',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'vintage-salon',
@@ -242,6 +273,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-4',
     category: 'vintage',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'vintage-conservatory',
@@ -251,6 +283,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-13',
     category: 'vintage',
+    headerStyle: 'classic-serif',
   },
   
   // Professional Presets
@@ -262,6 +295,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'white',
     musicSheetTheme: 'paper-2',
     category: 'professional',
+    headerStyle: 'modern-sans',
+
   },
   {
     id: 'recording-studio',
@@ -271,6 +306,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'cool',
     musicSheetTheme: 'paper-2',
     category: 'professional',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'music-school',
@@ -280,6 +316,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-9',
     category: 'professional',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'office-piano',
@@ -289,6 +326,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-12',
     category: 'professional',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'theater-stage',
@@ -298,6 +336,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'dark',
     musicSheetTheme: 'paper-3',
     category: 'professional',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'jazz-club',
@@ -307,6 +346,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'dark',
     musicSheetTheme: 'paper-11',
     category: 'professional',
+    headerStyle: 'modern-sans',
   },
   
   // Romantic Presets
@@ -318,6 +358,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-sunset',
     musicSheetTheme: 'paper-5',
     category: 'romantic',
+    headerStyle: 'artistic-italic',
+
   },
   {
     id: 'moonlight-sonata',
@@ -327,6 +369,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'morning-sky',
     musicSheetTheme: 'paper-6',
     category: 'romantic',
+    headerStyle: 'artistic-italic',
   },
   {
     id: 'love-letters',
@@ -336,6 +379,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'zen-sakura-dawn',
     musicSheetTheme: 'paper-13',
     category: 'romantic',
+    headerStyle: 'artistic-italic',
   },
   {
     id: 'sunset-piano',
@@ -345,6 +389,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-sunset',
     musicSheetTheme: 'paper-1',
     category: 'romantic',
+    headerStyle: 'artistic-italic',
   },
   {
     id: 'cherry-blossom',
@@ -354,6 +399,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'zen-sakura-dawn',
     musicSheetTheme: 'paper-8',
     category: 'romantic',
+    headerStyle: 'artistic-italic',
   },
   {
     id: 'candlelight',
@@ -363,6 +409,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-3',
     category: 'romantic',
+    headerStyle: 'artistic-italic',
   },
   
   // Energetic Presets
@@ -374,6 +421,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-forest',
     musicSheetTheme: 'paper-9',
     category: 'energetic',
+    headerStyle: 'energetic-bold',
+
   },
   {
     id: 'tropical-vibes',
@@ -383,6 +432,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-forest',
     musicSheetTheme: 'paper-7',
     category: 'energetic',
+    headerStyle: 'energetic-bold',
   },
   {
     id: 'sunrise-energy',
@@ -392,6 +442,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'morning-sky',
     musicSheetTheme: 'paper-15',
     category: 'energetic',
+    headerStyle: 'energetic-bold',
   },
   {
     id: 'ocean-waves',
@@ -401,6 +452,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-ocean',
     musicSheetTheme: 'paper-8',
     category: 'energetic',
+    headerStyle: 'energetic-bold',
   },
   {
     id: 'festival-lights',
@@ -410,6 +462,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-sunset',
     musicSheetTheme: 'paper-2',
     category: 'energetic',
+    headerStyle: 'energetic-bold',
   },
   {
     id: 'spring-bloom',
@@ -419,6 +472,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-forest',
     musicSheetTheme: 'paper-7',
     category: 'energetic',
+    headerStyle: 'energetic-bold',
   },
   
   // Minimalist Presets
@@ -430,6 +484,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'white',
     musicSheetTheme: 'paper-2',
     category: 'minimalist',
+    headerStyle: 'modern-sans',
+
   },
   {
     id: 'clean-slate',
@@ -439,6 +495,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-2',
     category: 'minimalist',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'zen-minimal',
@@ -448,6 +505,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'cool',
     musicSheetTheme: 'paper-6',
     category: 'minimalist',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'arctic-minimal',
@@ -457,6 +515,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'white',
     musicSheetTheme: 'paper-2',
     category: 'minimalist',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'monochrome',
@@ -466,6 +525,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-12',
     category: 'minimalist',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'simple-beauty',
@@ -475,6 +535,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-5',
     category: 'minimalist',
+    headerStyle: 'modern-sans',
   },
   
   // Luxurious Presets
@@ -486,6 +547,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gufeng-vermillion-gold',
     musicSheetTheme: 'paper-14',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
+
   },
   {
     id: 'royal-court',
@@ -495,6 +558,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gufeng-vermillion-gold',
     musicSheetTheme: 'paper-10',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
   },
   {
     id: 'diamond-nights',
@@ -504,6 +568,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'sacred-light-glory',
     musicSheetTheme: 'paper-12',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
   },
   {
     id: 'emerald-palace',
@@ -513,6 +578,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'islamic-emerald-gold',
     musicSheetTheme: 'paper-12',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
   },
   {
     id: 'platinum-suite',
@@ -522,6 +588,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'cool',
     musicSheetTheme: 'paper-12',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
   },
   {
     id: 'velvet-lounge',
@@ -531,6 +598,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'leela-peacock-divine',
     musicSheetTheme: 'paper-14',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
   },
   {
     id: 'crystal-ballroom',
@@ -540,6 +608,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'sacred-light-glory',
     musicSheetTheme: 'paper-2',
     category: 'luxurious',
+    headerStyle: 'luxurious-light',
   },
   
   // Additional Classic Presets
@@ -551,6 +620,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-1',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'beethoven-legacy',
@@ -560,6 +630,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-10',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   {
     id: 'mozart-chamber',
@@ -569,6 +640,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-3',
     category: 'classic',
+    headerStyle: 'classic-serif',
   },
   
   // Additional Modern Presets
@@ -580,6 +652,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-2',
     category: 'modern',
+    headerStyle: 'modern-sans',
+
   },
   {
     id: 'urban-loft',
@@ -589,6 +663,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'cool',
     musicSheetTheme: 'paper-7',
     category: 'modern',
+    headerStyle: 'modern-sans',
   },
   {
     id: 'scandinavian-design',
@@ -598,6 +673,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'light-gray',
     musicSheetTheme: 'paper-2',
     category: 'modern',
+    headerStyle: 'modern-sans',
   },
   
   // Additional Cultural Presets
@@ -609,6 +685,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'zen-bamboo-stone',
     musicSheetTheme: 'paper-7',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
+
   },
   {
     id: 'temple-bells',
@@ -618,6 +696,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'leela-saffron-marigold',
     musicSheetTheme: 'paper-10',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   {
     id: 'silk-road',
@@ -627,6 +706,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'isha-earth-mystic',
     musicSheetTheme: 'paper-10',
     category: 'cultural',
+    headerStyle: 'cultural-serif',
   },
   
   // Additional Nature Presets
@@ -638,6 +718,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'zen-bamboo-stone',
     musicSheetTheme: 'paper-6',
     category: 'nature',
+    headerStyle: 'nature-serif',
+
   },
   {
     id: 'rainforest',
@@ -647,6 +729,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-forest',
     musicSheetTheme: 'paper-7',
     category: 'nature',
+    headerStyle: 'nature-serif',
   },
   {
     id: 'desert-dunes',
@@ -656,6 +739,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'isha-earth-mystic',
     musicSheetTheme: 'paper-11',
     category: 'nature',
+    headerStyle: 'nature-serif',
   },
   {
     id: 'autumn-leaves',
@@ -665,6 +749,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-15',
     category: 'nature',
+    headerStyle: 'nature-serif',
   },
   
   // Additional Artistic Presets
@@ -676,6 +761,8 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-sunset',
     musicSheetTheme: 'paper-8',
     category: 'artistic',
+    headerStyle: 'artistic-italic',
+
   },
   {
     id: 'abstract-expression',
@@ -685,6 +772,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'gradient-ocean',
     musicSheetTheme: 'paper-15',
     category: 'artistic',
+    headerStyle: 'artistic-italic',
   },
   {
     id: 'art-deco',
@@ -694,6 +782,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'cool',
     musicSheetTheme: 'paper-12',
     category: 'artistic',
+    headerStyle: 'artistic-italic',
   },
 ];
 

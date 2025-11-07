@@ -1,6 +1,6 @@
 # Header Component
 
-Refactored header component with modular architecture for better maintainability and code organization.
+Refactored header component with modular architecture and theme-aware typography for better maintainability and visual harmony.
 
 ## File Structure
 
@@ -14,6 +14,7 @@ header/
 ├── user-menu.tsx               # User dropdown menu
 ├── header-utils.ts             # Utility functions (icon selection, colors)
 ├── header-styles.ts            # Style definitions and theme-aware styles
+├── header-typography.ts        # Typography styles for different theme categories
 ├── use-header-handlers.ts      # Custom hook for event handlers
 └── README.md                   # This file
 ```
@@ -68,6 +69,12 @@ Style factory functions:
 - Icon button styles
 - Theme-aware styling
 
+### **header-typography.ts**
+Typography style system:
+- `getHeaderTypographyStyle()` - Returns typography styles based on variant
+- `getCategoryDefaultStyle()` - Maps theme category to typography style
+- 7 typography variants: `classic-serif`, `modern-sans`, `cultural-serif`, `nature-serif`, `artistic-italic`, `energetic-bold`, `luxurious-light`
+
 ## Types
 
 ### **types.ts**
@@ -88,6 +95,24 @@ import { Header } from '@/components/piano/header';
 />
 ```
 
+## Theme-Aware Typography
+
+The header title adapts its typography based on the current theme preset:
+
+### **Typography Variants**
+
+| Variant | Font Family | Weight | Use Case |
+|---------|-------------|--------|----------|
+| `classic-serif` | Playfair Display | 600 | Classic & Vintage themes |
+| `modern-sans` | Inter | 500 | Modern, Minimalist, Professional |
+| `cultural-serif` | Noto Serif | 500 | Cultural & Traditional themes |
+| `nature-serif` | Lora | 500 | Nature-inspired themes |
+| `artistic-italic` | Merriweather | 400, Italic | Artistic & Romantic themes |
+| `energetic-bold` | Montserrat | 700, Uppercase | Energetic themes |
+| `luxurious-light` | Cormorant Garamond | 300 | Luxurious themes |
+
+The header automatically detects the current preset (by matching piano, background, and music sheet themes) and applies the appropriate typography style with smooth transitions.
+
 ## Benefits of This Structure
 
 1. **Separation of Concerns**: Each file has a single responsibility
@@ -96,6 +121,7 @@ import { Header } from '@/components/piano/header';
 4. **Maintainability**: Changes are localized to specific files
 5. **Readability**: Smaller files are easier to understand
 6. **Type Safety**: Centralized type definitions
+7. **Theme Integration**: Seamless integration with theme preset system
 
 ## Future Enhancements
 
