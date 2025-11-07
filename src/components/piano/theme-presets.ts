@@ -249,7 +249,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     backgroundTheme: 'tibet-sacred-mountains',
     musicSheetTheme: 'paper-10',
     category: 'cultural',
-    headerStyle: 'cultural-serif',
+    headerStyle: 'tibetan-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,

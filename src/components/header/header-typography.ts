@@ -14,7 +14,8 @@ export type HeaderTypographyStyle =
   | 'nature-serif'       // Organic, warm serif (Lora)
   | 'artistic-italic'    // Expressive, flowing italic serif (Merriweather)
   | 'energetic-bold'     // Dynamic, uppercase sans (Montserrat)
-  | 'luxurious-light';   // Refined, spacious serif (Cormorant Garamond)
+  | 'luxurious-light'    // Refined, spacious serif (Cormorant Garamond)
+  | 'tibetan-serif';     // Authentic Tibetan script (Noto Serif Tibetan)
 
 /**
  * Get typography style based on header style variant
@@ -85,6 +86,14 @@ export const getHeaderTypographyStyle = (
         fontWeight: 300,
         fontFamily: '"Cormorant Garamond", "Georgia", serif',
         letterSpacing: '0.08em',
+      };
+
+    case 'tibetan-serif':
+      return {
+        ...baseStyle,
+        fontWeight: 500,
+        fontFamily: '"Noto Serif Tibetan", "Noto Sans Tibetan", "Noto Serif", serif',
+        letterSpacing: '0.04em',
       };
 
     default:

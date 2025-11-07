@@ -1989,5 +1989,47 @@ export const quotes: Quote[] = [
         text: "To be creative means to be in love with life.",
         author: "Osho",
         tags: ["spirituality", "wisdom", "motivation", "creativity", "love-of-life"]
+    },
+    {
+        id: "quote-tibetan-compassion",
+        text: "སྙིང་རྗེ་ནི་དཔལ་འབྱོར་ཆེན་པོ་ཡིན། (Compassion is the greatest wealth)",
+        author: "Tibetan Proverb",
+        tags: ["tibetan", "compassion", "wisdom", "buddhism", "spiritual"]
+    },
+    {
+        id: "quote-tibetan-patience",
+        text: "བཟོད་པ་ནི་རྒྱན་མཆོག་ཡིན། (Patience is the supreme ornament)",
+        author: "Tibetan Buddhist Teaching",
+        tags: ["tibetan", "patience", "wisdom", "buddhism", "spiritual"]
+    },
+    {
+        id: "quote-milarepa-mind",
+        text: "The nature of mind is like the sky - vast, open, and unchanging.",
+        author: "Milarepa",
+        tags: ["tibetan", "mind", "buddhism", "meditation", "spiritual", "zen"]
+    },
+    {
+        id: "quote-tibetan-happiness",
+        text: "བདེ་སྐྱིད་སེམས་ཀྱི་རང་བཞིན་ཡིན། (Happiness is the nature of mind)",
+        author: "Tibetan Saying",
+        tags: ["tibetan", "happiness", "mind", "buddhism", "spiritual"]
+    },
+    {
+        id: "quote-padmasambhava-fear",
+        text: "Within the body there is no need to search elsewhere. The mind is the Buddha.",
+        author: "Padmasambhava",
+        tags: ["tibetan", "buddhism", "enlightenment", "mind", "spiritual"]
+    },
+    {
+        id: "quote-tsongkhapa-wisdom",
+        text: "If you wish to attain enlightenment, train in compassion.",
+        author: "Je Tsongkhapa",
+        tags: ["tibetan", "compassion", "enlightenment", "buddhism", "spiritual"]
+    },
+    {
+        id: "quote-tibetan-present",
+        text: "དུས་དེ་རིང་ལ་བརྩོན་འགྲུས་བྱེད། (Practice diligence in the present moment)",
+        author: "Tibetan Wisdom",
+        tags: ["tibetan", "mindfulness", "present", "wisdom", "spiritual"]
     }
 ]
