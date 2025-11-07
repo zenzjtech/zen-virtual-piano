@@ -29,6 +29,8 @@ export const getStatusMessage = (status: DownloadStatus): string => {
   switch (status) {
     case 'success':
       return 'Saved to library';
+    case 'warning':
+      return 'Limit reached';
     case 'error':
       return 'Try again';
     case 'downloading':

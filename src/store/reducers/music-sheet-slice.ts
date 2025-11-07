@@ -17,6 +17,9 @@ import type {
 } from '@/components/music-sheet/types';
 import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { getSheetWithNotation } from '@/services/sheet-library';
+import { useAppConfig } from '#imports';
+
+const config = useAppConfig();
 
 /**
  * Music sheet state interface
@@ -55,6 +58,10 @@ export interface MusicSheetState {
     selectedArtist: string | null;
     selectedDifficulties: ('easy' | 'medium' | 'hard')[];
   };
+  
+  // FIFO tracking
+  /** Last removed sheet info (for notifications when limit is reached) */
+  lastRemovedSheet: { id: string; title: string } | null;
 }
 
 /**
@@ -103,6 +110,7 @@ const initialState: MusicSheetState = {
     selectedArtist: null,
     selectedDifficulties: [],
   },
+  lastRemovedSheet: null,
 };
 
 /**
@@ -126,9 +134,53 @@ export const musicSheetSlice = createSlice({
      * Add a custom/scraped sheet to the library
      * Stores both metadata and full sheet data
      * Automatically loads the sheet for immediate playback
+     * 
+     * Implements FIFO (First In First Out) when custom sheet limit is reached
      */
     addCustomSheet: (state, action: PayloadAction<MusicSheet>) => {
       const sheet = action.payload;
+      
+      // Clear previous removal notification
+      state.lastRemovedSheet = null;
+      
+      // Check if limit is reached and we need to remove oldest sheet
+      const customSheetIds = Object.keys(state.userData.customSheets);
+      if (customSheetIds.length >= config.maxCustomSheets) {
+        // Find oldest custom sheet by timestamp (FIFO)
+        let oldestSheetId = customSheetIds[0];
+        let oldestTimestamp = state.userData.lastPlayedTimestamps[oldestSheetId] || 0;
+        
+        for (const sheetId of customSheetIds) {
+          const timestamp = state.userData.lastPlayedTimestamps[sheetId] || 0;
+          if (timestamp < oldestTimestamp) {
+            oldestTimestamp = timestamp;
+            oldestSheetId = sheetId;
+          }
+        }
+        
+        // Store info about removed sheet for notification
+        const removedSheet = state.userData.customSheets[oldestSheetId];
+        if (removedSheet) {
+          state.lastRemovedSheet = {
+            id: oldestSheetId,
+            title: removedSheet.title,
+          };
+        }
+        
+        // Remove oldest sheet
+        delete state.userData.customSheets[oldestSheetId];
+        delete state.sheets[oldestSheetId];
+        delete state.userData.lastPlayedTimestamps[oldestSheetId];
+        
+        // Remove from favorites and history
+        state.userData.favorites = state.userData.favorites.filter(id => id !== oldestSheetId);
+        state.userData.recentlyPlayed = state.userData.recentlyPlayed.filter(id => id !== oldestSheetId);
+        
+        // If removed sheet was currently playing, we'll replace it with the new one anyway
+        if (state.currentSheet?.id === oldestSheetId) {
+          state.currentSheet = null;
+        }
+      }
       
       // Add to custom sheets (full data)
       state.userData.customSheets[sheet.id] = sheet;

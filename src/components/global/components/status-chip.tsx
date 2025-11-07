@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { Chip, Typography, Fade } from '@mui/material';
-import { Check, ErrorOutline } from '@mui/icons-material';
+import { Check, ErrorOutline, Warning } from '@mui/icons-material';
 import { DownloadStatus } from '../../../entrypoints/vp-download-ui/types';
 import { getStatusMessage } from '../../../entrypoints/vp-download-ui/utils';
 
@@ -19,6 +19,8 @@ export const StatusChip: React.FC<StatusChipProps> = ({ status, show }) => {
   }
 
   const isSuccess = status === 'success';
+  const isWarning = status === 'warning';
+  const isError = status === 'error';
 
   return (
     <Fade in={true} timeout={300}>
@@ -26,6 +28,8 @@ export const StatusChip: React.FC<StatusChipProps> = ({ status, show }) => {
         icon={
           isSuccess ? (
             <Check sx={{ fontSize: 16 }} />
+          ) : isWarning ? (
+            <Warning sx={{ fontSize: 16 }} />
           ) : (
             <ErrorOutline sx={{ fontSize: 16 }} />
           )
@@ -40,12 +44,20 @@ export const StatusChip: React.FC<StatusChipProps> = ({ status, show }) => {
           height: 24,
           backgroundColor: isSuccess
             ? theme.palette.success.light
+            : isWarning
+            ? theme.palette.warning.light
             : theme.palette.error.light,
           color: isSuccess
             ? theme.palette.success.dark
+            : isWarning
+            ? theme.palette.warning.dark
             : theme.palette.error.dark,
           border: `1px solid ${
-            isSuccess ? theme.palette.success.main : theme.palette.error.main
+            isSuccess
+              ? theme.palette.success.main
+              : isWarning
+              ? theme.palette.warning.main
+              : theme.palette.error.main
           }`,
           opacity: 0.9,
           fontWeight: 500,

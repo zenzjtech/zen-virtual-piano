@@ -5,8 +5,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { DownloadState, DownloadMessage } from '../../../entrypoints/vp-download-ui/types';
 import { MESSAGE_TYPES, TIMING } from '../../../entrypoints/vp-download-ui/utils';
-import { useAppDispatch } from '../../../store/hook';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import { addCustomSheet } from '../../../store/reducers/music-sheet-slice';
+import { useAppConfig } from '#imports'
 
 interface UseDownloadStateReturn {
   downloadState: DownloadState;
@@ -19,6 +20,7 @@ export const useDownloadState = (): UseDownloadStateReturn => {
   const [downloadState, setDownloadState] = useState<DownloadState>({ status: 'idle' });
   const [showToast, setShowToast] = useState(false);
   const dispatch = useAppDispatch();
+  const lastRemovedSheet = useAppSelector((state) => state.musicSheet.lastRemovedSheet);
 
   // Listen for messages from content script
   useEffect(() => {
@@ -27,9 +29,18 @@ export const useDownloadState = (): UseDownloadStateReturn => {
         // Save complete sheet to Redux store
         dispatch(addCustomSheet(event.data.sheet));
 
+        // Check if a sheet was removed due to limit (FIFO)
+        let message = `"${event.data.sheet.title}" added to library & copied to clipboard!`;
+        let status: 'success' | 'warning' = 'success';
+        
+        if (lastRemovedSheet) {
+          message = `"${event.data.sheet.title}" added! "${lastRemovedSheet.title}" was removed (${useAppConfig().maxCustomSheets} sheet limit).`;
+          status = 'warning';
+        }
+
         setDownloadState({
-          status: 'success',
-          message: `"${event.data.sheet.title}" added to library & copied to clipboard!`,
+          status,
+          message,
         });
         setShowToast(true);
 
@@ -53,7 +64,7 @@ export const useDownloadState = (): UseDownloadStateReturn => {
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, []);
+  }, [dispatch, lastRemovedSheet]);
 
   // Initiate download by sending message to parent
   const initiateDownload = useCallback(() => {

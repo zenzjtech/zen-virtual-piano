@@ -1,5 +1,3 @@
-import { defineAppConfig } from '#imports'
-
 // Define types for your config
 declare module 'wxt/utils/define-app-config' {
   export interface WxtAppConfig {
@@ -9,7 +7,8 @@ declare module 'wxt/utils/define-app-config' {
             linesPerPage: number;
         }
     },
-    noteHistoryLimit: number
+    noteHistoryLimit: number,
+    maxCustomSheets: number
   }
 }
 
@@ -21,4 +20,5 @@ export default defineAppConfig({
     },
   },
   noteHistoryLimit: 500,
+  maxCustomSheets: 10,
 })

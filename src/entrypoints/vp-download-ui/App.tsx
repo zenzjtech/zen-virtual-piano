@@ -73,9 +73,13 @@ export default function DownloadUI() {
       >
         <Alert
           onClose={() => setShowToast(false)}
-          severity={downloadState.status === 'success' ? 'success' : 'error'}
+          severity={
+            downloadState.status === 'success' ? 'success' 
+            : downloadState.status === 'warning' ? 'warning' 
+            : 'error'
+          }
           sx={{ width: '100%' }}
-          icon={downloadState.status === 'success' ? <MusicNote /> : undefined}
+          icon={downloadState.status === 'success' || downloadState.status === 'warning' ? <MusicNote /> : undefined}
         >
           {downloadState.message}
         </Alert>
