@@ -102,21 +102,29 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
     console.log('Fullscreen clicked');
   };
 
+  const handleLogoClick = () => {
+    // Refresh page or navigate to home
+    window.location.reload();
+  };
+
   return (
     <AppBar
       position="sticky"
       elevation={0}
       sx={{
         background: 'transparent',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)', // Safari support
+        backdropFilter: isDarkBackground ? 'blur(20px)' : 'blur(16px)',
+        WebkitBackdropFilter: isDarkBackground ? 'blur(20px)' : 'blur(16px)', // Safari support
         backgroundColor: isDarkBackground 
-          ? 'rgba(255, 255, 255, 0.08)' 
-          : 'rgba(255, 255, 255, 0.7)',
+          ? 'rgba(0, 0, 0, 0.15)' 
+          : 'rgba(255, 255, 255, 0.75)',
         borderBottom: '1px solid',
         borderColor: isDarkBackground 
-          ? 'rgba(255, 255, 255, 0.12)' 
-          : 'rgba(0, 0, 0, 0.08)',
+          ? 'rgba(255, 255, 255, 0.1)' 
+          : 'rgba(0, 0, 0, 0.06)',
+        boxShadow: isDarkBackground
+          ? '0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2)'
+          : '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
       }}
     >
       <Toolbar
@@ -127,11 +135,20 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
       >
         {/* Left: Logo and Title */}
         <Box
+          onClick={handleLogoClick}
           sx={{
             display: 'flex',
             alignItems: 'center',
             gap: { xs: 1, sm: 1.5 },
             flex: 1,
+            cursor: 'pointer',
+            transition: 'opacity 0.2s ease',
+            '&:hover': {
+              opacity: 0.8,
+            },
+            '&:active': {
+              opacity: 0.6,
+            },
           }}
         >
           <Box
