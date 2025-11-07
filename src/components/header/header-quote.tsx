@@ -68,7 +68,7 @@ export const HeaderQuote = ({
         display: { xs: 'none', md: 'flex' },
         alignItems: 'center',
         justifyContent: 'center',
-        maxWidth: '500px',
+        maxWidth: '800px',
         px: containerPadding,
         py: { md: containerPadding.md - 0.5, lg: containerPadding.lg - 0.5 },
         textAlign: 'center',
