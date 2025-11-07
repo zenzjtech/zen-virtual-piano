@@ -15,7 +15,8 @@ export type HeaderTypographyStyle =
   | 'artistic-italic'    // Expressive, flowing italic serif (Merriweather)
   | 'energetic-bold'     // Dynamic, uppercase sans (Montserrat)
   | 'luxurious-light'    // Refined, spacious serif (Cormorant Garamond)
-  | 'tibetan-serif';     // Authentic Tibetan script (Noto Serif Tibetan)
+  | 'tibetan-serif'      // Authentic Tibetan script (Noto Serif Tibetan)
+  | 'persian-poetic';    // Poetic Persian/Arabic script (Amiri)
 
 /**
  * Get typography style based on header style variant
@@ -94,6 +95,15 @@ export const getHeaderTypographyStyle = (
         fontWeight: 500,
         fontFamily: '"Noto Serif Tibetan", "Noto Sans Tibetan", "Noto Serif", serif',
         letterSpacing: '0.04em',
+      };
+
+    case 'persian-poetic':
+      return {
+        ...baseStyle,
+        fontWeight: 400,
+        fontFamily: '"Amiri", "Noto Naskh Arabic", "Noto Serif", serif',
+        letterSpacing: '0.03em',
+        fontStyle: 'italic' as const,
       };
 
     default:

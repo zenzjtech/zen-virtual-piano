@@ -254,6 +254,19 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
+  {
+    id: 'rumi-mystic-dance',
+    name: 'Rumi\'s Mystic Dance',
+    description: 'Sufi poetry and whirling dervish spirituality',
+    pianoTheme: 'mahogany',
+    backgroundTheme: 'sufi-whirling-mystic',
+    musicSheetTheme: 'paper-10',
+    category: 'cultural',
+    headerStyle: 'persian-poetic',
+    headerThemeStyle: HEADER_THEME_STYLES.cultural,
+    quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
+  },
   
   // Nature Presets
   {

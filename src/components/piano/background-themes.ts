@@ -143,6 +143,14 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
     gradient: 'linear-gradient(135deg, #F4E5B8 0%, #D4A574 15%, #C84B31 35%, #8B2D3A 60%, #4A6FA5 85%, #2B4F6F 100%)',
     category: 'cultural',
   },
+  {
+    id: 'sufi-whirling-mystic',
+    name: 'Whirling Mystic (صوفی)',
+    description: 'Rumi\'s poetry and Sufi spiritual dance',
+    color: '#2C5F7C',
+    gradient: 'linear-gradient(135deg, #F8E9D0 0%, #DAA520 15%, #C77E3D 28%, #8B4789 45%, #2C5F7C 65%, #1A3B5C 85%, #0F2027 100%)',
+    category: 'cultural',
+  },
   // Gradients
   {
     id: 'gradient-sunset',

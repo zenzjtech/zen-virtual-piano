@@ -2031,5 +2031,77 @@ export const quotes: Quote[] = [
         text: "དུས་དེ་རིང་ལ་བརྩོན་འགྲུས་བྱེད། (Practice diligence in the present moment)",
         author: "Tibetan Wisdom",
         tags: ["tibetan", "mindfulness", "present", "wisdom", "spiritual"]
+    },
+    {
+        id: "quote-rumi-love-wound",
+        text: "The wound is the place where the Light enters you.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "poetry", "healing", "spiritual", "love"]
+    },
+    {
+        id: "quote-rumi-persian-love",
+        text: "عشق آمد و من بنده‌ی او شدم (Love came and I became a slave to it)",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "persian", "love", "poetry", "spiritual"]
+    },
+    {
+        id: "quote-rumi-soul",
+        text: "You are not a drop in the ocean. You are the entire ocean in a drop.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "soul", "spirituality", "wisdom", "mysticism"]
+    },
+    {
+        id: "quote-rumi-persian-seek",
+        text: "آنچه می‌جویی تو را می‌جوید (What you seek is seeking you)",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "persian", "destiny", "spiritual", "seeking"]
+    },
+    {
+        id: "quote-rumi-silence",
+        text: "Silence is the language of God, all else is poor translation.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "silence", "spirituality", "divine", "wisdom"]
+    },
+    {
+        id: "quote-rumi-heart",
+        text: "Let yourself be silently drawn by the strange pull of what you really love.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "love", "heart", "passion", "spiritual"]
+    },
+    {
+        id: "quote-rumi-persian-dance",
+        text: "برقص که زندگی کوتاه است (Dance, for life is short)",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "persian", "dance", "joy", "life"]
+    },
+    {
+        id: "quote-rumi-grief",
+        text: "Don't grieve. Anything you lose comes round in another form.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "grief", "transformation", "wisdom", "acceptance"]
+    },
+    {
+        id: "quote-rumi-persian-soul",
+        text: "جان من را به جان تو ربودند (They stole my soul with your soul)",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "persian", "soul", "love", "poetry"]
+    },
+    {
+        id: "quote-rumi-become",
+        text: "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "wisdom", "self-improvement", "transformation", "spiritual"]
+    },
+    {
+        id: "quote-rumi-persian-wings",
+        text: "پر بگشا و پرواز کن (Spread your wings and fly)",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "persian", "freedom", "courage", "spiritual"]
+    },
+    {
+        id: "quote-rumi-field",
+        text: "Out beyond ideas of wrongdoing and rightdoing, there is a field. I'll meet you there.",
+        author: "Rumi",
+        tags: ["rumi", "sufism", "unity", "transcendence", "spirituality", "peace"]
     }
 ]
