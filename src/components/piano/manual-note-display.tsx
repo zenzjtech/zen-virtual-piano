@@ -19,7 +19,12 @@ export const ManualNoteDisplay: React.FC<ManualNoteDisplayProps> = ({
   pianoTheme,
 }) => {
   return (
-    <CurrentNoteDisplay pianoTheme={pianoTheme}>
+    <CurrentNoteDisplay 
+      pianoTheme={pianoTheme}
+      sx={{
+        width: '100px',
+      }}
+    >
       <NoteText 
         variant="h3"
         sx={{ 
