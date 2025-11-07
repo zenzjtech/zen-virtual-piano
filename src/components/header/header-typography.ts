@@ -16,7 +16,12 @@ export type HeaderTypographyStyle =
   | 'energetic-bold'     // Dynamic, uppercase sans (Montserrat)
   | 'luxurious-light'    // Refined, spacious serif (Cormorant Garamond)
   | 'tibetan-serif'      // Authentic Tibetan script (Noto Serif Tibetan)
-  | 'persian-poetic';    // Poetic Persian/Arabic script (Amiri)
+  | 'persian-poetic'     // Poetic Persian/Arabic script (Amiri)
+  | 'hebrew-mystical'    // Hebrew script for Kabbalah (Frank Ruhl Libre)
+  | 'shinto-sacred'      // Japanese Shinto style (Noto Serif)
+  | 'native-spirit'      // Native American wisdom (Cinzel)
+  | 'celtic-ancient'     // Celtic/Druidic style (Uncial Antiqua)
+  | 'sikh-gurmukhi';     // Gurmukhi/Punjabi script (Anek Gurmukhi)
 
 /**
  * Get typography style based on header style variant
@@ -104,6 +109,46 @@ export const getHeaderTypographyStyle = (
         fontFamily: '"Amiri", "Noto Naskh Arabic", "Noto Serif", serif',
         letterSpacing: '0.03em',
         fontStyle: 'italic' as const,
+      };
+
+    case 'hebrew-mystical':
+      return {
+        ...baseStyle,
+        fontWeight: 500,
+        fontFamily: '"Frank Ruhl Libre", "Noto Serif", serif',
+        letterSpacing: '0.02em',
+      };
+
+    case 'shinto-sacred':
+      return {
+        ...baseStyle,
+        fontWeight: 500,
+        fontFamily: '"Noto Serif", "Lora", serif',
+        letterSpacing: '0.05em',
+      };
+
+    case 'native-spirit':
+      return {
+        ...baseStyle,
+        fontWeight: 500,
+        fontFamily: '"Cinzel", "Noto Serif", serif',
+        letterSpacing: '0.04em',
+      };
+
+    case 'celtic-ancient':
+      return {
+        ...baseStyle,
+        fontWeight: 400,
+        fontFamily: '"Uncial Antiqua", "Cinzel", serif',
+        letterSpacing: '0.02em',
+      };
+
+    case 'sikh-gurmukhi':
+      return {
+        ...baseStyle,
+        fontWeight: 500,
+        fontFamily: '"Anek Gurmukhi", "Noto Serif", serif',
+        letterSpacing: '0.03em',
       };
 
     default:

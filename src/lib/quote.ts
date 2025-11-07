@@ -2103,5 +2103,203 @@ export const quotes: Quote[] = [
         text: "Out beyond ideas of wrongdoing and rightdoing, there is a field. I'll meet you there.",
         author: "Rumi",
         tags: ["rumi", "sufism", "unity", "transcendence", "spirituality", "peace"]
+    },
+    {
+        id: "quote-kabbalah-hebrew-light",
+        text: "אוֹר אֵין סוֹף (The infinite light surrounds all existence)",
+        author: "Kabbalah Teaching",
+        tags: ["kabbalah", "jewish", "hebrew", "mysticism", "divine", "light"]
+    },
+    {
+        id: "quote-zohar-unity",
+        text: "When you unite with the Divine, you discover your true self.",
+        author: "Zohar",
+        tags: ["kabbalah", "jewish", "mysticism", "unity", "spiritual", "self"]
+    },
+    {
+        id: "quote-kabbalah-hebrew-soul",
+        text: "נֶפֶשׁ שֶׁתִּתֶּן לִי (The soul You have given me is pure)",
+        author: "Jewish Morning Prayer",
+        tags: ["kabbalah", "jewish", "hebrew", "soul", "prayer", "spiritual"]
+    },
+    {
+        id: "quote-kabbalah-repair",
+        text: "Tikkun Olam: Each person is responsible for repairing the world.",
+        author: "Kabbalistic Wisdom",
+        tags: ["kabbalah", "jewish", "tikkun", "responsibility", "healing", "world"]
+    },
+    {
+        id: "quote-kabbalah-hebrew-names",
+        text: "אֱהְיֶה אֲשֶׁר אֱהְיֶה (I am that I am)",
+        author: "Torah - Exodus 3:14",
+        tags: ["kabbalah", "jewish", "hebrew", "divine", "existence", "sacred"]
+    },
+    {
+        id: "quote-baal-shem-joy",
+        text: "Joy breaks through all barriers and brings one closer to God.",
+        author: "Baal Shem Tov",
+        tags: ["kabbalah", "jewish", "joy", "spiritual", "hasidic", "divine"]
+    },
+    {
+        id: "quote-kabbalah-vessels",
+        text: "The divine light shines through broken vessels, teaching us that imperfection is sacred.",
+        author: "Lurianic Kabbalah",
+        tags: ["kabbalah", "jewish", "imperfection", "sacred", "vessels", "light"]
+    },
+    {
+        id: "quote-shinto-kami",
+        text: "神は自然の中に宿る (Kami dwells within nature)",
+        author: "Shinto Teaching",
+        tags: ["shinto", "japanese", "kami", "nature", "spirituality", "sacred"]
+    },
+    {
+        id: "quote-shinto-purity",
+        text: "Purification is the path to the kami. Clean your heart as you clean your shrine.",
+        author: "Shinto Wisdom",
+        tags: ["shinto", "purity", "cleansing", "spiritual", "heart", "shrine"]
+    },
+    {
+        id: "quote-shinto-harmony",
+        text: "和 (Wa) - Harmony with nature, harmony with kami, harmony with all.",
+        author: "Shinto Principle",
+        tags: ["shinto", "harmony", "nature", "balance", "spiritual", "japanese"]
+    },
+    {
+        id: "quote-shinto-gratitude",
+        text: "感謝の心 (A heart of gratitude connects us to the divine)",
+        author: "Shinto Prayer",
+        tags: ["shinto", "gratitude", "japanese", "divine", "heart", "spiritual"]
+    },
+    {
+        id: "quote-shinto-ancestors",
+        text: "Honor your ancestors, for they watch over you as kami spirits.",
+        author: "Shinto Tradition",
+        tags: ["shinto", "ancestors", "spirits", "kami", "reverence", "family"]
+    },
+    {
+        id: "quote-shinto-renewal",
+        text: "Each sunrise is a gift from Amaterasu. Each day, a chance for renewal.",
+        author: "Shinto Belief",
+        tags: ["shinto", "sunrise", "renewal", "amaterasu", "nature", "hope"]
+    },
+    {
+        id: "quote-native-all-related",
+        text: "Mitakuye Oyasin - We are all related.",
+        author: "Lakota Prayer",
+        tags: ["native-american", "unity", "lakota", "interconnection", "spiritual", "sacred"]
+    },
+    {
+        id: "quote-chief-seattle",
+        text: "The Earth does not belong to us. We belong to the Earth.",
+        author: "Chief Seattle",
+        tags: ["native-american", "earth", "nature", "wisdom", "indigenous", "environment"]
+    },
+    {
+        id: "quote-black-elk",
+        text: "The Great Spirit is in all things: He is in the air we breathe. The Great Spirit is our Father, but the Earth is our Mother.",
+        author: "Black Elk",
+        tags: ["native-american", "great-spirit", "earth", "nature", "spiritual", "wisdom"]
+    },
+    {
+        id: "quote-native-seven-generations",
+        text: "In every deliberation, we must consider the impact on the seventh generation.",
+        author: "Iroquois Wisdom",
+        tags: ["native-american", "future", "generations", "responsibility", "wisdom", "stewardship"]
+    },
+    {
+        id: "quote-sitting-bull",
+        text: "Let us put our minds together and see what life we can make for our children.",
+        author: "Sitting Bull",
+        tags: ["native-american", "unity", "children", "future", "wisdom", "community"]
+    },
+    {
+        id: "quote-native-walk-softly",
+        text: "Walk softly on the Earth, for she is your mother and you are her child.",
+        author: "Native American Proverb",
+        tags: ["native-american", "earth", "respect", "nature", "mother", "wisdom"]
+    },
+    {
+        id: "quote-native-wind",
+        text: "Listen to the wind, it talks. Listen to the silence, it speaks. Listen to your heart, it knows.",
+        author: "Native American Wisdom",
+        tags: ["native-american", "nature", "listening", "heart", "wisdom", "silence"]
+    },
+    {
+        id: "quote-celtic-oak",
+        text: "The oak tree teaches us that true strength comes from deep roots.",
+        author: "Celtic Wisdom",
+        tags: ["celtic", "oak", "strength", "roots", "nature", "wisdom"]
+    },
+    {
+        id: "quote-druid-triple",
+        text: "Three things give wisdom: meditation, imitation, experience.",
+        author: "Celtic Triads",
+        tags: ["celtic", "wisdom", "meditation", "learning", "experience", "druid"]
+    },
+    {
+        id: "quote-celtic-awen",
+        text: "Awen - The flowing spirit of inspiration that connects all living things.",
+        author: "Druidic Teaching",
+        tags: ["celtic", "awen", "inspiration", "spirit", "druid", "connection"]
+    },
+    {
+        id: "quote-celtic-forest",
+        text: "In the sacred grove, we remember that we are part of the forest, not apart from it.",
+        author: "Celtic Druid Wisdom",
+        tags: ["celtic", "forest", "grove", "nature", "unity", "druid"]
+    },
+    {
+        id: "quote-celtic-seasons",
+        text: "The wheel turns, the seasons change, and we learn that all endings are also beginnings.",
+        author: "Celtic Spirituality",
+        tags: ["celtic", "seasons", "change", "cycles", "transformation", "nature"]
+    },
+    {
+        id: "quote-celtic-ancestors",
+        text: "We are the ancestors of future generations. Let us be worthy of their remembrance.",
+        author: "Celtic Proverb",
+        tags: ["celtic", "ancestors", "future", "legacy", "responsibility", "wisdom"]
+    },
+    {
+        id: "quote-sikh-gurmukhi-light",
+        text: "ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖ਼ਾਲਸਾ (The Khalsa belongs to the Wondrous Lord)",
+        author: "Sikh Greeting",
+        tags: ["sikh", "gurmukhi", "khalsa", "divine", "spiritual", "punjabi"]
+    },
+    {
+        id: "quote-guru-nanak-equality",
+        text: "There is no Hindu, there is no Muslim. We are all children of the same Divine Light.",
+        author: "Guru Nanak",
+        tags: ["sikh", "equality", "unity", "divine", "guru-nanak", "spiritual"]
+    },
+    {
+        id: "quote-sikh-gurmukhi-truth",
+        text: "ਸਤਿ ਨਾਮੁ (Truth is the Name)",
+        author: "Guru Granth Sahib",
+        tags: ["sikh", "gurmukhi", "truth", "divine", "name", "spiritual"]
+    },
+    {
+        id: "quote-guru-gobind-saint-soldier",
+        text: "The saints and soldiers are two sides of the same spirit - compassion and courage.",
+        author: "Guru Gobind Singh",
+        tags: ["sikh", "courage", "compassion", "warrior", "spiritual", "balance"]
+    },
+    {
+        id: "quote-sikh-gurmukhi-one",
+        text: "ਇੱਕ ਓਅੰਕਾਰ (One Universal Creator)",
+        author: "Mool Mantar",
+        tags: ["sikh", "gurmukhi", "oneness", "creator", "divine", "unity"]
+    },
+    {
+        id: "quote-sikh-selfless-service",
+        text: "Seva - Selfless service is the highest form of worship.",
+        author: "Sikh Teaching",
+        tags: ["sikh", "seva", "service", "selfless", "worship", "spiritual"]
+    },
+    {
+        id: "quote-sikh-gurmukhi-remember",
+        text: "ਨਾਮ ਜਪਣਾ (Remember the Divine Name)",
+        author: "Sikh Practice",
+        tags: ["sikh", "gurmukhi", "remembrance", "divine", "meditation", "practice"]
     }
 ]
