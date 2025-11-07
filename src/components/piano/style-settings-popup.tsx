@@ -26,7 +26,7 @@ import { PopupSearchBar } from './popup-search-bar';
 import { ThemeSection } from './theme-section';
 import { PresetSelector } from './preset-selector';
 import { useThemeFilter } from '../../hooks/use-theme-filter';
-import { ThemePreset } from './theme-presets';
+import { ThemePreset, THEME_PRESETS } from './theme-presets';
 
 interface StyleSettingsPopupProps {
   open: boolean;
@@ -71,12 +71,23 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   const filteredPianoThemes = useThemeFilter(pianoThemes, searchQuery);
   const filteredBackgroundThemes = useThemeFilter(BACKGROUND_THEMES, searchQuery);
   const filteredMusicSheetThemes = useThemeFilter(MUSIC_SHEET_THEMES, searchQuery);
+  
+  // Filter presets based on search query
+  const filteredPresets = searchQuery.trim()
+    ? THEME_PRESETS.filter(
+        preset =>
+          preset.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          preset.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          preset.category.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : THEME_PRESETS;
 
 
   const showPianoThemes = filteredPianoThemes.length > 0;
   const showBackgroundThemes = filteredBackgroundThemes.length > 0;
   const showMusicSheetThemes = filteredMusicSheetThemes.length > 0;
-  const showNoResults = !showPianoThemes && !showBackgroundThemes && !showMusicSheetThemes && searchQuery.trim();
+  const showPresetsSection = showPresets && filteredPresets.length > 0;
+  const showNoResults = !showPianoThemes && !showBackgroundThemes && !showMusicSheetThemes && !showPresetsSection && searchQuery.trim();
 
   // Handle preset application
   const handlePresetApply = (preset: ThemePreset) => {
@@ -150,7 +161,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
           <PopupContentBox pianoTheme={pianoTheme}>
             <Stack spacing={3}>
               {/* Preset Selector */}
-              {showPresets && !searchQuery.trim() && (
+              {showPresetsSection && (
                 <>
                   <PresetSelector
                     pianoTheme={pianoTheme}
@@ -160,7 +171,9 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                     onPresetApply={handlePresetApply}
                     searchQuery={searchQuery}
                   />
-                  <Divider sx={{ borderColor: pianoTheme.colors.border }} />
+                  {(showPianoThemes || showBackgroundThemes || showMusicSheetThemes) && (
+                    <Divider sx={{ borderColor: pianoTheme.colors.border }} />
+                  )}
                 </>
               )}
               {/* Piano Theme Section */}
