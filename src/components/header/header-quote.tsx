@@ -55,10 +55,9 @@ export const HeaderQuote = ({
     <Box
       sx={{
         display: { xs: 'none', md: 'flex' },
-        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        maxWidth: '800px',
+        maxWidth: '500px',
         px: 3,
         textAlign: 'center',
         opacity: textOpacity,
@@ -75,22 +74,23 @@ export const HeaderQuote = ({
           fontWeight: textFontWeight,
           letterSpacing: textLetterSpacing,
           lineHeight: 1.4,
-          mb: 0.5,
           fontStyle: fontStyle,
           textTransform: textTransform,
         }}
       >
         "{currentQuote.text}"
-      </Typography>
-      <Typography
-        sx={{
-          ...typographyStyles,
-          fontSize: authorFontSize,
-          fontWeight: authorFontWeight,
-          opacity: authorOpacity,
-        }}
-      >
-        — {currentQuote.author}
+        <Typography
+          component="span"
+          sx={{
+            ...typographyStyles,
+            fontSize: authorFontSize,
+            fontWeight: authorFontWeight,
+            opacity: authorOpacity,
+            ml: 1,
+          }}
+        >
+          — {currentQuote.author}
+        </Typography>
       </Typography>
     </Box>
   );
