@@ -36,7 +36,7 @@ export const NotificationProvider = ({ children }: NotificationProviderProps) =>
         open={open}
         autoHideDuration={4000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       >
         <Alert 
           onClose={handleClose} 
