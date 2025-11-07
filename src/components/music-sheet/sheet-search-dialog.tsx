@@ -10,7 +10,7 @@ import {
   MusicNote as MusicNoteIcon,
 } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { loadSheet, toggleFavorite, setSearchFilters } from '@/store/reducers/music-sheet-slice';
+import { loadSheet, setSearchFilters } from '@/store/reducers/music-sheet-slice';
 import { PianoTheme } from '../piano/themes';
 import {
   StyledPopupPaper,
@@ -68,11 +68,6 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const handleSelectSheet = (sheetId: string) => {
     dispatch(loadSheet(sheetId));
     onClose();
-  };
-  
-  const handleToggleFavorite = (sheetId: string, event: React.MouseEvent) => {
-    event.stopPropagation();
-    dispatch(toggleFavorite(sheetId));
   };
   
   const handleClearFilters = () => {
@@ -217,7 +212,6 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             favorites={favorites}
             pianoTheme={pianoTheme}
             onSelectSheet={handleSelectSheet}
-            onToggleFavorite={handleToggleFavorite}
           />
           
           {/* Footer - External Search Link */}

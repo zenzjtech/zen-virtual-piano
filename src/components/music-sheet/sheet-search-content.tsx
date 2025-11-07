@@ -15,7 +15,6 @@ interface SheetSearchContentProps {
   favorites: string[];
   pianoTheme: PianoTheme;
   onSelectSheet: (sheetId: string) => void;
-  onToggleFavorite: (sheetId: string, event: React.MouseEvent) => void;
 }
 
 /**
@@ -31,7 +30,6 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
   favorites,
   pianoTheme,
   onSelectSheet,
-  onToggleFavorite,
 }) => {
   return (
     <Box sx={{ 
@@ -50,7 +48,6 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
           pianoTheme={pianoTheme}
           favorites={favorites}
           onSelectSheet={onSelectSheet}
-          onToggleFavorite={onToggleFavorite}
           emptyMessage={`No sheets found matching "${searchQuery}"`}
         />
       )}
@@ -63,7 +60,6 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
           pianoTheme={pianoTheme}
           favorites={favorites}
           onSelectSheet={onSelectSheet}
-          onToggleFavorite={onToggleFavorite}
           showDivider
         />
       )}
@@ -76,7 +72,6 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
           pianoTheme={pianoTheme}
           favorites={favorites}
           onSelectSheet={onSelectSheet}
-          onToggleFavorite={onToggleFavorite}
           emptyMessage={hasActiveFilters ? "No sheets match the selected filters" : undefined}
         />
       )}

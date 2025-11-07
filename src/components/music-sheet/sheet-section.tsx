@@ -10,7 +10,6 @@ interface SheetSectionProps {
   pianoTheme: PianoTheme;
   favorites: string[];
   onSelectSheet: (sheetId: string) => void;
-  onToggleFavorite: (sheetId: string, event: React.MouseEvent) => void;
   showDivider?: boolean;
   emptyMessage?: string;
 }
@@ -24,7 +23,6 @@ export const SheetSection: React.FC<SheetSectionProps> = ({
   pianoTheme,
   favorites,
   onSelectSheet,
-  onToggleFavorite,
   showDivider = false,
   emptyMessage,
 }) => {
@@ -57,7 +55,6 @@ export const SheetSection: React.FC<SheetSectionProps> = ({
               pianoTheme={pianoTheme}
               favorites={favorites}
               onSelect={onSelectSheet}
-              onToggleFavorite={onToggleFavorite}
             />
           ))
         ) : (

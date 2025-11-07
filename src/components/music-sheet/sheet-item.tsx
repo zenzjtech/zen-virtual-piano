@@ -11,6 +11,7 @@ import {
   Star as StarIcon,
   StarBorder as StarBorderIcon,
   MusicNote as MusicNoteIcon,
+  Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from '../piano/themes';
 import {
@@ -19,13 +20,14 @@ import {
 } from '../piano/popup-styled-components';
 import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { getDifficultyColor, isFavorite } from './sheet-search-utils';
+import { useAppDispatch } from '@/store/hook';
+import { toggleFavorite, deleteSheet } from '@/store/reducers/music-sheet-slice';
 
 interface SheetItemProps {
   sheet: MusicSheetMetadata;
   pianoTheme: PianoTheme;
   favorites: string[];
   onSelect: (sheetId: string) => void;
-  onToggleFavorite: (sheetId: string, event: React.MouseEvent) => void;
 }
 
 /**
@@ -36,36 +38,38 @@ export const SheetItem: React.FC<SheetItemProps> = ({
   pianoTheme,
   favorites,
   onSelect,
-  onToggleFavorite,
 }) => {
+  const dispatch = useAppDispatch();
   const isSheetFavorite = isFavorite(sheet.id, favorites);
+  
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    e.nativeEvent.stopImmediatePropagation();
+    dispatch(toggleFavorite(sheet.id));
+    return false;
+  };
+  
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    e.nativeEvent.stopImmediatePropagation();
+    dispatch(deleteSheet(sheet.id));
+    return false;
+  };
 
   return (
     <StyledListItem
       key={sheet.id}
       disablePadding
       pianoTheme={pianoTheme}
-      secondaryAction={
-        <IconButton
-          edge="end"
-          size="small"
-          onClick={(e) => onToggleFavorite(sheet.id, e)}
-          sx={{
-            color: isSheetFavorite ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
-            transition: 'all 0.2s ease',
-            '&:hover': {
-              color: pianoTheme.colors.accent,
-            },
-          }}
-        >
-          {isSheetFavorite ? <StarIcon /> : <StarBorderIcon />}
-        </IconButton>
-      }
+      sx={{ position: 'relative' }}
     >
       <StyledListItemButton
         onClick={() => onSelect(sheet.id)}
         sx={{
-          py: 0
+          py: 0,
+          pr: 10, // Add padding for buttons
         }}
         pianoTheme={pianoTheme}
       >
@@ -158,6 +162,51 @@ export const SheetItem: React.FC<SheetItemProps> = ({
           }
         />
       </StyledListItemButton>
+      
+      {/* Manually positioned buttons */}
+      <Box
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          display: 'flex',
+          gap: 0.5,
+          zIndex: 100,
+        }}
+      >
+        <IconButton
+          size="small"
+          onClick={handleFavoriteClick}
+          onMouseDown={(e) => e.stopPropagation()}
+          sx={{
+            color: isSheetFavorite ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              color: pianoTheme.colors.accent,
+            },
+          }}
+        >
+          {isSheetFavorite ? <StarIcon /> : <StarBorderIcon />}
+        </IconButton>
+        <IconButton
+          size="small"
+          onClick={handleDeleteClick}
+          onMouseDown={(e) => e.stopPropagation()}
+          sx={{
+            color: pianoTheme.colors.secondary,
+            transition: 'all 0.2s ease',
+            opacity: 0.7,
+            '&:hover': {
+              color: pianoTheme.isLight ? '#d32f2f' : '#ff5252',
+              opacity: 1,
+              backgroundColor: pianoTheme.isLight ? 'rgba(211, 47, 47, 0.08)' : 'rgba(255, 82, 82, 0.08)',
+            },
+          }}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </Box>
     </StyledListItem>
   );
 };
