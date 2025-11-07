@@ -2,9 +2,10 @@
  * Main Header component
  */
 
-import { AppBar, Toolbar } from '@mui/material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 import { useAppSelector } from '@/store/hook';
 import { HeaderLogo } from './header-logo';
+import { HeaderQuote } from './header-quote';
 import { HeaderActions } from './header-actions';
 import { UserMenu } from './user-menu';
 import { useHeaderHandlers } from './use-header-handlers';
@@ -46,23 +47,37 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
     >
       <Toolbar sx={toolbarStyles}>
         {/* Left: Logo and Title */}
-        <HeaderLogo
-          backgroundThemeId={backgroundThemeId}
-          isDarkBackground={isDarkBackground}
-          headerStyle={currentPreset?.headerStyle}
-          category={currentPreset?.category}
-          onLogoClick={handleLogoClick}
-        />
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+          <HeaderLogo
+            backgroundThemeId={backgroundThemeId}
+            isDarkBackground={isDarkBackground}
+            headerStyle={currentPreset?.headerStyle}
+            category={currentPreset?.category}
+            onLogoClick={handleLogoClick}
+          />
+        </Box>
+
+        {/* Center: Inspirational Quote */}
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+          <HeaderQuote
+            isDarkBackground={isDarkBackground}
+            headerStyle={currentPreset?.headerStyle}
+            category={currentPreset?.category}
+            quoteStyle={currentPreset?.quoteStyle}
+          />
+        </Box>
 
         {/* Right: Action Buttons */}
-        <HeaderActions
-          isDarkBackground={isDarkBackground}
-          isAuthenticated={isAuthenticated}
-          isAuthenticating={isAuthenticating}
-          googleUser={googleUser}
-          onHelp={handleHelp}
-          onAccount={handleAccount}
-        />
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+          <HeaderActions
+            isDarkBackground={isDarkBackground}
+            isAuthenticated={isAuthenticated}
+            isAuthenticating={isAuthenticating}
+            googleUser={googleUser}
+            onHelp={handleHelp}
+            onAccount={handleAccount}
+          />
+        </Box>
 
         {/* User Menu */}
         <UserMenu
