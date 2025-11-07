@@ -156,25 +156,26 @@ const PlaybackContainer = styled(Paper, {
 });
 
 const ControlButton = styled(IconButton, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isActive',
-})<{ pianoTheme: PianoTheme; isActive?: boolean }>(({ pianoTheme, isActive }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'isActive' && prop !== 'buttonOpacity',
+})<{ pianoTheme: PianoTheme; isActive?: boolean; buttonOpacity?: number }>(({ pianoTheme, isActive, buttonOpacity = 1.0 }) => ({
   color: pianoTheme.colors.secondary,
+  opacity: buttonOpacity,
   zIndex: 3,
   transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
   transform: 'scale(1)',
   '&:hover': {
     color: pianoTheme.colors.accent,
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
     transform: 'scale(1.1)',
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    opacity: 1.0,
   },
   '&:active': {
     transform: 'scale(0.95)',
   },
-  '&.Mui-disabled': {
-    color: 'rgba(255, 255, 255, 0.3)',
-  },
   ...(isActive && {
-    animation: `${pulse} 2s ease-in-out infinite`,
+    color: pianoTheme.colors.accent,
+    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    opacity: 1.0,
   }),
 }));
 
@@ -290,49 +291,49 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
               pianoTheme={pianoTheme}
               size="small"
               isActive={isPlaying}
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               {isPlaying ? <PauseIcon fontSize="small" /> : <PlayIcon fontSize="small" />}
             </ControlButton>
           </Tooltip>
 
           <Tooltip title="Stop">
-            <ControlButton
-              onClick={onStop}
-              pianoTheme={pianoTheme}
+            <ControlButton 
+              onClick={onStop} 
+              pianoTheme={pianoTheme} 
               size="small"
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               <StopIcon fontSize="small" />
             </ControlButton>
           </Tooltip>
 
           <Tooltip title={loop ? 'Loop: ON' : 'Loop: OFF'}>
-            <ControlButton
-              onClick={onToggleLoop}
-              pianoTheme={pianoTheme}
-              size="small"
-              sx={{
-                color: loop ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
-              }}
+            <ControlButton 
+              onClick={onToggleLoop} 
+              pianoTheme={pianoTheme} 
+              size="small" 
+              isActive={loop}
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               <LoopIcon fontSize="small" />
             </ControlButton>
           </Tooltip>
         </Box>
 
-        {/* Progress Bar with Time */}
-        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', gap: 1, zIndex: 3, minWidth: 0 }}>
+        {/* Time Display and Progress */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1, minWidth: 0, zIndex: 3 }}>
           <Typography
             variant="caption"
             sx={{
-              color: pianoTheme.colors.secondary,
               fontFamily: 'monospace',
               fontSize: '0.65rem',
-              minWidth: '70px',
               whiteSpace: 'nowrap',
-              zIndex: 3,
+              color: pianoTheme.colors.secondary,
+              opacity: playbackBarStyle?.timeOpacity || 0.95,
             }}
           >
-            {currentPositionFormatted}
+            {currentPositionFormatted} / {totalDurationFormatted}
           </Typography>
           
           <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -363,32 +364,37 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
           </Typography>
         </Box>
 
-        {/* Speed Control */}
-        <Tooltip title="Playback Speed">
-          <SpeedButton pianoTheme={pianoTheme} onClick={handleSpeedClick}>
-            <SpeedIcon sx={{ fontSize: '0.9rem' }} />
-            <span style={{ fontSize: '0.7rem' }}>{playbackSpeed}x</span>
-          </SpeedButton>
-        </Tooltip>
+        {/* Speed Control and Actions */}
+        <Box sx={{ display: 'flex', gap: 0.25, alignItems: 'center', zIndex: 3 }}>
+          <Tooltip title="Playback Speed">
+            <SpeedButton pianoTheme={pianoTheme} onClick={handleSpeedClick}>
+              <Typography sx={{ 
+                fontSize: '0.7rem', 
+                fontWeight: 600,
+                opacity: playbackBarStyle?.speedOpacity || 0.95,
+              }}>
+                {playbackSpeed}x
+              </Typography>
+            </SpeedButton>
+          </Tooltip>
 
-        {/* Action Buttons */}
-        <Box sx={{ display: 'flex', gap: 0.25, zIndex: 3 }}>
           <Tooltip title="Download Recording">
-            <ControlButton
-              onClick={onDownload}
-              pianoTheme={pianoTheme}
+            <ControlButton 
+              onClick={onDownload} 
+              pianoTheme={pianoTheme} 
               size="small"
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               <DownloadIcon fontSize="small" />
             </ControlButton>
           </Tooltip>
 
           <Tooltip title="Clear Recording">
-            <ControlButton
-              onClick={onClear}
-              pianoTheme={pianoTheme}
+            <ControlButton 
+              onClick={onClear} 
+              pianoTheme={pianoTheme} 
               size="small"
-              sx={{ '&:hover': { color: '#f44336' } }}
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               <DeleteIcon fontSize="small" />
             </ControlButton>
@@ -417,6 +423,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
               pianoTheme={pianoTheme}
               size="small"
               isActive={isPlaying}
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </ControlButton>
@@ -427,6 +434,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
               onClick={onStop}
               pianoTheme={pianoTheme}
               size="small"
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               <StopIcon />
             </ControlButton>
@@ -437,9 +445,8 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
               onClick={onToggleLoop}
               pianoTheme={pianoTheme}
               size="small"
-              sx={{
-                color: loop ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
-              }}
+              isActive={loop}
+              buttonOpacity={playbackBarStyle?.buttonOpacity}
             >
               <LoopIcon />
             </ControlButton>
@@ -455,6 +462,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             fontSize: '0.75rem',
             minWidth: '80px',
             zIndex: 3,
+            opacity: playbackBarStyle?.timeOpacity || 0.95,
           }}
         >
           {currentPositionFormatted} / {totalDurationFormatted}
@@ -464,7 +472,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
         <Tooltip title="Playback Speed">
           <SpeedButton pianoTheme={pianoTheme} onClick={handleSpeedClick}>
             <SpeedIcon sx={{ fontSize: '1rem' }} />
-            <span>{playbackSpeed}x</span>
+            <span style={{ opacity: playbackBarStyle?.speedOpacity || 0.95 }}>{playbackSpeed}x</span>
           </SpeedButton>
         </Tooltip>
 
@@ -477,6 +485,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             onClick={onDownload}
             pianoTheme={pianoTheme}
             size="small"
+            buttonOpacity={playbackBarStyle?.buttonOpacity}
           >
             <DownloadIcon />
           </ControlButton>
@@ -487,7 +496,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             onClick={onClear}
             pianoTheme={pianoTheme}
             size="small"
-            sx={{ '&:hover': { color: '#f44336' } }}
+            buttonOpacity={playbackBarStyle?.buttonOpacity}
           >
             <DeleteIcon />
           </ControlButton>
