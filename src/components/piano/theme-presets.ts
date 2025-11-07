@@ -241,6 +241,19 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
+  {
+    id: 'tibetan-enlightenment',
+    name: 'Tibetan Enlightenment',
+    description: 'Sacred mountains with ancient wisdom scroll',
+    pianoTheme: 'wooden',
+    backgroundTheme: 'tibet-sacred-mountains',
+    musicSheetTheme: 'paper-10',
+    category: 'cultural',
+    headerStyle: 'cultural-serif',
+    headerThemeStyle: HEADER_THEME_STYLES.cultural,
+    quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
+  },
   
   // Nature Presets
   {

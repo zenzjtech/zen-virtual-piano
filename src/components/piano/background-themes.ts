@@ -135,6 +135,14 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
     gradient: 'linear-gradient(135deg, #F0E68C 0%, #DAA520 25%, #00704A 60%, #004D40 100%)',
     category: 'cultural',
   },
+  {
+    id: 'tibet-sacred-mountains',
+    name: 'Sacred Mountains (གངས་རི)',
+    description: 'Tibetan Buddhism meditation and enlightenment',
+    color: '#8B2D3A',
+    gradient: 'linear-gradient(135deg, #F4E5B8 0%, #D4A574 15%, #C84B31 35%, #8B2D3A 60%, #4A6FA5 85%, #2B4F6F 100%)',
+    category: 'cultural',
+  },
   // Gradients
   {
     id: 'gradient-sunset',
