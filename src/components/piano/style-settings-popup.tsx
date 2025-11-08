@@ -13,6 +13,7 @@ import {
   Piano as PianoIcon,
   Wallpaper as BackgroundIcon,
   LibraryMusic as MusicSheetIcon,
+  Settings as SettingsIcon,
 } from '@mui/icons-material';
 import { getAllThemes, PianoTheme } from './themes';
 import { BACKGROUND_THEMES } from './background-themes';
@@ -43,6 +44,8 @@ interface StyleSettingsPopupProps {
   showSearch?: boolean;
   /** Whether to show preset selector (default: true) */
   showPresets?: boolean;
+  /** Callback to open global settings dialog */
+  onOpenSettings?: () => void;
 }
 
 
@@ -59,6 +62,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   pianoTheme,
   showSearch = true,
   showPresets = true,
+  onOpenSettings,
 }) => {
   const theme = useTheme();
   const pianoThemes = getAllThemes();
@@ -122,28 +126,70 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
       <ClickAwayListener onClickAway={onClose}>
         <StyledPopupPaper elevation={8} pianoTheme={pianoTheme}>
           <PopupHeaderBox pianoTheme={pianoTheme}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <PaletteIcon
-                sx={{
-                  color: pianoTheme.colors.accent,
-                  fontSize: '1.5rem',
-                  filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
-                }}
-              />
-              <Typography
-                variant="h6"
-                fontWeight="600"
-                sx={{
-                  color: pianoTheme.colors.primary,
-                  textShadow: `
-                    0 1px 2px rgba(0, 0, 0, 0.3),
-                    0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
-                  `,
-                  letterSpacing: '0.5px',
-                }}
-              >
-                Style Settings
-              </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <PaletteIcon
+                  sx={{
+                    color: pianoTheme.colors.accent,
+                    fontSize: '1.5rem',
+                    filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  fontWeight="600"
+                  sx={{
+                    color: pianoTheme.colors.primary,
+                    textShadow: `
+                      0 1px 2px rgba(0, 0, 0, 0.3),
+                      0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
+                    `,
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Style Settings
+                </Typography>
+              </Box>
+              
+              {/* Settings Button */}
+              {onOpenSettings && (
+                <Box
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenSettings();
+                  }}
+                  sx={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 32,
+                    height: 32,
+                    borderRadius: '8px',
+                    backgroundColor: pianoTheme.isLight
+                      ? 'rgba(0, 0, 0, 0.05)'
+                      : 'rgba(255, 255, 255, 0.08)',
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      backgroundColor: pianoTheme.isLight
+                        ? 'rgba(0, 0, 0, 0.1)'
+                        : 'rgba(255, 255, 255, 0.15)',
+                      transform: 'scale(1.05)',
+                    },
+                    '&:active': {
+                      transform: 'scale(0.95)',
+                    },
+                  }}
+                >
+                  <SettingsIcon
+                    sx={{
+                      fontSize: '1.1rem',
+                      color: pianoTheme.colors.primary,
+                      filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))`,
+                    }}
+                  />
+                </Box>
+              )}
             </Box>
           </PopupHeaderBox>
           
