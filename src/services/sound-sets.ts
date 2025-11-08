@@ -10,7 +10,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel' | 'harp' | 'cello';
+  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel' | 'harp' | 'cello' | 'saxophone';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -174,6 +174,22 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     customMapper: 'fullChromatic',
     characteristics: {
       brightness: 'mellow',
+      sustain: 'long',
+      attack: 'medium',
+    },
+  },
+  
+  'saxophone-standard': {
+    id: 'saxophone-standard',
+    name: 'Saxophone',
+    description: 'Smooth jazz saxophone',
+    type: 'saxophone',
+    path: 'standard',
+    sampleNotes: ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B'], // Full chromatic sampling
+    customMapper: 'fullChromatic',
+    sustainOffset: -9,
+    characteristics: {
+      brightness: 'bright',
       sustain: 'long',
       attack: 'medium',
     },
