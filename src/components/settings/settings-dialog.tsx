@@ -24,18 +24,21 @@ import {
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hook';
+import { useSettingsTheme } from './use-settings-theme';
 import {
   setShowQuote,
   setQuoteInterval,
   setShowOnlyFavorites,
   type QuoteInterval,
 } from '@/store/reducers/quote-settings-slice';
+import type { HeaderThemeStyle } from '../header/header-theme-styles';
 
 interface SettingsDialogProps {
   open: boolean;
   onClose: () => void;
   isDarkBackground: boolean;
   initialTab?: 'general' | 'quotes' | 'piano' | 'keyboard';
+  headerThemeStyle?: HeaderThemeStyle;
 }
 
 interface TabPanelProps {
@@ -60,6 +63,7 @@ export const SettingsDialog = ({
   onClose,
   isDarkBackground,
   initialTab = 'general',
+  headerThemeStyle,
 }: SettingsDialogProps) => {
   const dispatch = useAppDispatch();
   const quoteSettings = useAppSelector((state) => state.quoteSettings);
@@ -83,13 +87,18 @@ export const SettingsDialog = ({
     setTabValue(newValue);
   };
 
-  // Theme-aware colors
-  const dialogBg = isDarkBackground ? 'rgba(30, 30, 30, 0.98)' : 'rgba(255, 255, 255, 0.98)';
-  const textColor = isDarkBackground ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.87)';
-  const secondaryTextColor = isDarkBackground ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)';
-  const borderColor = isDarkBackground ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)';
-  const paperBg = isDarkBackground ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)';
-  const hoverBg = isDarkBackground ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)';
+  // Extract theme-aware colors using custom hook
+  const {
+    backdropBlur,
+    dialogBg,
+    borderColor,
+    boxShadow,
+    hoverBg,
+    textColor,
+    secondaryTextColor,
+    paperBg,
+    highlightBg,
+  } = useSettingsTheme(isDarkBackground, headerThemeStyle);
 
   const intervalLabels: Record<QuoteInterval, string> = {
     daily: 'Daily',
@@ -109,12 +118,11 @@ export const SettingsDialog = ({
         sx: {
           bgcolor: dialogBg,
           backgroundImage: 'none',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          backdropFilter: backdropBlur,
+          WebkitBackdropFilter: backdropBlur,
           borderRadius: 2,
-          boxShadow: isDarkBackground
-            ? '0 8px 32px rgba(0, 0, 0, 0.5)'
-            : '0 8px 32px rgba(0, 0, 0, 0.15)',
+          boxShadow: boxShadow,
+          border: `1px solid ${borderColor}`,
         },
       }}
     >
@@ -287,9 +295,7 @@ export const SettingsDialog = ({
                               '&.Mui-selected': {
                                 bgcolor: hoverBg,
                                 '&:hover': {
-                                  bgcolor: isDarkBackground
-                                    ? 'rgba(255, 255, 255, 0.12)'
-                                    : 'rgba(0, 0, 0, 0.08)',
+                                  bgcolor: highlightBg,
                                 },
                               },
                             },

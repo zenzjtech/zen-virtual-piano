@@ -139,6 +139,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
         onClose={handleCloseSettings}
         isDarkBackground={isDarkBackground}
         initialTab={settingsTab}
+        headerThemeStyle={currentPreset?.headerThemeStyle}
       />
     </AppBar>
   );
