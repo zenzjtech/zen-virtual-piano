@@ -92,21 +92,6 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
-  'flute-pan': {
-    id: 'flute-pan',
-    name: 'Pan Flute',
-    description: 'Smooth pan flute sound',
-    type: 'flute',
-    path: 'pan',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    sustainOffset: -10,
-    characteristics: {
-      brightness: 'bright',
-      sustain: 'medium',
-      attack: 'soft',
-    },
-  },
-  
   'violin-standard': {
     id: 'violin-standard',
     name: 'Violin',
@@ -197,6 +182,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       attack: 'medium',
     },
   },
+
   'harp-standard': {
     id: 'harp-standard',
     name: 'Harp',
