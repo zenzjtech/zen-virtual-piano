@@ -12,6 +12,7 @@ import { MusicStand } from '@/components/music-sheet/music-stand';
 import { Header } from '@/components/header';
 import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
 import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-dialog';
+import { SettingsDialog } from '@/components/settings';
 import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { THEME_PRESETS } from '@/components/piano/theme-presets';
@@ -32,6 +33,7 @@ import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useRecordingPlayback } from '@/hooks/use-recording-playback';
 import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
+import { useAutoThemeRotation } from '@/hooks/use-auto-theme-rotation';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -77,11 +79,15 @@ function App() {
   // Keyboard shortcuts dialog state
   const [isKeyboardShortcutsOpen, setIsKeyboardShortcutsOpen] = useState(false);
   
+  // Settings dialog state
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settingsTab, setSettingsTab] = useState<'general' | 'quotes' | 'piano' | 'keyboard'>('general');
+  
   // Sheet search hook
   const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchOpen, handleSheetSearchClose } = useSheetSearch();
   
   // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
-  const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen && !isKeyboardShortcutsOpen;
+  const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen && !isKeyboardShortcutsOpen && !settingsOpen;
   
   // Sound settings state
   const soundSettings = useSoundSettings();
@@ -106,6 +112,9 @@ function App() {
 
   // Restore auth session on mount (if cached token exists)
   useAuthRestore();
+
+  // Auto theme rotation
+  useAutoThemeRotation(uid);
 
   useEffect(() => {    
       trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
@@ -182,7 +191,8 @@ function App() {
         !styleSettingsPopup.isOpen &&
         !keyAssistPopup.isOpen &&
         !isSheetSearchOpen &&
-        !isKeyboardShortcutsOpen
+        !isKeyboardShortcutsOpen &&
+        !settingsOpen
       ) {
         const target = event.target as HTMLElement;
         const isInputField = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
@@ -196,7 +206,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [instrumentPopup.isOpen, soundSettingsPopup.isOpen, styleSettingsPopup.isOpen, keyAssistPopup.isOpen, isSheetSearchOpen, isKeyboardShortcutsOpen]);
+  }, [instrumentPopup.isOpen, soundSettingsPopup.isOpen, styleSettingsPopup.isOpen, keyAssistPopup.isOpen, isSheetSearchOpen, isKeyboardShortcutsOpen, settingsOpen]);
 
 
   // Define playNote and stopNote callbacks for playback
@@ -327,6 +337,16 @@ function App() {
   
   const handleMusicSheetThemeChange = (themeId: string) => {
     dispatch(setMusicSheetTheme(themeId));
+  };
+
+  // Settings dialog handlers
+  const handleOpenSettings = (tab: 'general' | 'quotes' | 'piano' | 'keyboard' = 'general') => {
+    setSettingsTab(tab);
+    setSettingsOpen(true);
+  };
+
+  const handleCloseSettings = () => {
+    setSettingsOpen(false);
   };
 
   // Get background theme styles and determine if it's a dark background
@@ -509,6 +529,17 @@ function App() {
         onBackgroundThemeChange={handleBackgroundThemeChange}
         onMusicSheetThemeChange={handleMusicSheetThemeChange}
         pianoTheme={pianoTheme}
+        onOpenSettings={() => handleOpenSettings('general')}
+      />
+
+      {/* Settings Dialog */}
+      <SettingsDialog
+        open={settingsOpen}
+        onClose={handleCloseSettings}
+        isDarkBackground={isDarkBackground}
+        initialTab={settingsTab}
+        headerThemeStyle={currentPreset?.headerThemeStyle}
+        currentPreset={currentPreset}
       />
 
       {/* Key Assist Popup */}
