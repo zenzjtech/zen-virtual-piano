@@ -64,12 +64,29 @@ export const SOUND_SETS: Record<string, SoundSet> = {
   'organ-standard': {
     id: 'organ-standard',
     name: 'Standard Organ',
-    description: 'Classic church organ sound',
+    description: 'Classic church organ with continuous tone',
     type: 'organ',
     path: 'standard',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    sustainOffset: -2, // Minimal offset for natural digital playback
     characteristics: {
       brightness: 'bright',
+      sustain: 'long',
+      attack: 'soft',
+    },
+  },
+  
+  'organ-harmonium': {
+    id: 'organ-harmonium',
+    name: 'Harmonium',
+    description: 'Warm pump organ with bellows-driven sustain',
+    type: 'organ',
+    path: 'harmonium',
+    sampleNotes: ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B'], // Full chromatic sampling
+    customMapper: 'fullChromatic',
+    sustainOffset: -8, // Slight reduction for bellows breathing characteristic
+    characteristics: {
+      brightness: 'balanced',
       sustain: 'long',
       attack: 'soft',
     },
