@@ -10,7 +10,7 @@ export interface SoundSet {
   name: string;
   description: string;
   /** Instrument type */
-  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel' | 'harp';
+  type: 'piano' | 'organ' | 'flute' | 'violin' | 'guitar' | 'glockenspiel' | 'harp' | 'cello';
   /** Path to the audio folder (relative to assets/audio/{type}/) */
   path: string;
   /** Sample notes available (used for pitch-shifting) */
@@ -20,7 +20,7 @@ export interface SoundSet {
   /** 
    * Custom sample mapper key (optional)
    * If not specified, uses default mapper for instrument type
-   * Available: 'chromatic', 'naturalNotes'
+   * Available: 'chromatic', 'naturalNotes', 'fullChromatic'
    */
   customMapper?: string;
   /** Audio characteristics */
@@ -213,6 +213,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     characteristics: {
       brightness: 'bright',
       sustain: 'medium',
+      attack: 'soft',
+    },
+  },
+  
+  'cello-standard': {
+    id: 'cello-standard',
+    name: 'Cello',
+    description: 'Rich and warm orchestral cello',
+    type: 'cello',
+    path: 'standard',
+    sampleNotes: ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B'], // Full chromatic sampling
+    sustainOffset: -8,
+    characteristics: {
+      brightness: 'mellow',
+      sustain: 'long',
       attack: 'soft',
     },
   },

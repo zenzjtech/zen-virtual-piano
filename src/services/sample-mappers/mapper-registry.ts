@@ -7,6 +7,7 @@
 import { SampleMapper } from './types';
 import { chromaticMapper } from './chromatic-mapper';
 import { naturalNotesMapper } from './natural-notes-mapper';
+import { fullChromaticMapper } from './full-chromatic-mapper';
 
 /**
  * Registry of available sample mappers
@@ -14,6 +15,7 @@ import { naturalNotesMapper } from './natural-notes-mapper';
 export const MAPPER_REGISTRY: Record<string, SampleMapper> = {
   chromatic: chromaticMapper,
   naturalNotes: naturalNotesMapper,
+  fullChromatic: fullChromaticMapper,
 };
 
 /**
@@ -28,6 +30,7 @@ export const DEFAULT_INSTRUMENT_MAPPERS: Record<string, string> = {
   guitar: 'chromatic',
   glockenspiel: 'chromatic',
   harp: 'naturalNotes',
+  cello: 'fullChromatic',
 };
 
 /**
