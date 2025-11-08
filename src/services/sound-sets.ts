@@ -133,6 +133,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
+  'guitar-acoustic': {
+    id: 'guitar-acoustic',
+    name: 'Acoustic Guitar',
+    description: 'Full-bodied acoustic steel-string guitar',
+    type: 'guitar',
+    path: 'accoustic',
+    sampleNotes: ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B'], // Full chromatic sampling
+    customMapper: 'fullChromatic',
+    characteristics: {
+      brightness: 'balanced',
+      sustain: 'medium',
+      attack: 'medium',
+    },
+  },
+  
   'glockenspiel-standard': {
     id: 'glockenspiel-standard',
     name: 'Glockenspiel',
