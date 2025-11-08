@@ -20,7 +20,7 @@ export interface SoundSet {
   /** 
    * Custom sample mapper key (optional)
    * If not specified, uses default mapper for instrument type
-   * Available: 'chromatic', 'naturalNotes', 'fullChromatic'
+   * Available: 'chromatic', 'chromaticDirect', 'naturalNotes', 'fullChromatic'
    */
   customMapper?: string;
   /** Audio characteristics */
@@ -39,6 +39,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     type: 'piano',
     path: 'classical',
     sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    characteristics: {
+      brightness: 'balanced',
+      sustain: 'medium',
+      attack: 'medium',
+    },
+  },
+  
+  'classical-1': {
+    id: 'classical-1',
+    name: 'Classical Piano Pro',
+    description: 'Premium classical piano with optimized chromatic samples',
+    type: 'piano',
+    path: 'classical-1',
+    sampleNotes: ['C', 'Ds', 'Fs', 'A'], // Chromatic pattern (every 3 semitones)
+    customMapper: 'chromaticDirect', // Direct mapping without octave downshift
     characteristics: {
       brightness: 'balanced',
       sustain: 'medium',

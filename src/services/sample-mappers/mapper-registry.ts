@@ -6,6 +6,7 @@
 
 import { SampleMapper } from './types';
 import { chromaticMapper } from './chromatic-mapper';
+import { chromaticDirectMapper } from './chromatic-direct-mapper';
 import { naturalNotesMapper } from './natural-notes-mapper';
 import { fullChromaticMapper } from './full-chromatic-mapper';
 
@@ -14,6 +15,7 @@ import { fullChromaticMapper } from './full-chromatic-mapper';
  */
 export const MAPPER_REGISTRY: Record<string, SampleMapper> = {
   chromatic: chromaticMapper,
+  chromaticDirect: chromaticDirectMapper,
   naturalNotes: naturalNotesMapper,
   fullChromatic: fullChromaticMapper,
 };
