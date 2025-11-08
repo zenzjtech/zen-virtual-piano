@@ -122,20 +122,6 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
-  'guitar-classical': {
-    id: 'guitar-classical',
-    name: 'Classical Guitar',
-    description: 'Warm acoustic classical guitar',
-    type: 'guitar',
-    path: 'classical',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'mellow',
-      sustain: 'medium',
-      attack: 'sharp',
-    },
-  },
-  
   'guitar-acoustic': {
     id: 'guitar-acoustic',
     name: 'Acoustic Guitar',
