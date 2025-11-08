@@ -119,20 +119,6 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
-  'guitar-flamenco': {
-    id: 'guitar-flamenco',
-    name: 'Flamenco Guitar',
-    description: 'Passionate Spanish flamenco guitar',
-    type: 'guitar',
-    path: 'flamenco',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'bright',
-      sustain: 'short',
-      attack: 'sharp',
-    },
-  },
-  
   'guitar-acoustic': {
     id: 'guitar-acoustic',
     name: 'Acoustic Guitar',
