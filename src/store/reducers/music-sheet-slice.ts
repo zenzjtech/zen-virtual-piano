@@ -295,8 +295,15 @@ export const musicSheetSlice = createSlice({
         
         if (fullSheet) {
           state.currentSheet = fullSheet;
-          state.playback.currentSheetId = sheetId;
-          state.playback.tempo = fullSheet.tempo;
+          // Reset playback state for new sheet
+          const newPlaybackState: PlaybackState = {
+            ...initialPlaybackState,
+            currentSheetId: sheetId,
+            tempo: fullSheet.tempo,
+            autoScroll: state.playback.autoScroll, // Keep user preference
+            loopEnabled: state.playback.loopEnabled, // Keep user preference
+          };
+          state.playback = newPlaybackState;
           state.isMusicStandVisible = true;
           
           // Clear the manual close flag since user is loading a sheet again
