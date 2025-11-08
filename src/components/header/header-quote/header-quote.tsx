@@ -57,7 +57,7 @@ export const HeaderQuote = ({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 1,
-        maxWidth: '800px',
+        maxWidth: '1200px',
       }}
     >
       {/* Quote Container */}

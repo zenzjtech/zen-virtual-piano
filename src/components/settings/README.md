@@ -1,51 +1,153 @@
-# Settings Component
+# Settings Component - Modular Architecture
 
-Application-wide settings dialog with theme-aware styling integrated with the theme preset system.
+Application-wide settings dialog with theme-aware styling and modular code structure.
 
 ## Structure
 
 ```
 settings/
-├── index.ts                    # Public exports
-├── settings-dialog.tsx         # Main settings dialog component
-├── use-settings-theme.ts       # Theme extraction hook
-└── README.md                   # This file
+├── index.ts                       # Public exports
+├── types.ts                       # Shared TypeScript types
+├── settings-dialog.tsx            # Main dialog orchestrator (138 lines)
+├── use-settings-theme.ts          # Theme extraction hook
+│
+├── components/                    # Reusable setting components
+│   ├── index.ts
+│   ├── settings-header.tsx        # Dialog header with theme/instrument info
+│   ├── tab-panel.tsx              # Tab panel wrapper with animations
+│   ├── setting-section.tsx        # Reusable section wrapper
+│   └── setting-toggle.tsx         # Reusable toggle switch
+│
+├── tabs/                          # Tab content components
+│   ├── index.ts
+│   ├── general-tab.tsx            # General settings
+│   ├── quotes-tab.tsx             # Quote preferences
+│   ├── piano-tab.tsx              # Piano settings
+│   └── keyboard-tab.tsx           # Keyboard shortcuts
+│
+└── README.md                      # This file
 ```
+
+## Architecture Benefits
+
+### **1. Modularity**
+- Each component has single responsibility
+- Easy to locate and modify specific features
+- Reusable components across tabs
+
+### **2. Maintainability**
+- **Main dialog reduced from 450+ lines to 138 lines** (69% smaller!)
+- Clear separation of concerns
+- Easy to add new settings tabs
+
+### **3. Reusability**
+- `SettingToggle` - Reusable toggle switches
+- `SettingSection` - Consistent section styling
+- `TabPanel` - Reusable tab wrapper
+- `SettingsHeader` - Shared header component
+
+### **4. Testability**
+- Components can be tested in isolation
+- Mock theme easily
+- Test individual tabs independently
 
 ## Components
 
-### `SettingsDialog`
-Full-featured tabbed settings dialog for the extension.
+### Core Dialog
 
-**Features:**
-- Tab navigation (General, Quotes, Piano, Keyboard)
-- Theme-aware styling from `HeaderThemeStyle`
-- Responsive design
-- Backdrop blur effects
-- Smooth animations
+#### `SettingsDialog` (138 lines)
+Main orchestrator that composes all sub-components.
 
 **Props:**
-- `open: boolean` - Dialog open state
-- `onClose: () => void` - Close handler
-- `isDarkBackground: boolean` - Theme context
-- `initialTab?: 'general' | 'quotes' | 'piano' | 'keyboard'` - Initial tab
-- `headerThemeStyle?: HeaderThemeStyle` - Theme styling from current preset
+```typescript
+interface SettingsDialogProps {
+  open: boolean;
+  onClose: () => void;
+  isDarkBackground: boolean;
+  initialTab?: SettingsTab;
+  headerThemeStyle?: HeaderThemeStyle;
+  currentPreset?: ThemePreset;
+}
+```
 
-**Tabs:**
-1. **General** - General extension settings (coming soon)
-2. **Quotes** - Quote display preferences
-   - Show/hide quotes toggle
-   - Quote change interval selection
-   - Show only favorites option
-3. **Piano** - Piano settings (coming soon)
-4. **Keyboard** - Keyboard shortcuts (coming soon)
+**Responsibilities:**
+- Dialog structure and layout
+- Tab navigation
+- Theme extraction
+- Animation transitions
 
-### `useSettingsTheme`
-Custom hook for extracting theme-aware colors from `HeaderThemeStyle`.
+### Reusable Components
 
-**Parameters:**
-- `isDarkBackground: boolean` - Current theme mode
-- `headerThemeStyle?: HeaderThemeStyle` - Theme style from preset
+#### `SettingsHeader` (87 lines)
+Dialog header with close button, theme name, and instrument info.
+
+**Features:**
+- Theme preset name display
+- Current instrument display
+- Fade-in animations
+- Theme-aware chips
+
+#### `TabPanel` (22 lines)
+Wrapper for tab content with fade animation.
+
+**Features:**
+- Automatic show/hide
+- Fade transitions (250ms)
+- Accessibility support
+
+#### `SettingSection` (26 lines)
+Reusable section wrapper with consistent styling.
+
+**Usage:**
+```tsx
+<SettingSection theme={theme}>
+  <SettingToggle ... />
+</SettingSection>
+```
+
+#### `SettingToggle` (52 lines)
+Reusable toggle switch with label and description.
+
+**Props:**
+```typescript
+interface SettingToggleProps {
+  label: string;
+  description?: string;
+  checked: boolean;
+  disabled?: boolean;
+  onChange: (checked: boolean) => void;
+  theme: SettingsTheme;
+}
+```
+
+**Usage:**
+```tsx
+<SettingToggle
+  label="Show Inspirational Quotes"
+  description="Display quotes in the header"
+  checked={showQuote}
+  onChange={setShowQuote}
+  theme={theme}
+/>
+```
+
+### Tab Components
+
+#### `QuotesTab` (164 lines)
+Complete quote settings implementation.
+
+**Settings:**
+- Show/hide quotes toggle
+- Quote interval selector
+- Show only favorites toggle
+
+#### `GeneralTab`, `PianoTab`, `KeyboardTab`
+Placeholder tabs ready for future settings.
+
+### Hooks
+
+#### `useSettingsTheme`
+Extracts theme-aware colors from HeaderThemeStyle.
 
 **Returns:**
 ```typescript
@@ -62,15 +164,9 @@ Custom hook for extracting theme-aware colors from `HeaderThemeStyle`.
 }
 ```
 
-**Benefits:**
-- Consistent styling across dialog elements
-- Automatic fallbacks for missing theme data
-- Memoized for performance
-- Easy to reuse in other components
+## Usage
 
-## Theme Integration
-
-The settings dialog uses the same theme styling as the header for visual consistency:
+### Basic Usage
 
 ```tsx
 import { SettingsDialog } from '@/components/settings';
@@ -81,71 +177,136 @@ import { SettingsDialog } from '@/components/settings';
   isDarkBackground={isDarkBackground}
   initialTab="quotes"
   headerThemeStyle={currentPreset?.headerThemeStyle}
+  currentPreset={currentPreset}
 />
 ```
 
-### Theme Properties Used
+### Adding New Settings
 
-From `HeaderThemeStyle`:
-- `appBar.backdropBlur` - Dialog blur effect
-- `appBar.backgroundColor` - Dialog background
-- `appBar.borderColor` - Borders and dividers
-- `appBar.boxShadow` - Dialog shadow
-- `iconButton.hoverBackground` - Interactive elements hover
-
-### Fallback Values
-
-If no theme is provided, sensible defaults are used:
-- **Dark mode**: High contrast, prominent shadows
-- **Light mode**: Subtle colors, soft shadows
-
-## Usage Example
-
+**1. Create a new tab component:**
 ```tsx
-// In header component
-const currentPreset = THEME_PRESETS.find(preset => 
-  preset.pianoTheme === pianoTheme &&
-  preset.backgroundTheme === backgroundTheme &&
-  preset.musicSheetTheme === musicSheetTheme
-);
-
-// Pass theme to dialog
-<SettingsDialog
-  open={settingsOpen}
-  onClose={handleCloseSettings}
-  isDarkBackground={isDarkBackground}
-  initialTab="quotes"
-  headerThemeStyle={currentPreset?.headerThemeStyle}
-/>
+// tabs/my-new-tab.tsx
+export const MyNewTab = ({ theme }: { theme: SettingsTheme }) => {
+  return (
+    <Box>
+      <SettingSection theme={theme}>
+        <SettingToggle
+          label="My Setting"
+          checked={value}
+          onChange={setValue}
+          theme={theme}
+        />
+      </SettingSection>
+    </Box>
+  );
+};
 ```
 
-## State Management
-
-Connects to Redux store:
-- `quoteSettings` - Quote preferences (read/write)
-- Actions: `setShowQuote`, `setQuoteInterval`, `setShowOnlyFavorites`
-
-## Opening Specific Tabs
-
-Use the `initialTab` prop to open directly to a specific section:
-
+**2. Export from tabs/index.ts:**
 ```tsx
-// Open to quote settings
-onOpenSettings('quotes')
-
-// Open to general settings  
-onOpenSettings('general')
+export { MyNewTab } from './my-new-tab';
 ```
 
-The dialog can also be linked with hash navigation:
+**3. Add to main dialog:**
 ```tsx
-// Settings button in quote component
-onOpenSettings={() => handleOpenSettings('quotes')}
+<Tab label="My Tab" id="settings-tab-4" />
+...
+<TabPanel value={tabValue} index={4}>
+  <MyNewTab theme={theme} />
+</TabPanel>
 ```
+
+### Creating Custom Setting Components
+
+```tsx
+// components/my-custom-setting.tsx
+export const MyCustomSetting = ({ theme }: { theme: SettingsTheme }) => {
+  return (
+    <SettingSection theme={theme}>
+      {/* Your custom content */}
+    </SettingSection>
+  );
+};
+```
+
+## Code Reuse Examples
+
+### Reusing SettingToggle
+
+```tsx
+// Multiple toggles with consistent styling
+<SettingSection theme={theme}>
+  <SettingToggle
+    label="Feature 1"
+    description="Description 1"
+    checked={feature1}
+    onChange={setFeature1}
+    theme={theme}
+  />
+</SettingSection>
+
+<SettingSection theme={theme}>
+  <SettingToggle
+    label="Feature 2"
+    description="Description 2"
+    checked={feature2}
+    onChange={setFeature2}
+    theme={theme}
+  />
+</SettingSection>
+```
+
+### Reusing SettingSection
+
+```tsx
+// Consistent section styling automatically
+<SettingSection theme={theme}>
+  <FormControl fullWidth>
+    <InputLabel>My Dropdown</InputLabel>
+    <Select>...</Select>
+  </FormControl>
+</SettingSection>
+```
+
+## Animation System
+
+**Dialog Transitions:**
+- Fade in: 250ms
+- Fade out: 200ms
+
+**Content Animations:**
+- Tab panels: 250ms fade
+- Header chips: 400ms fade
+- Smooth, understated
+
+## File Size Comparison
+
+| File | Before | After | Reduction |
+|------|--------|-------|-----------|
+| Main dialog | 450 lines | 138 lines | **69%** |
+| Quote settings | Inline | 164 lines | Extracted |
+| Header | Inline | 87 lines | Extracted |
+| Reusable components | 0 | 4 files | New |
+
+**Total lines maintained but organized into focused, reusable modules.**
 
 ## Dependencies
 
 - `@mui/material` - UI components
 - `@mui/icons-material` - Icons
 - `@/store` - Redux state management
-- `../header/header-theme-styles` - Theme type definitions
+- `@/services/sound-sets` - Instrument data
+- `../header/header-theme-styles` - Theme definitions
+- `../piano/theme-presets` - Theme preset data
+
+## Future Enhancements
+
+**Easy to add:**
+- New setting tabs (just create new tab component)
+- New setting types (create new reusable component)
+- Custom animations per tab
+- Setting search/filter
+- Import/export settings
+- Setting presets
+
+**All modular additions without touching existing code!**
