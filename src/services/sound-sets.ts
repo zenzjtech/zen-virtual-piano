@@ -164,6 +164,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
+  'guitar-bass-electric': {
+    id: 'guitar-bass-electric',
+    name: 'Electric Bass',
+    description: 'Deep electric bass guitar',
+    type: 'guitar',
+    path: 'bass-electric',
+    sampleNotes: ['As', 'Cs', 'E', 'G'], // Sparse chromatic sampling for bass register
+    customMapper: 'fullChromatic',
+    characteristics: {
+      brightness: 'mellow',
+      sustain: 'long',
+      attack: 'medium',
+    },
+  },
+  
   'glockenspiel-standard': {
     id: 'glockenspiel-standard',
     name: 'Glockenspiel',
