@@ -134,6 +134,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
+  'guitar-electric': {
+    id: 'guitar-electric',
+    name: 'Electric Guitar',
+    description: 'Bright electric guitar sound',
+    type: 'guitar',
+    path: 'electric',
+    sampleNotes: ['Cs', 'E', 'Fs', 'A', 'C', 'Ds'], // Sparse chromatic sampling
+    customMapper: 'fullChromatic',
+    characteristics: {
+      brightness: 'bright',
+      sustain: 'medium',
+      attack: 'sharp',
+    },
+  },
+  
   'glockenspiel-standard': {
     id: 'glockenspiel-standard',
     name: 'Glockenspiel',
