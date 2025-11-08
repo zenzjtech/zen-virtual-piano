@@ -3,18 +3,23 @@
  */
 
 import { AppBar, Toolbar, Box } from '@mui/material';
+import { useState } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { HeaderLogo } from './header-logo';
 import { HeaderQuote } from './header-quote';
 import { HeaderActions } from './header-actions';
 import { UserMenu } from './user-menu';
 import { RecordingPlaybackBar } from '../piano/recording-playback-bar';
+import { SettingsDialog } from '../settings/settings-dialog';
 import { useHeaderHandlers } from './use-header-handlers';
 import { getAppBarStyles, toolbarStyles } from './header-styles';
 import { THEME_PRESETS } from '../piano/theme-presets';
 import type { HeaderProps } from './types';
 
 export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts, recordingPlayback }: HeaderProps) => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settingsTab, setSettingsTab] = useState<'general' | 'quotes' | 'piano' | 'keyboard'>('general');
+
   const {
     googleUser,
     isAuthenticated,
@@ -39,6 +44,16 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
       preset.backgroundTheme === backgroundThemeId &&
       preset.musicSheetTheme === musicSheetTheme
   );
+
+  // Settings handlers
+  const handleOpenSettings = (tab: string = 'general') => {
+    setSettingsTab(tab as 'general' | 'quotes' | 'piano' | 'keyboard');
+    setSettingsOpen(true);
+  };
+
+  const handleCloseSettings = () => {
+    setSettingsOpen(false);
+  };
 
   return (
     <AppBar
@@ -89,6 +104,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
               headerStyle={currentPreset?.headerStyle}
               category={currentPreset?.category}
               quoteStyle={currentPreset?.quoteStyle}
+              onOpenSettings={handleOpenSettings}
             />
           )}
         </Box>
@@ -101,6 +117,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
             isAuthenticating={isAuthenticating}
             googleUser={googleUser}
             onHelp={handleHelp}
+            onSettings={() => handleOpenSettings()}
             onAccount={handleAccount}
           />
         </Box>
@@ -115,6 +132,14 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
           onLogout={handleLogout}
         />
       </Toolbar>
+
+      {/* Settings Dialog */}
+      <SettingsDialog
+        open={settingsOpen}
+        onClose={handleCloseSettings}
+        isDarkBackground={isDarkBackground}
+        initialTab={settingsTab}
+      />
     </AppBar>
   );
 };

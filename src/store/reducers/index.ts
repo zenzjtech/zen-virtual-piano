@@ -3,6 +3,7 @@ import user from '@/store/reducers/user-slice'
 import musicSheet from '@/store/reducers/music-sheet-slice'
 import onboarding from '@/store/reducers/onboarding-slice'
 import recording from '@/store/reducers/recording-slice'
+import quoteSettings from '@/store/reducers/quote-settings-slice'
 
 export default {
     pianoSettings,
@@ -10,4 +11,5 @@ export default {
     musicSheet,
     onboarding,
     recording,
+    quoteSettings,
 }

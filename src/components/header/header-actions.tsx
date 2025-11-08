@@ -3,7 +3,7 @@
  */
 
 import { IconButton, Stack, Avatar, CircularProgress } from '@mui/material';
-import { AccountCircle, HelpOutline } from '@mui/icons-material';
+import { AccountCircle, HelpOutline, Settings as SettingsIcon } from '@mui/icons-material';
 import { getIconColor } from './header-utils';
 import { getIconButtonStyles, iconSizeStyles, avatarSizeStyles } from './header-styles';
 import type { GoogleUserInfo } from '@/types/user-slice';
@@ -15,6 +15,7 @@ interface HeaderActionsProps {
   googleUser: GoogleUserInfo | null;
   onHelp: () => void;
   onAccount: (event: React.MouseEvent<HTMLElement>) => void;
+  onSettings: () => void;
 }
 
 export const HeaderActions = ({
@@ -24,6 +25,7 @@ export const HeaderActions = ({
   googleUser,
   onHelp,
   onAccount,
+  onSettings,
 }: HeaderActionsProps) => {
   const iconColor = getIconColor(isDarkBackground);
 
@@ -35,6 +37,14 @@ export const HeaderActions = ({
         aria-label="Help"
       >
         <HelpOutline sx={iconSizeStyles} />
+      </IconButton>
+
+      <IconButton
+        onClick={onSettings}
+        sx={getIconButtonStyles(iconColor, isDarkBackground)}
+        aria-label="Settings"
+      >
+        <SettingsIcon sx={iconSizeStyles} />
       </IconButton>
 
       <IconButton
