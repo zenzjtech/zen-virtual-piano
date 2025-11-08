@@ -149,6 +149,21 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
+  'guitar-nylon': {
+    id: 'guitar-nylon',
+    name: 'Nylon Guitar',
+    description: 'Soft nylon-string classical guitar',
+    type: 'guitar',
+    path: 'nylon',
+    sampleNotes: ['A', 'As', 'B', 'Cs', 'D', 'Ds', 'E', 'Fs', 'G', 'Gs'], // Chromatic sampling
+    customMapper: 'fullChromatic',
+    characteristics: {
+      brightness: 'mellow',
+      sustain: 'medium',
+      attack: 'soft',
+    },
+  },
+  
   'glockenspiel-standard': {
     id: 'glockenspiel-standard',
     name: 'Glockenspiel',
