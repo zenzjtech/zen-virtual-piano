@@ -197,22 +197,6 @@ export const SOUND_SETS: Record<string, SoundSet> = {
       attack: 'medium',
     },
   },
-  
-  'glockenspiel-standard': {
-    id: 'glockenspiel-standard',
-    name: 'Glockenspiel',
-    description: 'Bright metallic bell-like percussion',
-    type: 'glockenspiel',
-    path: 'standard',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    sustainOffset: -10,
-    characteristics: {
-      brightness: 'bright',
-      sustain: 'short',
-      attack: 'sharp',
-    },
-  },
-  
   'harp-standard': {
     id: 'harp-standard',
     name: 'Harp',
