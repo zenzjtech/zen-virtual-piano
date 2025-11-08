@@ -48,5 +48,7 @@ export const getBlackKeyOffset = (blackKey: typeof KEY_MAPPINGS[0]): number => {
   const whiteKeysBefore = KEY_MAPPINGS.slice(0, blackKeyIndex).filter(k => !k.isBlack).length;
   
   // Position between the white keys (centered)
-  return whiteKeysBefore * whiteKeyWidth + 22; // Centered between white keys
+  // Use (whiteKeysBefore - 1) because a black key after N white keys
+  // should be positioned at the Nth-1 white key position (0-indexed)
+  return (whiteKeysBefore - 1) * whiteKeyWidth + 22; // Centered between white keys
 };

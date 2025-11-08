@@ -46,6 +46,7 @@ export const KEY_MAPPINGS: PianoKey[] = [
   { note: 'G3', keyboardKey: 'w', frequency: 196.00, isBlack: false, label: 'w' },
   { note: 'G#3', keyboardKey: 'W', frequency: 207.65, isBlack: true, label: 'W' },
   { note: 'A3', keyboardKey: 'e', frequency: 220.00, isBlack: false, label: 'e' },
+  { note: 'A#3', keyboardKey: 'E', frequency: 233.08, isBlack: true, label: 'E' },
   { note: 'B3', keyboardKey: 'r', frequency: 246.94, isBlack: false, label: 'r' },
   { note: 'C4', keyboardKey: 't', frequency: 261.63, isBlack: false, label: 't' },
   { note: 'C#4', keyboardKey: 'T', frequency: 277.18, isBlack: true, label: 'T' },

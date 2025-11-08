@@ -1,14 +1,14 @@
 # Keyboard Mapping Reference
 
 ## Chrome Piano Layout (C2 to C7)
-**67 Keys • 5+ Octaves • Left-to-Right Progression**
+**68 Keys • 5+ Octaves • Left-to-Right Progression**
 
 ### Visual Layout
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Zen Virtual Piano                         │
-│              67 Keys • 5+ Octaves (C2-C7)                   │
+│              68 Keys • 5+ Octaves (C2-C7)                   │
 │              Chrome Piano Compatible Layout                  │
 └─────────────────────────────────────────────────────────────┘
 
@@ -25,7 +25,7 @@ Top Letter Row: (F3 → A#4)
   Q    W    E    R    T    Y    U    I    O    P
 ┌────┬────┬────┬────┬────┬────┬────┬────┬────┬────┐
 │ F3 │ G3 │ A3 │ B3 │ C4 │ D4 │ E4 │ F4 │ G4 │ A4 │ White
-│F#3 │G#3 │    │    │C#4 │D#4 │    │F#4 │G#4 │A#4 │ Black (Shift)
+│F#3 │G#3 │A#3 │    │C#4 │D#4 │    │F#4 │G#4 │A#4 │ Black (Shift)
 └────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
 
 Middle Row: (B4 → C#6)
@@ -99,6 +99,7 @@ Bottom Row: (D6 → C7)
 |-----|------|-----------|  
 | Q   | F#3  | 185.00 Hz |
 | W   | G#3  | 207.65 Hz |
+| E   | A#3  | 233.08 Hz |
 | T   | C#4  | 277.18 Hz |
 | Y   | D#4  | 311.13 Hz |
 | I   | F#4  | 369.99 Hz |
@@ -159,9 +160,9 @@ Bottom Row: (D6 → C7)
 **Middle Row**: `a s d f g h j k l` (B4→C6)  
 **Bottom Row**: `z x c v b n m` (D6→C7)
 
-### All Black Keys (30 total)
+### All Black Keys (31 total)
 **Shift+Numbers**: `! @ $ % ^ * (` (C#2→D#3)  
-**Shift+Top**: `Q W T Y I O P` (F#3→A#4)  
+**Shift+Top**: `Q W E T Y I O P` (F#3→A#4)  
 **Shift+Middle**: `S D G H J L` (C#5→C#6)  
 **Shift+Bottom**: `Z C V B` (D#6→A#6)
 
