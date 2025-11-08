@@ -7,7 +7,7 @@
 import { isVirtualPianoSheetPage } from '@/utils/virtualpiano-scraper';
 
 export default defineContentScript({
-  matches: ['https://virtualpiano.net/music-sheet/*'],
+  matches: ['https://virtualpiano.net/music-sheet/*', 'https://zen-piano.web.app/*'],
   
   async main() {
     console.log('Zen Virtual Piano: VirtualPiano.net content script loaded');

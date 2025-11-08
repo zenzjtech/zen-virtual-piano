@@ -22,7 +22,8 @@ export default defineConfig({
       {
         "resources": ["vp-download-ui.html", "vp-download-ui.js"],
         "matches": [
-          "https://virtualpiano.net/*"
+          "https://virtualpiano.net/*",
+          "https://zen-piano.web.app/*"
         ],
       }
     ],    

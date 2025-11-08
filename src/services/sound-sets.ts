@@ -3,6 +3,8 @@
  * Defines available piano sound sets and their properties
  */
 
+import { getMapper } from './sample-mappers';
+
 export interface SoundSet {
   id: string;
   name: string;
@@ -15,6 +17,12 @@ export interface SoundSet {
   sampleNotes: string[];
   /** Custom sustain offset added to the user's sustain setting (in seconds). Default: 0 */
   sustainOffset?: number;
+  /** 
+   * Custom sample mapper key (optional)
+   * If not specified, uses default mapper for instrument type
+   * Available: 'chromatic', 'naturalNotes'
+   */
+  customMapper?: string;
   /** Audio characteristics */
   characteristics: {
     brightness: 'bright' | 'balanced' | 'mellow';
@@ -201,7 +209,7 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     description: 'Ethereal plucked string harp',
     type: 'harp',
     path: 'standard',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
+    sampleNotes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'], // Harp uses all natural notes (white keys)
     characteristics: {
       brightness: 'bright',
       sustain: 'medium',
@@ -226,52 +234,21 @@ export function getAllSoundSets(): SoundSet[] {
 
 /**
  * Build the sample URLs map for a given sound set
- * Maps keyboard notes to their corresponding audio file URLs
+ * Uses the appropriate sample mapper based on instrument type or custom configuration
+ * @param soundSet - The sound set configuration
+ * @param samples - Record of available sample file paths to their URLs
+ * @returns Mapping of keyboard notes to audio URLs
  */
 export function buildSampleUrlsMap(
   soundSet: SoundSet,
   samples: Record<string, string>
 ): Record<string, string> {
-  const urlsMap: Record<string, string> = {};
   const basePath = `/src/assets/audio/${soundSet.type}/${soundSet.path}`;
   
-  // C notes (every octave) - keyboard note maps to one octave lower in file
-  // e.g., C2 keyboard note uses C1.mp3 file
-  urlsMap.C1 = samples[`${basePath}/C1.mp3`] || '';
-  urlsMap.C2 = samples[`${basePath}/C1.mp3`] || '';
-  urlsMap.C3 = samples[`${basePath}/C2.mp3`] || '';
-  urlsMap.C4 = samples[`${basePath}/C3.mp3`] || '';
-  urlsMap.C5 = samples[`${basePath}/C4.mp3`] || '';
-  urlsMap.C6 = samples[`${basePath}/C5.mp3`] || '';
-  urlsMap.C7 = samples[`${basePath}/C6.mp3`] || '';
-  urlsMap.C8 = samples[`${basePath}/C7.mp3`] || '';
+  // Get the appropriate mapper for this sound set
+  // Supports custom mappers per sound set or falls back to instrument type defaults
+  const mapper = getMapper(soundSet.type, soundSet.customMapper);
   
-  // D# (Ds) notes
-  urlsMap['D#1'] = samples[`${basePath}/Ds1.mp3`] || '';
-  urlsMap['D#2'] = samples[`${basePath}/Ds1.mp3`] || '';
-  urlsMap['D#3'] = samples[`${basePath}/Ds2.mp3`] || '';
-  urlsMap['D#4'] = samples[`${basePath}/Ds3.mp3`] || '';
-  urlsMap['D#5'] = samples[`${basePath}/Ds4.mp3`] || '';
-  urlsMap['D#6'] = samples[`${basePath}/Ds5.mp3`] || '';
-  urlsMap['D#7'] = samples[`${basePath}/Ds6.mp3`] || '';
-  
-  // F# (Fs) notes
-  urlsMap['F#1'] = samples[`${basePath}/Fs1.mp3`] || '';
-  urlsMap['F#2'] = samples[`${basePath}/Fs1.mp3`] || '';
-  urlsMap['F#3'] = samples[`${basePath}/Fs2.mp3`] || '';
-  urlsMap['F#4'] = samples[`${basePath}/Fs3.mp3`] || '';
-  urlsMap['F#5'] = samples[`${basePath}/Fs4.mp3`] || '';
-  urlsMap['F#6'] = samples[`${basePath}/Fs5.mp3`] || '';
-  urlsMap['F#7'] = samples[`${basePath}/Fs6.mp3`] || '';
-  
-  // A notes
-  urlsMap.A1 = samples[`${basePath}/A1.mp3`] || '';
-  urlsMap.A2 = samples[`${basePath}/A1.mp3`] || '';
-  urlsMap.A3 = samples[`${basePath}/A2.mp3`] || '';
-  urlsMap.A4 = samples[`${basePath}/A3.mp3`] || '';
-  urlsMap.A5 = samples[`${basePath}/A4.mp3`] || '';
-  urlsMap.A6 = samples[`${basePath}/A5.mp3`] || '';
-  urlsMap.A7 = samples[`${basePath}/A6.mp3`] || '';
-  
-  return urlsMap;
+  // Delegate to the mapper strategy
+  return mapper(basePath, samples);
 }
