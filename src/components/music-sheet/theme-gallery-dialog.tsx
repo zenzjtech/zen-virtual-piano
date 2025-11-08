@@ -4,7 +4,7 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import { MUSIC_SHEET_THEMES } from '../piano/music-sheet-themes';
 import { ThemePreviewCard } from './theme-preview-card';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setMusicSheetTheme } from '@/store/reducers/piano-settings-slice';
+import { setMusicSheetTheme } from '@/store/reducers/theme-slice';
 
 interface ThemeGalleryDialogProps {
   open: boolean;
@@ -19,7 +19,7 @@ export const ThemeGalleryDialog: React.FC<ThemeGalleryDialogProps> = ({
   onClose,
 }) => {
   const dispatch = useAppDispatch();
-  const currentThemeId = useAppSelector((state) => state.pianoSettings.musicSheetTheme);
+  const currentThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
 
   const handleThemeSelect = (themeId: string) => {
     dispatch(setMusicSheetTheme(themeId));

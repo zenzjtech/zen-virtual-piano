@@ -4,7 +4,7 @@ import musicSheet from '@/store/reducers/music-sheet-slice'
 import onboarding from '@/store/reducers/onboarding-slice'
 import recording from '@/store/reducers/recording-slice'
 import quoteSettings from '@/store/reducers/quote-settings-slice'
-import autoTheme from '@/store/reducers/auto-theme-slice'
+import theme from '@/store/reducers/theme-slice'
 
 export default {
     pianoSettings,
@@ -13,5 +13,5 @@ export default {
     onboarding,
     recording,
     quoteSettings,
-    autoTheme,
+    theme,
 }

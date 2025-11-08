@@ -18,7 +18,8 @@ import { getTheme } from '@/components/piano/themes';
 import { THEME_PRESETS } from '@/components/piano/theme-presets';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setTheme, setSoundSet, setSustain, setBackgroundTheme, setMusicSheetTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
+import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
+import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme } from '@/store/reducers/theme-slice';
 import { addSheets, loadSheet, pauseSheet } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
 import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
@@ -43,11 +44,11 @@ function App() {
   // Redux state for persistent settings
   const dispatch = useAppDispatch();
   const uid = useAppSelector((state) => state.user.uid);    
-  const pianoThemeId = useAppSelector((state) => state.pianoSettings.theme);
+  const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
-  const backgroundThemeId = useAppSelector((state) => state.pianoSettings.backgroundTheme);
-  const musicSheetThemeId = useAppSelector((state) => state.pianoSettings.musicSheetTheme);
+  const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
+  const musicSheetThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
   const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
   const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
@@ -328,7 +329,7 @@ function App() {
   };
   
   const handlePianoThemeChange = (themeId: string) => {
-    dispatch(setTheme(themeId));
+    dispatch(setPianoTheme(themeId));
   };
   
   const handleBackgroundThemeChange = (themeId: string) => {

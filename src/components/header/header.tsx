@@ -34,8 +34,8 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
   } = useHeaderHandlers({ onShowKeyboardShortcuts });
 
   // Get current theme settings to find matching preset
-  const pianoTheme = useAppSelector((state) => state.pianoSettings.theme);
-  const musicSheetTheme = useAppSelector((state) => state.pianoSettings.musicSheetTheme);
+  const pianoTheme = useAppSelector((state) => state.theme.pianoTheme);
+  const musicSheetTheme = useAppSelector((state) => state.theme.musicSheetTheme);
 
   // Find current preset based on all three theme attributes
   const currentPreset = THEME_PRESETS.find(

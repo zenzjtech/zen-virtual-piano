@@ -1,22 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface PianoSettingsState {
-  theme: string;
   soundSet: string;
   sustain: number;
-  backgroundTheme: string;
-  musicSheetTheme: string;
   showKeyboard: boolean;
   showNoteName: boolean;
   isPianoEnabled: boolean;
 }
 
 const initialState: PianoSettingsState = {
-  theme: 'wooden',
   soundSet: 'classical',
   sustain: 0,
-  backgroundTheme: 'warm',
-  musicSheetTheme: 'paper-1',
   showKeyboard: true,
   showNoteName: false,
   isPianoEnabled: true,
@@ -26,20 +20,11 @@ export const pianoSettingsSlice = createSlice({
   name: 'pianoSettings',
   initialState,
   reducers: {
-    setTheme: (state, action: PayloadAction<string>) => {
-      state.theme = action.payload;
-    },
     setSoundSet: (state, action: PayloadAction<string>) => {
       state.soundSet = action.payload;
     },
     setSustain: (state, action: PayloadAction<number>) => {
       state.sustain = action.payload;
-    },
-    setBackgroundTheme: (state, action: PayloadAction<string>) => {
-      state.backgroundTheme = action.payload;
-    },
-    setMusicSheetTheme: (state, action: PayloadAction<string>) => {
-      state.musicSheetTheme = action.payload;
     },
     setShowKeyboard: (state, action: PayloadAction<boolean>) => {
       state.showKeyboard = action.payload;
@@ -61,6 +46,6 @@ export const pianoSettingsSlice = createSlice({
   },
 });
 
-export const { setTheme, setSoundSet, setSustain, setBackgroundTheme, setMusicSheetTheme, setShowKeyboard, setShowNoteName, setIsPianoEnabled } = pianoSettingsSlice.actions;
+export const { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } = pianoSettingsSlice.actions;
 
 export default pianoSettingsSlice.reducer;

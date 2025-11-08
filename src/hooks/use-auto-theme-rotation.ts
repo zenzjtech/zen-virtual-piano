@@ -5,28 +5,27 @@
 
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hook';
-import { setTheme, setBackgroundTheme, setMusicSheetTheme } from '@/store/reducers/piano-settings-slice';
-import { setLastThemeChangeDate } from '@/store/reducers/auto-theme-slice';
+import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme, setLastThemeChangeDate } from '@/store/reducers/theme-slice';
 import { getRandomPreset } from '@/components/piano/theme-presets';
 import { useNotification } from '@/contexts/notification-context';
 import { trackEvent } from '@/utils/analytics';
-import type { ThemeChangeInterval } from '@/store/reducers/auto-theme-slice';
+import type { ThemeChangeInterval } from '@/store/reducers/theme-slice';
 
 export const useAutoThemeRotation = (uid?: string) => {
   const dispatch = useAppDispatch();
-  const autoTheme = useAppSelector((state) => state.autoTheme);
+  const theme = useAppSelector((state) => state.theme);
   const { showNotification } = useNotification();
 
   useEffect(() => {
-    if (!autoTheme.enabled) return;
+    if (!theme.autoThemeEnabled) return;
 
     const shouldChangeTheme = (): boolean => {
       const now = new Date();
-      const lastChangeDate = new Date(autoTheme.lastChangeDate);
+      const lastChangeDate = new Date(theme.lastThemeChangeDate);
       
       const getMinutesDiff = () => Math.abs(now.getTime() - lastChangeDate.getTime()) / 6e4;
       
-      switch (autoTheme.interval as ThemeChangeInterval) {
+      switch (theme.autoThemeInterval as ThemeChangeInterval) {
         case 'daily': {
           const today = now.toISOString().split('T')[0];
           const lastChange = lastChangeDate.toISOString().split('T')[0];
@@ -55,7 +54,7 @@ export const useAutoThemeRotation = (uid?: string) => {
       const randomPreset = getRandomPreset();
       
       // Apply all three theme components
-      dispatch(setTheme(randomPreset.pianoTheme));
+      dispatch(setPianoTheme(randomPreset.pianoTheme));
       dispatch(setBackgroundTheme(randomPreset.backgroundTheme));
       dispatch(setMusicSheetTheme(randomPreset.musicSheetTheme));
       
@@ -79,5 +78,5 @@ export const useAutoThemeRotation = (uid?: string) => {
     }, 60000);
 
     return () => clearInterval(checkInterval);
-  }, [autoTheme.enabled, autoTheme.interval, autoTheme.lastChangeDate, dispatch, showNotification, uid]);
+  }, [theme.autoThemeEnabled, theme.autoThemeInterval, theme.lastThemeChangeDate, dispatch, showNotification, uid]);
 };

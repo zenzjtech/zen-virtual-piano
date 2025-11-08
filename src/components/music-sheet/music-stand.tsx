@@ -22,7 +22,7 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
   const playback = useAppSelector((state) => state.musicSheet.playback);
   const isMinimized = useAppSelector((state) => state.musicSheet.isMusicStandMinimized);
-  const musicSheetTheme = useAppSelector((state) => state.pianoSettings.musicSheetTheme);
+  const musicSheetTheme = useAppSelector((state) => state.theme.musicSheetTheme);
   
   if (!currentSheet) return null;
   

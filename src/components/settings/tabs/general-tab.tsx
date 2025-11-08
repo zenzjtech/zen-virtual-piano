@@ -16,7 +16,7 @@ import {
   setAutoThemeEnabled,
   setAutoThemeInterval,
   type ThemeChangeInterval,
-} from '@/store/reducers/auto-theme-slice';
+} from '@/store/reducers/theme-slice';
 import { SettingSection } from '../components/setting-section';
 import { SettingToggle } from '../components/setting-toggle';
 import type { SettingsTheme } from '../types';
@@ -35,74 +35,74 @@ const INTERVAL_LABELS: Record<ThemeChangeInterval, string> = {
   '1min': 'Every 1 Minute',
 };
 
-export const GeneralTab = ({ theme }: GeneralTabProps) => {
+export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
   const dispatch = useAppDispatch();
-  const autoTheme = useAppSelector((state) => state.autoTheme);
+  const theme = useAppSelector((state) => state.theme);
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ color: theme.textColor, mb: 3, fontWeight: 600 }}>
+      <Typography variant="h6" sx={{ color: settingsTheme.textColor, mb: 3, fontWeight: 600 }}>
         General Settings
       </Typography>
 
       {/* Auto Theme Change Toggle */}
-      <SettingSection theme={theme}>
+      <SettingSection theme={settingsTheme}>
         <SettingToggle
           label="Auto Theme Rotation"
           description="Automatically change to a random theme at specified intervals"
-          checked={autoTheme.enabled}
+          checked={theme.autoThemeEnabled}
           onChange={(checked) => dispatch(setAutoThemeEnabled(checked))}
-          theme={theme}
+          theme={settingsTheme}
         />
       </SettingSection>
 
       {/* Theme Change Interval Setting */}
-      {autoTheme.enabled && (
+      {theme.autoThemeEnabled && (
         <>
-          <SettingSection theme={theme}>
+          <SettingSection theme={settingsTheme}>
             <FormControl fullWidth>
               <InputLabel
                 sx={{
-                  color: theme.secondaryTextColor,
-                  '&.Mui-focused': { color: theme.textColor },
+                  color: settingsTheme.secondaryTextColor,
+                  '&.Mui-focused': { color: settingsTheme.textColor },
                 }}
               >
                 Theme Change Interval
               </InputLabel>
               <Select
-                value={autoTheme.interval}
+                value={theme.autoThemeInterval}
                 label="Theme Change Interval"
                 onChange={(e) => dispatch(setAutoThemeInterval(e.target.value as ThemeChangeInterval))}
                 sx={{
-                  color: theme.textColor,
+                  color: settingsTheme.textColor,
                   '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: theme.borderColor,
+                    borderColor: settingsTheme.borderColor,
                   },
                   '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: theme.textColor,
+                    borderColor: settingsTheme.textColor,
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: theme.textColor,
+                    borderColor: settingsTheme.textColor,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: theme.textColor,
+                    color: settingsTheme.textColor,
                   },
                 }}
                 MenuProps={{
                   PaperProps: {
                     sx: {
-                      bgcolor: theme.dialogBg,
+                      bgcolor: settingsTheme.dialogBg,
                       backgroundImage: 'none',
                       backdropFilter: 'blur(20px)',
                       '& .MuiMenuItem-root': {
-                        color: theme.textColor,
+                        color: settingsTheme.textColor,
                         '&:hover': {
-                          bgcolor: theme.hoverBg,
+                          bgcolor: settingsTheme.hoverBg,
                         },
                         '&.Mui-selected': {
-                          bgcolor: theme.hoverBg,
+                          bgcolor: settingsTheme.hoverBg,
                           '&:hover': {
-                            bgcolor: theme.highlightBg,
+                            bgcolor: settingsTheme.highlightBg,
                           },
                         },
                       },
@@ -116,16 +116,16 @@ export const GeneralTab = ({ theme }: GeneralTabProps) => {
                   </MenuItem>
                 ))}
               </Select>
-              <Typography variant="caption" sx={{ color: theme.secondaryTextColor, mt: 1 }}>
+              <Typography variant="caption" sx={{ color: settingsTheme.secondaryTextColor, mt: 1 }}>
                 How often to automatically switch to a random theme preset
               </Typography>
             </FormControl>
           </SettingSection>
 
-          <Divider sx={{ my: 3, borderColor: theme.borderColor }} />
+          <Divider sx={{ my: 3, borderColor: settingsTheme.borderColor }} />
 
           <Box sx={{ px: 2.5 }}>
-            <Typography variant="body2" sx={{ color: theme.secondaryTextColor, fontStyle: 'italic' }}>
+            <Typography variant="body2" sx={{ color: settingsTheme.secondaryTextColor, fontStyle: 'italic' }}>
               💡 Tip: The theme will change automatically to keep your workspace fresh and inspiring!
             </Typography>
           </Box>
