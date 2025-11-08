@@ -61,62 +61,6 @@ export const SOUND_SETS: Record<string, SoundSet> = {
     },
   },
   
-  stage: {
-    id: 'stage',
-    name: 'Stage Piano',
-    description: 'Modern bright stage piano sound',
-    type: 'piano',
-    path: 'stage',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'bright',
-      sustain: 'medium',
-      attack: 'sharp',
-    },
-  },
-  
-  upright: {
-    id: 'upright',
-    name: 'Upright Piano',
-    description: 'Warm intimate upright piano tone',
-    type: 'piano',
-    path: 'upright',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'mellow',
-      sustain: 'short',
-      attack: 'soft',
-    },
-  },
-  
-  jazz: {
-    id: 'jazz',
-    name: 'Jazz Piano',
-    description: 'Smooth jazz piano with warm tones',
-    type: 'piano',
-    path: 'jazz',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'balanced',
-      sustain: 'medium',
-      attack: 'soft',
-    },
-  },
-  
-  auditorium: {
-    id: 'auditorium',
-    name: 'Auditorium Piano',
-    description: 'Spacious concert hall piano sound',
-    type: 'piano',
-    path: 'auditorium',
-    sampleNotes: ['C', 'Ds', 'Fs', 'A'],
-    characteristics: {
-      brightness: 'bright',
-      sustain: 'long',
-      attack: 'medium',
-    },
-  },
-  
   'organ-standard': {
     id: 'organ-standard',
     name: 'Standard Organ',
