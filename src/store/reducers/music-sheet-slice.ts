@@ -42,6 +42,8 @@ export interface MusicSheetState {
   // UI state
   /** Whether sheet search dialog is open */
   isSearchDialogOpen: boolean;
+  /** Whether add sheet dialog is open */
+  isAddSheetDialogOpen: boolean;
   /** Whether music stand is visible */
   isMusicStandVisible: boolean;
   /** Status board display mode */
@@ -103,6 +105,7 @@ const initialState: MusicSheetState = {
   playback: initialPlaybackState,
   userData: initialUserData,
   isSearchDialogOpen: false,
+  isAddSheetDialogOpen: false,
   isMusicStandVisible: false,
   statusDisplayMode: 'pressed-notes', // Default: show pressed notes
   isMusicStandMinimized: false,
@@ -490,6 +493,20 @@ export const musicSheetSlice = createSlice({
     },
 
     /**
+     * Open add sheet dialog
+     */
+    openAddSheetDialog: (state) => {
+      state.isAddSheetDialogOpen = true;
+    },
+
+    /**
+     * Close add sheet dialog
+     */
+    closeAddSheetDialog: (state) => {
+      state.isAddSheetDialogOpen = false;
+    },
+
+    /**
      * Toggle music stand visibility
      */
     toggleMusicStand: (state) => {
@@ -591,6 +608,8 @@ export const {
   toggleFavorite,
   openSearchDialog,
   closeSearchDialog,
+  openAddSheetDialog,
+  closeAddSheetDialog,
   toggleMusicStand,
   setMusicStandVisible,
   toggleMusicStandMinimized,

@@ -5,12 +5,15 @@ import {
   Popper,
   ClickAwayListener,
   useTheme,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
 import {
   MusicNote as MusicNoteIcon,
+  Add as AddIcon,
 } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { loadSheet, setSearchFilters } from '@/store/reducers/music-sheet-slice';
+import { loadSheet, setSearchFilters, openAddSheetDialog, closeAddSheetDialog } from '@/store/reducers/music-sheet-slice';
 import { PianoTheme } from '../piano/themes';
 import {
   StyledPopupPaper,
@@ -21,6 +24,7 @@ import { useSheetSearch } from './use-sheet-search';
 import { SheetSearchFooter } from './sheet-search-footer';
 import { SheetSearchFilters } from './sheet-search-filters';
 import { SheetSearchContent } from './sheet-search-content';
+import { AddSheetDialog } from './add-sheet-dialog';
 
 interface SheetSearchDialogProps {
   open: boolean;
@@ -44,6 +48,9 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [isSortSelectOpen, setIsSortSelectOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
+  
+  // Add sheet dialog state from Redux
+  const isAddSheetDialogOpen = useAppSelector((state) => state.musicSheet.isAddSheetDialogOpen);
   
   // Get persisted filter preferences from Redux
   const savedFilters = useAppSelector((state) => state.musicSheet.searchFilters);
@@ -191,28 +198,46 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
         >
           {/* Header */}
           <PopupHeaderBox pianoTheme={pianoTheme}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <MusicNoteIcon
-                sx={{
-                  color: pianoTheme.colors.accent,
-                  fontSize: '1.5rem',
-                  filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
-                }}
-              />
-              <Typography
-                variant="h6"
-                fontWeight="600"
-                sx={{
-                  color: pianoTheme.colors.primary,
-                  textShadow: `
-                    0 1px 2px rgba(0, 0, 0, 0.3),
-                    0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
-                  `,
-                  letterSpacing: '0.5px',
-                }}
-              >
-                Music Sheets
-              </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <MusicNoteIcon
+                  sx={{
+                    color: pianoTheme.colors.accent,
+                    fontSize: '1.5rem',
+                    filter: `drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))`,
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  fontWeight="600"
+                  sx={{
+                    color: pianoTheme.colors.primary,
+                    textShadow: `
+                      0 1px 2px rgba(0, 0, 0, 0.3),
+                      0 -1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
+                    `,
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Music Sheets
+                </Typography>
+              </Box>
+              
+              {/* Add Sheet Button */}
+              <Tooltip title="Add custom sheet" placement="left">
+                <IconButton
+                  onClick={() => dispatch(openAddSheetDialog())}
+                  size="small"
+                  sx={{
+                    color: pianoTheme.colors.accent,
+                    '&:hover': {
+                      backgroundColor: `rgba(${pianoTheme.isLight ? '0, 0, 0' : '255, 255, 255'}, 0.1)`,
+                    },
+                  }}
+                >
+                  <AddIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
             </Box>
           </PopupHeaderBox>
           
@@ -253,6 +278,12 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
           <SheetSearchFooter searchQuery={searchQuery} pianoTheme={pianoTheme} />
         </StyledPopupPaper>
       </ClickAwayListener>
+      
+      {/* Add Sheet Dialog */}
+      <AddSheetDialog
+        open={isAddSheetDialogOpen}
+        onClose={() => dispatch(closeAddSheetDialog())}
+      />
     </Popper>
   );
 };

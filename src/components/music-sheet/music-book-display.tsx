@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Box, Paper, Collapse } from '@mui/material';
-import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { toggleFavorite, previousPage, nextPage, deleteSheet } from '@/store/reducers/music-sheet-slice';
+import { toggleFavorite, previousPage, nextPage, deleteSheet, openAddSheetDialog, closeAddSheetDialog } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../piano/themes';
 import { useAppConfig } from '#imports';
@@ -14,6 +14,7 @@ import { ActionButton } from './action-button';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import { ThemeGalleryDialog } from './theme-gallery-dialog';
 import { DeleteSheetDialog } from './delete-sheet-dialog';
+import { AddSheetDialog } from './add-sheet-dialog';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -76,23 +77,23 @@ const NextPageButton: React.FC<{
 );
 
 /**
- * Action buttons container (favorite, theme, delete, close)
+ * Action buttons container (favorite, theme, add, delete, close)
  */
 const ActionButtons: React.FC<{
   isFavorite: boolean;
   onToggleFavorite: () => void;
   onThemeClick: () => void;
+  onAddSheet: () => void;
   onDelete: () => void;
   onClose: () => void;
   musicSheetThemeId: string;
-}> = ({ isFavorite, onToggleFavorite, onThemeClick, onDelete, onClose, musicSheetThemeId }) => (
+}> = ({ isFavorite, onToggleFavorite, onThemeClick, onAddSheet, onDelete, onClose, musicSheetThemeId }) => (
   <Box
     sx={{
       position: 'absolute',
       top: theme => theme.spacing(1.5),
       right: theme => theme.spacing(1.5),
-      display: 'flex',
-      gap: 0.5,
+      display: 'flex'      
     }}
   >
     <ActionButton
@@ -113,19 +114,27 @@ const ActionButtons: React.FC<{
     />
     
     <ActionButton
-      onClick={onDelete}
-      icon={<DeleteIcon fontSize="small" />}
-      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Delete sheet"
-      tooltip="Delete sheet"
-    />
-    
-    <ActionButton
       onClick={onClose}
       icon={<CloseIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Close sheet"
       tooltip="Close sheet"
+    />
+    
+    <ActionButton
+      onClick={onAddSheet}
+      icon={<AddIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Add custom sheet"
+      tooltip="Add custom sheet"
+    />
+    
+    <ActionButton
+      onClick={onDelete}
+      icon={<DeleteIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Delete sheet"
+      tooltip="Delete sheet"
     />
   </Box>
 );
@@ -153,6 +162,9 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   
   // Delete confirmation state
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  
+  // Add sheet dialog state from Redux
+  const isAddSheetDialogOpen = useAppSelector((state) => state.musicSheet.isAddSheetDialogOpen);
   
   // Check if current sheet is custom
   const customSheets = useAppSelector((state) => state.musicSheet.userData.customSheets);
@@ -261,6 +273,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           isFavorite={isFavorite}
           onToggleFavorite={() => dispatch(toggleFavorite(currentSheet.id))}
           onThemeClick={() => setIsThemeGalleryOpen(true)}
+          onAddSheet={() => dispatch(openAddSheetDialog())}
           onDelete={() => setIsDeleteDialogOpen(true)}
           onClose={onClose}
           musicSheetThemeId={musicSheetThemeId}
@@ -281,6 +294,12 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         sheetTitle={currentSheet.title}
         sheetArtist={currentSheet.artist}
         isCustomSheet={isCustomSheet}
+      />
+      
+      {/* Add Sheet Dialog */}
+      <AddSheetDialog
+        open={isAddSheetDialogOpen}
+        onClose={() => dispatch(closeAddSheetDialog())}
       />
     </Collapse>
   );
