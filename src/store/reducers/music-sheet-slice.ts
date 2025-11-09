@@ -57,6 +57,8 @@ export interface MusicSheetState {
     showFavoritesOnly: boolean;
     selectedArtist: string | null;
     selectedDifficulties: ('easy' | 'medium' | 'hard')[];
+    sortBy: 'title' | 'artist' | 'difficulty' | 'recent';
+    showSort: boolean;
   };
   
   // FIFO tracking
@@ -109,6 +111,8 @@ const initialState: MusicSheetState = {
     showFavoritesOnly: false,
     selectedArtist: null,
     selectedDifficulties: [],
+    sortBy: 'title',
+    showSort: false,
   },
   lastRemovedSheet: null,
 };
@@ -544,6 +548,8 @@ export const musicSheetSlice = createSlice({
       showFavoritesOnly?: boolean;
       selectedArtist?: string | null;
       selectedDifficulties?: ('easy' | 'medium' | 'hard')[];
+      sortBy?: 'title' | 'artist' | 'difficulty' | 'recent';
+      showSort?: boolean;
     }>) => {
       if (action.payload.showFavoritesOnly !== undefined) {
         state.searchFilters.showFavoritesOnly = action.payload.showFavoritesOnly;
@@ -553,6 +559,12 @@ export const musicSheetSlice = createSlice({
       }
       if (action.payload.selectedDifficulties !== undefined) {
         state.searchFilters.selectedDifficulties = action.payload.selectedDifficulties;
+      }
+      if (action.payload.sortBy !== undefined) {
+        state.searchFilters.sortBy = action.payload.sortBy;
+      }
+      if (action.payload.showSort !== undefined) {
+        state.searchFilters.showSort = action.payload.showSort;
       }
     },
   },

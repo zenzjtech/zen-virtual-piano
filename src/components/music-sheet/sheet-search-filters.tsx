@@ -1,10 +1,14 @@
 import React from 'react';
-import { Box, Chip, ToggleButton } from '@mui/material';
+import { Box, Chip, ToggleButton, Select, MenuItem, FormControl, InputLabel, Button } from '@mui/material';
 import {
   Favorite as FavoriteIcon,
   FavoriteBorder as FavoriteBorderIcon,
+  Sort as SortIcon,
+  ArrowDropDown as ArrowDropDownIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from '../piano/themes';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { setSearchFilters } from '@/store/reducers/music-sheet-slice';
 
 interface SheetSearchFiltersProps {
   showFavoritesOnly: boolean;
@@ -12,6 +16,7 @@ interface SheetSearchFiltersProps {
   onToggleFavorite: () => void;
   onToggleDifficulty: (difficulty: 'easy' | 'medium' | 'hard') => void;
   onClearFilters: () => void;
+  onSortSelectOpen: (isOpen: boolean) => void;
   pianoTheme: PianoTheme;
 }
 
@@ -24,13 +29,26 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
   onToggleFavorite,
   onToggleDifficulty,
   onClearFilters,
+  onSortSelectOpen,
   pianoTheme,
 }) => {
+  const dispatch = useAppDispatch();
+  const sortBy = useAppSelector((state) => state.musicSheet.searchFilters.sortBy);
+  const showSort = useAppSelector((state) => state.musicSheet.searchFilters.showSort);
+  
   const hasActiveFilters = showFavoritesOnly || selectedDifficulties.length > 0;
+  
+  const handleSortChange = (newSortBy: 'title' | 'artist' | 'difficulty' | 'recent') => {
+    dispatch(setSearchFilters({ sortBy: newSortBy }));
+  };
+  
+  const handleToggleShowSort = () => {
+    dispatch(setSearchFilters({ showSort: !showSort }));
+  };
 
   return (
     <Box sx={{ px: 2, py: 1.5, borderBottom: `1px solid ${pianoTheme.colors.border}` }}>
-      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap', mb: 2, justifyContent: 'space-between' }}>
         {/* Favorites Toggle */}
         <ToggleButton
           value="favorites"
@@ -105,7 +123,110 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
             variant="outlined"
           />
         )}
+        
+        {/* Show Sort Button - Right aligned */}
+        <Button
+          size="small"
+          onClick={handleToggleShowSort}
+          startIcon={<SortIcon />}
+          endIcon={<ArrowDropDownIcon sx={{ 
+            transform: showSort ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s',
+          }} />}
+          sx={{
+            ml: 'auto',
+            px: 1.5,
+            py: 0.5,
+            textTransform: 'none',
+            fontSize: '0.75rem',
+            color: showSort ? pianoTheme.colors.accent : pianoTheme.colors.secondary,
+            borderColor: pianoTheme.colors.border,
+            border: '1px solid',
+            '&:hover': {
+              backgroundColor: `${pianoTheme.colors.accent}22`,
+              borderColor: pianoTheme.colors.accent,
+            },
+          }}
+        >
+          Sort
+        </Button>
       </Box>
+      
+      {/* Sort Selector - Conditionally shown */}
+      {showSort && (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
+        <FormControl 
+          size="small" 
+          sx={{ 
+            minWidth: 140,
+            '& .MuiOutlinedInput-root': {
+              fontSize: '0.75rem',
+              color: pianoTheme.colors.primary,
+              backgroundColor: 'transparent',
+              '& fieldset': {
+                borderColor: pianoTheme.colors.border,
+              },
+              '&:hover fieldset': {
+                borderColor: pianoTheme.colors.accent,
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: pianoTheme.colors.accent,
+              },
+            },
+            '& .MuiInputLabel-root': {
+              fontSize: '0.75rem',
+              color: pianoTheme.colors.secondary,
+              '&.Mui-focused': {
+                color: pianoTheme.colors.accent,
+              },
+            },
+            '& .MuiSelect-icon': {
+              color: pianoTheme.colors.secondary,
+            },
+          }}
+        >
+          <InputLabel id="sort-by-label">
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              <SortIcon sx={{ fontSize: '0.875rem' }} />
+              Sort By
+            </Box>
+          </InputLabel>
+          <Select
+            labelId="sort-by-label"
+            value={sortBy}
+            onChange={(e) => handleSortChange(e.target.value as any)}
+            onOpen={() => onSortSelectOpen(true)}
+            onClose={() => onSortSelectOpen(false)}
+            label="Sort By"
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  backgroundColor: pianoTheme.colors.containerSolid,
+                  color: pianoTheme.colors.primary,
+                  '& .MuiMenuItem-root': {
+                    fontSize: '0.75rem',
+                    '&:hover': {
+                      backgroundColor: `${pianoTheme.colors.accent}22`,
+                    },
+                    '&.Mui-selected': {
+                      backgroundColor: `${pianoTheme.colors.accent}33`,
+                      '&:hover': {
+                        backgroundColor: `${pianoTheme.colors.accent}44`,
+                      },
+                    },
+                  },
+                },
+              },
+            }}
+          >
+            <MenuItem value="title">Title (A-Z)</MenuItem>
+            <MenuItem value="artist">Artist (A-Z)</MenuItem>
+            <MenuItem value="difficulty">Difficulty</MenuItem>
+            <MenuItem value="recent">Recently Added</MenuItem>
+          </Select>
+        </FormControl>
+        </Box>
+      )}
     </Box>
   );
 };

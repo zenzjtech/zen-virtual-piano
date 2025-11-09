@@ -42,12 +42,14 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSortSelectOpen, setIsSortSelectOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   
   // Get persisted filter preferences from Redux
   const savedFilters = useAppSelector((state) => state.musicSheet.searchFilters);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(savedFilters.showFavoritesOnly);
   const [selectedDifficulties, setSelectedDifficulties] = useState<('easy' | 'medium' | 'hard')[]>(savedFilters.selectedDifficulties);
+  const sortBy = savedFilters.sortBy; // Read from Redux directly
   
   // Use custom hook for data management
   const {
@@ -105,16 +107,48 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     return true;
   });
   
+  // Sort sheets based on sortBy preference
+  const sortSheets = (sheets: typeof allSheets) => {
+    const sorted = [...sheets];
+    switch (sortBy) {
+      case 'title':
+        return sorted.sort((a, b) => a.title.localeCompare(b.title));
+      case 'artist':
+        return sorted.sort((a, b) => a.artist.localeCompare(b.artist));
+      case 'difficulty':
+        const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+        return sorted.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
+      case 'recent':
+        // Most recent first (assuming array is already in order or we reverse)
+        return sorted.reverse();
+      default:
+        return sorted;
+    }
+  };
+  
   // Exclude recently played sheets from the main list to avoid duplication
   const recentlyPlayedIds = new Set(displayedRecentSheets.map(sheet => sheet.id));
-  const displayedAllSheets = (hasActiveFilters ? filteredSheets : allSheets)
-    .filter(sheet => !recentlyPlayedIds.has(sheet.id));
+  const displayedAllSheets = sortSheets(
+    (hasActiveFilters ? filteredSheets : allSheets)
+      .filter(sheet => !recentlyPlayedIds.has(sheet.id))
+  );
   
-  // Handle click away, but ignore clicks on MUI Select menus
+  // Handle click away, but ignore clicks when sort selector is open
   const handleClickAway = (event: MouseEvent | TouchEvent) => {
+    // Don't close if sort select is open
+    if (isSortSelectOpen) {
+      return;
+    }
+    
     const target = event.target as HTMLElement;
-    // Check if click is on a MUI menu (Select dropdown)
-    if (target.closest('.MuiPopover-root') || target.closest('.MuiModal-root')) {
+    // Check if click is on a MUI menu (Select dropdown) or MUI backdrop
+    if (
+      target.closest('.MuiPopover-root') || 
+      target.closest('.MuiModal-root') ||
+      target.closest('.MuiMenu-root') ||
+      target.closest('.MuiPaper-root') ||
+      target.classList.contains('MuiBackdrop-root')
+    ) {
       return;
     }
     onClose();
@@ -198,6 +232,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             onToggleFavorite={handleToggleFavoriteFilter}
             onToggleDifficulty={handleToggleDifficulty}
             onClearFilters={handleClearFilters}
+            onSortSelectOpen={setIsSortSelectOpen}
             pianoTheme={pianoTheme}
           />
           
@@ -205,7 +240,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
           <SheetSearchContent
             searchQuery={searchQuery}
             allSheets={allSheets}
-            filteredSheets={filteredSheets}
+            filteredSheets={sortSheets(filteredSheets)}
             displayedRecentSheets={displayedRecentSheets}
             displayedAllSheets={displayedAllSheets}
             hasActiveFilters={hasActiveFilters}
