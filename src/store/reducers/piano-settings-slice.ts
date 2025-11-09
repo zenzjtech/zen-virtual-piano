@@ -8,6 +8,7 @@ export interface PianoSettingsState {
   isPianoEnabled: boolean;
   soundPopupOpen: boolean;
   soundPopupTargetSection?: string;
+  soundPopupPlacement?: 'top-start' | 'bottom-start';
 }
 
 const initialState: PianoSettingsState = {
@@ -46,13 +47,24 @@ export const pianoSettingsSlice = createSlice({
     setIsPianoEnabled: (state, action: PayloadAction<boolean>) => {
       state.isPianoEnabled = action.payload;
     },
-    openSoundPopup: (state, action: PayloadAction<string | undefined>) => {
+    openSoundPopup: (state, action: PayloadAction<{ targetSection?: string; placement?: 'top-start' | 'bottom-start' } | string | undefined>) => {
       state.soundPopupOpen = true;
-      state.soundPopupTargetSection = action.payload;
+      
+      // Handle both old string format and new object format for backwards compatibility
+      if (typeof action.payload === 'string') {
+        state.soundPopupTargetSection = action.payload;
+        state.soundPopupPlacement = 'bottom-start'; // default
+      } else if (action.payload) {
+        state.soundPopupTargetSection = action.payload.targetSection;
+        state.soundPopupPlacement = action.payload.placement || 'bottom-start';
+      } else {
+        state.soundPopupPlacement = 'bottom-start'; // default
+      }
     },
     closeSoundPopup: (state) => {
       state.soundPopupOpen = false;
       state.soundPopupTargetSection = undefined;
+      state.soundPopupPlacement = undefined;
     },
   },
 });

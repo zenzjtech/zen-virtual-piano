@@ -15,7 +15,10 @@ export const MetronomeControl: React.FC<MetronomeControlProps> = ({
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    dispatch(openSoundPopup('metronome'));
+    dispatch(openSoundPopup({ 
+      targetSection: 'metronome',
+      placement: 'top-start'
+    }));
   };
 
   return (

@@ -29,6 +29,7 @@ import {
 import { PianoTheme } from './themes';
 import { StyledPopupPaper, PopupHeaderBox, PopupContentBox } from './popup-styled-components';
 import { PopupSearchBar } from './popup-search-bar';
+import { useAppSelector } from '@/store/hook';
 
 interface SoundSettingsPopupProps {
   open: boolean;
@@ -137,6 +138,9 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   pianoTheme,
   targetSection,
 }) => {
+  // Read placement directly from Redux store
+  const placement = useAppSelector((state) => state.pianoSettings.soundPopupPlacement) || 'bottom-start';
+  
   const [searchQuery, setSearchQuery] = useState('');
   
   // Refs for each section
@@ -252,14 +256,16 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
     <Popper
       open={open}
       anchorEl={anchorEl}
-      placement="bottom-start"
+      placement={placement}
       style={{ zIndex: 1300 }}
       modifiers={[
         {
           name: 'flip',
           enabled: true,
           options: {
-            fallbackPlacements: ['top-start', 'bottom-start', 'bottom-end', 'top-end'],
+            fallbackPlacements: placement === 'top-start' 
+              ? ['bottom-start', 'top-start', 'bottom-end', 'top-end']
+              : ['top-start', 'bottom-start', 'bottom-end', 'top-end'],
           },
         },
         {
