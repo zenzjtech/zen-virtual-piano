@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Box, Paper, Collapse, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
-import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon, Add as AddIcon, FormatListNumbered as FormatListNumberedIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, Palette as PaletteIcon, Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { toggleFavorite, previousPage, nextPage, deleteSheet, openAddSheetDialog, closeAddSheetDialog, goToPage } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
@@ -15,6 +15,9 @@ import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
 import { ThemeGalleryDialog } from './theme-gallery-dialog';
 import { DeleteSheetDialog } from './delete-sheet-dialog';
 import { AddSheetDialog } from './add-sheet-dialog';
+import { PreviousPageButton } from './navigation-buttons/previous-page-button';
+import { NextPageButton } from './navigation-buttons/next-page-button';
+import { GoToPageButton } from './navigation-buttons/go-to-page-button';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -25,81 +28,6 @@ interface MusicBookDisplayProps {
   onClose: () => void;
 }
 
-/**
- * Navigation button for previous page
- */
-const PreviousPageButton: React.FC<{
-  onPrevious: () => void;
-  musicSheetThemeId: string;
-}> = ({ onPrevious, musicSheetThemeId }) => (
-  <Box
-    sx={{
-      position: 'absolute',
-      top: theme => theme.spacing(1.5),
-      left: '50%',
-      transform: 'translateX(-50%)',
-      marginLeft: theme => theme.spacing(-5),
-    }}
-  >
-    <ActionButton
-      onClick={onPrevious}
-      icon={<ChevronLeftIcon fontSize="small" />}
-      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Previous page"
-      tooltip="Previous Page (← / Backspace)"
-    />
-  </Box>
-);
-
-/**
- * Navigation button for next page
- */
-const NextPageButton: React.FC<{
-  onNext: () => void;
-  musicSheetThemeId: string;
-}> = ({ onNext, musicSheetThemeId }) => (
-  <Box
-    sx={{
-      position: 'absolute',
-      top: theme => theme.spacing(1.5),
-      left: '50%',
-      marginLeft: theme => theme.spacing(4),
-    }}
-  >
-    <ActionButton
-      onClick={onNext}
-      icon={<ChevronRightIcon fontSize="small" />}
-      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Next page"
-      tooltip="Next Page (→ / Enter)"
-    />
-  </Box>
-);
-
-/**
- * Navigation button for going to a specific page
- */
-const GoToPageButton: React.FC<{
-  onGoToPage: () => void;
-  musicSheetThemeId: string;
-}> = ({ onGoToPage, musicSheetThemeId }) => (
-  <Box
-    sx={{
-      position: 'absolute',
-      top: theme => theme.spacing(1.5),
-      left: '50%',
-      marginLeft: theme => theme.spacing(8),
-    }}
-  >
-    <ActionButton
-      onClick={onGoToPage}
-      icon={<FormatListNumberedIcon fontSize="small" />}
-      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Go to page"
-      tooltip="Go to Page (Ctrl+G)"
-    />
-  </Box>
-);
 
 /**
  * Action buttons container (favorite, theme, add, delete, close)
