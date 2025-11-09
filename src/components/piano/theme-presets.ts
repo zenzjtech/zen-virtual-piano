@@ -366,6 +366,20 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
+  {
+    id: 'vajrayana-buddhism',
+    name: 'Vajrayana Buddhism',
+    description: 'The diamond vehicle, symbolizing indestructible clarity and potent methods.',
+    pianoTheme: 'tibetanWood',
+    backgroundTheme: 'vajrayana-sky-temple',
+    musicSheetTheme: 'paper-14',
+    patternTheme: 'vajrayana-diamond',
+    category: 'cultural',
+    headerStyle: 'tibetan-serif',
+    headerThemeStyle: HEADER_THEME_STYLES.cultural,
+    quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
+  },
   
   // Nature Presets
   {

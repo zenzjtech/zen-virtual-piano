@@ -319,6 +319,27 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#FFDDE5', '#F5EBDC', '#8B7364'],
   },
 
+  {
+    id: 'vajrayana-diamond',
+    name: 'Vajrayana Diamond',
+    description: 'Diamond vehicle patterns with thunderbolt energy',
+    category: 'cultural',
+    beforePattern: [
+      /* Intersecting diamond shapes */
+      'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(138, 43, 226, 0.04) 35px, rgba(138, 43, 226, 0.04) 36px)',
+      'repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(75, 0, 130, 0.035) 35px, rgba(75, 0, 130, 0.035) 36px)',
+      /* Center points of the vajra */
+      'radial-gradient(circle 2px at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Energy rays from the center */
+      'repeating-conic-gradient(from 45deg at 50% 50%, transparent 0deg, transparent 44deg, rgba(255, 215, 0, 0.05) 44deg, rgba(255, 215, 0, 0.05) 46deg, transparent 46deg, transparent 90deg)',
+      /* Soft central glow */
+      'radial-gradient(ellipse 120px 120px at 50% 50%, rgba(147, 112, 219, 0.06) 0%, transparent 70%)',
+    ].join(', '),
+    previewColors: ['#8A2BE2', '#FFD700', '#4B0082'],
+  },
+
   // ========== METAL PATTERNS ==========
   {
     id: 'brushed-metal',

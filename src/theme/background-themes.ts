@@ -22,7 +22,8 @@ export type BackgroundThemeId =
   | 'isha-earth-mystic'
   | 'sacred-light-glory'
   | 'islamic-emerald-gold'
-  | 'bodhisattva-gardens';
+  | 'bodhisattva-gardens'
+  | 'vajrayana-sky-temple';
 
 /**
  * List of background theme IDs that should use dark text/icons
@@ -35,6 +36,7 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'isha-earth-mystic',
   'sacred-light-glory',
   'islamic-emerald-gold',
+  'vajrayana-sky-temple',
 ];
 
 /**
@@ -87,6 +89,8 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { background: 'linear-gradient(135deg, #F0E68C 0%, #DAA520 25%, #00704A 60%, #004D40 100%)' };
     case 'bodhisattva-gardens':
       return { background: 'linear-gradient(135deg, #B4E0B4 0%, #D4F1F9 70%, #E0EAFC 100%)' };
+    case 'vajrayana-sky-temple':
+      return { background: 'linear-gradient(135deg, #1A2942 0%, #3E2F6B 50%, #8A4E78 100%)' };
     default:
       return { backgroundColor: '#FFFFFF' };
   }
