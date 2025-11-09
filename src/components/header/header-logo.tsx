@@ -2,7 +2,8 @@
  * Header logo component
  */
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Chip } from '@mui/material';
+import { getChipStyle } from './header-chip-styles';
 import { getPianoIcon, getTextColor } from './header-utils';
 import { logoContainerStyles, logoImageStyles } from './header-styles';
 import { getHeaderTypographyStyle, getCategoryDefaultStyle } from './header-typography';
@@ -29,6 +30,7 @@ export const HeaderLogo = ({
   // Use provided headerStyle, or fall back to category default, or use modern-sans
   const finalStyle = headerStyle || (category ? getCategoryDefaultStyle(category) : 'modern-sans');
   const titleStyles = getHeaderTypographyStyle(finalStyle, textColor);
+  const chipStyle = getChipStyle(backgroundThemeId, isDarkBackground);
 
   return (
     <Box onClick={onLogoClick} sx={logoContainerStyles}>
@@ -48,6 +50,7 @@ export const HeaderLogo = ({
       >
         Zen Virtual Piano
       </Typography>
+      <Chip label="Beta" size="small" sx={chipStyle} />      
     </Box>
   );
 };
