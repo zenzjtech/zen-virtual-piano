@@ -19,6 +19,7 @@ export interface ThemePreset {
   backgroundTheme: string;
   musicSheetTheme: string;
   patternTheme?: string; // NEW: 4th independent theme component (optional, defaults to 'none')
+  patternIntensity?: number; // Pattern opacity multiplier (0.5 = 50%, 1.0 = 100%, 2.0 = 200%), defaults to 1.0
   category: 'classic' | 'modern' | 'cultural' | 'nature' | 'artistic' | 'vintage' | 'professional' | 'romantic' | 'energetic' | 'minimalist' | 'luxurious';
   headerStyle: HeaderTypographyStyle;
   headerThemeStyle: HeaderThemeStyle;
@@ -960,7 +961,7 @@ export const THEME_PRESETS: ThemePreset[] = [
   {
     id: 'tea-ceremony',
     name: 'Tea Ceremony',
-    description: 'Japanese tea house with bamboo serenity',
+    description: 'Japanese tea house with tatami mats and bamboo shadows',
     pianoTheme: 'wooden',
     backgroundTheme: 'zen-bamboo-stone',
     musicSheetTheme: 'paper-7',

@@ -585,6 +585,41 @@ export const PATTERN_THEMES: PatternTheme[] = [
     ].join(', '),
     previewColors: ['#9400D3', '#4B0082', '#0000FF', '#00FF00', '#FFFF00', '#FF7F00', '#FF0000'],
   },
+
+  // ========== JAPANESE TEA CEREMONY PATTERNS ==========
+  {
+    id: 'tea-ceremony-wooden',
+    name: 'Tea Ceremony (Wooden)',
+    description: 'Japanese tea house tatami and bamboo leaf shadows for wooden pianos',
+    category: 'cultural',
+    beforePattern: [
+      /* Tatami mat weave texture (horizontal) */
+      'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(85, 107, 47, 0.12) 3px, rgba(85, 107, 47, 0.12) 4px, transparent 4px, transparent 8px)',
+      /* Tatami mat weave texture (vertical) */
+      'repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(80, 100, 45, 0.10) 2px, rgba(80, 100, 45, 0.10) 3px, transparent 3px, transparent 6px)',
+      
+      /* Bamboo leaf shadows - scattered naturally */
+      'radial-gradient(ellipse 12px 28px at 18% 22%, rgba(75, 95, 40, 0.20) 0%, rgba(75, 95, 40, 0.12) 50%, transparent 80%)',
+      'radial-gradient(ellipse 10px 24px at 35% 58%, rgba(70, 90, 38, 0.18) 0%, rgba(70, 90, 38, 0.10) 50%, transparent 78%)',
+      'radial-gradient(ellipse 14px 30px at 68% 35%, rgba(78, 98, 42, 0.19) 0%, rgba(78, 98, 42, 0.11) 50%, transparent 82%)',
+      'radial-gradient(ellipse 11px 26px at 82% 72%, rgba(72, 92, 39, 0.17) 0%, rgba(72, 92, 39, 0.09) 50%, transparent 75%)',
+      
+      /* Matcha tea swirl */
+      'radial-gradient(ellipse 45px 45px at 25% 75%, rgba(100, 120, 60, 0.10) 0%, transparent 65%)',
+      'conic-gradient(from 30deg at 25% 75%, transparent 0deg, rgba(95, 115, 58, 0.08) 90deg, transparent 180deg, rgba(90, 110, 55, 0.06) 270deg, transparent 360deg)',
+    ].join(', '),
+    afterPattern: [
+      /* Wood grain enhancement for wooden piano */
+      'linear-gradient(90deg, transparent 0%, rgba(74, 47, 26, 0.04) 25%, transparent 50%, rgba(70, 45, 24, 0.035) 75%, transparent 100%)',
+      /* Zen circular harmony rings */
+      'repeating-radial-gradient(circle at 75% 25%, transparent 0px, transparent 68px, rgba(100, 100, 100, 0.045) 68px, rgba(100, 100, 100, 0.045) 70px, transparent 70px, transparent 138px)',
+      /* Warm wooden tea house glow */
+      'radial-gradient(ellipse 140px 100px at 50% 50%, rgba(139, 90, 60, 0.05) 0%, transparent 70%)',
+      /* Paper screen texture hint */
+      'repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(200, 200, 180, 0.025) 1px, rgba(200, 200, 180, 0.025) 2px)',
+    ].join(', '),
+    previewColors: ['#8B5A3C', '#6B8E23', '#556B2F'],
+  },
 ];
 
 // Helper function to get pattern theme by ID
