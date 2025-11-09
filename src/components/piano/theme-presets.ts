@@ -352,6 +352,20 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
+  {
+    id: 'mahayana-buddhism',
+    name: 'Mahayana Buddhism',
+    description: 'The great vehicle, embodying universal compassion and the Bodhisattva path.',
+    pianoTheme: 'mahogany',
+    backgroundTheme: 'bodhisattva-gardens',
+    musicSheetTheme: 'paper-8',
+    patternTheme: 'lotus-scroll',
+    category: 'cultural',
+    headerStyle: 'cultural-serif',
+    headerThemeStyle: HEADER_THEME_STYLES.cultural,
+    quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
+  },
   
   // Nature Presets
   {

@@ -296,6 +296,29 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#FF9933', '#FFB000', '#FFCC66'],
   },
 
+  {
+    id: 'lotus-scroll',
+    name: 'Lotus Scroll',
+    description: 'Elegant lotus flowers on a tranquil scroll',
+    category: 'cultural',
+    beforePattern: [
+      /* Lotus Petal Base - larger, softer */
+      'radial-gradient(ellipse 50% 30% at 50% 70%, rgba(255, 215, 230, 0.15) 0%, transparent 80%)',
+      /* Lotus Petal Inner - smaller, brighter */
+      'radial-gradient(ellipse 40% 25% at 50% 65%, rgba(255, 230, 240, 0.2) 0%, transparent 70%)',
+      /* Scattered smaller lotus blooms */
+      'radial-gradient(ellipse 20% 15% at 20% 30%, rgba(255, 230, 240, 0.18) 0%, transparent 70%)',
+      'radial-gradient(ellipse 25% 18% at 80% 45%, rgba(255, 220, 235, 0.16) 0%, transparent 70%)',
+    ].join(', '),
+    afterPattern: [
+      /* Scroll edges - subtle vertical lines */
+      'linear-gradient(90deg, rgba(139, 115, 100, 0.1) 0%, transparent 2%, transparent 98%, rgba(139, 115, 100, 0.1) 100%)',
+      /* Unfurled scroll texture - very faint horizontal lines */
+      'repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(245, 235, 220, 0.03) 100px, rgba(245, 235, 220, 0.03) 101px)',
+    ].join(', '),
+    previewColors: ['#FFDDE5', '#F5EBDC', '#8B7364'],
+  },
+
   // ========== METAL PATTERNS ==========
   {
     id: 'brushed-metal',

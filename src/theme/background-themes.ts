@@ -21,7 +21,8 @@ export type BackgroundThemeId =
   | 'leela-peacock-divine'
   | 'isha-earth-mystic'
   | 'sacred-light-glory'
-  | 'islamic-emerald-gold';
+  | 'islamic-emerald-gold'
+  | 'bodhisattva-gardens';
 
 /**
  * List of background theme IDs that should use dark text/icons
@@ -84,6 +85,8 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { background: 'linear-gradient(135deg, #FFF8E7 0%, #FFD700 20%, #E6B800 40%, #4169E1 70%, #2F4F7F 100%)' };
     case 'islamic-emerald-gold':
       return { background: 'linear-gradient(135deg, #F0E68C 0%, #DAA520 25%, #00704A 60%, #004D40 100%)' };
+    case 'bodhisattva-gardens':
+      return { background: 'linear-gradient(135deg, #B4E0B4 0%, #D4F1F9 70%, #E0EAFC 100%)' };
     default:
       return { backgroundColor: '#FFFFFF' };
   }
