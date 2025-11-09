@@ -8,6 +8,8 @@ import {
   Stack,
   useTheme,
 } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme, setPatternTheme } from '@/store/reducers/theme-slice';
 import {
   Palette as PaletteIcon,
   Piano as PianoIcon,
@@ -15,7 +17,7 @@ import {
   LibraryMusic as MusicSheetIcon,
   Settings as SettingsIcon,
 } from '@mui/icons-material';
-import { getAllThemes, PianoTheme } from './themes';
+import { getAllThemes, getTheme } from './themes';
 import { BACKGROUND_THEMES } from './background-themes';
 import { MUSIC_SHEET_THEMES } from './music-sheet-themes';
 import {
@@ -32,14 +34,7 @@ import { ThemePreset, THEME_PRESETS } from './theme-presets';
 interface StyleSettingsPopupProps {
   open: boolean;
   anchorEl: HTMLElement | null;
-  currentPianoTheme: string;
-  currentBackgroundTheme: string;
-  currentMusicSheetTheme: string;
   onClose: () => void;
-  onPianoThemeChange: (themeId: string) => void;
-  onBackgroundThemeChange: (themeId: string) => void;
-  onMusicSheetThemeChange: (themeId: string) => void;
-  pianoTheme: PianoTheme;
   /** Whether to show the search bar (default: true) */
   showSearch?: boolean;
   /** Whether to show preset selector (default: true) */
@@ -52,18 +47,19 @@ interface StyleSettingsPopupProps {
 export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   open,
   anchorEl,
-  currentPianoTheme,
-  currentBackgroundTheme,
-  currentMusicSheetTheme,
   onClose,
-  onPianoThemeChange,
-  onBackgroundThemeChange,
-  onMusicSheetThemeChange,
-  pianoTheme,
   showSearch = true,
   showPresets = true,
   onOpenSettings,
 }) => {
+  const dispatch = useAppDispatch();
+  
+  // Get current theme state from Redux
+  const currentPianoTheme = useAppSelector((state) => state.theme.pianoTheme);
+  const currentBackgroundTheme = useAppSelector((state) => state.theme.backgroundTheme);
+  const currentMusicSheetTheme = useAppSelector((state) => state.theme.musicSheetTheme);
+  const pianoTheme = getTheme(currentPianoTheme);
+  
   const theme = useTheme();
   const pianoThemes = getAllThemes();
   const [searchQuery, setSearchQuery] = useState('');
@@ -93,11 +89,25 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   const showPresetsSection = showPresets && filteredPresets.length > 0;
   const showNoResults = !showPianoThemes && !showBackgroundThemes && !showMusicSheetThemes && !showPresetsSection && searchQuery.trim();
 
-  // Handle preset application
+  // Handle theme changes - dispatch directly to Redux
+  const handlePianoThemeChange = (themeId: string) => {
+    dispatch(setPianoTheme(themeId));
+  };
+
+  const handleBackgroundThemeChange = (themeId: string) => {
+    dispatch(setBackgroundTheme(themeId));
+  };
+
+  const handleMusicSheetThemeChange = (themeId: string) => {
+    dispatch(setMusicSheetTheme(themeId));
+  };
+
+  // Handle preset application - dispatch directly to Redux
   const handlePresetApply = (preset: ThemePreset) => {
-    onPianoThemeChange(preset.pianoTheme);
-    onBackgroundThemeChange(preset.backgroundTheme);
-    onMusicSheetThemeChange(preset.musicSheetTheme);
+    dispatch(setPianoTheme(preset.pianoTheme));
+    dispatch(setBackgroundTheme(preset.backgroundTheme));
+    dispatch(setMusicSheetTheme(preset.musicSheetTheme));
+    dispatch(setPatternTheme(preset.patternTheme || 'none'));
   };
 
   return (
@@ -236,7 +246,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   }
                   themes={filteredPianoThemes}
                   currentTheme={currentPianoTheme}
-                  onThemeSelect={onPianoThemeChange}
+                  onThemeSelect={handlePianoThemeChange}
                   pianoTheme={pianoTheme}
                   type="piano"
                   expanded={pianoThemeExpanded}
@@ -264,7 +274,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   }
                   themes={filteredBackgroundThemes}
                   currentTheme={currentBackgroundTheme}
-                  onThemeSelect={onBackgroundThemeChange}
+                  onThemeSelect={handleBackgroundThemeChange}
                   pianoTheme={pianoTheme}
                   type="background"
                   expanded={backgroundThemeExpanded}
@@ -292,7 +302,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   }
                   themes={filteredMusicSheetThemes}
                   currentTheme={currentMusicSheetTheme}
-                  onThemeSelect={onMusicSheetThemeChange}
+                  onThemeSelect={handleMusicSheetThemeChange}
                   pianoTheme={pianoTheme}
                   type="musicsheet"
                   expanded={musicSheetThemeExpanded}

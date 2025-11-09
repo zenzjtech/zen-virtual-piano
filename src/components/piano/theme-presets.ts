@@ -186,6 +186,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     pianoTheme: 'roseGold',
     backgroundTheme: 'leela-saffron-marigold',
     musicSheetTheme: 'paper-13',
+    patternTheme: 'saffron-marigold',
     category: 'cultural',
     headerStyle: 'cultural-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,

@@ -9,6 +9,8 @@ export interface ThemeState {
   backgroundTheme: string;
   // Music sheet theme
   musicSheetTheme: string;
+  // Pattern theme (4th independent theme component)
+  patternTheme: string;
   // Auto theme rotation settings
   autoThemeEnabled: boolean;
   autoThemeInterval: ThemeChangeInterval;
@@ -19,6 +21,7 @@ const initialState: ThemeState = {
   pianoTheme: 'wooden',
   backgroundTheme: 'warm',
   musicSheetTheme: 'paper-1',
+  patternTheme: 'none',
   autoThemeEnabled: false,
   autoThemeInterval: 'hourly',
   lastThemeChangeDate: new Date().toISOString(),
@@ -37,6 +40,9 @@ export const themeSlice = createSlice({
     setMusicSheetTheme: (state, action: PayloadAction<string>) => {
       state.musicSheetTheme = action.payload;
     },
+    setPatternTheme: (state, action: PayloadAction<string>) => {
+      state.patternTheme = action.payload;
+    },
     setAutoThemeEnabled: (state, action: PayloadAction<boolean>) => {
       state.autoThemeEnabled = action.payload;
     },
@@ -53,6 +59,7 @@ export const {
   setPianoTheme,
   setBackgroundTheme,
   setMusicSheetTheme,
+  setPatternTheme,
   setAutoThemeEnabled,
   setAutoThemeInterval,
   setLastThemeChangeDate,

@@ -19,7 +19,7 @@ import { THEME_PRESETS } from '@/components/piano/theme-presets';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
-import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme } from '@/store/reducers/theme-slice';
+// Theme actions are now handled directly in StyleSettingsPopup component
 import { addSheets, loadSheet, pauseSheet } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
 import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
@@ -328,18 +328,6 @@ function App() {
     }
   };
   
-  const handlePianoThemeChange = (themeId: string) => {
-    dispatch(setPianoTheme(themeId));
-  };
-  
-  const handleBackgroundThemeChange = (themeId: string) => {
-    dispatch(setBackgroundTheme(themeId));
-  };
-  
-  const handleMusicSheetThemeChange = (themeId: string) => {
-    dispatch(setMusicSheetTheme(themeId));
-  };
-
   // Settings dialog handlers
   const handleOpenSettings = (tab: 'general' | 'quotes' | 'piano' | 'keyboard' = 'general') => {
     setSettingsTab(tab);
@@ -524,13 +512,6 @@ function App() {
         open={styleSettingsPopup.isOpen}
         anchorEl={styleSettingsPopup.anchorEl}
         onClose={styleSettingsPopup.handleClose}
-        currentPianoTheme={pianoThemeId}
-        currentBackgroundTheme={backgroundThemeId}
-        currentMusicSheetTheme={musicSheetThemeId}
-        onPianoThemeChange={handlePianoThemeChange}
-        onBackgroundThemeChange={handleBackgroundThemeChange}
-        onMusicSheetThemeChange={handleMusicSheetThemeChange}
-        pianoTheme={pianoTheme}
         onOpenSettings={() => handleOpenSettings('general')}
       />
 

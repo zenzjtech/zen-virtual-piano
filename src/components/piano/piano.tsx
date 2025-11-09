@@ -4,6 +4,8 @@ import { KeyboardOutlined as KeyboardIcon } from '@mui/icons-material';
 import { PianoKeyComponent } from './piano-key';
 import { KEY_MAPPINGS, KeyPressState, PianoKey } from './types';
 import { getTheme } from './themes';
+import { getPatternTheme } from './pattern-themes';
+import { useAppSelector } from '@/store/hook';
 import { getAudioEngine } from '@/services/audio-engine';
 import { getBlackKeyOffset } from './piano-utils';
 import { usePianoKeyboard } from '@/hooks/use-piano-keyboard';
@@ -36,7 +38,7 @@ interface PianoProps {
 }
 
 export const Piano: React.FC<PianoProps> = ({ 
-  themeId = 'wooden', 
+  themeId = 'wooden',
   onPressedNotesChange, 
   keyboardEnabled = true,
   showKeyboard = false,
@@ -44,7 +46,11 @@ export const Piano: React.FC<PianoProps> = ({
   onRecordNotePress,
   onRecordNoteRelease,
 }) => {
+  // Read pattern theme directly from Redux
+  const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
+  
   const pianoTheme = getTheme(themeId);
+  const patternTheme = getPatternTheme(patternThemeId);
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
   const audioEngineRef = useRef(getAudioEngine());
   const pressedNotesMapRef = useRef<Map<string, PianoKey>>(new Map());
@@ -132,7 +138,7 @@ export const Piano: React.FC<PianoProps> = ({
   const blackKeys = KEY_MAPPINGS.filter(key => key.isBlack);
 
   return (
-    <PianoContainer elevation={0} pianoTheme={pianoTheme}>
+    <PianoContainer elevation={0} pianoTheme={pianoTheme} patternTheme={patternTheme}>
       {/* Disabled Overlay */}
       {!keyboardEnabled && (
         <DisabledOverlay pianoTheme={pianoTheme}>

@@ -1,9 +1,10 @@
 import { Box, styled, Paper, alpha } from '@mui/material';
 import { PianoTheme } from './themes';
+import { PatternTheme } from './pattern-themes';
 
 export const PianoContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme',
-})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'patternTheme',
+})<{ pianoTheme: PianoTheme; patternTheme?: PatternTheme }>(({ theme, pianoTheme, patternTheme }) => ({
   display: 'inline-block',
   padding: theme.spacing(3),
   background: pianoTheme.container.background,
@@ -24,7 +25,7 @@ export const PianoContainer = styled(Paper, {
     borderRadius: 0,
     borderBottomLeftRadius: theme.spacing(2),
     borderBottomRightRadius: theme.spacing(2),
-    background: pianoTheme.container.beforeBackground || 'transparent',
+    background: patternTheme?.beforePattern || pianoTheme.container.beforeBackground || 'transparent',
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
@@ -36,7 +37,7 @@ export const PianoContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: pianoTheme.container.afterBackground || 'transparent',
+    background: patternTheme?.afterPattern || pianoTheme.container.afterBackground || 'transparent',
     pointerEvents: 'none',
     zIndex: 2,
     borderRadius: 0,

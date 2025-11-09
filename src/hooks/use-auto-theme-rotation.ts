@@ -5,7 +5,7 @@
 
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hook';
-import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme, setLastThemeChangeDate } from '@/store/reducers/theme-slice';
+import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme, setPatternTheme, setLastThemeChangeDate } from '@/store/reducers/theme-slice';
 import { getRandomPreset } from '@/components/piano/theme-presets';
 import { useNotification } from '@/contexts/notification-context';
 import { trackEvent } from '@/utils/analytics';
@@ -53,10 +53,11 @@ export const useAutoThemeRotation = (uid?: string) => {
     const applyRandomTheme = () => {
       const randomPreset = getRandomPreset();
       
-      // Apply all three theme components
+      // Apply all four theme components
       dispatch(setPianoTheme(randomPreset.pianoTheme));
       dispatch(setBackgroundTheme(randomPreset.backgroundTheme));
       dispatch(setMusicSheetTheme(randomPreset.musicSheetTheme));
+      dispatch(setPatternTheme(randomPreset.patternTheme || 'none'));
       
       // Update last change timestamp
       dispatch(setLastThemeChangeDate(new Date().toISOString()));
