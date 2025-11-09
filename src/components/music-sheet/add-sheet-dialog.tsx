@@ -287,10 +287,24 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
         </Box>
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 2 }}>
-        <Button onClick={handleClose} color="inherit">
+        <Button 
+          onClick={handleClose}
+          variant="outlined"
+          color="inherit"
+          sx={{
+            px: 3,
+          }}
+        >
           Cancel
         </Button>
-        <Button onClick={handleSave} variant="contained" color="primary">
+        <Button 
+          onClick={handleSave} 
+          variant="contained" 
+          color="primary"
+          sx={{
+            px: 3,
+          }}
+        >
           Add Sheet
         </Button>
       </DialogActions>
