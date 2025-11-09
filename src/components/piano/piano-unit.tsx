@@ -9,6 +9,8 @@ import { StyleSettingsPopup } from './style-settings-popup';
 import { KeyAssistPopup } from './key-assist-popup';
 import { PianoKey } from './types';
 import { getTheme } from './themes';
+import { getPatternTheme } from './pattern-themes';
+import { PianoUnitWrapper } from './piano-unit-styled';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
@@ -42,6 +44,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   const dispatch = useAppDispatch();
   const uid = useAppSelector((state) => state.user.uid);
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
+  const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
   const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
@@ -49,8 +52,9 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   
-  // Get the actual theme object
+  // Get the actual theme objects
   const pianoTheme = getTheme(pianoThemeId);
+  const patternTheme = getPatternTheme(patternThemeId);
   
   // Local component state for UI interactions
   const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
@@ -183,13 +187,8 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
           justifyContent: 'center',
         }}
       >
-        <Box
-          sx={{
-            display: 'inline-flex',
-            flexDirection: 'column',
-            alignItems: 'stretch',
-          }}
-        >
+        {/* Unified pattern wrapper for the entire piano unit */}
+        <PianoUnitWrapper pianoTheme={pianoTheme} patternTheme={patternTheme}>
           {/* Statistics Board */}
           <StatusBoard 
             pressedNotes={pressedNotes}
@@ -215,7 +214,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
             onRecordNotePress={recordNotePress}
             onRecordNoteRelease={recordNoteRelease}
           />
-        </Box>
+        </PianoUnitWrapper>
       </Box>
 
       {/* Instrument Selector Popup */}

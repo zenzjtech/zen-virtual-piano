@@ -284,14 +284,14 @@ export const PATTERN_THEMES: PatternTheme[] = [
     description: 'Hindu sacred colors with divine radial patterns',
     category: 'cultural',
     beforePattern: [
-      'radial-gradient(ellipse 25px 30px at 50% 50%, transparent 18px, rgba(255, 153, 51, 0.15) 18px, rgba(255, 153, 51, 0.15) 19px, transparent 19px)',
-      'radial-gradient(circle 40px at 25% 35%, transparent 30px, rgba(255, 176, 0, 0.12) 30px, rgba(255, 176, 0, 0.12) 31px, transparent 31px, transparent 35px, rgba(255, 153, 51, 0.1) 35px, rgba(255, 153, 51, 0.1) 36px, transparent 36px)',
-      'radial-gradient(circle 40px at 75% 70%, transparent 30px, rgba(255, 176, 0, 0.1) 30px, rgba(255, 176, 0, 0.1) 31px, transparent 31px, transparent 35px, rgba(255, 153, 51, 0.08) 35px, rgba(255, 153, 51, 0.08) 36px, transparent 36px)'
+      'radial-gradient(ellipse 25px 30px at 50% 50%, transparent 18px, rgba(255, 153, 51, 0.35) 18px, rgba(255, 153, 51, 0.35) 19px, transparent 19px)',
+      'radial-gradient(circle 40px at 25% 35%, transparent 30px, rgba(255, 176, 0, 0.28) 30px, rgba(255, 176, 0, 0.28) 31px, transparent 31px, transparent 35px, rgba(255, 153, 51, 0.24) 35px, rgba(255, 153, 51, 0.24) 36px, transparent 36px)',
+      'radial-gradient(circle 40px at 75% 70%, transparent 30px, rgba(255, 176, 0, 0.24) 30px, rgba(255, 176, 0, 0.24) 31px, transparent 31px, transparent 35px, rgba(255, 153, 51, 0.20) 35px, rgba(255, 153, 51, 0.20) 36px, transparent 36px)'
     ].join(', '),
     afterPattern: [
-      'repeating-conic-gradient(from 0deg at 25% 35%, transparent 0deg, transparent 35deg, rgba(255, 176, 0, 0.06) 35deg, rgba(255, 176, 0, 0.06) 37deg, transparent 37deg, transparent 72deg)',
-      'repeating-conic-gradient(from 18deg at 75% 70%, transparent 0deg, transparent 35deg, rgba(255, 153, 51, 0.05) 35deg, rgba(255, 153, 51, 0.05) 37deg, transparent 37deg, transparent 72deg)',
-      'radial-gradient(circle at 50% 50%, rgba(255, 176, 0, 0.04) 0%, transparent 60%)'
+      'repeating-conic-gradient(from 0deg at 25% 35%, transparent 0deg, transparent 35deg, rgba(255, 176, 0, 0.16) 35deg, rgba(255, 176, 0, 0.16) 37deg, transparent 37deg, transparent 72deg)',
+      'repeating-conic-gradient(from 18deg at 75% 70%, transparent 0deg, transparent 35deg, rgba(255, 153, 51, 0.14) 35deg, rgba(255, 153, 51, 0.14) 37deg, transparent 37deg, transparent 72deg)',
+      'radial-gradient(circle at 50% 50%, rgba(255, 176, 0, 0.12) 0%, transparent 60%)'
     ].join(', '),
     previewColors: ['#FF9933', '#FFB000', '#FFCC66'],
   },

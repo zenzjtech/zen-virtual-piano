@@ -1,10 +1,9 @@
 import { Box, Paper, Typography, styled } from '@mui/material';
 import { PianoTheme } from './themes';
-import { PatternTheme } from './pattern-themes';
 
 export const BoardContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'patternTheme',
-})<{ pianoTheme: PianoTheme; patternTheme?: PatternTheme }>(({ theme, pianoTheme, patternTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,  
   borderRadius: 0,
@@ -30,6 +29,7 @@ export const BoardContainer = styled(Paper, {
   overflow: 'hidden',
   // Top edge highlight (beveled edge effect)
   borderTop: `1px solid rgba(255, 255, 255, 0.15)`,
+  // Pattern is now applied at PianoUnit wrapper level
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -37,7 +37,7 @@ export const BoardContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: patternTheme?.beforePattern || pianoTheme.container.beforeBackground || 'none',
+    background: pianoTheme.container.beforeBackground || 'none',
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
@@ -49,7 +49,7 @@ export const BoardContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: patternTheme?.afterPattern || pianoTheme.container.afterBackground || 'none',
+    background: pianoTheme.container.afterBackground || 'none',
     pointerEvents: 'none',
     zIndex: 2,
   },

@@ -9,9 +9,7 @@ import {
   PowerSettingsNew as PowerIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
-import { PatternTheme } from './pattern-themes';
 import { useAppSelector } from '@/store/hook';
-import { getPatternTheme } from './pattern-themes';
 import { getSoundSet } from '@/services/sound-sets';
 import { getInstrumentImage } from '@/utils/instrument-images';
 import { getTheme } from './themes';
@@ -26,8 +24,8 @@ interface SettingsBarProps {
 }
 
 const BarContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'patternTheme',
-})<{ pianoTheme: PianoTheme; patternTheme?: PatternTheme }>(({ theme, pianoTheme, patternTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme',
+})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,
   padding: theme.spacing(1.5, 2),
@@ -53,6 +51,7 @@ const BarContainer = styled(Paper, {
   // Subtle inner border highlight
   borderLeft: `1px solid rgba(255, 255, 255, 0.05)`,
   borderRight: `1px solid rgba(255, 255, 255, 0.05)`,
+  // Pattern is now applied at PianoUnit wrapper level
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -60,7 +59,7 @@ const BarContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: patternTheme?.beforePattern || pianoTheme.container.beforeBackground || 'none',
+    background: pianoTheme.container.beforeBackground || 'none',
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
@@ -72,7 +71,7 @@ const BarContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: patternTheme?.afterPattern || pianoTheme.container.afterBackground || 'none',
+    background: pianoTheme.container.afterBackground || 'none',
     pointerEvents: 'none',
     zIndex: 2,
   },
@@ -153,16 +152,14 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
 }) => {
   // Get state from Redux
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
-  const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   const isRecording = useAppSelector((state) => state.recording.isRecording);
   const currentSoundSetId = useAppSelector((state) => state.pianoSettings.soundSet);
   
   const pianoTheme = getTheme(pianoThemeId);
-  const patternTheme = getPatternTheme(patternThemeId);
   const currentSoundSet = getSoundSet(currentSoundSetId);
   return (
-    <BarContainer elevation={0} pianoTheme={pianoTheme} patternTheme={patternTheme}>
+    <BarContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Left group: Action buttons */}
       <Box sx={{ display: 'flex', gap: 1, zIndex: 3 }}>
         <SettingButton
