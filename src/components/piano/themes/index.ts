@@ -14,12 +14,12 @@ export {
   generateWoodHighlights,
   generateWoodRings,
   generatePrayerWheelSpokes,
-} from './texture-generators';
+} from '@/theme/definitions/texture-generators';
 export type {
   WoodGrainConfig,
   WoodKnotConfig,
   SacredPatternConfig,
-} from './texture-generators';
+} from '@/theme/definitions/texture-generators';
 
 // NOTE: Pattern Themes are now exported from ../pattern-themes.ts
 // Pattern themes are an independent 4th theme component equal to piano/background/sheet themes

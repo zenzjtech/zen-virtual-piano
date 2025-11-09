@@ -18,8 +18,6 @@ import {
   Settings as SettingsIcon,
 } from '@mui/icons-material';
 import { getAllThemes, getTheme } from './themes';
-import { BACKGROUND_THEMES } from './background-themes';
-import { MUSIC_SHEET_THEMES } from './music-sheet-themes';
 import {
   StyledPopupPaper,
   PopupHeaderBox,
@@ -30,6 +28,8 @@ import { ThemeSection } from './theme-section';
 import { PresetSelector } from './preset-selector';
 import { useThemeFilter } from '../../hooks/use-theme-filter';
 import { ThemePreset, THEME_PRESETS } from './theme-presets';
+import { BACKGROUND_THEMES } from '@/theme/definitions/background-themes';
+import { MUSIC_SHEET_THEMES } from '@/theme/definitions/music-sheet-themes';
 
 interface StyleSettingsPopupProps {
   open: boolean;
@@ -304,7 +304,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                   currentTheme={currentMusicSheetTheme}
                   onThemeSelect={handleMusicSheetThemeChange}
                   pianoTheme={pianoTheme}
-                  type="musicsheet"
+                  type="musicSheet"
                   expanded={musicSheetThemeExpanded}
                   onToggleExpand={() => setMusicSheetThemeExpanded(!musicSheetThemeExpanded)}
                   categoryOrder={['papers']}

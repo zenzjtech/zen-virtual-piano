@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, IconButton, Box } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
-import { MUSIC_SHEET_THEMES } from '../piano/music-sheet-themes';
+import { MUSIC_SHEET_THEMES } from '@/theme/definitions/music-sheet-themes';
 import { ThemePreviewCard } from './theme-preview-card';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setMusicSheetTheme } from '@/store/reducers/theme-slice';

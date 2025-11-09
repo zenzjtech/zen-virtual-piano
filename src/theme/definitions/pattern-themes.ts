@@ -20,7 +20,7 @@ import {
   type WoodGrainConfig,
   type WoodKnotConfig,
   type SacredPatternConfig,
-} from './themes/texture-generators';
+} from './texture-generators';
 
 export interface PatternTheme {
   id: string;
@@ -49,6 +49,7 @@ export type PatternThemeCategory =
   | 'cultural' 
   | 'geometric' 
   | 'natural'
+  | 'sci-fi'
   | 'none';
 
 export const PATTERN_THEME_CATEGORIES: Record<PatternThemeCategory, { name: string; description: string }> = {
@@ -79,6 +80,10 @@ export const PATTERN_THEME_CATEGORIES: Record<PatternThemeCategory, { name: stri
   natural: {
     name: 'Natural Elements',
     description: 'Nature-inspired organic patterns',
+  },
+  'sci-fi': {
+    name: 'Sci-Fi & Cyberpunk',
+    description: 'Futuristic and digital patterns',
   },
 };
 
@@ -655,6 +660,35 @@ export const PATTERN_THEMES: PatternTheme[] = [
       `,
       duration: '10s',
       timingFunction: 'ease-in-out',
+      iterationCount: 'infinite',
+    },
+  },
+
+  // ========== SCI-FI & CYBERPUNK PATTERNS ==========
+  {
+    id: 'glitch-grid',
+    name: 'Glitch Grid',
+    description: 'A glitchy, digital grid with neon highlights',
+    category: 'sci-fi',
+    beforePattern: `
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.05) 2px, rgba(0, 255, 255, 0.05) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 0, 255, 0.05) 2px, rgba(255, 0, 255, 0.05) 4px)
+    `,
+    afterPattern: `
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 255, 255, 0.1) 40px, rgba(0, 255, 255, 0.1) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 0, 255, 0.1) 40px, rgba(255, 0, 255, 0.1) 41px)
+    `,
+    previewColors: ['#00FFFF', '#FF00FF'],
+    animation: {
+      keyframes: `
+        0% { transform: translate(0, 0); }
+        10% { transform: translate(-2px, 2px); }
+        20% { transform: translate(2px, -2px); }
+        30% { transform: translate(0, 0); }
+        100% { transform: translate(0, 0); }
+      `,
+      duration: '5s',
+      timingFunction: 'steps(10, end)',
       iterationCount: 'infinite',
     },
   },

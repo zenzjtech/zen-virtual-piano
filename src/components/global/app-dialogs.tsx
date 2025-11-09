@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { completeOnboarding } from '@/store/reducers/onboarding-slice';
 import { getTheme } from '@/components/piano/themes';
 import { THEME_PRESETS, ThemePreset } from '@/components/piano/theme-presets';
-import { isDarkBackgroundTheme } from '@/theme/background-themes';
+import { isDarkBackgroundTheme } from '@/theme/definitions/background-themes';
 
 interface AppDialogsProps {
   /** Whether settings dialog is open */

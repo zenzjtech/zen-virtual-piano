@@ -1,6 +1,6 @@
 import { Box, styled, keyframes } from '@mui/material';
 import { PianoTheme } from './themes';
-import { PatternTheme } from './pattern-themes';
+import { PatternTheme } from '@/theme/definitions/pattern-themes';
 
 /**
  * Unified pattern wrapper for the entire PianoUnit

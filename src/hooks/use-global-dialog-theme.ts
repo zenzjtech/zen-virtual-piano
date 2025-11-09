@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { isDarkBackgroundTheme } from '@/theme/background-themes';
 import { THEME_PRESETS } from '@/components/piano/theme-presets';
-import type { HeaderThemeStyle } from '@/components/header/header-theme-styles';
+import { HeaderThemeStyle } from '@/theme/definitions/header-theme-styles';
 
 export interface DialogTheme {
   // Background & surfaces

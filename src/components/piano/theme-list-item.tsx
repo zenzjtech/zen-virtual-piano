@@ -6,19 +6,20 @@ import {
   Box,
 } from '@mui/material';
 import { CheckCircle as CheckCircleIcon } from '@mui/icons-material';
-import { PianoTheme } from './themes';
-import { BackgroundTheme } from './background-themes';
+import type { PianoTheme } from '@/theme/definitions/themes';
+import { BackgroundTheme, getBackgroundStyle } from '@/theme/definitions/background-themes';
+import type { MusicSheetTheme } from '@/theme/definitions/music-sheet-themes';
 import {
   StyledListItem,
   StyledListItemButton,
 } from './popup-styled-components';
 
 interface ThemeListItemProps {
-  theme: PianoTheme | BackgroundTheme;
+  theme: PianoTheme | BackgroundTheme | MusicSheetTheme;
   isSelected: boolean;
   onSelect: (themeId: string) => void;
   pianoTheme: PianoTheme;
-  type: 'piano' | 'background';
+  type: 'piano' | 'background' | 'musicSheet';
   index: number;
 }
 
@@ -63,15 +64,16 @@ export const ThemeListItem: React.FC<ThemeListItemProps> = ({
           }}
         />
       );
-    } else {
+    } else if (type === 'background') {
       const backgroundThemeItem = theme as BackgroundTheme;
+      const style = getBackgroundStyle(backgroundThemeItem.id);
       return (
         <Box
           sx={{
             width: 20,
             height: 20,
             borderRadius: '4px',
-            background: backgroundThemeItem.gradient || backgroundThemeItem.color,
+            background: style.background || style.backgroundColor,
             border: `2px solid ${pianoTheme.colors.border}`,
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
             transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -89,10 +91,25 @@ export const ThemeListItem: React.FC<ThemeListItemProps> = ({
               borderRadius: '8px',
               animation: 'none',
               boxShadow: `
-                0 0 16px ${backgroundThemeItem.color}88,
+                0 0 16px ${pianoTheme.colors.accent}88,
                 0 4px 12px rgba(0, 0, 0, 0.4)
               `,
             },
+          }}
+        />
+      );
+    } else {
+      const musicSheetThemeItem = theme as MusicSheetTheme;
+      return (
+        <Box
+          sx={{
+            width: 20,
+            height: 20,
+            borderRadius: '4px',
+            backgroundImage: `url(/assets/image/music-sheet/${musicSheetThemeItem.backgroundImage})`,
+            backgroundSize: 'cover',
+            border: `2px solid ${pianoTheme.colors.border}`,
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
           }}
         />
       );

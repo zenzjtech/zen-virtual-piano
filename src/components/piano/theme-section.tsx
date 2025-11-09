@@ -7,9 +7,9 @@ import {
   IconButton,
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
-import { PianoTheme } from './themes';
-import { BackgroundTheme, BACKGROUND_THEME_CATEGORIES } from './background-themes';
-import { MusicSheetTheme, MUSIC_SHEET_THEME_CATEGORIES } from './music-sheet-themes';
+import type { PianoTheme } from '@/theme/definitions/themes';
+import { BackgroundTheme, BACKGROUND_THEME_CATEGORIES } from '@/theme/definitions/background-themes';
+import { MusicSheetTheme, MUSIC_SHEET_THEME_CATEGORIES } from '@/theme/definitions/music-sheet-themes';
 import { ThemeListItem } from './theme-list-item';
 import { useThemeGroups } from '../../hooks/use-theme-groups';
 import { CategoryHeader } from './category-header';
@@ -21,7 +21,7 @@ interface ThemeSectionProps {
   currentTheme: string;
   onThemeSelect: (themeId: string) => void;
   pianoTheme: PianoTheme;
-  type: 'piano' | 'background' | 'musicsheet';
+  type: 'piano' | 'background' | 'musicSheet';
   expanded: boolean;
   onToggleExpand: () => void;
   /** Enable category grouping (default: true) */
@@ -49,7 +49,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({
 
   // Get category metadata for background and music sheet themes
   const getCategoryInfo = (category: string) => {
-    if (type === 'musicsheet') {
+    if (type === 'musicSheet') {
       return MUSIC_SHEET_THEME_CATEGORIES[category as keyof typeof MUSIC_SHEET_THEME_CATEGORIES];
     }
     if (type === 'background' && category in BACKGROUND_THEME_CATEGORIES) {

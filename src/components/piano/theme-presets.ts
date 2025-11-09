@@ -3,10 +3,10 @@
  * Curated combinations of piano theme, background, and music sheet for optimal visual harmony
  */
 
+import { QUOTE_STYLES, QuoteStyle } from '@/theme/definitions/quote-styles';
 import type { HeaderTypographyStyle } from '../header/header-typography';
-import { QUOTE_STYLES, type QuoteStyle } from './quote-styles';
-import { HEADER_THEME_STYLES, type HeaderThemeStyle } from '../header/header-theme-styles';
-import { PLAYBACK_BAR_STYLES, type PlaybackBarStyle } from './playback-bar-styles';
+import { HEADER_THEME_STYLES, HeaderThemeStyle } from '@/theme/definitions/header-theme-styles';
+import { PLAYBACK_BAR_STYLES, PlaybackBarStyle } from '@/theme/definitions/playback-bar-styles';
 
 // Re-export for convenience
 export type { QuoteStyle, HeaderThemeStyle, PlaybackBarStyle };
@@ -20,7 +20,7 @@ export interface ThemePreset {
   musicSheetTheme: string;
   patternTheme?: string; // NEW: 4th independent theme component (optional, defaults to 'none')
   patternIntensity?: number; // Pattern opacity multiplier (0.5 = 50%, 1.0 = 100%, 2.0 = 200%), defaults to 1.0
-  category: 'classic' | 'modern' | 'cultural' | 'nature' | 'artistic' | 'vintage' | 'professional' | 'romantic' | 'energetic' | 'minimalist' | 'luxurious';
+  category: 'classic' | 'modern' | 'cultural' | 'nature' | 'artistic' | 'vintage' | 'professional' | 'romantic' | 'energetic' | 'minimalist' | 'luxurious' | 'sci-fi';
   headerStyle: HeaderTypographyStyle;
   headerThemeStyle: HeaderThemeStyle;
   quoteStyle: QuoteStyle;
@@ -986,6 +986,22 @@ export const THEME_PRESETS: ThemePreset[] = [
     playbackBarStyle: PLAYBACK_BAR_STYLES.classic,
   },
   
+  // Sci-Fi Presets
+  {
+    id: 'cyberpunk-neon',
+    name: 'Cyberpunk Neon',
+    description: 'High-tech, low-life aesthetic with neon-drenched cityscapes.',
+    pianoTheme: 'metal',
+    backgroundTheme: 'cyberpunk-neon',
+    musicSheetTheme: 'paper-12',
+    patternTheme: 'glitch-grid',
+    category: 'sci-fi',
+    headerStyle: 'modern-sans',
+    headerThemeStyle: HEADER_THEME_STYLES.modern, // Or a new sci-fi style
+    quoteStyle: QUOTE_STYLES.modern, // Or a new sci-fi style
+    playbackBarStyle: PLAYBACK_BAR_STYLES.modern, // Or a new sci-fi style
+  },
+
   // Additional Modern Presets
   {
     id: 'contemporary-studio',

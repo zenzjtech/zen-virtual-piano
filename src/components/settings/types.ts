@@ -2,8 +2,8 @@
  * Shared types for settings components
  */
 
-import type { HeaderThemeStyle } from '../header/header-theme-styles';
-import type { ThemePreset } from '../piano/theme-presets';
+
+import type { HeaderThemeStyle, ThemePreset } from '../piano/theme-presets';
 
 export interface SettingsDialogProps {
   open: boolean;

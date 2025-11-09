@@ -9,7 +9,7 @@ import { StyleSettingsPopup } from './style-settings-popup';
 import { KeyAssistPopup } from './key-assist-popup';
 import { PianoKey } from './types';
 import { getTheme } from './themes';
-import { getPatternTheme } from './pattern-themes';
+import { getPatternTheme } from '@/theme/definitions/pattern-themes';
 import { PianoUnitWrapper } from './piano-unit-styled';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
