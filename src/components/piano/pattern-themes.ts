@@ -515,21 +515,21 @@ export const PATTERN_THEMES: PatternTheme[] = [
     category: 'cultural',
     beforePattern: [
       /* Sacred geometry hexagons */
-      'repeating-linear-gradient(60deg, transparent, transparent 45px, rgba(147, 112, 219, 0.06) 45px, rgba(147, 112, 219, 0.06) 46px)',
-      'repeating-linear-gradient(-60deg, transparent, transparent 45px, rgba(138, 43, 226, 0.05) 45px, rgba(138, 43, 226, 0.05) 46px)',
-      'repeating-linear-gradient(0deg, transparent, transparent 45px, rgba(186, 85, 211, 0.04) 45px, rgba(186, 85, 211, 0.04) 46px)',
+      'repeating-linear-gradient(60deg, transparent, transparent 45px, rgba(147, 112, 219, 0.025) 45px, rgba(147, 112, 219, 0.025) 46px)',
+      'repeating-linear-gradient(-60deg, transparent, transparent 45px, rgba(138, 43, 226, 0.02) 45px, rgba(138, 43, 226, 0.02) 46px)',
+      'repeating-linear-gradient(0deg, transparent, transparent 45px, rgba(186, 85, 211, 0.015) 45px, rgba(186, 85, 211, 0.015) 46px)',
       /* Crystal nodes */
-      'radial-gradient(circle 4px at 22% 28%, rgba(216, 191, 216, 0.35) 0%, rgba(216, 191, 216, 0.35) 100%, transparent 100%)',
-      'radial-gradient(circle 3px at 68% 42%, rgba(221, 160, 221, 0.30) 0%, rgba(221, 160, 221, 0.30) 100%, transparent 100%)',
-      'radial-gradient(circle 5px at 45% 65%, rgba(230, 230, 250, 0.28) 0%, rgba(230, 230, 250, 0.28) 100%, transparent 100%)',
-      'radial-gradient(circle 3px at 78% 75%, rgba(218, 112, 214, 0.32) 0%, rgba(218, 112, 214, 0.32) 100%, transparent 100%)',
+      'radial-gradient(circle 3px at 22% 28%, rgba(216, 191, 216, 0.15) 0%, rgba(216, 191, 216, 0.15) 100%, transparent 100%)',
+      'radial-gradient(circle 2px at 68% 42%, rgba(221, 160, 221, 0.12) 0%, rgba(221, 160, 221, 0.12) 100%, transparent 100%)',
+      'radial-gradient(circle 3px at 45% 65%, rgba(230, 230, 250, 0.10) 0%, rgba(230, 230, 250, 0.10) 100%, transparent 100%)',
+      'radial-gradient(circle 2px at 78% 75%, rgba(218, 112, 214, 0.13) 0%, rgba(218, 112, 214, 0.13) 100%, transparent 100%)',
     ].join(', '),
     afterPattern: [
       /* Energy field glow */
-      'radial-gradient(ellipse 180px 140px at 30% 35%, rgba(147, 112, 219, 0.10) 0%, transparent 60%)',
-      'radial-gradient(ellipse 160px 120px at 70% 60%, rgba(186, 85, 211, 0.08) 0%, transparent 55%)',
+      'radial-gradient(ellipse 180px 140px at 30% 35%, rgba(147, 112, 219, 0.04) 0%, transparent 60%)',
+      'radial-gradient(ellipse 160px 120px at 70% 60%, rgba(186, 85, 211, 0.03) 0%, transparent 55%)',
       /* Sacred light rays */
-      'repeating-conic-gradient(from 15deg at 30% 35%, transparent 0deg, transparent 28deg, rgba(221, 160, 221, 0.06) 28deg, rgba(221, 160, 221, 0.06) 30deg, transparent 30deg, transparent 60deg)',
+      'repeating-conic-gradient(from 15deg at 30% 35%, transparent 0deg, transparent 28deg, rgba(221, 160, 221, 0.02) 28deg, rgba(221, 160, 221, 0.02) 30deg, transparent 30deg, transparent 60deg)',
     ].join(', '),
     previewColors: ['#9370DB', '#BA55D3', '#DDA0DD'],
   },
@@ -541,21 +541,21 @@ export const PATTERN_THEMES: PatternTheme[] = [
     category: 'cultural',
     beforePattern: [
       /* Mandala circles */
-      'repeating-radial-gradient(circle at 50% 50%, transparent 0px, transparent 55px, rgba(75, 0, 130, 0.06) 55px, rgba(75, 0, 130, 0.06) 57px, transparent 57px, transparent 110px)',
-      'repeating-radial-gradient(circle at 50% 50%, transparent 0px, transparent 80px, rgba(138, 43, 226, 0.05) 80px, rgba(138, 43, 226, 0.05) 81px, transparent 81px, transparent 160px)',
+      'repeating-radial-gradient(circle at 50% 50%, transparent 0px, transparent 55px, rgba(75, 0, 130, 0.025) 55px, rgba(75, 0, 130, 0.025) 57px, transparent 57px, transparent 110px)',
+      'repeating-radial-gradient(circle at 50% 50%, transparent 0px, transparent 80px, rgba(138, 43, 226, 0.02) 80px, rgba(138, 43, 226, 0.02) 81px, transparent 81px, transparent 160px)',
       /* Cosmic dots */
-      'radial-gradient(circle 2px at 25% 25%, rgba(255, 215, 0, 0.40) 0%, rgba(255, 215, 0, 0.40) 100%, transparent 100%)',
-      'radial-gradient(circle 1.5px at 75% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 100%, transparent 100%)',
-      'radial-gradient(circle 2.5px at 35% 70%, rgba(255, 223, 186, 0.38) 0%, rgba(255, 223, 186, 0.38) 100%, transparent 100%)',
-      'radial-gradient(circle 1.8px at 80% 65%, rgba(250, 250, 210, 0.32) 0%, rgba(250, 250, 210, 0.32) 100%, transparent 100%)',
+      'radial-gradient(circle 1.5px at 25% 25%, rgba(255, 215, 0, 0.18) 0%, rgba(255, 215, 0, 0.18) 100%, transparent 100%)',
+      'radial-gradient(circle 1px at 75% 30%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%, transparent 100%)',
+      'radial-gradient(circle 1.5px at 35% 70%, rgba(255, 223, 186, 0.16) 0%, rgba(255, 223, 186, 0.16) 100%, transparent 100%)',
+      'radial-gradient(circle 1px at 80% 65%, rgba(250, 250, 210, 0.14) 0%, rgba(250, 250, 210, 0.14) 100%, transparent 100%)',
     ].join(', '),
     afterPattern: [
       /* Cosmic rays */
-      'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 22deg, rgba(138, 43, 226, 0.08) 22deg, rgba(138, 43, 226, 0.08) 23deg, transparent 23deg, transparent 45deg)',
+      'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 22deg, rgba(138, 43, 226, 0.03) 22deg, rgba(138, 43, 226, 0.03) 23deg, transparent 23deg, transparent 45deg)',
       /* Universal glow */
-      'radial-gradient(circle at 50% 50%, rgba(147, 112, 219, 0.12) 0%, rgba(138, 43, 226, 0.06) 30%, transparent 65%)',
+      'radial-gradient(circle at 50% 50%, rgba(147, 112, 219, 0.05) 0%, rgba(138, 43, 226, 0.025) 30%, transparent 65%)',
       /* Star points */
-      'repeating-conic-gradient(from 11.25deg at 50% 50%, transparent 0deg, transparent 21deg, rgba(255, 215, 0, 0.10) 21deg, rgba(255, 215, 0, 0.10) 24deg, transparent 24deg, transparent 45deg)',
+      'repeating-conic-gradient(from 11.25deg at 50% 50%, transparent 0deg, transparent 21deg, rgba(255, 215, 0, 0.04) 21deg, rgba(255, 215, 0, 0.04) 24deg, transparent 24deg, transparent 45deg)',
     ].join(', '),
     previewColors: ['#9370DB', '#8A2BE2', '#FFD700'],
   },
@@ -567,21 +567,21 @@ export const PATTERN_THEMES: PatternTheme[] = [
     category: 'cultural',
     beforePattern: [
       /* Chakra gradient bands */
-      'linear-gradient(180deg, rgba(148, 0, 211, 0.04) 0%, transparent 14%, rgba(75, 0, 130, 0.04) 14%, transparent 28%, rgba(0, 0, 255, 0.04) 28%, transparent 42%, rgba(0, 255, 0, 0.04) 42%, transparent 56%, rgba(255, 255, 0, 0.04) 56%, transparent 70%, rgba(255, 127, 0, 0.04) 70%, transparent 84%, rgba(255, 0, 0, 0.04) 84%, transparent 100%)',
+      'linear-gradient(180deg, rgba(148, 0, 211, 0.015) 0%, transparent 14%, rgba(75, 0, 130, 0.015) 14%, transparent 28%, rgba(0, 0, 255, 0.015) 28%, transparent 42%, rgba(0, 255, 0, 0.015) 42%, transparent 56%, rgba(255, 255, 0, 0.015) 56%, transparent 70%, rgba(255, 127, 0, 0.015) 70%, transparent 84%, rgba(255, 0, 0, 0.015) 84%, transparent 100%)',
       /* Energy nodes */
-      'radial-gradient(circle 6px at 50% 7%, rgba(148, 0, 211, 0.25) 0%, transparent 100%)',
-      'radial-gradient(circle 6px at 50% 21%, rgba(75, 0, 130, 0.25) 0%, transparent 100%)',
-      'radial-gradient(circle 6px at 50% 35%, rgba(0, 0, 255, 0.25) 0%, transparent 100%)',
-      'radial-gradient(circle 6px at 50% 49%, rgba(0, 255, 0, 0.25) 0%, transparent 100%)',
-      'radial-gradient(circle 6px at 50% 63%, rgba(255, 255, 0, 0.25) 0%, transparent 100%)',
-      'radial-gradient(circle 6px at 50% 77%, rgba(255, 127, 0, 0.25) 0%, transparent 100%)',
-      'radial-gradient(circle 6px at 50% 91%, rgba(255, 0, 0, 0.25) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 7%, rgba(148, 0, 211, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 21%, rgba(75, 0, 130, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 35%, rgba(0, 0, 255, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 49%, rgba(0, 255, 0, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 63%, rgba(255, 255, 0, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 77%, rgba(255, 127, 0, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 50% 91%, rgba(255, 0, 0, 0.12) 0%, transparent 100%)',
     ].join(', '),
     afterPattern: [
       /* Flowing energy */
-      'radial-gradient(ellipse 100px 180px at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%)',
+      'radial-gradient(ellipse 100px 180px at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%)',
       /* Subtle spiral */
-      'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 85deg, rgba(255, 255, 255, 0.03) 85deg, rgba(255, 255, 255, 0.03) 95deg, transparent 95deg, transparent 180deg)',
+      'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 85deg, rgba(255, 255, 255, 0.012) 85deg, rgba(255, 255, 255, 0.012) 95deg, transparent 95deg, transparent 180deg)',
     ].join(', '),
     previewColors: ['#9400D3', '#4B0082', '#0000FF', '#00FF00', '#FFFF00', '#FF7F00', '#FF0000'],
   },
