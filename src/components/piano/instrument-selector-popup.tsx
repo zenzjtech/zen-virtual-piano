@@ -89,7 +89,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
     <Popper
       open={open}
       anchorEl={anchorEl}
-      placement="bottom-start"
+      placement="top-start"
       style={{ zIndex: 1300 }}
       modifiers={[
         {

@@ -124,7 +124,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     <Popper
       open={open}
       anchorEl={anchorEl}
-      placement="bottom-start"
+      placement="bottom-end"
       style={{ zIndex: theme.zIndex.modal }}
       modifiers={[
         {

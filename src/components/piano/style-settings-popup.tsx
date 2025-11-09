@@ -114,7 +114,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
     <Popper
       open={open}
       anchorEl={anchorEl}
-      placement="bottom-start"
+      placement="top-start"
       style={{ zIndex: theme.zIndex.modal }}
       modifiers={[
         {
