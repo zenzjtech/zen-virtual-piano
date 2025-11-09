@@ -14,6 +14,7 @@ import {
   PianoOutlined as PianoIcon,
 } from '@mui/icons-material';
 import { getAllSoundSets, SoundSet } from '@/services/sound-sets';
+import { getInstrumentImage } from '@/utils/instrument-images';
 import { PianoTheme } from './themes';
 import {
   StyledPopupPaper,
@@ -184,27 +185,54 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                     <ListItemIcon sx={{ minWidth: 40 }}>
                       {isLoading && isSelected ? (
                         <CircularProgress
-                          size={20}
+                          size={24}
                           sx={{
                             color: pianoTheme.colors.accent,
-                          }}
-                        />
-                      ) : isSelected ? (
-                        <CheckCircleIcon
-                          sx={{
-                            color: pianoTheme.colors.accent,
-                            fontSize: '1.25rem',
-                            filter: `drop-shadow(0 0 4px ${pianoTheme.colors.accent}66)`,
                           }}
                         />
                       ) : (
-                        <PianoIcon
+                        <Box
                           sx={{
-                            color: pianoTheme.colors.secondary,
-                            fontSize: '1.25rem',
-                            opacity: 0.6,
+                            position: 'relative',
+                            width: 28,
+                            height: 28,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                           }}
-                        />
+                        >
+                          <Box
+                            component="img"
+                            src={getInstrumentImage(soundSet.id)}
+                            alt={soundSet.name}
+                            sx={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'contain',
+                              filter: isSelected
+                                ? `drop-shadow(0 0 4px ${pianoTheme.colors.accent})`
+                                : pianoTheme.isLight
+                                ? 'brightness(0.5) saturate(0.8)'
+                                : 'brightness(0.9) saturate(0.9)',
+                              opacity: isSelected ? 1 : 0.7,
+                              transition: 'all 0.2s ease',
+                            }}
+                          />
+                          {isSelected && (
+                            <CheckCircleIcon
+                              sx={{
+                                position: 'absolute',
+                                bottom: -4,
+                                right: -4,
+                                color: pianoTheme.colors.accent,
+                                fontSize: '0.875rem',
+                                filter: `drop-shadow(0 0 4px ${pianoTheme.colors.accent}66)`,
+                                backgroundColor: pianoTheme.container.background,
+                                borderRadius: '50%',
+                              }}
+                            />
+                          )}
+                        </Box>
                       )}
                     </ListItemIcon>
                     

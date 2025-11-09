@@ -440,7 +440,8 @@ function App() {
                 onKeyAssist={keyAssistPopup.handleOpen}
                 onInstrument={instrumentPopup.handleOpen}
                 onSound={soundSettingsPopup.handleOpen}
-                onStyles={styleSettingsPopup.handleOpen}                
+                onStyles={styleSettingsPopup.handleOpen}
+                currentSoundSetId={soundSet}
                 pianoTheme={pianoTheme}
               />
 

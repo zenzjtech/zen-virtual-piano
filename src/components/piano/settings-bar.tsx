@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, styled, Paper } from '@mui/material';
+import { Box, Button, styled, Paper, Tooltip } from '@mui/material';
 import {
   FiberManualRecord as RecordIcon,
   Keyboard as KeyboardIcon,
@@ -9,6 +9,8 @@ import {
   PowerSettingsNew as PowerIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
+import { getSoundSet } from '@/services/sound-sets';
+import { getInstrumentImage } from '@/utils/instrument-images';
 
 interface SettingsBarProps {
   onTogglePiano?: () => void;
@@ -19,6 +21,8 @@ interface SettingsBarProps {
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onStyles?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Current sound set ID */
+  currentSoundSetId?: string;
   /** Piano theme for consistent styling */
   pianoTheme: PianoTheme;
 }
@@ -150,8 +154,10 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onInstrument,
   onSound,
   onStyles,
+  currentSoundSetId = 'classical',
   pianoTheme,
 }) => {
+  const currentSoundSet = getSoundSet(currentSoundSetId);
   return (
     <BarContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Left group: Action buttons */}
@@ -202,14 +208,64 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
 
       {/* Right group: Settings buttons */}
       <Box sx={{ display: 'flex', gap: 1, zIndex: 3 }}>
-        <SettingButton
-          variant="outlined"
-          startIcon={<InstrumentIcon sx={{ fontSize: '1rem' }} />}
-          onClick={onInstrument}
-          pianoTheme={pianoTheme}
+        <Tooltip 
+          title="Click to change instrument"
+          placement="top"
+          slotProps={{
+            tooltip: {
+              sx: {
+                backgroundColor: pianoTheme.container.background,
+                color: pianoTheme.colors.primary,
+                border: `1px solid ${pianoTheme.colors.border}`,
+                boxShadow: `
+                  0 4px 8px rgba(0, 0, 0, 0.3),
+                  inset 0 1px 0 rgba(255, 255, 255, ${pianoTheme.isLight ? 0.1 : 0.05})
+                `,
+                fontSize: '0.75rem',
+                fontWeight: 500,
+                padding: '6px 12px',
+                textShadow: `0 1px 2px rgba(0, 0, 0, 0.3)`,
+                backdropFilter: 'blur(8px)',
+                '& .MuiTooltip-arrow': {
+                  color: pianoTheme.container.background,
+                  '&::before': {
+                    border: `1px solid ${pianoTheme.colors.border}`,
+                  },
+                },
+              },
+            },
+          }}
+          arrow
         >
-          Instrument
-        </SettingButton>
+          <SettingButton
+            variant="outlined"
+            startIcon={
+              <Box
+                component="img"
+                src={getInstrumentImage(currentSoundSetId)}
+                alt={currentSoundSet.name}
+                sx={{
+                  width: '1rem',
+                  height: '1rem',
+                  objectFit: 'contain',
+                  filter: pianoTheme.isLight
+                    ? 'brightness(0.6) saturate(0.8)'
+                    : 'brightness(1.1) saturate(1.1)',
+                  transition: 'filter 0.2s ease',
+                }}
+              />
+            }
+            onClick={onInstrument}
+            pianoTheme={pianoTheme}
+            sx={{
+              '&:hover .instrument-icon': {
+                filter: `drop-shadow(0 0 4px ${pianoTheme.colors.accent}) ${pianoTheme.isLight ? 'brightness(0.8)' : 'brightness(1.3)'}`,
+              },
+            }}
+          >
+            {currentSoundSet.name}
+          </SettingButton>
+        </Tooltip>
 
         <SettingButton
           variant="outlined"
