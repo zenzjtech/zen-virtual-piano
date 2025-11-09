@@ -340,6 +340,31 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#8A2BE2', '#FFD700', '#4B0082'],
   },
 
+  {
+    id: 'tatami-mat',
+    name: 'Tatami Mat',
+    description: 'Simple, clean lines of a traditional tatami mat',
+    category: 'cultural',
+    beforePattern: `
+      repeating-linear-gradient(
+        90deg,
+        rgba(100, 110, 90, 0.08) 0,
+        rgba(100, 110, 90, 0.08) 1px,
+        transparent 1px,
+        transparent 100px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(100, 110, 90, 0.05) 0,
+        rgba(100, 110, 90, 0.05) 1px,
+        transparent 1px,
+        transparent 200px
+      )
+    `,
+    afterPattern: '',
+    previewColors: ['#B4C4B4', '#A4B4A4'],
+  },
+
   // ========== METAL PATTERNS ==========
   {
     id: 'brushed-metal',

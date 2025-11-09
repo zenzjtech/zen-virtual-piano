@@ -380,6 +380,20 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
+  {
+    id: 'zen-buddhism',
+    name: 'Zen Buddhism',
+    description: 'Embracing simplicity and mindfulness with natural textures.',
+    pianoTheme: 'wooden',
+    backgroundTheme: 'zen-bamboo-stone',
+    musicSheetTheme: 'paper-7',
+    patternTheme: 'tatami-mat',
+    category: 'cultural',
+    headerStyle: 'cultural-serif',
+    headerThemeStyle: HEADER_THEME_STYLES.cultural,
+    quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
+  },
   
   // Nature Presets
   {
