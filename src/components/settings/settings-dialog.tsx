@@ -6,7 +6,8 @@
 import { Dialog, DialogContent, Box, Tabs, Tab, Fade } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import React, { useState, useEffect } from 'react';
-import { useSettingsTheme } from './use-settings-theme';
+import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
+import { getDialogStyles } from '@/components/global/dialog/styles';
 import { SettingsHeader } from './components/settings-header';
 import { TabPanel } from './components/tab-panel';
 import { GeneralTab, QuotesTab, PianoTab, KeyboardTab } from './tabs';
@@ -42,6 +43,7 @@ export const SettingsDialog = ({
   currentPreset,
 }: SettingsDialogProps) => {
   const [tabValue, setTabValue] = useState(TAB_MAP[initialTab] || 0);
+  const theme = useDialogTheme();
 
   // Update tab when initialTab changes
   useEffect(() => {
@@ -54,9 +56,6 @@ export const SettingsDialog = ({
     setTabValue(newValue);
   };
 
-  // Extract theme colors
-  const theme = useSettingsTheme(isDarkBackground, headerThemeStyle);
-
   return (
     <Dialog
       open={open}
@@ -65,15 +64,7 @@ export const SettingsDialog = ({
       fullWidth
       TransitionComponent={SubtleTransition}
       PaperProps={{
-        sx: {
-          bgcolor: theme.dialogBg,
-          backgroundImage: 'none',
-          backdropFilter: theme.backdropBlur,
-          WebkitBackdropFilter: theme.backdropBlur,
-          borderRadius: 2,
-          boxShadow: theme.boxShadow,
-          border: `1px solid ${theme.borderColor}`,
-        },
+        sx: getDialogStyles(theme),
       }}
     >
       {/* Header with theme/instrument info */}
@@ -93,17 +84,17 @@ export const SettingsDialog = ({
           sx={{
             px: 3,
             '& .MuiTab-root': {
-              color: theme.secondaryTextColor,
+              color: theme.textSecondary,
               textTransform: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
               minHeight: 48,
               '&.Mui-selected': {
-                color: theme.textColor,
+                color: theme.textPrimary,
               },
             },
             '& .MuiTabs-indicator': {
-              bgcolor: theme.textColor,
+              bgcolor: theme.accentPrimary,
             },
           }}
         >

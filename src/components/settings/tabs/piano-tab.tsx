@@ -10,7 +10,7 @@ interface PianoTabProps {
 }
 
 export const PianoTab = ({ theme }: PianoTabProps) => (
-  <Typography sx={{ color: theme.secondaryTextColor, mb: 2 }}>
+  <Typography sx={{ color: theme.textSecondary, mb: 2 }}>
     Piano settings coming soon...
   </Typography>
 );

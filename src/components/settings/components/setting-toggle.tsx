@@ -30,7 +30,7 @@ export const SettingToggle = ({
         onChange={(e) => onChange(e.target.checked)}
         sx={{
           '& .MuiSwitch-switchBase.Mui-checked': {
-            color: theme.textColor,
+            color: theme.textPrimary,
           },
           '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
             bgcolor: theme.highlightBg,
@@ -40,11 +40,11 @@ export const SettingToggle = ({
     }
     label={
       <Box>
-        <Typography sx={{ color: theme.textColor, fontWeight: 500 }}>
+        <Typography sx={{ color: theme.textPrimary, fontWeight: 500 }}>
           {label}
         </Typography>
         {description && (
-          <Typography variant="caption" sx={{ color: theme.secondaryTextColor }}>
+          <Typography variant="caption" sx={{ color: theme.textSecondary }}>
             {description}
           </Typography>
         )}

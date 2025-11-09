@@ -10,7 +10,7 @@ interface KeyboardTabProps {
 }
 
 export const KeyboardTab = ({ theme }: KeyboardTabProps) => (
-  <Typography sx={{ color: theme.secondaryTextColor, mb: 2 }}>
+  <Typography sx={{ color: theme.textSecondary, mb: 2 }}>
     Keyboard shortcut settings coming soon...
   </Typography>
 );

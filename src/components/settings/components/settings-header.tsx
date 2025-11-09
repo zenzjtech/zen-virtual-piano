@@ -27,7 +27,7 @@ export const SettingsHeader = ({ open, onClose, currentPreset, theme }: Settings
         flexDirection: 'column',
         gap: 1.5,
         borderBottom: `1px solid ${theme.borderColor}`,
-        color: theme.textColor,
+        color: theme.textPrimary,
         pb: 2,
       }}
     >
@@ -39,7 +39,7 @@ export const SettingsHeader = ({ open, onClose, currentPreset, theme }: Settings
           onClick={onClose}
           size="small"
           sx={{
-            color: theme.textColor,
+            color: theme.textPrimary,
             '&:hover': {
               bgcolor: theme.hoverBg,
             },
@@ -58,7 +58,7 @@ export const SettingsHeader = ({ open, onClose, currentPreset, theme }: Settings
               size="small"
               sx={{
                 bgcolor: theme.paperBg,
-                color: theme.textColor,
+                color: theme.textPrimary,
                 border: `1px solid ${theme.borderColor}`,
                 fontWeight: 500,
                 fontSize: '0.75rem',
@@ -74,7 +74,7 @@ export const SettingsHeader = ({ open, onClose, currentPreset, theme }: Settings
               size="small"
               sx={{
                 bgcolor: theme.paperBg,
-                color: theme.secondaryTextColor,
+                color: theme.textSecondary,
                 border: `1px solid ${theme.borderColor}`,
                 fontSize: '0.75rem',
                 '& .MuiChip-label': {

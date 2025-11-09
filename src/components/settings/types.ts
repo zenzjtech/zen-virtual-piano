@@ -16,17 +16,8 @@ export interface SettingsDialogProps {
 
 export type SettingsTab = 'general' | 'quotes' | 'piano' | 'keyboard';
 
-export interface SettingsTheme {
-  backdropBlur: string;
-  dialogBg: string;
-  borderColor: string;
-  boxShadow: string;
-  hoverBg: string;
-  textColor: string;
-  secondaryTextColor: string;
-  paperBg: string;
-  highlightBg: string;
-}
+// Re-export DialogTheme as SettingsTheme for backwards compatibility
+export type { DialogTheme as SettingsTheme } from '@/hooks/use-global-dialog-theme';
 
 export interface TabPanelProps {
   children?: React.ReactNode;

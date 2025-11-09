@@ -40,7 +40,7 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
 
   return (
     <Box id="quote-settings">
-      <Typography variant="h6" sx={{ color: theme.textColor, mb: 3, fontWeight: 600 }}>
+      <Typography variant="h6" sx={{ color: theme.textPrimary, mb: 3, fontWeight: 600 }}>
         Quote Display Settings
       </Typography>
 
@@ -62,8 +62,8 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
             <FormControl fullWidth>
               <InputLabel
                 sx={{
-                  color: theme.secondaryTextColor,
-                  '&.Mui-focused': { color: theme.textColor },
+                  color: theme.textSecondary,
+                  '&.Mui-focused': { color: theme.textPrimary },
                 }}
               >
                 Quote Change Interval
@@ -73,18 +73,18 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
                 label="Quote Change Interval"
                 onChange={(e) => dispatch(setQuoteInterval(e.target.value as QuoteInterval))}
                 sx={{
-                  color: theme.textColor,
+                  color: theme.textPrimary,
                   '& .MuiOutlinedInput-notchedOutline': {
                     borderColor: theme.borderColor,
                   },
                   '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: theme.textColor,
+                    borderColor: theme.textPrimary,
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: theme.textColor,
+                    borderColor: theme.textPrimary,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: theme.textColor,
+                    color: theme.textPrimary,
                   },
                 }}
                 MenuProps={{
@@ -94,7 +94,7 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
                       backgroundImage: 'none',
                       backdropFilter: 'blur(20px)',
                       '& .MuiMenuItem-root': {
-                        color: theme.textColor,
+                        color: theme.textPrimary,
                         '&:hover': {
                           bgcolor: theme.hoverBg,
                         },
@@ -115,7 +115,7 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
                   </MenuItem>
                 ))}
               </Select>
-              <Typography variant="caption" sx={{ color: theme.secondaryTextColor, mt: 1 }}>
+              <Typography variant="caption" sx={{ color: theme.textSecondary, mt: 1 }}>
                 How often quotes should change automatically
               </Typography>
             </FormControl>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
   Button,
@@ -15,6 +14,9 @@ import {
   Chip,
 } from '@mui/material';
 import { Add as AddIcon } from '@mui/icons-material';
+import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
+import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
+import { getDialogStyles, getTextFieldStyles } from '@/components/global/dialog/styles';
 import { useAppDispatch } from '@/store/hook';
 import { addCustomSheet } from '@/store/reducers/music-sheet-slice';
 import { parseVPNotation } from '@/services/sheet-parser';
@@ -30,6 +32,7 @@ interface AddSheetDialogProps {
  */
 export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose }) => {
   const dispatch = useAppDispatch();
+  const theme = useDialogTheme();
   
   // Form state
   const [title, setTitle] = useState('');
@@ -152,16 +155,15 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
       maxWidth="md"
       fullWidth
       PaperProps={{
-        sx: {
-          borderRadius: 3,
-          bgcolor: 'background.paper',
-        },
+        sx: getDialogStyles(theme),
       }}
     >
-      <DialogTitle sx={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-        <AddIcon />
-        Add Custom Sheet
-      </DialogTitle>
+      <DialogHeader
+        title="Add Custom Sheet"
+        subtitle="Create your own music sheet with Virtual Piano notation"
+        icon={<AddIcon />}
+        onClose={handleClose}
+      />
       <DialogContent>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
           {/* Title */}
@@ -173,6 +175,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
             helperText={errors.title}
             fullWidth
             required
+            sx={getTextFieldStyles(theme)}
           />
 
           {/* Artist */}
@@ -184,6 +187,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
             helperText={errors.artist}
             fullWidth
             required
+            sx={getTextFieldStyles(theme)}
           />
 
           {/* Notation */}
@@ -197,6 +201,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
             rows={4}
             fullWidth
             required
+            sx={getTextFieldStyles(theme)}
           />
 
           {/* Difficulty & Tempo */}
@@ -207,6 +212,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value as 'easy' | 'medium' | 'hard')}
                 label="Difficulty"
+                sx={getTextFieldStyles(theme)}
               >
                 <MenuItem value="easy">Easy</MenuItem>
                 <MenuItem value="medium">Medium</MenuItem>
@@ -223,6 +229,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
               helperText={errors.tempo}
               inputProps={{ min: 40, max: 240 }}
               fullWidth
+              sx={getTextFieldStyles(theme)}
             />
 
             <TextField
@@ -230,6 +237,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
               value={timeSignature}
               onChange={(e) => setTimeSignature(e.target.value)}
               fullWidth
+              sx={getTextFieldStyles(theme)}
             />
           </Box>
 
@@ -248,12 +256,21 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
                 }}
                 size="small"
                 fullWidth
+                sx={getTextFieldStyles(theme)}
               />
               <Button
                 onClick={handleAddTag}
                 variant="outlined"
                 size="small"
                 disabled={!tagInput.trim()}
+                sx={{
+                  borderColor: theme.borderColor,
+                  color: theme.textPrimary,
+                  '&:hover': {
+                    borderColor: theme.accentPrimary,
+                    backgroundColor: theme.hoverBg,
+                  },
+                }}
               >
                 Add
               </Button>
@@ -265,6 +282,14 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
                   label={tag}
                   onDelete={() => handleRemoveTag(tag)}
                   size="small"
+                  sx={{
+                    backgroundColor: theme.highlightBg,
+                    color: theme.textPrimary,
+                    borderColor: theme.borderColor,
+                    '&:hover': {
+                      backgroundColor: theme.hoverBg,
+                    },
+                  }}
                 />
               ))}
             </Box>
@@ -277,32 +302,43 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
             onChange={(e) => setSourceUrl(e.target.value)}
             fullWidth
             helperText="URL where you found this sheet (for reference)"
+            sx={getTextFieldStyles(theme)}
           />
 
           {/* Help text */}
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: theme.textSecondary }}>
             Note: Custom sheets are stored locally and limited to a maximum number based on your settings.
             If the limit is reached, the oldest sheet will be automatically removed.
           </Typography>
         </Box>
       </DialogContent>
-      <DialogActions sx={{ px: 3, pb: 2 }}>
+      <DialogActions sx={{ px: 3, pb: 2, borderTop: `1px solid ${theme.borderColor}` }}>
         <Button 
           onClick={handleClose}
           variant="outlined"
-          color="inherit"
           sx={{
             px: 3,
+            borderColor: theme.borderColor,
+            color: theme.textPrimary,
+            '&:hover': {
+              borderColor: theme.textSecondary,
+              backgroundColor: theme.hoverBg,
+            },
           }}
         >
           Cancel
         </Button>
         <Button 
           onClick={handleSave} 
-          variant="contained" 
-          color="primary"
+          variant="contained"
           sx={{
             px: 3,
+            backgroundColor: theme.accentPrimary,
+            color: '#ffffff',
+            '&:hover': {
+              backgroundColor: theme.accentPrimary,
+              opacity: 0.9,
+            },
           }}
         >
           Add Sheet

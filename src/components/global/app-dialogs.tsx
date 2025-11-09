@@ -91,8 +91,6 @@ export const AppDialogs: React.FC<AppDialogsProps> = ({
       <KeyboardShortcutsDialog
         open={isKeyboardShortcutsOpen}
         onClose={onCloseKeyboardShortcuts}
-        pianoTheme={pianoTheme}
-        isDarkBackground={isDarkBackground}
       />
     </>
   );
