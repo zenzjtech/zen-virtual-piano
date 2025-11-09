@@ -99,6 +99,8 @@ export const BookPage: React.FC<BookPageProps> = ({
   };
   const backgroundImage = getBackgroundImage();
   const themeColors = getMusicSheetThemeColors(musicSheetThemeId);
+  const isLeftPage = pageNumber % 2 === 1;
+  
   if (isEmpty) {
     return (
       <Box
@@ -143,23 +145,40 @@ export const BookPage: React.FC<BookPageProps> = ({
         borderRadius: 1,
       }}
     >
+      {/* Title area - always rendered to maintain alignment */}
       <Typography
         variant="h6"
         sx={{
           fontFamily: themeColors.titleFont,
           fontWeight: 600,
-          mb: 1,
+          mb: 2,
           fontSize: { xs: '0.9rem', md: '1.1rem' },
           color: themeColors.primary,
+          visibility: isLeftPage ? 'visible' : 'hidden',
         }}
       >
         {title}
       </Typography>
+
+      <Box sx={{ flex: 1 }}>
+        <SheetNotationDisplay
+          measures={measures}
+          currentMeasure={isActivePage ? playback.currentMeasure : -1}
+          currentNoteIndex={isActivePage ? playback.currentNoteIndex : -1}
+          isPlaying={playback.isPlaying && isActivePage}
+          pianoTheme={pianoTheme}
+          musicSheetThemeId={musicSheetThemeId}
+          lineRange={lineRange}
+        />
+      </Box>
+
+      {/* Page info at bottom of both pages */}
       <Typography
         variant="caption"
         sx={{
           fontFamily: themeColors.bodyFont,
-          mb: 2,
+          mt: 2,
+          textAlign: 'center',
           color: themeColors.primary,
           opacity: 0.7,
           fontSize: { xs: '0.7rem', md: '0.8rem' },
@@ -167,16 +186,6 @@ export const BookPage: React.FC<BookPageProps> = ({
       >
         {artist} - Page {pageNumber} of {totalPages}
       </Typography>
-
-      <SheetNotationDisplay
-        measures={measures}
-        currentMeasure={isActivePage ? playback.currentMeasure : -1}
-        currentNoteIndex={isActivePage ? playback.currentNoteIndex : -1}
-        isPlaying={playback.isPlaying && isActivePage}
-        pianoTheme={pianoTheme}
-        musicSheetThemeId={musicSheetThemeId}
-        lineRange={lineRange}
-      />
     </Box>
   );
 };
