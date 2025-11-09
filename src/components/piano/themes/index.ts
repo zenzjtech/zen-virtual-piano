@@ -6,6 +6,24 @@
 // Export types
 export type { PianoTheme } from './types';
 
+// Export texture generators (low-level utilities)
+export {
+  generateWoodGrain,
+  generateWoodKnots,
+  generateSacredPatterns,
+  generateWoodHighlights,
+  generateWoodRings,
+  generatePrayerWheelSpokes,
+} from './texture-generators';
+export type {
+  WoodGrainConfig,
+  WoodKnotConfig,
+  SacredPatternConfig,
+} from './texture-generators';
+
+// NOTE: Pattern Themes are now exported from ../pattern-themes.ts
+// Pattern themes are an independent 4th theme component equal to piano/background/sheet themes
+
 // Export individual themes
 export { wooden } from './wooden';
 export { black } from './black';

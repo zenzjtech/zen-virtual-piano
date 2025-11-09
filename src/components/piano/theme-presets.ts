@@ -18,6 +18,7 @@ export interface ThemePreset {
   pianoTheme: string;
   backgroundTheme: string;
   musicSheetTheme: string;
+  patternTheme?: string; // NEW: 4th independent theme component (optional, defaults to 'none')
   category: 'classic' | 'modern' | 'cultural' | 'nature' | 'artistic' | 'vintage' | 'professional' | 'romantic' | 'energetic' | 'minimalist' | 'luxurious';
   headerStyle: HeaderTypographyStyle;
   headerThemeStyle: HeaderThemeStyle;
@@ -36,6 +37,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     pianoTheme: 'wooden',
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-1',
+    patternTheme: 'classic-wood',
     category: 'classic',
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
@@ -62,6 +64,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     pianoTheme: 'mahogany',
     backgroundTheme: 'warm',
     musicSheetTheme: 'paper-4',
+    patternTheme: 'dark-mahogany',
     category: 'classic',
     headerStyle: 'classic-serif',
     headerThemeStyle: HEADER_THEME_STYLES.classic,
@@ -248,6 +251,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     pianoTheme: 'tibetanWood',
     backgroundTheme: 'tibet-sacred-mountains',
     musicSheetTheme: 'paper-10',
+    patternTheme: 'tibetan-sacred',
     category: 'cultural',
     headerStyle: 'tibetan-serif',
     headerThemeStyle: HEADER_THEME_STYLES.cultural,
