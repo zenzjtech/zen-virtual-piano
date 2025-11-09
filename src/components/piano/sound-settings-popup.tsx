@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -56,6 +56,8 @@ interface SoundSettingsPopupProps {
   availableMidiDevices?: string[];
   // Piano theme
   pianoTheme: PianoTheme;
+  // Target section to scroll to
+  targetSection?: string;
 }
 
 const ControlSection = styled(Box)(({ theme }) => ({
@@ -133,8 +135,43 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   onMidiDeviceChange,
   availableMidiDevices = ['None', 'Virtual MIDI Device', 'USB MIDI Keyboard'],
   pianoTheme,
+  targetSection,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Refs for each section
+  const metronomeRef = useRef<HTMLDivElement>(null);
+  const sustainRef = useRef<HTMLDivElement>(null);
+  const transposeRef = useRef<HTMLDivElement>(null);
+  const volumeRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll to target section when popup opens
+  useEffect(() => {
+    if (open && targetSection) {
+      setTimeout(() => {
+        let targetElement: HTMLDivElement | null = null;
+        
+        switch (targetSection) {
+          case 'metronome':
+            targetElement = metronomeRef.current;
+            break;
+          case 'sustain':
+            targetElement = sustainRef.current;
+            break;
+          case 'transpose':
+            targetElement = transposeRef.current;
+            break;
+          case 'volume':
+            targetElement = volumeRef.current;
+            break;
+        }
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100); // Small delay to ensure popup is rendered
+    }
+  }, [open, targetSection]);
 
   // Define searchable settings with names and descriptions
   const settings = useMemo(() => ([
@@ -275,7 +312,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
             <Stack spacing={2} divider={<Divider sx={{ borderColor: pianoTheme.colors.border }} />}>
               {/* Sustain Control */}
               {visibleSettings.has('sustain') && (
-              <ControlSection>
+              <ControlSection ref={sustainRef}>
                 <ControlLabel>
                   <SustainIcon
                     sx={{ color: pianoTheme.colors.secondary, fontSize: '1.1rem' }}
@@ -340,7 +377,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
 
               {/* Transpose Control */}
               {visibleSettings.has('transpose') && (
-              <ControlSection>
+              <ControlSection ref={transposeRef}>
                 <ControlLabel>
                   <TransposeIcon
                     sx={{ color: pianoTheme.colors.secondary, fontSize: '1.1rem' }}
@@ -402,7 +439,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
 
               {/* Volume Control */}
               {visibleSettings.has('volume') && (
-              <ControlSection>
+              <ControlSection ref={volumeRef}>
                 <ControlLabel>
                   <VolumeIcon
                     sx={{ color: pianoTheme.colors.secondary, fontSize: '1.1rem' }}
@@ -496,7 +533,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
 
               {/* Metronome */}
               {visibleSettings.has('metronome') && (
-              <ControlSection>
+              <ControlSection ref={metronomeRef}>
                 <ControlLabel>
                   <MetronomeIcon
                     sx={{ color: pianoTheme.colors.secondary, fontSize: '1.1rem' }}

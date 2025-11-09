@@ -13,7 +13,7 @@ import { getPatternTheme } from './pattern-themes';
 import { PianoUnitWrapper } from './piano-unit-styled';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
+import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled, closeSoundPopup } from '@/store/reducers/piano-settings-slice';
 import { pauseSheet } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
 import { usePopupManager } from '@/hooks/use-popup-manager';
@@ -51,6 +51,8 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
+  const soundPopupOpen = useAppSelector((state) => state.pianoSettings.soundPopupOpen);
+  const soundPopupTargetSection = useAppSelector((state) => state.pianoSettings.soundPopupTargetSection);
   
   // Get the actual theme objects
   const pianoTheme = getTheme(pianoThemeId);
@@ -61,6 +63,9 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
   const [isLoadingInstrument, setIsLoadingInstrument] = useState(false);
   
+  // Ref for sound popup anchor (used when opening from Redux)
+  const soundPopupAnchorRef = useRef<HTMLElement | null>(null);
+  
   // Popup managers
   const instrumentPopup = usePopupManager();
   const soundSettingsPopup = usePopupManager();
@@ -69,6 +74,28 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   
   // Sheet search hook
   const { isSheetSearchOpen, handleSheetSearchOpen, handleSheetSearchClose } = useSheetSearch();
+  
+  // Sound settings close handler (closes both local popup and Redux state)
+  const handleSoundSettingsClose = useCallback(() => {
+    soundSettingsPopup.handleClose();
+    dispatch(closeSoundPopup());
+  }, [soundSettingsPopup, dispatch]);
+  
+  // Sync Redux sound popup state with local popup manager
+  useEffect(() => {
+    if (soundPopupOpen && !soundSettingsPopup.isOpen) {
+      // Query for the metronome button or use a fallback
+      const metronomeButton = document.querySelector('[data-metronome-control="true"]') as HTMLElement;
+      const anchorElement = soundPopupAnchorRef.current || metronomeButton || document.body;
+      
+      // Create a synthetic event to open the popup
+      const syntheticEvent = {
+        currentTarget: anchorElement,
+      } as React.MouseEvent<HTMLButtonElement>;
+      
+      soundSettingsPopup.handleOpen(syntheticEvent);
+    }
+  }, [soundPopupOpen, soundSettingsPopup.isOpen, soundSettingsPopup.handleOpen]);
   
   // Handle Escape key to close popups
   useEscapeKeyHandler(
@@ -82,7 +109,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
     },
     {
       handleInstrumentPopupClose: instrumentPopup.handleClose,
-      handleSoundSettingsClose: soundSettingsPopup.handleClose,
+      handleSoundSettingsClose: handleSoundSettingsClose,
       handleStyleSettingsClose: styleSettingsPopup.handleClose,
       handleKeyAssistPopupClose: keyAssistPopup.handleClose,
       handleSheetSearchClose,
@@ -232,7 +259,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
       <SoundSettingsPopup
         open={soundSettingsPopup.isOpen}
         anchorEl={soundSettingsPopup.anchorEl}
-        onClose={soundSettingsPopup.handleClose}
+        onClose={handleSoundSettingsClose}
         sustain={sustain}
         onSustainChange={(value) => {
           dispatch(setSustain(value));
@@ -251,6 +278,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
         midiDevice={soundSettings.midiDevice}
         onMidiDeviceChange={soundSettings.setMidiDevice}
         pianoTheme={pianoTheme}
+        targetSection={soundPopupTargetSection}
       />
 
       {/* Style Settings Popup */}

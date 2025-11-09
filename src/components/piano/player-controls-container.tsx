@@ -4,6 +4,7 @@ import { PianoTheme } from './themes';
 import { PressedKeysDisplay } from './status-board-styled';
 import { PlaybackControls } from './playback-controls';
 import { TempoControl } from './tempo-control';
+import { MetronomeControl } from './metronome-control';
 
 interface PlayerControlsContainerProps {
   totalPages: number;
@@ -30,6 +31,8 @@ export const PlayerControlsContainer: React.FC<PlayerControlsContainerProps> = (
             />
 
             <TempoControl pianoTheme={pianoTheme} />
+            
+            <MetronomeControl pianoTheme={pianoTheme} />
         </Box>      
     </PressedKeysDisplay>
   );

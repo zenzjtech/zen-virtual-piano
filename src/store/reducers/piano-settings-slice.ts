@@ -6,6 +6,8 @@ export interface PianoSettingsState {
   showKeyboard: boolean;
   showNoteName: boolean;
   isPianoEnabled: boolean;
+  soundPopupOpen: boolean;
+  soundPopupTargetSection?: string;
 }
 
 const initialState: PianoSettingsState = {
@@ -14,6 +16,7 @@ const initialState: PianoSettingsState = {
   showKeyboard: true,
   showNoteName: false,
   isPianoEnabled: true,
+  soundPopupOpen: false,
 };
 
 export const pianoSettingsSlice = createSlice({
@@ -43,9 +46,17 @@ export const pianoSettingsSlice = createSlice({
     setIsPianoEnabled: (state, action: PayloadAction<boolean>) => {
       state.isPianoEnabled = action.payload;
     },
+    openSoundPopup: (state, action: PayloadAction<string | undefined>) => {
+      state.soundPopupOpen = true;
+      state.soundPopupTargetSection = action.payload;
+    },
+    closeSoundPopup: (state) => {
+      state.soundPopupOpen = false;
+      state.soundPopupTargetSection = undefined;
+    },
   },
 });
 
-export const { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } = pianoSettingsSlice.actions;
+export const { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled, openSoundPopup, closeSoundPopup } = pianoSettingsSlice.actions;
 
 export default pianoSettingsSlice.reducer;
