@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { PianoKey } from './types';
 import { PianoTheme } from './themes';
 import { useAppSelector } from '@/store/hook';
+import { getPatternTheme } from './pattern-themes';
 import { BoardContainer, CornerPlate } from './status-board-styled';
 import { SheetModeDisplay } from './status-board-sheet-mode';
 import { ManualModeDisplay } from './status-board-manual-mode';
@@ -29,6 +30,10 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
 }) => {
   const appConfig = useAppConfig();
   const { showNotification } = useNotification();
+  
+  // Get pattern theme from Redux
+  const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
+  const patternTheme = getPatternTheme(patternThemeId);
   
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
@@ -101,7 +106,9 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
 
   return (
     <BoardContainer 
-      elevation={0} pianoTheme={pianoTheme}
+      elevation={0} 
+      pianoTheme={pianoTheme}
+      patternTheme={patternTheme}
       sx={{
         px: 3,
         py: 3

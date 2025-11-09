@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { KeyboardOutlined as KeyboardIcon } from '@mui/icons-material';
 import { PianoKeyComponent } from './piano-key';
@@ -21,16 +21,10 @@ import {
 } from './piano-styled';
 
 interface PianoProps {
-  /** Visual theme for the piano */
-  themeId?: string;
   /** Callback when pressed notes change */
   onPressedNotesChange?: (notes: Map<string, PianoKey>, currentNote: PianoKey | null) => void;
   /** Whether keyboard input is enabled (default: true) */
   keyboardEnabled?: boolean;
-  /** Show keyboard shortcuts on keys */
-  showKeyboard?: boolean;
-  /** Show note names on keys */
-  showNoteName?: boolean;
   /** Optional recording callback for note press */
   onRecordNotePress?: (note: string, velocity?: number) => void;
   /** Optional recording callback for note release */
@@ -38,19 +32,20 @@ interface PianoProps {
 }
 
 export const Piano: React.FC<PianoProps> = ({ 
-  themeId = 'wooden',
   onPressedNotesChange, 
   keyboardEnabled = true,
-  showKeyboard = false,
-  showNoteName = false,
   onRecordNotePress,
   onRecordNoteRelease,
 }) => {
-  // Read pattern theme directly from Redux
+  // Read state from Redux
+  const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
+  const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
+  const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
   
-  const pianoTheme = getTheme(themeId);
+  const pianoTheme = getTheme(pianoThemeId);
   const patternTheme = getPatternTheme(patternThemeId);
+  
   const [pressedKeys, setPressedKeys] = useState<KeyPressState>({});
   const audioEngineRef = useRef(getAudioEngine());
   const pressedNotesMapRef = useRef<Map<string, PianoKey>>(new Map());
@@ -138,7 +133,7 @@ export const Piano: React.FC<PianoProps> = ({
   const blackKeys = KEY_MAPPINGS.filter(key => key.isBlack);
 
   return (
-    <PianoContainer elevation={0} pianoTheme={pianoTheme} patternTheme={patternTheme}>
+    <PianoContainer id="piano-container" elevation={0} pianoTheme={pianoTheme} patternTheme={patternTheme}>
       {/* Disabled Overlay */}
       {!keyboardEnabled && (
         <DisabledOverlay pianoTheme={pianoTheme}>

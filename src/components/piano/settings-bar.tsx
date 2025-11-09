@@ -9,27 +9,25 @@ import {
   PowerSettingsNew as PowerIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
+import { PatternTheme } from './pattern-themes';
+import { useAppSelector } from '@/store/hook';
+import { getPatternTheme } from './pattern-themes';
 import { getSoundSet } from '@/services/sound-sets';
 import { getInstrumentImage } from '@/utils/instrument-images';
+import { getTheme } from './themes';
 
 interface SettingsBarProps {
   onTogglePiano?: () => void;
-  isPianoEnabled?: boolean;
   onRecord?: () => void;
-  isRecording?: boolean;
   onKeyAssist?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onInstrument?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSound?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onStyles?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  /** Current sound set ID */
-  currentSoundSetId?: string;
-  /** Piano theme for consistent styling */
-  pianoTheme: PianoTheme;
 }
 
 const BarContainer = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'pianoTheme',
-})<{ pianoTheme: PianoTheme }>(({ theme, pianoTheme }) => ({
+  shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'patternTheme',
+})<{ pianoTheme: PianoTheme; patternTheme?: PatternTheme }>(({ theme, pianoTheme, patternTheme }) => ({
   background: pianoTheme.container.background,
   color: pianoTheme.colors.primary,
   padding: theme.spacing(1.5, 2),
@@ -62,7 +60,7 @@ const BarContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: pianoTheme.container.beforeBackground || 'transparent',
+    background: patternTheme?.beforePattern || pianoTheme.container.beforeBackground || 'none',
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
@@ -74,7 +72,7 @@ const BarContainer = styled(Paper, {
     left: 0,
     right: 0,
     bottom: 0,
-    background: pianoTheme.container.afterBackground || 'transparent',
+    background: patternTheme?.afterPattern || pianoTheme.container.afterBackground || 'none',
     pointerEvents: 'none',
     zIndex: 2,
   },
@@ -147,19 +145,24 @@ const SettingButton = styled(Button, {
 
 export const SettingsBar: React.FC<SettingsBarProps> = ({
   onTogglePiano,
-  isPianoEnabled = true,
   onRecord,
-  isRecording = false,
   onKeyAssist,
   onInstrument,
   onSound,
   onStyles,
-  currentSoundSetId = 'classical',
-  pianoTheme,
 }) => {
+  // Get state from Redux
+  const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
+  const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
+  const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
+  const isRecording = useAppSelector((state) => state.recording.isRecording);
+  const currentSoundSetId = useAppSelector((state) => state.pianoSettings.soundSet);
+  
+  const pianoTheme = getTheme(pianoThemeId);
+  const patternTheme = getPatternTheme(patternThemeId);
   const currentSoundSet = getSoundSet(currentSoundSetId);
   return (
-    <BarContainer elevation={0} pianoTheme={pianoTheme}>
+    <BarContainer elevation={0} pianoTheme={pianoTheme} patternTheme={patternTheme}>
       {/* Left group: Action buttons */}
       <Box sx={{ display: 'flex', gap: 1, zIndex: 3 }}>
         <SettingButton

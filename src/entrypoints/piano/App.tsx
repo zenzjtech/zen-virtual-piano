@@ -1,40 +1,27 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Box, Container, Stack } from '@mui/material';
-import { Piano } from '@/components/piano/piano';
-import { StatusBoard } from '@/components/piano/status-board';
-import { SettingsBar } from '@/components/piano/settings-bar';
-import { InstrumentSelectorPopup } from '@/components/piano/instrument-selector-popup';
-import { SoundSettingsPopup } from '@/components/piano/sound-settings-popup';
-import { StyleSettingsPopup } from '@/components/piano/style-settings-popup';
-import { KeyAssistPopup } from '@/components/piano/key-assist-popup';
-import { SheetSearchDialog } from '@/components/music-sheet/sheet-search-dialog';
+import { PianoUnit } from '@/components/piano/piano-unit';
+import { AppDialogs } from '@/components/global/app-dialogs';
 import { MusicStand } from '@/components/music-sheet/music-stand';
 import { Header } from '@/components/header';
-import { OnboardingOverlay } from '@/components/piano/onboarding-overlay';
-import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-dialog';
-import { SettingsDialog } from '@/components/settings';
-import { PianoKey } from '@/components/piano/types';
 import { getTheme } from '@/components/piano/themes';
 import { THEME_PRESETS } from '@/components/piano/theme-presets';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
-// Theme actions are now handled directly in StyleSettingsPopup component
-import { addSheets, loadSheet, pauseSheet } from '@/store/reducers/music-sheet-slice';
+import { setPatternTheme } from '@/store/reducers/theme-slice';
+import { addSheets, loadSheet } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
-import { showOnboarding, completeOnboarding } from '@/store/reducers/onboarding-slice';
+import { showOnboarding } from '@/store/reducers/onboarding-slice';
 import { getBuiltInSheetMetadata } from '@/services/sheet-library';
-import { usePopupManager } from '@/hooks/use-popup-manager';
-import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useMetronome } from '@/hooks/use-metronome';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
-import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
 import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useRecordingPlayback } from '@/hooks/use-recording-playback';
 import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
 import { useAutoThemeRotation } from '@/hooks/use-auto-theme-rotation';
+import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -45,37 +32,18 @@ function App() {
   const dispatch = useAppDispatch();
   const uid = useAppSelector((state) => state.user.uid);    
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
-  const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
-  const sustain = useAppSelector((state) => state.pianoSettings.sustain);
   const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
   const musicSheetThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
-  const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
-  const showNoteName = useAppSelector((state) => state.pianoSettings.showNoteName);
-  const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
+  const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
   
   // Music sheet state
   const isMusicStandVisible = useAppSelector((state) => state.musicSheet.isMusicStandVisible);
-  const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   const recentlyPlayed = useAppSelector((state) => state.musicSheet.userData.recentlyPlayed);
   const hasManuallyClosedSheet = useAppSelector((state) => state.musicSheet.hasManuallyClosedSheet);
   
   // Onboarding state
-  const isOnboardingVisible = useAppSelector((state) => state.onboarding.isOnboardingVisible);
   const hasCompletedOnboarding = useAppSelector((state) => state.onboarding.hasCompletedOnboarding);
   
-  // Get the actual theme object
-  const pianoTheme = getTheme(pianoThemeId);
-  
-  // Local component state for UI interactions
-  const [pressedNotes, setPressedNotes] = useState<Map<string, PianoKey>>(new Map());
-  const [currentNote, setCurrentNote] = useState<PianoKey | null>(null);
-  const [isLoadingInstrument, setIsLoadingInstrument] = useState(false);
-  
-  // Popup managers
-  const instrumentPopup = usePopupManager();
-  const soundSettingsPopup = usePopupManager();
-  const styleSettingsPopup = usePopupManager();
-  const keyAssistPopup = usePopupManager();
   
   // Keyboard shortcuts dialog state
   const [isKeyboardShortcutsOpen, setIsKeyboardShortcutsOpen] = useState(false);
@@ -84,31 +52,18 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsTab, setSettingsTab] = useState<'general' | 'quotes' | 'piano' | 'keyboard'>('general');
   
-  // Sheet search hook
-  const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchOpen, handleSheetSearchClose } = useSheetSearch();
-  
-  // Determine if keyboard should be enabled (disabled when any popup is open or manually disabled)
-  const isKeyboardEnabled = isPianoEnabled && !instrumentPopup.isOpen && !soundSettingsPopup.isOpen && !styleSettingsPopup.isOpen && !keyAssistPopup.isOpen && !isSheetSearchOpen && !isKeyboardShortcutsOpen && !settingsOpen;
-  
-  // Sound settings state
+  // Sound settings and metronome
   const soundSettings = useSoundSettings();
-  
-  // Metronome playback
   useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo, soundSettings.metronomeVolume);
   
   // Notification
   const { showNotification } = useNotification();
 
-  // Piano recording hook
+  // Piano recording hook for playback
   const {
-    isRecording,
-    toggleRecording,
-    recordNotePress,
-    recordNoteRelease,
     downloadRecording,
     clearRecording,
     noteCount,
-    getFormattedDuration,
   } = usePianoRecording();
 
   // Restore auth session on mount (if cached token exists)
@@ -146,34 +101,23 @@ function App() {
     }
   }, [isMusicStandVisible, hasCompletedOnboarding, dispatch]);
 
-  // Auto-dismiss onboarding when user clicks sheet button
-  useEffect(() => {
-    if (isOnboardingVisible && isSheetSearchOpen) {
-      dispatch(completeOnboarding());
-    }
-  }, [isOnboardingVisible, isSheetSearchOpen, dispatch]);
 
-  // Sync audio engine with Redux state on mount
-  useEffect(() => {
-    getAudioEngine().setSustain(sustain);
-  }, [sustain]);
-
-  // Handle Escape key to close popups or enable piano
+  // Handle Escape key to close keyboard shortcuts dialog
   useEscapeKeyHandler(
     {
-      instrumentPopupOpen: instrumentPopup.isOpen,
-      soundSettingsOpen: soundSettingsPopup.isOpen,
-      styleSettingsOpen: styleSettingsPopup.isOpen,
-      keyAssistPopupOpen: keyAssistPopup.isOpen,
-      isSheetSearchOpen,
+      instrumentPopupOpen: false,
+      soundSettingsOpen: false,
+      styleSettingsOpen: false,
+      keyAssistPopupOpen: false,
+      isSheetSearchOpen: false,
       isKeyboardShortcutsOpen,
     },
     {
-      handleInstrumentPopupClose: instrumentPopup.handleClose,
-      handleSoundSettingsClose: soundSettingsPopup.handleClose,
-      handleStyleSettingsClose: styleSettingsPopup.handleClose,
-      handleKeyAssistPopupClose: keyAssistPopup.handleClose,
-      handleSheetSearchClose,
+      handleInstrumentPopupClose: () => {},
+      handleSoundSettingsClose: () => {},
+      handleStyleSettingsClose: () => {},
+      handleKeyAssistPopupClose: () => {},
+      handleSheetSearchClose: () => {},
       handleKeyboardShortcutsClose: () => setIsKeyboardShortcutsOpen(false),
     }
   );
@@ -187,11 +131,6 @@ function App() {
       // Only handle "?" when no popups are open and not typing in an input
       if (
         event.key === '?' &&
-        !instrumentPopup.isOpen &&
-        !soundSettingsPopup.isOpen &&
-        !styleSettingsPopup.isOpen &&
-        !keyAssistPopup.isOpen &&
-        !isSheetSearchOpen &&
         !isKeyboardShortcutsOpen &&
         !settingsOpen
       ) {
@@ -207,27 +146,16 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [instrumentPopup.isOpen, soundSettingsPopup.isOpen, styleSettingsPopup.isOpen, keyAssistPopup.isOpen, isSheetSearchOpen, isKeyboardShortcutsOpen, settingsOpen]);
+  }, [isKeyboardShortcutsOpen, settingsOpen]);
 
 
   // Define playNote and stopNote callbacks for playback
   const playNoteCallback = useCallback((note: string, frequency: number, velocity: number) => {
-    // This will be called by the playback system
-    // Play the audio and update visual state
     getAudioEngine().playNote(note, frequency, velocity);
-    const pianoKey = { note, frequency, isBlack: false, keyboardKey: '', label: '' };
-    setPressedNotes(prev => new Map(prev).set(note, pianoKey));
-    setCurrentNote(pianoKey);
   }, []);
 
   const stopNoteCallback = useCallback((note: string) => {
-    // Stop the audio and update visual state
     getAudioEngine().stopNote(note);
-    setPressedNotes(prev => {
-      const newMap = new Map(prev);
-      newMap.delete(note);
-      return newMap;
-    });
   }, []);
 
   // Recording playback hook
@@ -243,62 +171,13 @@ function App() {
   }, [recordingPlayback]);
 
   // Mutual exclusivity between sheet music and recording playback
+  const isSheetPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
   usePlaybackMutex({
     isSheetPlaying,
     isRecordingPlaying: recordingPlayback.isPlaying,
     pauseRecordingPlayback: recordingPlayback.pause,
     showNotification,
   });
-
-  const handlePressedNotesChange = useCallback((notes: Map<string, PianoKey>, current: PianoKey | null) => {
-    setPressedNotes(notes);
-    setCurrentNote(current);
-    
-    // Stop auto-play when user presses key
-    if (isSheetPlaying && current !== null) {
-      dispatch(pauseSheet());
-      showNotification('Auto-play paused. You can now play manually.', 'info');
-    }
-    
-    // Pause recording playback when user plays manually
-    // Use ref to access latest playback state without recreating callback
-    if (recordingPlaybackRef.current.isPlaying && current !== null) {
-      recordingPlaybackRef.current.pause();
-      showNotification('Playback paused. You can now play manually.', 'info');
-    }
-  }, [isSheetPlaying, showNotification, dispatch]);
-
-  // Settings bar handlers
-  const handleTogglePiano = () => {
-    const newState = !isPianoEnabled;
-    dispatch(setIsPianoEnabled(newState));
-    
-    // Track analytics
-    const eventAction = newState ? ANALYTICS_ACTION.PIANO_ENABLED : ANALYTICS_ACTION.PIANO_DISABLED;
-    trackEvent(uid, eventAction, {
-      previous_state: isPianoEnabled,
-      new_state: newState,
-    });
-  };
-  
-  const handleRecord = () => {
-    toggleRecording();
-    
-    if (!isRecording) {
-      showNotification('🔴 Recording started', 'info');
-      trackEvent(uid, ANALYTICS_ACTION.RECORD_STARTED, {});
-    } else {
-      const duration = getFormattedDuration();
-      showNotification(
-        `⏹️ Recording stopped (${noteCount} notes, ${duration})`,
-        'success'
-      );
-      trackEvent(uid, ANALYTICS_ACTION.RECORD_STOPPED, {
-        note_count: noteCount,
-        duration,
-      });
-    }
-  };
 
   const handleClearRecording = () => {
     recordingPlayback.stop();
@@ -313,20 +192,6 @@ function App() {
     trackEvent(uid, 'Recording downloaded', { note_count: noteCount });
   };
 
-  const handleSoundSetChange = async (newSoundSetId: string) => {
-    setIsLoadingInstrument(true);
-    dispatch(setSoundSet(newSoundSetId));
-    try {
-      // Change the sound set in the audio engine
-      await getAudioEngine().changeSoundSet(newSoundSetId);
-      // Reapply sustain setting after sound set change
-      getAudioEngine().setSustain(sustain);
-    } catch (error) {
-      console.error('Failed to change sound set:', error);
-    } finally {
-      setIsLoadingInstrument(false);
-    }
-  };
   
   // Settings dialog handlers
   const handleOpenSettings = (tab: 'general' | 'quotes' | 'piano' | 'keyboard' = 'general') => {
@@ -341,13 +206,26 @@ function App() {
   // Get background theme styles and determine if it's a dark background
   const isDarkBackground = isDarkBackgroundTheme(backgroundThemeId);
   
-  // Find current preset based on all three theme attributes (for playback bar style)
+  // Find current preset based on all three theme attributes (for playback bar and header styles)
   const currentPreset = THEME_PRESETS.find(
     (preset) =>
       preset.pianoTheme === pianoThemeId &&
       preset.backgroundTheme === backgroundThemeId &&
       preset.musicSheetTheme === musicSheetThemeId
   );
+  
+  // Get piano theme for header
+  const pianoTheme = getTheme(pianoThemeId);
+
+  // Sync pattern theme from current preset on mount/preset change
+  useEffect(() => {
+    if (currentPreset && currentPreset.patternTheme) {
+      // Only update if different to avoid unnecessary dispatches
+      if (patternThemeId !== currentPreset.patternTheme) {
+        dispatch(setPatternTheme(currentPreset.patternTheme));
+      }
+    }
+  }, [currentPreset, patternThemeId, dispatch]);
 
   return (
     <Box
@@ -397,54 +275,10 @@ function App() {
           )}
 
           {/* Integrated Piano Unit */}
-          <Box 
-            sx={{ 
-              width: '100%', 
-              display: 'flex', 
-              justifyContent: 'center',
-            }}
-          >
-            <Box
-              sx={{
-                display: 'inline-flex',
-                flexDirection: 'column',
-                alignItems: 'stretch',
-              }}
-            >
-              {/* Statistics Board */}
-              <StatusBoard 
-                pressedNotes={pressedNotes}
-                currentNote={currentNote}
-                pianoTheme={pianoTheme}
-                onSheetSearchOpen={handleSheetSearchOpen}
-              />
-
-              {/* Settings Bar */}
-              <SettingsBar
-                onTogglePiano={handleTogglePiano}
-                isPianoEnabled={isPianoEnabled}
-                onRecord={handleRecord}
-                isRecording={isRecording}
-                onKeyAssist={keyAssistPopup.handleOpen}
-                onInstrument={instrumentPopup.handleOpen}
-                onSound={soundSettingsPopup.handleOpen}
-                onStyles={styleSettingsPopup.handleOpen}
-                currentSoundSetId={soundSet}
-                pianoTheme={pianoTheme}
-              />
-
-              {/* Piano Component */}
-              <Piano 
-                themeId={pianoThemeId}
-                onPressedNotesChange={handlePressedNotesChange}
-                keyboardEnabled={isKeyboardEnabled}
-                showKeyboard={showKeyboard}
-                showNoteName={showNoteName}
-                onRecordNotePress={recordNotePress}
-                onRecordNoteRelease={recordNoteRelease}
-              />
-            </Box>
-          </Box>
+          <PianoUnit 
+            onOpenSettings={handleOpenSettings}
+            recordingPlaybackRef={recordingPlaybackRef}
+          />
 
           {/* Instructions */}
           {/* <Paper
@@ -471,94 +305,13 @@ function App() {
         </Stack>
       </Container>
 
-      {/* Instrument Selector Popup */}
-      <InstrumentSelectorPopup
-        open={instrumentPopup.isOpen}
-        anchorEl={instrumentPopup.anchorEl}
-        currentSoundSetId={soundSet}
-        onClose={instrumentPopup.handleClose}
-        onSoundSetChange={handleSoundSetChange}
-        pianoTheme={pianoTheme}
-        isLoading={isLoadingInstrument}
-      />
-
-      {/* Sound Settings Popup */}
-      <SoundSettingsPopup
-        open={soundSettingsPopup.isOpen}
-        anchorEl={soundSettingsPopup.anchorEl}
-        onClose={soundSettingsPopup.handleClose}
-        sustain={sustain}
-        onSustainChange={(value) => {
-          dispatch(setSustain(value));
-          getAudioEngine().setSustain(value);
-        }}
-        transpose={soundSettings.transpose}
-        onTransposeChange={soundSettings.setTranspose}
-        volume={soundSettings.volume}
-        onVolumeChange={soundSettings.setVolume}
-        metronomeEnabled={soundSettings.metronomeEnabled}
-        metronomeTempo={soundSettings.metronomeTempo}
-        metronomeVolume={soundSettings.metronomeVolume}
-        onMetronomeToggle={soundSettings.toggleMetronome}
-        onMetronomeTempoChange={soundSettings.setMetronomeTempo}
-        onMetronomeVolumeChange={soundSettings.setMetronomeVolume}
-        midiDevice={soundSettings.midiDevice}
-        onMidiDeviceChange={soundSettings.setMidiDevice}
-        pianoTheme={pianoTheme}
-      />
-
-      {/* Style Settings Popup */}
-      <StyleSettingsPopup
-        open={styleSettingsPopup.isOpen}
-        anchorEl={styleSettingsPopup.anchorEl}
-        onClose={styleSettingsPopup.handleClose}
-        onOpenSettings={() => handleOpenSettings('general')}
-      />
-
-      {/* Settings Dialog */}
-      <SettingsDialog
-        open={settingsOpen}
-        onClose={handleCloseSettings}
-        isDarkBackground={isDarkBackground}
-        initialTab={settingsTab}
-        headerThemeStyle={currentPreset?.headerThemeStyle}
-        currentPreset={currentPreset}
-      />
-
-      {/* Key Assist Popup */}
-      <KeyAssistPopup
-        open={keyAssistPopup.isOpen}
-        anchorEl={keyAssistPopup.anchorEl}
-        showKeyboard={showKeyboard}
-        showNoteName={showNoteName}
-        onClose={keyAssistPopup.handleClose}
-        onShowKeyboardChange={(value) => dispatch(setShowKeyboard(value))}
-        onShowNoteNameChange={(value) => dispatch(setShowNoteName(value))}
-        pianoTheme={pianoTheme}
-      />
-
-      {/* Sheet Search Dialog */}
-      <SheetSearchDialog
-        open={isSheetSearchOpen}
-        anchorEl={sheetSearchAnchorEl}
-        onClose={handleSheetSearchClose}
-        pianoTheme={pianoTheme}
-      />
-
-      {/* Onboarding Overlay */}
-      {isOnboardingVisible && (
-        <OnboardingOverlay
-          pianoTheme={pianoTheme}
-          onClose={() => dispatch(completeOnboarding())}
-        />
-      )}
-
-      {/* Keyboard Shortcuts Dialog */}
-      <KeyboardShortcutsDialog
-        open={isKeyboardShortcutsOpen}
-        onClose={() => setIsKeyboardShortcutsOpen(false)}
-        pianoTheme={pianoTheme}
-        isDarkBackground={isDarkBackground}
+      {/* App Dialogs */}
+      <AppDialogs
+        settingsOpen={settingsOpen}
+        settingsTab={settingsTab}
+        isKeyboardShortcutsOpen={isKeyboardShortcutsOpen}
+        onCloseSettings={handleCloseSettings}
+        onCloseKeyboardShortcuts={() => setIsKeyboardShortcutsOpen(false)}
       />
     </Box>
   );
