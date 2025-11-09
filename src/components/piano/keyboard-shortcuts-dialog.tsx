@@ -17,7 +17,7 @@ import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
 import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
 import { getDialogStyles, getTextFieldStyles, getScrollbarStyles } from '@/components/global/dialog/styles';
 import { useAppDispatch } from '@/store/hook';
-import { disablePianoForDialog, enablePianoAfterDialog } from '@/store/reducers/piano-settings-slice';
+import { useDialogPianoControl } from '@/hooks/use-dialog-piano-control';
 
 interface KeyboardShortcutsDialogProps {
   open: boolean;
@@ -67,13 +67,7 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
   const dispatch = useAppDispatch();
 
   // Disable piano when dialog opens, re-enable when it closes
-  useEffect(() => {
-    if (open) {
-      dispatch(disablePianoForDialog());
-    } else {
-      dispatch(enablePianoAfterDialog());
-    }
-  }, [open, dispatch]);
+  useDialogPianoControl(open);
 
   // Filter shortcuts based on search query
   const filteredShortcuts = searchQuery.trim()

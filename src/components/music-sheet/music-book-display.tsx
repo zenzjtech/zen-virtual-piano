@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { Box, Paper, Collapse, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+import { Box, Paper, Collapse } from '@mui/material';
 import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, Palette as PaletteIcon, Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { toggleFavorite, previousPage, nextPage, deleteSheet, openAddSheetDialog, closeAddSheetDialog, goToPage } from '@/store/reducers/music-sheet-slice';
@@ -18,6 +18,7 @@ import { AddSheetDialog } from './add-sheet-dialog';
 import { PreviousPageButton } from './navigation-buttons/previous-page-button';
 import { NextPageButton } from './navigation-buttons/next-page-button';
 import { GoToPageButton } from './navigation-buttons/go-to-page-button';
+import { GoToPageDialog } from './go-to-page-dialog';
 
 interface MusicBookDisplayProps {
   currentSheet: MusicSheet;
@@ -275,47 +276,15 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         onClose={() => dispatch(closeAddSheetDialog())}
       />
 
-      {/* Page Navigation Dialog */}
-      <Dialog
+      {/* Go to Page Dialog */}
+      <GoToPageDialog
         open={isGoToPageDialogOpen}
         onClose={() => setIsGoToPageDialogOpen(false)}
-        maxWidth="xs"
-        fullWidth
-      >
-        <DialogTitle>Go to Page</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Page Number"
-            type="number"
-            fullWidth
-            variant="outlined"
-            value={pageInput}
-            onChange={(e) => setPageInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleGoToPage();
-              }
-            }}
-            helperText={`Enter page number (1-${totalPages})`}
-            inputProps={{
-              min: 1,
-              max: totalPages,
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsGoToPageDialogOpen(false)}>Cancel</Button>
-          <Button
-            onClick={handleGoToPage}
-            variant="contained"
-            disabled={!pageInput || isNaN(parseInt(pageInput)) || parseInt(pageInput) < 1 || parseInt(pageInput) > totalPages}
-          >
-            Go to Page
-          </Button>
-        </DialogActions>
-      </Dialog>
+        pageInput={pageInput}
+        onPageInputChange={setPageInput}
+        totalPages={totalPages}
+        onGoToPage={handleGoToPage}
+      />
     </Collapse>
   );
 };

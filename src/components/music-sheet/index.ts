@@ -6,5 +6,6 @@ export { SheetSearchDialog } from './sheet-search-dialog';
 export { MusicStand } from './music-stand';
 export { BookPage } from './book-page';
 export { MusicBookDisplay } from './music-book-display';
+export { GoToPageDialog } from './go-to-page-dialog';
 export { calculateLineRanges, calculatePageSpread } from './music-book-utils';
 export type * from './types';
