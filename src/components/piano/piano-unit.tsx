@@ -21,6 +21,7 @@ import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
+import { useMetronome } from '@/hooks/use-metronome';
 import { trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 
@@ -127,6 +128,13 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   
   // Sound settings state
   const soundSettings = useSoundSettings();
+  
+  // Metronome playback (uses sound settings state)
+  useMetronome(
+    soundSettings.metronomeEnabled,
+    soundSettings.metronomeTempo,
+    soundSettings.metronomeVolume
+  );
   
   // Notification
   const { showNotification } = useNotification();
