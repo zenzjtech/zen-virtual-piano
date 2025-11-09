@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled, keyframes } from '@mui/material';
 import { PianoTheme } from './themes';
 import { PatternTheme } from './pattern-themes';
 
@@ -8,7 +8,10 @@ import { PatternTheme } from './pattern-themes';
  */
 export const PianoUnitWrapper = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme' && prop !== 'patternTheme',
-})<{ pianoTheme: PianoTheme; patternTheme?: PatternTheme }>(({ theme, pianoTheme, patternTheme }) => ({
+})<{ pianoTheme: PianoTheme; patternTheme?: PatternTheme }>(({ theme, pianoTheme, patternTheme }) => {
+  const twinkleAnimation = patternTheme?.animation ? keyframes`${patternTheme.animation.keyframes}` : 'none';
+
+  return {
   display: 'inline-flex',
   flexDirection: 'column',
   alignItems: 'stretch',
@@ -31,6 +34,9 @@ export const PianoUnitWrapper = styled(Box, {
     pointerEvents: 'none',
     opacity: 0.6,
     zIndex: 1,
+    animation: patternTheme?.animation
+      ? `${twinkleAnimation} ${patternTheme.animation.duration} ${patternTheme.animation.timingFunction} ${patternTheme.animation.iterationCount}`
+      : 'none',
   },
   
   // Pattern overlay - afterPattern layer
@@ -50,4 +56,4 @@ export const PianoUnitWrapper = styled(Box, {
     pointerEvents: 'none',
     zIndex: 2,
   },
-}));
+}});

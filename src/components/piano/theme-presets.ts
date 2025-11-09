@@ -457,7 +457,7 @@ export const THEME_PRESETS: ThemePreset[] = [
     pianoTheme: 'metal',
     backgroundTheme: 'cosmic-deep-space',
     musicSheetTheme: 'paper-12',
-    patternTheme: 'starfield',
+    patternTheme: 'cosmic-galaxy',
     category: 'artistic',
     headerStyle: 'artistic-italic',
     headerThemeStyle: HEADER_THEME_STYLES.artistic,

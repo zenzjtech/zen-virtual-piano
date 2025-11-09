@@ -33,6 +33,13 @@ export interface PatternTheme {
   afterPattern: string;
   /** Optional preview colors for UI display */
   previewColors?: string[];
+  /** Optional CSS animation to apply to the pattern */
+  animation?: {
+    keyframes: string;
+    duration: string;
+    timingFunction: string;
+    iterationCount: string;
+  };
 }
 
 export type PatternThemeCategory = 
@@ -590,6 +597,66 @@ export const PATTERN_THEMES: PatternTheme[] = [
     `,
     afterPattern: '',
     previewColors: ['#FFFFFF', '#E0E0E0'],
+    animation: {
+      keyframes: `
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 0.2; }
+      `,
+      duration: '10s',
+      timingFunction: 'ease-in-out',
+      iterationCount: 'infinite',
+    },
+  },
+
+  {
+    id: 'nebula',
+    name: 'Nebula',
+    description: 'Swirling cosmic gases and interstellar clouds',
+    category: 'natural',
+    beforePattern: `
+      radial-gradient(ellipse 40% 50% at 20% 25%, rgba(180, 120, 220, 0.1), transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 75%, rgba(80, 150, 220, 0.1), transparent 70%),
+      radial-gradient(ellipse 30% 40% at 50% 50%, rgba(220, 100, 150, 0.08), transparent 70%)
+    `,
+    afterPattern: '',
+    previewColors: ['#B478DC', '#5096DC', '#DC6496'],
+    animation: {
+      keyframes: `
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 0.2; }
+      `,
+      duration: '10s',
+      timingFunction: 'ease-in-out',
+      iterationCount: 'infinite',
+    },
+  },
+
+  {
+    id: 'cosmic-galaxy',
+    name: 'Cosmic Galaxy',
+    description: 'A rich tapestry of swirling nebulas and twinkling stars.',
+    category: 'natural',
+    beforePattern: `
+      radial-gradient(ellipse 40% 50% at 20% 25%, rgba(180, 120, 220, 0.1), transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 75%, rgba(80, 150, 220, 0.1), transparent 70%),
+      radial-gradient(ellipse 30% 40% at 50% 50%, rgba(220, 100, 150, 0.08), transparent 70%),
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1.5px),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1.5px),
+      radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
+      radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1.5px),
+      radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1.5px)
+    `,
+    afterPattern: '',
+    previewColors: ['#B478DC', '#5096DC', '#FFFFFF'],
+    animation: {
+      keyframes: `
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 0.2; }
+      `,
+      duration: '10s',
+      timingFunction: 'ease-in-out',
+      iterationCount: 'infinite',
+    },
   },
 
   // ========== NEW AGE SPIRITUAL PATTERNS ==========
