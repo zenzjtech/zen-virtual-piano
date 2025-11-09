@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react';
-import { Box, Paper, Collapse } from '@mui/material';
-import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
+import React, { useMemo, useState, useEffect } from 'react';
+import { Box, Paper, Collapse, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+import { Close as CloseIcon, Favorite as FavoriteIcon, FavoriteBorder as FavoriteBorderIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Palette as PaletteIcon, Delete as DeleteIcon, Add as AddIcon, FormatListNumbered as FormatListNumberedIcon } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { toggleFavorite, previousPage, nextPage, deleteSheet, openAddSheetDialog, closeAddSheetDialog } from '@/store/reducers/music-sheet-slice';
+import { toggleFavorite, previousPage, nextPage, deleteSheet, openAddSheetDialog, closeAddSheetDialog, goToPage } from '@/store/reducers/music-sheet-slice';
 import { MusicSheet, PlaybackState } from './types';
 import { PianoTheme } from '../piano/themes';
 import { useAppConfig } from '#imports';
@@ -77,6 +77,31 @@ const NextPageButton: React.FC<{
 );
 
 /**
+ * Navigation button for going to a specific page
+ */
+const GoToPageButton: React.FC<{
+  onGoToPage: () => void;
+  musicSheetThemeId: string;
+}> = ({ onGoToPage, musicSheetThemeId }) => (
+  <Box
+    sx={{
+      position: 'absolute',
+      top: theme => theme.spacing(1.5),
+      left: '50%',
+      marginLeft: theme => theme.spacing(8),
+    }}
+  >
+    <ActionButton
+      onClick={onGoToPage}
+      icon={<FormatListNumberedIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Go to page"
+      tooltip="Go to Page (Ctrl+G)"
+    />
+  </Box>
+);
+
+/**
  * Action buttons container (favorite, theme, add, delete, close)
  */
 const ActionButtons: React.FC<{
@@ -112,7 +137,7 @@ const ActionButtons: React.FC<{
       ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     />
-        
+    
     <ActionButton
       onClick={onAddSheet}
       icon={<AddIcon fontSize="small" />}
@@ -161,6 +186,10 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   // Theme gallery state
   const [isThemeGalleryOpen, setIsThemeGalleryOpen] = useState(false);
   
+  // Page navigation dialog state
+  const [isGoToPageDialogOpen, setIsGoToPageDialogOpen] = useState(false);
+  const [pageInput, setPageInput] = useState('');
+  
   // Delete confirmation state
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   
@@ -194,6 +223,16 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   
   const hasLeftPage = leftPageIndex < totalPages;
   const hasRightPage = rightPageIndex < totalPages;    
+
+  // Handle page navigation
+  const handleGoToPage = () => {
+    const pageNumber = parseInt(pageInput) - 1; // Convert to 0-based index
+    if (pageNumber >= 0 && pageNumber < totalPages) {
+      dispatch(goToPage(pageNumber));
+      setIsGoToPageDialogOpen(false);
+      setPageInput('');
+    }
+  };
 
   return (
     <Collapse in={!isMinimized}>
@@ -269,6 +308,11 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           />
         )}
 
+        <GoToPageButton
+          onGoToPage={() => setIsGoToPageDialogOpen(true)}
+          musicSheetThemeId={musicSheetThemeId}
+        />
+
         {/* Action Buttons */}
         <ActionButtons
           isFavorite={isFavorite}
@@ -302,6 +346,48 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         open={isAddSheetDialogOpen}
         onClose={() => dispatch(closeAddSheetDialog())}
       />
+
+      {/* Page Navigation Dialog */}
+      <Dialog
+        open={isGoToPageDialogOpen}
+        onClose={() => setIsGoToPageDialogOpen(false)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle>Go to Page</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Page Number"
+            type="number"
+            fullWidth
+            variant="outlined"
+            value={pageInput}
+            onChange={(e) => setPageInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleGoToPage();
+              }
+            }}
+            helperText={`Enter page number (1-${totalPages})`}
+            inputProps={{
+              min: 1,
+              max: totalPages,
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsGoToPageDialogOpen(false)}>Cancel</Button>
+          <Button
+            onClick={handleGoToPage}
+            variant="contained"
+            disabled={!pageInput || isNaN(parseInt(pageInput)) || parseInt(pageInput) < 1 || parseInt(pageInput) > totalPages}
+          >
+            Go to Page
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Collapse>
   );
 };

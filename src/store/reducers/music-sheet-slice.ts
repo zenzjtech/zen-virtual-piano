@@ -455,11 +455,11 @@ export const musicSheetSlice = createSlice({
      */
     goToPage: (state, action: PayloadAction<number>) => {
       const page = action.payload;
-      if (state.currentSheet && page >= 0 && page < state.currentSheet.pages.length) {
-        state.playback.currentPage = page;
-        state.playback.currentMeasure = 0;
-        state.playback.currentNoteIndex = 0;
-      }
+      // Note: We can't easily calculate totalPages here, so we rely on the UI to validate
+      // This action assumes the page number has been validated by the calling component
+      state.playback.currentPage = page;
+      state.playback.currentMeasure = 0;
+      state.playback.currentNoteIndex = 0;
     },
 
     // Favorites
