@@ -108,7 +108,11 @@ export const BookPage: React.FC<BookPageProps> = ({
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          p: 2,
+          // Book-like margins: inner (binding) smaller, outer larger
+          pl: { xs: 2, md: isLeftPage ? 3 : 4 },
+          pr: { xs: 2, md: isLeftPage ? 4 : 3 },
+          pt: { xs: 2.5, md: 3 },
+          pb: { xs: 2, md: 2.5 },
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -138,11 +142,16 @@ export const BookPage: React.FC<BookPageProps> = ({
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        p: 2,
+        // Book-like margins: inner (binding) smaller, outer larger
+        pl: { xs: 2, md: isLeftPage ? 3 : 4 },
+        pr: { xs: 2, md: isLeftPage ? 4 : 3 },
+        pt: { xs: 2.5, md: 3 },
+        pb: { xs: 2, md: 2.5 },
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderRadius: 1,
+        position: 'relative', // Enable absolute positioning for children
       }}
     >
       {/* Title area - always rendered to maintain alignment */}
@@ -151,7 +160,8 @@ export const BookPage: React.FC<BookPageProps> = ({
         sx={{
           fontFamily: themeColors.titleFont,
           fontWeight: 600,
-          mb: 2,
+          mb: { xs: 2, md: 2.5 },
+          mt: { xs: 0.5, md: 0 },
           fontSize: { xs: '0.9rem', md: '1.1rem' },
           color: themeColors.primary,
           visibility: isLeftPage ? 'visible' : 'hidden',
@@ -172,12 +182,15 @@ export const BookPage: React.FC<BookPageProps> = ({
         />
       </Box>
 
-      {/* Page info at bottom of both pages */}
+      {/* Page info at bottom of both pages - absolutely positioned */}
       <Typography
         variant="caption"
         sx={{
+          position: 'absolute',
+          bottom: { xs: 2, md: 2.5 },
+          left: { xs: 2, md: isLeftPage ? 3 : 4 },
+          right: { xs: 2, md: isLeftPage ? 4 : 3 },
           fontFamily: themeColors.bodyFont,
-          mt: 2,
           textAlign: 'center',
           color: themeColors.primary,
           opacity: 0.7,
