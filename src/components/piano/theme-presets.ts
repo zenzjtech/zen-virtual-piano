@@ -338,6 +338,20 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.cultural,
     playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
   },
+  {
+    id: 'theravada-buddhism',
+    name: 'Theravada Buddhism',
+    description: 'The path of the elders, with saffron robes and serene mindfulness.',
+    pianoTheme: 'wooden',
+    backgroundTheme: 'leela-saffron-marigold',
+    musicSheetTheme: 'paper-13',
+    patternTheme: 'saffron-marigold',
+    category: 'cultural',
+    headerStyle: 'cultural-serif',
+    headerThemeStyle: HEADER_THEME_STYLES.cultural,
+    quoteStyle: QUOTE_STYLES.cultural,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.cultural,
+  },
   
   // Nature Presets
   {
