@@ -1,14 +1,15 @@
 import React from 'react';
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
   TextField,
   Button,
 } from '@mui/material';
+import { FormatListNumbered as FormatListNumberedIcon } from '@mui/icons-material';
 import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
-import { getDialogStyles, getTextFieldStyles } from '@/components/global/dialog/styles';
+import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
+import { getDialogStyles, getTextFieldStyles, getDialogButtonStyles } from '@/components/global/dialog/styles';
 import { useDialogPianoControl } from '@/hooks/use-dialog-piano-control';
 
 interface GoToPageDialogProps {
@@ -57,9 +58,15 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
         sx: getDialogStyles(theme),
       }}
     >
-      <DialogTitle sx={{ color: theme.textPrimary }}>
-        Go to Page
-      </DialogTitle>
+      {/* Header */}
+      <DialogHeader
+        title="Go to Page"
+        subtitle={`Navigate to any page (1-${totalPages})`}
+        icon={<FormatListNumberedIcon />}
+        onClose={onClose}
+      />
+
+      {/* Content */}
       <DialogContent>
         <TextField
           autoFocus
@@ -83,15 +90,7 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
         <Button
           onClick={onClose}
           variant="outlined"
-          sx={{
-            px: 3,
-            borderColor: theme.borderColor,
-            color: theme.textPrimary,
-            '&:hover': {
-              borderColor: theme.textSecondary,
-              backgroundColor: theme.hoverBg,
-            },
-          }}
+          sx={getDialogButtonStyles(theme, 'cancel')}
         >
           Cancel
         </Button>
@@ -99,19 +98,7 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
           onClick={onGoToPage}
           variant="contained"
           disabled={!isValidInput}
-          sx={{
-            px: 3,
-            backgroundColor: theme.accentPrimary,
-            color: '#ffffff',
-            '&:hover': {
-              backgroundColor: theme.accentPrimary,
-              opacity: 0.9,
-            },
-            '&:disabled': {
-              backgroundColor: theme.textSecondary,
-              color: theme.isDarkBackground ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)',
-            },
-          }}
+          sx={getDialogButtonStyles(theme, 'primary')}
         >
           Go to Page
         </Button>

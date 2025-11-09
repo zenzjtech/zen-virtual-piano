@@ -70,6 +70,37 @@ export const getTextFieldStyles = (theme: DialogTheme): SxProps<Theme> => ({
 });
 
 /**
+ * Get standard button styles for dialog actions
+ */
+export const getDialogButtonStyles = (theme: DialogTheme, variant: 'cancel' | 'primary') => {
+  if (variant === 'cancel') {
+    return {
+      px: 3,
+      borderColor: theme.borderColor,
+      color: theme.textPrimary,
+      '&:hover': {
+        borderColor: theme.textSecondary,
+        backgroundColor: theme.hoverBg,
+      },
+    };
+  }
+
+  return {
+    px: 3,
+    backgroundColor: theme.accentPrimary,
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: theme.accentPrimary,
+      opacity: 0.9,
+    },
+    '&:disabled': {
+      backgroundColor: theme.textSecondary,
+      color: theme.isDarkBackground ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)',
+    },
+  };
+};
+
+/**
  * Get scrollbar styles for dialog content
  */
 export const getScrollbarStyles = (theme: DialogTheme): SxProps<Theme> => ({

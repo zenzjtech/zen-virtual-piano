@@ -16,7 +16,7 @@ import {
 import { Add as AddIcon } from '@mui/icons-material';
 import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
 import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
-import { getDialogStyles, getTextFieldStyles } from '@/components/global/dialog/styles';
+import { getDialogStyles, getTextFieldStyles, getDialogButtonStyles } from '@/components/global/dialog/styles';
 import { useAppDispatch } from '@/store/hook';
 import { addCustomSheet } from '@/store/reducers/music-sheet-slice';
 import { useDialogPianoControl } from '@/hooks/use-dialog-piano-control';
@@ -320,30 +320,14 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
         <Button 
           onClick={handleClose}
           variant="outlined"
-          sx={{
-            px: 3,
-            borderColor: theme.borderColor,
-            color: theme.textPrimary,
-            '&:hover': {
-              borderColor: theme.textSecondary,
-              backgroundColor: theme.hoverBg,
-            },
-          }}
+          sx={getDialogButtonStyles(theme, 'cancel')}
         >
           Cancel
         </Button>
         <Button 
           onClick={handleSave} 
           variant="contained"
-          sx={{
-            px: 3,
-            backgroundColor: theme.accentPrimary,
-            color: '#ffffff',
-            '&:hover': {
-              backgroundColor: theme.accentPrimary,
-              opacity: 0.9,
-            },
-          }}
+          sx={getDialogButtonStyles(theme, 'primary')}
         >
           Add Sheet
         </Button>
