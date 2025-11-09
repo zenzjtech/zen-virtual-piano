@@ -9,6 +9,8 @@ export interface PianoSettingsState {
   soundPopupOpen: boolean;
   soundPopupTargetSection?: string;
   soundPopupPlacement?: 'top-start' | 'bottom-start';
+  // Track if piano was disabled due to dialog opening (for restoration)
+  wasDisabledByDialog: boolean;
 }
 
 const initialState: PianoSettingsState = {
@@ -18,6 +20,7 @@ const initialState: PianoSettingsState = {
   showNoteName: false,
   isPianoEnabled: true,
   soundPopupOpen: false,
+  wasDisabledByDialog: false,
 };
 
 export const pianoSettingsSlice = createSlice({
@@ -46,6 +49,24 @@ export const pianoSettingsSlice = createSlice({
     },
     setIsPianoEnabled: (state, action: PayloadAction<boolean>) => {
       state.isPianoEnabled = action.payload;
+      // Clear dialog flag when manually toggled
+      if (action.payload === false) {
+        state.wasDisabledByDialog = false;
+      }
+    },
+    disablePianoForDialog: (state) => {
+      // Only disable if currently enabled
+      if (state.isPianoEnabled) {
+        state.isPianoEnabled = false;
+        state.wasDisabledByDialog = true;
+      }
+    },
+    enablePianoAfterDialog: (state) => {
+      // Only re-enable if it was disabled by dialog
+      if (state.wasDisabledByDialog) {
+        state.isPianoEnabled = true;
+        state.wasDisabledByDialog = false;
+      }
     },
     openSoundPopup: (state, action: PayloadAction<{ targetSection?: string; placement?: 'top-start' | 'bottom-start' } | string | undefined>) => {
       state.soundPopupOpen = true;
@@ -69,6 +90,16 @@ export const pianoSettingsSlice = createSlice({
   },
 });
 
-export const { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled, openSoundPopup, closeSoundPopup } = pianoSettingsSlice.actions;
+export const {
+  setSoundSet,
+  setSustain,
+  setShowKeyboard,
+  setShowNoteName,
+  setIsPianoEnabled,
+  disablePianoForDialog,
+  enablePianoAfterDialog,
+  openSoundPopup,
+  closeSoundPopup,
+} = pianoSettingsSlice.actions;
 
 export default pianoSettingsSlice.reducer;

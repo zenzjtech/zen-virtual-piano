@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Typography,
   Box,
@@ -16,6 +16,8 @@ import {
 import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
 import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
 import { getDialogStyles, getTextFieldStyles, getScrollbarStyles } from '@/components/global/dialog/styles';
+import { useAppDispatch } from '@/store/hook';
+import { disablePianoForDialog, enablePianoAfterDialog } from '@/store/reducers/piano-settings-slice';
 
 interface KeyboardShortcutsDialogProps {
   open: boolean;
@@ -62,6 +64,16 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const theme = useDialogTheme();
+  const dispatch = useAppDispatch();
+
+  // Disable piano when dialog opens, re-enable when it closes
+  useEffect(() => {
+    if (open) {
+      dispatch(disablePianoForDialog());
+    } else {
+      dispatch(enablePianoAfterDialog());
+    }
+  }, [open, dispatch]);
 
   // Filter shortcuts based on search query
   const filteredShortcuts = searchQuery.trim()

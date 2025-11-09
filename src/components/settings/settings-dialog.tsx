@@ -12,6 +12,8 @@ import { SettingsHeader } from './components/settings-header';
 import { TabPanel } from './components/tab-panel';
 import { GeneralTab, QuotesTab, PianoTab, KeyboardTab } from './tabs';
 import type { SettingsDialogProps, SettingsTab } from './types';
+import { useAppDispatch } from '@/store/hook';
+import { disablePianoForDialog, enablePianoAfterDialog } from '@/store/reducers/piano-settings-slice';
 
 // Subtle fade transition component
 const SubtleTransition = React.forwardRef(function Transition(
@@ -44,6 +46,16 @@ export const SettingsDialog = ({
 }: SettingsDialogProps) => {
   const [tabValue, setTabValue] = useState(TAB_MAP[initialTab] || 0);
   const theme = useDialogTheme();
+  const dispatch = useAppDispatch();
+
+  // Disable piano when dialog opens, re-enable when it closes
+  useEffect(() => {
+    if (open) {
+      dispatch(disablePianoForDialog());
+    } else {
+      dispatch(enablePianoAfterDialog());
+    }
+  }, [open, dispatch]);
 
   // Update tab when initialTab changes
   useEffect(() => {

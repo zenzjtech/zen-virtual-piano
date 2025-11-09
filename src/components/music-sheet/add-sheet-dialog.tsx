@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -19,6 +19,7 @@ import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
 import { getDialogStyles, getTextFieldStyles } from '@/components/global/dialog/styles';
 import { useAppDispatch } from '@/store/hook';
 import { addCustomSheet } from '@/store/reducers/music-sheet-slice';
+import { disablePianoForDialog, enablePianoAfterDialog } from '@/store/reducers/piano-settings-slice';
 import { parseVPNotation } from '@/services/sheet-parser';
 import type { MusicSheet } from './types';
 
@@ -33,6 +34,15 @@ interface AddSheetDialogProps {
 export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose }) => {
   const dispatch = useAppDispatch();
   const theme = useDialogTheme();
+
+  // Disable piano when dialog opens, re-enable when it closes
+  useEffect(() => {
+    if (open) {
+      dispatch(disablePianoForDialog());
+    } else {
+      dispatch(enablePianoAfterDialog());
+    }
+  }, [open, dispatch]);
   
   // Form state
   const [title, setTitle] = useState('');
