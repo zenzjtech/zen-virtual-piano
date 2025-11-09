@@ -95,7 +95,15 @@ const ActionButtons: React.FC<{
       right: theme => theme.spacing(1.5),
       display: 'flex'      
     }}
-  >
+  >    
+    <ActionButton
+      onClick={onThemeClick}
+      icon={<PaletteIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Change theme"
+      tooltip="Change paper theme"
+    />
+
     <ActionButton
       onClick={onToggleFavorite}
       icon={isFavorite ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
@@ -104,23 +112,7 @@ const ActionButtons: React.FC<{
       ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     />
-    
-    <ActionButton
-      onClick={onThemeClick}
-      icon={<PaletteIcon fontSize="small" />}
-      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Change theme"
-      tooltip="Change paper theme"
-    />
-    
-    <ActionButton
-      onClick={onClose}
-      icon={<CloseIcon fontSize="small" />}
-      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Close sheet"
-      tooltip="Close sheet"
-    />
-    
+        
     <ActionButton
       onClick={onAddSheet}
       icon={<AddIcon fontSize="small" />}
@@ -136,6 +128,15 @@ const ActionButtons: React.FC<{
       ariaLabel="Delete sheet"
       tooltip="Delete sheet"
     />
+
+    
+    <ActionButton
+      onClick={onClose}
+      icon={<CloseIcon fontSize="small" />}
+      customColors={getMusicSheetThemeColors(musicSheetThemeId)}
+      ariaLabel="Close sheet"
+      tooltip="Close sheet"
+    />    
   </Box>
 );
 
