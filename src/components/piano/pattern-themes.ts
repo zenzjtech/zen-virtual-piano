@@ -576,6 +576,22 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#B0D0E8', '#90B8D8'],
   },
 
+  {
+    id: 'starfield',
+    name: 'Starfield',
+    description: 'A subtle scattering of distant stars',
+    category: 'natural',
+    beforePattern: `
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1.5px),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1.5px),
+      radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
+      radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.3) 0.5px, transparent 1.5px),
+      radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.4) 0.5px, transparent 1.5px)
+    `,
+    afterPattern: '',
+    previewColors: ['#FFFFFF', '#E0E0E0'],
+  },
+
   // ========== NEW AGE SPIRITUAL PATTERNS ==========
   {
     id: 'crystal-energy',

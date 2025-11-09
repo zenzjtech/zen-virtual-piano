@@ -450,6 +450,20 @@ export const THEME_PRESETS: ThemePreset[] = [
     quoteStyle: QUOTE_STYLES.artistic,
     playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
   },
+  {
+    id: 'cosmic-serenade',
+    name: 'Cosmic Serenade',
+    description: 'A journey through deep space with celestial starlight.',
+    pianoTheme: 'metal',
+    backgroundTheme: 'cosmic-deep-space',
+    musicSheetTheme: 'paper-12',
+    patternTheme: 'starfield',
+    category: 'artistic',
+    headerStyle: 'artistic-italic',
+    headerThemeStyle: HEADER_THEME_STYLES.artistic,
+    quoteStyle: QUOTE_STYLES.artistic,
+    playbackBarStyle: PLAYBACK_BAR_STYLES.artistic,
+  },
   
   // Vintage Presets
   {
