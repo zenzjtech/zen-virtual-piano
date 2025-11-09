@@ -4,7 +4,6 @@ import { KeyboardShortcutsDialog } from '@/components/piano/keyboard-shortcuts-d
 import { SettingsDialog } from '@/components/settings';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { completeOnboarding } from '@/store/reducers/onboarding-slice';
-import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { getTheme } from '@/components/piano/themes';
 import { THEME_PRESETS, ThemePreset } from '@/components/piano/theme-presets';
 import { isDarkBackgroundTheme } from '@/theme/background-themes';
@@ -20,6 +19,10 @@ interface AppDialogsProps {
   onCloseSettings: () => void;
   /** Handler to close keyboard shortcuts dialog */
   onCloseKeyboardShortcuts: () => void;
+  /** Anchor element for sheet search dialog */
+  sheetSearchAnchorEl: HTMLElement | null;
+  /** Handler to close sheet search dialog */
+  onSheetSearchClose: () => void;
 }
 
 /**
@@ -32,6 +35,8 @@ export const AppDialogs: React.FC<AppDialogsProps> = ({
   isKeyboardShortcutsOpen,
   onCloseSettings,
   onCloseKeyboardShortcuts,
+  sheetSearchAnchorEl,
+  onSheetSearchClose,
 }) => {
   const dispatch = useAppDispatch();
   
@@ -40,9 +45,7 @@ export const AppDialogs: React.FC<AppDialogsProps> = ({
   const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
   const musicSheetThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
   const isOnboardingVisible = useAppSelector((state) => state.onboarding.isOnboardingVisible);
-  
-  // Sheet search hook
-  const { isSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchClose } = useSheetSearch();
+  const isSheetSearchOpen = useAppSelector((state) => state.musicSheet.isSearchDialogOpen);
   
   // Get theme objects
   const pianoTheme = getTheme(pianoThemeId);
@@ -72,7 +75,7 @@ export const AppDialogs: React.FC<AppDialogsProps> = ({
       <SheetSearchDialog
         open={isSheetSearchOpen}
         anchorEl={sheetSearchAnchorEl}
-        onClose={handleSheetSearchClose}
+        onClose={onSheetSearchClose}
         pianoTheme={pianoTheme}
       />
 

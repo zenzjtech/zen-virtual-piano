@@ -22,6 +22,7 @@ import { useRecordingPlayback } from '@/hooks/use-recording-playback';
 import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
 import { useAutoThemeRotation } from '@/hooks/use-auto-theme-rotation';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
+import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -55,6 +56,9 @@ function App() {
   // Sound settings and metronome
   const soundSettings = useSoundSettings();
   useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo, soundSettings.metronomeVolume);
+  
+  // Sheet search hook - shared between PianoUnit and AppDialogs
+  const { handleSheetSearchOpen, anchorEl: sheetSearchAnchorEl, handleSheetSearchClose } = useSheetSearch();
   
   // Notification
   const { showNotification } = useNotification();
@@ -278,6 +282,7 @@ function App() {
           <PianoUnit 
             onOpenSettings={handleOpenSettings}
             recordingPlaybackRef={recordingPlaybackRef}
+            onSheetSearchOpen={handleSheetSearchOpen}
           />
 
           {/* Instructions */}
@@ -312,6 +317,8 @@ function App() {
         isKeyboardShortcutsOpen={isKeyboardShortcutsOpen}
         onCloseSettings={handleCloseSettings}
         onCloseKeyboardShortcuts={() => setIsKeyboardShortcutsOpen(false)}
+        sheetSearchAnchorEl={sheetSearchAnchorEl}
+        onSheetSearchClose={handleSheetSearchClose}
       />
     </Box>
   );

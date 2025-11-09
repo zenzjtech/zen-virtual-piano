@@ -14,11 +14,10 @@ import { PianoUnitWrapper } from './piano-unit-styled';
 import { getAudioEngine } from '@/services/audio-engine';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setSoundSet, setSustain, setShowKeyboard, setShowNoteName, setIsPianoEnabled, closeSoundPopup } from '@/store/reducers/piano-settings-slice';
-import { pauseSheet } from '@/store/reducers/music-sheet-slice';
+import { pauseSheet, closeSearchDialog } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
 import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
-import { useSheetSearch } from '@/hooks/use-sheet-search';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useMetronome } from '@/hooks/use-metronome';
@@ -30,6 +29,8 @@ interface PianoUnitProps {
   onOpenSettings?: (tab: 'general' | 'quotes' | 'piano' | 'keyboard') => void;
   /** Recording playback reference for mutual exclusivity */
   recordingPlaybackRef: React.MutableRefObject<{ isPlaying: boolean; pause: () => void }>;
+  /** Handler to open sheet search dialog */
+  onSheetSearchOpen: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 /**
@@ -40,6 +41,7 @@ interface PianoUnitProps {
 export const PianoUnit: React.FC<PianoUnitProps> = ({ 
   onOpenSettings,
   recordingPlaybackRef,
+  onSheetSearchOpen,
 }) => {
   // Redux state
   const dispatch = useAppDispatch();
@@ -73,14 +75,19 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   const styleSettingsPopup = usePopupManager();
   const keyAssistPopup = usePopupManager();
   
-  // Sheet search hook
-  const { isSheetSearchOpen, handleSheetSearchOpen, handleSheetSearchClose } = useSheetSearch();
+  // Get sheet search state from Redux (handler comes from props)
+  const isSheetSearchOpen = useAppSelector((state) => state.musicSheet.isSearchDialogOpen);
   
   // Sound settings close handler (closes both local popup and Redux state)
   const handleSoundSettingsClose = useCallback(() => {
     soundSettingsPopup.handleClose();
     dispatch(closeSoundPopup());
   }, [soundSettingsPopup, dispatch]);
+  
+  // Sheet search close handler
+  const handleSheetSearchClose = useCallback(() => {
+    dispatch(closeSearchDialog());
+  }, [dispatch]);
   
   // Sync Redux sound popup state with local popup manager
   useEffect(() => {
@@ -229,7 +236,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
             pressedNotes={pressedNotes}
             currentNote={currentNote}
             pianoTheme={pianoTheme}
-            onSheetSearchOpen={handleSheetSearchOpen}
+            onSheetSearchOpen={onSheetSearchOpen}
           />
 
           {/* Settings Bar */}
