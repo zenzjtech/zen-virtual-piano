@@ -3,8 +3,8 @@
  */
 
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { MusicNote } from '@mui/icons-material';
+import { Box, Typography, IconButton } from '@mui/material';
+import icon from '@/assets/image/Icon.png';
 
 export const Header: React.FC = () => {
   return (
@@ -16,12 +16,9 @@ export const Header: React.FC = () => {
         mb: 0.5,
       }}
     >
-      <MusicNote
-        sx={{
-          color: 'secondary.main',
-          fontSize: 20,
-        }}
-      />
+      <IconButton>
+        <img src={icon} alt="icon" style={{ width: 20, height: 20 }} />
+      </IconButton>
       <Typography
         variant="subtitle2"
         sx={{
