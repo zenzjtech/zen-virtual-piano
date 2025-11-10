@@ -36,7 +36,20 @@ export type BackgroundThemeId =
   | 'solarized-light'
   | 'solarized-dark'
   | 'monokai-light'
-  | 'monokai-dark';
+  | 'monokai-dark'
+  | 'dracula-dark'
+  | 'github-light'
+  | 'github-dark'
+  | 'one-dark-pro'
+  | 'ayu-light'
+  | 'ayu-mirage'
+  | 'ayu-dark'
+  | 'night-owl'
+  | 'tokyo-night'
+  | 'shades-of-purple'
+  | 'cobalt2'
+  | 'winter-is-coming'
+  | 'noctis';
 
 export const BACKGROUND_THEME_CATEGORIES: Record<BackgroundTheme['category'], { name: string; description: string }> = {
   basics: {
@@ -84,6 +97,19 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
   { id: 'solarized-dark', name: 'Solarized Dark', description: 'Precisely balanced dark theme for reduced eye strain', category: 'cultural' },
   { id: 'monokai-light', name: 'Monokai Light', description: 'Bright Monokai-inspired theme with vibrant colors', category: 'cultural' },
   { id: 'monokai-dark', name: 'Monokai Dark', description: 'Classic Monokai dark theme with syntax highlighting colors', category: 'cultural' },
+  { id: 'dracula-dark', name: 'Dracula Dark', description: 'Classic Dracula dark theme with high contrast and vibrant accents', category: 'cultural' },
+  { id: 'github-light', name: 'GitHub Light', description: 'GitHub\'s official light theme with clean design and professional styling', category: 'cultural' },
+  { id: 'github-dark', name: 'GitHub Dark', description: 'GitHub\'s official dark theme with professional blue accents', category: 'cultural' },
+  { id: 'one-dark-pro', name: 'One Dark Pro', description: 'Popular dark theme with Material Design influence and balanced colors', category: 'cultural' },
+  { id: 'ayu-light', name: 'Ayu Light', description: 'Clean light theme with soft colors and pleasant text', category: 'cultural' },
+  { id: 'ayu-mirage', name: 'Ayu Mirage', description: 'Balanced theme between light and dark with soft colors', category: 'cultural' },
+  { id: 'ayu-dark', name: 'Ayu Dark', description: 'Modern dark theme with high contrast and vibrant accents', category: 'cultural' },
+  { id: 'night-owl', name: 'Night Owl', description: 'Dark blue theme perfect for late-night coding sessions', category: 'cultural' },
+  { id: 'tokyo-night', name: 'Tokyo Night', description: 'Cyberpunk-inspired theme with neon accents and glowing lights', category: 'cultural' },
+  { id: 'shades-of-purple', name: 'Shades of Purple', description: 'Bold purple color scheme with elegant, sophisticated look', category: 'cultural' },
+  { id: 'cobalt2', name: 'Cobalt2', description: 'High contrast theme with almost fluorescent colors', category: 'cultural' },
+  { id: 'winter-is-coming', name: 'Winter is Coming', description: 'Cool blue theme inspired by Game of Thrones', category: 'cultural' },
+  { id: 'noctis', name: 'Noctis', description: 'Green-based theme with modern design and multiple variants', category: 'cultural' },
 ];
 
 
@@ -103,6 +129,17 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'cyberpunk-neon',
   'solarized-dark',
   'monokai-dark',
+  'dracula-dark',
+  'github-dark',
+  'one-dark-pro',
+  'ayu-mirage',
+  'ayu-dark',
+  'night-owl',
+  'tokyo-night',
+  'shades-of-purple',
+  'cobalt2',
+  'winter-is-coming',
+  'noctis',
 ];
 
 /**
@@ -169,6 +206,32 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { backgroundColor: '#f8f8f2' }; // Monokai foreground (light)
     case 'monokai-dark':
       return { backgroundColor: '#272822' }; // Monokai background
+    case 'dracula-dark':
+      return { backgroundColor: '#282a36' }; // Dracula background
+    case 'github-light':
+      return { backgroundColor: '#ffffff' }; // GitHub light background
+    case 'github-dark':
+      return { backgroundColor: '#0d1117' }; // GitHub dark background
+    case 'one-dark-pro':
+      return { backgroundColor: '#282c34' }; // One Dark Pro background
+    case 'ayu-light':
+      return { backgroundColor: '#fafafa' }; // Ayu light background
+    case 'ayu-mirage':
+      return { backgroundColor: '#212733' }; // Ayu mirage background
+    case 'ayu-dark':
+      return { backgroundColor: '#0a0e14' }; // Ayu dark background
+    case 'night-owl':
+      return { backgroundColor: '#011627' }; // Night Owl background
+    case 'tokyo-night':
+      return { backgroundColor: '#1a1b26' }; // Tokyo Night background
+    case 'shades-of-purple':
+      return { backgroundColor: '#2d2b55' }; // Shades of Purple background
+    case 'cobalt2':
+      return { backgroundColor: '#193549' }; // Cobalt2 background
+    case 'winter-is-coming':
+      return { backgroundColor: '#0e1419' }; // Winter is Coming background
+    case 'noctis':
+      return { backgroundColor: '#0c0a14' }; // Noctis background
     default:
       return { backgroundColor: '#FFFFFF' };
   }

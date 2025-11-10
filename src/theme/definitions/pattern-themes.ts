@@ -866,6 +866,243 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#272822', '#f92672', '#a6e22e'],
   },
 
+  // ========== DRACULA PATTERNS ==========
+  {
+    id: 'dracula-dark',
+    name: 'Dracula Dark',
+    description: 'Classic Dracula dark patterns with high contrast and vibrant syntax accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Dracula dark grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(68, 71, 90, 0.06) 40px, rgba(68, 71, 90, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(49, 50, 68, 0.05) 55px, rgba(49, 50, 68, 0.05) 56px)',
+      /* Dracula syntax accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(255, 121, 198, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(80, 250, 123, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Dracula dark highlights */
+      'linear-gradient(135deg, rgba(40, 42, 54, 0.2) 0%, rgba(33, 34, 44, 0.12) 40%, transparent 70%)',
+      /* Dracula vibrant highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(255, 184, 108, 0.15) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(189, 147, 249, 0.12) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#282a36', '#ff79c6', '#50fa7b'],
+  },
+
+  // ========== GITHUB PATTERNS ==========
+  {
+    id: 'github-light',
+    name: 'GitHub Light',
+    description: 'GitHub\'s official light theme patterns with clean design and professional blue accents',
+    category: 'cultural',
+    beforePattern: [
+      /* GitHub light grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(209, 217, 224, 0.03) 30px, rgba(209, 217, 224, 0.03) 31px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(246, 248, 250, 0.02) 45px, rgba(246, 248, 250, 0.02) 46px)',
+      /* GitHub light accents */
+      'radial-gradient(circle 3px at 15% 20%, rgba(9, 105, 218, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 2px at 70% 40%, rgba(9, 105, 218, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* GitHub light highlights */
+      'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(246, 248, 250, 0.08) 40%, transparent 70%)',
+      /* Clean blue accents */
+      'radial-gradient(circle 3px at 25% 25%, rgba(9, 105, 218, 0.1) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 60%, rgba(9, 105, 218, 0.08) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#ffffff', '#0969da', '#24292f'],
+  },
+
+  {
+    id: 'github-dark',
+    name: 'GitHub Dark',
+    description: 'GitHub\'s official dark theme patterns with professional blue accents and clean design',
+    category: 'cultural',
+    beforePattern: [
+      /* GitHub dark grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(48, 54, 61, 0.06) 40px, rgba(48, 54, 61, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(22, 27, 34, 0.05) 55px, rgba(22, 27, 34, 0.05) 56px)',
+      /* GitHub dark accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(88, 166, 255, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(88, 166, 255, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* GitHub dark highlights */
+      'linear-gradient(135deg, rgba(13, 17, 23, 0.2) 0%, rgba(22, 27, 34, 0.12) 40%, transparent 70%)',
+      /* Professional blue highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(88, 166, 255, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(88, 166, 255, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#0d1117', '#58a6ff', '#f0f6fc'],
+  },
+
+  // ========== ONE DARK PRO PATTERNS ==========
+  {
+    id: 'one-dark-pro',
+    name: 'One Dark Pro',
+    description: 'Popular dark theme patterns with Material Design influence and balanced colors',
+    category: 'cultural',
+    beforePattern: [
+      /* One Dark Pro grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(62, 68, 81, 0.06) 40px, rgba(62, 68, 81, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(33, 37, 43, 0.05) 55px, rgba(33, 37, 43, 0.05) 56px)',
+      /* One Dark Pro accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(97, 218, 251, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(152, 195, 121, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* One Dark Pro highlights */
+      'linear-gradient(135deg, rgba(40, 44, 52, 0.2) 0%, rgba(33, 37, 43, 0.12) 40%, transparent 70%)',
+      /* Professional blue highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(97, 218, 251, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(152, 195, 121, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#282c34', '#61dafb', '#98c379'],
+  },
+
+  // ========== AYU PATTERNS ==========
+  {
+    id: 'ayu-light',
+    name: 'Ayu Light',
+    description: 'Clean light theme patterns with soft colors and pleasant text readability',
+    category: 'cultural',
+    beforePattern: [
+      /* Ayu light grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(228, 232, 240, 0.03) 30px, rgba(228, 232, 240, 0.03) 31px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(242, 244, 247, 0.02) 45px, rgba(242, 244, 247, 0.02) 46px)',
+      /* Ayu light accents */
+      'radial-gradient(circle 3px at 15% 20%, rgba(255, 143, 64, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 2px at 70% 40%, rgba(255, 143, 64, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Ayu light highlights */
+      'linear-gradient(135deg, rgba(250, 250, 250, 0.15) 0%, rgba(242, 244, 247, 0.08) 40%, transparent 70%)',
+      /* Soft orange accents */
+      'radial-gradient(circle 3px at 25% 25%, rgba(255, 143, 64, 0.1) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 60%, rgba(255, 143, 64, 0.08) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#fafafa', '#ff8f40', '#5c6773'],
+  },
+
+  {
+    id: 'ayu-mirage',
+    name: 'Ayu Mirage',
+    description: 'Balanced theme patterns between light and dark with soft colors',
+    category: 'cultural',
+    beforePattern: [
+      /* Ayu mirage grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(65, 72, 81, 0.06) 40px, rgba(65, 72, 81, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(43, 48, 59, 0.05) 55px, rgba(43, 48, 59, 0.05) 56px)',
+      /* Ayu mirage accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(255, 204, 102, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(255, 204, 102, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Ayu mirage highlights */
+      'linear-gradient(135deg, rgba(33, 39, 51, 0.2) 0%, rgba(43, 48, 59, 0.12) 40%, transparent 70%)',
+      /* Balanced yellow highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(255, 204, 102, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(255, 204, 102, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#212733', '#ffcc66', '#d9d7ce'],
+  },
+
+  {
+    id: 'ayu-dark',
+    name: 'Ayu Dark',
+    description: 'Modern dark theme patterns with high contrast and vibrant accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Ayu dark grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(43, 48, 59, 0.06) 40px, rgba(43, 48, 59, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(21, 25, 33, 0.05) 55px, rgba(21, 25, 33, 0.05) 56px)',
+      /* Ayu dark accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(57, 186, 230, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(57, 186, 230, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Ayu dark highlights */
+      'linear-gradient(135deg, rgba(10, 14, 20, 0.2) 0%, rgba(21, 25, 33, 0.12) 40%, transparent 70%)',
+      /* Vibrant cyan highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(57, 186, 230, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(57, 186, 230, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#0a0e14', '#39bae6', '#e6e1cf'],
+  },
+
+  // ========== NIGHT OWL PATTERNS ==========
+  {
+    id: 'night-owl',
+    name: 'Night Owl',
+    description: 'Dark blue theme patterns perfect for late-night coding sessions',
+    category: 'cultural',
+    beforePattern: [
+      /* Night Owl grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(42, 54, 67, 0.06) 40px, rgba(42, 54, 67, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(12, 32, 47, 0.05) 55px, rgba(12, 32, 47, 0.05) 56px)',
+      /* Night Owl accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(130, 170, 255, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(130, 170, 255, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Night Owl highlights */
+      'linear-gradient(135deg, rgba(1, 22, 39, 0.2) 0%, rgba(12, 32, 47, 0.12) 40%, transparent 70%)',
+      /* Blue highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(130, 170, 255, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(130, 170, 255, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#011627', '#82aaff', '#d6deeb'],
+  },
+
+  // ========== TOKYO NIGHT PATTERNS ==========
+  {
+    id: 'tokyo-night',
+    name: 'Tokyo Night',
+    description: 'Cyberpunk-inspired theme patterns with neon accents and glowing lights',
+    category: 'cultural',
+    beforePattern: [
+      /* Tokyo Night grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(54, 61, 82, 0.06) 40px, rgba(54, 61, 82, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(37, 40, 54, 0.05) 55px, rgba(37, 40, 54, 0.05) 56px)',
+      /* Tokyo Night accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(125, 207, 255, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(125, 207, 255, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Tokyo Night highlights */
+      'linear-gradient(135deg, rgba(26, 27, 38, 0.2) 0%, rgba(37, 40, 54, 0.12) 40%, transparent 70%)',
+      /* Neon cyan highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(125, 207, 255, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(125, 207, 255, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1a1b26', '#7dcfff', '#c0caf5'],
+  },
+
+  // ========== SHADES OF PURPLE PATTERNS ==========
+  {
+    id: 'shades-of-purple',
+    name: 'Shades of Purple',
+    description: 'Bold purple color scheme patterns with elegant, sophisticated look',
+    category: 'cultural',
+    beforePattern: [
+      /* Shades of Purple grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(77, 67, 134, 0.06) 40px, rgba(77, 67, 134, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(55, 52, 95, 0.05) 55px, rgba(55, 52, 95, 0.05) 56px)',
+      /* Purple accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(250, 208, 0, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(250, 208, 0, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Purple highlights */
+      'linear-gradient(135deg, rgba(45, 43, 85, 0.2) 0%, rgba(55, 52, 95, 0.12) 40%, transparent 70%)',
+      /* Yellow highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(250, 208, 0, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(250, 208, 0, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#2d2b55', '#fad000', '#ffffff'],
+  },
+
   // ========== JAPANESE TEA CEREMONY PATTERNS ==========
   {
     id: 'tea-ceremony-wooden',

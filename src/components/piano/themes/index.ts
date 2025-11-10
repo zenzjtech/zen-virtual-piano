@@ -35,6 +35,17 @@ export { nordicIce } from './nordic-ice';
 export { tibetanWood } from './tibetan-wood';
 export { solarized } from './solarized';
 export { monokai } from './monokai';
+export { dracula } from './dracula';
+export { githubLight } from './github-light';
+export { githubDark } from './github-dark';
+export { oneDarkPro } from './one-dark-pro';
+export { ayuLight } from './ayu-light';
+export { ayuMirage } from './ayu-mirage';
+export { ayuDark } from './ayu-dark';
+export { nightOwl } from './night-owl';
+export { tokyoNight } from './tokyo-night';
+export { shadesOfPurple } from './shades-of-purple';
+export { cobalt2, winterIsComing, noctis } from './cobalt2-winter-noctis';
 
 // Import themes for aggregation
 import { wooden } from './wooden';
@@ -47,6 +58,17 @@ import { nordicIce } from './nordic-ice';
 import { tibetanWood } from './tibetan-wood';
 import { solarized } from './solarized';
 import { monokai } from './monokai';
+import { dracula } from './dracula';
+import { githubLight } from './github-light';
+import { githubDark } from './github-dark';
+import { oneDarkPro } from './one-dark-pro';
+import { ayuLight } from './ayu-light';
+import { ayuMirage } from './ayu-mirage';
+import { ayuDark } from './ayu-dark';
+import { nightOwl } from './night-owl';
+import { tokyoNight } from './tokyo-night';
+import { shadesOfPurple } from './shades-of-purple';
+import { cobalt2, winterIsComing, noctis } from './cobalt2-winter-noctis';
 import { PianoTheme } from './types';
 
 // Aggregate themes into a single object
@@ -61,6 +83,19 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
   tibetanWood,
   solarized,
   monokai,
+  dracula,
+  githubLight,
+  githubDark,
+  oneDarkPro,
+  ayuLight,
+  ayuMirage,
+  ayuDark,
+  nightOwl,
+  tokyoNight,
+  shadesOfPurple,
+  cobalt2,
+  winterIsComing,
+  noctis,
 };
 
 // Helper to get theme by id with fallback
