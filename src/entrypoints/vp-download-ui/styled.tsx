@@ -34,22 +34,22 @@ export const RippleButton = styled(Button)(({ theme }) => ({
   overflow: 'hidden',
   background: `linear-gradient(135deg, ${theme.palette.secondary.light} 0%, ${theme.palette.secondary.main} 100%)`,
   color: theme.palette.secondary.contrastText,
-  padding: theme.spacing(1.25, 2.5),
+  padding: theme.spacing(0.75, 2),
   borderRadius: typeof theme.shape.borderRadius === 'number' ? theme.shape.borderRadius : 8,
-  fontWeight: theme.typography.fontWeightBold as number,
-  fontSize: '14px',
+  fontWeight: theme.typography.fontWeightMedium as number,
+  fontSize: '13px',
   textTransform: 'none',
   letterSpacing: '0.02em',
-  boxShadow: `0 4px 20px ${theme.palette.secondary.main}5A`,
+  boxShadow: `0 2px 12px ${theme.palette.secondary.main}40`,
   transition: theme.transitions.create(['box-shadow', 'transform'], {
     duration: theme.transitions.duration.standard,
     easing: theme.transitions.easing.easeInOut,
   }),
-  minHeight: 40,
+  minHeight: 36,
   '&:hover': {
     background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.secondary.dark} 100%)`,
-    boxShadow: `0 6px 28px ${theme.palette.secondary.main}80`,
-    transform: 'translateY(-2px) scale(1.02)',
+    boxShadow: `0 4px 20px ${theme.palette.secondary.main}60`,
+    transform: 'translateY(-1px) scale(1.01)',
   },
   '&:active': {
     transform: 'translateY(0) scale(0.98)',
@@ -59,7 +59,7 @@ export const RippleButton = styled(Button)(({ theme }) => ({
     opacity: 0.85,
   },
   '& .MuiButton-startIcon': {
-    marginRight: theme.spacing(1.25),
+    marginRight: theme.spacing(1),
   },
 }));
 

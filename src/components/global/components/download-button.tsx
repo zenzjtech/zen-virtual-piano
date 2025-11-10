@@ -42,7 +42,7 @@ const getButtonContent = (status: DownloadStatus) => {
         <>
           <Download />
           <Typography variant="body2" sx={{ ml: 1 }}>
-            Download Sheet
+            Add Sheet
           </Typography>
         </>
       );

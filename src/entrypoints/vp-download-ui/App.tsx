@@ -43,17 +43,19 @@ export default function DownloadUI() {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: 'transparent',
-        
+        backgroundColor: 'transparent',                
       }}
     >
       <Fade in timeout={600}>
         <GlassCard 
             elevation={0}
-            sx={{
+            sx={{              
               width: '100%',
               height: '100%',
               ...getBackgroundStyle(backgroundThemeId),              
+              py: 1,
+              pb: 1.5,
+              px: 0,              
             }}
         >
           <Box
@@ -62,25 +64,27 @@ export default function DownloadUI() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 1,
+              justifyContent: 'space-between',                    
             }}
           >
             <Header />
             
-            {sheetInfo && (
-              <SheetBanner
-                title={sheetInfo.title}
-                artist={sheetInfo.artist}
-              />
-            )}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+              {sheetInfo && (
+                <SheetBanner
+                  title={sheetInfo.title}
+                  artist={sheetInfo.artist}
+                  backgroundThemeId={backgroundThemeId}
+                />
+              )}
 
-            <DownloadButton
-              status={downloadState.status}
-              ripples={ripples}
-              onClick={handleDownloadClick}
-              pianoTheme={pianoTheme}
-            />
+              <DownloadButton
+                status={downloadState.status}
+                ripples={ripples}
+                onClick={handleDownloadClick}
+                pianoTheme={pianoTheme}
+              />
+            </Box>
 
             <StatusChip
               status={downloadState.status}

@@ -6,6 +6,12 @@ import { MusicSheet } from '../../components/music-sheet/types';
 
 export type DownloadStatus = 'idle' | 'downloading' | 'success' | 'warning' | 'error';
 
+export interface Ripple {
+  id: number;
+  x: number;
+  y: number;
+}
+
 export interface DownloadState {
   status: DownloadStatus;
   message?: string;
