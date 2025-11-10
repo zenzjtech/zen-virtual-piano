@@ -14,18 +14,26 @@ interface UseDownloadStateReturn {
   showToast: boolean;
   setShowToast: (show: boolean) => void;
   initiateDownload: () => void;
+  sheetInfo: { title: string; artist: string } | null;
 }
 
 export const useDownloadState = (): UseDownloadStateReturn => {
   const [downloadState, setDownloadState] = useState<DownloadState>({ status: 'idle' });
   const [showToast, setShowToast] = useState(false);
+  const [sheetInfo, setSheetInfo] = useState<{ title: string; artist: string } | null>(null);
   const dispatch = useAppDispatch();
   const lastRemovedSheet = useAppSelector((state) => state.musicSheet.lastRemovedSheet);
 
   // Listen for messages from content script
   useEffect(() => {
     const handleMessage = (event: MessageEvent<DownloadMessage>) => {
-      if (event.data.type === MESSAGE_TYPES.DOWNLOAD_SUCCESS) {
+      console.log("Received message zen virtual piano:", event.data);
+      if (event.data.type === MESSAGE_TYPES.SHEET_DETECTED) {
+        setSheetInfo({
+          title: event.data.title,
+          artist: event.data.artist,
+        });
+      } else if (event.data.type === MESSAGE_TYPES.DOWNLOAD_SUCCESS) {
         // Save complete sheet to Redux store
         dispatch(addCustomSheet(event.data.sheet));
 
@@ -77,5 +85,6 @@ export const useDownloadState = (): UseDownloadStateReturn => {
     showToast,
     setShowToast,
     initiateDownload,
+    sheetInfo,
   };
 };

@@ -21,10 +21,10 @@ export interface DownloadErrorMessage {
   error: string;
 }
 
-export type DownloadMessage = DownloadSuccessMessage | DownloadErrorMessage;
-
-export interface Ripple {
-  x: number;
-  y: number;
-  id: number;
+export interface SheetDetectedMessage {
+  type: 'SHEET_DETECTED';
+  title: string;
+  artist: string;
 }
+
+export type DownloadMessage = DownloadSuccessMessage | DownloadErrorMessage | SheetDetectedMessage;

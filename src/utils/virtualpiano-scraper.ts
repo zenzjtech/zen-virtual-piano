@@ -33,37 +33,8 @@ export function scrapeVirtualPianoSheet(): ScrapedSheetData | null {
       return null;
     }
 
-    // Extract title from H1 in sheet__head-wrapper (more accurate)
-    const h1Element = document.querySelector('.sheet__head-wrapper h1');
-    let title = h1Element?.textContent?.trim() || 'Unknown Title';
-    
-    // Extract artist from sheet__author link
-    const artistLink = document.querySelector('.sheet__head-wrapper .sheet__author a');
-    let artist = artistLink?.textContent?.trim() || 'Unknown Artist';
-    
-    // Fallback to page title parsing if direct extraction fails
-    if (title === 'Unknown Title' || artist === 'Unknown Artist') {
-      const pageTitle = document.title;
-      const titleMatch = pageTitle.match(/^(.+?)\s*(?:\((.+?)\))?\s*-\s*Virtual Piano/);
-      if (titleMatch) {
-        if (title === 'Unknown Title') title = titleMatch[1].trim();
-        if (artist === 'Unknown Artist' && titleMatch[2]) artist = titleMatch[2].trim();
-      }
-    }
-    
-    // Final fallback: extract from URL path (e.g., /music-sheet/how-did-it-end/)
-    if (title === 'Unknown Title') {
-      const urlPath = window.location.pathname;
-      const pathSegments = urlPath.split('/').filter(Boolean);
-      const lastSegment = pathSegments[pathSegments.length - 1];
-      if (lastSegment) {
-        // Convert kebab-case to Title Case
-        title = lastSegment
-          .split('-')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-          .join(' ');
-      }
-    }
+    // Extract title and artist using the shared function
+    const { title, artist } = extractSheetTitleAndArtist();
 
     // Extract difficulty level (number)
     const difficultySpan = document.querySelector('#difficulty');
@@ -219,4 +190,47 @@ export function isVirtualPianoSheetPage(): boolean {
     window.location.hostname === 'virtualpiano.net' &&
     window.location.pathname.startsWith('/music-sheet/')
   );
+}
+
+/**
+ * Extract only title and artist from a virtualpiano.net sheet page
+ */
+export function extractSheetTitleAndArtist(): { title: string; artist: string } {
+  try {
+    // Extract title from H1 in sheet__head-wrapper
+    const h1Element = document.querySelector('.sheet__head-wrapper h1');
+    let title = h1Element?.textContent?.trim() || 'Unknown Title';
+
+    // Extract artist from sheet__author link
+    const artistLink = document.querySelector('.sheet__head-wrapper .sheet__author a');
+    let artist = artistLink?.textContent?.trim() || 'Unknown Artist';
+
+    // Fallback to page title parsing if direct extraction fails
+    if (title === 'Unknown Title' || artist === 'Unknown Artist') {
+      const pageTitle = document.title;
+      const titleMatch = pageTitle.match(/^(.+?)\s*(?:\((.+?)\))?\s*-\s*Virtual Piano/);
+      if (titleMatch) {
+        if (title === 'Unknown Title') title = titleMatch[1].trim();
+        if (artist === 'Unknown Artist' && titleMatch[2]) artist = titleMatch[2].trim();
+      }
+    }
+
+    // Final fallback: extract from URL path
+    if (title === 'Unknown Title') {
+      const urlPath = window.location.pathname;
+      const pathSegments = urlPath.split('/').filter(Boolean);
+      const lastSegment = pathSegments[pathSegments.length - 1];
+      if (lastSegment) {
+        title = lastSegment
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(' ');
+      }
+    }
+
+    return { title, artist };
+  } catch (error) {
+    console.error('Error extracting sheet title and artist:', error);
+    return { title: 'Unknown Title', artist: 'Unknown Artist' };
+  }
 }

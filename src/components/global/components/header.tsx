@@ -77,8 +77,7 @@ export const Header: React.FC = () => {
         }}
       >
         Zen Virtual Piano
-      </Typography>
-      <Chip label="Beta" size="small" sx={chipStyle} />
+      </Typography>      
     </Box>
   );
 };

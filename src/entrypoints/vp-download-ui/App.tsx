@@ -9,7 +9,7 @@ import React from 'react';
 import { Box, Fade, Alert, Snackbar } from '@mui/material';
 import { MusicNote } from '@mui/icons-material';
 import { GlassCard } from './styled';
-import { Header, DownloadButton, StatusChip } from '../../components/global/components';
+import { Header, DownloadButton, StatusChip, SheetBanner } from '../../components/global/components';
 import { useDownloadState, useRippleEffect } from '../../components/global/hooks';
 import { TIMING } from './utils';
 import { getTheme } from '@/components/piano/themes';
@@ -20,9 +20,9 @@ import { useAppSelector } from '@/store/hook';
  * Main download UI component
  */
 export default function DownloadUI() {
-  const { downloadState, showToast, setShowToast, initiateDownload } = useDownloadState();
+  const { downloadState, showToast, setShowToast, initiateDownload, sheetInfo } = useDownloadState();
   const { ripples, addRipple } = useRippleEffect();
-
+  console.log("sheetInfo", sheetInfo);
   // Get theme state from redux
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
@@ -68,6 +68,13 @@ export default function DownloadUI() {
           >
             <Header />
             
+            {sheetInfo && (
+              <SheetBanner
+                title={sheetInfo.title}
+                artist={sheetInfo.artist}
+              />
+            )}
+
             <DownloadButton
               status={downloadState.status}
               ripples={ripples}

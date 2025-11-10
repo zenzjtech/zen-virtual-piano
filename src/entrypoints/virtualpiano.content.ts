@@ -8,7 +8,7 @@ import { isVirtualPianoSheetPage } from '@/utils/virtualpiano-scraper';
 
 export default defineContentScript({
   matches: ['https://virtualpiano.net/music-sheet/*', 'https://zen-piano.web.app/*'],
-  
+  runAt: "document_end",
   async main() {
     console.log('Zen Virtual Piano: VirtualPiano.net content script loaded');
 
@@ -38,6 +38,15 @@ export default defineContentScript({
 });
 
 /**
+ * Extract basic sheet information from the page
+ */
+async function extractSheetInfo() {
+  // Dynamically import the shared function from virtualpiano-scraper
+  const { extractSheetTitleAndArtist } = await import('@/utils/virtualpiano-scraper');
+  return extractSheetTitleAndArtist();
+}
+
+/**
  * Inject the download UI as an iframe
  */
 function injectDownloadUI() {  
@@ -45,7 +54,7 @@ function injectDownloadUI() {
   const iframe = document.createElement('iframe');
   iframe.src = chrome.runtime.getURL('/vp-download-ui.html');
   iframe.style.cssText = `
-    width: 320px;
+    width: 230px;
     height: 320px;
     border: none;
     display: block;
@@ -53,12 +62,27 @@ function injectDownloadUI() {
     position: fixed;
     bottom: 28px;
     right: 28px;
-    z-index: 999999;    
+    z-index: 2147483647;    
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);    
   `;
   iframe.id = 'zen-vp-download-ui';  
   document.body.appendChild(iframe);
+
+  const t = setInterval(async () => {
+    console.log("Checking if iframe is loaded");
+    if (iframe.contentWindow) {
+      console.log("Iframe is loaded");
+      const sheetInfo = await extractSheetInfo();
+      console.log("Sheet info extracted:", sheetInfo);
+      iframe.contentWindow?.postMessage({
+        type: 'SHEET_DETECTED',
+        title: sheetInfo.title,
+        artist: sheetInfo.artist,
+      }, '*');    
+      clearInterval(t)  
+    }
+  }, 1000);
 
   console.log('Download UI iframe injected');
 
