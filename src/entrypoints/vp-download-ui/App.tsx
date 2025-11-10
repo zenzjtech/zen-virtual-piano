@@ -12,6 +12,9 @@ import { GlassCard } from './styled';
 import { Header, DownloadButton, StatusChip } from '../../components/global/components';
 import { useDownloadState, useRippleEffect } from '../../components/global/hooks';
 import { TIMING } from './utils';
+import { getTheme } from '@/components/piano/themes';
+import { getBackgroundStyle } from '@/theme/definitions/background-themes';
+import { useAppSelector } from '@/store/hook';
 
 /**
  * Main download UI component
@@ -19,6 +22,11 @@ import { TIMING } from './utils';
 export default function DownloadUI() {
   const { downloadState, showToast, setShowToast, initiateDownload } = useDownloadState();
   const { ripples, addRipple } = useRippleEffect();
+
+  // Get theme state from redux
+  const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
+  const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
+  const pianoTheme = getTheme(pianoThemeId);
 
   const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (downloadState.status === 'downloading') return;
@@ -36,10 +44,16 @@ export default function DownloadUI() {
         width: '100%',
         height: '100%',
         backgroundColor: 'transparent',
+        
       }}
     >
       <Fade in timeout={600}>
-        <GlassCard elevation={0}>
+        <GlassCard 
+            elevation={0}
+            sx={{
+              ...getBackgroundStyle(backgroundThemeId),              
+            }}
+        >
           <Box
             sx={{
               display: 'flex',
@@ -54,6 +68,7 @@ export default function DownloadUI() {
               status={downloadState.status}
               ripples={ripples}
               onClick={handleDownloadClick}
+              pianoTheme={pianoTheme}
             />
 
             <StatusChip
