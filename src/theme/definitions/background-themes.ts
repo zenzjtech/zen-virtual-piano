@@ -32,7 +32,9 @@ export type BackgroundThemeId =
   | 'bodhisattva-gardens'
   | 'vajrayana-sky-temple'
   | 'cosmic-deep-space'
-  | 'cyberpunk-neon';
+  | 'cyberpunk-neon'
+  | 'solarized-light'
+  | 'solarized-dark';
 
 export const BACKGROUND_THEME_CATEGORIES: Record<BackgroundTheme['category'], { name: string; description: string }> = {
   basics: {
@@ -75,6 +77,9 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
   { id: 'bodhisattva-gardens', name: 'Bodhisattva Gardens', description: 'Peaceful garden greens', category: 'cultural' },
   { id: 'vajrayana-sky-temple', name: 'Vajrayana Sky', description: 'Himalayan sky temple colors', category: 'cultural' },
   { id: 'cosmic-deep-space', name: 'Deep Space', description: 'The vastness of the cosmos', category: 'cultural' },
+  { id: 'cyberpunk-neon', name: 'Cyberpunk Neon', description: 'Futuristic neon cityscape', category: 'cultural' },
+  { id: 'solarized-light', name: 'Solarized Light', description: 'Carefully calibrated light theme for optimal readability', category: 'cultural' },
+  { id: 'solarized-dark', name: 'Solarized Dark', description: 'Precisely balanced dark theme for reduced eye strain', category: 'cultural' },
 ];
 
 
@@ -92,6 +97,7 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'vajrayana-sky-temple',
   'cosmic-deep-space',
   'cyberpunk-neon',
+  'solarized-dark',
 ];
 
 /**
@@ -150,6 +156,10 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { background: 'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)' };
     case 'cyberpunk-neon':
       return { background: 'linear-gradient(135deg, #0D0221 0%, #0C0032 25%, #240046 50%, #3C096C 75%, #5A189A 100%)' };
+    case 'solarized-light':
+      return { backgroundColor: '#fdf6e3' }; // Solarized base3
+    case 'solarized-dark':
+      return { backgroundColor: '#002b36' }; // Solarized base03
     default:
       return { backgroundColor: '#FFFFFF' };
   }

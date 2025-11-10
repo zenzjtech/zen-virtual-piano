@@ -772,6 +772,53 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#9400D3', '#4B0082', '#0000FF', '#00FF00', '#FFFF00', '#FF7F00', '#FF0000'],
   },
 
+  // ========== SOLARIZED PATTERNS ==========
+  {
+    id: 'solarized-light',
+    name: 'Solarized Light',
+    description: 'Subtle mathematical patterns using Solarized color ratios',
+    category: 'cultural',
+    beforePattern: `
+      /* Solarized proportional rectangles */
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(101, 123, 131, 0.03) 40px, rgba(101, 123, 131, 0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(88, 110, 117, 0.025) 60px, rgba(88, 110, 117, 0.025) 61px),
+      /* Golden ratio spirals */
+      radial-gradient(ellipse 80px 50px at 20% 30%, rgba(38, 139, 210, 0.02) 0%, transparent 70%),
+      radial-gradient(ellipse 60px 40px at 80% 70%, rgba(203, 75, 22, 0.02) 0%, transparent 70%)
+    `,
+    afterPattern: `
+      /* Solarized accent highlights */
+      linear-gradient(135deg, rgba(253, 246, 227, 0.1) 0%, rgba(238, 232, 213, 0.05) 40%, transparent 70%),
+      /* Subtle Fibonacci sequence dots */
+      radial-gradient(circle 2px at 25% 25%, rgba(42, 161, 152, 0.08) 0%, transparent 100%),
+      radial-gradient(circle 2px at 75% 50%, rgba(108, 113, 196, 0.06) 0%, transparent 100%)
+    `,
+    previewColors: ['#fdf6e3', '#657b83', '#268bd2'],
+  },
+
+  {
+    id: 'solarized-dark',
+    name: 'Solarized Dark',
+    description: 'Balanced dark patterns with Solarized color harmony',
+    category: 'cultural',
+    beforePattern: `
+      /* Dark solarized grid */
+      repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(131, 148, 150, 0.04) 50px, rgba(131, 148, 150, 0.04) 51px),
+      repeating-linear-gradient(90deg, transparent, transparent 70px, rgba(147, 161, 161, 0.035) 70px, rgba(147, 161, 161, 0.035) 71px),
+      /* Inverse golden ratio shapes */
+      radial-gradient(ellipse 90px 60px at 25% 35%, rgba(38, 139, 210, 0.03) 0%, transparent 70%),
+      radial-gradient(ellipse 70px 50px at 75% 65%, rgba(181, 137, 0, 0.03) 0%, transparent 70%)
+    `,
+    afterPattern: `
+      /* Dark solarized highlights */
+      linear-gradient(135deg, rgba(7, 54, 66, 0.15) 0%, rgba(0, 43, 54, 0.08) 40%, transparent 70%),
+      /* Fibonacci dots in dark */
+      radial-gradient(circle 2px at 30% 30%, rgba(42, 161, 152, 0.12) 0%, transparent 100%),
+      radial-gradient(circle 2px at 70% 55%, rgba(211, 54, 130, 0.1) 0%, transparent 100%)
+    `,
+    previewColors: ['#002b36', '#839496', '#268bd2'],
+  },
+
   // ========== JAPANESE TEA CEREMONY PATTERNS ==========
   {
     id: 'tea-ceremony-wooden',
