@@ -55,13 +55,13 @@ function injectDownloadUI() {
   iframe.src = chrome.runtime.getURL('/vp-download-ui.html');
   iframe.style.cssText = `
     width: 230px;
-    height: 320px;
+    height: 250px;
     border: none;
     display: block;
     background: transparent;
     position: fixed;
-    bottom: 28px;
-    right: 28px;
+    bottom: 16px;
+    right: 16px;
     z-index: 2147483647;    
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);    

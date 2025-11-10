@@ -6,12 +6,10 @@
  */
 
 import React from 'react';
-import { Box, Fade, Alert, Snackbar } from '@mui/material';
-import { MusicNote } from '@mui/icons-material';
+import { Box, Fade } from '@mui/material';
 import { GlassCard } from './styled';
-import { Header, DownloadButton, StatusChip, SheetBanner } from '../../components/global/components';
+import { Header, DownloadButton, StatusChip, SheetBanner, ToastNotification } from '../../components/global/components';
 import { useDownloadState, useRippleEffect } from '../../components/global/hooks';
-import { TIMING } from './utils';
 import { getTheme } from '@/components/piano/themes';
 import { getBackgroundStyle } from '@/theme/definitions/background-themes';
 import { useAppSelector } from '@/store/hook';
@@ -66,9 +64,7 @@ export default function DownloadUI() {
               alignItems: 'center',
               justifyContent: 'space-between',                    
             }}
-          >
-            <Header />
-            
+          >                        
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
               {sheetInfo && (
                 <SheetBanner
@@ -90,30 +86,17 @@ export default function DownloadUI() {
               status={downloadState.status}
               show={!!downloadState.message}
             />
+            <Header />                      
           </Box>
         </GlassCard>
       </Fade>
 
       {/* Toast notification */}
-      <Snackbar
-        open={showToast}
-        autoHideDuration={TIMING.TOAST_AUTO_HIDE_DURATION}
-        onClose={() => setShowToast(false)}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert
-          onClose={() => setShowToast(false)}
-          severity={
-            downloadState.status === 'success' ? 'success' 
-            : downloadState.status === 'warning' ? 'warning' 
-            : 'error'
-          }
-          sx={{ width: '100%' }}
-          icon={downloadState.status === 'success' || downloadState.status === 'warning' ? <MusicNote /> : undefined}
-        >
-          {downloadState.message}
-        </Alert>
-      </Snackbar>
+      <ToastNotification
+        showToast={showToast}
+        setShowToast={setShowToast}
+        downloadState={downloadState}
+      />
     </Box>
   );
 }
