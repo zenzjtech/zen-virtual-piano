@@ -126,7 +126,10 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
       const newSheet: MusicSheet = {
         id: `custom-${Date.now()}`,
         title: title.trim(),
-        artist: artist.trim(),
+        artist: {
+          name: artist.trim(),
+          avatarUrl: "",
+        },
         difficulty,
         notation: notation.trim(),
         tempo,

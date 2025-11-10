@@ -5,8 +5,7 @@
  */
 
 import type { MusicSheet, SheetPage } from '@/components/music-sheet/types';
-import { parseVPNotation, createPages, estimateDuration } from './sheet-parser';
-import appConfig from '@/app.config';
+import { parseVPNotation, estimateDuration } from './sheet-parser';
 import SHEET_DATA from '@/assets/sheet-data.json';
 
 /**
@@ -104,7 +103,7 @@ export function searchSheets(query: string): MusicSheetMetadata[] {
   
   return sheets.filter(sheet =>
     sheet.title.toLowerCase().includes(lowerQuery) ||
-    sheet.artist.toLowerCase().includes(lowerQuery) ||
+    sheet.artist.name.toLowerCase().includes(lowerQuery) ||
     sheet.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
   );
 }

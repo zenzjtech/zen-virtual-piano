@@ -121,7 +121,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
       case 'title':
         return sorted.sort((a, b) => a.title.localeCompare(b.title));
       case 'artist':
-        return sorted.sort((a, b) => a.artist.localeCompare(b.artist));
+        return sorted.sort((a, b) => a.artist.name.localeCompare(b.artist.name));
       case 'difficulty':
         const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
         return sorted.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);

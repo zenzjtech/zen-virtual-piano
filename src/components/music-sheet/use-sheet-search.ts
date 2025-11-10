@@ -61,7 +61,7 @@ export const useSheetSearch = ({
   const allArtists = useMemo(() => {
     const artistSet = new Set<string>();
     allSheets.forEach(sheet => {
-      if (sheet.artist) artistSet.add(sheet.artist);
+      if (sheet.artist) artistSet.add(sheet.artist.name);
     });
     return Array.from(artistSet).sort();
   }, [allSheets]);
@@ -84,7 +84,7 @@ export const useSheetSearch = ({
     
     // Filter by artist
     if (selectedArtist) {
-      result = result.filter(sheet => sheet.artist === selectedArtist);
+      result = result.filter(sheet => sheet.artist.name === selectedArtist);
     }
     
     // Filter by difficulties
@@ -97,7 +97,7 @@ export const useSheetSearch = ({
       const query = searchQuery.toLowerCase();
       result = result.filter(sheet => 
         sheet.title.toLowerCase().includes(query) ||
-        sheet.artist.toLowerCase().includes(query) ||
+        sheet.artist.name.toLowerCase().includes(query) ||
         sheet.tags.some(tag => tag.toLowerCase().includes(query))
       );
     }

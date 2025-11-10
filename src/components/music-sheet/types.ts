@@ -6,6 +6,16 @@
  */
 
 /**
+ * Artist information
+ */
+export interface Artist {
+  /** Artist name */
+  name: string;
+  /** Artist avatar URL */
+  avatarUrl: string;
+}
+
+/**
  * Individual note in a measure
  */
 export interface Note {
@@ -54,8 +64,8 @@ export interface MusicSheet {
   id: string;
   /** Song title */
   title: string;
-  /** Artist/composer name */
-  artist: string;
+  /** Artist/composer information */
+  artist: Artist;
   /** Difficulty level */
   difficulty: 'easy' | 'medium' | 'hard';
   /** Virtual Piano notation string (original format) */

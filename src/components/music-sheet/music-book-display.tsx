@@ -195,7 +195,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           {/* Left Page */}
           <BookPage
             title={currentSheet.title}
-            artist={currentSheet.artist}
+            artist={currentSheet.artist.name}
             pageNumber={leftPageIndex + 1}
             totalPages={totalPages}
             measures={allMeasures}
@@ -209,7 +209,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           {/* Right Page */}
           <BookPage
             title={currentSheet.title}
-            artist={currentSheet.artist}
+            artist={currentSheet.artist.name}
             pageNumber={rightPageIndex + 1}
             totalPages={totalPages}
             measures={allMeasures}
@@ -266,7 +266,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
         onClose={() => setIsDeleteDialogOpen(false)}
         onConfirm={() => dispatch(deleteSheet(currentSheet.id))}
         sheetTitle={currentSheet.title}
-        sheetArtist={currentSheet.artist}
+        sheetArtist={currentSheet.artist.name}
         isCustomSheet={isCustomSheet}
       />
       

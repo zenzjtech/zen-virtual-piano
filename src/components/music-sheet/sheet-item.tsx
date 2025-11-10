@@ -107,7 +107,7 @@ export const SheetItem: React.FC<SheetItemProps> = ({
                     opacity: 0.85,
                   }}
                 >
-                  {sheet.artist}
+                  {sheet.artist.name}
                 </Typography>
                 {sheet.durationSeconds && (
                   <Typography

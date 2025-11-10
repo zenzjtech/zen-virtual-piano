@@ -195,7 +195,10 @@ export function convertToMusicSheet(scrapedData: ScrapedSheetData): MusicSheet {
   return {
     id,
     title: scrapedData.title,
-    artist: scrapedData.artist,
+    artist: {
+      name: scrapedData.artist,
+      avatarUrl: scrapedData.thumbnailUrl || "",
+    },
     difficulty: scrapedData.difficulty,
     notation: scrapedData.notation,
     tempo: scrapedData.tempo,
