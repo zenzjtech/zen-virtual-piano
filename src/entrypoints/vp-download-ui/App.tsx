@@ -19,8 +19,7 @@ import { useAppSelector } from '@/store/hook';
  */
 export default function DownloadUI() {
   const { downloadState, showToast, setShowToast, initiateDownload, sheetInfo } = useDownloadState();
-  const { ripples, addRipple } = useRippleEffect();
-  console.log("sheetInfo", sheetInfo);
+  const { ripples, addRipple } = useRippleEffect();  
   // Get theme state from redux
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
@@ -51,8 +50,8 @@ export default function DownloadUI() {
               width: '100%',
               height: '100%',
               ...getBackgroundStyle(backgroundThemeId),              
-              py: 1,
-              pb: 1.5,
+              pt: 2,
+              pb: 1,
               px: 0,              
             }}
         >
@@ -82,10 +81,6 @@ export default function DownloadUI() {
               />
             </Box>
 
-            <StatusChip
-              status={downloadState.status}
-              show={!!downloadState.message}
-            />
             <Header />                      
           </Box>
         </GlassCard>

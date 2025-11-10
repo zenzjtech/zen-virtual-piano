@@ -9,9 +9,7 @@ import { isVirtualPianoSheetPage } from '@/utils/virtualpiano-scraper';
 export default defineContentScript({
   matches: ['https://virtualpiano.net/music-sheet/*', 'https://zen-piano.web.app/*'],
   runAt: "document_end",
-  async main() {
-    console.log('Zen Virtual Piano: VirtualPiano.net content script loaded');
-
+  async main() {    
     // Only proceed if this is a sheet page
     if (!isVirtualPianoSheetPage()) {
       console.log('Not a sheet page, exiting');
@@ -27,8 +25,7 @@ export default defineContentScript({
 
     // Check if sheet content exists
     const sheetContent = document.querySelector('#sheet-content');
-    if (!sheetContent) {
-      console.log('Sheet content not found, exiting');
+    if (!sheetContent) {      
       return;
     }
 
@@ -70,11 +67,8 @@ function injectDownloadUI() {
   document.body.appendChild(iframe);
 
   const t = setInterval(async () => {
-    console.log("Checking if iframe is loaded");
-    if (iframe.contentWindow) {
-      console.log("Iframe is loaded");
+    if (iframe.contentWindow) {      
       const sheetInfo = await extractSheetInfo();
-      console.log("Sheet info extracted:", sheetInfo);
       iframe.contentWindow?.postMessage({
         type: 'SHEET_DETECTED',
         title: sheetInfo.title,
