@@ -51,6 +51,8 @@ export default function DownloadUI() {
         <GlassCard 
             elevation={0}
             sx={{
+              width: '100%',
+              height: '100%',
               ...getBackgroundStyle(backgroundThemeId),              
             }}
         >
@@ -59,7 +61,7 @@ export default function DownloadUI() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: 1.5,
+              gap: 1,
             }}
           >
             <Header />

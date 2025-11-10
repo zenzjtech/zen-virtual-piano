@@ -40,33 +40,25 @@ export default defineContentScript({
 /**
  * Inject the download UI as an iframe
  */
-function injectDownloadUI() {
-  // Create iframe container
-  const container = document.createElement('div');
-  container.id = 'zen-vp-download-ui';
-  container.style.cssText = `
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 999999;
-    border-radius: 16px;
-    overflow: visible;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  `;
-
+function injectDownloadUI() {  
   // Create iframe pointing to unlisted page
   const iframe = document.createElement('iframe');
   iframe.src = chrome.runtime.getURL('/vp-download-ui.html');
   iframe.style.cssText = `
     width: 320px;
-    height: 180px;
+    height: 320px;
     border: none;
     display: block;
     background: transparent;
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999999;    
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);    
   `;
-
-  container.appendChild(iframe);
-  document.body.appendChild(container);
+  iframe.id = 'zen-vp-download-ui';  
+  document.body.appendChild(iframe);
 
   console.log('Download UI iframe injected');
 

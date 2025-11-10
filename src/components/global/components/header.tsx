@@ -44,8 +44,8 @@ export const Header: React.FC = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        gap: 1,
-        mb: 0.5,
+        gap: 0.75,
+        mb: 0,
         cursor: 'pointer',
         transition: 'opacity 0.2s ease',
         '&:hover': {
@@ -62,8 +62,8 @@ export const Header: React.FC = () => {
           src={pianoIcon}
           alt="Piano Icon"
           sx={{
-            width: 20,
-            height: 20,
+            width: 18,
+            height: 18,
             objectFit: 'contain',
           }}
         />
