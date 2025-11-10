@@ -5,12 +5,12 @@
 import React from 'react';
 import { Box, Typography, IconButton, Chip } from '@mui/material';
 import { useAppSelector } from '@/store/hook';
-import { getPianoIcon, getTextColor } from '@/components/header/header-utils';
+import { getTextColor } from '@/components/header/header-utils';
 import { getChipStyle } from '@/components/header/header-chip-styles';
 import { getHeaderTypographyStyle, getCategoryDefaultStyle } from '@/components/header/header-typography';
 import { isDarkBackgroundTheme } from '@/theme/definitions/background-themes';
 import { THEME_PRESETS } from '@/components/piano/theme-presets';
-import type { HeaderTypographyStyle } from '@/components/header/header-typography';
+import pianoIcon from '@/assets/image/Icon.png';
 
 export const Header: React.FC = () => {
   // Get theme state from redux
@@ -28,9 +28,7 @@ export const Header: React.FC = () => {
       preset.backgroundTheme === backgroundThemeId &&
       preset.musicSheetTheme === musicSheetThemeId
   );
-
-  // Get appropriate styling
-  const pianoIcon = getPianoIcon(backgroundThemeId, isDarkBackground);
+  
   const textColor = getTextColor(isDarkBackground);
 
   // Use provided headerStyle, or fall back to category default, or use modern-sans

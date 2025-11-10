@@ -58,9 +58,11 @@ export default function DownloadUI() {
         >
           <Box
             sx={{
+              height: '100%',              
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              justifyContent: 'space-between',
               gap: 1,
             }}
           >
