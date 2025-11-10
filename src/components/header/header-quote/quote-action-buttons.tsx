@@ -3,10 +3,12 @@
  * Handles favorite and settings buttons for quotes
  */
 
-import { Box, IconButton, Tooltip } from '@mui/material';
+import { Box, IconButton, Theme, Tooltip } from '@mui/material';
 import { Favorite, FavoriteBorder, Settings as SettingsIcon } from '@mui/icons-material';
 import { useAppDispatch } from '@/store/hook';
 import { toggleFavoriteQuote } from '@/store/reducers/quote-settings-slice';
+import { useTheme } from '@mui/material/styles';
+
 import type { Quote } from '@/lib/quote';
 
 interface QuoteActionButtonsProps {
@@ -33,6 +35,7 @@ export const QuoteActionButtons = ({
   onOpenSettings,
 }: QuoteActionButtonsProps) => {
   const dispatch = useAppDispatch();
+  const theme = useTheme();
 
   // Handle favorite toggle
   const handleToggleFavorite = (e: React.MouseEvent) => {
@@ -48,21 +51,22 @@ export const QuoteActionButtons = ({
     onOpenSettings?.('quotes');
   };
 
-  const buttonStyles = {
+  const buttonStyles = (theme: Theme) => ({
     color: textColor,
     bgcolor: containerBg,
     backdropFilter: containerBlur,
     WebkitBackdropFilter: containerBlur,
     boxShadow: containerShadow,
     transition: 'all 0.2s ease',
-  };
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+  });
 
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
-        gap: 0.5,
+        flexDirection: 'row',        
       }}
     >
       {/* Favorite Button */}
@@ -79,9 +83,8 @@ export const QuoteActionButtons = ({
           <IconButton
             onClick={handleToggleFavorite}
             disabled={!canFavorite}
-            size="small"
             sx={{
-              ...buttonStyles,
+              ...buttonStyles(theme),
               opacity: canFavorite ? (isFavorited ? 1 : 0.6) : 0.3,
               '&:hover': canFavorite
                 ? {
@@ -98,9 +101,9 @@ export const QuoteActionButtons = ({
             }}
           >
             {isFavorited ? (
-              <Favorite sx={{ fontSize: '1.1rem' }} />
+              <Favorite sx={{ fontSize: '0.88rem' }} />
             ) : (
-              <FavoriteBorder sx={{ fontSize: '1.1rem' }} />
+              <FavoriteBorder sx={{ fontSize: '0.88rem' }} />
             )}
           </IconButton>
         </span>
@@ -110,9 +113,8 @@ export const QuoteActionButtons = ({
       <Tooltip title="Quote settings">
         <IconButton
           onClick={handleOpenSettings}
-          size="small"
           sx={{
-            ...buttonStyles,
+            ...buttonStyles(theme),
             opacity: 0.6,
             '&:hover': {
               opacity: 1,
@@ -123,7 +125,7 @@ export const QuoteActionButtons = ({
             },
           }}
         >
-          <SettingsIcon sx={{ fontSize: '1.1rem' }} />
+          <SettingsIcon sx={{ fontSize: '0.88rem' }} />
         </IconButton>
       </Tooltip>
     </Box>
