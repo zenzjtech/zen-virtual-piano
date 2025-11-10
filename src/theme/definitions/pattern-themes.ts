@@ -1427,6 +1427,283 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#1b1e28', '#5de4c7', '#add7ff'],
   },
 
+  // ========== PROFESSIONAL & SPECIALTY THEMES PATTERNS ==========
+  {
+    id: 'slack',
+    name: 'Slack Theme',
+    description: 'Professional patterns matching Slack\'s UI with clean design and balanced colors',
+    category: 'cultural',
+    beforePattern: [
+      /* Slack grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(97, 96, 97, 0.06) 40px, rgba(97, 96, 97, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(43, 47, 52, 0.05) 55px, rgba(43, 47, 52, 0.05) 56px)',
+      /* Slack accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(54, 197, 240, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(54, 197, 240, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Slack highlights */
+      'linear-gradient(135deg, rgba(26, 29, 33, 0.2) 0%, rgba(43, 47, 52, 0.12) 40%, transparent 70%)',
+      /* Professional highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(54, 197, 240, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(54, 197, 240, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1a1d21', '#36c5f0', '#ffffff'],
+  },
+
+  {
+    id: 'brackets-light-pro',
+    name: 'Brackets Light Pro',
+    description: 'Clean, minimal patterns inspired by Brackets editor with professional styling',
+    category: 'cultural',
+    beforePattern: [
+      /* Brackets Light grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(139, 148, 158, 0.03) 30px, rgba(139, 148, 158, 0.03) 31px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(240, 243, 246, 0.02) 45px, rgba(240, 243, 246, 0.02) 46px)',
+      /* Brackets Light accents */
+      'radial-gradient(circle 3px at 15% 20%, rgba(0, 122, 204, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 2px at 70% 40%, rgba(0, 122, 204, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Brackets Light highlights */
+      'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(240, 243, 246, 0.08) 40%, transparent 70%)',
+      /* Clean highlights */
+      'radial-gradient(circle 3px at 25% 25%, rgba(0, 122, 204, 0.1) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 60%, rgba(0, 122, 204, 0.08) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#ffffff', '#007acc', '#000000'],
+  },
+
+  {
+    id: 'min-dark',
+    name: 'Min Dark',
+    description: 'Ultra-minimal dark patterns with subtle grays and clean aesthetics',
+    category: 'cultural',
+    beforePattern: [
+      /* Min Dark grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(51, 51, 51, 0.08) 40px, rgba(51, 51, 51, 0.08) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(16, 16, 16, 0.06) 55px, rgba(16, 16, 16, 0.06) 56px)',
+      /* Min Dark subtle accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(136, 136, 136, 0.06) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(136, 136, 136, 0.05) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Min Dark subtle highlights */
+      'linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(16, 16, 16, 0.12) 40%, transparent 70%)',
+      /* Minimal highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(136, 136, 136, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(136, 136, 136, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#000000', '#888888', '#ffffff'],
+  },
+
+  {
+    id: 'zenburn',
+    name: 'Zenburn',
+    description: 'Low-contrast patterns designed for reduced eye strain with warm, comfortable colors',
+    category: 'cultural',
+    beforePattern: [
+      /* Zenburn grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(143, 178, 143, 0.06) 40px, rgba(143, 178, 143, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(79, 79, 79, 0.05) 55px, rgba(79, 79, 79, 0.05) 56px)',
+      /* Zenburn warm accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(240, 223, 175, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(240, 223, 175, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Zenburn warm highlights */
+      'linear-gradient(135deg, rgba(63, 63, 63, 0.2) 0%, rgba(79, 79, 79, 0.12) 40%, transparent 70%)',
+      /* Comfortable highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(240, 223, 175, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(240, 223, 175, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#3f3f3f', '#f0dfaf', '#dcdccc'],
+  },
+
+  {
+    id: 'base16',
+    name: 'Base16',
+    description: 'Comprehensive color scheme patterns with balanced, accessible colors',
+    category: 'cultural',
+    beforePattern: [
+      /* Base16 grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(117, 113, 94, 0.06) 40px, rgba(117, 113, 94, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(30, 31, 27, 0.05) 55px, rgba(30, 31, 27, 0.05) 56px)',
+      /* Base16 balanced accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(166, 226, 46, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(166, 226, 46, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Base16 balanced highlights */
+      'linear-gradient(135deg, rgba(39, 40, 34, 0.2) 0%, rgba(30, 31, 27, 0.12) 40%, transparent 70%)',
+      /* Accessible highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(166, 226, 46, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(166, 226, 46, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#272822', '#a6e22e', '#d8d8d2'],
+  },
+
+  {
+    id: 'tomorrow',
+    name: 'Tomorrow',
+    description: 'Balanced patterns with clean design and comfortable color combinations',
+    category: 'cultural',
+    beforePattern: [
+      /* Tomorrow grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(150, 152, 150, 0.06) 40px, rgba(150, 152, 150, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(43, 45, 47, 0.05) 55px, rgba(43, 45, 47, 0.05) 56px)',
+      /* Tomorrow balanced accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(181, 189, 104, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(181, 189, 104, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Tomorrow comfortable highlights */
+      'linear-gradient(135deg, rgba(29, 31, 33, 0.2) 0%, rgba(43, 45, 47, 0.12) 40%, transparent 70%)',
+      /* Balanced highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(181, 189, 104, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(181, 189, 104, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1d1f21', '#b5bd68', '#c5c8c6'],
+  },
+
+  {
+    id: 'gruvbox',
+    name: 'Gruvbox',
+    description: 'Retro color scheme patterns inspired by old computers with warm, earthy tones',
+    category: 'cultural',
+    beforePattern: [
+      /* Gruvbox grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(146, 131, 116, 0.06) 40px, rgba(146, 131, 116, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(60, 56, 54, 0.05) 55px, rgba(60, 56, 54, 0.05) 56px)',
+      /* Gruvbox warm accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(251, 73, 52, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(251, 73, 52, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Gruvbox earthy highlights */
+      'linear-gradient(135deg, rgba(40, 40, 40, 0.2) 0%, rgba(60, 56, 54, 0.12) 40%, transparent 70%)',
+      /* Warm highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(251, 73, 52, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(251, 73, 52, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#282828', '#fb4934', '#ebdbb2'],
+  },
+
+  {
+    id: 'iceberg',
+    name: 'Iceberg',
+    description: 'Cool blue patterns with Japanese design influence and icy aesthetics',
+    category: 'cultural',
+    beforePattern: [
+      /* Iceberg grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(107, 112, 137, 0.06) 40px, rgba(107, 112, 137, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(33, 36, 44, 0.05) 55px, rgba(33, 36, 44, 0.05) 56px)',
+      /* Iceberg cool accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(132, 160, 198, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(132, 160, 198, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Iceberg icy highlights */
+      'linear-gradient(135deg, rgba(22, 24, 33, 0.2) 0%, rgba(33, 36, 44, 0.12) 40%, transparent 70%)',
+      /* Cool highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(132, 160, 198, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(132, 160, 198, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#161821', '#84a0c6', '#c6c8d1'],
+  },
+
+  {
+    id: 'forest-night',
+    name: 'Forest Night',
+    description: 'Nature-inspired dark patterns with deep greens and earthy forest tones',
+    category: 'cultural',
+    beforePattern: [
+      /* Forest Night grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(127, 140, 141, 0.06) 40px, rgba(127, 140, 141, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(67, 76, 81, 0.05) 55px, rgba(67, 76, 81, 0.05) 56px)',
+      /* Forest Night nature accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(126, 202, 156, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(126, 202, 156, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Forest Night natural highlights */
+      'linear-gradient(135deg, rgba(50, 61, 67, 0.2) 0%, rgba(67, 76, 81, 0.12) 40%, transparent 70%)',
+      /* Nature highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(126, 202, 156, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(126, 202, 156, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#323d43', '#7eca9c', '#e2e9e7'],
+  },
+
+  {
+    id: 'rose-pine',
+    name: 'Rosé Pine',
+    description: 'Warm, comfortable patterns with soft pinks and gentle greens',
+    category: 'cultural',
+    beforePattern: [
+      /* Rosé Pine grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(110, 106, 134, 0.06) 40px, rgba(110, 106, 134, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(37, 35, 48, 0.05) 55px, rgba(37, 35, 48, 0.05) 56px)',
+      /* Rosé Pine soft accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(235, 188, 186, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(235, 188, 186, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Rosé Pine comfortable highlights */
+      'linear-gradient(135deg, rgba(25, 23, 36, 0.2) 0%, rgba(37, 35, 48, 0.12) 40%, transparent 70%)',
+      /* Soft highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(235, 188, 186, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(235, 188, 186, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#191724', '#ebbcba', '#e0def4'],
+  },
+
+  {
+    id: 'catppuccin',
+    name: 'Catppuccin',
+    description: 'Cozy pastel patterns with warm colors and multiple flavor variants',
+    category: 'cultural',
+    beforePattern: [
+      /* Catppuccin grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(108, 112, 134, 0.06) 40px, rgba(108, 112, 134, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(41, 42, 56, 0.05) 55px, rgba(41, 42, 56, 0.05) 56px)',
+      /* Catppuccin cozy accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(243, 139, 168, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(243, 139, 168, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Catppuccin warm highlights */
+      'linear-gradient(135deg, rgba(30, 30, 46, 0.2) 0%, rgba(41, 42, 56, 0.12) 40%, transparent 70%)',
+      /* Cozy highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(243, 139, 168, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(243, 139, 168, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1e1e2e', '#f38ba8', '#cdd6f4'],
+  },
+
+  {
+    id: 'everforest',
+    name: 'Everforest',
+    description: 'Warm green color scheme patterns with natural forest-inspired aesthetics',
+    category: 'cultural',
+    beforePattern: [
+      /* Everforest grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(133, 146, 137, 0.06) 40px, rgba(133, 146, 137, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(61, 69, 75, 0.05) 55px, rgba(61, 69, 75, 0.05) 56px)',
+      /* Everforest natural accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(167, 192, 128, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(167, 192, 128, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Everforest natural highlights */
+      'linear-gradient(135deg, rgba(43, 51, 57, 0.2) 0%, rgba(61, 69, 75, 0.12) 40%, transparent 70%)',
+      /* Forest highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(167, 192, 128, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(167, 192, 128, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#2b3339', '#a7c080', '#d3c6aa'],
+  },
+
   // ========== JAPANESE TEA CEREMONY PATTERNS ==========
   {
     id: 'tea-ceremony-wooden',

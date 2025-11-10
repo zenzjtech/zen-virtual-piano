@@ -49,6 +49,13 @@ export { cobalt2, winterIsComing, noctis } from './cobalt2-winter-noctis';
 export { material } from './material';
 export { blulocoDark, communityMaterial } from './bluloco-community';
 export { rouge, sublimeMaterial, blulocoLight } from './rouge-sublime-bluloco-light';
+export { slack } from './slack';
+export { bracketsLightPro, minDark } from './brackets-min-dark';
+export { minLight, zenburn } from './min-light-zenburn';
+export { base16, tomorrow } from './base16-tomorrow';
+export { gruvbox, iceberg } from './gruvbox-iceberg';
+export { forestNight, rosePine } from './forest-rose-pine';
+export { catppuccin, everforest } from './catppuccin-everforest';
 export { atomOneDark } from './nord-atom';
 export { synthwave84 } from './synthwave84';
 export { panda, hopLight } from './panda-hop';
@@ -79,6 +86,13 @@ import { cobalt2, winterIsComing, noctis } from './cobalt2-winter-noctis';
 import { material } from './material';
 import { blulocoDark, communityMaterial } from './bluloco-community';
 import { rouge, sublimeMaterial, blulocoLight } from './rouge-sublime-bluloco-light';
+import { slack } from './slack';
+import { bracketsLightPro, minDark } from './brackets-min-dark';
+import { minLight, zenburn } from './min-light-zenburn';
+import { base16, tomorrow } from './base16-tomorrow';
+import { gruvbox, iceberg } from './gruvbox-iceberg';
+import { forestNight, rosePine } from './forest-rose-pine';
+import { catppuccin, everforest } from './catppuccin-everforest';
 import { nord, atomOneDark } from './nord-atom';
 import { synthwave84 } from './synthwave84';
 import { panda, hopLight } from './panda-hop';
@@ -116,6 +130,19 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
   blulocoLight,
   rouge,
   sublimeMaterial,
+  slack,
+  bracketsLightPro,
+  minDark,
+  minLight,
+  zenburn,
+  base16,
+  tomorrow,
+  gruvbox,
+  iceberg,
+  forestNight,
+  rosePine,
+  catppuccin,
+  everforest,
   nord,
   atomOneDark,
   synthwave84,

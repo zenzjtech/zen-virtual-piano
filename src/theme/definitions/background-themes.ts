@@ -63,7 +63,20 @@ export type BackgroundThemeId =
   | 'hop-light'
   | 'snazzy-light'
   | 'one-monokai'
-  | 'poimandres';
+  | 'poimandres'
+  | 'slack'
+  | 'brackets-light-pro'
+  | 'min-dark'
+  | 'min-light'
+  | 'zenburn'
+  | 'base16'
+  | 'tomorrow'
+  | 'gruvbox'
+  | 'iceberg'
+  | 'forest-night'
+  | 'rose-pine'
+  | 'catppuccin'
+  | 'everforest';
 
 export const BACKGROUND_THEME_CATEGORIES: Record<BackgroundTheme['category'], { name: string; description: string }> = {
   basics: {
@@ -138,6 +151,19 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
   { id: 'snazzy-light', name: 'Snazzy Light', description: 'Vibrant modern light theme with colorful accents', category: 'cultural' },
   { id: 'one-monokai', name: 'One Monokai', description: 'Colorful Monokai variant with vibrant syntax colors', category: 'cultural' },
   { id: 'poimandres', name: 'Poimandres', description: 'Minimal dark theme with semantic coloring and teal accents', category: 'cultural' },
+  { id: 'slack', name: 'Slack Theme', description: 'Professional look matching Slack\'s UI with clean design', category: 'cultural' },
+  { id: 'brackets-light-pro', name: 'Brackets Light Pro', description: 'Clean, minimal theme inspired by Brackets editor', category: 'cultural' },
+  { id: 'min-dark', name: 'Min Dark', description: 'Ultra-minimal dark theme with subtle grays', category: 'cultural' },
+  { id: 'min-light', name: 'Min Light', description: 'Ultra-minimal light theme with subtle grays', category: 'cultural' },
+  { id: 'zenburn', name: 'Zenburn', description: 'Low-contrast theme designed for reduced eye strain', category: 'cultural' },
+  { id: 'base16', name: 'Base16', description: 'Comprehensive color scheme collection with balanced colors', category: 'cultural' },
+  { id: 'tomorrow', name: 'Tomorrow', description: 'Balanced theme with clean design and comfortable colors', category: 'cultural' },
+  { id: 'gruvbox', name: 'Gruvbox', description: 'Retro color scheme inspired by old computers with warm tones', category: 'cultural' },
+  { id: 'iceberg', name: 'Iceberg', description: 'Cool blue theme with Japanese design influence', category: 'cultural' },
+  { id: 'forest-night', name: 'Forest Night', description: 'Nature-inspired dark theme with deep greens', category: 'cultural' },
+  { id: 'rose-pine', name: 'Rosé Pine', description: 'Warm, comfortable color palette with soft pinks', category: 'cultural' },
+  { id: 'catppuccin', name: 'Catppuccin', description: 'Cozy pastel theme with warm colors and multiple flavors', category: 'cultural' },
+  { id: 'everforest', name: 'Everforest', description: 'Warm green color scheme with natural forest aesthetics', category: 'cultural' },
 ];
 
 
@@ -179,6 +205,17 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'panda',
   'one-monokai',
   'poimandres',
+  'slack',
+  'min-dark',
+  'zenburn',
+  'base16',
+  'tomorrow',
+  'gruvbox',
+  'iceberg',
+  'forest-night',
+  'rose-pine',
+  'catppuccin',
+  'everforest',
 ];
 
 /**
@@ -299,6 +336,32 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { backgroundColor: '#282c34' }; // One Monokai background
     case 'poimandres':
       return { backgroundColor: '#1b1e28' }; // Poimandres background
+    case 'slack':
+      return { backgroundColor: '#1a1d21' }; // Slack background
+    case 'brackets-light-pro':
+      return { backgroundColor: '#ffffff' }; // Brackets Light Pro background
+    case 'min-dark':
+      return { backgroundColor: '#000000' }; // Min Dark background
+    case 'min-light':
+      return { backgroundColor: '#ffffff' }; // Min Light background
+    case 'zenburn':
+      return { backgroundColor: '#3f3f3f' }; // Zenburn background
+    case 'base16':
+      return { backgroundColor: '#272822' }; // Base16 background
+    case 'tomorrow':
+      return { backgroundColor: '#1d1f21' }; // Tomorrow background
+    case 'gruvbox':
+      return { backgroundColor: '#282828' }; // Gruvbox background
+    case 'iceberg':
+      return { backgroundColor: '#161821' }; // Iceberg background
+    case 'forest-night':
+      return { backgroundColor: '#323d43' }; // Forest Night background
+    case 'rose-pine':
+      return { backgroundColor: '#191724' }; // Rosé Pine background
+    case 'catppuccin':
+      return { backgroundColor: '#1e1e2e' }; // Catppuccin background
+    case 'everforest':
+      return { backgroundColor: '#2b3339' }; // Everforest background
     default:
       return { backgroundColor: '#FFFFFF' };
   }
