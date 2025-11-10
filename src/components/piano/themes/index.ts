@@ -34,6 +34,7 @@ export { mahogany } from './mahogany';
 export { nordicIce } from './nordic-ice';
 export { tibetanWood } from './tibetan-wood';
 export { solarized } from './solarized';
+export { monokai } from './monokai';
 
 // Import themes for aggregation
 import { wooden } from './wooden';
@@ -45,6 +46,7 @@ import { mahogany } from './mahogany';
 import { nordicIce } from './nordic-ice';
 import { tibetanWood } from './tibetan-wood';
 import { solarized } from './solarized';
+import { monokai } from './monokai';
 import { PianoTheme } from './types';
 
 // Aggregate themes into a single object
@@ -58,6 +60,7 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
   nordicIce,
   tibetanWood,
   solarized,
+  monokai,
 };
 
 // Helper to get theme by id with fallback

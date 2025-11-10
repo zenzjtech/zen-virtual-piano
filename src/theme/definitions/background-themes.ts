@@ -34,7 +34,9 @@ export type BackgroundThemeId =
   | 'cosmic-deep-space'
   | 'cyberpunk-neon'
   | 'solarized-light'
-  | 'solarized-dark';
+  | 'solarized-dark'
+  | 'monokai-light'
+  | 'monokai-dark';
 
 export const BACKGROUND_THEME_CATEGORIES: Record<BackgroundTheme['category'], { name: string; description: string }> = {
   basics: {
@@ -80,6 +82,8 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
   { id: 'cyberpunk-neon', name: 'Cyberpunk Neon', description: 'Futuristic neon cityscape', category: 'cultural' },
   { id: 'solarized-light', name: 'Solarized Light', description: 'Carefully calibrated light theme for optimal readability', category: 'cultural' },
   { id: 'solarized-dark', name: 'Solarized Dark', description: 'Precisely balanced dark theme for reduced eye strain', category: 'cultural' },
+  { id: 'monokai-light', name: 'Monokai Light', description: 'Bright Monokai-inspired theme with vibrant colors', category: 'cultural' },
+  { id: 'monokai-dark', name: 'Monokai Dark', description: 'Classic Monokai dark theme with syntax highlighting colors', category: 'cultural' },
 ];
 
 
@@ -98,6 +102,7 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'cosmic-deep-space',
   'cyberpunk-neon',
   'solarized-dark',
+  'monokai-dark',
 ];
 
 /**
@@ -160,6 +165,10 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { backgroundColor: '#fdf6e3' }; // Solarized base3
     case 'solarized-dark':
       return { backgroundColor: '#002b36' }; // Solarized base03
+    case 'monokai-light':
+      return { backgroundColor: '#f8f8f2' }; // Monokai foreground (light)
+    case 'monokai-dark':
+      return { backgroundColor: '#272822' }; // Monokai background
     default:
       return { backgroundColor: '#FFFFFF' };
   }

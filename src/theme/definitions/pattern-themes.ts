@@ -819,6 +819,53 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#002b36', '#839496', '#268bd2'],
   },
 
+  // ========== MONOKAI PATTERNS ==========
+  {
+    id: 'monokai-light',
+    name: 'Monokai Light',
+    description: 'Bright Monokai-inspired patterns with vibrant syntax colors',
+    category: 'cultural',
+    beforePattern: `
+      /* Monokai color grid */
+      repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(249, 38, 114, 0.04) 30px, rgba(249, 38, 114, 0.04) 31px),
+      repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(166, 226, 46, 0.03) 45px, rgba(166, 226, 46, 0.03) 46px),
+      /* Syntax highlight dots */
+      radial-gradient(circle 3px at 15% 20%, rgba(230, 219, 116, 0.1) 0%, transparent 100%),
+      radial-gradient(circle 2px at 70% 40%, rgba(174, 129, 255, 0.08) 0%, transparent 100%)
+    `,
+    afterPattern: `
+      /* Monokai accent highlights */
+      linear-gradient(135deg, rgba(248, 248, 242, 0.15) 0%, rgba(230, 219, 116, 0.08) 40%, transparent 70%),
+      /* Vibrant syntax dots */
+      radial-gradient(circle 3px at 25% 25%, rgba(249, 38, 114, 0.12) 0%, transparent 100%),
+      radial-gradient(circle 3px at 75% 60%, rgba(166, 226, 46, 0.1) 0%, transparent 100%)
+    `,
+    previewColors: ['#f8f8f2', '#f92672', '#a6e22e'],
+  },
+
+  {
+    id: 'monokai-dark',
+    name: 'Monokai Dark',
+    description: 'Classic Monokai dark patterns with syntax highlighting accents',
+    category: 'cultural',
+    beforePattern: `
+      /* Dark Monokai grid */
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(117, 113, 94, 0.06) 40px, rgba(117, 113, 94, 0.06) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(73, 72, 62, 0.05) 55px, rgba(73, 72, 62, 0.05) 56px),
+      /* Dark syntax accents */
+      radial-gradient(circle 4px at 20% 25%, rgba(249, 38, 114, 0.08) 0%, transparent 100%),
+      radial-gradient(circle 3px at 75% 45%, rgba(166, 226, 46, 0.06) 0%, transparent 100%)
+    `,
+    afterPattern: `
+      /* Monokai dark highlights */
+      linear-gradient(135deg, rgba(39, 40, 34, 0.2) 0%, rgba(30, 31, 27, 0.12) 40%, transparent 70%),
+      /* Dark syntax highlights */
+      radial-gradient(circle 4px at 30% 30%, rgba(230, 219, 116, 0.15) 0%, transparent 100%),
+      radial-gradient(circle 4px at 70% 65%, rgba(174, 129, 255, 0.12) 0%, transparent 100%)
+    `,
+    previewColors: ['#272822', '#f92672', '#a6e22e'],
+  },
+
   // ========== JAPANESE TEA CEREMONY PATTERNS ==========
   {
     id: 'tea-ceremony-wooden',
