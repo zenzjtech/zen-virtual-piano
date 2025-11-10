@@ -49,7 +49,15 @@ export type BackgroundThemeId =
   | 'shades-of-purple'
   | 'cobalt2'
   | 'winter-is-coming'
-  | 'noctis';
+  | 'noctis'
+  | 'material'
+  | 'community-material'
+  | 'bluloco-dark'
+  | 'bluloco-light'
+  | 'rouge'
+  | 'sublime-material'
+  | 'atom-one-dark'
+  | 'nord';
 
 export const BACKGROUND_THEME_CATEGORIES: Record<BackgroundTheme['category'], { name: string; description: string }> = {
   basics: {
@@ -110,6 +118,14 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
   { id: 'cobalt2', name: 'Cobalt2', description: 'High contrast theme with almost fluorescent colors', category: 'cultural' },
   { id: 'winter-is-coming', name: 'Winter is Coming', description: 'Cool blue theme inspired by Game of Thrones', category: 'cultural' },
   { id: 'noctis', name: 'Noctis', description: 'Green-based theme with modern design and multiple variants', category: 'cultural' },
+  { id: 'material', name: 'Material Theme', description: 'Google\'s Material Design colors with modern aesthetics', category: 'cultural' },
+  { id: 'community-material', name: 'Community Material', description: 'Enhanced Material theme with more color variants', category: 'cultural' },
+  { id: 'bluloco-dark', name: 'Bluloco Dark', description: 'Sophisticated designer color scheme with enhanced syntax', category: 'cultural' },
+  { id: 'bluloco-light', name: 'Bluloco Light', description: 'Clean and sophisticated light designer color scheme', category: 'cultural' },
+  { id: 'rouge', name: 'Rouge', description: 'Material-inspired theme with flushed color palette', category: 'cultural' },
+  { id: 'sublime-material', name: 'Sublime Material', description: 'Material theme inspired by Sublime Text', category: 'cultural' },
+  { id: 'atom-one-dark', name: 'Atom One Dark', description: 'Clean theme from the Atom editor with balanced grays', category: 'cultural' },
+  { id: 'nord', name: 'Nord', description: 'Soft, cold Nordic-inspired colors with arctic aesthetics', category: 'cultural' },
 ];
 
 
@@ -140,6 +156,13 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'cobalt2',
   'winter-is-coming',
   'noctis',
+  'material',
+  'community-material',
+  'bluloco-dark',
+  'rouge',
+  'sublime-material',
+  'atom-one-dark',
+  'nord',
 ];
 
 /**
@@ -232,6 +255,22 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { backgroundColor: '#0e1419' }; // Winter is Coming background
     case 'noctis':
       return { backgroundColor: '#0c0a14' }; // Noctis background
+    case 'material':
+      return { backgroundColor: '#263238' }; // Material Theme background
+    case 'community-material':
+      return { backgroundColor: '#263238' }; // Community Material background
+    case 'bluloco-dark':
+      return { backgroundColor: '#282c34' }; // Bluloco Dark background
+    case 'bluloco-light':
+      return { backgroundColor: '#fafafa' }; // Bluloco Light background
+    case 'rouge':
+      return { backgroundColor: '#172831' }; // Rouge background
+    case 'sublime-material':
+      return { backgroundColor: '#263238' }; // Sublime Material background
+    case 'atom-one-dark':
+      return { backgroundColor: '#1e2127' }; // Atom One Dark background
+    case 'nord':
+      return { backgroundColor: '#2e3440' }; // Nord background
     default:
       return { backgroundColor: '#FFFFFF' };
   }

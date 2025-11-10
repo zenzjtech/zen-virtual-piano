@@ -1103,6 +1103,191 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#2d2b55', '#fad000', '#ffffff'],
   },
 
+  // ========== MATERIAL THEME PATTERNS ==========
+  {
+    id: 'material',
+    name: 'Material Theme',
+    description: 'Google\'s Material Design patterns with modern dark aesthetics',
+    category: 'cultural',
+    beforePattern: [
+      /* Material Theme grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(84, 110, 122, 0.06) 40px, rgba(84, 110, 122, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(55, 71, 79, 0.05) 55px, rgba(55, 71, 79, 0.05) 56px)',
+      /* Material accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(128, 203, 196, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(128, 203, 196, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Material highlights */
+      'linear-gradient(135deg, rgba(38, 50, 56, 0.2) 0%, rgba(55, 71, 79, 0.12) 40%, transparent 70%)',
+      /* Teal highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(128, 203, 196, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(128, 203, 196, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#263238', '#80cbc4', '#eeffff'],
+  },
+
+  {
+    id: 'community-material',
+    name: 'Community Material',
+    description: 'Enhanced Material theme patterns with more refined color variants',
+    category: 'cultural',
+    beforePattern: [
+      /* Community Material grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(84, 110, 122, 0.06) 40px, rgba(84, 110, 122, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(55, 71, 79, 0.05) 55px, rgba(55, 71, 79, 0.05) 56px)',
+      /* Community Material accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(130, 177, 255, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(130, 177, 255, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Community Material highlights */
+      'linear-gradient(135deg, rgba(38, 50, 56, 0.2) 0%, rgba(55, 71, 79, 0.12) 40%, transparent 70%)',
+      /* Blue highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(130, 177, 255, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(130, 177, 255, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#263238', '#82b1ff', '#eeffff'],
+  },
+
+  {
+    id: 'bluloco-dark',
+    name: 'Bluloco Dark',
+    description: 'Sophisticated designer color scheme patterns with enhanced syntax highlighting',
+    category: 'cultural',
+    beforePattern: [
+      /* Bluloco Dark grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(92, 99, 112, 0.06) 40px, rgba(92, 99, 112, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(33, 37, 43, 0.05) 55px, rgba(33, 37, 43, 0.05) 56px)',
+      /* Bluloco accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(152, 195, 121, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(152, 195, 121, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Bluloco highlights */
+      'linear-gradient(135deg, rgba(40, 44, 52, 0.2) 0%, rgba(33, 37, 43, 0.12) 40%, transparent 70%)',
+      /* Green highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(152, 195, 121, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(152, 195, 121, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#282c34', '#98c379', '#abb2bf'],
+  },
+
+  {
+    id: 'bluloco-light',
+    name: 'Bluloco Light',
+    description: 'Clean and sophisticated light designer color scheme patterns',
+    category: 'cultural',
+    beforePattern: [
+      /* Bluloco Light grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(160, 161, 167, 0.03) 30px, rgba(160, 161, 167, 0.03) 31px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(242, 244, 247, 0.02) 45px, rgba(242, 244, 247, 0.02) 46px)',
+      /* Bluloco Light accents */
+      'radial-gradient(circle 3px at 15% 20%, rgba(80, 161, 79, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 2px at 70% 40%, rgba(80, 161, 79, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Bluloco Light highlights */
+      'linear-gradient(135deg, rgba(250, 250, 250, 0.15) 0%, rgba(242, 244, 247, 0.08) 40%, transparent 70%)',
+      /* Green highlights */
+      'radial-gradient(circle 3px at 25% 25%, rgba(80, 161, 79, 0.1) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 60%, rgba(80, 161, 79, 0.08) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#fafafa', '#50a14f', '#383a42'],
+  },
+
+  {
+    id: 'rouge',
+    name: 'Rouge',
+    description: 'Material-inspired theme patterns with flushed color palette',
+    category: 'cultural',
+    beforePattern: [
+      /* Rouge grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(107, 114, 128, 0.06) 40px, rgba(107, 114, 128, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(34, 47, 58, 0.05) 55px, rgba(34, 47, 58, 0.05) 56px)',
+      /* Rouge accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(243, 139, 168, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(243, 139, 168, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Rouge highlights */
+      'linear-gradient(135deg, rgba(23, 40, 49, 0.2) 0%, rgba(34, 47, 58, 0.12) 40%, transparent 70%)',
+      /* Pink highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(243, 139, 168, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(243, 139, 168, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#172831', '#f38ba8', '#d1d5db'],
+  },
+
+  {
+    id: 'sublime-material',
+    name: 'Sublime Material',
+    description: 'Material theme patterns inspired by Sublime Text with red-pink accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Sublime Material grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(84, 110, 122, 0.06) 40px, rgba(84, 110, 122, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(55, 71, 79, 0.05) 55px, rgba(55, 71, 79, 0.05) 56px)',
+      /* Sublime Material accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(255, 83, 112, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(255, 83, 112, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Sublime Material highlights */
+      'linear-gradient(135deg, rgba(38, 50, 56, 0.2) 0%, rgba(55, 71, 79, 0.12) 40%, transparent 70%)',
+      /* Red-pink highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(255, 83, 112, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(255, 83, 112, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#263238', '#ff5370', '#eeffff'],
+  },
+
+  {
+    id: 'nord',
+    name: 'Nord',
+    description: 'Soft, cold Nordic-inspired color patterns with arctic blue and green accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Nord grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(97, 110, 136, 0.06) 40px, rgba(97, 110, 136, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(59, 66, 82, 0.05) 55px, rgba(59, 66, 82, 0.05) 56px)',
+      /* Nord accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(136, 192, 208, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(163, 190, 140, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Nord highlights */
+      'linear-gradient(135deg, rgba(46, 52, 64, 0.2) 0%, rgba(59, 66, 82, 0.12) 40%, transparent 70%)',
+      /* Frost highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(136, 192, 208, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(163, 190, 140, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#2e3440', '#88c0d0', '#d8dee9'],
+  },
+
+  {
+    id: 'atom-one-dark',
+    name: 'Atom One Dark',
+    description: 'Clean theme patterns from the Atom editor with balanced grays and blue accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Atom One Dark grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(92, 99, 112, 0.06) 40px, rgba(92, 99, 112, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(43, 45, 51, 0.05) 55px, rgba(43, 45, 51, 0.05) 56px)',
+      /* Atom One Dark accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(97, 175, 239, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(97, 175, 239, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Atom One Dark highlights */
+      'linear-gradient(135deg, rgba(30, 33, 39, 0.2) 0%, rgba(43, 45, 51, 0.12) 40%, transparent 70%)',
+      /* Blue highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(97, 175, 239, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(97, 175, 239, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1e2127', '#61afef', '#abb2bf'],
+  },
+
   // ========== JAPANESE TEA CEREMONY PATTERNS ==========
   {
     id: 'tea-ceremony-wooden',
