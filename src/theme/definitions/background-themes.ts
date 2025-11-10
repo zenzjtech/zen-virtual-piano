@@ -57,7 +57,13 @@ export type BackgroundThemeId =
   | 'rouge'
   | 'sublime-material'
   | 'atom-one-dark'
-  | 'nord';
+  | 'nord'
+  | 'synthwave84'
+  | 'panda'
+  | 'hop-light'
+  | 'snazzy-light'
+  | 'one-monokai'
+  | 'poimandres';
 
 export const BACKGROUND_THEME_CATEGORIES: Record<BackgroundTheme['category'], { name: string; description: string }> = {
   basics: {
@@ -126,6 +132,12 @@ export const BACKGROUND_THEMES: BackgroundTheme[] = [
   { id: 'sublime-material', name: 'Sublime Material', description: 'Material theme inspired by Sublime Text', category: 'cultural' },
   { id: 'atom-one-dark', name: 'Atom One Dark', description: 'Clean theme from the Atom editor with balanced grays', category: 'cultural' },
   { id: 'nord', name: 'Nord', description: 'Soft, cold Nordic-inspired colors with arctic aesthetics', category: 'cultural' },
+  { id: 'synthwave84', name: 'SynthWave \'84', description: 'Retro 80s neon theme with vibrant pinks and purples', category: 'cultural' },
+  { id: 'panda', name: 'Panda', description: 'Japanese-inspired theme with pandas and vibrant colors', category: 'cultural' },
+  { id: 'hop-light', name: 'Hop Light', description: 'Bright and refreshing light theme with vibrant accents', category: 'cultural' },
+  { id: 'snazzy-light', name: 'Snazzy Light', description: 'Vibrant modern light theme with colorful accents', category: 'cultural' },
+  { id: 'one-monokai', name: 'One Monokai', description: 'Colorful Monokai variant with vibrant syntax colors', category: 'cultural' },
+  { id: 'poimandres', name: 'Poimandres', description: 'Minimal dark theme with semantic coloring and teal accents', category: 'cultural' },
 ];
 
 
@@ -163,6 +175,10 @@ export const DARK_BACKGROUND_THEMES: BackgroundThemeId[] = [
   'sublime-material',
   'atom-one-dark',
   'nord',
+  'synthwave84',
+  'panda',
+  'one-monokai',
+  'poimandres',
 ];
 
 /**
@@ -271,6 +287,18 @@ export function getBackgroundStyle(themeId: string): React.CSSProperties {
       return { backgroundColor: '#1e2127' }; // Atom One Dark background
     case 'nord':
       return { backgroundColor: '#2e3440' }; // Nord background
+    case 'synthwave84':
+      return { backgroundColor: '#2a2139' }; // SynthWave '84 background
+    case 'panda':
+      return { backgroundColor: '#1f2430' }; // Panda background
+    case 'hop-light':
+      return { backgroundColor: '#ffffff' }; // Hop Light background
+    case 'snazzy-light':
+      return { backgroundColor: '#f1f1f1' }; // Snazzy Light background
+    case 'one-monokai':
+      return { backgroundColor: '#282c34' }; // One Monokai background
+    case 'poimandres':
+      return { backgroundColor: '#1b1e28' }; // Poimandres background
     default:
       return { backgroundColor: '#FFFFFF' };
   }

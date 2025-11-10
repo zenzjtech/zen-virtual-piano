@@ -1288,6 +1288,145 @@ export const PATTERN_THEMES: PatternTheme[] = [
     previewColors: ['#1e2127', '#61afef', '#abb2bf'],
   },
 
+  // ========== VIBRANT THEMES PATTERNS ==========
+  {
+    id: 'synthwave84',
+    name: 'SynthWave \'84',
+    description: 'Retro 80s neon patterns with vibrant pinks, purples, and cyberpunk accents',
+    category: 'cultural',
+    beforePattern: [
+      /* SynthWave grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(132, 139, 189, 0.06) 40px, rgba(132, 139, 189, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(74, 49, 89, 0.05) 55px, rgba(74, 49, 89, 0.05) 56px)',
+      /* SynthWave neon accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(249, 42, 173, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(255, 203, 107, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* SynthWave highlights */
+      'linear-gradient(135deg, rgba(42, 33, 57, 0.2) 0%, rgba(74, 49, 89, 0.12) 40%, transparent 70%)',
+      /* Neon highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(249, 42, 173, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(255, 203, 107, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#2a2139', '#f92aad', '#ffeb95'],
+  },
+
+  {
+    id: 'panda',
+    name: 'Panda',
+    description: 'Japanese-inspired patterns with pandas and vibrant pink and cyan accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Panda grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(75, 83, 98, 0.06) 40px, rgba(75, 83, 98, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(51, 58, 72, 0.05) 55px, rgba(51, 58, 72, 0.05) 56px)',
+      /* Panda accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(255, 117, 181, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(25, 249, 216, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Panda highlights */
+      'linear-gradient(135deg, rgba(31, 36, 48, 0.2) 0%, rgba(51, 58, 72, 0.12) 40%, transparent 70%)',
+      /* Vibrant highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(255, 117, 181, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(25, 249, 216, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1f2430', '#ff75b5', '#19f9d8'],
+  },
+
+  {
+    id: 'hop-light',
+    name: 'Hop Light',
+    description: 'Bright and refreshing light patterns with vibrant orange, green, and pink accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Hop Light grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(150, 152, 150, 0.03) 30px, rgba(150, 152, 150, 0.03) 31px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(248, 250, 252, 0.02) 45px, rgba(248, 250, 252, 0.02) 46px)',
+      /* Hop Light accents */
+      'radial-gradient(circle 3px at 15% 20%, rgba(253, 151, 31, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 2px at 70% 40%, rgba(166, 226, 46, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Hop Light highlights */
+      'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(248, 250, 252, 0.08) 40%, transparent 70%)',
+      /* Bright highlights */
+      'radial-gradient(circle 3px at 25% 25%, rgba(249, 38, 114, 0.1) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 60%, rgba(253, 151, 31, 0.08) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#ffffff', '#fd971f', '#a6e22e'],
+  },
+
+  {
+    id: 'snazzy-light',
+    name: 'Snazzy Light',
+    description: 'Vibrant modern light patterns with orange, teal, and blue accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Snazzy Light grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(139, 148, 158, 0.03) 30px, rgba(139, 148, 158, 0.03) 31px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(230, 232, 235, 0.02) 45px, rgba(230, 232, 235, 0.02) 46px)',
+      /* Snazzy Light accents */
+      'radial-gradient(circle 3px at 15% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 2px at 70% 40%, rgba(78, 205, 196, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Snazzy Light highlights */
+      'linear-gradient(135deg, rgba(241, 241, 241, 0.15) 0%, rgba(230, 232, 235, 0.08) 40%, transparent 70%)',
+      /* Colorful highlights */
+      'radial-gradient(circle 3px at 25% 25%, rgba(69, 189, 209, 0.1) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 60%, rgba(255, 107, 53, 0.08) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#f1f1f1', '#ff6b35', '#4ecdc4'],
+  },
+
+  {
+    id: 'one-monokai',
+    name: 'One Monokai',
+    description: 'Colorful Monokai variant patterns with vibrant red, green, and blue accents',
+    category: 'cultural',
+    beforePattern: [
+      /* One Monokai grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(92, 99, 112, 0.06) 40px, rgba(92, 99, 112, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(33, 37, 43, 0.05) 55px, rgba(33, 37, 43, 0.05) 56px)',
+      /* One Monokai accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(224, 108, 117, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(152, 195, 121, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* One Monokai highlights */
+      'linear-gradient(135deg, rgba(40, 44, 52, 0.2) 0%, rgba(33, 37, 43, 0.12) 40%, transparent 70%)',
+      /* Colorful highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(97, 175, 239, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(224, 108, 117, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#282c34', '#e06c75', '#98c379'],
+  },
+
+  {
+    id: 'poimandres',
+    name: 'Poimandres',
+    description: 'Minimal dark patterns with semantic coloring and teal blue accents',
+    category: 'cultural',
+    beforePattern: [
+      /* Poimandres grid */
+      'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(122, 129, 148, 0.06) 40px, rgba(122, 129, 148, 0.06) 41px)',
+      'repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(37, 42, 56, 0.05) 55px, rgba(37, 42, 56, 0.05) 56px)',
+      /* Poimandres accents */
+      'radial-gradient(circle 4px at 20% 25%, rgba(93, 228, 199, 0.08) 0%, transparent 100%)',
+      'radial-gradient(circle 3px at 75% 45%, rgba(173, 215, 255, 0.06) 0%, transparent 100%)',
+    ].join(', '),
+    afterPattern: [
+      /* Poimandres highlights */
+      'linear-gradient(135deg, rgba(27, 30, 40, 0.2) 0%, rgba(37, 42, 56, 0.12) 40%, transparent 70%)',
+      /* Semantic highlights */
+      'radial-gradient(circle 4px at 30% 30%, rgba(93, 228, 199, 0.12) 0%, transparent 100%)',
+      'radial-gradient(circle 4px at 70% 65%, rgba(145, 180, 213, 0.1) 0%, transparent 100%)',
+    ].join(', '),
+    previewColors: ['#1b1e28', '#5de4c7', '#add7ff'],
+  },
+
   // ========== JAPANESE TEA CEREMONY PATTERNS ==========
   {
     id: 'tea-ceremony-wooden',

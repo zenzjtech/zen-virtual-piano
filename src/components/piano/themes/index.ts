@@ -49,7 +49,10 @@ export { cobalt2, winterIsComing, noctis } from './cobalt2-winter-noctis';
 export { material } from './material';
 export { blulocoDark, communityMaterial } from './bluloco-community';
 export { rouge, sublimeMaterial, blulocoLight } from './rouge-sublime-bluloco-light';
-export { nord, atomOneDark } from './nord-atom';
+export { atomOneDark } from './nord-atom';
+export { synthwave84 } from './synthwave84';
+export { panda, hopLight } from './panda-hop';
+export { snazzyLight, oneMonokai, poimandres } from './snazzy-one-poimandres';
 
 // Import themes for aggregation
 import { wooden } from './wooden';
@@ -77,6 +80,9 @@ import { material } from './material';
 import { blulocoDark, communityMaterial } from './bluloco-community';
 import { rouge, sublimeMaterial, blulocoLight } from './rouge-sublime-bluloco-light';
 import { nord, atomOneDark } from './nord-atom';
+import { synthwave84 } from './synthwave84';
+import { panda, hopLight } from './panda-hop';
+import { snazzyLight, oneMonokai, poimandres } from './snazzy-one-poimandres';
 import { PianoTheme } from './types';
 
 // Aggregate themes into a single object
@@ -112,6 +118,12 @@ export const PIANO_THEMES: Record<string, PianoTheme> = {
   sublimeMaterial,
   nord,
   atomOneDark,
+  synthwave84,
+  panda,
+  hopLight,
+  snazzyLight,
+  oneMonokai,
+  poimandres,
 };
 
 // Helper to get theme by id with fallback
