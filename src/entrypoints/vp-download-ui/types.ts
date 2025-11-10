@@ -4,7 +4,7 @@
 
 import { MusicSheet } from '../../components/music-sheet/types';
 
-export type DownloadStatus = 'idle' | 'downloading' | 'success' | 'warning' | 'error';
+export type DownloadStatus = 'idle' | 'downloading' | 'success' | 'warning' | 'error' | 'sheet-exists';
 
 export interface Ripple {
   id: number;

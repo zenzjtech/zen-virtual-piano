@@ -29,7 +29,8 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({
       <Alert
         onClose={() => setShowToast(false)}
         severity={
-          downloadState.status === 'success' ? 'success'
+            downloadState.status === 'sheet-exists' ? 'info'
+          : downloadState.status === 'success' ? 'success'
           : downloadState.status === 'warning' ? 'warning'
           : 'error'
         }

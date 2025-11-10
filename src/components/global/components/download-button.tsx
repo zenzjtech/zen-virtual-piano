@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { CircularProgress, Typography } from '@mui/material';
-import { Download, Check } from '@mui/icons-material';
+import { Download, Check, Piano } from '@mui/icons-material';
 import { RippleButton, RippleEffect } from '../../../entrypoints/vp-download-ui/styled';
 import { DownloadStatus, Ripple } from '../../../entrypoints/vp-download-ui/types';
 import type { PianoTheme } from '@/components/piano/themes';
@@ -31,9 +31,9 @@ const getButtonContent = (status: DownloadStatus) => {
     case 'success':
       return (
         <>
-          <Check />
+          <Piano />
           <Typography variant="body2" sx={{ ml: 1 }}>
-            Downloaded!
+            Go to Piano
           </Typography>
         </>
       );
@@ -56,6 +56,24 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
   disabled,
   pianoTheme,
 }) => {
+  // Handle navigation to piano page
+  const handleNavigation = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const pianoUrl = chrome.runtime.getURL('piano.html');
+    
+    // Try to find existing tab with piano page
+    chrome.tabs.query({ url: pianoUrl }, (tabs) => {
+      if (tabs.length > 0) {
+        // Focus existing tab
+        chrome.tabs.update(tabs[0].id!, { active: true });
+        chrome.windows.update(tabs[0].windowId!, { focused: true });
+      } else {
+        // Create new tab
+        chrome.tabs.create({ url: pianoUrl });
+      }
+    });
+  };
+
   // Create gradient based on piano theme colors
   const getButtonGradient = () => {
     if (!pianoTheme) return undefined;
@@ -77,8 +95,8 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
 
   return (
     <RippleButton
-      onClick={onClick}
-      disabled={disabled || status === 'downloading' || status === 'success'}
+      onClick={status === 'success' ? handleNavigation : onClick}
+      disabled={disabled || status === 'downloading'}
       fullWidth
       sx={(theme) => ({
         background: status === 'success'

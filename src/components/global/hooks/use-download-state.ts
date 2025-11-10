@@ -34,15 +34,10 @@ export const useDownloadState = (): UseDownloadStateReturn => {
         });
 
         setDownloadState({
-          status: 'success',
+          status: 'sheet-exists',
           message: `"${event.data.title}" by ${event.data.artist} detected!`,
         });
         setShowToast(true);
-
-        // Reset to idle after delay
-        setTimeout(() => {
-          setDownloadState({ status: 'idle' });
-        }, TIMING.STATE_RESET_DELAY);
       } else if (event.data.type === MESSAGE_TYPES.DOWNLOAD_SUCCESS) {
         // Save complete sheet to Redux store
         dispatch(addCustomSheet(event.data.sheet));
