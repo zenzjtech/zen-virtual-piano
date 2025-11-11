@@ -12,7 +12,9 @@ import {
  * Custom hook to handle all keyboard shortcuts for music sheet controls
  * 
  * Playback Controls:
- * - Spacebar: Play/Pause the current sheet
+ * - Ctrl+Enter: Play/Pause the current sheet
+ * 
+ * Note: Spacebar is reserved for pedal control (implemented separately)
  * 
  * Tempo Adjustment:
  * - ArrowUp: Increase tempo by 5 BPM (max: 240)
@@ -42,7 +44,8 @@ export function useSheetKeyboardControls() {
       }
       
       // Spacebar - toggle play/pause
-      if (event.code === 'Space') {
+      // Ctrl+Enter - toggle play/pause
+      if (event.ctrlKey && event.key === 'Enter') {
         if (isPlaying) {
           dispatch(pauseSheet());
         } else {
@@ -66,7 +69,7 @@ export function useSheetKeyboardControls() {
       }
       
       // Enter or Right Arrow - navigate to next page
-      if (event.key === 'Enter' || event.key === 'ArrowRight') {
+      if ((event.key === 'Enter' && !event.ctrlKey) || event.key === 'ArrowRight') {
         dispatch(nextPage());
         event.preventDefault();
       }

@@ -39,6 +39,11 @@ export const usePianoKeyboard = ({
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore Ctrl+key combinations to allow other shortcuts
+      if (e.ctrlKey) {
+        return;
+      }
+      
       // Use the actual key pressed (includes shift modifiers)
       const key = e.key;
       // Use physical key code for tracking to handle shift key issues

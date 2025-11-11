@@ -60,7 +60,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </span>
       </Tooltip>      
 
-      <Tooltip title={playback.isPlaying ? 'Pause' : 'Play'}>
+      <Tooltip title={playback.isPlaying ? 'Pause (Ctrl+Enter)' : 'Play (Ctrl+Enter)'}>
         <IconButton
           onClick={() => handlePlayPause(playback.isPlaying)}
           size="small"

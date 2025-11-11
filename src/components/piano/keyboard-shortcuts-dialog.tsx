@@ -35,7 +35,7 @@ const shortcuts: ShortcutItem[] = [
   { action: 'View keyboard shortcuts', keys: ['?'], category: 'General' },
 
   // Sheet Mode
-  { action: 'Play/Pause sheet', keys: ['Space'], category: 'Sheet Mode' },
+  { action: 'Play/Pause sheet', keys: ['Ctrl+Enter'], category: 'Sheet Mode' },
   { action: 'Increase tempo', keys: ['↑'], category: 'Sheet Mode' },
   { action: 'Decrease tempo', keys: ['↓'], category: 'Sheet Mode' },
   { action: 'Next page', keys: ['Enter'], category: 'Sheet Mode' },
