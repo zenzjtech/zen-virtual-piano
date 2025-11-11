@@ -1,6 +1,6 @@
 import { ExtendedStore } from "reduxed-chrome-storage";
 import { guid, wait } from "./misc";
-import mixpanel from 'mixpanel-browser';
+import mixpanel from 'mixpanel-browser/src/loaders/loader-module-core';
 import { setUserId } from "@/store/reducers/user-slice";
 import { shouldTrackUserActivity } from "./env";
 
