@@ -87,6 +87,8 @@ function injectDownloadUI() {
 
     if (event.data.type === 'SCRAPE_AND_DOWNLOAD') {
       await handleDownload(iframe);
+    } else if (event.data.type === 'CLOSE_DOWNLOAD_UI') {
+      iframe.remove();
     }
   });
 }

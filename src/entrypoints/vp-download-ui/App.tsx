@@ -6,13 +6,15 @@
  */
 
 import React from 'react';
-import { Box, Fade } from '@mui/material';
+import { Box, Fade, IconButton } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import { GlassCard } from './styled';
 import { Header, DownloadButton, StatusChip, SheetBanner, ToastNotification } from '../../components/global/components';
 import { useDownloadState, useRippleEffect } from '../../components/global/hooks';
 import { getTheme } from '@/components/piano/themes';
 import { getBackgroundStyle } from '@/theme/definitions/background-themes';
 import { useAppSelector } from '@/store/hook';
+import { MESSAGE_TYPES } from './utils';
 
 /**
  * Main download UI component
@@ -29,6 +31,10 @@ export default function DownloadUI() {
     if (downloadState.status === 'downloading') return;
     addRipple(e);
     initiateDownload();
+  };
+
+  const handleClose = () => {
+    window.parent.postMessage({ type: MESSAGE_TYPES.CLOSE_DOWNLOAD_UI }, '*');
   };
 
   return (
@@ -50,11 +56,34 @@ export default function DownloadUI() {
               width: '100%',
               height: '100%',
               ...getBackgroundStyle(backgroundThemeId),              
-              pt: 1.5,
+              pt: 4,
               pb: 0,
               px: 1.5,              
             }}
         >
+          {/* Close button */}
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              top: theme => theme.spacing(0.75),
+              right: theme => theme.spacing(0.75),
+              color: pianoTheme.colors.primary,
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              border: `1px solid ${pianoTheme.colors.border}`,
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                color: pianoTheme.colors.accent,
+              },
+              zIndex: 10,
+              width: theme => theme.spacing(3),
+              height: theme => theme.spacing(3),
+            }}            
+          >
+            <CloseIcon sx={{ fontSize: 16 }} />
+          </IconButton>
+
           <Box
             sx={{
               height: '100%',              

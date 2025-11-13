@@ -104,6 +104,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
       disabled={disabled || status === 'downloading'}
       fullWidth
       sx={(theme) => ({
+        maxWidth: '70%',
         background: status === 'success'
           ? `linear-gradient(135deg, ${theme.palette.success.light} 0%, ${theme.palette.success.main} 100%)`
           : status === 'error'
