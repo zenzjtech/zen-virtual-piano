@@ -43,6 +43,8 @@ interface BookPageProps {
   isActivePage: boolean;
   /** Whether this is an empty page (end of sheet) */
   isEmpty?: boolean;
+  /** Whether to show highlight animation */
+  isHighlighted?: boolean;
 }
 
 /**
@@ -60,6 +62,7 @@ export const BookPage: React.FC<BookPageProps> = ({
   musicSheetThemeId,
   isActivePage,
   isEmpty = false,
+  isHighlighted = false,
 }) => {
   // Get the background image based on theme
   const getBackgroundImage = () => {
@@ -164,6 +167,76 @@ export const BookPage: React.FC<BookPageProps> = ({
           fontSize: { xs: '0.9rem', md: '1.1rem' },
           color: themeColors.primary,
           visibility: isLeftPage ? 'visible' : 'hidden',
+          ...(isHighlighted && isLeftPage && {
+            position: 'relative',
+            textShadow: `0 0 20px ${pianoTheme.colors.accent}80, 
+                         0 0 40px ${pianoTheme.colors.accent}60,
+                         2px 2px 4px rgba(0,0,0,0.3)`,
+            animation: 'titlePulse 2s ease-in-out infinite',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: -8,
+              left: -12,
+              right: -12,
+              bottom: -8,
+              background: `radial-gradient(ellipse at center, ${pianoTheme.colors.accent}40 0%, transparent 70%)`,
+              borderRadius: '8px',
+              animation: 'titleGlow 2s ease-in-out infinite',
+              zIndex: -2,
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: -4,
+              left: -8,
+              right: -8,
+              bottom: -4,
+              background: `linear-gradient(90deg, 
+                transparent 0%, 
+                ${pianoTheme.colors.accent}FF 15%, 
+                ${pianoTheme.colors.accent}FF 25%, 
+                transparent 40%,
+                transparent 60%,
+                ${pianoTheme.colors.accent}FF 75%, 
+                ${pianoTheme.colors.accent}FF 85%, 
+                transparent 100%)`,
+              backgroundSize: '300% 100%',
+              animation: 'titleHighlight 2s linear infinite',
+              borderRadius: '6px',
+              opacity: 0.9,
+              zIndex: -1,
+              border: `2px solid ${pianoTheme.colors.accent}60`,
+              boxShadow: `0 0 15px ${pianoTheme.colors.accent}80, 
+                          inset 0 0 15px ${pianoTheme.colors.accent}40`,
+            },
+            '@keyframes titleHighlight': {
+              '0%': {
+                backgroundPosition: '0% 0',
+              },
+              '100%': {
+                backgroundPosition: '300% 0',
+              },
+            },
+            '@keyframes titlePulse': {
+              '0%, 100%': {
+                transform: 'scale(1)',
+              },
+              '50%': {
+                transform: 'scale(1.05)',
+              },
+            },
+            '@keyframes titleGlow': {
+              '0%, 100%': {
+                opacity: 0.6,
+                transform: 'scale(1)',
+              },
+              '50%': {
+                opacity: 1,
+                transform: 'scale(1.1)',
+              },
+            },
+          }),
         }}
       >
         {title}

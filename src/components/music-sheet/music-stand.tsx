@@ -9,13 +9,14 @@ import { MusicBookDisplay } from './music-book-display';
 
 interface MusicStandProps {
   pianoTheme: PianoTheme;
+  isHighlighted?: boolean;
 }
 
 /**
  * Music Stand Component
  * Displays sheet music on an open book background with playback controls
  */
-export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
+export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme, isHighlighted = false }) => {
   const dispatch = useAppDispatch();
   
   // Redux state
@@ -67,6 +68,7 @@ export const MusicStand: React.FC<MusicStandProps> = ({ pianoTheme }) => {
           pianoTheme={pianoTheme}
           musicSheetThemeId={musicSheetTheme}
           onClose={handleClose}
+          isHighlighted={isHighlighted}
         />
       </Box>
     </Box>

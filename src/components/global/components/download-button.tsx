@@ -60,16 +60,21 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
   const handleNavigation = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const pianoUrl = chrome.runtime.getURL('piano.html');
+    const timestamp = Date.now();
+    const urlWithTimestamp = `${pianoUrl}?highlight=${timestamp}`;
     
     // Try to find existing tab with piano page
     chrome.tabs.query({ url: pianoUrl }, (tabs) => {
       if (tabs.length > 0) {
-        // Focus existing tab
-        chrome.tabs.update(tabs[0].id!, { active: true });
+        // Focus existing tab and update URL with timestamp
+        chrome.tabs.update(tabs[0].id!, { 
+          active: true,
+          url: urlWithTimestamp
+        });
         chrome.windows.update(tabs[0].windowId!, { focused: true });
       } else {
-        // Create new tab
-        chrome.tabs.create({ url: pianoUrl });
+        // Create new tab with timestamp
+        chrome.tabs.create({ url: urlWithTimestamp });
       }
     });
   };

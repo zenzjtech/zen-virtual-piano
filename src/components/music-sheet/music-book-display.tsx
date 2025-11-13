@@ -27,6 +27,7 @@ interface MusicBookDisplayProps {
   pianoTheme: PianoTheme;
   musicSheetThemeId: string;
   onClose: () => void;
+  isHighlighted?: boolean;
 }
 
 
@@ -104,6 +105,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   pianoTheme,
   musicSheetThemeId,
   onClose,
+  isHighlighted = false,
 }) => {
   useSheetPlayback();
 
@@ -175,6 +177,79 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           borderRadius: 2,
           overflow: 'hidden',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+          ...(isHighlighted && {
+            boxShadow: `0 8px 32px rgba(0, 0, 0, 0.3), 
+                        0 0 40px ${pianoTheme.colors.accent}80, 
+                        0 0 80px ${pianoTheme.colors.accent}40`,
+            animation: 'bookPulse 2s ease-in-out infinite',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: -4,
+              left: -4,
+              right: -4,
+              bottom: -4,
+              borderRadius: 2,
+              padding: '6px',
+              background: `linear-gradient(90deg, 
+                transparent, 
+                ${pianoTheme.colors.accent}FF 20%, 
+                ${pianoTheme.colors.accent}FF 30%, 
+                transparent 50%,
+                transparent 50%,
+                ${pianoTheme.colors.accent}FF 70%, 
+                ${pianoTheme.colors.accent}FF 80%, 
+                transparent)`,
+              backgroundSize: '200% 200%',
+              animation: 'lightTravel 3s linear infinite',
+              mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              maskComposite: 'exclude',
+              WebkitMaskComposite: 'xor',
+              pointerEvents: 'none',
+              zIndex: 10,
+              filter: 'drop-shadow(0 0 8px currentColor)',
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: -2,
+              left: -2,
+              right: -2,
+              bottom: -2,
+              borderRadius: 2,
+              border: `3px solid ${pianoTheme.colors.accent}`,
+              opacity: 0.6,
+              animation: 'borderPulse 2s ease-in-out infinite',
+              pointerEvents: 'none',
+              zIndex: 9,
+            },
+            '@keyframes lightTravel': {
+              '0%': {
+                backgroundPosition: '0% 0%',
+              },
+              '100%': {
+                backgroundPosition: '200% 200%',
+              },
+            },
+            '@keyframes bookPulse': {
+              '0%, 100%': {
+                transform: 'scale(1)',
+              },
+              '50%': {
+                transform: 'scale(1.005)',
+              },
+            },
+            '@keyframes borderPulse': {
+              '0%, 100%': {
+                opacity: 0.6,
+                transform: 'scale(1)',
+              },
+              '50%': {
+                opacity: 1,
+                transform: 'scale(1.01)',
+              },
+            },
+          }),
         }}
       >
         {/* Book Content Area */}
@@ -204,6 +279,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
             pianoTheme={pianoTheme}
             musicSheetThemeId={musicSheetThemeId}
             isActivePage={playback.currentPage === leftPageIndex}
+            isHighlighted={isHighlighted}
           />
 
           {/* Right Page */}
@@ -219,6 +295,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
             musicSheetThemeId={musicSheetThemeId}
             isActivePage={playback.currentPage === rightPageIndex}
             isEmpty={!hasRightPage}
+            isHighlighted={isHighlighted}
           />
         </Box>
 

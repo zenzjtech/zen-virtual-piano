@@ -23,6 +23,7 @@ import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
 import { useAutoThemeRotation } from '@/hooks/use-auto-theme-rotation';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { useSheetSearch } from '@/hooks/use-sheet-search';
+import { useHighlightAnimation } from '@/hooks/use-highlight-animation';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/definitions/background-themes';
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
@@ -75,6 +76,9 @@ function App() {
 
   // Auto theme rotation
   useAutoThemeRotation(uid);
+
+  // Highlight animation when opened via download button
+  const { isHighlighted } = useHighlightAnimation();
 
   useEffect(() => {    
       trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
@@ -275,7 +279,7 @@ function App() {
 
           {/* Music Stand - appears when sheet is loaded */}
           {isMusicStandVisible && (
-            <MusicStand pianoTheme={pianoTheme} />
+            <MusicStand pianoTheme={pianoTheme} isHighlighted={isHighlighted} />
           )}
 
           {/* Integrated Piano Unit */}
