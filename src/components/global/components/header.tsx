@@ -3,20 +3,21 @@
  */
 
 import React from 'react';
-import { Box, Typography, IconButton, Chip } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import { useAppSelector } from '@/store/hook';
 import { getTextColor } from '@/components/header/header-utils';
-import { getChipStyle } from '@/components/header/header-chip-styles';
 import { getHeaderTypographyStyle, getCategoryDefaultStyle } from '@/components/header/header-typography';
 import { isDarkBackgroundTheme } from '@/theme/definitions/background-themes';
 import { THEME_PRESETS } from '@/components/piano/theme-presets';
 import pianoIcon from '@/assets/image/Icon.png';
+import { useAppConfig } from '#imports';
 
 export const Header: React.FC = () => {
   // Get theme state from redux
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
   const musicSheetThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
+  const config = useAppConfig();
 
   // Determine if background is dark
   const isDarkBackground = isDarkBackgroundTheme(backgroundThemeId);
@@ -34,8 +35,7 @@ export const Header: React.FC = () => {
   // Use provided headerStyle, or fall back to category default, or use modern-sans
   const finalStyle = currentPreset?.headerStyle ||
     (currentPreset?.category ? getCategoryDefaultStyle(currentPreset.category) : 'modern-sans');
-  const titleStyles = getHeaderTypographyStyle(finalStyle, textColor);
-  const chipStyle = getChipStyle(backgroundThemeId, isDarkBackground);
+  const titleStyles = getHeaderTypographyStyle(finalStyle, textColor);  
 
   return (
     <Box
@@ -53,6 +53,7 @@ export const Header: React.FC = () => {
           opacity: 0.6,
         },
       }}
+      onClick={() => window.open(config.app.homeUrl, '_blank')}
     >
       <IconButton>
         <Box

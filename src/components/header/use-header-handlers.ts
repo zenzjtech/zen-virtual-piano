@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setGoogleUser, logout, googleUserSelector, isAuthenticatedSelector } from '@/store/reducers/user-slice';
 import { authenticateWithGoogle, signOutFromGoogle } from '@/utils/google-auth';
 import { useNotification } from '@/contexts/notification-context';
+import { useAppConfig } from '#imports';
 import type { UseHeaderHandlersProps } from './types';
 
 export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlersProps) => {
@@ -14,6 +15,7 @@ export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlers
   const googleUser = useAppSelector(googleUserSelector);
   const isAuthenticated = useAppSelector(isAuthenticatedSelector);
   const { showNotification } = useNotification();
+  const config = useAppConfig();
   
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -68,7 +70,7 @@ export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlers
 
   const handleLogoClick = () => {
     // Refresh page or navigate to home
-    window.location.reload();
+    window.open(config.app.homeUrl, '_blank')
   };
 
   return {
