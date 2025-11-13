@@ -58,9 +58,9 @@ export const useDownloadState = (): UseDownloadStateReturn => {
         setShowToast(true);
 
         // Reset to idle after delay
-        setTimeout(() => {
-          setDownloadState({ status: 'idle' });
-        }, TIMING.STATE_RESET_DELAY);
+        // setTimeout(() => {
+        //   setDownloadState({ status: 'idle' });
+        // }, TIMING.STATE_RESET_DELAY);
       } else if (event.data.type === MESSAGE_TYPES.DOWNLOAD_ERROR) {
         setDownloadState({
           status: 'error',
