@@ -8,7 +8,11 @@ declare module 'wxt/utils/define-app-config' {
         }
     },
     noteHistoryLimit: number,
-    maxCustomSheets: number
+    maxCustomSheets: number,
+    app: {
+      highlightAnimationDuration: number,
+      highlightAnimationDelay: number
+    }
   }
 }
 
@@ -21,4 +25,8 @@ export default defineAppConfig({
   },
   noteHistoryLimit: 500,
   maxCustomSheets: 10,
+  app: {
+    highlightAnimationDuration: 10000,
+    highlightAnimationDelay: 30000
+  }
 })

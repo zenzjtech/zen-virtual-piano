@@ -1,7 +1,7 @@
 # 2025-01-13 Highlight Animation for Downloaded Sheets
 
 ## Summary
-Implemented a timestamp-based highlight animation system that triggers when users navigate to the piano page from the download button. The animation highlights the song name and music sheet with a theme-aware light travel effect.
+Implemented a timestamp-based highlight animation system that triggers when users navigate to the piano page from the download button. The animation highlights the song name and music sheet with a theme-aware light travel effect, accompanied by a notification confirming the song addition.
 
 ## Changes Made
 
@@ -11,9 +11,10 @@ Implemented a timestamp-based highlight animation system that triggers when user
 
 ### Highlight Animation Hook
 - Created new `use-highlight-animation.ts` hook to detect URL timestamp parameters
-- Implements 10-second window validation for animation triggers
+- Implements 20-second window validation for animation triggers
 - Automatically cleans up URL parameters after detection
-- Manages animation state with 3-second duration
+- Manages animation state with 10-second duration
+- **NEW**: Integrates with notification system to show success message with song details
 
 ### Component Integration
 - Updated `App.tsx` to use the highlight animation hook and pass state to MusicStand
@@ -43,7 +44,9 @@ Implemented a timestamp-based highlight animation system that triggers when user
 - **Multi-layer Effects**: Uses `::before` and `::after` pseudo-elements for layered animations
 - **Hardware Acceleration**: Transform and opacity changes for smooth 60fps performance
 - **Cross-browser Support**: Includes `-webkit-` prefixes for Safari/Chrome compatibility
-- **Automatic Cleanup**: Animation state cleared after extended duration for testing
+- **Notification Integration**: Uses notification context to show success message with song title and artist
+- **Redux Integration**: Accesses current sheet data from Redux store for notification content
+- **Automatic Cleanup**: Animation state cleared after 10 seconds, URL parameters cleaned up
 
 ## Technical Implementation
 - Uses React hooks for state management and URL parameter detection
