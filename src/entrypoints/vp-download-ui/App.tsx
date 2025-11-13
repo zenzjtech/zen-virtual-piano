@@ -50,9 +50,9 @@ export default function DownloadUI() {
               width: '100%',
               height: '100%',
               ...getBackgroundStyle(backgroundThemeId),              
-              pt: 2,
-              pb: 1,
-              px: 0,              
+              pt: 1.5,
+              pb: 0,
+              px: 1.5,              
             }}
         >
           <Box
