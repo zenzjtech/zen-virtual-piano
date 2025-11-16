@@ -48,6 +48,22 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
     // Call the provided onSound handler if exists
     onSound?.(event);
   };
+
+  const handleStylesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Track styles settings opened
+    trackEvent(uid, ANALYTICS_ACTION.STYLES_SETTINGS_OPENED, {});
+    
+    // Call the provided onStyles handler if exists
+    onStyles?.(event);
+  };
+
+  const handleKeyAssistClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Track key assist opened
+    trackEvent(uid, ANALYTICS_ACTION.KEY_ASSIST_OPENED, {});
+    
+    // Call the provided onKeyAssist handler if exists
+    onKeyAssist?.(event);
+  };
   return (
     <BarContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Left group: Action buttons */}
@@ -116,7 +132,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         <SettingButton
           variant="outlined"
           startIcon={<StylesIcon sx={{ fontSize: '1rem' }} />}
-          onClick={onStyles}
+          onClick={handleStylesClick}
           pianoTheme={pianoTheme}
         >
           Appearances
@@ -125,7 +141,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         <SettingButton
           variant="outlined"
           startIcon={<KeyboardIcon sx={{ fontSize: '1rem' }} />}
-          onClick={onKeyAssist}
+          onClick={handleKeyAssistClick}
           pianoTheme={pianoTheme}
         >
           Key Assist

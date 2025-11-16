@@ -6,5 +6,7 @@ export const ANALYTICS_ACTION = {
     RECORD_STOPPED: 'Recording stopped',
     INSTRUMENT_SELECTOR_OPENED: 'Instrument selector opened',
     INSTRUMENT_CHANGED: 'Instrument changed',
-    SOUND_SETTINGS_OPENED: 'Sound settings opened'
+    SOUND_SETTINGS_OPENED: 'Sound settings opened',
+    STYLES_SETTINGS_OPENED: 'Styles settings opened',
+    KEY_ASSIST_OPENED: 'Key assist opened'
 }
