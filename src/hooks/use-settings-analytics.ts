@@ -19,6 +19,9 @@ export function useSettingsAnalytics() {
   const musicSheetThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
   const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
+  const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
+  const customSheets = useAppSelector((state) => state.musicSheet.userData.customSheets);
+  const deletedSheets = useAppSelector((state) => state.musicSheet.userData.deletedSheets);
 
   // Refs to store previous values
   const prevValuesRef = useRef({
@@ -30,6 +33,9 @@ export function useSettingsAnalytics() {
     musicSheetThemeId: musicSheetThemeId,
     patternThemeId: patternThemeId,
     currentSheet: currentSheet,
+    favorites: [...favorites],
+    customSheets: { ...customSheets },
+    deletedSheets: [...deletedSheets],
   });
 
   // Debounce timers for continuous settings
@@ -143,6 +149,72 @@ export function useSettingsAnalytics() {
       prevValuesRef.current.currentSheet = currentSheet;
     }
   }, [currentSheet, uid]);
+
+  // Track favorites changes
+  useEffect(() => {
+    const prevFavorites = prevValuesRef.current.favorites;
+    const currentFavorites = favorites;
+
+    // Check if a sheet was added to favorites
+    const addedFavorites = currentFavorites.filter(id => !prevFavorites.includes(id));
+    addedFavorites.forEach(sheetId => {
+      trackEvent(uid, ANALYTICS_ACTION.SHEET_FAVORITED, {
+        sheet_id: sheetId,
+      });
+    });
+
+    // Check if a sheet was removed from favorites
+    const removedFavorites = prevFavorites.filter(id => !currentFavorites.includes(id));
+    removedFavorites.forEach(sheetId => {
+      trackEvent(uid, ANALYTICS_ACTION.SHEET_UNFAVORITED, {
+        sheet_id: sheetId,
+      });
+    });
+
+    prevValuesRef.current.favorites = [...currentFavorites];
+  }, [favorites, uid]);
+
+  // Track custom sheets changes
+  useEffect(() => {
+    const prevCustomSheets = prevValuesRef.current.customSheets;
+    const currentCustomSheets = customSheets;
+
+    // Check for newly added custom sheets
+    const addedSheetIds = Object.keys(currentCustomSheets).filter(
+      id => !prevCustomSheets[id]
+    );
+
+    addedSheetIds.forEach(sheetId => {
+      const sheet = currentCustomSheets[sheetId];
+      trackEvent(uid, ANALYTICS_ACTION.CUSTOM_SHEET_ADDED, {
+        sheet_id: sheetId,
+        sheet_title: sheet.title,
+        sheet_artist: sheet.artist,
+        sheet_difficulty: sheet.difficulty,
+      });
+    });
+
+    prevValuesRef.current.customSheets = { ...currentCustomSheets };
+  }, [customSheets, uid]);
+
+  // Track deleted sheets changes
+  useEffect(() => {
+    const prevDeletedSheets = prevValuesRef.current.deletedSheets;
+    const currentDeletedSheets = deletedSheets;
+
+    // Check for newly deleted sheets
+    const newlyDeleted = currentDeletedSheets.filter(
+      id => !prevDeletedSheets.includes(id)
+    );
+
+    newlyDeleted.forEach(sheetId => {
+      trackEvent(uid, ANALYTICS_ACTION.SHEET_DELETED, {
+        sheet_id: sheetId,
+      });
+    });
+
+    prevValuesRef.current.deletedSheets = [...currentDeletedSheets];
+  }, [deletedSheets, uid]);
 
   // Cleanup timers on unmount
   useEffect(() => {

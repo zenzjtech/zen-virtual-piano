@@ -21,5 +21,9 @@ export const ANALYTICS_ACTION = {
     PATTERN_THEME_CHANGED: 'Pattern theme changed',
     KEYBOARD_DISPLAY_TOGGLED: 'Keyboard display toggled',
     NOTE_NAMES_TOGGLED: 'Note names toggled',
-    SHEET_CHANGED: 'Sheet changed'
+    SHEET_CHANGED: 'Sheet changed',
+    SHEET_FAVORITED: 'Sheet favorited',
+    SHEET_UNFAVORITED: 'Sheet unfavorited',
+    CUSTOM_SHEET_ADDED: 'Custom sheet added',
+    SHEET_DELETED: 'Sheet deleted'
 }
