@@ -3,6 +3,9 @@ import { Box, Tooltip } from '@mui/material';
 import { PianoTheme } from './themes';
 import { getSoundSet } from '@/services/sound-sets';
 import { getInstrumentImage } from '@/utils/instrument-images';
+import { useAppSelector } from '@/store/hook';
+import { trackEvent } from '@/utils/analytics';
+import { ANALYTICS_ACTION } from '@/utils/constants';
 
 interface InstrumentSettingProps {
   currentSoundSetId: string;
@@ -15,7 +18,18 @@ export const InstrumentSetting: React.FC<InstrumentSettingProps> = ({
   pianoTheme,
   onClick,
 }) => {
+  const uid = useAppSelector((state) => state.user.uid);
   const currentSoundSet = getSoundSet(currentSoundSetId);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Track instrument selector opened
+    trackEvent(uid, ANALYTICS_ACTION.INSTRUMENT_SELECTOR_OPENED, {
+      current_instrument: currentSoundSetId,
+    });
+    
+    // Call the provided onClick handler if exists
+    onClick?.(event);
+  };
 
   return (
     <Tooltip
@@ -117,7 +131,7 @@ export const InstrumentSetting: React.FC<InstrumentSettingProps> = ({
             padding: '6px 12px',
           },
         }}
-        onClick={onClick}
+        onClick={handleClick}
       >
         <Box
           component="img"

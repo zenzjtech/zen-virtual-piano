@@ -216,8 +216,16 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   };
 
   const handleSoundSetChange = async (newSoundSetId: string) => {
+    const previousSoundSetId = soundSet;
     setIsLoadingInstrument(true);
     dispatch(setSoundSet(newSoundSetId));
+    
+    // Track instrument change
+    trackEvent(uid, ANALYTICS_ACTION.INSTRUMENT_CHANGED, {
+      previous_instrument: previousSoundSetId,
+      new_instrument: newSoundSetId,
+    });
+    
     try {
       // Change the sound set in the audio engine
       await getAudioEngine().changeSoundSet(newSoundSetId);
