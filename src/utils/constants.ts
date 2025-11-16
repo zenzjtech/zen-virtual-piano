@@ -8,5 +8,17 @@ export const ANALYTICS_ACTION = {
     INSTRUMENT_CHANGED: 'Instrument changed',
     SOUND_SETTINGS_OPENED: 'Sound settings opened',
     STYLES_SETTINGS_OPENED: 'Styles settings opened',
-    KEY_ASSIST_OPENED: 'Key assist opened'
+    KEY_ASSIST_OPENED: 'Key assist opened',
+    SUSTAIN_CHANGED: 'Sustain changed',
+    TRANSPOSE_CHANGED: 'Transpose changed',
+    VOLUME_CHANGED: 'Volume changed',
+    METRONOME_TOGGLED: 'Metronome toggled',
+    METRONOME_TEMPO_CHANGED: 'Metronome tempo changed',
+    METRONOME_VOLUME_CHANGED: 'Metronome volume changed',
+    PIANO_THEME_CHANGED: 'Piano theme changed',
+    BACKGROUND_THEME_CHANGED: 'Background theme changed',
+    MUSIC_SHEET_THEME_CHANGED: 'Music sheet theme changed',
+    PATTERN_THEME_CHANGED: 'Pattern theme changed',
+    KEYBOARD_DISPLAY_TOGGLED: 'Keyboard display toggled',
+    NOTE_NAMES_TOGGLED: 'Note names toggled'
 }
