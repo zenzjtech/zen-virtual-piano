@@ -39,7 +39,7 @@ export const useHighlightAnimation = () => {
         window.history.replaceState({}, document.title, newUrl);
 
         // Animation duration - keep highlighted for a few seconds
-        const animationDuration = config.app.highlightAnimationDuration; // 10 seconds
+        const animationDuration = config.app.highlightAnimationDuration;
         setTimeout(() => {
           setIsHighlighted(false);
         }, animationDuration);
