@@ -12,6 +12,8 @@ import { useAppSelector } from '@/store/hook';
 import { getTheme } from './themes';
 import { InstrumentSetting } from './instrument-setting';
 import { BarContainer, SettingButton } from '@/components/global/components';
+import { trackEvent } from '@/utils/analytics';
+import { ANALYTICS_ACTION } from '@/utils/constants';
 
 interface SettingsBarProps {
   onTogglePiano?: () => void;
@@ -31,12 +33,21 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onStyles,
 }) => {
   // Get state from Redux
+  const uid = useAppSelector((state) => state.user.uid);
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   const isRecording = useAppSelector((state) => state.recording.isRecording);
   const currentSoundSetId = useAppSelector((state) => state.pianoSettings.soundSet);
   
   const pianoTheme = getTheme(pianoThemeId);
+
+  const handleSoundClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Track sound settings opened
+    trackEvent(uid, ANALYTICS_ACTION.SOUND_SETTINGS_OPENED, {});
+    
+    // Call the provided onSound handler if exists
+    onSound?.(event);
+  };
   return (
     <BarContainer elevation={0} pianoTheme={pianoTheme}>
       {/* Left group: Action buttons */}
@@ -96,7 +107,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
         <SettingButton
           variant="outlined"
           startIcon={<SoundIcon sx={{ fontSize: '1rem' }} />}
-          onClick={onSound}
+          onClick={handleSoundClick}
           pianoTheme={pianoTheme}
         >
           Sound
