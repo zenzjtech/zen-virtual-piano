@@ -16,7 +16,8 @@ interface SheetSearchFiltersProps {
   onToggleFavorite: () => void;
   onToggleDifficulty: (difficulty: 'easy' | 'medium' | 'hard') => void;
   onClearFilters: () => void;
-  onSortSelectOpen: (isOpen: boolean) => void;
+  onSortSelectOpen: () => void;
+  onSortSelectClose: () => void;
   pianoTheme: PianoTheme;
 }
 
@@ -30,6 +31,7 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
   onToggleDifficulty,
   onClearFilters,
   onSortSelectOpen,
+  onSortSelectClose,
   pianoTheme,
 }) => {
   const dispatch = useAppDispatch();
@@ -195,8 +197,8 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
             labelId="sort-by-label"
             value={sortBy}
             onChange={(e) => handleSortChange(e.target.value as any)}
-            onOpen={() => onSortSelectOpen(true)}
-            onClose={() => onSortSelectOpen(false)}
+            onOpen={onSortSelectOpen}
+            onClose={onSortSelectClose}
             label="Sort By"
             MenuProps={{
               PaperProps: {

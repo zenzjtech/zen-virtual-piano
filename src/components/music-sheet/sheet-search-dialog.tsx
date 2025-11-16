@@ -25,6 +25,7 @@ import { SheetSearchFooter } from './sheet-search-footer';
 import { SheetSearchFilters } from './sheet-search-filters';
 import { SheetSearchContent } from './sheet-search-content';
 import { AddSheetDialog } from './add-sheet-dialog';
+import { usePopupSelectHandler } from '@/hooks/use-popup-select-handler';
 
 interface SheetSearchDialogProps {
   open: boolean;
@@ -46,8 +47,10 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
-  const [isSortSelectOpen, setIsSortSelectOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
+  
+  // Use custom hook for popup select handling
+  const { handleClickAway, handleSelectOpen, handleSelectClose } = usePopupSelectHandler(onClose);
   
   // Add sheet dialog state from Redux
   const isAddSheetDialogOpen = useAppSelector((state) => state.musicSheet.isAddSheetDialogOpen);
@@ -139,27 +142,6 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     (hasActiveFilters ? filteredSheets : allSheets)
       .filter(sheet => !recentlyPlayedIds.has(sheet.id))
   );
-  
-  // Handle click away, but ignore clicks when sort selector is open
-  const handleClickAway = (event: MouseEvent | TouchEvent) => {
-    // Don't close if sort select is open
-    if (isSortSelectOpen) {
-      return;
-    }
-    
-    const target = event.target as HTMLElement;
-    // Check if click is on a MUI menu (Select dropdown) or MUI backdrop
-    if (
-      target.closest('.MuiPopover-root') || 
-      target.closest('.MuiModal-root') ||
-      target.closest('.MuiMenu-root') ||
-      target.closest('.MuiPaper-root') ||
-      target.classList.contains('MuiBackdrop-root')
-    ) {
-      return;
-    }
-    onClose();
-  };
   
   return (
     <Popper
@@ -257,7 +239,8 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
             onToggleFavorite={handleToggleFavoriteFilter}
             onToggleDifficulty={handleToggleDifficulty}
             onClearFilters={handleClearFilters}
-            onSortSelectOpen={setIsSortSelectOpen}
+            onSortSelectOpen={handleSelectOpen}
+            onSortSelectClose={handleSelectClose}
             pianoTheme={pianoTheme}
           />
           
