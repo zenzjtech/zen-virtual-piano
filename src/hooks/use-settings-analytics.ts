@@ -18,6 +18,7 @@ export function useSettingsAnalytics() {
   const backgroundThemeId = useAppSelector((state) => state.theme.backgroundTheme);
   const musicSheetThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
   const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
+  const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
 
   // Refs to store previous values
   const prevValuesRef = useRef({
@@ -28,6 +29,7 @@ export function useSettingsAnalytics() {
     backgroundThemeId: backgroundThemeId,
     musicSheetThemeId: musicSheetThemeId,
     patternThemeId: patternThemeId,
+    currentSheet: currentSheet,
   });
 
   // Debounce timers for continuous settings
@@ -122,6 +124,25 @@ export function useSettingsAnalytics() {
       prevValuesRef.current.patternThemeId = patternThemeId;
     }
   }, [patternThemeId, uid]);
+
+  // Track sheet changes
+  useEffect(() => {
+    const prevSheet = prevValuesRef.current.currentSheet;
+    const currentSheetId = currentSheet?.id || null;
+    const prevSheetId = prevSheet?.id || null;
+
+    if (currentSheetId !== prevSheetId) {
+      trackEvent(uid, ANALYTICS_ACTION.SHEET_CHANGED, {
+        sheet_id: currentSheetId,
+        sheet_title: currentSheet?.title || null,
+        previous_sheet_id: prevSheetId,
+        previous_sheet_title: prevSheet?.title || null,
+        sheet_artist: currentSheet?.artist || null,
+        sheet_difficulty: currentSheet?.difficulty || null,
+      });
+      prevValuesRef.current.currentSheet = currentSheet;
+    }
+  }, [currentSheet, uid]);
 
   // Cleanup timers on unmount
   useEffect(() => {

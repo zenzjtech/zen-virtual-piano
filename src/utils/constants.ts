@@ -20,5 +20,6 @@ export const ANALYTICS_ACTION = {
     MUSIC_SHEET_THEME_CHANGED: 'Music sheet theme changed',
     PATTERN_THEME_CHANGED: 'Pattern theme changed',
     KEYBOARD_DISPLAY_TOGGLED: 'Keyboard display toggled',
-    NOTE_NAMES_TOGGLED: 'Note names toggled'
+    NOTE_NAMES_TOGGLED: 'Note names toggled',
+    SHEET_CHANGED: 'Sheet changed'
 }
