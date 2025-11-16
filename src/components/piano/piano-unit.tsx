@@ -20,6 +20,7 @@ import { usePopupManager } from '@/hooks/use-popup-manager';
 import { useSoundSettings } from '@/hooks/use-sound-settings';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
+import { usePopupToggle } from '@/hooks/use-popup-toggle';
 import { useMetronome } from '@/hooks/use-metronome';
 import { trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
@@ -78,16 +79,25 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   // Get sheet search state from Redux (handler comes from props)
   const isSheetSearchOpen = useAppSelector((state) => state.musicSheet.isSearchDialogOpen);
   
+  // Sound settings toggle handler
+  const soundSettingsToggle = usePopupToggle(
+    soundSettingsPopup.isOpen,
+    soundSettingsPopup.handleOpen,
+    soundSettingsPopup.handleClose
+  );
+  
+  // Sheet search toggle handler
+  const sheetSearchToggle = usePopupToggle(
+    isSheetSearchOpen,
+    onSheetSearchOpen,
+    () => dispatch(closeSearchDialog())
+  );
+  
   // Sound settings close handler (closes both local popup and Redux state)
   const handleSoundSettingsClose = useCallback(() => {
     soundSettingsPopup.handleClose();
     dispatch(closeSoundPopup());
   }, [soundSettingsPopup, dispatch]);
-  
-  // Sheet search close handler
-  const handleSheetSearchClose = useCallback(() => {
-    dispatch(closeSearchDialog());
-  }, [dispatch]);
   
   // Sync Redux sound popup state with local popup manager
   useEffect(() => {
@@ -120,7 +130,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
       handleSoundSettingsClose: handleSoundSettingsClose,
       handleStyleSettingsClose: styleSettingsPopup.handleClose,
       handleKeyAssistPopupClose: keyAssistPopup.handleClose,
-      handleSheetSearchClose,
+      handleSheetSearchClose: sheetSearchToggle.handleClose,
       handleKeyboardShortcutsClose: () => {},
     }
   );
@@ -236,7 +246,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
             pressedNotes={pressedNotes}
             currentNote={currentNote}
             pianoTheme={pianoTheme}
-            onSheetSearchOpen={onSheetSearchOpen}
+            onSheetSearchOpen={sheetSearchToggle.handleToggle}
           />
 
           {/* Settings Bar */}
@@ -245,7 +255,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
             onRecord={handleRecord}
             onKeyAssist={keyAssistPopup.handleOpen}
             onInstrument={instrumentPopup.handleOpen}
-            onSound={soundSettingsPopup.handleOpen}
+            onSound={soundSettingsToggle.handleToggle}
             onStyles={styleSettingsPopup.handleOpen}
           />
 

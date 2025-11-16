@@ -282,7 +282,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
         },
       ]}
     >
-      <ClickAwayListener onClickAway={handleClickAway}>
+      <ClickAwayListener onClickAway={onClose}>
         <StyledPopupPaper elevation={8} pianoTheme={pianoTheme} sx={{ minWidth: '380px', maxWidth: '480px' }}>
           <PopupHeaderBox pianoTheme={pianoTheme}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
