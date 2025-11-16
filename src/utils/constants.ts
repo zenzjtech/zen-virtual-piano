@@ -25,5 +25,10 @@ export const ANALYTICS_ACTION = {
     SHEET_FAVORITED: 'Sheet favorited',
     SHEET_UNFAVORITED: 'Sheet unfavorited',
     CUSTOM_SHEET_ADDED: 'Custom sheet added',
-    SHEET_DELETED: 'Sheet deleted'
+    SHEET_DELETED: 'Sheet deleted',
+    QUOTE_DISPLAY_TOGGLED: 'Quote display toggled',
+    QUOTE_INTERVAL_CHANGED: 'Quote interval changed',
+    QUOTE_FAVORITES_FILTER_TOGGLED: 'Quote favorites filter toggled',
+    QUOTE_FAVORITED: 'Quote favorited',
+    QUOTE_UNFAVORITED: 'Quote unfavorited'
 }

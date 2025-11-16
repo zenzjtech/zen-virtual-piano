@@ -22,6 +22,10 @@ export function useSettingsAnalytics() {
   const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
   const customSheets = useAppSelector((state) => state.musicSheet.userData.customSheets);
   const deletedSheets = useAppSelector((state) => state.musicSheet.userData.deletedSheets);
+  const showQuote = useAppSelector((state) => state.quoteSettings.showQuote);
+  const quoteInterval = useAppSelector((state) => state.quoteSettings.interval);
+  const showOnlyFavorites = useAppSelector((state) => state.quoteSettings.showOnlyFavorites);
+  const favoriteQuoteIds = useAppSelector((state) => state.quoteSettings.favoriteQuoteIds);
 
   // Refs to store previous values
   const prevValuesRef = useRef({
@@ -36,6 +40,10 @@ export function useSettingsAnalytics() {
     favorites: [...favorites],
     customSheets: { ...customSheets },
     deletedSheets: [...deletedSheets],
+    showQuote: showQuote,
+    quoteInterval: quoteInterval,
+    showOnlyFavorites: showOnlyFavorites,
+    favoriteQuoteIds: [...favoriteQuoteIds],
   });
 
   // Debounce timers for continuous settings
@@ -215,6 +223,63 @@ export function useSettingsAnalytics() {
 
     prevValuesRef.current.deletedSheets = [...currentDeletedSheets];
   }, [deletedSheets, uid]);
+
+  // Track quote display toggle
+  useEffect(() => {
+    if (showQuote !== prevValuesRef.current.showQuote) {
+      trackEvent(uid, ANALYTICS_ACTION.QUOTE_DISPLAY_TOGGLED, {
+        enabled: showQuote,
+        previous_state: prevValuesRef.current.showQuote,
+      });
+      prevValuesRef.current.showQuote = showQuote;
+    }
+  }, [showQuote, uid]);
+
+  // Track quote interval changes
+  useEffect(() => {
+    if (quoteInterval !== prevValuesRef.current.quoteInterval) {
+      trackEvent(uid, ANALYTICS_ACTION.QUOTE_INTERVAL_CHANGED, {
+        interval: quoteInterval,
+        previous_interval: prevValuesRef.current.quoteInterval,
+      });
+      prevValuesRef.current.quoteInterval = quoteInterval;
+    }
+  }, [quoteInterval, uid]);
+
+  // Track show only favorites toggle
+  useEffect(() => {
+    if (showOnlyFavorites !== prevValuesRef.current.showOnlyFavorites) {
+      trackEvent(uid, ANALYTICS_ACTION.QUOTE_FAVORITES_FILTER_TOGGLED, {
+        enabled: showOnlyFavorites,
+        previous_state: prevValuesRef.current.showOnlyFavorites,
+      });
+      prevValuesRef.current.showOnlyFavorites = showOnlyFavorites;
+    }
+  }, [showOnlyFavorites, uid]);
+
+  // Track quote favorites changes
+  useEffect(() => {
+    const prevFavorites = prevValuesRef.current.favoriteQuoteIds;
+    const currentFavorites = favoriteQuoteIds;
+
+    // Check if a quote was added to favorites
+    const addedFavorites = currentFavorites.filter(id => !prevFavorites.includes(id));
+    addedFavorites.forEach(quoteId => {
+      trackEvent(uid, ANALYTICS_ACTION.QUOTE_FAVORITED, {
+        quote_id: quoteId,
+      });
+    });
+
+    // Check if a quote was removed from favorites
+    const removedFavorites = prevFavorites.filter(id => !currentFavorites.includes(id));
+    removedFavorites.forEach(quoteId => {
+      trackEvent(uid, ANALYTICS_ACTION.QUOTE_UNFAVORITED, {
+        quote_id: quoteId,
+      });
+    });
+
+    prevValuesRef.current.favoriteQuoteIds = [...currentFavorites];
+  }, [favoriteQuoteIds, uid]);
 
   // Cleanup timers on unmount
   useEffect(() => {
