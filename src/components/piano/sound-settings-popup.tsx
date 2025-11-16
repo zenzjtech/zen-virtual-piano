@@ -142,6 +142,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   const placement = useAppSelector((state) => state.pianoSettings.soundPopupPlacement) || 'bottom-start';
   
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMidiSelectOpen, setIsMidiSelectOpen] = useState(false);
   
   // Refs for each section
   const metronomeRef = useRef<HTMLDivElement>(null);
@@ -197,12 +198,12 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
       description: 'Adjust overall sound volume',
       keywords: ['volume', 'loudness', 'sound', 'level'],
     },
-    // {
-    //   id: 'midi',
-    //   name: 'MIDI Device',
-    //   description: 'Connect external MIDI keyboard',
-    //   keywords: ['midi', 'device', 'keyboard', 'external', 'controller'],
-    // },
+    {
+      id: 'midi',
+      name: 'MIDI Device',
+      description: 'Connect external MIDI keyboard',
+      keywords: ['midi', 'device', 'keyboard', 'external', 'controller'],
+    },
     {
       id: 'metronome',
       name: 'Metronome',
@@ -228,6 +229,28 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
         .map(s => s.id)
     );
   }, [searchQuery, settings]);
+
+  // Handle click away, but ignore clicks when MIDI select is open
+  const handleClickAway = (event: MouseEvent | TouchEvent) => {
+    // Don't close if MIDI select is open
+    if (isMidiSelectOpen) {
+      return;
+    }
+
+    const target = event.target as HTMLElement;
+    // Check if click is on a MUI menu (Select dropdown) or MUI backdrop
+    if (
+      target.closest('.MuiPopover-root') ||
+      target.closest('.MuiModal-root') ||
+      target.closest('.MuiMenu-root') ||
+      target.closest('.MuiPaper-root') ||
+      target.classList.contains('MuiBackdrop-root')
+    ) {
+      return;
+    }
+    onClose();
+  };
+
   const handleSustainChange = (_event: Event, newValue: number | number[]) => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
     onSustainChange(value);
@@ -277,7 +300,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
         },
       ]}
     >
-      <ClickAwayListener onClickAway={onClose}>
+      <ClickAwayListener onClickAway={handleClickAway}>
         <StyledPopupPaper elevation={8} pianoTheme={pianoTheme} sx={{ minWidth: '380px', maxWidth: '480px' }}>
           <PopupHeaderBox pianoTheme={pianoTheme}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -516,6 +539,8 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                 <Select
                   value={midiDevice}
                   onChange={(e) => onMidiDeviceChange && onMidiDeviceChange(e.target.value)}
+                  onOpen={() => setIsMidiSelectOpen(true)}
+                  onClose={() => setIsMidiSelectOpen(false)}
                   fullWidth
                   size="small"
                   sx={{
