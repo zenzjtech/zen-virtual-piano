@@ -30,5 +30,10 @@ export const ANALYTICS_ACTION = {
     QUOTE_INTERVAL_CHANGED: 'Quote interval changed',
     QUOTE_FAVORITES_FILTER_TOGGLED: 'Quote favorites filter toggled',
     QUOTE_FAVORITED: 'Quote favorited',
-    QUOTE_UNFAVORITED: 'Quote unfavorited'
+    QUOTE_UNFAVORITED: 'Quote unfavorited',
+    SHEET_PLAYBACK_STARTED: 'Sheet playback started',
+    SHEET_PLAYBACK_PAUSED: 'Sheet playback paused',
+    SHEET_PLAYBACK_STOPPED: 'Sheet playback stopped',
+    SHEET_PAGE_CHANGED: 'Sheet page changed',
+    SHEET_TEMPO_CHANGED: 'Sheet tempo changed'
 }

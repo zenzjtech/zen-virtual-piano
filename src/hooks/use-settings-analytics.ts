@@ -26,6 +26,10 @@ export function useSettingsAnalytics() {
   const quoteInterval = useAppSelector((state) => state.quoteSettings.interval);
   const showOnlyFavorites = useAppSelector((state) => state.quoteSettings.showOnlyFavorites);
   const favoriteQuoteIds = useAppSelector((state) => state.quoteSettings.favoriteQuoteIds);
+  const isPlaying = useAppSelector((state) => state.musicSheet.playback.isPlaying);
+  const isPaused = useAppSelector((state) => state.musicSheet.playback.isPaused);
+  const currentPage = useAppSelector((state) => state.musicSheet.playback.currentPage);
+  const tempo = useAppSelector((state) => state.musicSheet.playback.tempo);
 
   // Refs to store previous values
   const prevValuesRef = useRef({
@@ -44,6 +48,10 @@ export function useSettingsAnalytics() {
     quoteInterval: quoteInterval,
     showOnlyFavorites: showOnlyFavorites,
     favoriteQuoteIds: [...favoriteQuoteIds],
+    isPlaying: isPlaying,
+    isPaused: isPaused,
+    currentPage: currentPage,
+    tempo: tempo,
   });
 
   // Debounce timers for continuous settings
@@ -52,6 +60,8 @@ export function useSettingsAnalytics() {
     volume?: NodeJS.Timeout;
     metronomeTempo?: NodeJS.Timeout;
     metronomeVolume?: NodeJS.Timeout;
+    page?: NodeJS.Timeout;
+    tempo?: NodeJS.Timeout;
   }>({});
 
   // Track sustain changes with debouncing
@@ -280,6 +290,77 @@ export function useSettingsAnalytics() {
 
     prevValuesRef.current.favoriteQuoteIds = [...currentFavorites];
   }, [favoriteQuoteIds, uid]);
+
+  // Track playback state changes
+  useEffect(() => {
+    if (isPlaying !== prevValuesRef.current.isPlaying) {
+      if (isPlaying) {
+        trackEvent(uid, ANALYTICS_ACTION.SHEET_PLAYBACK_STARTED, {
+          sheet_id: currentSheet?.id || null,
+          sheet_title: currentSheet?.title || null,
+        });
+      } else if (!isPaused) {
+        // Only track stopped if not paused (paused is a separate state)
+        trackEvent(uid, ANALYTICS_ACTION.SHEET_PLAYBACK_STOPPED, {
+          sheet_id: currentSheet?.id || null,
+          sheet_title: currentSheet?.title || null,
+        });
+      }
+      prevValuesRef.current.isPlaying = isPlaying;
+    }
+  }, [isPlaying, isPaused, currentSheet, uid]);
+
+  useEffect(() => {
+    if (isPaused !== prevValuesRef.current.isPaused && !isPlaying) {
+      trackEvent(uid, ANALYTICS_ACTION.SHEET_PLAYBACK_PAUSED, {
+        sheet_id: currentSheet?.id || null,
+        sheet_title: currentSheet?.title || null,
+      });
+      prevValuesRef.current.isPaused = isPaused;
+    }
+  }, [isPaused, isPlaying, currentSheet, uid]);
+
+  // Track page changes (with debouncing to avoid excessive tracking during navigation)
+  useEffect(() => {
+    if (currentPage !== prevValuesRef.current.currentPage) {
+      // Clear existing timer
+      if (debounceTimersRef.current.page) {
+        clearTimeout(debounceTimersRef.current.page);
+      }
+
+      // Set new timer for page changes (short debounce since page changes are discrete)
+      debounceTimersRef.current.page = setTimeout(() => {
+        trackEvent(uid, ANALYTICS_ACTION.SHEET_PAGE_CHANGED, {
+          sheet_id: currentSheet?.id || null,
+          sheet_title: currentSheet?.title || null,
+          page: currentPage,
+          previous_page: prevValuesRef.current.currentPage,
+        });
+        prevValuesRef.current.currentPage = currentPage;
+      }, 200); // 200ms debounce for page navigation
+    }
+  }, [currentPage, currentSheet, uid]);
+
+  // Track tempo changes with debouncing (since tempo can be adjusted rapidly with sliders)
+  useEffect(() => {
+    if (tempo !== prevValuesRef.current.tempo) {
+      // Clear existing timer
+      if (debounceTimersRef.current.tempo) {
+        clearTimeout(debounceTimersRef.current.tempo);
+      }
+
+      // Set new timer for tempo changes
+      debounceTimersRef.current.tempo = setTimeout(() => {
+        trackEvent(uid, ANALYTICS_ACTION.SHEET_TEMPO_CHANGED, {
+          sheet_id: currentSheet?.id || null,
+          sheet_title: currentSheet?.title || null,
+          tempo: tempo,
+          previous_tempo: prevValuesRef.current.tempo,
+        });
+        prevValuesRef.current.tempo = tempo;
+      }, 500); // 500ms debounce for tempo adjustments
+    }
+  }, [tempo, currentSheet, uid]);
 
   // Cleanup timers on unmount
   useEffect(() => {
