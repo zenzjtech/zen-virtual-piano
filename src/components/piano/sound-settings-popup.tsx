@@ -201,12 +201,12 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
       description: 'Adjust overall sound volume',
       keywords: ['volume', 'loudness', 'sound', 'level'],
     },
-    {
-      id: 'midi',
-      name: 'MIDI Device',
-      description: 'Connect external MIDI keyboard',
-      keywords: ['midi', 'device', 'keyboard', 'external', 'controller'],
-    },
+    // {
+    //   id: 'midi',
+    //   name: 'MIDI Device',
+    //   description: 'Connect external MIDI keyboard',
+    //   keywords: ['midi', 'device', 'keyboard', 'external', 'controller'],
+    // },
     {
       id: 'metronome',
       name: 'Metronome',
