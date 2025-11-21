@@ -259,7 +259,7 @@ function App() {
     <Box
       sx={{
         minHeight: '100vh',
-        ...getBackgroundStyle(backgroundThemeId),
+        ...getBackgroundStyle(backgroundThemeId)
       }}
     >
       {/* Sticky Header */}
@@ -287,27 +287,33 @@ function App() {
         } : undefined}
       />
 
-      <Container maxWidth="lg">
+      <Container>
         <Stack
-          spacing={{ xs: 3, md: 4 }}
+          spacing={{ xs: 2, md: 3, lg: 4 }}
           alignItems="center"
           sx={{
             textAlign: 'center',
-            py: { xs: 2, md: 4 },
-          }}
+            width: '100%',            
+            py: { xs: 2, md: 3, lg: 4 },
+            '@media (max-width: 1400px) and (max-height: 900px)': {
+              transform: 'scale(0.8)',
+              transformOrigin: 'top center',   
+              width: '125%',                           
+              //marginBottom: '-20vh', // Compensate for vertical gap left by scaling
+            },            
+          }}          
         >
+            {/* Music Stand - appears when sheet is loaded */}
+            {isMusicStandVisible && (
+              <MusicStand pianoTheme={pianoTheme} isHighlighted={isHighlighted} />
+            )}
 
-          {/* Music Stand - appears when sheet is loaded */}
-          {isMusicStandVisible && (
-            <MusicStand pianoTheme={pianoTheme} isHighlighted={isHighlighted} />
-          )}
-
-          {/* Integrated Piano Unit */}
-          <PianoUnit 
-            onOpenSettings={handleOpenSettings}
-            recordingPlaybackRef={recordingPlaybackRef}
-            onSheetSearchOpen={handleSheetSearchOpen}
-          />
+            {/* Integrated Piano Unit */}
+            <PianoUnit 
+              onOpenSettings={handleOpenSettings}
+              recordingPlaybackRef={recordingPlaybackRef}
+              onSheetSearchOpen={handleSheetSearchOpen}
+            />          
 
           {/* Instructions */}
           {/* <Paper
