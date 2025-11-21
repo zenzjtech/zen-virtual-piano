@@ -74,7 +74,7 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
         </Box>
 
         {/* Center: Recording Playback Bar or Inspirational Quote */}
-        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Box sx={{ flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           {recordingPlayback?.hasRecording ? (
             <Box sx={{ maxWidth: '700px', width: '100%' }}>
               <RecordingPlaybackBar

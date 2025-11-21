@@ -56,8 +56,7 @@ export const HeaderQuote = ({
         display: { xs: 'none', md: 'flex' },
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 1,
-        maxWidth: '1200px',
+        gap: 1        
       }}
     >
       {/* Quote Container */}
@@ -93,6 +92,9 @@ export const HeaderQuote = ({
             lineHeight: 1.4,
             fontStyle: fontStyle,
             textTransform: textTransform,
+            maxHeight: '38px',
+            overflowY: 'auto',
+            overflowX: 'hidden',
           }}
         >
           "{currentQuote.text}"
