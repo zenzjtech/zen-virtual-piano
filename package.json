@@ -2,7 +2,7 @@
   "name": "zen-virtual-piano",
   "description": "68-key virtual piano (C2-C7) with multiple instruments, recording & practice tools for musicians and learners",
   "private": true,
-  "version": "0.0.9",
+  "version": "0.0.11",
   "type": "module",
   "scripts": {
     "dev": "wxt",
