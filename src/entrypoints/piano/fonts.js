@@ -1,0 +1,7 @@
+// Deferred Google Fonts loading to improve initial page load performance
+window.addEventListener('load', function() {
+  const link = document.createElement('link');
+  link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;700&family=Crimson+Text:wght@400;600&family=Roboto+Mono:wght@400;500&family=Source+Code+Pro:wght@400;500&family=Playfair+Display:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600&family=Nunito:wght@400;600&family=Quicksand:wght@400;600&family=Inconsolata:wght@400;500&family=Comic+Neue:wght@400;700&family=Cinzel:wght@400;600&family=Archivo:wght@400;600&family=Archivo+Black&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Cormorant:wght@400;600&family=EB+Garamond:wght@400;600&family=Josefin+Slab:wght@400;600&family=Josefin+Sans:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Montserrat:wght@400;700&family=Noto+Serif:wght@400;500;600&family=Noto+Sans+Tibetan:wght@400;500;600&family=Noto+Serif+Tibetan:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Frank+Ruhl+Libre:wght@400;500;700&family=Anek+Gurmukhi:wght@400;500;600&family=Uncial+Antiqua&family=Fira+Code:wght@400;500&family=Ubuntu+Mono:wght@400;700&family=Courier+Prime:wght@400&family=Overpass+Mono:wght@400;700&family=Hack:wght@400&family=IBM+Plex+Mono:wght@400&display=swap';
+  link.rel = 'stylesheet';
+  document.head.appendChild(link);
+});
