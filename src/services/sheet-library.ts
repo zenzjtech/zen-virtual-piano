@@ -6,7 +6,26 @@
 
 import type { MusicSheet, SheetPage } from '@/components/music-sheet/types';
 import { parseVPNotation, estimateDuration } from './sheet-parser';
-import SHEET_DATA from '@/assets/sheet-data.json';
+
+let SHEET_DATA: MusicSheet[] = [];
+
+/**
+ * Initialize the sheet library by fetching the JSON data
+ */
+export async function initSheetLibrary(): Promise<void> {
+  if (SHEET_DATA.length > 0) return;
+
+  try {
+    const response = await fetch(chrome.runtime.getURL('/data/sheet-data.json'));
+    if (!response.ok) {
+      throw new Error(`Failed to load sheet data: ${response.statusText}`);
+    }
+    SHEET_DATA = await response.json();
+  } catch (error) {
+    console.error('Error initializing sheet library:', error);
+    throw error;
+  }
+}
 
 /**
  * Raw sheet data imported from JSON file

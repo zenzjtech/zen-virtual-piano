@@ -12,7 +12,7 @@ import { setPatternTheme } from '@/store/reducers/theme-slice';
 import { addSheets, loadSheet } from '@/store/reducers/music-sheet-slice';
 import { useNotification } from '@/contexts/notification-context';
 import { showOnboarding } from '@/store/reducers/onboarding-slice';
-import { getBuiltInSheetMetadata } from '@/services/sheet-library';
+import { getBuiltInSheetMetadata, initSheetLibrary } from '@/services/sheet-library';
 import { useMetronome } from '@/hooks/use-metronome';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
@@ -97,15 +97,24 @@ function App() {
 
   // Load built-in sheet library on mount
   useEffect(() => {
-    const sheets = getBuiltInSheetMetadata();
-    dispatch(addSheets(sheets));
+    const loadSheets = async () => {
+      try {
+        await initSheetLibrary();
+        const sheets = getBuiltInSheetMetadata();
+        dispatch(addSheets(sheets));
+        
+        // Only auto-load sheet if user hasn't manually closed it before
+        if (!hasManuallyClosedSheet) {
+          // Load last played sheet, or default to 'kiss-the-rain-v2'
+          const defaultSheetId = recentlyPlayed.length > 0 ? recentlyPlayed[0] : 'beethoven-fur-elise';
+          dispatch(loadSheet(defaultSheetId));
+        }
+      } catch (error) {
+        console.error('Failed to initialize sheet library:', error);
+      }
+    };
     
-    // Only auto-load sheet if user hasn't manually closed it before
-    if (!hasManuallyClosedSheet) {
-      // Load last played sheet, or default to 'kiss-the-rain-v2'
-      const defaultSheetId = recentlyPlayed.length > 0 ? recentlyPlayed[0] : 'beethoven-fur-elise';
-      dispatch(loadSheet(defaultSheetId));
-    }
+    loadSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
