@@ -29,7 +29,7 @@ import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/definitions/b
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
-import i18n from '@/lib/i18n';
+import i18n from '@/lib/i18n/index';
 import { useTranslation } from '@/hooks/use-translation';
 
 function App() {
@@ -305,10 +305,11 @@ function App() {
             width: '100%',            
             py: { xs: 2, md: 3, lg: 4 },
             '@media (max-width: 1400px) and (max-height: 900px)': {
-              transform: 'scale(0.8)',
+              transform: 'scale(0.7)',
               transformOrigin: 'top center',   
-              width: '125%',                           
-              //marginBottom: '-20vh', // Compensate for vertical gap left by scaling
+              width: '125%',
+              ml: '-12.5%',
+              marginBottom: '-20vh', // Compensate for vertical gap left by scaling
             },            
           }}          
         >

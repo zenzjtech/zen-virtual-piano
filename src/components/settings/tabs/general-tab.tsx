@@ -11,19 +11,16 @@ import {
   InputLabel,
   Divider,
 } from '@mui/material';
-import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hook';
 import {
   setAutoThemeEnabled,
   setAutoThemeInterval,
   type ThemeChangeInterval,
 } from '@/store/reducers/theme-slice';
-import { setLocale, type SupportedLocale } from '@/store/reducers/i18n-slice';
 import { SettingSection } from '../components/setting-section';
 import { SettingToggle } from '../components/setting-toggle';
 import type { SettingsTheme } from '../types';
 import { useTranslation } from '@/hooks/use-translation';
-import i18n from '@/lib/i18n';
 
 interface GeneralTabProps {
   theme: SettingsTheme;
@@ -39,22 +36,11 @@ const INTERVAL_LABELS: Record<ThemeChangeInterval, string> = {
   '1min': 'every1Min',
 };
 
-const LOCALE_LABELS: Record<SupportedLocale, string> = {
-  en: 'english',
-  ja: 'japanese',
-  vi: 'vietnamese',
-};
-
 export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.theme);
   const i18nState = useAppSelector((state) => state.i18n);
   const { t } = useTranslation('settings');
-
-  // Sync i18n language when locale changes
-  useEffect(() => {
-    i18n.changeLanguage(i18nState.locale);
-  }, [i18nState.locale]);
 
   return (
     <Box>
@@ -148,72 +134,6 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
           </Box>
         </>
       )}
-
-      {/* Language Selector */}
-      <Divider sx={{ my: 3, borderColor: settingsTheme.borderColor }} />
-
-      <SettingSection theme={settingsTheme}>
-        <FormControl fullWidth>
-          <InputLabel
-            sx={{
-              color: settingsTheme.textSecondary,
-              '&.Mui-focused': { color: settingsTheme.textPrimary },
-            }}
-          >
-            {t('language')}
-          </InputLabel>
-          <Select
-            value={i18nState.locale}
-            label={t('language')}
-            onChange={(e) => dispatch(setLocale(e.target.value as SupportedLocale))}
-            sx={{
-              color: settingsTheme.textPrimary,
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: settingsTheme.borderColor,
-              },
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: settingsTheme.textPrimary,
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: settingsTheme.textPrimary,
-              },
-              '& .MuiSvgIcon-root': {
-                color: settingsTheme.textPrimary,
-              },
-            }}
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  bgcolor: settingsTheme.dialogBg,
-                  backgroundImage: 'none',
-                  backdropFilter: 'blur(20px)',
-                  '& .MuiMenuItem-root': {
-                    color: settingsTheme.textPrimary,
-                    '&:hover': {
-                      bgcolor: settingsTheme.hoverBg,
-                    },
-                    '&.Mui-selected': {
-                      bgcolor: settingsTheme.hoverBg,
-                      '&:hover': {
-                        bgcolor: settingsTheme.highlightBg,
-                      },
-                    },
-                  },
-                },
-              },
-            }}
-          >
-            {(Object.keys(LOCALE_LABELS) as SupportedLocale[]).map((locale) => (
-              <MenuItem key={locale} value={locale}>
-                {t(LOCALE_LABELS[locale])}
-              </MenuItem>
-            ))}
-          </Select>
-          <Typography variant="caption" sx={{ color: settingsTheme.textSecondary, mt: 1 }}>
-            {t('languageDescription')}
-          </Typography>
-        </FormControl>
-      </SettingSection>
     </Box>
   );
 };
