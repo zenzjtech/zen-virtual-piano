@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen 가상 피아노",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "가상 피아노 시뮬레이터: 풀 68키 QWERTY 키보드, 저지연 오디오, 10개 이상의 악기, 녹음 및 악보 연습 기능 제공.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen 피아노",
+    "description": "Short name for extension"
+  }
+}

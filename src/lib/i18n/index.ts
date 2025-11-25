@@ -104,6 +104,12 @@ import taSheet from './locales/ta/sheet.json';
 import taSettings from './locales/ta/settings.json';
 import taNotifications from './locales/ta/notifications.json';
 
+import koCommon from './locales/ko/common.json';
+import koPiano from './locales/ko/piano.json';
+import koSheet from './locales/ko/sheet.json';
+import koSettings from './locales/ko/settings.json';
+import koNotifications from './locales/ko/notifications.json';
+
 const resources = {
   en: {
     common: enCommon,
@@ -223,6 +229,13 @@ const resources = {
     sheet: taSheet,
     settings: taSettings,
     notifications: taNotifications,
+  },
+  ko: {
+    common: koCommon,
+    piano: koPiano,
+    sheet: koSheet,
+    settings: koSettings,
+    notifications: koNotifications,
   },
 };
 

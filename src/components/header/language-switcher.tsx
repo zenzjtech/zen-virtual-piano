@@ -11,7 +11,7 @@ import { setLocale, type SupportedLocale } from '@/store/reducers/i18n-slice';
 import { useTranslation } from '@/hooks/use-translation';
 import { getIconColor } from './header-utils';
 import { getIconButtonStyles, iconSizeStyles } from './header-styles';
-import i18n from '@/lib/i18n';
+import i18n from '@/lib/i18n/index';
 
 interface LanguageSwitcherProps {
   isDarkBackground: boolean;
