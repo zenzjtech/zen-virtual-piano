@@ -1,0 +1,20 @@
+{
+  "addSheet": "Add Sheet",
+  "deleteSheet": "Delete Sheet",
+  "goToPage": "Go to Page",
+  "title": "Title",
+  "artist": "Artist",
+  "difficulty": "Difficulty",
+  "notation": "Notation",
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard",
+  "titleAZ": "Title (A-Z)",
+  "artistAZ": "Artist (A-Z)",
+  "recentlyAdded": "Recently Added",
+  "noSheetsFound": "No sheets found",
+  "searchResults": "Search Results",
+  "musicSheets": "Music Sheets",
+  "addCustomSheet": "Add custom sheet",
+  "searchPlaceholder": "Search songs, artists, or tags..."
+}

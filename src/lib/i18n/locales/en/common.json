@@ -1,0 +1,19 @@
+{
+  "cancel": "Cancel",
+  "save": "Save",
+  "delete": "Delete",
+  "close": "Close",
+  "apply": "Apply",
+  "clearFilters": "Clear Filters",
+  "sort": "Sort",
+  "search": "Search",
+  "add": "Add",
+  "remove": "Remove",
+  "favorites": "Favorites",
+  "recentlyPlayed": "Recently Played",
+  "allSheets": "All Sheets",
+  "logout": "Logout",
+  "help": "Help",
+  "settings": "Settings",
+  "account": "Account"
+}

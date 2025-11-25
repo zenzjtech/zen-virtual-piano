@@ -29,6 +29,7 @@ import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/definitions/b
 import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
+import i18n from '@/lib/i18n';
 
 function App() {
   // Redux state for persistent settings
@@ -47,7 +48,8 @@ function App() {
   // Onboarding state
   const hasCompletedOnboarding = useAppSelector((state) => state.onboarding.hasCompletedOnboarding);
   
-  
+  // i18n state
+  const locale = useAppSelector((state) => state.i18n.locale);
   // Keyboard shortcuts dialog state
   const [isKeyboardShortcutsOpen, setIsKeyboardShortcutsOpen] = useState(false);
   
@@ -128,6 +130,11 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [isMusicStandVisible, hasCompletedOnboarding, dispatch]);
+
+  // Sync i18n language with Redux locale
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+  }, [locale]);
 
 
   // Handle Escape key to close keyboard shortcuts dialog

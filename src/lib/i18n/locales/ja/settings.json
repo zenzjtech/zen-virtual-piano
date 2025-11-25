@@ -1,0 +1,17 @@
+{
+  "general": "一般",
+  "piano": "ピアノ",
+  "keyboard": "キーボード",
+  "quotes": "引用",
+  "generalSettings": "一般設定",
+  "autoThemeRotation": "自動テーマ切り替え",
+  "autoThemeDescription": "指定した間隔でランダムなテーマに自動的に切り替える",
+  "themeChangeInterval": "テーマ切り替え間隔",
+  "daily": "毎日",
+  "everyHour": "毎時",
+  "every30Min": "30分ごと",
+  "every15Min": "15分ごと",
+  "every10Min": "10分ごと",
+  "every5Min": "5分ごと",
+  "every1Min": "1分ごと"
+}

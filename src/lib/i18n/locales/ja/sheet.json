@@ -1,0 +1,20 @@
+{
+  "addSheet": "楽譜を追加",
+  "deleteSheet": "楽譜を削除",
+  "goToPage": "ページへ移動",
+  "title": "タイトル",
+  "artist": "アーティスト",
+  "difficulty": "難易度",
+  "notation": "記譜法",
+  "easy": "簡単",
+  "medium": "普通",
+  "hard": "難しい",
+  "titleAZ": "タイトル (A-Z)",
+  "artistAZ": "アーティスト (A-Z)",
+  "recentlyAdded": "最近追加された",
+  "noSheetsFound": "楽譜が見つかりません",
+  "searchResults": "検索結果",
+  "musicSheets": "楽譜",
+  "addCustomSheet": "カスタム楽譜を追加",
+  "searchPlaceholder": "曲名、アーティスト、タグで検索..."
+}

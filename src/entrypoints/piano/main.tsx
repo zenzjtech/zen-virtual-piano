@@ -15,6 +15,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { muiTheme } from '@/theme/mui-theme';
 import { initMixpanel } from '@/utils/analytics.ts';
 import { NotificationProvider } from '@/contexts/notification-context';
+import '@/lib/i18n';
 
 (async () => {
   initMixpanel();

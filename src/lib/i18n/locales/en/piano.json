@@ -1,0 +1,15 @@
+{
+  "grandPiano": "Grand Piano",
+  "classicalPiano": "Classical Piano",
+  "organ": "Organ",
+  "record": "Record",
+  "play": "Play",
+  "stop": "Stop",
+  "sustain": "Sustain",
+  "metronome": "Metronome",
+  "disable": "Disable",
+  "enable": "Enable",
+  "sound": "Sound",
+  "appearances": "Appearances",
+  "keyAssist": "Key Assist"
+}

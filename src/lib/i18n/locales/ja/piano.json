@@ -1,0 +1,15 @@
+{
+  "grandPiano": "グランドピアノ",
+  "classicalPiano": "クラシックピアノ",
+  "organ": "オルガン",
+  "record": "録音",
+  "play": "再生",
+  "stop": "停止",
+  "sustain": "サステイン",
+  "metronome": "メトロノーム",
+  "disable": "無効",
+  "enable": "有効",
+  "sound": "サウンド",
+  "appearances": "外観",
+  "keyAssist": "キーアシスト"
+}
