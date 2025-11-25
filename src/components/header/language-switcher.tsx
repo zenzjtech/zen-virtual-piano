@@ -58,6 +58,21 @@ export const LanguageSwitcher = ({ isDarkBackground }: LanguageSwitcherProps) =>
     { locale: 'en' as SupportedLocale, label: '🇺🇸 English', displayLabel: 'English' },
     { locale: 'ja' as SupportedLocale, label: '🇯🇵 日本語', displayLabel: '日本語' },
     { locale: 'vi' as SupportedLocale, label: '🇻🇳 Tiếng Việt', displayLabel: 'Tiếng Việt' },
+    { locale: 'ko' as SupportedLocale, label: '🇰🇷 한국어', displayLabel: '한국어' },
+    { locale: 'zh_CN' as SupportedLocale, label: '🇨🇳 简体中文', displayLabel: '简体中文' },
+    { locale: 'zh_HK' as SupportedLocale, label: '🇭🇰 繁體中文', displayLabel: '繁體中文' },
+    { locale: 'hi' as SupportedLocale, label: '🇮🇳 हिंदी', displayLabel: 'हिंदी' },
+    { locale: 'es' as SupportedLocale, label: '🇪🇸 Español', displayLabel: 'Español' },
+    { locale: 'fr' as SupportedLocale, label: '🇫🇷 Français', displayLabel: 'Français' },
+    { locale: 'de' as SupportedLocale, label: '🇩🇪 Deutsch', displayLabel: 'Deutsch' },
+    { locale: 'ru' as SupportedLocale, label: '🇷🇺 Русский', displayLabel: 'Русский' },
+    { locale: 'pt_BR' as SupportedLocale, label: '🇧🇷 Português (Brasil)', displayLabel: 'Português (Brasil)' },
+    { locale: 'id' as SupportedLocale, label: '🇮🇩 Bahasa Indonesia', displayLabel: 'Bahasa Indonesia' },
+    { locale: 'tr' as SupportedLocale, label: '🇹🇷 Türkçe', displayLabel: 'Türkçe' },
+    { locale: 'bn' as SupportedLocale, label: '🇧🇩 বাংলা', displayLabel: 'বাংলা' },
+    { locale: 'mr' as SupportedLocale, label: '🇮🇳 मराठी', displayLabel: 'मराठी' },
+    { locale: 'te' as SupportedLocale, label: '🇮🇳 తెలుగు', displayLabel: 'తెలుగు' },
+    { locale: 'ta' as SupportedLocale, label: '🇮🇳 தமிழ்', displayLabel: 'தமிழ்' },
   ];
 
   // Get current language display name for tooltip

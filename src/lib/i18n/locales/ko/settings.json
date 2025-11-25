@@ -34,5 +34,19 @@
   "english": "영어 (English)",
   "japanese": "일본어 (Japanese)",
   "vietnamese": "베트남어 (Vietnamese)",
-  "korean": "한국어 (Korean)"
+  "korean": "한국어 (Korean)",
+  "chineseSimplified": "중국어 간체 (Chinese Simplified)",
+  "chineseTraditional": "중국어 번체 (Chinese Traditional)",
+  "hindi": "힌디어 (Hindi)",
+  "spanish": "스페인어 (Spanish)",
+  "french": "프랑스어 (French)",
+  "german": "독일어 (German)",
+  "russian": "러시아어 (Russian)",
+  "portugueseBrazil": "포르투갈어 (브라질) (Portuguese - Brazil)",
+  "indonesian": "인도네시아어 (Indonesian)",
+  "turkish": "튀르키예어 (Turkish)",
+  "bengali": "벵골어 (Bengali)",
+  "marathi": "마라티어 (Marathi)",
+  "telugu": "텔루구어 (Telugu)",
+  "tamil": "타밀어 (Tamil)"
 }

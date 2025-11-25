@@ -7,7 +7,7 @@ export default defineConfig({
     name: '__MSG_appName__',    
     description: '__MSG_appDescription__',
     short_name: '__MSG_appShortName__',  
-    default_locale: 'ja',      
+    default_locale: 'en',      
     permissions: [
       "identity",
       "storage",

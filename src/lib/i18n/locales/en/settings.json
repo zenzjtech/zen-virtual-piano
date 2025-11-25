@@ -34,5 +34,19 @@
   "english": "English",
   "japanese": "日本語 (Japanese)",
   "vietnamese": "Tiếng Việt (Vietnamese)",
-  "korean": "한국어 (Korean)"
+  "korean": "한국어 (Korean)",
+  "chineseSimplified": "简体中文 (Chinese Simplified)",
+  "chineseTraditional": "繁體中文 (Chinese Traditional)",
+  "hindi": "हिंदी (Hindi)",
+  "spanish": "Español (Spanish)",
+  "french": "Français (French)",
+  "german": "Deutsch (German)",
+  "russian": "Русский (Russian)",
+  "portugueseBrazil": "Português (Brasil) (Portuguese - Brazil)",
+  "indonesian": "Bahasa Indonesia (Indonesian)",
+  "turkish": "Türkçe (Turkish)",
+  "bengali": "বাংলা (Bengali)",
+  "marathi": "मराठी (Marathi)",
+  "telugu": "తెలుగు (Telugu)",
+  "tamil": "தமிழ் (Tamil)"
 }

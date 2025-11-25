@@ -1,6 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type SupportedLocale = 'en' | 'ja' | 'vi';
+export type SupportedLocale = 
+  | 'en' 
+  | 'ja' 
+  | 'vi' 
+  | 'zh_CN' 
+  | 'zh_HK' 
+  | 'hi' 
+  | 'es' 
+  | 'fr' 
+  | 'bn' 
+  | 'ru' 
+  | 'pt_BR' 
+  | 'id' 
+  | 'de' 
+  | 'tr' 
+  | 'mr' 
+  | 'te' 
+  | 'ta' 
+  | 'ko';
 
 export interface I18nState {
   locale: SupportedLocale;
