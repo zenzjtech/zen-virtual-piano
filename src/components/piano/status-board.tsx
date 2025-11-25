@@ -9,6 +9,7 @@ import { useTotalPages } from '@/hooks/use-total-pages';
 import { useAppConfig } from '#imports';
 import { Box } from '@mui/material';
 import { useNotification } from '@/contexts/notification-context';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface StatisticsBoardProps {
   /** Currently pressed notes with their key information */
@@ -29,6 +30,8 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
 }) => {
   const appConfig = useAppConfig();
   const { showNotification } = useNotification();
+  const { t: tPiano } = useTranslation('piano');
+  const { t: tNotifications } = useTranslation('notifications');
   
   // Get music sheet state
   const currentSheet = useAppSelector((state) => state.musicSheet.currentSheet);
@@ -81,7 +84,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
     currentNote.keyboardKey === lastNote.keyboardKey;
 
   // Format history for display (show last 10)
-  const historyText = noteHistory.join(' ') || 'No history yet...';
+  const historyText = noteHistory.join(' ') || tPiano('noHistoryYet');
   
   // Clear history handler
   const handleClearHistory = () => {
@@ -92,7 +95,7 @@ export const StatusBoard: React.FC<StatisticsBoardProps> = ({
     setTimeout(() => {
       setNoteHistory([]);
       setIsClearing(false);
-      showNotification('History cleared', 'success');
+      showNotification(tNotifications('historyCleared'), 'success');
     }, 300); // Match animation duration
   };
   

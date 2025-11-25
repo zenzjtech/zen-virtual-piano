@@ -25,6 +25,7 @@ import {
   CharacteristicChips,
 } from './popup-styled-components';
 import { PopupSearchBar } from './popup-search-bar';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface InstrumentSelectorPopupProps {
   open: boolean;
@@ -52,6 +53,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
 }) => {
   const soundSets = getAllSoundSets();
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation('piano');
 
   // Filter sound sets based on search query
   const filteredSoundSets = useMemo(() => {
@@ -132,7 +134,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                     letterSpacing: '0.5px',
                   }}
                 >
-                  Select Instrument
+                  {t('selectInstrument')}
                 </Typography>
               </Box>
               {isLoading && (
@@ -150,7 +152,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                       fontSize: '0.75rem',
                     }}
                   >
-                    Loading...
+                    {t('loading')}
                   </Typography>
                 </Box>
               )}
@@ -162,7 +164,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
             <PopupSearchBar
               value={searchQuery}
               onChange={setSearchQuery}
-              placeholder="Search instruments..."
+              placeholder={t('searchInstruments')}
               pianoTheme={pianoTheme}
               isOpen={open}
             />
@@ -272,13 +274,13 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                               pianoTheme={pianoTheme}
                             />
                             <StyledChip
-                              label={`${soundSet.characteristics.sustain} sustain`}
+                              label={t('sustainLabel', { value: soundSet.characteristics.sustain })}
                               size="small"
                               variant="outlined"
                               pianoTheme={pianoTheme}
                             />
                             <StyledChip
-                              label={`${soundSet.characteristics.attack} attack`}
+                              label={t('attackLabel', { value: soundSet.characteristics.attack })}
                               size="small"
                               variant="outlined"
                               pianoTheme={pianoTheme}
@@ -300,7 +302,7 @@ export const InstrumentSelectorPopup: React.FC<InstrumentSelectorPopupProps> = (
                     opacity: 0.7,
                   }}
                 >
-                  No instruments found matching "{searchQuery}"
+                  {t('noInstrumentsFound', { searchQuery })}
                 </Typography>
               </Box>
             )}

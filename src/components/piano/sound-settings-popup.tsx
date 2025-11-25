@@ -31,6 +31,7 @@ import { StyledPopupPaper, PopupHeaderBox, PopupContentBox } from './popup-style
 import { PopupSearchBar } from './popup-search-bar';
 import { useAppSelector } from '@/store/hook';
 import { usePopupSelectHandler } from '@/hooks/use-popup-select-handler';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SoundSettingsPopupProps {
   open: boolean;
@@ -146,6 +147,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   
   // Use custom hook for popup select handling
   const { handleClickAway, handleSelectOpen, handleSelectClose } = usePopupSelectHandler(onClose);
+  const { t } = useTranslation('piano');
   
   // Refs for each section
   const metronomeRef = useRef<HTMLDivElement>(null);
@@ -305,7 +307,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                   letterSpacing: '0.5px',
                 }}
               >
-                Sound Settings
+                {t('soundSettingsTitle')}
               </Typography>
             </Box>
           </PopupHeaderBox>
@@ -314,7 +316,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
           <PopupSearchBar
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search settings..."
+            placeholder={t('searchSettings')}
             pianoTheme={pianoTheme}
             isOpen={open}
           />
@@ -333,7 +335,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     fontWeight="600"
                     sx={{ color: pianoTheme.colors.primary }}
                   >
-                    Sustain
+                    {t('sustain')}
                   </Typography>
                   <FormControlLabel
                     control={
@@ -343,7 +345,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                         size="small"
                       />
                     }
-                    label={sustain > -10 ? "ON" : "OFF"}
+                    label={sustain > -10 ? t('enable') : t('disable')}
                     labelPlacement="end"
                     sx={{
                       ml: 'auto',
@@ -364,7 +366,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     opacity: 0.85,
                   }}
                 >
-                  Adjust: {sustain.toFixed(1)}s • Total: {(sustain + 10.5).toFixed(1)}s
+                  {t('adjust')} {sustain.toFixed(1)}s • {t('total')} {(sustain + 10.5).toFixed(1)}s
                 </Typography>
                 <StyledSlider
                   value={sustain}
@@ -398,7 +400,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     fontWeight="600"
                     sx={{ color: pianoTheme.colors.primary }}
                   >
-                    Transpose
+                    {t('transpose')}
                   </Typography>
                 </ControlLabel>
                 <Typography
@@ -410,7 +412,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     opacity: 0.85,
                   }}
                 >
-                  Shift pitch up or down by semitones
+                  {t('transposeDescription')}
                 </Typography>
                 <TransposeControls>
                   <StyledIconButton
@@ -460,7 +462,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     fontWeight="600"
                     sx={{ color: pianoTheme.colors.primary }}
                   >
-                    Volume
+                    {t('volume')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -470,7 +472,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                       fontWeight: 600,
                     }}
                   >
-                    {volume}%
+                    {t('volumeLabel', { value: volume })}
                   </Typography>
                 </ControlLabel>
                 <StyledSlider
@@ -504,7 +506,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     fontWeight="600"
                     sx={{ color: pianoTheme.colors.primary }}
                   >
-                    MIDI Device
+                    {t('midiDevice')}
                   </Typography>
                 </ControlLabel>
                 <Typography
@@ -556,7 +558,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     fontWeight="600"
                     sx={{ color: pianoTheme.colors.primary }}
                   >
-                    Metronome
+                    {t('metronome')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -578,7 +580,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     opacity: 0.85,
                   }}
                 >
-                  Set tempo and control metronome playback
+                  {t('metronomeDescription')}
                 </Typography>
                 <Box sx={{ mb: 2 }}>
                   <Typography
@@ -590,7 +592,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                       mb: 0.5,
                     }}
                   >
-                    Tempo
+                    {t('tempo')}
                   </Typography>
                   <StyledSlider
                     value={metronomeTempo}
@@ -624,7 +626,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                       mb: 0.5,
                     }}
                   >
-                    Volume: {metronomeVolume}%
+                    {t('volumeLabel', { value: metronomeVolume })}
                   </Typography>
                   <StyledSlider
                     value={metronomeVolume}
@@ -664,7 +666,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                     },
                   }}
                 >
-                  {metronomeEnabled ? 'Stop' : 'Play'}
+                  {metronomeEnabled ? t('stop') : t('play')}
                 </Button>
               </ControlSection>
               )}
@@ -679,7 +681,7 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
                       opacity: 0.7,
                     }}
                   >
-                    No settings found matching "{searchQuery}"
+                    {t('noSettingsFound', { searchQuery })}
                   </Typography>
                 </Box>
               )}

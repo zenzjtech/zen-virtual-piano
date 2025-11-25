@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { ActionButton } from '../action-button';
 import { getMusicSheetThemeColors } from '../music-sheet-theme-colors';
+import { useTranslation } from '@/hooks/use-translation';
 
 /**
  * Navigation button for next page
@@ -10,7 +11,10 @@ import { getMusicSheetThemeColors } from '../music-sheet-theme-colors';
 export const NextPageButton: React.FC<{
   onNext: () => void;
   musicSheetThemeId: string;
-}> = ({ onNext, musicSheetThemeId }) => (
+}> = ({ onNext, musicSheetThemeId }) => {
+  const { t } = useTranslation('piano');
+  
+  return (
   <Box
     sx={{
       position: 'absolute',
@@ -24,7 +28,8 @@ export const NextPageButton: React.FC<{
       icon={<ChevronRightIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Next page"
-      tooltip="Next Page (→ / Enter)"
+      tooltip={t('nextPageTooltip')}
     />
   </Box>
 );
+}

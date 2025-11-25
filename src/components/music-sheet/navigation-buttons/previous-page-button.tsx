@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { ActionButton } from '../action-button';
 import { getMusicSheetThemeColors } from '../music-sheet-theme-colors';
+import { useTranslation } from '@/hooks/use-translation';
 
 /**
  * Navigation button for previous page
@@ -10,7 +11,10 @@ import { getMusicSheetThemeColors } from '../music-sheet-theme-colors';
 export const PreviousPageButton: React.FC<{
   onPrevious: () => void;
   musicSheetThemeId: string;
-}> = ({ onPrevious, musicSheetThemeId }) => (
+}> = ({ onPrevious, musicSheetThemeId }) => {
+  const { t } = useTranslation('piano');
+  
+  return (
   <Box
     sx={{
       position: 'absolute',
@@ -25,7 +29,8 @@ export const PreviousPageButton: React.FC<{
       icon={<ChevronLeftIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
       ariaLabel="Previous page"
-      tooltip="Previous Page (← / Backspace)"
+      tooltip={t('previousPageTooltip')}
     />
   </Box>
 );
+}

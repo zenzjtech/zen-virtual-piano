@@ -18,6 +18,7 @@ import {
   PopupHeaderBox,
   PopupContentBox,
 } from './popup-styled-components';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface KeyAssistPopupProps {
   open: boolean;
@@ -44,6 +45,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
   onShowNoteNameChange,
   pianoTheme,
 }) => {
+  const { t } = useTranslation('piano');
   const handleKeyboardToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.checked;
     if (newValue && showNoteName) {
@@ -109,7 +111,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                   letterSpacing: '0.5px',
                 }}
               >
-                Key Assist Settings
+                {t('keyAssistSettings')}
               </Typography>
             </Box>
           </PopupHeaderBox>
@@ -127,7 +129,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                   mb: 1,
                 }}
               >
-                Choose how to display key information on the piano
+                {t('chooseDisplayKeyInfo')}
               </Typography>
 
               <Divider sx={{ borderColor: pianoTheme.colors.border, opacity: 0.3 }} />
@@ -160,7 +162,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                             fontSize: '0.9rem',
                           }}
                         >
-                          Show Keyboard Keys
+                          {t('showKeyboardKeys')}
                         </Typography>
                         {showKeyboard && (
                           <CheckCircleIcon
@@ -182,7 +184,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                           mt: 0.5,
                         }}
                       >
-                        Display keyboard shortcuts (A, S, D, etc.) on piano keys
+                        {t('displayKeyboardShortcuts')}
                       </Typography>
                     </Box>
                   }
@@ -227,7 +229,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                             fontSize: '0.9rem',
                           }}
                         >
-                          Show Note Names
+                          {t('showNoteNames')}
                         </Typography>
                         {showNoteName && (
                           <CheckCircleIcon
@@ -249,7 +251,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                           mt: 0.5,
                         }}
                       >
-                        Display musical note names (C, D, E, etc.) on piano keys
+                        {t('displayNoteNames')}
                       </Typography>
                     </Box>
                   }
@@ -278,7 +280,7 @@ export const KeyAssistPopup: React.FC<KeyAssistPopupProps> = ({
                       textAlign: 'center',
                     }}
                   >
-                    No labels will be shown on the piano keys
+                    {t('noLabelsShown')}
                   </Typography>
                 </>
               )}

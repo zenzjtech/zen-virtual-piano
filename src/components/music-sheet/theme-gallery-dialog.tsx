@@ -5,6 +5,7 @@ import { MUSIC_SHEET_THEMES } from '@/theme/definitions/music-sheet-themes';
 import { ThemePreviewCard } from './theme-preview-card';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setMusicSheetTheme } from '@/store/reducers/theme-slice';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface ThemeGalleryDialogProps {
   open: boolean;
@@ -20,6 +21,8 @@ export const ThemeGalleryDialog: React.FC<ThemeGalleryDialogProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const currentThemeId = useAppSelector((state) => state.theme.musicSheetTheme);
+
+  const { t } = useTranslation('piano');
 
   const handleThemeSelect = (themeId: string) => {
     dispatch(setMusicSheetTheme(themeId));
@@ -48,7 +51,7 @@ export const ThemeGalleryDialog: React.FC<ThemeGalleryDialogProps> = ({
       >
         <Box>
           <Box component="span" sx={{ fontSize: '1.25rem', fontWeight: 600 }}>
-            Choose Your Sheet Music Theme
+            {t('chooseSheetMusicTheme')}
           </Box>
           <Box
             component="p"
@@ -60,7 +63,7 @@ export const ThemeGalleryDialog: React.FC<ThemeGalleryDialogProps> = ({
               fontWeight: 'normal',
             }}
           >
-            Select a paper style that suits your reading preference
+            {t('selectPaperStyle')}
           </Box>
         </Box>
         <IconButton

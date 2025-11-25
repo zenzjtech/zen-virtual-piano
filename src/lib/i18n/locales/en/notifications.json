@@ -14,5 +14,6 @@
   "recordingCleared": "🗑️ Recording cleared",
   "recordingDownloaded": "💾 Recording downloaded",
   "recordingPlaybackPaused": "Recording playback paused - sheet music is playing",
-  "sheetMusicPaused": "Sheet music paused - recording playback is playing"
+  "sheetMusicPaused": "Sheet music paused - recording playback is playing",
+  "historyCleared": "History cleared"
 }

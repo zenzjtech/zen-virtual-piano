@@ -2,5 +2,6 @@
   "success": "成功",
   "error": "エラー",
   "welcome": "ようこそ",
-  "tip": "ヒント"
+  "tip": "ヒント",
+  "historyCleared": "履歴をクリアしました"
 }

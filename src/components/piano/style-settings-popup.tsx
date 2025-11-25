@@ -27,6 +27,7 @@ import { PopupSearchBar } from './popup-search-bar';
 import { ThemeSection } from './theme-section';
 import { PresetSelector } from './preset-selector';
 import { useThemeFilter } from '../../hooks/use-theme-filter';
+import { useTranslation } from '@/hooks/use-translation';
 import { ThemePreset, THEME_PRESETS } from './theme-presets';
 import { BACKGROUND_THEMES } from '@/theme/definitions/background-themes';
 import { MUSIC_SHEET_THEMES } from '@/theme/definitions/music-sheet-themes';
@@ -66,6 +67,8 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
   const [pianoThemeExpanded, setPianoThemeExpanded] = useState(false);
   const [backgroundThemeExpanded, setBackgroundThemeExpanded] = useState(false);
   const [musicSheetThemeExpanded, setMusicSheetThemeExpanded] = useState(false);
+
+  const { t } = useTranslation('piano');
 
   // Filter themes based on search query using custom hook
   const filteredPianoThemes = useThemeFilter(pianoThemes, searchQuery);
@@ -157,7 +160,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                     letterSpacing: '0.5px',
                   }}
                 >
-                  Style Settings
+                  {t('styleSettings')}
                 </Typography>
               </Box>
               
@@ -208,7 +211,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
             <PopupSearchBar
               value={searchQuery}
               onChange={setSearchQuery}
-              placeholder="Search styles..."
+              placeholder={t('searchStyles')}
               pianoTheme={pianoTheme}
               isOpen={open}
             />
@@ -235,7 +238,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
               {/* Piano Theme Section */}
               {showPianoThemes && (
                 <ThemeSection
-                  title="Piano Theme"
+                  title={t('pianoTheme')}
                   icon={
                     <PianoIcon
                       sx={{
@@ -263,7 +266,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
               {/* Background Theme Section */}
               {showBackgroundThemes && (
                 <ThemeSection
-                  title="Background Theme"
+                  title={t('backgroundTheme')}
                   icon={
                     <BackgroundIcon
                       sx={{
@@ -291,7 +294,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
               {/* Music Sheet Theme Section */}
               {showMusicSheetThemes && (
                 <ThemeSection
-                  title="Music Sheet Theme"
+                  title={t('musicSheetTheme')}
                   icon={
                     <MusicSheetIcon
                       sx={{
@@ -321,7 +324,7 @@ export const StyleSettingsPopup: React.FC<StyleSettingsPopupProps> = ({
                       opacity: 0.7,
                     }}
                   >
-                    No styles found matching "{searchQuery}"
+                    {t('noStylesFound', { searchQuery })}
                   </Typography>
                 </Box>
               )}

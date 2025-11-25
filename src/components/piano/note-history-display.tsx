@@ -3,6 +3,7 @@ import { IconButton, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { PianoTheme } from './themes';
 import { HistoryDisplay, Label, PressedKeysText } from './status-board-styled';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface NoteHistoryDisplayProps {
   pianoTheme: PianoTheme;
@@ -17,6 +18,7 @@ export const NoteHistoryDisplay: React.FC<NoteHistoryDisplayProps> = ({
   onClearHistory,
   isClearing,
 }) => {
+  const { t } = useTranslation('piano');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom when history changes
@@ -29,7 +31,7 @@ export const NoteHistoryDisplay: React.FC<NoteHistoryDisplayProps> = ({
   return (
     <HistoryDisplay sx={{ pb: 1, position: 'relative' }}>
       {/* Clear History Button */}
-      <Tooltip title="Clear history" placement="top" arrow>
+      <Tooltip title={t('clearHistory')} placement="top" arrow>
         <IconButton
           onClick={onClearHistory}
           size="small"
@@ -58,7 +60,7 @@ export const NoteHistoryDisplay: React.FC<NoteHistoryDisplayProps> = ({
         </IconButton>
       </Tooltip>
       
-      <Label variant="caption" pianoTheme={pianoTheme} sx={{ ml: 2.5 }}>History</Label>
+      <Label variant="caption" pianoTheme={pianoTheme} sx={{ ml: 2.5 }}>{t('history')}</Label>
       <PressedKeysText
         ref={scrollRef}
         variant="body2"
