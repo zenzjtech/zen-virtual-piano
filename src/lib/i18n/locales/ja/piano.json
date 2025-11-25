@@ -31,11 +31,11 @@
   "nextPage": "次のページ",
   "previousPage": "前のページ",
   "closeDialogPopup": "ダイアログ/ポップアップを閉じる",
-  "playWhiteKeysC2E3": "白鍵を演奏 (C2-E3)",
-  "playWhiteKeysF3A4": "白鍵を演奏 (F3-A4)",
-  "playWhiteKeysB4C6": "白鍵を演奏 (B4-C6)",
-  "playWhiteKeysD6C7": "白鍵を演奏 (D6-C7)",
-  "playBlackKeys": "黒鍵を演奏 (シャープ/フラット)",
+  "playWhiteKeysC2E3": "白鍵を弾く (C2-E3)",
+  "playWhiteKeysF3A4": "白鍵を弾く (F3-A4)",
+  "playWhiteKeysB4C6": "白鍵を弾く (B4-C6)",
+  "playWhiteKeysD6C7": "白鍵を弾く (D6-C7)",
+  "playBlackKeys": "黒鍵を弾く (シャープ/フラット)",
   "downloadRecording": "録音をダウンロード",
   "clearRecording": "録音をクリア",
   "loopOn": "ループ: ON",
@@ -86,5 +86,5 @@
   "sampleSongLoaded": "サンプル曲が読み込まれました。",
   "sheetsButton": "楽譜",
   "sampleSongLoadedEnd": "ボタンをクリックして、他の曲を閲覧・選択してください。",
-  "preferManualPlay": "手動で演奏したいですか？このガイドを閉じて、自由に演奏をお楽しみください！"
+  "preferManualPlay": "手動で弾きたい場合は、このガイドを閉じて、ご自由にお楽しみください！"
 }

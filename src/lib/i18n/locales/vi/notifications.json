@@ -13,7 +13,7 @@
   "recordingStopped": "⏹️ Đã dừng ghi âm ({{count}} nốt, {{duration}})",
   "recordingCleared": "🗑️ Đã xóa bản ghi",
   "recordingDownloaded": "💾 Đã tải xuống bản ghi",
-  "recordingPlaybackPaused": "Phát lại bản ghi đã tạm dừng - đang phát nhạc phổ",
-  "sheetMusicPaused": "Nhạc phổ đã tạm dừng - đang phát lại bản ghi",
+  "recordingPlaybackPaused": "Phát lại bản ghi đã tạm dừng - đang phát Sheet",
+  "sheetMusicPaused": "Sheet đã tạm dừng - đang phát lại bản ghi",
   "historyCleared": "Đã xóa lịch sử"
 }
