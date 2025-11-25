@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Zen Virtual Piano: Free Virtual Keyboard, Online Piano Simulator, Record & Learn",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

@@ -4,7 +4,9 @@ import { defineConfig } from 'wxt';
 export default defineConfig({  
   modules: ['@wxt-dev/module-react'],
   manifest: {
-    name: 'Zen Virtual Piano',    
+    name: '__MSG_appName__',    
+    description: '__MSG_appDescription__',
+    short_name: '__MSG_appShortName__',    
     permissions: [
       "identity",
       "storage",
