@@ -31,6 +31,8 @@ export const ANALYTICS_ACTION = {
     QUOTE_FAVORITES_FILTER_TOGGLED: 'Quote favorites filter toggled',
     QUOTE_FAVORITED: 'Quote favorited',
     QUOTE_UNFAVORITED: 'Quote unfavorited',
+    RECORD_CLEARED: 'Recording cleared',
+    RECORD_DOWNLOADED: 'Recording downloaded',
     SHEET_PLAYBACK_STARTED: 'Sheet playback started',
     SHEET_PLAYBACK_PAUSED: 'Sheet playback paused',
     SHEET_PLAYBACK_STOPPED: 'Sheet playback stopped',

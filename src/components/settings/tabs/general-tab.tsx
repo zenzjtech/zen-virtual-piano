@@ -58,7 +58,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ color: settingsTheme.textColor, mb: 3, fontWeight: 600 }}>
+      <Typography variant="h6" sx={{ color: settingsTheme.textPrimary, mb: 3, fontWeight: 600 }}>
         {t('generalSettings')}
       </Typography>
 
@@ -80,8 +80,8 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
             <FormControl fullWidth>
               <InputLabel
                 sx={{
-                  color: settingsTheme.secondaryTextColor,
-                  '&.Mui-focused': { color: settingsTheme.textColor },
+                  color: settingsTheme.textSecondary,
+                  '&.Mui-focused': { color: settingsTheme.textPrimary },
                 }}
               >
                 {t('themeChangeInterval')}
@@ -91,18 +91,18 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
                 label={t('themeChangeInterval')}
                 onChange={(e) => dispatch(setAutoThemeInterval(e.target.value as ThemeChangeInterval))}
                 sx={{
-                  color: settingsTheme.textColor,
+                  color: settingsTheme.textPrimary,
                   '& .MuiOutlinedInput-notchedOutline': {
                     borderColor: settingsTheme.borderColor,
                   },
                   '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: settingsTheme.textColor,
+                    borderColor: settingsTheme.textPrimary,
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: settingsTheme.textColor,
+                    borderColor: settingsTheme.textPrimary,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: settingsTheme.textColor,
+                    color: settingsTheme.textPrimary,
                   },
                 }}
                 MenuProps={{
@@ -112,7 +112,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
                       backgroundImage: 'none',
                       backdropFilter: 'blur(20px)',
                       '& .MuiMenuItem-root': {
-                        color: settingsTheme.textColor,
+                        color: settingsTheme.textPrimary,
                         '&:hover': {
                           bgcolor: settingsTheme.hoverBg,
                         },
@@ -133,7 +133,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
                   </MenuItem>
                 ))}
               </Select>
-              <Typography variant="caption" sx={{ color: settingsTheme.secondaryTextColor, mt: 1 }}>
+              <Typography variant="caption" sx={{ color: settingsTheme.textSecondary, mt: 1 }}>
                 {t('autoThemeIntervalDescription')}
               </Typography>
             </FormControl>
@@ -142,7 +142,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
           <Divider sx={{ my: 3, borderColor: settingsTheme.borderColor }} />
 
           <Box sx={{ px: 2.5 }}>
-            <Typography variant="body2" sx={{ color: settingsTheme.secondaryTextColor, fontStyle: 'italic' }}>
+            <Typography variant="body2" sx={{ color: settingsTheme.textSecondary, fontStyle: 'italic' }}>
               {t('autoThemeTip')}
             </Typography>
           </Box>
@@ -156,8 +156,8 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
         <FormControl fullWidth>
           <InputLabel
             sx={{
-              color: settingsTheme.secondaryTextColor,
-              '&.Mui-focused': { color: settingsTheme.textColor },
+              color: settingsTheme.textSecondary,
+              '&.Mui-focused': { color: settingsTheme.textPrimary },
             }}
           >
             {t('language')}
@@ -167,18 +167,18 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
             label={t('language')}
             onChange={(e) => dispatch(setLocale(e.target.value as SupportedLocale))}
             sx={{
-              color: settingsTheme.textColor,
+              color: settingsTheme.textPrimary,
               '& .MuiOutlinedInput-notchedOutline': {
                 borderColor: settingsTheme.borderColor,
               },
               '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: settingsTheme.textColor,
+                borderColor: settingsTheme.textPrimary,
               },
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: settingsTheme.textColor,
+                borderColor: settingsTheme.textPrimary,
               },
               '& .MuiSvgIcon-root': {
-                color: settingsTheme.textColor,
+                color: settingsTheme.textPrimary,
               },
             }}
             MenuProps={{
@@ -188,7 +188,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
                   backgroundImage: 'none',
                   backdropFilter: 'blur(20px)',
                   '& .MuiMenuItem-root': {
-                    color: settingsTheme.textColor,
+                    color: settingsTheme.textPrimary,
                     '&:hover': {
                       bgcolor: settingsTheme.hoverBg,
                     },
@@ -209,7 +209,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
               </MenuItem>
             ))}
           </Select>
-          <Typography variant="caption" sx={{ color: settingsTheme.secondaryTextColor, mt: 1 }}>
+          <Typography variant="caption" sx={{ color: settingsTheme.textSecondary, mt: 1 }}>
             {t('languageDescription')}
           </Typography>
         </FormControl>
