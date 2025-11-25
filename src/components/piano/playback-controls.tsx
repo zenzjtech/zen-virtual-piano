@@ -11,6 +11,7 @@ import {
 import { PianoTheme } from './themes';
 import { useAppSelector } from '@/store/hook';
 import { usePlayerControls } from '@/hooks/use-player-controls';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface PlaybackControlsProps {
   totalPages: number;
@@ -32,9 +33,10 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
     handleNextPage,
     handleToggleLoop,
   } = usePlayerControls();
+  const { t } = useTranslation('piano');
   return (
     <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', justifyContent: 'center' }}>
-      <Tooltip title="Previous Page (← LeftArrow / Backspace)">
+      <Tooltip title={t('previousPageTooltip')}>
         <span>
           <IconButton
             onClick={handlePreviousPage}
@@ -47,7 +49,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </span>
       </Tooltip>
 
-      <Tooltip title="Next Page (→ RightArrow / Enter)">
+      <Tooltip title={t('nextPageTooltip')}>
         <span>
           <IconButton
             onClick={handleNextPage}
@@ -60,7 +62,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </span>
       </Tooltip>      
 
-      <Tooltip title={playback.isPlaying ? 'Pause (Ctrl+Enter)' : 'Play (Ctrl+Enter)'}>
+      <Tooltip title={playback.isPlaying ? t('pauseTooltip') : t('playTooltip')}>
         <IconButton
           onClick={() => handlePlayPause(playback.isPlaying)}
           size="small"
@@ -76,7 +78,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </IconButton>
       </Tooltip>
 
-      <Tooltip title="Stop">
+      <Tooltip title={t('stop')}>
         <IconButton
           onClick={handleStop}
           size="small"
@@ -86,7 +88,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
         </IconButton>
       </Tooltip>
 
-      <Tooltip title={playback.loopEnabled ? 'Loop: ON' : 'Loop: OFF'}>
+      <Tooltip title={playback.loopEnabled ? t('loopOn') : t('loopOff')}>
         <IconButton
           onClick={handleToggleLoop}
           size="small"

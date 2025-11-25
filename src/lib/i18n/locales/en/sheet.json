@@ -42,5 +42,18 @@
   "noSheetsMatchFilters": "No sheets match the selected filters",
   "confirmDeleteTitle": "Delete Sheet?",
   "deleteCustomSheetMessage": "This will permanently remove <strong>{{title}}</strong> by <strong>{{artist}}</strong> from your library.",
-  "deleteBuiltInSheetMessage": "This will hide <strong>{{title}}</strong> by <strong>{{artist}}</strong> from your library. The built-in sheet can be restored later."
+  "deleteBuiltInSheetMessage": "This will hide <strong>{{title}}</strong> by <strong>{{artist}}</strong> from your library. The built-in sheet can be restored later.",
+  "changeTheme": "Change theme",
+  "changePaperTheme": "Change paper theme",
+  "addToFavorites": "Add to favorites",
+  "removeFromFavorites": "Remove from favorites",
+  "addCustomSheetTooltip": "Add custom sheet",
+  "deleteSheetTooltip": "Delete sheet",
+  "closeSheet": "Close sheet",
+  "closeSheetTooltip": "Close sheet",
+  "endOfSheet": "End of sheet",
+  "noSheetsAvailableYet": "No sheets available yet",
+  "sheetLibraryLoading": "The sheet library is being loaded...",
+  "min": "min",
+  "bpm": "BPM"
 }

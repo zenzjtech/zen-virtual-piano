@@ -43,5 +43,18 @@
   "noSheetsFoundMatching": "Không tìm thấy bản nhạc khớp với \"{{query}}\"",
   "confirmDeleteTitle": "Xóa bản nhạc?",
   "deleteCustomSheetMessage": "Hành động này sẽ xóa vĩnh viễn <strong>{{title}}</strong> của <strong>{{artist}}</strong> khỏi thư viện của bạn.",
-  "deleteBuiltInSheetMessage": "Hành động này sẽ ẩn <strong>{{title}}</strong> của <strong>{{artist}}</strong> khỏi thư viện của bạn. Bản nhạc có sẵn có thể được khôi phục sau."
+  "deleteBuiltInSheetMessage": "Hành động này sẽ ẩn <strong>{{title}}</strong> của <strong>{{artist}}</strong> khỏi thư viện của bạn. Bản nhạc có sẵn có thể được khôi phục sau.",
+  "changeTheme": "Thay đổi chủ đề",
+  "changePaperTheme": "Thay đổi chủ đề giấy",
+  "addToFavorites": "Thêm vào yêu thích",
+  "removeFromFavorites": "Xóa khỏi yêu thích",
+  "addCustomSheetTooltip": "Thêm bản nhạc tùy chỉnh",
+  "deleteSheetTooltip": "Xóa bản nhạc",
+  "closeSheet": "Đóng bản nhạc",
+  "closeSheetTooltip": "Đóng bản nhạc",
+  "endOfSheet": "Kết thúc bản nhạc",
+  "noSheetsAvailableYet": "Chưa có bản nhạc nào",
+  "sheetLibraryLoading": "Đang tải thư viện bản nhạc...",
+  "min": "phút",
+  "bpm": "BPM"
 }

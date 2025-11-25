@@ -4,6 +4,7 @@
   "organ": "Đàn Órgano",
   "record": "Ghi âm",
   "play": "Phát",
+  "pause": "Tạm dừng",
   "stop": "Dừng",
   "sustain": "Kéo dài",
   "metronome": "Máy đánh nhịp",
@@ -39,5 +40,9 @@
   "clearRecording": "Xóa bản ghi",
   "loopOn": "Lặp lại: BẬT",
   "loopOff": "Lặp lại: TẮT",
-  "clickToChangeInstrument": "Nhấn để đổi nhạc cụ"
+  "clickToChangeInstrument": "Nhấn để đổi nhạc cụ",
+  "previousPageTooltip": "Trang trước (← Mũi tên trái / Backspace)",
+  "nextPageTooltip": "Trang tiếp theo (→ Mũi tên phải / Enter)",
+  "playTooltip": "Phát (Ctrl+Enter)",
+  "pauseTooltip": "Tạm dừng (Ctrl+Enter)"
 }

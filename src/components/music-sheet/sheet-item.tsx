@@ -22,6 +22,7 @@ import type { MusicSheetMetadata } from '@/services/sheet-library';
 import { getDifficultyColor, isFavorite } from './sheet-search-utils';
 import { useAppDispatch } from '@/store/hook';
 import { toggleFavorite, deleteSheet } from '@/store/reducers/music-sheet-slice';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SheetItemProps {
   sheet: MusicSheetMetadata;
@@ -40,6 +41,7 @@ export const SheetItem: React.FC<SheetItemProps> = ({
   onSelect,
 }) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('sheet');
   const isSheetFavorite = isFavorite(sheet.id, favorites);
   
   const handleFavoriteClick = (e: React.MouseEvent) => {
@@ -90,7 +92,7 @@ export const SheetItem: React.FC<SheetItemProps> = ({
                 {sheet.title}
               </Typography>
               <Chip
-                label={sheet.difficulty}
+                label={t(sheet.difficulty)}
                 size="small"
                 color={getDifficultyColor(sheet.difficulty)}
                 sx={{ height: 20, fontSize: '0.7rem' }}
@@ -118,7 +120,7 @@ export const SheetItem: React.FC<SheetItemProps> = ({
                       fontSize: '0.7rem',
                     }}
                   >
-                    • ~{Math.ceil(sheet.durationSeconds / 60)} min • {sheet.tempo} BPM
+                    • ~{Math.ceil(sheet.durationSeconds / 60)} {t('min')} • {sheet.tempo} {t('bpm')}
                   </Typography>
                 )}
               </Box>

@@ -4,6 +4,7 @@ import { Measure, PlaybackState } from './types';
 import { PianoTheme } from '../piano/themes';
 import { SheetNotationDisplay } from './sheet-notation-display';
 import { getMusicSheetThemeColors } from './music-sheet-theme-colors';
+import { useTranslation } from '@/hooks/use-translation';
 import bookImage1 from '@/assets/image/music-sheet/1.png';
 import bookImage2 from '@/assets/image/music-sheet/2.png';
 import bookImage3 from '@/assets/image/music-sheet/3.png';
@@ -64,6 +65,7 @@ export const BookPage: React.FC<BookPageProps> = ({
   isEmpty = false,
   isHighlighted = false,
 }) => {
+  const { t } = useTranslation('sheet');
   // Get the background image based on theme
   const getBackgroundImage = () => {
     switch (musicSheetThemeId) {
@@ -131,7 +133,7 @@ export const BookPage: React.FC<BookPageProps> = ({
           }}
         >
           <Typography variant="caption" color="text.disabled">
-            End of sheet
+            {t('endOfSheet')}
           </Typography>
         </Box>
       </Box>

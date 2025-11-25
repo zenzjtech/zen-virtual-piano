@@ -16,5 +16,18 @@
   "searchResults": "検索結果",
   "musicSheets": "楽譜",
   "addCustomSheet": "カスタム楽譜を追加",
-  "searchPlaceholder": "曲名、アーティスト、タグで検索..."
+  "searchPlaceholder": "曲名、アーティスト、タグで検索...",
+  "changeTheme": "テーマを変更",
+  "changePaperTheme": "紙のテーマを変更",
+  "addToFavorites": "お気に入りに追加",
+  "removeFromFavorites": "お気に入りから削除",
+  "addCustomSheetTooltip": "カスタム楽譜を追加",
+  "deleteSheetTooltip": "楽譜を削除",
+  "closeSheet": "楽譜を閉じる",
+  "closeSheetTooltip": "楽譜を閉じる",
+  "endOfSheet": "楽譜の終わり",
+  "noSheetsAvailableYet": "まだ楽譜がありません",
+  "sheetLibraryLoading": "楽譜ライブラリを読み込んでいます...",
+  "min": "分",
+  "bpm": "BPM"
 }

@@ -4,6 +4,7 @@
   "organ": "Organ",
   "record": "Record",
   "play": "Play",
+  "pause": "Pause",
   "stop": "Stop",
   "sustain": "Sustain",
   "metronome": "Metronome",
@@ -39,5 +40,9 @@
   "clearRecording": "Clear Recording",
   "loopOn": "Loop: ON",
   "loopOff": "Loop: OFF",
-  "clickToChangeInstrument": "Click to change instrument"
+  "clickToChangeInstrument": "Click to change instrument",
+  "previousPageTooltip": "Previous Page (← LeftArrow / Backspace)",
+  "nextPageTooltip": "Next Page (→ RightArrow / Enter)",
+  "playTooltip": "Play (Ctrl+Enter)",
+  "pauseTooltip": "Pause (Ctrl+Enter)"
 }

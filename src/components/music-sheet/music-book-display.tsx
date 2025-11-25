@@ -8,6 +8,7 @@ import { PianoTheme } from '../piano/themes';
 import { useAppConfig } from '#imports';
 import { useSheetPlayback } from '@/hooks/use-sheet-playback';
 import { usePageTransition } from '@/hooks/use-page-transition';
+import { useTranslation } from '@/hooks/use-translation';
 import { BookPage } from './book-page';
 import { calculateLineRanges, calculatePageSpread } from './music-book-utils';
 import { ActionButton } from './action-button';
@@ -42,7 +43,8 @@ const ActionButtons: React.FC<{
   onDelete: () => void;
   onClose: () => void;
   musicSheetThemeId: string;
-}> = ({ isFavorite, onToggleFavorite, onThemeClick, onAddSheet, onDelete, onClose, musicSheetThemeId }) => (
+  t: (key: string) => string;
+}> = ({ isFavorite, onToggleFavorite, onThemeClick, onAddSheet, onDelete, onClose, musicSheetThemeId, t }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -55,8 +57,8 @@ const ActionButtons: React.FC<{
       onClick={onThemeClick}
       icon={<PaletteIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Change theme"
-      tooltip="Change paper theme"
+      ariaLabel={t('changeTheme')}
+      tooltip={t('changePaperTheme')}
     />
 
     <ActionButton
@@ -64,24 +66,24 @@ const ActionButtons: React.FC<{
       icon={isFavorite ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
       isActive={isFavorite}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-      tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      ariaLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+      tooltip={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
     />
     
     <ActionButton
       onClick={onAddSheet}
       icon={<AddIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Add custom sheet"
-      tooltip="Add custom sheet"
+      ariaLabel={t('addCustomSheet')}
+      tooltip={t('addCustomSheetTooltip')}
     />
     
     <ActionButton
       onClick={onDelete}
       icon={<DeleteIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Delete sheet"
-      tooltip="Delete sheet"
+      ariaLabel={t('deleteSheet')}
+      tooltip={t('deleteSheetTooltip')}
     />
 
     
@@ -89,8 +91,8 @@ const ActionButtons: React.FC<{
       onClick={onClose}
       icon={<CloseIcon fontSize="small" />}
       customColors={getMusicSheetThemeColors(musicSheetThemeId)}
-      ariaLabel="Close sheet"
-      tooltip="Close sheet"
+      ariaLabel={t('closeSheet')}
+      tooltip={t('closeSheetTooltip')}
     />    
   </Box>
 );
@@ -108,6 +110,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
   isHighlighted = false,
 }) => {
   useSheetPlayback();
+  const { t } = useTranslation('sheet');
 
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.musicSheet.userData.favorites);
@@ -328,6 +331,7 @@ export const MusicBookDisplay: React.FC<MusicBookDisplayProps> = ({
           onDelete={() => setIsDeleteDialogOpen(true)}
           onClose={onClose}
           musicSheetThemeId={musicSheetThemeId}
+          t={t}
         />
       </Paper>
       

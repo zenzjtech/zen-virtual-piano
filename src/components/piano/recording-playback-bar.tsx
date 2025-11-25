@@ -288,7 +288,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
       >
         {/* Playback Controls */}
         <Box sx={{ display: 'flex', gap: 0.25, zIndex: 3 }}>
-          <Tooltip title={isPlaying ? 'Pause' : t('play')}>
+          <Tooltip title={isPlaying ? t('pause') : t('play')}>
             <ControlButton
               onClick={onTogglePlayback}
               pianoTheme={pianoTheme}
@@ -420,7 +420,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, zIndex: 3 }}>
         {/* Playback Controls */}
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Tooltip title={isPlaying ? 'Pause' : t('play')}>
+          <Tooltip title={isPlaying ? t('pause') : t('play')}>
             <ControlButton
               onClick={onTogglePlayback}
               pianoTheme={pianoTheme}

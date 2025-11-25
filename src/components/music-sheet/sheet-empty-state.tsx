@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { MusicNote as MusicNoteIcon } from '@mui/icons-material';
 import { PianoTheme } from '../piano/themes';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SheetEmptyStateProps {
   pianoTheme: PianoTheme;
@@ -11,6 +12,7 @@ interface SheetEmptyStateProps {
  * Empty state component for when no sheets are available
  */
 export const SheetEmptyState: React.FC<SheetEmptyStateProps> = ({ pianoTheme }) => {
+  const { t } = useTranslation('sheet');
   return (
     <Box sx={{ 
       textAlign: 'center', 
@@ -33,7 +35,7 @@ export const SheetEmptyState: React.FC<SheetEmptyStateProps> = ({ pianoTheme }) 
           fontWeight: 500,
         }}
       >
-        No sheets available yet
+        {t('noSheetsAvailableYet')}
       </Typography>
       <Typography
         variant="caption"
@@ -42,7 +44,7 @@ export const SheetEmptyState: React.FC<SheetEmptyStateProps> = ({ pianoTheme }) 
           opacity: 0.6,
         }}
       >
-        The sheet library is being loaded...
+        {t('sheetLibraryLoading')}
       </Typography>
     </Box>
   );
