@@ -5,6 +5,7 @@
 import { Menu, MenuItem, Box, Avatar, Typography, Divider, ListItemIcon, ListItemText } from '@mui/material';
 import { Logout } from '@mui/icons-material';
 import type { GoogleUserInfo } from '@/types/user-slice';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface UserMenuProps {
   anchorEl: HTMLElement | null;
@@ -23,6 +24,7 @@ export const UserMenu = ({
   onClose,
   onLogout,
 }: UserMenuProps) => {
+  const { t } = useTranslation('common');
   return (
     <Menu
       anchorEl={anchorEl}
@@ -90,7 +92,7 @@ export const UserMenu = ({
         <ListItemIcon>
           <Logout fontSize="small" sx={{ color: isDarkBackground ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)' }} />
         </ListItemIcon>
-        <ListItemText>Logout</ListItemText>
+        <ListItemText>{t('logout')}</ListItemText>
       </MenuItem>
     </Menu>
   );

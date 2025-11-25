@@ -14,6 +14,7 @@ import { InstrumentSetting } from './instrument-setting';
 import { BarContainer, SettingButton } from '@/components/global/components';
 import { trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SettingsBarProps {
   onTogglePiano?: () => void;
@@ -40,6 +41,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   const currentSoundSetId = useAppSelector((state) => state.pianoSettings.soundSet);
   
   const pianoTheme = getTheme(pianoThemeId);
+  const { t } = useTranslation('piano');
 
   const handleSoundClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Track sound settings opened
@@ -82,7 +84,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
             },
           }}
         >
-          {isPianoEnabled ? 'Disable' : 'Enable'}
+          {isPianoEnabled ? t('disable') : t('enable')}
         </SettingButton>
         
         <SettingButton
@@ -108,7 +110,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
             },
           }}
         >
-          {isRecording ? 'Stop' : 'Record'}
+          {isRecording ? t('stop') : t('record')}
         </SettingButton>
       </Box>
 
@@ -126,7 +128,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
           onClick={handleSoundClick}
           pianoTheme={pianoTheme}
         >
-          Sound
+          {t('sound')}
         </SettingButton>
 
         <SettingButton
@@ -135,7 +137,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
           onClick={handleStylesClick}
           pianoTheme={pianoTheme}
         >
-          Appearances
+          {t('appearances')}
         </SettingButton>
 
         <SettingButton
@@ -144,7 +146,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
           onClick={handleKeyAssistClick}
           pianoTheme={pianoTheme}
         >
-          Key Assist
+          {t('keyAssist')}
         </SettingButton>
       </Box>
     </BarContainer>

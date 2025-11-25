@@ -26,6 +26,7 @@ import { SheetSearchFilters } from './sheet-search-filters';
 import { SheetSearchContent } from './sheet-search-content';
 import { AddSheetDialog } from './add-sheet-dialog';
 import { usePopupSelectHandler } from '@/hooks/use-popup-select-handler';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SheetSearchDialogProps {
   open: boolean;
@@ -48,6 +49,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const dialogRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation('sheet');
   
   // Use custom hook for popup select handling
   const { handleClickAway, handleSelectOpen, handleSelectClose } = usePopupSelectHandler(onClose);
@@ -201,12 +203,12 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
                     letterSpacing: '0.5px',
                   }}
                 >
-                  Music Sheets
+                  {t('musicSheets')}
                 </Typography>
               </Box>
               
               {/* Add Sheet Button */}
-              <Tooltip title="Add custom sheet" placement="left">
+              <Tooltip title={t('addCustomSheet')} placement="left">
                 <IconButton
                   onClick={() => dispatch(openAddSheetDialog())}
                   size="small"
@@ -227,7 +229,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
           <PopupSearchBar
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search songs, artists, or tags..."
+            placeholder={t('searchPlaceholder')}
             pianoTheme={pianoTheme}
             isOpen={open}
           />
