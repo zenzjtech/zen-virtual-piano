@@ -1,0 +1,15 @@
+{
+  "grandPiano": "Đàn Piano Grand",
+  "classicalPiano": "Đàn Piano Cổ điển",
+  "organ": "Đàn Órgano",
+  "record": "Ghi âm",
+  "play": "Phát",
+  "stop": "Dừng",
+  "sustain": "Kéo dài",
+  "metronome": "Máy đánh nhịp",
+  "disable": "Tắt",
+  "enable": "Bật",
+  "sound": "Âm thanh",
+  "appearances": "Giao diện",
+  "keyAssist": "Trợ giúp phím"
+}

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type SupportedLocale = 'en' | 'ja';
+export type SupportedLocale = 'en' | 'ja' | 'vi';
 
 export interface I18nState {
   locale: SupportedLocale;
@@ -8,7 +8,7 @@ export interface I18nState {
 
 const getDefaultLocale = (): SupportedLocale => {
   const browserLang = navigator.language.substring(0, 2);
-  return browserLang === 'ja' ? 'ja' : 'en';
+  return browserLang === 'ja' ? 'ja' : browserLang === 'vi' ? 'vi' : 'en';
 };
 
 const initialState: I18nState = {

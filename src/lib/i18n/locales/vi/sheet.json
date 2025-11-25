@@ -1,0 +1,20 @@
+{
+  "addSheet": "Thêm bản nhạc",
+  "deleteSheet": "Xóa bản nhạc",
+  "goToPage": "Đi đến trang",
+  "title": "Tiêu đề",
+  "artist": "Nghệ sĩ",
+  "difficulty": "Độ khó",
+  "notation": "Ký hiệu",
+  "easy": "Dễ",
+  "medium": "Trung bình",
+  "hard": "Khó",
+  "titleAZ": "Tiêu đề (A-Z)",
+  "artistAZ": "Nghệ sĩ (A-Z)",
+  "recentlyAdded": "Đã thêm gần đây",
+  "noSheetsFound": "Không tìm thấy bản nhạc",
+  "searchResults": "Kết quả tìm kiếm",
+  "musicSheets": "Bản nhạc",
+  "addCustomSheet": "Thêm bản nhạc tùy chỉnh",
+  "searchPlaceholder": "Tìm kiếm bài hát, nghệ sĩ hoặc thẻ..."
+}

@@ -17,5 +17,6 @@
   "language": "言語",
   "languageDescription": "インターフェースに使用する言語を選択してください",
   "english": "English",
-  "japanese": "日本語 (Japanese)"
+  "japanese": "日本語 (Japanese)",
+  "vietnamese": "Tiếng Việt (Vietnamese)"
 }

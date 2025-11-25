@@ -42,6 +42,7 @@ const INTERVAL_LABELS: Record<ThemeChangeInterval, string> = {
 const LOCALE_LABELS: Record<SupportedLocale, string> = {
   en: 'english',
   ja: 'japanese',
+  vi: 'vietnamese',
 };
 
 export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {

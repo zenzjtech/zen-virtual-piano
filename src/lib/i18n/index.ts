@@ -14,6 +14,12 @@ import jaSheet from './locales/ja/sheet.json';
 import jaSettings from './locales/ja/settings.json';
 import jaNotifications from './locales/ja/notifications.json';
 
+import viCommon from './locales/vi/common.json';
+import viPiano from './locales/vi/piano.json';
+import viSheet from './locales/vi/sheet.json';
+import viSettings from './locales/vi/settings.json';
+import viNotifications from './locales/vi/notifications.json';
+
 const resources = {
   en: {
     common: enCommon,
@@ -28,6 +34,13 @@ const resources = {
     sheet: jaSheet,
     settings: jaSettings,
     notifications: jaNotifications,
+  },
+  vi: {
+    common: viCommon,
+    piano: viPiano,
+    sheet: viSheet,
+    settings: viSettings,
+    notifications: viNotifications,
   },
 };
 

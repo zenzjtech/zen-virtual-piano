@@ -1,0 +1,22 @@
+{
+  "general": "Tổng quan",
+  "piano": "Piano",
+  "keyboard": "Bàn phím",
+  "quotes": "Trích dẫn",
+  "generalSettings": "Cài đặt tổng quan",
+  "autoThemeRotation": "Tự động chuyển chủ đề",
+  "autoThemeDescription": "Tự động chuyển sang chủ đề ngẫu nhiên theo khoảng thời gian đã chỉ định",
+  "themeChangeInterval": "Khoảng thời gian chuyển chủ đề",
+  "daily": "Hàng ngày",
+  "everyHour": "Mỗi giờ",
+  "every30Min": "Mỗi 30 phút",
+  "every15Min": "Mỗi 15 phút",
+  "every10Min": "Mỗi 10 phút",
+  "every5Min": "Mỗi 5 phút",
+  "every1Min": "Mỗi 1 phút",
+  "language": "Ngôn ngữ",
+  "languageDescription": "Chọn ngôn ngữ ưa thích cho giao diện",
+  "english": "English",
+  "japanese": "日本語 (Japanese)",
+  "vietnamese": "Tiếng Việt (Vietnamese)"
+}
