@@ -13,5 +13,9 @@
   "every15Min": "Every 15 Minutes",
   "every10Min": "Every 10 Minutes",
   "every5Min": "Every 5 Minutes",
-  "every1Min": "Every 1 Minute"
+  "every1Min": "Every 1 Minute",
+  "language": "Language",
+  "languageDescription": "Choose your preferred language for the interface",
+  "english": "English",
+  "japanese": "日本語 (Japanese)"
 }

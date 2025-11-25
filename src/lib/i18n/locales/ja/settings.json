@@ -13,5 +13,9 @@
   "every15Min": "15分ごと",
   "every10Min": "10分ごと",
   "every5Min": "5分ごと",
-  "every1Min": "1分ごと"
+  "every1Min": "1分ごと",
+  "language": "言語",
+  "languageDescription": "インターフェースに使用する言語を選択してください",
+  "english": "English",
+  "japanese": "日本語 (Japanese)"
 }
