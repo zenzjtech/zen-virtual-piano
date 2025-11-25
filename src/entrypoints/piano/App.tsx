@@ -296,7 +296,11 @@ function App() {
         } : undefined}
       />
 
-      <Container>
+      <Container
+        sx={{
+          maxHeight: '100vh'
+        }}
+      >
         <Stack
           spacing={{ xs: 2, md: 3, lg: 4 }}
           alignItems="center"
@@ -309,7 +313,7 @@ function App() {
               transformOrigin: 'top center',   
               width: '125%',
               ml: '-12.5%',
-              marginBottom: '-20vh', // Compensate for vertical gap left by scaling
+              //marginBottom: '-35vh', // Compensate for vertical gap left by scaling
             },            
           }}          
         >
