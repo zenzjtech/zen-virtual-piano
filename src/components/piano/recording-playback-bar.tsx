@@ -10,7 +10,8 @@ import {
   GetApp as DownloadIcon,
 } from '@mui/icons-material';
 import { PianoTheme } from './themes';
-import type { PlaybackBarStyle } from './playback-bar-styles';
+import type { PlaybackBarStyle } from '@/theme/definitions/playback-bar-styles';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface RecordingPlaybackBarProps {
   /** Whether playback is active */
@@ -34,7 +35,7 @@ interface RecordingPlaybackBarProps {
   /** Compact mode for header */
   compact?: boolean;
   /** Playback bar style (optional, theme-aware) */
-  playbackBarStyle?: import('./playback-bar-styles').PlaybackBarStyle;
+  playbackBarStyle?: PlaybackBarStyle;
   /** Callbacks */
   onTogglePlayback: () => void;
   onStop: () => void;
@@ -260,6 +261,8 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
   onClear,
   onDownload,
 }) => {
+  const { t } = useTranslation('piano');
+
   if (!hasRecording) {
     return null;
   }
@@ -285,7 +288,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
       >
         {/* Playback Controls */}
         <Box sx={{ display: 'flex', gap: 0.25, zIndex: 3 }}>
-          <Tooltip title={isPlaying ? 'Pause' : 'Play'}>
+          <Tooltip title={isPlaying ? 'Pause' : t('play')}>
             <ControlButton
               onClick={onTogglePlayback}
               pianoTheme={pianoTheme}
@@ -297,7 +300,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             </ControlButton>
           </Tooltip>
 
-          <Tooltip title="Stop">
+          <Tooltip title={t('stop')}>
             <ControlButton 
               onClick={onStop} 
               pianoTheme={pianoTheme} 
@@ -308,7 +311,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             </ControlButton>
           </Tooltip>
 
-          <Tooltip title={loop ? 'Loop: ON' : 'Loop: OFF'}>
+          <Tooltip title={loop ? t('loopOn') : t('loopOff')}>
             <ControlButton 
               onClick={onToggleLoop} 
               pianoTheme={pianoTheme} 
@@ -366,7 +369,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
 
         {/* Speed Control and Actions */}
         <Box sx={{ display: 'flex', gap: 0.25, alignItems: 'center', zIndex: 3 }}>
-          <Tooltip title="Playback Speed">
+          <Tooltip title={t('playbackSpeed')}>
             <SpeedButton pianoTheme={pianoTheme} onClick={handleSpeedClick}>
               <Typography sx={{ 
                 fontSize: '0.7rem', 
@@ -378,7 +381,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             </SpeedButton>
           </Tooltip>
 
-          <Tooltip title="Download Recording">
+          <Tooltip title={t('downloadRecording')}>
             <ControlButton 
               onClick={onDownload} 
               pianoTheme={pianoTheme} 
@@ -389,7 +392,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             </ControlButton>
           </Tooltip>
 
-          <Tooltip title="Clear Recording">
+          <Tooltip title={t('clearRecording')}>
             <ControlButton 
               onClick={onClear} 
               pianoTheme={pianoTheme} 
@@ -417,7 +420,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, zIndex: 3 }}>
         {/* Playback Controls */}
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Tooltip title={isPlaying ? 'Pause' : 'Play'}>
+          <Tooltip title={isPlaying ? 'Pause' : t('play')}>
             <ControlButton
               onClick={onTogglePlayback}
               pianoTheme={pianoTheme}
@@ -429,7 +432,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             </ControlButton>
           </Tooltip>
 
-          <Tooltip title="Stop">
+          <Tooltip title={t('stop')}>
             <ControlButton
               onClick={onStop}
               pianoTheme={pianoTheme}
@@ -440,7 +443,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
             </ControlButton>
           </Tooltip>
 
-          <Tooltip title={loop ? 'Loop: ON' : 'Loop: OFF'}>
+          <Tooltip title={loop ? t('loopOn') : t('loopOff')}>
             <ControlButton
               onClick={onToggleLoop}
               pianoTheme={pianoTheme}
@@ -469,7 +472,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
         </Typography>
 
         {/* Speed Control */}
-        <Tooltip title="Playback Speed">
+        <Tooltip title={t('playbackSpeed')}>
           <SpeedButton pianoTheme={pianoTheme} onClick={handleSpeedClick}>
             <SpeedIcon sx={{ fontSize: '1rem' }} />
             <span style={{ opacity: playbackBarStyle?.speedOpacity || 0.95 }}>{playbackSpeed}x</span>
@@ -480,7 +483,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
         <Box sx={{ flexGrow: 1 }} />
 
         {/* Action Buttons */}
-        <Tooltip title="Download Recording">
+        <Tooltip title={t('downloadRecording')}>
           <ControlButton
             onClick={onDownload}
             pianoTheme={pianoTheme}
@@ -491,7 +494,7 @@ export const RecordingPlaybackBar: React.FC<RecordingPlaybackBarProps & { isDark
           </ControlButton>
         </Tooltip>
 
-        <Tooltip title="Clear Recording">
+        <Tooltip title={t('clearRecording')}>
           <ControlButton
             onClick={onClear}
             pianoTheme={pianoTheme}

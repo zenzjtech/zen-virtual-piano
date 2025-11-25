@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '@/store/hook';
+import { useNotification } from '@/contexts/notification-context';
+import { useTranslation } from '@/hooks/use-translation';
 import { pauseSheet } from '@/store/reducers/music-sheet-slice';
 
 interface PlaybackMutexOptions {
@@ -26,6 +28,7 @@ export function usePlaybackMutex({
   showNotification,
 }: PlaybackMutexOptions) {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('notifications');
 
   // Track previous states to detect transitions
   const prevIsSheetPlayingRef = useRef(isSheetPlaying);
@@ -36,18 +39,18 @@ export function usePlaybackMutex({
     // Only trigger when sheet music STARTS playing (transition from false to true)
     if (isSheetPlaying && !prevIsSheetPlayingRef.current && isRecordingPlaying) {
       pauseRecordingPlayback();
-      showNotification('Recording playback paused - sheet music is playing', 'info');
+      showNotification(t('recordingPlaybackPaused'), 'info');
     }
     prevIsSheetPlayingRef.current = isSheetPlaying;
-  }, [isSheetPlaying, isRecordingPlaying, pauseRecordingPlayback, showNotification]);
+  }, [isSheetPlaying, isRecordingPlaying, pauseRecordingPlayback, showNotification, t]);
 
   // Mutual exclusivity: pause sheet music when recording playback starts
   useEffect(() => {
     // Only trigger when recording STARTS playing (transition from false to true)
     if (isRecordingPlaying && !prevIsRecordingPlayingRef.current && isSheetPlaying) {
       dispatch(pauseSheet());
-      showNotification('Sheet music paused - recording playback is playing', 'info');
+      showNotification(t('sheetMusicPaused'), 'info');
     }
     prevIsRecordingPlayingRef.current = isRecordingPlaying;
-  }, [isRecordingPlaying, isSheetPlaying, dispatch, showNotification]);
+  }, [isRecordingPlaying, isSheetPlaying, dispatch, showNotification, t]);
 }

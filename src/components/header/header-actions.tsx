@@ -7,6 +7,7 @@ import { AccountCircle, HelpOutline, Settings as SettingsIcon } from '@mui/icons
 import { getIconColor } from './header-utils';
 import { getIconButtonStyles, iconSizeStyles, avatarSizeStyles } from './header-styles';
 import type { GoogleUserInfo } from '@/types/user-slice';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface HeaderActionsProps {
   isDarkBackground: boolean;
@@ -27,6 +28,7 @@ export const HeaderActions = ({
   onAccount,
   onSettings,
 }: HeaderActionsProps) => {
+  const { t } = useTranslation('common');
   const iconColor = getIconColor(isDarkBackground);
 
   return (
@@ -34,7 +36,7 @@ export const HeaderActions = ({
       <IconButton
         onClick={onHelp}
         sx={getIconButtonStyles(iconColor, isDarkBackground)}
-        aria-label="Help"
+        aria-label={t('help')}
       >
         <HelpOutline sx={iconSizeStyles} />
       </IconButton>
@@ -42,7 +44,7 @@ export const HeaderActions = ({
       <IconButton
         onClick={onSettings}
         sx={getIconButtonStyles(iconColor, isDarkBackground)}
-        aria-label="Settings"
+        aria-label={t('settings')}
       >
         <SettingsIcon sx={iconSizeStyles} />
       </IconButton>
@@ -50,7 +52,7 @@ export const HeaderActions = ({
       <IconButton
         onClick={onAccount}
         sx={getIconButtonStyles(iconColor, isDarkBackground)}
-        aria-label="Account"
+        aria-label={t('account')}
       >
         {isAuthenticating ? (
           <CircularProgress 

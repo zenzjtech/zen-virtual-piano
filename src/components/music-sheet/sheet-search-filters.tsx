@@ -9,6 +9,7 @@ import {
 import { PianoTheme } from '../piano/themes';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setSearchFilters } from '@/store/reducers/music-sheet-slice';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SheetSearchFiltersProps {
   showFavoritesOnly: boolean;
@@ -35,6 +36,8 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
   pianoTheme,
 }) => {
   const dispatch = useAppDispatch();
+  const { t: tCommon } = useTranslation('common');
+  const { t: tSheet } = useTranslation('sheet');
   const sortBy = useAppSelector((state) => state.musicSheet.searchFilters.sortBy);
   const showSort = useAppSelector((state) => state.musicSheet.searchFilters.showSort);
   
@@ -75,14 +78,14 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
           }}
         >
           {showFavoritesOnly ? <FavoriteIcon fontSize="small" sx={{ mr: 0.5 }} /> : <FavoriteBorderIcon fontSize="small" sx={{ mr: 0.5 }} />}
-          Favorites
+          {tCommon('favorites')}
         </ToggleButton>
         
         {/* Difficulty Chips */}
         {(['easy', 'medium', 'hard'] as const).map(difficulty => (
           <Chip
             key={difficulty}
-            label={difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+            label={tSheet(difficulty)}
             size="small"
             onClick={() => onToggleDifficulty(difficulty)}
             sx={{
@@ -110,7 +113,7 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
         {/* Clear Filters */}
         {hasActiveFilters && (
           <Chip
-            label="Clear Filters"
+            label={tCommon('clearFilters')}
             size="small"
             onClick={onClearFilters}
             sx={{
@@ -150,7 +153,7 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
             },
           }}
         >
-          Sort
+          {tCommon('sort')}
         </Button>
       </Box>
       
@@ -190,7 +193,7 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
           <InputLabel id="sort-by-label">
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <SortIcon sx={{ fontSize: '0.875rem' }} />
-              Sort By
+              {tSheet('sortBy')}
             </Box>
           </InputLabel>
           <Select
@@ -199,7 +202,7 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
             onChange={(e) => handleSortChange(e.target.value as any)}
             onOpen={onSortSelectOpen}
             onClose={onSortSelectClose}
-            label="Sort By"
+            label={tSheet('sortBy')}
             MenuProps={{
               PaperProps: {
                 sx: {
@@ -221,10 +224,10 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
               },
             }}
           >
-            <MenuItem value="title">Title (A-Z)</MenuItem>
-            <MenuItem value="artist">Artist (A-Z)</MenuItem>
-            <MenuItem value="difficulty">Difficulty</MenuItem>
-            <MenuItem value="recent">Recently Added</MenuItem>
+            <MenuItem value="title">{tSheet('titleAZ')}</MenuItem>
+            <MenuItem value="artist">{tSheet('artistAZ')}</MenuItem>
+            <MenuItem value="difficulty">{tSheet('difficulty')}</MenuItem>
+            <MenuItem value="recent">{tSheet('recentlyAdded')}</MenuItem>
           </Select>
         </FormControl>
         </Box>

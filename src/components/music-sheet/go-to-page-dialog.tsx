@@ -11,6 +11,7 @@ import { useDialogTheme } from '@/hooks/use-global-dialog-theme';
 import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
 import { getDialogStyles, getTextFieldStyles, getDialogButtonStyles } from '@/components/global/dialog/styles';
 import { useDialogPianoControl } from '@/hooks/use-dialog-piano-control';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface GoToPageDialogProps {
   open: boolean;
@@ -33,6 +34,8 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
   onGoToPage,
 }) => {
   const theme = useDialogTheme();
+  const { t: tSheet } = useTranslation('sheet');
+  const { t: tCommon } = useTranslation('common');
 
   // Disable piano when dialog opens, re-enable when it closes
   useDialogPianoControl(open);
@@ -60,8 +63,8 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
     >
       {/* Header */}
       <DialogHeader
-        title="Go to Page"
-        subtitle={`Navigate to any page (1-${totalPages})`}
+        title={tSheet('goToPageTitle')}
+        subtitle={tSheet('goToPageSubtitle', { total: totalPages })}
         icon={<FormatListNumberedIcon />}
         onClose={onClose}
       />
@@ -71,14 +74,14 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
         <TextField
           autoFocus
           margin="dense"
-          label="Page Number"
+          label={tSheet('pageNumber')}
           type="number"
           fullWidth
           variant="outlined"
           value={pageInput}
           onChange={(e) => onPageInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          helperText={`Enter page number (1-${totalPages})`}
+          helperText={tSheet('enterPageNumber', { total: totalPages })}
           inputProps={{
             min: 1,
             max: totalPages,
@@ -92,7 +95,7 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
           variant="outlined"
           sx={getDialogButtonStyles(theme, 'cancel')}
         >
-          Cancel
+          {tCommon('cancel')}
         </Button>
         <Button
           onClick={onGoToPage}
@@ -100,7 +103,7 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
           disabled={!isValidInput}
           sx={getDialogButtonStyles(theme, 'primary')}
         >
-          Go to Page
+          {tSheet('goToPage')}
         </Button>
       </DialogActions>
     </Dialog>

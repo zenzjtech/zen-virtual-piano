@@ -8,6 +8,7 @@ import { Favorite, FavoriteBorder, Settings as SettingsIcon } from '@mui/icons-m
 import { useAppDispatch } from '@/store/hook';
 import { toggleFavoriteQuote } from '@/store/reducers/quote-settings-slice';
 import { useTheme } from '@mui/material/styles';
+import { useTranslation } from '@/hooks/use-translation';
 
 import type { Quote } from '@/lib/quote';
 
@@ -36,6 +37,7 @@ export const QuoteActionButtons = ({
 }: QuoteActionButtonsProps) => {
   const dispatch = useAppDispatch();
   const theme = useTheme();
+  const { t } = useTranslation('settings');
 
   // Handle favorite toggle
   const handleToggleFavorite = (e: React.MouseEvent) => {
@@ -74,9 +76,9 @@ export const QuoteActionButtons = ({
         title={
           canFavorite
             ? isFavorited
-              ? 'Remove from favorites'
-              : 'Add to favorites'
-            : 'Quote ID required for favorites'
+              ? t('removeFromFavorites')
+              : t('addToFavorites')
+            : t('quoteIdRequired')
         }
       >
         <span>
@@ -110,7 +112,7 @@ export const QuoteActionButtons = ({
       </Tooltip>
 
       {/* Settings Button */}
-      <Tooltip title="Quote settings">
+      <Tooltip title={t('quoteSettings')}>
         <IconButton
           onClick={handleOpenSettings}
           sx={{

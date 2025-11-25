@@ -1,5 +1,7 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
+import { useTranslation } from '@/hooks/use-translation';
+import { Trans } from 'react-i18next';
 
 interface DeleteSheetDialogProps {
   open: boolean;
@@ -21,6 +23,9 @@ export const DeleteSheetDialog: React.FC<DeleteSheetDialogProps> = ({
   sheetArtist,
   isCustomSheet,
 }) => {
+  const { t: tSheet } = useTranslation('sheet');
+  const { t: tCommon } = useTranslation('common');
+
   const handleConfirm = () => {
     onConfirm();
     onClose();
@@ -40,20 +45,22 @@ export const DeleteSheetDialog: React.FC<DeleteSheetDialogProps> = ({
       }}
     >
       <DialogTitle sx={{ fontWeight: 600 }}>
-        Delete Sheet?
+        {tSheet('confirmDeleteTitle')}
       </DialogTitle>
       <DialogContent>
         <Typography variant="body2" color="text.secondary">
           {isCustomSheet ? (
-            <>
-              This will permanently remove <strong>{sheetTitle}</strong> by{' '}
-              <strong>{sheetArtist}</strong> from your library.
-            </>
+            <Trans
+              i18nKey="sheet:deleteCustomSheetMessage"
+              values={{ title: sheetTitle, artist: sheetArtist }}
+              components={{ strong: <strong /> }}
+            />
           ) : (
-            <>
-              This will hide <strong>{sheetTitle}</strong> by{' '}
-              <strong>{sheetArtist}</strong> from your library. The built-in sheet can be restored later.
-            </>
+            <Trans
+              i18nKey="sheet:deleteBuiltInSheetMessage"
+              values={{ title: sheetTitle, artist: sheetArtist }}
+              components={{ strong: <strong /> }}
+            />
           )}
         </Typography>
       </DialogContent>
@@ -62,14 +69,14 @@ export const DeleteSheetDialog: React.FC<DeleteSheetDialogProps> = ({
           onClick={onClose}
           color="inherit"
         >
-          Cancel
+          {tCommon('cancel')}
         </Button>
         <Button
           onClick={handleConfirm}
           variant="contained"
           color="error"
         >
-          Delete
+          {tCommon('delete')}
         </Button>
       </DialogActions>
     </Dialog>

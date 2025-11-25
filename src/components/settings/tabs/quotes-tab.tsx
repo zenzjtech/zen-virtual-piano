@@ -21,34 +21,36 @@ import {
 import { SettingSection } from '../components/setting-section';
 import { SettingToggle } from '../components/setting-toggle';
 import type { SettingsTheme } from '../types';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface QuotesTabProps {
   theme: SettingsTheme;
 }
 
 const INTERVAL_LABELS: Record<QuoteInterval, string> = {
-  daily: 'Daily',
-  hourly: 'Every Hour',
-  '30min': 'Every 30 Minutes',
-  '10min': 'Every 10 Minutes',
-  '5min': 'Every 5 Minutes',
+  daily: 'daily',
+  hourly: 'everyHour',
+  '30min': 'every30Min',
+  '10min': 'every10Min',
+  '5min': 'every5Min',
 };
 
 export const QuotesTab = ({ theme }: QuotesTabProps) => {
   const dispatch = useAppDispatch();
   const quoteSettings = useAppSelector((state) => state.quoteSettings);
+  const { t } = useTranslation('settings');
 
   return (
     <Box id="quote-settings">
       <Typography variant="h6" sx={{ color: theme.textPrimary, mb: 3, fontWeight: 600 }}>
-        Quote Display Settings
+        {t('quoteDisplaySettings')}
       </Typography>
 
       {/* Show Quote Toggle */}
       <SettingSection theme={theme}>
         <SettingToggle
-          label="Show Inspirational Quotes"
-          description="Display quotes in the header when not playing recordings"
+          label={t('showQuotes')}
+          description={t('showQuotesDescription')}
           checked={quoteSettings.showQuote}
           onChange={(checked) => dispatch(setShowQuote(checked))}
           theme={theme}
@@ -66,11 +68,11 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
                   '&.Mui-focused': { color: theme.textPrimary },
                 }}
               >
-                Quote Change Interval
+                {t('quoteChangeInterval')}
               </InputLabel>
               <Select
                 value={quoteSettings.interval}
-                label="Quote Change Interval"
+                label={t('quoteChangeInterval')}
                 onChange={(e) => dispatch(setQuoteInterval(e.target.value as QuoteInterval))}
                 sx={{
                   color: theme.textPrimary,
@@ -111,12 +113,12 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
               >
                 {(Object.keys(INTERVAL_LABELS) as QuoteInterval[]).map((interval) => (
                   <MenuItem key={interval} value={interval}>
-                    {INTERVAL_LABELS[interval]}
+                    {t(INTERVAL_LABELS[interval])}
                   </MenuItem>
                 ))}
               </Select>
               <Typography variant="caption" sx={{ color: theme.textSecondary, mt: 1 }}>
-                How often quotes should change automatically
+                {t('quoteChangeIntervalDescription')}
               </Typography>
             </FormControl>
           </SettingSection>
@@ -126,13 +128,11 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
           {/* Show Only Favorites */}
           <SettingSection theme={theme}>
             <SettingToggle
-              label="Show Only Favorite Quotes"
+              label={t('showOnlyFavorites')}
               description={
                 quoteSettings.favoriteQuoteIds.length === 0
-                  ? 'No favorites yet. Mark quotes as favorites to enable this option.'
-                  : `Display only your ${quoteSettings.favoriteQuoteIds.length} favorite quote${
-                      quoteSettings.favoriteQuoteIds.length === 1 ? '' : 's'
-                    }`
+                  ? t('noFavorites')
+                  : t('favoritesCount', { count: quoteSettings.favoriteQuoteIds.length })
               }
               checked={quoteSettings.showOnlyFavorites}
               disabled={quoteSettings.favoriteQuoteIds.length === 0}

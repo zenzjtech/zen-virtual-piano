@@ -2,5 +2,17 @@
   "success": "Thành công",
   "error": "Lỗi",
   "welcome": "Chào mừng",
-  "tip": "Mẹo"
+  "tip": "Mẹo",
+  "welcomeUser": "Chào mừng, {{name}}! 🎹",
+  "signInFailed": "Đăng nhập thất bại. Vui lòng thử lại.",
+  "signedOutSuccess": "Đăng xuất thành công",
+  "signOutFailed": "Đăng xuất thất bại. Vui lòng thử lại.",
+  "autoPlayPaused": "Tự động phát đã tạm dừng. Bạn có thể chơi thủ công.",
+  "playbackPaused": "Phát lại đã tạm dừng. Bạn có thể chơi thủ công.",
+  "recordingStarted": "🔴 Đã bắt đầu ghi âm",
+  "recordingStopped": "⏹️ Đã dừng ghi âm ({{count}} nốt, {{duration}})",
+  "recordingCleared": "🗑️ Đã xóa bản ghi",
+  "recordingDownloaded": "💾 Đã tải xuống bản ghi",
+  "recordingPlaybackPaused": "Phát lại bản ghi đã tạm dừng - đang phát nhạc phổ",
+  "sheetMusicPaused": "Nhạc phổ đã tạm dừng - đang phát lại bản ghi"
 }

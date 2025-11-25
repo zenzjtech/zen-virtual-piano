@@ -4,6 +4,7 @@ import { MusicSheetMetadata } from '@/services/sheet-library';
 import { PianoTheme } from '../piano/themes';
 import { SheetSection } from './sheet-section';
 import { SheetEmptyState } from './sheet-empty-state';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SheetSearchContentProps {
   searchQuery: string;
@@ -31,6 +32,9 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
   pianoTheme,
   onSelectSheet,
 }) => {
+  const { t: tCommon } = useTranslation('common');
+  const { t: tSheet } = useTranslation('sheet');
+
   return (
     <Box sx={{ 
       flex: 1, 
@@ -43,19 +47,19 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
       {/* Search Results */}
       {searchQuery.trim() && allSheets.length > 0 && (
         <SheetSection
-          title={`Search Results (${filteredSheets.length})`}
+          title={`${tSheet('searchResults')} (${filteredSheets.length})`}
           sheets={filteredSheets}
           pianoTheme={pianoTheme}
           favorites={favorites}
           onSelectSheet={onSelectSheet}
-          emptyMessage={`No sheets found matching "${searchQuery}"`}
+          emptyMessage={tSheet('noSheetsFoundMatching', { query: searchQuery })}
         />
       )}
       
       {/* Recently Played */}
       {!searchQuery.trim() && displayedRecentSheets.length > 0 && (
         <SheetSection
-          title="⏱ Recently Played"
+          title={`⏱ ${tCommon('recentlyPlayed')}`}
           sheets={displayedRecentSheets}
           pianoTheme={pianoTheme}
           favorites={favorites}
@@ -67,12 +71,12 @@ export const SheetSearchContent: React.FC<SheetSearchContentProps> = ({
       {/* All Sheets (when no search) */}
       {!searchQuery.trim() && allSheets.length > 0 && (
         <SheetSection
-          title={hasActiveFilters ? `📚 Filtered Sheets (${displayedAllSheets.length})` : `📚 All Sheets (${displayedAllSheets.length})`}
+          title={hasActiveFilters ? `📚 ${tSheet('filteredSheets')} (${displayedAllSheets.length})` : `📚 ${tCommon('allSheets')} (${displayedAllSheets.length})`}
           sheets={displayedAllSheets}
           pianoTheme={pianoTheme}
           favorites={favorites}
           onSelectSheet={onSelectSheet}
-          emptyMessage={hasActiveFilters ? "No sheets match the selected filters" : undefined}
+          emptyMessage={hasActiveFilters ? tSheet('noSheetsMatchFilters') : undefined}
         />
       )}
     </Box>

@@ -18,6 +18,7 @@ import { DialogHeader } from '@/components/global/dialog/global-dialog-header';
 import { getDialogStyles, getTextFieldStyles, getScrollbarStyles } from '@/components/global/dialog/styles';
 import { useAppDispatch } from '@/store/hook';
 import { useDialogPianoControl } from '@/hooks/use-dialog-piano-control';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface KeyboardShortcutsDialogProps {
   open: boolean;
@@ -30,28 +31,28 @@ interface ShortcutItem {
   category: string;
 }
 
-const shortcuts: ShortcutItem[] = [
+const getShortcuts = (t: (key: string) => string): ShortcutItem[] => [
   // General
-  { action: 'View keyboard shortcuts', keys: ['?'], category: 'General' },
+  { action: t('viewKeyboardShortcuts'), keys: ['?'], category: t('general') },
 
   // Sheet Mode
-  { action: 'Play/Pause sheet', keys: ['Ctrl+Enter'], category: 'Sheet Mode' },
-  { action: 'Increase tempo', keys: ['↑'], category: 'Sheet Mode' },
-  { action: 'Decrease tempo', keys: ['↓'], category: 'Sheet Mode' },
-  { action: 'Next page', keys: ['Enter'], category: 'Sheet Mode' },
-  { action: 'Next page', keys: ['→'], category: 'Sheet Mode' },
-  { action: 'Previous page', keys: ['Backspace'], category: 'Sheet Mode' },
-  { action: 'Previous page', keys: ['←'], category: 'Sheet Mode' },
+  { action: t('playPauseSheet'), keys: ['Ctrl+Enter'], category: t('sheetMode') },
+  { action: t('increaseTempo'), keys: ['↑'], category: t('sheetMode') },
+  { action: t('decreaseTempo'), keys: ['↓'], category: t('sheetMode') },
+  { action: t('nextPage'), keys: ['Enter'], category: t('sheetMode') },
+  { action: t('nextPage'), keys: ['→'], category: t('sheetMode') },
+  { action: t('previousPage'), keys: ['Backspace'], category: t('sheetMode') },
+  { action: t('previousPage'), keys: ['←'], category: t('sheetMode') },
   
   // Navigation
-  { action: 'Close dialog/popup', keys: ['Esc'], category: 'Navigation' },
+  { action: t('closeDialogPopup'), keys: ['Esc'], category: t('navigation') },
 
   // Piano Keys
-  { action: 'Play white keys (C2-E3)', keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], category: 'Piano Keys' },
-  { action: 'Play white keys (F3-A4)', keys: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], category: 'Piano Keys' },
-  { action: 'Play white keys (B4-C6)', keys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], category: 'Piano Keys' },
-  { action: 'Play white keys (D6-C7)', keys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M'], category: 'Piano Keys' },
-  { action: 'Play black keys (sharps/flats)', keys: ['Shift', '+', 'key'], category: 'Piano Keys' },
+  { action: t('playWhiteKeysC2E3'), keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], category: t('pianoKeys') },
+  { action: t('playWhiteKeysF3A4'), keys: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], category: t('pianoKeys') },
+  { action: t('playWhiteKeysB4C6'), keys: ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], category: t('pianoKeys') },
+  { action: t('playWhiteKeysD6C7'), keys: ['Z', 'X', 'C', 'V', 'B', 'N', 'M'], category: t('pianoKeys') },
+  { action: t('playBlackKeys'), keys: ['Shift', '+', 'key'], category: t('pianoKeys') },
 ];
 
 /**
@@ -65,9 +66,13 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
   const [searchQuery, setSearchQuery] = useState('');
   const theme = useDialogTheme();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('piano');
 
   // Disable piano when dialog opens, re-enable when it closes
   useDialogPianoControl(open);
+
+  // Get shortcuts with translations
+  const shortcuts = getShortcuts(t);
 
   // Filter shortcuts based on search query
   const filteredShortcuts = searchQuery.trim()
@@ -105,8 +110,8 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
       {/* Header */}
       <DialogHeader
         id="keyboard-shortcuts-dialog-title"
-        title="Keyboard Shortcuts"
-        subtitle={`${shortcuts.length} shortcuts available`}
+        title={t('keyboardShortcutsTitle')}
+        subtitle={t('keyboardShortcutsSubtitle', { count: shortcuts.length })}
         icon={<KeyboardIcon />}
         onClose={onClose}
       />
@@ -122,12 +127,12 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
         <TextField
           fullWidth
           size="small"
-          placeholder="Search shortcuts by action, key, or category..."
+          placeholder={t('searchShortcutsPlaceholder')}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           autoComplete="off"
           inputProps={{
-            'aria-label': 'Search keyboard shortcuts',
+            'aria-label': t('searchShortcutsLabel'),
           }}
           InputProps={{
             startAdornment: (
@@ -168,13 +173,13 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
               variant="body1"
               sx={{ color: theme.textPrimary, mb: 1, fontWeight: 500 }}
             >
-              No shortcuts found
+              {t('noShortcutsFound')}
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: theme.textSecondary }}
             >
-              Try searching with different keywords
+              {t('noShortcutsFoundMessage')}
             </Typography>
           </Box>
         ) : (

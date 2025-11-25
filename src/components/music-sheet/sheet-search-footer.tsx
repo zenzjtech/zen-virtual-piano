@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Link } from '@mui/material';
 import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
 import { PianoTheme } from '../piano/themes';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface SheetSearchFooterProps {
   searchQuery: string;
@@ -15,6 +16,8 @@ export const SheetSearchFooter: React.FC<SheetSearchFooterProps> = ({
   searchQuery, 
   pianoTheme 
 }) => {
+  const { t } = useTranslation('sheet');
+
   const handleSearchOnVirtualPiano = () => {
     const query = encodeURIComponent(searchQuery || 'popular songs');
     window.open(`https://virtualpiano.net/?s=${query}`, '_blank');
@@ -52,7 +55,7 @@ export const SheetSearchFooter: React.FC<SheetSearchFooterProps> = ({
         }}
       >
         <OpenInNewIcon fontSize="small" />
-        Search more on VirtualPiano.net
+        {t('searchMoreOnVirtualPiano')}
       </Link>
     </Box>
   );

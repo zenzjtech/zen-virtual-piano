@@ -22,6 +22,7 @@ import { addCustomSheet } from '@/store/reducers/music-sheet-slice';
 import { useDialogPianoControl } from '@/hooks/use-dialog-piano-control';
 import { parseVPNotation } from '@/services/sheet-parser';
 import type { MusicSheet } from './types';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface AddSheetDialogProps {
   open: boolean;
@@ -34,6 +35,8 @@ interface AddSheetDialogProps {
 export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose }) => {
   const dispatch = useAppDispatch();
   const theme = useDialogTheme();
+  const { t: tSheet } = useTranslation('sheet');
+  const { t: tCommon } = useTranslation('common');
 
   // Disable piano when dialog opens, re-enable when it closes
   useDialogPianoControl(open);
@@ -89,19 +92,19 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
     const newErrors: Record<string, string> = {};
 
     if (!title.trim()) {
-      newErrors.title = 'Title is required';
+      newErrors.title = tSheet('titleRequired');
     }
 
     if (!artist.trim()) {
-      newErrors.artist = 'Artist is required';
+      newErrors.artist = tSheet('artistRequired');
     }
 
     if (!notation.trim()) {
-      newErrors.notation = 'Notation is required';
+      newErrors.notation = tSheet('notationRequired');
     }
 
     if (tempo < 40 || tempo > 240) {
-      newErrors.tempo = 'Tempo must be between 40 and 240 BPM';
+      newErrors.tempo = tSheet('tempoRangeError');
     }
 
     setErrors(newErrors);
@@ -150,7 +153,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
     } catch (error) {
       console.error('Failed to create sheet:', error);
       setErrors({
-        notation: 'Failed to parse notation. Please check the format.',
+        notation: tSheet('notationParsingError'),
       });
     }
   };
@@ -166,8 +169,8 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
       }}
     >
       <DialogHeader
-        title="Add Custom Sheet"
-        subtitle="Create your own music sheet with Virtual Piano notation"
+        title={tSheet('addCustomSheetTitle')}
+        subtitle={tSheet('addCustomSheetSubtitle')}
         icon={<AddIcon />}
         onClose={handleClose}
       />
@@ -175,7 +178,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
           {/* Title */}
           <TextField
-            label="Title"
+            label={tSheet('title')}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             error={!!errors.title}
@@ -187,7 +190,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
 
           {/* Artist */}
           <TextField
-            label="Artist"
+            label={tSheet('artist')}
             value={artist}
             onChange={(e) => setArtist(e.target.value)}
             error={!!errors.artist}
@@ -199,11 +202,11 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
 
           {/* Notation */}
           <TextField
-            label="Virtual Piano Notation"
+            label={tSheet('virtualPianoNotation')}
             value={notation}
             onChange={(e) => setNotation(e.target.value)}
             error={!!errors.notation}
-            helperText={errors.notation || 'Enter Virtual Piano keyboard notation (e.g., "t y u | i o p")'}
+            helperText={errors.notation || tSheet('notationPlaceholder')}
             multiline
             rows={4}
             fullWidth
@@ -214,21 +217,21 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
           {/* Difficulty & Tempo */}
           <Box sx={{ display: 'flex', gap: 2 }}>
             <FormControl fullWidth>
-              <InputLabel>Difficulty</InputLabel>
+              <InputLabel>{tSheet('difficulty')}</InputLabel>
               <Select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value as 'easy' | 'medium' | 'hard')}
-                label="Difficulty"
+                label={tSheet('difficulty')}
                 sx={getTextFieldStyles(theme)}
               >
-                <MenuItem value="easy">Easy</MenuItem>
-                <MenuItem value="medium">Medium</MenuItem>
-                <MenuItem value="hard">Hard</MenuItem>
+                <MenuItem value="easy">{tSheet('easy')}</MenuItem>
+                <MenuItem value="medium">{tSheet('medium')}</MenuItem>
+                <MenuItem value="hard">{tSheet('hard')}</MenuItem>
               </Select>
             </FormControl>
 
             <TextField
-              label="Tempo (BPM)"
+              label={tSheet('tempoBPM')}
               type="number"
               value={tempo}
               onChange={(e) => setTempo(Number(e.target.value))}
@@ -240,7 +243,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
             />
 
             <TextField
-              label="Time Signature"
+              label={tSheet('timeSignature')}
               value={timeSignature}
               onChange={(e) => setTimeSignature(e.target.value)}
               fullWidth
@@ -252,7 +255,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
           <Box>
             <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
               <TextField
-                label="Add Tags"
+                label={tSheet('addTags')}
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={(e) => {
@@ -279,7 +282,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
                   },
                 }}
               >
-                Add
+                {tCommon('add')}
               </Button>
             </Box>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -304,18 +307,17 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
 
           {/* Source URL (Optional) */}
           <TextField
-            label="Source URL (Optional)"
+            label={tSheet('sourceUrl')}
             value={sourceUrl}
             onChange={(e) => setSourceUrl(e.target.value)}
             fullWidth
-            helperText="URL where you found this sheet (for reference)"
+            helperText={tSheet('sourceUrlHelper')}
             sx={getTextFieldStyles(theme)}
           />
 
           {/* Help text */}
           <Typography variant="caption" sx={{ color: theme.textSecondary }}>
-            Note: Custom sheets are stored locally and limited to a maximum number based on your settings.
-            If the limit is reached, the oldest sheet will be automatically removed.
+            {tSheet('addSheetNote')}
           </Typography>
         </Box>
       </DialogContent>
@@ -325,14 +327,14 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
           variant="outlined"
           sx={getDialogButtonStyles(theme, 'cancel')}
         >
-          Cancel
+          {tCommon('cancel')}
         </Button>
         <Button 
           onClick={handleSave} 
           variant="contained"
           sx={getDialogButtonStyles(theme, 'primary')}
         >
-          Add Sheet
+          {tSheet('addSheet')}
         </Button>
       </DialogActions>
     </Dialog>

@@ -6,6 +6,7 @@ import { getInstrumentImage } from '@/utils/instrument-images';
 import { useAppSelector } from '@/store/hook';
 import { trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface InstrumentSettingProps {
   currentSoundSetId: string;
@@ -20,6 +21,7 @@ export const InstrumentSetting: React.FC<InstrumentSettingProps> = ({
 }) => {
   const uid = useAppSelector((state) => state.user.uid);
   const currentSoundSet = getSoundSet(currentSoundSetId);
+  const { t } = useTranslation('piano');
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Track instrument selector opened
@@ -33,7 +35,7 @@ export const InstrumentSetting: React.FC<InstrumentSettingProps> = ({
 
   return (
     <Tooltip
-      title="Click to change instrument"
+      title={t('clickToChangeInstrument')}
       placement="top"
       slotProps={{
         tooltip: {
@@ -148,7 +150,7 @@ export const InstrumentSetting: React.FC<InstrumentSettingProps> = ({
             transition: 'filter 0.2s ease',
           }}
         />
-        {currentSoundSet.name}
+        {t(currentSoundSet.id as any, { defaultValue: currentSoundSet.name })}
       </Box>
     </Tooltip>
   );

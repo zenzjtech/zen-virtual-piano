@@ -8,6 +8,7 @@ import { setGoogleUser, logout, googleUserSelector, isAuthenticatedSelector } fr
 import { authenticateWithGoogle, signOutFromGoogle } from '@/utils/google-auth';
 import { useNotification } from '@/contexts/notification-context';
 import { useAppConfig } from '#imports';
+import { useTranslation } from '@/hooks/use-translation';
 import type { UseHeaderHandlersProps } from './types';
 
 export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlersProps) => {
@@ -16,6 +17,7 @@ export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlers
   const isAuthenticated = useAppSelector(isAuthenticatedSelector);
   const { showNotification } = useNotification();
   const config = useAppConfig();
+  const { t } = useTranslation('notifications');
   
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -34,10 +36,10 @@ export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlers
       try {
         const userInfo = await authenticateWithGoogle();
         dispatch(setGoogleUser(userInfo));
-        showNotification(`Welcome, ${userInfo.name}! 🎹`, 'success');
+        showNotification(t('welcomeUser', { name: userInfo.name }), 'success');
       } catch (error) {
         console.error('Authentication error:', error);
-        showNotification('Failed to sign in. Please try again.', 'error');
+        showNotification(t('signInFailed'), 'error');
       } finally {
         setIsAuthenticating(false);
       }
@@ -53,10 +55,10 @@ export const useHeaderHandlers = ({ onShowKeyboardShortcuts }: UseHeaderHandlers
     try {
       await signOutFromGoogle();
       dispatch(logout());
-      showNotification('Signed out successfully', 'info');
+      showNotification(t('signedOutSuccess'), 'info');
     } catch (error) {
       console.error('Logout error:', error);
-      showNotification('Failed to sign out. Please try again.', 'error');
+      showNotification(t('signOutFailed'), 'error');
     }
   };
 

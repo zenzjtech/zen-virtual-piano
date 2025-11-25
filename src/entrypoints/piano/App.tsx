@@ -30,6 +30,7 @@ import './App.css';
 import { trackPageEvent, trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 import i18n from '@/lib/i18n';
+import { useTranslation } from '@/hooks/use-translation';
 
 function App() {
   // Redux state for persistent settings
@@ -66,6 +67,7 @@ function App() {
   
   // Notification
   const { showNotification } = useNotification();
+  const { t } = useTranslation('notifications');
 
   // Piano recording hook for playback
   const {
@@ -217,14 +219,14 @@ function App() {
   const handleClearRecording = () => {
     recordingPlayback.stop();
     clearRecording();
-    showNotification('🗑️ Recording cleared', 'info');
-    trackEvent(uid, 'Recording cleared', {});
+    showNotification(t('recordingCleared'), 'info');
+    trackEvent(uid, ANALYTICS_ACTION.RECORD_CLEARED, {});
   };
 
   const handleDownloadRecording = () => {
     downloadRecording();
-    showNotification('💾 Recording downloaded', 'success');
-    trackEvent(uid, 'Recording downloaded', { note_count: noteCount });
+    showNotification(t('recordingDownloaded'), 'success');
+    trackEvent(uid, ANALYTICS_ACTION.RECORD_DOWNLOADED, { note_count: noteCount });
   };
 
   

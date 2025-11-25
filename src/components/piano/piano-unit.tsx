@@ -24,6 +24,7 @@ import { usePopupToggle } from '@/hooks/use-popup-toggle';
 import { useMetronome } from '@/hooks/use-metronome';
 import { trackEvent } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface PianoUnitProps {
   /** Callback to open settings dialog */
@@ -155,6 +156,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   
   // Notification
   const { showNotification } = useNotification();
+  const { t } = useTranslation('notifications');
 
   // Piano recording hook
   const {
@@ -173,15 +175,15 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
     // Stop auto-play when user presses key
     if (isSheetPlaying && current !== null) {
       dispatch(pauseSheet());
-      showNotification('Auto-play paused. You can now play manually.', 'info');
+      showNotification(t('autoPlayPaused'), 'info');
     }
     
     // Pause recording playback when user plays manually
     if (recordingPlaybackRef.current.isPlaying && current !== null) {
       recordingPlaybackRef.current.pause();
-      showNotification('Playback paused. You can now play manually.', 'info');
+      showNotification(t('playbackPaused'), 'info');
     }
-  }, [isSheetPlaying, showNotification, dispatch, recordingPlaybackRef]);
+  }, [isSheetPlaying, showNotification, dispatch, recordingPlaybackRef, t]);
 
   // Settings bar handlers
   const handleTogglePiano = () => {
@@ -200,12 +202,12 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
     toggleRecording();
     
     if (!isRecording) {
-      showNotification('🔴 Recording started', 'info');
+      showNotification(t('recordingStarted'), 'info');
       trackEvent(uid, ANALYTICS_ACTION.RECORD_STARTED, {});
     } else {
       const duration = getFormattedDuration();
       showNotification(
-        `⏹️ Recording stopped (${noteCount} notes, ${duration})`,
+        t('recordingStopped', { count: noteCount, duration }),
         'success'
       );
       trackEvent(uid, ANALYTICS_ACTION.RECORD_STOPPED, {

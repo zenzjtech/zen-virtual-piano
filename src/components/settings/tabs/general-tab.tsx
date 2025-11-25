@@ -134,7 +134,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
                 ))}
               </Select>
               <Typography variant="caption" sx={{ color: settingsTheme.secondaryTextColor, mt: 1 }}>
-                How often to automatically switch to a random theme preset
+                {t('autoThemeIntervalDescription')}
               </Typography>
             </FormControl>
           </SettingSection>
@@ -143,7 +143,7 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
 
           <Box sx={{ px: 2.5 }}>
             <Typography variant="body2" sx={{ color: settingsTheme.secondaryTextColor, fontStyle: 'italic' }}>
-              💡 Tip: The theme will change automatically to keep your workspace fresh and inspiring!
+              {t('autoThemeTip')}
             </Typography>
           </Box>
         </>
