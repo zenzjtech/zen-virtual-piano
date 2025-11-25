@@ -15,5 +15,6 @@
   "logout": "ログアウト",
   "help": "ヘルプ",
   "settings": "設定",
-  "account": "アカウント"
+  "account": "アカウント",
+  "changeLanguage": "言語を変更"
 }

@@ -15,5 +15,6 @@
   "logout": "Logout",
   "help": "Help",
   "settings": "Settings",
-  "account": "Account"
+  "account": "Account",
+  "changeLanguage": "Change language"
 }

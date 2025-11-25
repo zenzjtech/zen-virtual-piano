@@ -8,6 +8,7 @@ import { getIconColor } from './header-utils';
 import { getIconButtonStyles, iconSizeStyles, avatarSizeStyles } from './header-styles';
 import type { GoogleUserInfo } from '@/types/user-slice';
 import { useTranslation } from '@/hooks/use-translation';
+import { LanguageSwitcher } from './language-switcher';
 
 interface HeaderActionsProps {
   isDarkBackground: boolean;
@@ -33,6 +34,8 @@ export const HeaderActions = ({
 
   return (
     <Stack direction="row" spacing={{ xs: 0, sm: 0.5 }}>
+      <LanguageSwitcher isDarkBackground={isDarkBackground} />
+
       <IconButton
         onClick={onHelp}
         sx={getIconButtonStyles(iconColor, isDarkBackground)}
