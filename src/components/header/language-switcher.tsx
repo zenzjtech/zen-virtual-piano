@@ -3,7 +3,7 @@
  * Provides a dropdown menu for selecting the application language
  */
 
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import { Language } from '@mui/icons-material';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -35,32 +35,49 @@ export const LanguageSwitcher = ({ isDarkBackground }: LanguageSwitcherProps) =>
     setLanguageAnchorEl(null);
   };
 
-  const handleLanguageSelect = (locale: SupportedLocale) => {
-    // Update Redux store
-    dispatch(setLocale(locale));
-    // Immediately change i18n language for instant UI update
-    i18n.changeLanguage(locale);
+  const handleLanguageSelect = (locale: string) => {
+    if (locale === 'auto') {
+      // Detect browser language
+      const browserLang = navigator.language.substring(0, 2);
+      const detectedLocale = browserLang === 'ja' ? 'ja' : browserLang === 'vi' ? 'vi' : 'en';
+      // Update Redux store
+      dispatch(setLocale(detectedLocale as SupportedLocale));
+      // Immediately change i18n language for instant UI update
+      i18n.changeLanguage(detectedLocale);
+    } else {
+      // Update Redux store
+      dispatch(setLocale(locale as SupportedLocale));
+      // Immediately change i18n language for instant UI update
+      i18n.changeLanguage(locale);
+    }
     // Keep menu open for now as per user preference
   };
 
   const LOCALE_OPTIONS = [
-    { locale: 'en' as SupportedLocale, label: 'English' },
-    { locale: 'ja' as SupportedLocale, label: '日本語' },
-    { locale: 'vi' as SupportedLocale, label: 'Tiếng Việt' },
+    { locale: 'auto', label: '🌐 Auto/Browser Default', displayLabel: 'Auto/Browser Default' },
+    { locale: 'en' as SupportedLocale, label: '🇺🇸 English', displayLabel: 'English' },
+    { locale: 'ja' as SupportedLocale, label: '🇯🇵 日本語', displayLabel: '日本語' },
+    { locale: 'vi' as SupportedLocale, label: '🇻🇳 Tiếng Việt', displayLabel: 'Tiếng Việt' },
   ];
+
+  // Get current language display name for tooltip
+  const currentLanguageOption = LOCALE_OPTIONS.find(option => option.locale === currentLocale);
+  const tooltipTitle = currentLanguageOption ? `Current: ${currentLanguageOption.displayLabel}` : 'Change language';
 
   return (
     <>
-      <IconButton
-        onClick={handleLanguageClick}
-        sx={getIconButtonStyles(iconColor, isDarkBackground)}
-        aria-label={t('changeLanguage') || 'Change language'}
-        aria-controls={isLanguageMenuOpen ? 'language-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={isLanguageMenuOpen ? 'true' : undefined}
-      >
-        <Language sx={iconSizeStyles} />
-      </IconButton>
+      <Tooltip title={tooltipTitle} placement="bottom" arrow>
+        <IconButton
+          onClick={handleLanguageClick}
+          sx={getIconButtonStyles(iconColor, isDarkBackground)}
+          aria-label={t('changeLanguage') || 'Change language'}
+          aria-controls={isLanguageMenuOpen ? 'language-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={isLanguageMenuOpen ? 'true' : undefined}
+        >
+          <Language sx={iconSizeStyles} />
+        </IconButton>
+      </Tooltip>
       
       <Menu
         id="language-menu"
