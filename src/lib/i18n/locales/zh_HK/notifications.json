@@ -1,0 +1,19 @@
+{
+  "success": "成功",
+  "error": "錯誤",
+  "welcome": "歡迎",
+  "tip": "提示",
+  "welcomeUser": "歡迎, {{name}}! 🎹",
+  "signInFailed": "登入失敗。請重試。",
+  "signedOutSuccess": "登出成功",
+  "signOutFailed": "登出失敗。請重試。",
+  "autoPlayPaused": "自動播放已暫停。現在您可以手動彈奏。",
+  "playbackPaused": "播放已暫停。現在您可以手動彈奏。",
+  "recordingStarted": "🔴 錄音已開始",
+  "recordingStopped": "⏹️ 錄音已停止 ({{count}} 個音符, {{duration}})",
+  "recordingCleared": "🗑️ 錄音已清除",
+  "recordingDownloaded": "💾 錄音已下載",
+  "recordingPlaybackPaused": "錄音播放已暫停 - 正在播放樂譜",
+  "sheetMusicPaused": "樂譜已暫停 - 正在播放錄音",
+  "historyCleared": "歷史記錄已清除"
+}

@@ -1,0 +1,20 @@
+{
+  "cancel": "Batal",
+  "save": "Simpan",
+  "delete": "Hapus",
+  "close": "Tutup",
+  "apply": "Terapkan",
+  "clearFilters": "Hapus Filter",
+  "sort": "Urutkan",
+  "search": "Cari",
+  "add": "Tambah",
+  "remove": "Hapus",
+  "favorites": "Favorit",
+  "recentlyPlayed": "Baru Diputar",
+  "allSheets": "Semua Partitur",
+  "logout": "Keluar",
+  "help": "Bantuan",
+  "settings": "Pengaturan",
+  "account": "Akun",
+  "changeLanguage": "Ubah Bahasa"
+}

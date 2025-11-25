@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Симулятор виртуального пианино: полная клавиатура QWERTY (68 клавиш), звук с низкой задержкой, более 10 инструментов, запись и практика чтения нот.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

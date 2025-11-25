@@ -1,0 +1,20 @@
+{
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "delete": "Sil",
+  "close": "Kapat",
+  "apply": "Uygula",
+  "clearFilters": "Filtreleri Temizle",
+  "sort": "Sırala",
+  "search": "Ara",
+  "add": "Ekle",
+  "remove": "Kaldır",
+  "favorites": "Favoriler",
+  "recentlyPlayed": "Son Çalınanlar",
+  "allSheets": "Tüm Notalar",
+  "logout": "Çıkış Yap",
+  "help": "Yardım",
+  "settings": "Ayarlar",
+  "account": "Hesap",
+  "changeLanguage": "Dili Değiştir"
+}

@@ -1,0 +1,19 @@
+{
+  "success": "Başarılı",
+  "error": "Hata",
+  "welcome": "Hoşgeldiniz",
+  "tip": "İpucu",
+  "welcomeUser": "Hoşgeldiniz, {{name}}! 🎹",
+  "signInFailed": "Giriş yapılamadı. Lütfen tekrar deneyin.",
+  "signedOutSuccess": "Başarıyla çıkış yapıldı",
+  "signOutFailed": "Çıkış yapılamadı. Lütfen tekrar deneyin.",
+  "autoPlayPaused": "Otomatik oynatma duraklatıldı. Artık manuel olarak çalabilirsiniz.",
+  "playbackPaused": "Oynatma duraklatıldı. Artık manuel olarak çalabilirsiniz.",
+  "recordingStarted": "🔴 Kayıt başladı",
+  "recordingStopped": "⏹️ Kayıt durduruldu ({{count}} nota, {{duration}})",
+  "recordingCleared": "🗑️ Kayıt temizlendi",
+  "recordingDownloaded": "💾 Kayıt indirildi",
+  "recordingPlaybackPaused": "Kayıt oynatma duraklatıldı - nota kağıdı çalınıyor",
+  "sheetMusicPaused": "Nota kağıdı duraklatıldı - kayıt oynatılıyor",
+  "historyCleared": "Geçmiş temizlendi"
+}

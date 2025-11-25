@@ -1,0 +1,19 @@
+{
+  "success": "Éxito",
+  "error": "Error",
+  "welcome": "Bienvenido",
+  "tip": "Consejo",
+  "welcomeUser": "¡Bienvenido, {{name}}! 🎹",
+  "signInFailed": "Error al iniciar sesión. Por favor, inténtelo de nuevo.",
+  "signedOutSuccess": "Sesión cerrada correctamente",
+  "signOutFailed": "Error al cerrar sesión. Por favor, inténtelo de nuevo.",
+  "autoPlayPaused": "Reproducción automática en pausa. Ahora puedes tocar manualmente.",
+  "playbackPaused": "Reproducción en pausa. Ahora puedes tocar manualmente.",
+  "recordingStarted": "🔴 Grabación iniciada",
+  "recordingStopped": "⏹️ Grabación detenida ({{count}} notas, {{duration}})",
+  "recordingCleared": "🗑️ Grabación borrada",
+  "recordingDownloaded": "💾 Grabación descargada",
+  "recordingPlaybackPaused": "Reproducción de grabación en pausa - la partitura se está reproduciendo",
+  "sheetMusicPaused": "Partitura en pausa - la grabación se está reproduciendo",
+  "historyCleared": "Historial borrado"
+}

@@ -1,0 +1,19 @@
+{
+  "success": "Success",
+  "error": "Error",
+  "welcome": "Welcome",
+  "tip": "Tip",
+  "welcomeUser": "Welcome, {{name}}! 🎹",
+  "signInFailed": "Failed to sign in. Please try again.",
+  "signedOutSuccess": "Signed out successfully",
+  "signOutFailed": "Failed to sign out. Please try again.",
+  "autoPlayPaused": "Auto-play paused. You can now play manually.",
+  "playbackPaused": "Playback paused. You can now play manually.",
+  "recordingStarted": "🔴 Recording started",
+  "recordingStopped": "⏹️ Recording stopped ({{count}} notes, {{duration}})",
+  "recordingCleared": "🗑️ Recording cleared",
+  "recordingDownloaded": "💾 Recording downloaded",
+  "recordingPlaybackPaused": "Recording playback paused - sheet music is playing",
+  "sheetMusicPaused": "Sheet music paused - recording playback is playing",
+  "historyCleared": "History cleared"
+}

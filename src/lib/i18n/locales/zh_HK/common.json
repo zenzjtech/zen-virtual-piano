@@ -1,0 +1,20 @@
+{
+  "cancel": "取消",
+  "save": "儲存",
+  "delete": "刪除",
+  "close": "關閉",
+  "apply": "套用",
+  "clearFilters": "清除篩選",
+  "sort": "排序",
+  "search": "搜尋",
+  "add": "新增",
+  "remove": "移除",
+  "favorites": "最愛",
+  "recentlyPlayed": "最近播放",
+  "allSheets": "所有樂譜",
+  "logout": "登出",
+  "help": "說明",
+  "settings": "設定",
+  "account": "帳戶",
+  "changeLanguage": "更改語言"
+}

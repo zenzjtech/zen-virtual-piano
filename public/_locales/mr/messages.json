@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "व्हर्च्युअल पियानो सिम्युलेटर: पूर्ण 68-की QWERTY कीबोर्ड, लो-लेटन्सी ऑडिओ, 10+ वाद्ये, रेकॉर्डिंग आणि शीट म्युझिक सराव.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

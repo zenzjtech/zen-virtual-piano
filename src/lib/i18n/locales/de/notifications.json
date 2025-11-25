@@ -1,0 +1,19 @@
+{
+  "success": "Erfolg",
+  "error": "Fehler",
+  "welcome": "Willkommen",
+  "tip": "Tipp",
+  "welcomeUser": "Willkommen, {{name}}! 🎹",
+  "signInFailed": "Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+  "signedOutSuccess": "Erfolgreich abgemeldet",
+  "signOutFailed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+  "autoPlayPaused": "Automatische Wiedergabe pausiert. Sie können jetzt manuell spielen.",
+  "playbackPaused": "Wiedergabe pausiert. Sie können jetzt manuell spielen.",
+  "recordingStarted": "🔴 Aufnahme gestartet",
+  "recordingStopped": "⏹️ Aufnahme gestoppt ({{count}} Noten, {{duration}})",
+  "recordingCleared": "🗑️ Aufnahme gelöscht",
+  "recordingDownloaded": "💾 Aufnahme heruntergeladen",
+  "recordingPlaybackPaused": "Aufnahmewiedergabe pausiert - Notenblatt wird abgespielt",
+  "sheetMusicPaused": "Notenblatt pausiert - Aufnahmewiedergabe läuft",
+  "historyCleared": "Verlauf gelöscht"
+}

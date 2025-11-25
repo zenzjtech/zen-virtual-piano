@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Simulator Piano Virtual: Keyboard QWERTY 68 Tombol Penuh, Audio Latensi Rendah, 10+ Instrumen, Perekaman, dan Latihan Partitur Musik.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

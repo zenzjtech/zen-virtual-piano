@@ -3,5 +3,17 @@
   "error": "エラー",
   "welcome": "ようこそ",
   "tip": "ヒント",
-  "historyCleared": "履歴をクリアしました"
+  "welcomeUser": "ようこそ、{{name}}さん！ 🎹",
+  "signInFailed": "サインインに失敗しました。もう一度お試しください。",
+  "signedOutSuccess": "サインアウトしました",
+  "signOutFailed": "サインアウトに失敗しました。もう一度お試しください。",
+  "autoPlayPaused": "自動再生を一時停止しました。手動で演奏できます。",
+  "playbackPaused": "再生を一時停止しました。手動で演奏できます。",
+  "recordingStarted": "🔴 録音を開始しました",
+  "recordingStopped": "⏹️ 録音を停止しました（{{count}}音符、{{duration}}）",
+  "recordingCleared": "🗑️ 録音を消去しました",
+  "recordingDownloaded": "💾 録音をダウンロードしました",
+  "recordingPlaybackPaused": "録音の再生を一時停止しました - 楽譜を再生中です",
+  "sheetMusicPaused": "楽譜を一時停止しました - 録音を再生中です",
+  "historyCleared": "履歴を消去しました"
 }

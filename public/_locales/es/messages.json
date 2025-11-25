@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Simulador de Piano Virtual y Teclado online: Teclado QWERTY completo de 68 teclas, audio de baja latencia, más de 10 instrumentos, grabación y práctica de partituras.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

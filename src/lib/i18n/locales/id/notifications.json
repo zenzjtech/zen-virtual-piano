@@ -1,0 +1,19 @@
+{
+  "success": "Berhasil",
+  "error": "Kesalahan",
+  "welcome": "Selamat Datang",
+  "tip": "Tips",
+  "welcomeUser": "Selamat datang, {{name}}! 🎹",
+  "signInFailed": "Gagal masuk. Silakan coba lagi.",
+  "signedOutSuccess": "Berhasil keluar",
+  "signOutFailed": "Gagal keluar. Silakan coba lagi.",
+  "autoPlayPaused": "Pemutaran otomatis dijeda. Anda sekarang dapat bermain secara manual.",
+  "playbackPaused": "Pemutaran dijeda. Anda sekarang dapat bermain secara manual.",
+  "recordingStarted": "🔴 Perekaman dimulai",
+  "recordingStopped": "⏹️ Perekaman berhenti ({{count}} nada, {{duration}})",
+  "recordingCleared": "🗑️ Perekaman dihapus",
+  "recordingDownloaded": "💾 Perekaman diunduh",
+  "recordingPlaybackPaused": "Pemutaran rekaman dijeda - partitur sedang diputar",
+  "sheetMusicPaused": "Partitur dijeda - pemutaran rekaman sedang berlangsung",
+  "historyCleared": "Riwayat dihapus"
+}

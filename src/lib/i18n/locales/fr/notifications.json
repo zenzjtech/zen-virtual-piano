@@ -1,0 +1,19 @@
+{
+  "success": "Succès",
+  "error": "Erreur",
+  "welcome": "Bienvenue",
+  "tip": "Astuce",
+  "welcomeUser": "Bienvenue, {{name}} ! 🎹",
+  "signInFailed": "Échec de la connexion. Veuillez réessayer.",
+  "signedOutSuccess": "Déconnexion réussie",
+  "signOutFailed": "Échec de la déconnexion. Veuillez réessayer.",
+  "autoPlayPaused": "Lecture automatique en pause. Vous pouvez maintenant jouer manuellement.",
+  "playbackPaused": "Lecture en pause. Vous pouvez maintenant jouer manuellement.",
+  "recordingStarted": "🔴 Enregistrement démarré",
+  "recordingStopped": "⏹️ Enregistrement arrêté ({{count}} notes, {{duration}})",
+  "recordingCleared": "🗑️ Enregistrement effacé",
+  "recordingDownloaded": "💾 Enregistrement téléchargé",
+  "recordingPlaybackPaused": "Lecture de l'enregistrement en pause - la partition est en cours de lecture",
+  "sheetMusicPaused": "Partition en pause - l'enregistrement est en cours de lecture",
+  "historyCleared": "Historique effacé"
+}

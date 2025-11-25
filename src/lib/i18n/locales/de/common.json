@@ -1,0 +1,20 @@
+{
+  "cancel": "Abbrechen",
+  "save": "Speichern",
+  "delete": "Löschen",
+  "close": "Schließen",
+  "apply": "Anwenden",
+  "clearFilters": "Filter löschen",
+  "sort": "Sortieren",
+  "search": "Suchen",
+  "add": "Hinzufügen",
+  "remove": "Entfernen",
+  "favorites": "Favoriten",
+  "recentlyPlayed": "Kürzlich gespielt",
+  "allSheets": "Alle Notenblätter",
+  "logout": "Abmelden",
+  "help": "Hilfe",
+  "settings": "Einstellungen",
+  "account": "Konto",
+  "changeLanguage": "Sprache ändern"
+}

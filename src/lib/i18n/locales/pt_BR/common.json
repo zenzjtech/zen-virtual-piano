@@ -1,0 +1,20 @@
+{
+  "cancel": "Cancelar",
+  "save": "Salvar",
+  "delete": "Excluir",
+  "close": "Fechar",
+  "apply": "Aplicar",
+  "clearFilters": "Limpar filtros",
+  "sort": "Ordenar",
+  "search": "Pesquisar",
+  "add": "Adicionar",
+  "remove": "Remover",
+  "favorites": "Favoritos",
+  "recentlyPlayed": "Reproduzidos recentemente",
+  "allSheets": "Todas as partituras",
+  "logout": "Sair",
+  "help": "Ajuda",
+  "settings": "Configurações",
+  "account": "Conta",
+  "changeLanguage": "Mudar idioma"
+}

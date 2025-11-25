@@ -1,0 +1,20 @@
+{
+  "cancel": "Отмена",
+  "save": "Сохранить",
+  "delete": "Удалить",
+  "close": "Закрыть",
+  "apply": "Применить",
+  "clearFilters": "Очистить фильтры",
+  "sort": "Сортировка",
+  "search": "Поиск",
+  "add": "Добавить",
+  "remove": "Удалить",
+  "favorites": "Избранное",
+  "recentlyPlayed": "Недавно сыгранные",
+  "allSheets": "Все ноты",
+  "logout": "Выйти",
+  "help": "Помощь",
+  "settings": "Настройки",
+  "account": "Аккаунт",
+  "changeLanguage": "Изменить язык"
+}

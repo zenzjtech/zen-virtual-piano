@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "ভার্চুয়াল পিয়ানো সিমুলেটর: সম্পূর্ণ ৬৮-কী QWERTY কীবোর্ড, লো-লেটেন্সি অডিও, ১০+ বাদ্যযন্ত্র, রেকর্ডিং এবং শিট মিউজিক অনুশীলন।",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

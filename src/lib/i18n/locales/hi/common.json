@@ -1,0 +1,20 @@
+{
+  "cancel": "रद्द करें",
+  "save": "सहेजें",
+  "delete": "हटाएं",
+  "close": "बंद करें",
+  "apply": "लागू करें",
+  "clearFilters": "फ़िल्टर साफ़ करें",
+  "sort": "क्रमबद्ध करें",
+  "search": "खोजें",
+  "add": "जोड़ें",
+  "remove": "निकालें",
+  "favorites": "पसंदीदा",
+  "recentlyPlayed": "हाल ही में बजाया गया",
+  "allSheets": "सभी शीट",
+  "logout": "लॉग आउट",
+  "help": "मदद",
+  "settings": "सेटिंग्स",
+  "account": "खाता",
+  "changeLanguage": "भाषा बदलें"
+}

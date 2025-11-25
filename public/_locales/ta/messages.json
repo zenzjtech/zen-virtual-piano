@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "மெய்நிகர் பியானோ சிமுலேட்டர்: முழு 68-விசை QWERTY விசைப்பலகை, குறைந்த தாமத ஆடியோ, 10+ கருவிகள், பதிவு மற்றும் தாள் இசை பயிற்சி.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

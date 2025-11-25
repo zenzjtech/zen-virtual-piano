@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Sanal Piyano Simülatörü: Tam 68 Tuşlu QWERTY Klavye, Düşük Gecikmeli Ses, 10+ Enstrüman, Kayıt ve Nota Kağıdı Pratiği.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

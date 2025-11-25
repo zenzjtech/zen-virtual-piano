@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Online Klavier Simulator: Volle 68-Tasten QWERTY-Tastatur, Audio mit geringer Latenz, 10+ Instrumente, Aufnahme und Notenblatt-Übung.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

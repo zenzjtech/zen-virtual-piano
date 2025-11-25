@@ -1,0 +1,20 @@
+{
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "delete": "حذف",
+  "close": "إغلاق",
+  "apply": "تطبيق",
+  "clearFilters": "مسح الفلاتر",
+  "sort": "ترتيب",
+  "search": "بحث",
+  "add": "إضافة",
+  "remove": "إزالة",
+  "favorites": "المفضلة",
+  "recentlyPlayed": "تم تشغيله مؤخراً",
+  "allSheets": "كل النوتات",
+  "logout": "تسجيل خروج",
+  "help": "مساعدة",
+  "settings": "إعدادات",
+  "account": "حساب",
+  "changeLanguage": "تغيير اللغة"
+}

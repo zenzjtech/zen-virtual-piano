@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "వర్చువల్ పియానో సిములేటర్: పూర్తి 68-కీ QWERTY కీబోర్డ్, తక్కువ-లేటెన్సీ ఆడియో, 10+ వాయిద్యాలు, రికార్డింగ్ మరియు షీట్ మ్యూజిక్ ప్రాక్టీస్.",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}
