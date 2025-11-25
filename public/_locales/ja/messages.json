@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "68鍵盤（C2-C7）、10種類以上の楽器、録音機能を搭載。遅延ゼロのオーディオエンジンと練習モードで、初心者からプロまで楽しめる無料のピアノ拡張機能です。",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "禅ピアノ",
+    "description": "Short name for extension"
+  }
+}

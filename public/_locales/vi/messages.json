@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Zen Virtual Piano",
+    "description": "Extension name"
+  },
+  "appDescription": {
+    "message": "Zen Virtual Piano: Biến trình duyệt của bạn thành đàn Piano ảo với 68 phím, 10+ nhạc cụ và công cụ ghi âm. Hỗ trợ học Piano online miễn phí, âm thanh không độ trễ (Zero Latency).",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "appShortName": {
+    "message": "Zen Piano",
+    "description": "Short name for extension"
+  }
+}

@@ -81,5 +81,10 @@
   "goToPageTooltip": "Go to Page (Ctrl+G)",
   "noHistoryYet": "No history yet...",
   "history": "History",
-  "clearHistory": "Clear history"
+  "clearHistory": "Clear history",
+  "welcomeToSheetMusicMode": "Welcome to Sheet Music Mode! 🎵",
+  "sampleSongLoaded": "A sample song has been loaded. Click the",
+  "sheetsButton": "Sheets",
+  "sampleSongLoadedEnd": "button to browse and select different songs.",
+  "preferManualPlay": "Prefer to play manually? Simply close this guide and enjoy playing freely!"
 }

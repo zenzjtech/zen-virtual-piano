@@ -6,7 +6,8 @@ export default defineConfig({
   manifest: {
     name: '__MSG_appName__',    
     description: '__MSG_appDescription__',
-    short_name: '__MSG_appShortName__',    
+    short_name: '__MSG_appShortName__',  
+    default_locale: 'ja',      
     permissions: [
       "identity",
       "storage",

@@ -81,5 +81,10 @@
   "goToPageTooltip": "ページへ移動 (Ctrl+G)",
   "noHistoryYet": "履歴がまだありません...",
   "history": "履歴",
-  "clearHistory": "履歴をクリア"
+  "clearHistory": "履歴をクリア",
+  "welcomeToSheetMusicMode": "楽譜モードへようこそ！🎵",
+  "sampleSongLoaded": "サンプル曲が読み込まれました。",
+  "sheetsButton": "楽譜",
+  "sampleSongLoadedEnd": "ボタンをクリックして、他の曲を閲覧・選択してください。",
+  "preferManualPlay": "手動で演奏したいですか？このガイドを閉じて、自由に演奏をお楽しみください！"
 }

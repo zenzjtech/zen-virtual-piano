@@ -81,5 +81,10 @@
   "goToPageTooltip": "Đi đến trang (Ctrl+G)",
   "noHistoryYet": "Chưa có lịch sử...",
   "history": "Lịch sử",
-  "clearHistory": "Xóa lịch sử"
+  "clearHistory": "Xóa lịch sử",
+  "welcomeToSheetMusicMode": "Chào mừng đến với Chế độ Nhạc cụ! 🎵",
+  "sampleSongLoaded": "Một bài hát mẫu đã được tải. Nhấn nút",
+  "sheetsButton": "Nhạc cụ",
+  "sampleSongLoadedEnd": "để duyệt và chọn các bài hát khác nhau.",
+  "preferManualPlay": "Thích chơi thủ công? Chỉ cần đóng hướng dẫn này và tận hưởng chơi tự do!"
 }

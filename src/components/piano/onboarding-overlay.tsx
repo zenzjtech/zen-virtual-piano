@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Typography, IconButton, Paper, styled, alpha, useTheme } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { PianoTheme } from './themes';
+import { useTranslation } from '@/hooks/use-translation';
 
 /**
  * Styled overlay that dims the background
@@ -128,6 +129,7 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
   const [sheetButtonRect, setSheetButtonRect] = React.useState<DOMRect | null>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
+  const { t } = useTranslation('piano');
 
   // Get the position and size of the sheet button
   useEffect(() => {
@@ -214,7 +216,7 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
             pr: 4, // Make room for close button
           }}
         >
-          Welcome to Sheet Music Mode! 🎵
+          {t('welcomeToSheetMusicMode')}
         </Typography>
 
         <Typography
@@ -225,7 +227,7 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
             mb: 2,
           }}
         >
-          A sample song has been loaded. Click the{' '}
+          {t('sampleSongLoaded')}{' '}
           <Box
             component="span"
             sx={{
@@ -234,9 +236,9 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
               textShadow: '0 0 8px rgba(76, 175, 80, 0.3)',
             }}
           >
-            "Sheets"
+            "{t('sheetsButton')}"
           </Box>{' '}
-          button to browse and select different songs.
+          {t('sampleSongLoadedEnd')}
         </Typography>
 
         <Typography
@@ -246,7 +248,7 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
             lineHeight: 1.6,
           }}
         >
-          Prefer to play manually? Simply close this guide and enjoy playing freely!
+          {t('preferManualPlay')}
         </Typography>
       </GuideMessage>
     </Overlay>
