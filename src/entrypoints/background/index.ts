@@ -22,7 +22,7 @@ const main = () => {
   // globalErrorHandlerForServiceWorker()  
 }
 
-export default defineBackground(() => {
-  console.log('Zen Virtual Piano background service worker initialized');  
-  main();
+export default defineBackground({  
+  type: 'module',
+  main
 });
