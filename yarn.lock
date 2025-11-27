@@ -351,9 +351,9 @@
   optionalDependencies:
     global-agent "^3.0.0"
 
-"@electron/node-gyp@git+https://github.com/electron/node-gyp.git#06b29aafb7708acef8b3669835c8a7857ebc92d2":
+"@electron/node-gyp@https://github.com/electron/node-gyp#06b29aafb7708acef8b3669835c8a7857ebc92d2":
   version "10.2.0-electron.1"
-  resolved "git+https://github.com/electron/node-gyp.git#06b29aafb7708acef8b3669835c8a7857ebc92d2"
+  resolved "https://github.com/electron/node-gyp#06b29aafb7708acef8b3669835c8a7857ebc92d2"
   dependencies:
     env-paths "^2.2.0"
     exponential-backoff "^3.1.1"
@@ -3108,10 +3108,10 @@ electron-vite@^4.0.1:
     magic-string "^0.30.17"
     picocolors "^1.1.1"
 
-electron@^38.1.2:
-  version "38.7.2"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-38.7.2.tgz#480b75ab83938f2477cad89c3b02dfd5904e3939"
-  integrity sha512-BcjR0IHqp3uv4ytVQwW2/9zAWo17Rjwrydn6RS+g+vqhpcPTzmBHDCHKaEcqheSl/7zzKPgFZdvT21BoSfrxRQ==
+electron@38.1.2:
+  version "38.1.2"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-38.1.2.tgz#3509999a1b635fb92e99a8e5eaf239110a9a7734"
+  integrity sha512-WXUcN3W8h8NTTZViA3KNX0rV2YBU0X0mEUM3ubupXTDY4QtIN7tmiqYVOKSKpR2LckTmBWGuEeY4D6xVoffwKQ==
   dependencies:
     "@electron/get" "^2.0.0"
     "@types/node" "^22.7.7"
