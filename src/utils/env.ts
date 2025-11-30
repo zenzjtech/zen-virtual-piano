@@ -7,3 +7,7 @@ export const shouldTrackUserActivity = () => {
         return true;
     return import.meta.env.WXT_SHOULD_TRACK_USER_ACTIVITY === '1'
 }
+
+export const isExtension = () => {
+    return typeof chrome !== 'undefined' && chrome.runtime;
+}

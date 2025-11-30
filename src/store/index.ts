@@ -2,22 +2,13 @@ import {
   setupReduxed, ReduxedSetupOptions
 } from 'reduxed-chrome-storage';
 import { configureStore } from '@reduxjs/toolkit';
+import { configureStoreOptions } from './base';
 
-import logger from 'redux-logger'
+const extStoreCreatorContainer = (preloadedState?: any) => configureStore({
+  preloadedState,
+  ...configureStoreOptions
+})
 
-import reducer from './reducers';
-
-const storeCreatorContainer = (preloadedState?: any) =>
-  configureStore({
-      reducer,
-      preloadedState,
-      middleware: (getDefaultMiddleware) => {
-          if (process.env.NODE_ENV === 'development') {
-              return getDefaultMiddleware().concat(logger)
-          }
-          return getDefaultMiddleware()
-      }
-  });
 
 const optionsGlobal: ReduxedSetupOptions = {
   plainActions: true,
@@ -27,11 +18,11 @@ const optionsLocal: ReduxedSetupOptions = {
   plainActions: true,
   isolated: true
 };
-export const instantiateGlobalStore = setupReduxed(storeCreatorContainer, optionsGlobal);
-export const instantiateLocalStore = setupReduxed(storeCreatorContainer, optionsLocal);
+export const instantiateGlobalExtStore = setupReduxed(extStoreCreatorContainer, optionsGlobal);
+export const instantiateLocalExtStore = setupReduxed(extStoreCreatorContainer, optionsLocal);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootStore = Awaited<ReturnType<typeof storeCreatorContainer>>
+export type RootStore = Awaited<ReturnType<typeof extStoreCreatorContainer>>
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<RootStore["getState"]>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

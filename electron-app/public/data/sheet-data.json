@@ -1,0 +1,3252 @@
+[
+  {
+    "id": "evanescence-bring-me-to-life",
+    "title": "Bring Me to Life",
+    "artist": {
+      "name": "Evanescence",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 95,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "alternative"
+    ],
+    "notation": "f k j k l x k k j k l x k [kh] j k [hl] k j k [hf] f G h j [kh] j h l k j k [hf] f G h j h G a pa s a p a o u I opoI a pa s a p a o oI y u aaapp | aaapp | sapo | s a p a u aaapp | aaapp | sapo | s a p a | s | o | p | I | u u I o p s ssapa opap op aa s ssapa opap op aa aaapp | aaapp | sapo | s a p a u aaapp | aaapp | sapo | s a p a | s | o | p | I | u u I o p s ssapa opa p op aa s ssapa opa p op aa [ow] [IQ] [y9] [u0]"
+  },
+  {
+    "id": "evanescence-my-immortal",
+    "title": "My Immortal",
+    "artist": {
+      "name": "Evanescence",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "ballad"
+    ],
+    "notation": "Tupu Supu TuOuS Tupuaupu TuOuS"
+  },
+  {
+    "id": "final-fantasy-prelude",
+    "title": "Prelude",
+    "artist": {
+      "name": "Nobuo Uematsu",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "final-fantasy"
+    ],
+    "notation": "8 9 0 w t y u o s d f h l z x v m v x z l h f d s o u y t w 0 9 6 7 8 0 e r t u p a s f j k l x b x l k j f s a p u t r e 0 8 7 4 5 6 8 q w e t i o p s g h j l c l j h g s p o i t e w q 8 6 5 [5] 8 9 ( [w] t y [y] [o] s d [d] [h] l z [z] [v] [z] z l [h] [d] d s [o] [y] y t [w] ( 9 8 [6] 8 9 q [e] t y i [p] s d g [j] l z c [b] c z l [j] g d s [p] i y t [e] q 9 8 5 6 [6] 9 w e [e] y o p [p] d h j [j] z v b [b] b v z [j] j h d [p] p o y [e] e w 9 [6] 6 5"
+  },
+  {
+    "id": "final-fantasy-ix-song-of-memory",
+    "title": "Song Of Memory",
+    "artist": {
+      "name": "Nobuo Uematsu",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "final-fantasy"
+    ],
+    "notation": "q e t i [op] i [ut] e q E y i s i [oy] E q e t i [op] i [ut] e q E T i [syi] [PT] o [pt] P [0o] [pteq] p s [outw] op P p P d p i [dyq] s [sp] P [PT] p [oyte] p [PE] y i o [utw] t [pq] [oe] [pt] [se] [to] u o op P p P [su] [di] [su] [PY] p [py] o [ouw] q [sou] P P p [put] o [iut] u [iq] e [ot] p [ue] r t u u i u t y E e P p [py] o [oq] E [it] y [ut]io E y t u [iq] e [ot] p [se] r [pt] u E t E e E E e P p p o o y i s P P p p o p P [st] i o P o i y i [su] p P p u o [oq] E y [it] i [ow] [pt] P [pq] e t i [op] i [ut] e q E y i s i [oy] E q e t i [op] i [ut] e q E T i [syi] [PT] o [pt] P [0o] [pteq]"
+  },
+  {
+    "id": "final-fantasy-vii-aeriths-theme",
+    "title": "Aerith's Theme",
+    "artist": {
+      "name": "Nobuo Uematsu",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "final-fantasy"
+    ],
+    "notation": "z L k j f f f G h G f d h k [yde] j z [upfl] j f [yde] j z L x z k L [sfj] [psf] I [pe] [dy] u I u y e [s6] [p0] [ue] r t r e y u [y6] 9 q u i [ue] y u [y5] 9 w E w 9 [ey9] Q e y I p d G j d G j z y u I Q r T y I o p * Q e T a S [d9] w r y a o p a p e p I T Q e T [SL] [ak] [pj] a p [y9] 9 w r [ak] [pj] [oh] [pj] [IG] [TS] * Q e [SL] [ak] [pj] k L [zd5] 9 w r o d h z [LQ] [ke] [j69] e [G G] 5 [wry] z L [kw] r [C C] w 5 w r y z L k [j5] [fe] [fu] f G [yoah] G f [dp] h j z [yoah] G d f [2d] 6 9 0 Q e u p z d G L d G k d G [uoadj] [pf] f G [oadh] [GL] [fx] [dz] [0ryo] [6wyua] S [2d] 6 9 Q e y"
+  },
+  {
+    "id": "final-fantasy-x-to-zanarkand",
+    "title": "To Zanarkand",
+    "artist": {
+      "name": "Nobuo Uematsu",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 60,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "final-fantasy"
+    ],
+    "notation": "[aux] f h k [xy] C [vt] [ypz] d G j [zt] x C [tk] o [sk] d [fk] h [fhk] j z G r I a S D G k [ex] u [pax] a [sx] d [xfp] z v [ql] o s d f h l h l z x v [fo0] r u a [fo] G [a8h] w G y u [fto] [so] [9d] e y [ufo] [dp] [a5] 9 w e [rho] [yjp] [fo0] r u a [fo] G [a8h] w G y [oh] [9j] e y [ufh] [jy] [5hk] 9 w e r y [fo0] r u a [fo] G [a8h] w G y u [fto] [so] [9d] e y [ufo] [dp] [a5] 9 w e [rho] [yjp] t a d f k k k y s f k j z [seh] u o h G d [1wu] 3 5 8 0 w t u o s f o s f h [6jp] 0 e r [tlx] u [4lx] 8 [qzdk] [sejl] [wahk] 5 9 w e r [yhv] [3hv] 7 0 Q w e r d k C C s e j [xj] [xj] Z 7 6 [ay7] I a G a G [9af] w [rad] w S 6 0 e [fjp] e [jp] $ * Q e T [ISH] f S [woa] G p [QTI] [up] [ar7]"
+  },
+  {
+    "id": "final-fantasy-x-2-main-theme",
+    "title": "Final Fantasy X-2 Main Theme",
+    "artist": {
+      "name": "Nobuo Uematsu",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "final-fantasy"
+    ],
+    "notation": "48we 59er 60rt 37Iw h [l4] 8 k [hw] e d [l5] 9 k [hr] t g [f6] 0 z [zr] t w 5 9 e r e [hw] [l4] 8 k [hw] e d [l5] 9 k [hr] t g [f6] 0 z [zr] t l [z5] 9 x [le] r k h [h4] s 8 w e h [h5] d 9 e r h [h6] f 0 r t h [h5] d 9 e r h [h4] [si] 8 w e h [ha5] [dy] 9 e r h [hs6] [fu] 0 r t h [ha5] d 9 e r h [l4] 8 k [hw] e d [l5] 9 k [hr] t g [f6] 0 z [zr] t [wl] [z5] 9 e r e [hw] [lg4] 8 k [hw] e d [l5] 9 k [hr] t g [fa6] [0s] z [zr] t l [z5] 9 x [le] r k h [h4] [si] 8 w e h [ha5] [dy] 9 e r h [hs6] [fu] 0 r t h [ha5] d 9 e r h [h4] [si] 8 w e h [ha5] [dy] 9 e r h [hs6] [fu] 0 r t h [ha5] d 9 e r y 48we 59er 60rt 37Iw 48we 59er 60rt u p a s [eu6]"
+  },
+  {
+    "id": "final-fantasy-xi-sarutarubaru",
+    "title": "Sarutarubaru",
+    "artist": {
+      "name": "Nobuo Uematsu",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "final-fantasy"
+    ],
+    "notation": "5 9 w r w 5 9 e t u t e 5 9 w r w 5 9 e t i [to] [eo] [5d] w r [wo] [5o] [9d] e [tf] [ug] [tf] [se] [5a] 9 w [rs] [wa] [5o] [9p] e [to] [io] t [eo] [5d] 9 w r w [5o] [9d] e [tf] [ug] [tf] [se] [5a] 9 [wd] r [wd] [5h] [9j] [ek] [th] [ij] t [eo] [5d] w r [wo] [5o] [9d] e [tf] [ug] [tf] [se] [5a] 9 w [rs] [wa] [5o] [9p] e [to] [io] t [eo] [5d] 9 w r w [5o] [9d] e [tf] [ug] [tf] [se] [5a] 9 [wd] r [wd] [5h] [9j] [ek] [th] [ij] t [eh] [5h] 9 w [wr] [we] [5r] [9t] e u [ty] [eu] [5y] 9 w [wr] w 5 [9i] e t i t [et] [5dy] 9 w [ro] w [5o] [9id] e [tof] [upg] [tof] [eus] [5ya] 9 w [ros] [wa] [5o] [9ip] e [tuo] [yio] t [eyo] [5dy] 9 w [ro] [wa] [5o] [9id] e [tof] [upg] [tof] [eus] [5ya] 9 [wod] r [wod] [5ah] [9sj] [edk] [tah] [isj] t [eo] [5dy] 9 w [ro] [wo] [5o] [9id] e [tof] [upg] [tof] [eus] [5ya] 9 w [ros] [wa] [5o] [9ip] e [tuo] [yio] t [eyo] [5dy] 9 w [ro] [wa] [5o] [9id] e [tf] [usg] [tpf] [es] [5ad] 9 [wh] [ro] [wph] [5aj] [9sj] [edk] [tah] [isj] t [eah] [5ah] 9 w r [wp] [5o] [9s] e t u [ta] [es] [5d] 9 w [ro] w 5 [9f] e t [id] [to] [yp][5yr]"
+  },
+  {
+    "id": "ceelo-green-forget-you",
+    "title": "Forget You",
+    "artist": {
+      "name": "CeeLo Green",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 127,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "soul"
+    ],
+    "notation": "s s s [duo] f s s s [dyi] p s s [sip] s s s [dip] p p [tou] s s s [duo] f s s s [dyi] p s s [sip] s s s [dip] p p [tou] f h j [zou] l d [fip] h f d [sip] s p s [ht] [fu] [dy] [st] s f h [jt] h j [DY] d s [sip] d D [dip] s p s [ht] [fu] [dy] [sip] s f h [jt] h j [DY] d s [sip] d D [dip] s p s [ht] [fu] [dy] [sip] [hut] [fot] [dyi] [stu] [hut] [fot] [dyi] [sip] [stu]"
+  },
+  {
+    "id": "forrest-gump-theme",
+    "title": "Forrest Gump Theme",
+    "artist": {
+      "name": "Alan Silvestri",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack"
+    ],
+    "notation": "w y y y y w y y y y w y y y y w y y y y [woa] [ys] d d w a y d w [ah] y d w a y w [ws] [ud] [of] f w [os] u f t o s o t [os] r [oa] [eos] [ud] [of] f e [os] u f 9 [dj] p G 9 d p y [wa] [os] d d w h o d w o a d o d I d [uf] G [ah] h u f a h u a f h u f u a [tos] d [of] f t s o f t u o s t [os] r [oa] [eos] [ud] [of] f e [os] u e [9p] y a [os] 9 p y w y y y y w y y y y w y y y y w y y o o p [woa] [ys] d d w a y d w [ah] y d w a y w [ws] [ud] [of] f w [os] u f t o s o t [os] r [oa] [eos] [ud] [of] f e [os] u f 9 [dj] p G 9 d p y [wa] [os] d d w h o d w o a d o d I d [uf] G [ah] h u f a h u a f h u f y o [tos] d [of] f t s o f t u o s t [os] r [oa] [eos] [ud] [of] f e [os] u e [9p] y a [os] 9 p y w y y y y w y y y y w d h j z j d h"
+  },
+  {
+    "id": "a-simple-wish",
+    "title": "A Simple Wish",
+    "artist": {
+      "name": "Philip Sheppard",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "soundtrack",
+      "instrumental"
+    ],
+    "notation": "f l k [j6] 0 e r t k l x [k0] r u I o k v C [x8] w t y u C v n C Q r y I z x [c9] e y x [x0] r [zu] l k [l6] 0 e r t j k [lq] t i z [kw] y [hi] [j6] 0 e r t l k [j6] 0 e r t k l x [k0] r u I o k v C [x8] w t y u C v n C Q r y I z x [c9] e y x [x0] r [zu] l k [l6] 0 e r t j k [lq] t i z [kw] y [hi] [j6] 0 e r t l k [j6] 0 [ke] [l0] [k5] 9 [hw] 9 [jq] [ht] [hi] [gt] [h0] [lu] k [j5] 0 [ke] [lt] [x0] r [ku] o [jq] [kt] [lw] [hy] [j6] 0 e r t k l [x8] w [zt] [lw] [z5] 9 w r [c9] e [xy] [ze] [x6] [f0] [je] [kt] [lq] t [ki] [lq] [z5] 9 [hw] 9 [x8] [zw] [lt] [zw] [x0] k l [x8] w [zt] [lu] [zw] y o [c9] e [xy] [zi] [x6] [f0] [jt] k [lq] t [ki] [lq] [zw] k [ho] w [je] u p a s [ht] [ji] [xt] [zw] [yo] q [k0] [lr] [zu] [ko] [l6] 0 e h [gq] [ht] [ji] [xq] [zw] k [zo] [zw] [x0] k l [x8] w [zt] [lu] [zw] y o [c9] e [xy] [zi] [x6] [f0] [jt] k [lq] t [ki] [lq] [zw] k [ho] w [je] u p a s"
+  },
+  {
+    "id": "alicia-keys-fallin",
+    "title": "Fallin'",
+    "artist": {
+      "name": "Alicia Keys",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 60,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "soul"
+    ],
+    "notation": "d D [f0] r u u r 0 9 e y y [eh] [9f] [0h] r u u r 0 9 e [yh] [yj] e [9h] [0k] r [uk] u r 0 9 [ed] [yd] [yd] [ed] D [0f] r u u r 0 9 e [yf] G [ef] G [0h] r u u r 0 9 e [yf] [yd] [ed] D [0f] r u u r 0 9 e y [yj] [ej] [9k] [0j] r [uh] u r 0 9 e [yh] [yh] [ef] [9d] [0f] r u u r 0 [9a] [ed] [yf] G e [9h] [3h] 3 [70] k [3h] [2j] h 2 [79] [2d] [3f] 3 [70] h [3f] [2h] [2a] [79d] f G [3h] [3f] [70] k [3h] [2j] h 2 [79] d D [3f] 3 [79] h [3f] [2h] z x [0x] r u u r 0 9 e y y e 9 0 r u u r 0 9 e y y e 9 0"
+  },
+  {
+    "id": "amelie",
+    "title": "Amelie",
+    "artist": {
+      "name": "Yann Tiersen",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "soundtrack",
+      "instrumental"
+    ],
+    "notation": "[d9] [qey] s [a6] [80e] p [d9] [qey] f d s a s [a6] [80e] p [sq] [et] a [u8] [0r] [sq] [et] d s a s a [u8] [0r] [dz9] [qey] [sl] [ak6] [80e] [pj] [dz9] [qey] f d s a s [ak6] [80e] [pj] [sql] [et] [ak] [uf8] [0r] [sql] [et] d s a s a [uf8] [0r] fuiuiu dui sui ayuyuy ptyuytfuiuiu dui sui ayuyuy ptyuyt"
+  },
+  {
+    "id": "andrea-bocelli-time-to-say-goodbye",
+    "title": "Time To Say Goodbye",
+    "artist": {
+      "name": "Andrea Bocelli",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "opera"
+    ],
+    "notation": "[y5] [owr] 2 | I p [o3] [owr] [o1] [wtu] p [a5] [wry] 2 | [peq] s a [o3] [wry] [ho] [GI] [dy] [ho] [GI] [dy] [ar] [dy5] [wry] [pu1] s a [pit] o I | t y u y u I u I [ot] I o p o u p a [soy] a [tw] y u y [ue2] I u I [ot3] I o p [oy4] u p a [soy] a [oye] I u I | [sou] [aou] [utw] u I [yrw] [rw] | u y [yeq] y [eq] o I [yrw] y y [yrw] y a [sou] o [oye] I [yrw] y [rw] u y [yeq] [oy] I p [yr] [yrw] p a [su1] o o [oye] I [y5] [oyr] 2 I p [o3] [yrw] 1 [utw] p [a5] a [yrw] 2 [peq] s a [o3] [yrw] [ho] [GI] [dy] [ho] [GI] [dy] [ar] [dy5] [yrw] [pue] s a [pit] o I [y5] o [oyr] 2 I p [o3] [yrw] 1 [utw] | p [a5] a a [ayr] 2 a [peq] s a [o3] [yrw] [ho] [GI] [dy] [ho] [GI] [dy] [ar] [dy5] [yrw] [pu1] s a [pyt] o I [yt2] t y u y u I u I [ot] I o p o u p a [soy] a [tw1] y u y [ue2] I u I [put] o [ay2] [tw1] y u y [ue2] I u I [our] [ao] I [ou] [tw3] y u y [ue2] I u I [put] o [py2] o [sou] a [yeq] [dy5] [pu1] s a [pt2] o I [u6] p [peu] 3 O a p [qeu] [qey] | a S S S [ST] 3 S [ar0] d S p [ueq] [jp] [HO] [fu] [jp] [HO] [fu] [ST] [fu6] [eu] a d S [ay3] p S [u6] | p [peu] 3 O a p [ueq] [ey] a S S S [ST] 3 S [ar0] d S [p4] [eu] [jp] [HO] [fu] [jp] [HO] [fu] [ST] [fu6] [ue] G H j | [yeq] [urw] [utw] [iye] 6"
+  },
+  {
+    "id": "angry-birds",
+    "title": "Angry Birds",
+    "artist": {
+      "name": "Ari Pulkkinen",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 150,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack"
+    ],
+    "notation": "dfg d j dfg d j jJjhg gfd dfg d ghj g jklklklkjhj dfg d ghj g jklklklkjhj jkllll lzlkl lll l lzlkj"
+  },
+  {
+    "id": "antony-gleize-lullaby",
+    "title": "Lullaby",
+    "artist": {
+      "name": "Antony Gleize",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "lullaby",
+      "instrumental"
+    ],
+    "notation": "4y 4u 4u 4i 5i 5u 5u 5y 6t 6y 6y 6u 6u 6y 6t 6r 6e 4e 4e 4e 4e 5e 5e 5e 5e 5e 5e 5e 5w 5w 5w 6e 6e 6e 6e 6e 6e 6e 6e 6e 6r 6t 6y 6t 4e 4e 4e 4e 5e 5e 5e 5e 5e 5e 5w 5w 5w 6e 6e 6e 6e 6e 6e 6e 6e 6u 6u 6u 6u 6y 6t 4e 4r 4t 4r 4r 4e 5e 5r 5t 5y 5t 5r 5e 6e 6r 6t 6r 6r 6e 6e 6r 6t 6y 6t 6r 6e 4 y 4 u 4 u 4 i 5 i 5 u 5 u 5 y 6t 6y 6y 6u 6u 6y 6t 6r 6e 4 e 4 e 4 e 4 e 5 e 5 e 5 e 5 e 5 e 5 e 5 e 5 w 5 w 5 w 6 e 6 e 6 e 6 e 6 e 6 e 6 e 6 e 6 e 6 r 6 t 6 y 6 t 4 e 4 e 4 e 4 e 5 e 5 e 5 e 5 e 5 e 5 e 5 w 5 w 5 w 6 e 6 e 6 e 6 e 6 e 6 e 6 e 6 e 6 u 6 u 6 u 6 u 6y 6t 4 e 4 r 4 t 4 r 4 r 4 e 5 e 5 r 5 t 5 y 5 t 5 r 5 e 6 e 6 r 6 t 6 r 6 r 6 e 6 e 6 r 6 t 6 y 6 t, 6 r, 6 e"
+  },
+  {
+    "id": "avatar-i-see-you",
+    "title": "I See You",
+    "artist": {
+      "name": "Leona Lewis",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack"
+    ],
+    "notation": "[6f] 0 d [ef] s | [5d] 9 s [wd] a | [4s] 8 [qp] | [6f] 0 d [ef] h | [5d] 9 s [wd] a | [4s] 8 [qj] | h g [6f] [0d] [ef] | h [5d] [9s] [wd] | a [4s] 8 [qp] | [2i] 6 9 | o p [3o] 7 0 | p a [4p] 8 q | a s [5a] 9 [wd] | h [6s] 0 u p [es] | [5d] 9 o a [wd] | f [2G] 6 [9h] | G [3f] 7 0 | [6s] 0 u p [es] | [5d] 9 o a [wd] | f [2G] 6 [9h] | j [3k] 7 0"
+  },
+  {
+    "id": "avril-lavigne-when-youre-gone",
+    "title": "When You're Gone",
+    "artist": {
+      "name": "Avril Lavigne",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "rock"
+    ],
+    "notation": "Ghf Ghf Ghf Ghb Ghf Ghf Ghf Ghb Ghf Ghf Ghf Ghz dhGdp ryryyyuIo uapouu uapop yryrtyuIoo uuapouu uaoppoI rttoooutrrpo opasasappp osa yaaaa appop osa yaaaa appop osa sasasaaappoIoo yyyap oIo IouIouIouIod IouIouIouIod IouIouIouIod dphGdp ryryyyuIo uapouu uapop yryrtyuIoo uuapouu uaoppoI rttoooutrrpo opasasappp osa yaaaa appop osa yaaaa appop osa sasasaaappoIoo yyyap oIo IIIIppo ooppo aaap asa aPaPaPaPaPa apapapapasa aaaaaaaaapodd osa yaaaa appop osa yaaaa appop oaasasasadaadaopoyu yyyap oIo Ghf Ghf Ghf Ghb Ghf Ghf Ghf Ghz dhGdp"
+  },
+  {
+    "id": "bak-postaci-geliyor",
+    "title": "Bak Postaci Geliyor",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "children",
+      "turkish"
+    ],
+    "notation": "ytyuytr etrer ytyuytr etrew"
+  },
+  {
+    "id": "kiss-the-rain-v2",
+    "title": "Kiss the Rain v2",
+    "artist": {
+      "name": "Yiruma",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 96,
+    "timeSignature": "4/4",
+    "tags": [
+      "contemporary",
+      "yiruma",
+      "romantic"
+    ],
+    "notation": "       o s d [td] f f | o s o s d f [wd] h h | o a o h j k [ek] l [sfl]       s f z z x z l [0k] o a o 0       l k h [ih] j j | s g s h g [0g] h h       o a o s d [yf] g [pdg] p d p h g [wf] o a g f [wd]       o s d [td] f f | o s o s d f [wd] h h | o a o h j k [ek] l [sfl]       s f z z x z l [0k] o a o 0       l k h [ih] j j | s g s h g [0g] h h       o a o s d [yf] g [pdg] p [ws] y a       [ts] u o s f s f h [ij] s g s i a s j [0h]       o a o e a s h [yh] g [odg] f [wf] d       o s d [td] f f | o t s f h [ij] s f s r k k j [0h] o a f g [eh] g f       [yg] o h o [yj] s k l [ox] d h d [oz]       o s d [td] f f | o s o s d f [wd] h h | o a o h j k [ek] l [sfl]       s f z z x z l [0k] o a o 0       l k l k h [ih] j j | s g s j h g [0g] h h       o a o s d [yf] g [pdg] p [ws] y a [ts] u o s f       l k h [ih] j j | s g h g [0g] h h | o a s d [yf] g g       p [ws] y a [ts] u o s t u o s f     "
+  },
+  {
+    "id": "kiss-the-rain",
+    "title": "Kiss the Rain",
+    "artist": {
+      "name": "Yiruma",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 96,
+    "timeSignature": "4/4",
+    "tags": [
+      "contemporary",
+      "yiruma",
+      "romantic"
+    ],
+    "notation": "h l z [tz] [ox] [dx] | o s l z x [uz] | [av] [fkv] a h v b | n [plvn] [fm] [kxm] f l | x m [oxn] f [hk] f | [hx] m n v [ikv] [sb] | [hlb] s g v c [uhzc] | [sv] [fzv] s [fl] l z | [ygx] [pc] [dc] p s v | c [wgjx] y a y [az] | h l z [8hz] [wx] [uhx] | w y w t l [8z] | x [0hz] [rv] [ohkv] r u | r o v [rb] n [6lxn] | [0m] [tlm] 0 r 0 [ex] | 0 m [5xn] 0 r 0 | w m n v [qjv] [tb] | [ilb] t p t i [tv] | c [0hzc] [tv] [ohv] t u | t o l z [9gjx] [ec] | t j [wgl] y [ok] [8ygl] | o d g f s f h | [qsj] t [op] t [is] [ta] | [os] [qj] [0dh] [to] [us] [ta] | [us] a [us] [0h] [9tph] [eg] | [tg] [9f] [5ipf] [9d] [tipd] [ws] | [8yod] [wf] [yof] w [tu] [ws] | [yf] [8h] [$sj] [Qu] [tp] [Qs] | [7a] [Qk] [YDk] [Qj] [0ah] r | o f g [edh] [Su] [pg] | f [9pg] e [yh] e [ij] | e k t [yl] [5gjx] 9 w | 9 [rgjz] h l z [8hz] | [wx] [uhx] w y w t | l [wz] x [7hz] [rv] [ohkv] | r u r o v [rb] | n [6lxn] [0m] [tlm] 0 6 | [0z] [tx] z 0 [lm] [5kxn] | 0 [of] u [oa] [ulm] [okn] | [whv] [4hv] [tjb] [ojb] t i | t o [tv] c [0hzc] [tv] | [uhv] t o t u [tl] | z [9jx] [ec] [tjc] e i | e [thv] [ygc] [5gjx] 9 i | e [ogjz] [rh] [al] [oz] [8hz] | [wx] [uhx] w y w t | l [wz] x [0hz] [rv] [ohkv] | r u r o [hv] [rjb] | [kn] [6kxn] [0lm] [tlm] 0 6 | [0z] [tx] z 0 [lm] [5kxn] | 0 [of] u [oa] [ulm] [okn] | [whv] [4hv] [8jb] [ojb] t [ip] | t o [tv] c [0hzc] [tv] | [uhv] t o t u [tl] | z [9gjx] [ec] t j [wgl] | y [ok] [8ygl] w y i | u s f h [qsj] t [op] | t [is] [ta] [os] [qj] [0dh] | [to] [us] [ta] [us] a [us] | [0h] [9ph] [eg] [ig] [ef] | [5ipf] [9d] [tipd] s [8od] [wf] | [yof] w [tu] [ws] [uf] [wh] | [$sj] [Qu] [tp] [Qs] [7a] [Qk] | [YDk] [Qj] [0ah] r o f | g [edh] [Su] [pg] f [9pg] | e [yh] e [ipj] e [ak] | t [ysl] [5fhx] 9 t s | [adhz] [yh] [al] [oz] [8hz] [wx] | [uhx] w y w t l | [8z] x [7hz] [rv] [ohv] r | u r o v [rb] n | [6xn] [0lm] [tlm] 0 r [0z] | [ex] z 0 [lm] [5kxn] 0 | [of] u [oa] [ulm] [okn] [whv] | [4hv] [8jb] [ojb] t [ip] t | o o [th] g [0odg] [th] | [uosh] t o t u [tl] | z [9gjx] [ec] t [9j] [5gl] | 9 [rgk] 9 [%SJL] W [TP] | [IS] [wyts] H L Z [THZ] | [oc] [dc] O [sg] O g | L Z c [HZI] [vs] [HV] | s g s V B m | [ezcm] i [sc] i s i | P i [wcm] i [os] i | [og] [li] [Ol] [WH] [$SH] [*J] | [OSJ] T [IP] T [OS] [QH] | G [$Gs] [*H] [OSH] T [PSI] | T i O S D [(TIG] | [EG] T P [%IS] ( [WS] | [*SI] W Y I [*WI] Z | c [YSGC] [PC] S J [ODGL] | l [*GL] W Y O [*SI]"
+  },
+  {
+    "id": "baris-manco-gulpembe",
+    "title": "Gulpembe",
+    "artist": {
+      "name": "Baris Manco",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "rock"
+    ],
+    "notation": "f kjk f kjk f kk klkjk jhj hjkj hGh GhjhGh GfG fGh gfdf gfdf kjk gfdf jhj gfdf hGh gfdf h gf h gf h gfGff fGhjk jzllkjk dGhjhGd dGhjkjhG Ghf Ghf Ghf dGhjhGd dGhjkjhG Ghf Ghf Ghf"
+  },
+  {
+    "id": "basto-again-and-again",
+    "title": "Again and Again",
+    "artist": {
+      "name": "Basto",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 128,
+    "timeSignature": "4/4",
+    "tags": [
+      "electronic",
+      "house"
+    ],
+    "notation": "[u0] I o [p2] a [f8] [f8] [f8] [f8] [f8] d [a5] s a [p2] a [o3] [o3] [o3] [o3] p o I [u0] I o [p2] a [f8] [f8] [f8] [f8] d f G [h8] G f [d2] a [f0] [f0] [f0] [f0]"
+  },
+  {
+    "id": "berkant-akgurgen-bir-sarkisin-sen",
+    "title": "Bir Sarkisin Sen",
+    "artist": {
+      "name": "Berkant Akgurgen",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 110,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "pop"
+    ],
+    "notation": "y u ytr | opoI yuI u I uyt | Iouy tyr o p o I oIou IuIy o p o I oIou IuIy w r y y u ytr | opoI yuI I a u I uyt | Iouy tyr o p o I oIou IuIy o p o I oIou IuIy y I p o"
+  },
+  {
+    "id": "cahit-berkay-selvi-boylum-al-yazmalim",
+    "title": "Selvi Boylum Al Yazmalim",
+    "artist": {
+      "name": "Cahit Berkay",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "soundtrack"
+    ],
+    "notation": "e oIou utuy y yyy rt trrtyree rtyytuyy rttrtyre rettrtyree e"
+  },
+  {
+    "id": "canakkale-icinde-vurdular-beni",
+    "title": "Canakkale Icinde Vurdular Beni",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "folk"
+    ],
+    "notation": "sddd lklj h j k l j h sddd lklj h j k l j h j jjj h Hhgfghfd fgh gffdd"
+  },
+  {
+    "id": "edip-akbayram-hasretinle-yandi-gonlum",
+    "title": "Hasretinle Yandi Gonlum",
+    "artist": {
+      "name": "Edip Akbayram",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "folk"
+    ],
+    "notation": "klll zx zlk jkkk lz lkj hjjj jk hgg fggg h j g f"
+  },
+  {
+    "id": "erol-evgin-iste-oyle-birsey",
+    "title": "Iste Oyle Birsey",
+    "artist": {
+      "name": "Erol Evgin",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "pop"
+    ],
+    "notation": "SSPPpp ddSSPP ffddSS SSPPop ghjjJ jh gff fghhj hg fdd dfggh gf dSS ff dd SS SSPPpp SSPPpp ghjjJ jh gff fghhj hg fdd dfggh gf dSS ff dd SS SSPPpp SSPPpp"
+  },
+  {
+    "id": "benim-annem-canim-annem",
+    "title": "Benim Annem Canim Annem",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "children",
+      "turkish"
+    ],
+    "notation": "sdff fgfd dfg jhgf hgdd fgjh ljh fhgf"
+  },
+  {
+    "id": "batman-the-dark-knight",
+    "title": "The Dark Knight Theme",
+    "artist": {
+      "name": "Hans Zimmer & James Newton Howard",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack"
+    ],
+    "notation": "[ql] [ts] J s h s H s J s g l s J s h s H s J [ql] [ts] J s h s H s J s g [ti O] | [o Y] | s [qti O] | [wo Y] | s [qtisg] | [YPH] h [isg O] | [YH] h [ig TO] | [toh] g [8wtiog] [uf] H h g [OS] % q % [PD] [dy] [st] [do] | J [HO] [ho] g [STO] t | D | s | [TP] q | w | W | [WO6] | [89wtyo]"
+  },
+  {
+    "id": "batman-begins-barbastella",
+    "title": "Barbastella",
+    "artist": {
+      "name": "Hans Zimmer & James Newton Howard",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack"
+    ],
+    "notation": "J j J h | h z l z | h l J l | h G f G d J j J | h D d D | d j h j | j z c"
+  },
+  {
+    "id": "beethoven-fifth-symphony",
+    "title": "Fifth Symphony",
+    "artist": {
+      "name": "Ludwig van Beethoven",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 108,
+    "timeSignature": "2/4",
+    "tags": [
+      "classical",
+      "beethoven"
+    ],
+    "notation": "[ho] [ho] [ho] [DY] [gi] [gi] [gi] [dy] oooY OOOo DDDs oooy OOOo gggd ooiY ssdD ooiY DDgh [ho] [ho] [gi] [DY] [yh] [tl]"
+  },
+  {
+    "id": "beethoven-love-story",
+    "title": "Love Story",
+    "artist": {
+      "name": "Ludwig van Beethoven",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "beethoven"
+    ],
+    "notation": "lffll ffllfgfdddkk ddkkdfdsssjj ssjjsdsaaaHH jkgf lffll ffllfgfdddkk ddkkdfdsssjj ssjjsdsaaaHH jkHL d f p gpgppaa dgd fpsfsd adas dfpsfg opsa sdgf oiuY IpIo LggLL ggLLgGgDDDll DDllDgDSSSJJ SSJJSDSsssjj paiu"
+  },
+  {
+    "id": "beethoven-moonlight-sonata",
+    "title": "Moonlight Sonata",
+    "artist": {
+      "name": "Ludwig van Beethoven",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 60,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "beethoven"
+    ],
+    "notation": "[9e]yi eyi eyi eyi | [8e]yi eyi eyi eyi Eyi Eyi EYo EYo [6e]To eyi [6e]yu wTu [9q]ey eyi eyi p eyp | [*p]uo euo euo p uop [9p]yi eyi P yoE yo | [8p]ti eti [8o]tu s uo [4i]ti eti eti eti Wti Wti Wti O tiO OtI OtI OtI O tIO * TiW TiW yio yi [8o] tYw tYW tyW ty | [5o] tYw tY[wo] ryw ry [8t] Yot Yot uosuo | S iO[qt] iOW iO[qa] iO [8s] uot uot uosuo | S iO[qt] iOW iO[qa] iO [8s] uot uo[6s] YIt YI | s ypt ypE yiE yi 8 tYW tY* EuwEu [9y]wE 9wE [9y]wt [9y]Qe | [5w]Ey Eyo yoP doP d dps yps yps dpsd [5d]oP yoP 0oP 8oP | *op uop uop [8f]op [9g]pdipd [5f]oPd ia | 6Tu pTu PTu oTu 6Tu eTu ETu wTu 6ey qey 6wT 0wT [26qy] [26qy] [26qy]"
+  },
+  {
+    "id": "beethoven-ode-to-joy",
+    "title": "Ode To Joy",
+    "artist": {
+      "name": "Ludwig van Beethoven",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "beethoven"
+    ],
+    "notation": "uuiooiuyttyuu [y y] uuiooiuyttyuy [t t] yyuty[u i u]ty[u i u]ytyw uuiooiuyttyuy [t t]"
+  },
+  {
+    "id": "beethoven-fur-elise",
+    "title": "Für Elise",
+    "artist": {
+      "name": "Ludwig van Beethoven",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "3/8",
+    "tags": [
+      "classical",
+      "beethoven"
+    ],
+    "notation": "fDfDfads [p6] 0etup [a7] 0WuOa [s6] 0eufDfDfads [p6] 0etup [a7] 0WuOsa [p6] 0easd [f8] wtogf [d5] wrifd [s6] 0euds [a3] 0uufuffxDfDfDfDfDfDfads [p6] 0etup [a7] 0WuOa [s6] 0eufDfDfads [p6] 0etup [a7] 0WuOsa [p6]"
+  },
+  {
+    "id": "beyonce-halo",
+    "title": "Halo",
+    "artist": {
+      "name": "Beyonce",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "r&b"
+    ],
+    "notation": "S u p u S u p u S u p u S u a S d I a I d I a I d I s I a S a p o p S I p S I p S I p a p O p y I y p y I y p y I y a O I u 0 r T T T r y | e r r r r T e e Q Q e e e e e e e r e | 0 e e e e e * 9 * 0 r T T T T r y | r e r e r e T e e Q e e e e e e e r e r T | 0 e e e r r e e u u u u I I u T y u u u u u p p I T y u u T r e Q T y u u u u O p a S p p p p p p a p p a a a S p p I p p p p p p p u y T u p p p p O p | u p p p p p p p a p a p a p a S a p p O I p p p p p p p u y T p p p p o p S a S a S a p p p a S a S a D S p p p a S a S a S a p p p a S a S a a p f S"
+  },
+  {
+    "id": "big-bang-wedding-dress",
+    "title": "Wedding Dress",
+    "artist": {
+      "name": "Big Bang",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 125,
+    "timeSignature": "4/4",
+    "tags": [
+      "k-pop",
+      "r&b"
+    ],
+    "notation": "h a s f s o s d [fo] f [fo] g | f [fo] d s d | h a s f s o s | d [fo] f [fo] g f [fo] d s d | h a s f s o s d [fo] f [fo] | g f [fo] d s d | h l l l h z k | lh l x c x l l k | l z e u p a sq | t i o pt o s d | fw y o p [2x] | o j h g sf sf dp o p o fj fh fs h ad | 6sh a0 es pft | s o s d fso f g f f d | 6sh a0 es pft | s o s d fso sfh s oad oad | 6sh 0sf si si si ip su su su du aod | sssss 6sh 0sf si si si ip su su su du ayo | a a s o psh h g f d d s s p s d sf sf sf sf sf | dg sf sf ad | so so so psh h g f | d d s s p s d sf sf sf sf | sf dg fh gj dh | ad a sp d si si si si si d sf sf h f fh ah | ad a sp d si si si si si d sf | sf ad | ap a sp d si si si si si si si po osf d f ad h a s f | s o s d | f f g f f d | a s h a s f | s o s d | f f g f f d sfh | sf [x2] | s [x3] | p o | os [3x] | ad [2x] | s s d s| sfh | sf [2x] | s [3x] | p o | os [3x] | d a"
+  },
+  {
+    "id": "bleach-morning-remembrance",
+    "title": "Morning Remembrance",
+    "artist": {
+      "name": "Shiro Sagisu",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack"
+    ],
+    "notation": "pf lkzlkj pf lkzlkj is lkzlkj is lkzlkj od lkzlkj od lkzlkj pf lkzlkj pf lkzlkj eu sadsap eu sadsap qt sadsap qt sadsap wy sadsap wy sadsap eu sadsap eu sadsap eu sadsap eu sadsap qt sadsap qt sadsap wy sadsap wy sadsap eu sadsap eu sadsap eu sadsap eu sadsap e u [sl] [ak] [zd] [sl] [ak] [jp] e u [sl] [ak] [zd] [sl] [ak] [jp] e u [sl] [ak] [zd] [sl] [ak] [jp] e u [sl] [ak] [zd] [sl] [ak] [jp] q t [sl] [ak] [zd] [sl] [ak] [jp] q t [sl] [ak] [zd] [sl] [ak] [jp] w y [sl] [ak] [zd] [sl] [ak] [jp] w y [sl] [ak] [zd] [sl] [ak] [jp]"
+  },
+  {
+    "id": "bryan-adams-everything-i-do",
+    "title": "(Everything I Do) I Do It for You",
+    "artist": {
+      "name": "Bryan Adams",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 132,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "ballad"
+    ],
+    "notation": "[8sf] w t w y w g h g f [da] 9 w 9 e 9 d h h s s 4 8 q 8 w 8 s d f s [sd] o [sd] o [ad] f g f d s d s a p o p a s [sf] [sd] a f g f d s d s a p o o o o p a s [pg] [sf] o [sf] [ad] [ad] f [pg] g f [dg] j [sh] f [pd] [pd]"
+  },
+  {
+    "id": "canon-in-d",
+    "title": "Canon in D",
+    "artist": {
+      "name": "Johann Pachelbel",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "baroque"
+    ],
+    "notation": "[tf] [wd] [es] [0a] [qp] [8o] [qp] [wa] [tsf] o [wad] o [eps] u [0oa] u [qip] t [8uo] t [qip] t [woa] y [tus] a s [wa] [es] f [0h] j [qg] f d g [8f] d s a [qp] o i u [wy] u i [tuo] o [wo] p o i [etu] u [0u] i u y [qt] E e E [8t] t [qt] E e t [wr] t y [8wu] [5ry] [6et] [3r] [4e] [1w] [4e] [5t] r [18wtu]"
+  },
+  {
+    "id": "carly-rae-jepsen-call-me-maybe",
+    "title": "Call Me Maybe",
+    "artist": {
+      "name": "Carly Rae Jepsen",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop"
+    ],
+    "notation": "5 a a p a a p a | 3 a a p a a p a | 1 a a p a a p p | 2 p p o o d a 5 a a p a a p a | 3 a a p a ap a | 1a a p a a p p | 2 p p o o d a d d apo | d d apo | d d apo | h h h h h j k | o r y o y 2 y y y a o | 1 o a s a o | 2 o a p p o | 5 o r y o y 2 y y a o | 1 o a s a o | 2 o a p p o | 5 o r y o y 2 y y y a o | 1 o a s a o | 2 o a p p o"
+  },
+  {
+    "id": "chariots-of-fire",
+    "title": "Chariots of Fire",
+    "artist": {
+      "name": "Vangelis",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 135,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack"
+    ],
+    "notation": "s ghjh f s ghjh s ghjh f gfss lkj hk hj gh lkj hk lkj hk hj gh f gfss s [8qeg] h j [80wh] f s [8qeg] h j [80wh] s [8qeg] h j [80wh] f f [8qeg] f s [80ws] l k j h [0wrk] h [qetj] g [tuoh] l k j h [0wrk] l k j h [0wrk] h [qetj] g [80wh] f f [8qeg] f s [80ws]"
+  },
+  {
+    "id": "christina-aguilera-feel-this-moment",
+    "title": "Feel This Moment",
+    "artist": {
+      "name": "Pitbull ft. Christina Aguilera",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 136,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "electronic"
+    ],
+    "notation": "[0etu] [ye9] [5wy] [wt8u] [yrw7] [etu0] [ye9] [wry] [utw8] [yrw7] [fso] f x l k [jd] h G h [dwoy] d k j [hf] G f [dpy] [sf] f l k [jd] G h j [dwyo] d k j [hf] G f [dpy] [sft] t [tl] [tk] [yjd] y y y [dwo] [wd] [wdk] j [hfa] G f [dpy] [fst] t [tl] k [jdy] y y y [dyw] [wd] [wdk] j [hfu] G [fu] [du] [tof]fsp pdddGGhj hhhds fffdd f d [tof]fsp pdddGGhj hhhds fffdd f d"
+  },
+  {
+    "id": "chrono-trigger-peaceful-days",
+    "title": "Peaceful Days",
+    "artist": {
+      "name": "Yasunori Mitsuda",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack"
+    ],
+    "notation": "[8o] i u y [9i] u y t [9t] y u y [qe] [et] [5t] [5r] [8w] 0 [wu] 0 [6i] u [wy] t [4o] 6 9 [qy] [5y] 7 9 w [8w] 0 [wu] 0 [6i] u [wy] t [3o] 7 0 w r w [rp] a [6s] t [ua] [tp] [3o] w u w [qp] t o i [8u] w [7y] w [6t] [0r] [wt] [0u] y Q e t [5t] 6 7 9 [wy] q 0 [9o] [qp] t o p [5o] r y i [8i] w [qu] y T e [ey] u [9yi] e [qu] y [5et] 9 [wy] 9 [8t] w q w 0 w [8w] 0 [wu] 0 [6i] u [wy] t [4o] 6 9 [qy] [5y] 7 9 w [8w] 0 [wu] 0 [6i] u [wy] t [3o] 7 0 w r w [rp] a [6s] t [ua] [tp] [3o] w u w [qp] t o i [8u] w [7y] w [6t] [0r] [wt] [0u] y Q e t [5t] 6 7 9 [wy] q 0 [9o] [qp] t o p [5o] r y i [8i] w [qu] y T e [ey] u [9yi] e [qu] y [5et] 9 [wy] 9 [8t] 0 w q 0 u [9yi] e [qu] y [5et] 9 [wy] 9 [8t] 0 w q 0 q 0"
+  },
+  {
+    "id": "cloud-atlas",
+    "title": "Cloud Atlas Sextet",
+    "artist": {
+      "name": "Tom Tykwer, Johnny Klimek & Reinhold Heil",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack"
+    ],
+    "notation": "[tuo] s e h [rufh] a w h [etfh] s 0 h [qufh] s y p [tuo] s e h [rufh] a w h [etfh] s 0 h [qufh] s y j [tufh] z l k [uofh] l k [etfj] l z [qegj] [tuo] d s a [0wuo] s a [etup] d s [woa] [wp] [tuo] s e h"
+  },
+  {
+    "id": "coca-cola",
+    "title": "Coca Cola Theme",
+    "artist": {
+      "name": "Commercial",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "commercial",
+      "jingle"
+    ],
+    "notation": "fsdfs shgfd fsdfd"
+  },
+  {
+    "id": "coldplay-clocks",
+    "title": "Clocks",
+    "artist": {
+      "name": "Coldplay",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 131,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "alternative"
+    ],
+    "notation": "[9d] pI dpI dp [6s] pu spu sp [6s] pu spu sp [0a] ou aou a ddd dasap sss papoy"
+  },
+  {
+    "id": "coldplay-fix-you",
+    "title": "Fix You",
+    "artist": {
+      "name": "Coldplay",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 138,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "alternative"
+    ],
+    "notation": "E E o o Y E E Y Y y t | E E o o o Y E Y Y Y y | E E E o o Y E E Y Y y t | E Y i o Y E | E E o o Y E Y Y y t | E E oo Y E Y Y y E | E E o o o o O o i i Y | E Y i o E Y | O o | i Y y t E | t Y | O o | i Y y r E | t Y | W O o i | Y o Y"
+  },
+  {
+    "id": "daft-punk-get-lucky",
+    "title": "Get Lucky",
+    "artist": {
+      "name": "Daft Punk ft. Pharrell Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 116,
+    "timeSignature": "4/4",
+    "tags": [
+      "funk",
+      "disco"
+    ],
+    "notation": "u u a p O p O I I a p O p O I u a p O p O p | u I I a p O p O I d | S d G | G H j | j k H d | S d G | G H j | j L k [ad] [ad] [ad] [ad] d d a f [pd] [pd] [pd] [pd] [pd] [pd] [pf] [IS] [IS] [IS] [IS] [IS] [IS] f a a a a a S a p [ad] [ad] [ad] [ad] d d a f [pd] [pd] [pd] [pd] [pd] [pd] [pf] [IS] [IS] [IS] [IS] [IS] [IS] f a a a a a S a p"
+  },
+  {
+    "id": "demi-lovato-skyscraper",
+    "title": "Skyscraper",
+    "artist": {
+      "name": "Demi Lovato",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 104,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "ballad"
+    ],
+    "notation": "opsa | opsa | opsapop | opsa | opsa | opsapop | ooGh | ooGf | osapop | hjhlkjhh | hjhlkjhj | jhjhk | jhjklk | hjhlkjhj | hjhlkjhj | jhjkjh | jhjklk"
+  },
+  {
+    "id": "don-omar-danza-kuduro",
+    "title": "Danza Kuduro",
+    "artist": {
+      "name": "Don Omar",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 130,
+    "timeSignature": "4/4",
+    "tags": [
+      "latin",
+      "pop"
+    ],
+    "notation": "e u p u t [sp] [sp] [oa] [sp] q e i t e [ip] [ip] [uo] [uo] t o s o u [sf] [sf] [ad] [ad] r y o y r [ao] [ao] [ao] [sp]"
+  },
+  {
+    "id": "dungeon-siege",
+    "title": "Dungeon Siege Theme",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack"
+    ],
+    "notation": "Y Y Yyyt Y Y Yyyt y y yYi o o o o o oiiY i i ioOoi Y Y Yyyty o"
+  },
+  {
+    "id": "edvard-grieg-morning-mood",
+    "title": "Morning Mood",
+    "artist": {
+      "name": "Edvard Grieg",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical"
+    ],
+    "notation": "spoiop spoiopop spsdpdspoi spoiop spoiopop spsdpdfSap fSapaS fSapaSaS fSfgSghgds spoiop spoiopop spsdpd[pg]"
+  },
+  {
+    "id": "edvard-grieg-in-the-hall-of-the-mountain-king",
+    "title": "In the Hall of the Mountain King",
+    "artist": {
+      "name": "Edvard Grieg",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical"
+    ],
+    "notation": "y u i o p i p | O u O | o u o y u i o p i p | O u O | o u o y u i o p i p d s p i p s o p a s d a d | D a D | d a d o p a s d a d | D a D d d f g h j g j | H f H | h f h d f g h j g j | H f H | h f h d f g h j g j z l j g j l h j k l z k z | Z k Z | z k z h j k l z k z | Z k Z z"
+  },
+  {
+    "id": "eiffel-65-im-blue",
+    "title": "I'm Blue",
+    "artist": {
+      "name": "Eiffel 65",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 128,
+    "timeSignature": "4/4",
+    "tags": [
+      "electronic",
+      "dance"
+    ],
+    "notation": "PyoPsipPoPdDod sPyoPsipPoPdDod sPyoPsipPoPdDod sPyoPptioEioiop"
+  },
+  {
+    "id": "eiffel-65-im-blue-v2",
+    "title": "I'm Blue (v. 2)",
+    "artist": {
+      "name": "Eiffel 65",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 128,
+    "timeSignature": "4/4",
+    "tags": [
+      "electronic",
+      "dance"
+    ],
+    "notation": "[PJ][yd][oh][PJ][sl][ig][pj][PJ][oh][PJ][dz][DZ][oh][dz] [sl][PJ][yd][oh][PJ][sl][ig][pj][PJ][oh][PJ][dz][DZ][oh][dz] [sl][PJ][yd][oh][PJ][sl][ig][pj][PJ][oh][PJ][dz][DZ][oh][dz] [sl][PJ][yd][oh][PJ][pj][ts][ig][oh][EP][ig][oh][ig][oh][pj]"
+  },
+  {
+    "id": "elfen-lied-lilium",
+    "title": "Lilium",
+    "artist": {
+      "name": "Kayo Konishi & Yukio Kondō",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "3/4",
+    "tags": [
+      "anime",
+      "soundtrack"
+    ],
+    "notation": "ISOppISOpapI Ouyu IyTyuIOpapO ISOppISOpapI Ouyu IyTyapOIiYiI PaSdpOdSfpSapOIi PaSdpOdSfpSapOIiI SOppISOpapI Ouyu IyTyapOIiY"
+  },
+  {
+    "id": "endless-love-autumn-in-my-heart",
+    "title": "Endless Love",
+    "artist": {
+      "name": "Various Artists",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "k-drama",
+      "soundtrack"
+    ],
+    "notation": "lk [il] ps [gj] lk [tl] up [fh] gh [tj] ip [ik] [yl] [ix] [wz] yuios [ah] uo [1t] w [yi] w [tu] you [7p] wrw [wro] 4et [ei] iops [3a] wr [3r] as [4t] ete [4t] as [1t] wyw [wtu] [4o] [ei] [tu] iut [5y] rypo lk [il] ps [gj] lk [tl] up [fh] gh [tj] ip [ik] [yl] [ix] [wz] yuios [ah] uo [1t] w [yi] w [tu] you [7p] wrw [wro] 4et [ei] iops [3a] wr [3r] as [4t] ete [4t] as [1t] wyw [wtu] [4o] [ei] [tu] uiu [5o] rypo3wr ooiuu6tuppoii4etiiopa [5s] ryap [5p] ryo ui [1o] w [yi] w [tu] io [4p] ete [4t] op [3a] wra [6s] etas [4p] [eo] [ti] uyui [1o] w [yi] w [tu] io [4p] eteop [3a] wra [6s] etps [4f] [ed] te [4t] as [5d] rysa [1s] w [yi] w [tu] lk [il] ps [gj] lk [tl] up [fh] gh [tj] ip [ik] [yl] [ix] [wz] yuios [ah]"
+  },
+  {
+    "id": "enrique-iglesias-hero",
+    "title": "Hero",
+    "artist": {
+      "name": "Enrique Iglesias",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "latin"
+    ],
+    "notation": "a a [oa] | a a [oa] p o [uo] s s [su] | s s [su] a p [py] a a [oa] | a a [oa] p o p o s s [suo] | [ua] [yp] | o [oy] a a [oa] o | d | a a [oa] p o [ou] o | d | s s [su] a p [py] o | d | s s [suo] | [ua] [yp] | o [oy] [oad] d f ff | d [oaf] [oaf] [oad] d f ff | d [oaf] [oad] d f ff | d [oaf] [oaf] [oad] [oad] [pd] a [os] a [uo]"
+  },
+  {
+    "id": "enya-only-time",
+    "title": "Only Time",
+    "artist": {
+      "name": "Enya",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 90,
+    "timeSignature": "3/4",
+    "tags": [
+      "new-age",
+      "celtic"
+    ],
+    "notation": "ttt yrrtt yrrtt yrt"
+  },
+  {
+    "id": "mozart-turkish-march",
+    "title": "Turkish March",
+    "artist": {
+      "name": "Wolfgang Amadeus Mozart",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 120,
+    "timeSignature": "2/4",
+    "tags": [
+      "classical",
+      "mozart"
+    ],
+    "notation": "sapOps | dsasf | gfDfk jHjk jHjk jHjl j l hjkjhj hjkjhj hjkjh G f fghhjhgfd | fghhjhgfd sdffgfdsa | sdffgfdsa apOps dsasf gfDfk jHjk jHjk jHjl j k l k j H j f g d s asasasasap fghhjhgfd | fghhjhgfd sdffgfdsa | sdffgfdsa apOps dsasf gfDfk jHjk jHjk jHjl j k l k j H j f g d s asasasasap"
+  },
+  {
+    "id": "muhtesem-yuzyil",
+    "title": "Muhtesem Yuzyil",
+    "artist": {
+      "name": "Soner Akalin, Fahir Atakoglu & Aytekin Atas",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "soundtrack",
+      "muhtesem-yuzyil"
+    ],
+    "notation": "d ddd h f g"
+  },
+  {
+    "id": "murat-gogebakan-ay-yuzlum",
+    "title": "Ay Yuzlum",
+    "artist": {
+      "name": "Murat Gogebakan",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "pop"
+    ],
+    "notation": "gggh jJjh fffg hjhgh hhhj JJlJjJ jjj jJjhjhj ggfgfd Ddsd"
+  },
+  {
+    "id": "naruto-grief-and-sorrow",
+    "title": "Grief and Sorrow",
+    "artist": {
+      "name": "Toshiro Masuda",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "naruto"
+    ],
+    "notation": "[sfj] u p a s k j h [sfo] o s d f h [ipd] e y u i s d s [tip] s [oa] [oy] [sfj] u p a s k j h [sfo] o s d f h [ipd] e y u i d s [tup] [eti] [eti] [tup] [ryo] [yu] [yo] [tup] u p s a [pou] u [eti] [eti] [tip] [ryo] [ryu] [ryo] [ryo] I [ryp] O j k x [tup] [psf] d s [tup] [psf] d f [dj] l k j h [sfh] [psf] [oad] [yoa] [tup] [psf] d s [tup] [psf] d f [dj] l k j h j [sfh] [psf] [oad] [yoa] [tup] [psf] d s [tup] [psf] d f [dj] l k j h j [oaf] [odk] [ofj] [tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [qe8] 4 [qe] 4 [qe] [wr9] [w9] [tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [e80] e r t u p a [pis] [piy] [pisy] [oua] [ou] u [oue] a p o [ryu] [ryu] o [pis] [piy] [pisy] [oua] ou u [tio] [ti] o [tip] O j k x [tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [qe8] 4 [qe] 4 [qe] [wr9] [w9] [tup] 0 e r t a p o [wtu] w t y u o [qey] 6 9 0 q y t [qe8] p u s p j f j l x b"
+  },
+  {
+    "id": "naruto-nakama",
+    "title": "Nakama",
+    "artist": {
+      "name": "Toshiro Masuda",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "naruto"
+    ],
+    "notation": "8 w y w u 8 w i w u 8 w y w u 8 w i w u [8f] w y w u g [9d] w y w t s [4s] 8 q e t d [8f] w t u o [ef] u p s h [qj] t i p g [8f] w t u g [wd] y o a [qj] t i p k j [0h] r u o f d f [9d] e y i s h [8f] w t l k h f h [qj] t i p k j [0h] r u o z x [ql] t i p j k l [wz] y o a x [8f] w y w u g [9d]w y w t s [4s] 8 q e t d [8f] w t u o [ef] u p s h [qj] t i p g [8f] w t u g [wd] y o a f d [8s] w t u o 8 w t u o u"
+  },
+  {
+    "id": "naruto-shippuden-yukimaru-theme",
+    "title": "Yukimaru Theme",
+    "artist": {
+      "name": "Yasuharu Takanashi",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "naruto"
+    ],
+    "notation": "j l z x j j l z v x x v b v x x z x k l j [6p] 0 e [0s] d 0 e f [4p] 8 q 8 e 8 q 8 [5p] 9 w [9s] [rd] 9 w h [8f] w t w u w [tf] h [6j] 8 q 8 e 8 [qh] f [6f] 0 e 0 t 0 e 0 [5d] 9 w [9f] [ea] 9 w s [6p] 0 e 0 t 0 e 0 6 0 r 0 t 0 e 0 [6p] 0 e [0s] d 0 e f [4p] 8 q 8 e 8 q 8 [5p] 9 w [9s] [rd] 9 w h [8f] w t w u w [tf] h [6j] 8 q 8 e 8 [qh] f [6f] 0 e 0 t 0 e 0 [5d] 9 w [9f] [ea] 9 w s [6p] 0 e 0 t 0 e 0 6 0 r 0 t 0 e 0 [60p]"
+  },
+  {
+    "id": "naruto-main-theme",
+    "title": "Naruto Main Theme",
+    "artist": {
+      "name": "Toshiro Masuda",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "naruto"
+    ],
+    "notation": "[tj] [uk] o h y [GI] p f u o d a t [uj] [ho] G y p l [kp] [pkdw] [ru] [drjo] [tj] [uk] o h y [GI] y p f u o d a t [ju] [ho] G y p l [pkdw] [ru] [drjo]"
+  },
+  {
+    "id": "ne-yo-madoo",
+    "title": "Madoo",
+    "artist": {
+      "name": "Ne-Yo",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "r&b"
+    ],
+    "notation": "[tf] o s h l k w y o d k j h g 9 e i f s g q t i f s o [8u] w t o s a 5 9 w y a p o i 2 6 q u t i 4 8 q u t 8 w t o a s a s 5 [9s] [ws] s s d f g [2f] 6 q s [4ips] 8 q [ip] [8uo] w t o a s a s 5 [9s] [ws] s s d f g [2f] 6 q s [4ips] 8 q o o p [6a] [0s] [ea] s a d s [5a] [9s] [wa] s a d s [2a] [6s] [qa] s o o p [4a] [8s] [qa] s a d s [6a] [0s] [ea] s s d s 5 [9s] [ws] s s d f g [2f] 6 q s [4o] [8p] [qa] s d h j [6ek] j g [5wh] g d [2qf] d [4qo] p a s d h j [6ek] j g [5wh] g d [2qf] d f d [4qf] d f d f d f g [8h] w t h h [5h] 9 w h h g f d 2 6 q g 4 8 q f g [8h] w t h h [5h] 9 w h h g f d 2 6 q g 4 [8s] [qs] s s a p a [8s] w t f h s 5 [9s] [ws] s s a p a [2s] 6 q f h s 4 [8s] [qs] s s a p a [8s] w t f h s 5 [9s] [ws] s s a p a [2s] 6 q f h s 4 8 q [tf] o s h l k w y o d k j h g 9 e i f s g q t i f s o [8u] w t o s a 5 9 w y a p o i 2 6 q u t i 4 8 q u t p 8 w t u o s"
+  },
+  {
+    "id": "nightmare-on-elm-street",
+    "title": "A Nightmare on Elm Street Theme",
+    "artist": {
+      "name": "Charles Bernstein",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "horror",
+      "a-nightmare-on-elm-street"
+    ],
+    "notation": "p d j H j f g p p d j H j f g j J S p d l z l J k g p d j H j f g j J S"
+  },
+  {
+    "id": "nokia-tune",
+    "title": "Nokia Tune",
+    "artist": {
+      "name": "Francisco Tárrega",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 180,
+    "timeSignature": "4/4",
+    "tags": [
+      "jingle",
+      "ringtone"
+    ],
+    "notation": "fdIO[|]Sayu[|]apTupp"
+  },
+  {
+    "id": "noyan-hatirla-sevgili",
+    "title": "Hatirla Sevgili",
+    "artist": {
+      "name": "Noyan",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "soundtrack",
+      "hatirla-sevgili"
+    ],
+    "notation": "etuy tu etuy tr rtytry urtytre"
+  },
+  {
+    "id": "oasis-stop-crying-your-heart-out",
+    "title": "Stop Crying Your Heart Out",
+    "artist": {
+      "name": "Oasis",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "alternative"
+    ],
+    "notation": "G f d a a G f d a a G d a p a p a a | d f a a G f d a r I u y r | a G f d a | u u y r a G d a | r I y r p d f G d | p d f G f p d f G f d | p d f f d | d f G d p d f G f d | f d f d G f a d G f d a | I u y r"
+  },
+  {
+    "id": "onuncu-yil-marsi",
+    "title": "Onuncu Yil Marsi",
+    "artist": {
+      "name": "Cemal Reşit Rey",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "march"
+    ],
+    "notation": "oapsapo ddadsap aas p asd ff d as sa d d dDDdDd s sDdapp psapddf sapdsda"
+  },
+  {
+    "id": "pearl-harbor-theme",
+    "title": "Tennessee",
+    "artist": {
+      "name": "Hans Zimmer",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "pearl-harbor"
+    ],
+    "notation": "w [tu] y t 3 7 [0o] I u 4 8 [qu] y t [80] w [wt] t y 6 0 [es] a u 3 7 [0o] I r 8 w [tu] y t [5t] 9 [wr] e w [9q] e [yi] u e q u y q 9 e [yi] u y [5wg] f d f 8 w [tu] y t 3 7 [0o] I u [8t] u y w [30] o I r 9 [eo] u e o r [ak] [8sl] w [tak] [sl] [uf] [3oh] 7 0 w 3 7 [0oh] w [4pj] 8 [qoh] [pj] [ts] [8uf] w t [5wyd] 9 [wak] [6sl] 0 [eak] [sl] [uf] [3oh] 7 0 w 3 7 [0oh] w [9ig] e [yuf] [yd] [ts] [5uf] 9 w r 5 9 w r [5yd] 9 w r [5ak] [8sl] w [tak] [sl] [uf] [3oh] 7 0 w 3 7 [0oh] w [4pj] 8 [qoh] [pj] [ts] [8uf] w t [5wyd] [ak] [6sl] 0 [eak] [sl] [uf] [3oh] 7 0 w 3 7 [0oh] w [9 e i g] [uf] [yd] [ts] [4 8 i g] [uf] [yd] [ts] [5 9 i g] [uf] [yd] [ts] [8ts] w [ts]"
+  },
+  {
+    "id": "phantom-of-the-opera",
+    "title": "The Phantom of the Opera",
+    "artist": {
+      "name": "Andrew Lloyd Webber",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "musical",
+      "soundtrack",
+      "the-phantom-of-the-opera"
+    ],
+    "notation": "upu [2o] ii 5 y o y [6u] upu [2o] ii 5 y o y [6u] 0 e t [2u] y y 5 y o y [6u] u [6p] o i u y t r e W q q 0 [60]"
+  },
+  {
+    "id": "pink-fckn-perfect",
+    "title": "F**kin' Perfect",
+    "artist": {
+      "name": "P!nk",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 92,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "rock"
+    ],
+    "notation": "w e [5r] y | u y [9e] | w e [5r] y u o o y [8u] | w e [5r] y | u y [9e] | w e [5r] y u o o y [8u] | o I [5o] o o o p o I [9o] o o p o I [0o] o o p o y [8t] | o I [5o] o o o p o I [9o] o o p o I [0o] o o p o y [8t] | [5o] p o p a | p o [9o] p o p a | o p [0o] u o p [8o] u | [5o] p o p a | p o [9o] p o p a | o p [0o] u u o p [8o] u u y 5"
+  },
+  {
+    "id": "pirates-of-the-caribbean",
+    "title": "He's a Pirate",
+    "artist": {
+      "name": "Klaus Badelt & Hans Zimmer",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "pirates-of-the-caribbean"
+    ],
+    "notation": "9 99 9999 9 99 9999 9 99 9999 9 99 9999 9yI etyy yuii iouu ytty etyy yuii iouu yty etyy yioo opPP popy yuii opy yiuu iyu yuii opy yiuu yty pppPp oooop ppppPp iiuy yui opo iuiopo iop pou iuyuty yui uio iopoiy yuiopP yoi ouy u t p P p p p p o o i u i u T p P p p s p o o i u i u T yui opo iuiopo iop pou iuyuty yui uio iopoiy yuiopP yoi ouy etyy yuii iouu ytty etyy yuii iouu yty etyy yioo opPP popy yuii opy yiuu iyu yuii opy yiuu yty"
+  },
+  {
+    "id": "pokemon-intro",
+    "title": "Pokémon Theme",
+    "artist": {
+      "name": "Jason Paige",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "pokemon"
+    ],
+    "notation": "dddd d s p i | i d d s P s DDDD D d s P | P d d s P d dddd d s p i | i d d s P s DDDD D d s P | P d d s P d dgh dgh hg d s P ggh J j h g dgh hh h g d s PP dd s P d dgh dgh hh g h g hh j J j h g d D JJ ddd JJ J J J j ddghh ddgh J h dg[dh]"
+  },
+  {
+    "id": "pokemon-lugias-song",
+    "title": "Lugia's Song",
+    "artist": {
+      "name": "Ralph Schuckett & John Loeffler",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "pokemon"
+    ],
+    "notation": "f h G d f a | f h G a f h k | x z k h jkj f | f k j d Gfdf | f h G d f a | f h G | a f h k | x z k h jkj f | f k j d Gfdf | f h G d f a | f h G z kjk | x z k h | jkj f | f k j d Gf | f h G d f a | f h G d apa | x z k h jkj f | f k j d Gfdf"
+  },
+  {
+    "id": "portal-still-alive",
+    "title": "Still Alive",
+    "artist": {
+      "name": "Jonathan Coulton",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "portal"
+    ],
+    "notation": "gfddf ogfddfsdo dfgdasd oof ogfddf ogfddfsdo dfgdasdosdDdsP oOPDdssPsPPP oOPDgDDdsdDD ghHHhg DghhgD sPsDDd dff gfddf ogfddfsdo dfgdasd oof ogfddf ogfddfsdo dfgdasdosdDdsP oOPDdssPsPPP oOPDgDDdsdDD ghHHhg DghhgD sPsDDd dff zxzkh jkk zzzxzkhjkk zzzxzkhjkk zzxzkhjkk zzzxzkhjkk lzz lkk"
+  },
+  {
+    "id": "rain-and-tears",
+    "title": "Rain and Tears",
+    "artist": {
+      "name": "Aphrodite's Child",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "ballad"
+    ],
+    "notation": "[tf] o s f [wd] o a d [es] u p s [0a] u o a [qp] i p s [to] u o s [qp] i p s [wa] y o a [tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g f [wh] o a o [tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g a [ts] o s o [yd] p d f [ep] u p f [0f] o a o 0 o a f [yd] p d f [0f] o a o 0 o a f [yd] p d f [ep] u p f [ep] 0 o a o w o a o [tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g f a [osf]"
+  },
+  {
+    "id": "renesmees-lullaby",
+    "title": "Renesmee's Lullaby",
+    "artist": {
+      "name": "Carter Burwell",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "twilight"
+    ],
+    "notation": "[wtu] f a [ru] f k [eti] j k l k j [ryk] h [etuk] 0 e t [uf] a u t e 0 W r [uf] k u r W q e t [ij] k l [ik] t [ej] [wk] r y [oj] [ek] r u f [etih] h g g [wruf] f d d [0ruf] f a f [rua] f [etih] h g g [wruf] f d d [0ruf] k | [ru] f [8wsh] [sh] [sg] [sg] | [80pf] [pf] [pd] [pd] | [0af] [af] a [af] [0a] f [8wsh] [sh] [sg] [sg] | [80pf] [pf] [pd] [pd] | [0af] [fk] [ru] [etu] f a [etu] [etu] [wtu] f k [wtu] [wtu] [qtu] j k l k [qtu] [qtuj] [0k] H 0 0 9 p u 9 0 [8q] p f [8q] 0 [80] s [8f] [9d] s [0f] | d s a | u [8wo] o i i [80u] u y y [0u] u r u [0r] u [8wo] o i i [80u] u y y [0u] u a [ru] u [8wto] [to] [ti] [ti] [80eu] [eu] [ey] [ey] [0ru] [ru] r [ru] [0r] u [8wto] [to] [ti] [ti] [80eu] [eu] [ey] [ey] [0ru] i u y t r"
+  },
+  {
+    "id": "renesmees-lullaby-v2",
+    "title": "Renesmee's Lullaby (v. 2)",
+    "artist": {
+      "name": "Carter Burwell",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "twilight"
+    ],
+    "notation": "[wtu] f a [ru] f k [eti] j k l k j [ryk] h [etuk] 0 e t [uf] a u t e 0 W r [uf] k u r W q e t [ij] k l [ik] t [ej] [wk] r y [oj] [ek] r u f [etih] h g g [wruf] f d d [0ruf] f a f [rua] f [etih] h g g [wruf] f d d [0ruf] k | [ru] f [48wsh] [sh] [sg] [sg] | [3680pf] [pf] [pd] [pd] | [370af] [af] a [af] [70a] f [48wsh] [sh] [sg] [sg] | [3680pf] [pf] [pd] [pd] | [370af] [fk] [ru] [etu] f a [etu] [etu] [wtu] f k [wtu] [wtu] [qtu] j k l k [qtu] [qtuj] [370k] H [370] [370] [269] p u [269] [370] [48q] p f [48q] 0 [1580] s [158f] [269d] s [370f] | d s a | u [48wo] o i i [3680u] u y y [370u] u r u [70r] u [48wo] o i i [3680u] u y y [370u] u a [ru] u [48wto] [to] [ti] [ti] [3680eu] [eu] [ey] [ey] [370ru] [ru] r [ru] [70r] u [48wto] [to] [ti] [ti] [3680eu] [eu] [ey] [ey] [370ru] i u y t r"
+  },
+  {
+    "id": "requiem-for-a-dream",
+    "title": "Lux Aeterna",
+    "artist": {
+      "name": "Clint Mansell",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "requiem-for-a-dream"
+    ],
+    "notation": "[6e] [6e] [6e] [6e] 4q 4q 30 30 [6e] [6e] [6e] [6e] 4q 4q 30 30 [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] r r e [6e] t t [6t] r r e [6e] t t [4t] r r e 4e e e e 3e r r r [3r] t t t [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] r [6e] 0 [6t] r [6e] 0"
+  },
+  {
+    "id": "richard-clayderman-ballade-pour-adeline",
+    "title": "Ballade pour Adeline",
+    "artist": {
+      "name": "Richard Clayderman",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "instrumental"
+    ],
+    "notation": "[18t] osd tosd tosd tosd | [8t] ofo tofo tofo tofo[8f] w [uf] w u | w [uof] w [pg] [9pg] | e [ipg] e i [pg] [epg] [pg] [ipg] [pg] [epg] [ah] [wah] | y [ah] y a y | [ah] [sj] [8of]w u w u w u 5 [1of] w [uof] w u | [of] [wof] [of] | [8of] [of] [wof] [pg] [2pg] | e [ipg] e 9 [pg] [epg] [9pg] [9pg] | [9pg] [9pg] [ah] [wah] | y [ah] y a d [ah] j [8of] | w u w 8 w [tu] | | e u [ulx] f [skz] f [jl] f 0 r | [hk] a [ogj] a [fh] a [qgj] t i t [wah] r [og] r | [8u] ofoy odot oso[r7] o 6 0 | | [sf] u [tad] u [ps] u 3 7 | [oa] r [wip] r [uo] u [48ip] | o i o | 5 wty wtyi wyio wyio | [5y]iod [wy]iod | [5o]dgh [wo]dgh | [5d]ghz [wd]ghz | [5h]zcv [wh]zcv | [5h]kzv [1h]kzv | [1hx] w | [uhx] w 8 w [uhx] w [jc] [2jc] | e [ijc] e 9 [jc] [ejc] [jc] [ijc] [jc] | [ejc] | [kv] [wkv] y [akv] y a d [kv] [lb] [shx] | [DJV] Z J h [ijc] l j h [pdw] a o 5 | [18hx] w [uhx] w 8 [w8hx] [w8hx] [w8hx] | [w8hx] [w8hx] [w8hx] [w8hx] | [kv] [wkv] y [akv] y a d h [kv] | [lb] [tkx] | o f h s j l c v [av] k z b [thx] | o f h s j l c v [av] k z b | [18hx]"
+  },
+  {
+    "id": "right-here-waiting",
+    "title": "Right Here Waiting",
+    "artist": {
+      "name": "Richard Marx",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 88,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "ballad"
+    ],
+    "notation": "toshhgfd wyoddfgf eussdfdsapo 8wtooiuy 59wyyuiu 60ttyuiuytrt shlvvcxz odhzzxcx pfllzxzlkjh toshhgfd wyoddfgf eussdfg q gfd w sas"
+  },
+  {
+    "id": "rihanna-take-a-bow",
+    "title": "Take a Bow",
+    "artist": {
+      "name": "Rihanna",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 82,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "r&b"
+    ],
+    "notation": "u a f k r a D f T f j e H G f u a f k r a D f T f j e H G f u a f k r a D f T f j e H G f"
+  },
+  {
+    "id": "sailor-moon-intro",
+    "title": "Sailor Moon Theme",
+    "artist": {
+      "name": "Takanori Arisawa",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "sailor-moon"
+    ],
+    "notation": "wtY oo ii Y y i adgHHJHhgDh osDllkkJH HhghgDds wtY oo ii YY y i adgHHJHhgDh osDllkkJH HhghgDds d J l zz l J j hghj d J l zz l J j wtY oo ii Y y i adgHHJHhgDh osDllkkJH HhghgDds HhghgDds HhghgDds"
+  },
+  {
+    "id": "saw-theme",
+    "title": "Hello Zepp",
+    "artist": {
+      "name": "Charlie Clouser",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "horror",
+      "saw"
+    ],
+    "notation": "yui yuiuyuio yui yuiuyuio yui iop pas yui iop popas yui iop popas iuyuyty u i o poioiuy yyuuiiou yiou"
+  },
+  {
+    "id": "scott-joplin-the-entertainer",
+    "title": "The Entertainer",
+    "artist": {
+      "name": "Scott Joplin",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 90,
+    "timeSignature": "2/4",
+    "tags": [
+      "ragtime",
+      "classical"
+    ],
+    "notation": "[dz] [fx] [sl] [pj] [ak] [oh] [yd] [uf] [ts] [ep] [ar] [wi] [9y] [0u] [8t] [6e] [7r] [6e] W [5w] | [oadh] y Y u s u s u s [sfl] [dgz] [DGZ] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl] y Y u s u s u s [psj] [osh] [GI] [pj] [sl] [fx] [zd] [sl] [pj] [dgz] y Y u s u s u s [sfl] [dgz] [DGZ] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl] [sl] [dz] [fx] [sl] [dz] [fx] [sl] [dz] [sl] [fx] [sl] [dz] [fx] [sl] [dz] [sl] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl]"
+  },
+  {
+    "id": "pink-fckn-perfect",
+    "title": "F**kin' Perfect",
+    "artist": {
+      "name": "P!nk",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 92,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "rock"
+    ],
+    "notation": "w e [5r] y | u y [9e] | w e [5r] y u o o y [8u] | w e [5r] y | u y [9e] | w e [5r] y u o o y [8u] | o I [5o] o o o p o I [9o] o o p o I [0o] o o p o y [8t] | o I [5o] o o o p o I [9o] o o p o I [0o] o o p o y [8t] | [5o] p o p a | p o [9o] p o p a | o p [0o] u o p [8o] u | [5o] p o p a | p o [9o] p o p a | o p [0o] u u o p [8o] u u y 5"
+  },
+  {
+    "id": "pirates-of-the-caribbean",
+    "title": "He's a Pirate",
+    "artist": {
+      "name": "Klaus Badelt & Hans Zimmer",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "pirates-of-the-caribbean"
+    ],
+    "notation": "9 99 9999 9 99 9999 9 99 9999 9 99 9999 9yI etyy yuii iouu ytty etyy yuii iouu yty etyy yioo opPP popy yuii opy yiuu iyu yuii opy yiuu yty pppPp oooop ppppPp iiuy yui opo iuiopo iop pou iuyuty yui uio iopoiy yuiopP yoi ouy u t p P p p p p o o i u i u T p P p p s p o o i u i u T yui opo iuiopo iop pou iuyuty yui uio iopoiy yuiopP yoi ouy etyy yuii iouu ytty etyy yuii iouu yty etyy yioo opPP popy yuii opy yiuu iyu yuii opy yiuu yty"
+  },
+  {
+    "id": "pokemon-intro",
+    "title": "Pokémon Theme",
+    "artist": {
+      "name": "Jason Paige",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "pokemon"
+    ],
+    "notation": "dddd d s p i | i d d s P s DDDD D d s P | P d d s P d dddd d s p i | i d d s P s DDDD D d s P | P d d s P d dgh dgh hg d s P ggh J j h g dgh hh h g d s PP dd s P d dgh dgh hh g h g hh j J j h g d D JJ ddd JJ J J J j ddghh ddgh J h dg[dh]"
+  },
+  {
+    "id": "pokemon-lugias-song",
+    "title": "Lugia's Song",
+    "artist": {
+      "name": "Ralph Schuckett & John Loeffler",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "pokemon"
+    ],
+    "notation": "f h G d f a | f h G a f h k | x z k h jkj f | f k j d Gfdf | f h G d f a | f h G | a f h k | x z k h jkj f | f k j d Gfdf | f h G d f a | f h G z kjk | x z k h | jkj f | f k j d Gf | f h G d f a | f h G d apa | x z k h jkj f | f k j d Gfdf"
+  },
+  {
+    "id": "portal-still-alive",
+    "title": "Still Alive",
+    "artist": {
+      "name": "Jonathan Coulton",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "portal"
+    ],
+    "notation": "gfddf ogfddfsdo dfgdasd oof ogfddf ogfddfsdo dfgdasdosdDdsP oOPDdssPsPPP oOPDgDDdsdDD ghHHhg DghhgD sPsDDd dff gfddf ogfddfsdo dfgdasd oof ogfddf ogfddfsdo dfgdasdosdDdsP oOPDdssPsPPP oOPDgDDdsdDD ghHHhg DghhgD sPsDDd dff zxzkh jkk zzzxzkhjkk zzzxzkhjkk zzxzkhjkk zzzxzkhjkk lzz lkk"
+  },
+  {
+    "id": "rain-and-tears",
+    "title": "Rain and Tears",
+    "artist": {
+      "name": "Aphrodite's Child",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "ballad"
+    ],
+    "notation": "[tf] o s f [wd] o a d [es] u p s [0a] u o a [qp] i p s [to] u o s [qp] i p s [wa] y o a [tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g f [wh] o a o [tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g a [ts] o s o [yd] p d f [ep] u p f [0f] o a o 0 o a f [yd] p d f [0f] o a o 0 o a f [yd] p d f [ep] u p f [ep] 0 o a o w o a o [tf] o s o [wh] o a o [el] s j s [0f] o a h [is] p s j [ts] o s f [qg] f g f a [osf]"
+  },
+  {
+    "id": "renesmees-lullaby",
+    "title": "Renesmee's Lullaby",
+    "artist": {
+      "name": "Carter Burwell",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "twilight"
+    ],
+    "notation": "[wtu] f a [ru] f k [eti] j k l k j [ryk] h [etuk] 0 e t [uf] a u t e 0 W r [uf] k u r W q e t [ij] k l [ik] t [ej] [wk] r y [oj] [ek] r u f [etih] h g g [wruf] f d d [0ruf] f a f [rua] f [etih] h g g [wruf] f d d [0ruf] k | [ru] f [8wsh] [sh] [sg] [sg] | [80pf] [pf] [pd] [pd] | [0af] [af] a [af] [0a] f [8wsh] [sh] [sg] [sg] | [80pf] [pf] [pd] [pd] | [0af] [fk] [ru] [etu] f a [etu] [etu] [wtu] f k [wtu] [wtu] [qtu] j k l k [qtu] [qtuj] [0k] H 0 0 9 p u 9 0 [8q] p f [8q] 0 [80] s [8f] [9d] s [0f] | d s a | u [8wo] o i i [80u] u y y [0u] u r u [0r] u [8wo] o i i [80u] u y y [0u] u a [ru] u [8wto] [to] [ti] [ti] [80eu] [eu] [ey] [ey] [0ru] [ru] r [ru] [0r] u [8wto] [to] [ti] [ti] [80eu] [eu] [ey] [ey] [0ru] i u y t r"
+  },
+  {
+    "id": "renesmees-lullaby-v2",
+    "title": "Renesmee's Lullaby (v. 2)",
+    "artist": {
+      "name": "Carter Burwell",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "twilight"
+    ],
+    "notation": "[wtu] f a [ru] f k [eti] j k l k j [ryk] h [etuk] 0 e t [uf] a u t e 0 W r [uf] k u r W q e t [ij] k l [ik] t [ej] [wk] r y [oj] [ek] r u f [etih] h g g [wruf] f d d [0ruf] f a f [rua] f [etih] h g g [wruf] f d d [0ruf] k | [ru] f [48wsh] [sh] [sg] [sg] | [3680pf] [pf] [pd] [pd] | [370af] [af] a [af] [70a] f [48wsh] [sh] [sg] [sg] | [3680pf] [pf] [pd] [pd] | [370af] [fk] [ru] [etu] f a [etu] [etu] [wtu] f k [wtu] [wtu] [qtu] j k l k [qtu] [qtuj] [370k] H [370] [370] [269] p u [269] [370] [48q] p f [48q] 0 [1580] s [158f] [269d] s [370f] | d s a | u [48wo] o i i [3680u] u y y [370u] u r u [70r] u [48wo] o i i [3680u] u y y [370u] u a [ru] u [48wto] [to] [ti] [ti] [3680eu] [eu] [ey] [ey] [370ru] [ru] r [ru] [70r] u [48wto] [to] [ti] [ti] [3680eu] [eu] [ey] [ey] [370ru] i u y t r"
+  },
+  {
+    "id": "requiem-for-a-dream",
+    "title": "Lux Aeterna",
+    "artist": {
+      "name": "Clint Mansell",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "requiem-for-a-dream"
+    ],
+    "notation": "[6e] [6e] [6e] [6e] 4q 4q 30 30 [6e] [6e] [6e] [6e] 4q 4q 30 30 [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] r r e [6e] t t [6t] r r e [6e] t t [4t] r r e 4e e e e 3e r r r [3r] t t t [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] r [6e] 0 [6t] r [6e] 0 [4t] r 4e 0 [3y] t [3r] t [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] e 6 t e [6t] e 6 t e [4t] e 4 t e [3t] e t e [3t] e t e [6t] r t 6 t r [6t] r t 6 t r [4t] r t 4 t r [3t] r r r [3t] r r r [6t] r [6e] 0 [6t] r [6e] 0"
+  },
+  {
+    "id": "richard-clayderman-ballade-pour-adeline",
+    "title": "Ballade pour Adeline",
+    "artist": {
+      "name": "Richard Clayderman",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "instrumental"
+    ],
+    "notation": "[18t] osd tosd tosd tosd | [8t] ofo tofo tofo tofo[8f] w [uf] w u | w [uof] w [pg] [9pg] | e [ipg] e i [pg] [epg] [pg] [ipg] [pg] [epg] [ah] [wah] | y [ah] y a y | [ah] [sj] [8of]w u w u w u 5 [1of] w [uof] w u | [of] [wof] [of] | [8of] [of] [wof] [pg] [2pg] | e [ipg] e 9 [pg] [epg] [9pg] [9pg] | [9pg] [9pg] [ah] [wah] | y [ah] y a d [ah] j [8of] | w u w 8 w [tu] | | e u [ulx] f [skz] f [jl] f 0 r | [hk] a [ogj] a [fh] a [qgj] t i t [wah] r [og] r | [8u] ofoy odot oso[r7] o 6 0 | | [sf] u [tad] u [ps] u 3 7 | [oa] r [wip] r [uo] u [48ip] | o i o | 5 wty wtyi wyio wyio | [5y]iod [wy]iod | [5o]dgh [wo]dgh | [5d]ghz [wd]ghz | [5h]zcv [wh]zcv | [5h]kzv [1h]kzv | [1hx] w | [uhx] w 8 w [uhx] w [jc] [2jc] | e [ijc] e 9 [jc] [ejc] [jc] [ijc] [jc] | [ejc] | [kv] [wkv] y [akv] y a d [kv] [lb] [shx] | [DJV] Z J h [ijc] l j h [pdw] a o 5 | [18hx] w [uhx] w 8 [w8hx] [w8hx] [w8hx] | [w8hx] [w8hx] [w8hx] [w8hx] | [kv] [wkv] y [akv] y a d h [kv] | [lb] [tkx] | o f h s j l c v [av] k z b [thx] | o f h s j l c v [av] k z b | [18hx]"
+  },
+  {
+    "id": "right-here-waiting",
+    "title": "Right Here Waiting",
+    "artist": {
+      "name": "Richard Marx",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 88,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "ballad"
+    ],
+    "notation": "toshhgfd wyoddfgf eussdfdsapo 8wtooiuy 59wyyuiu 60ttyuiuytrt shlvvcxz odhzzxcx pfllzxzlkjh toshhgfd wyoddfgf eussdfg q gfd w sas"
+  },
+  {
+    "id": "rihanna-take-a-bow",
+    "title": "Take a Bow",
+    "artist": {
+      "name": "Rihanna",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 82,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "r&b"
+    ],
+    "notation": "u a f k r a D f T f j e H G f u a f k r a D f T f j e H G f u a f k r a D f T f j e H G f"
+  },
+  {
+    "id": "sailor-moon-intro",
+    "title": "Sailor Moon Theme",
+    "artist": {
+      "name": "Takanori Arisawa",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "anime",
+      "soundtrack",
+      "sailor-moon"
+    ],
+    "notation": "wtY oo ii Y y i adgHHJHhgDh osDllkkJH HhghgDds wtY oo ii YY y i adgHHJHhgDh osDllkkJH HhghgDds d J l zz l J j hghj d J l zz l J j wtY oo ii Y y i adgHHJHhgDh osDllkkJH HhghgDds HhghgDds HhghgDds"
+  },
+  {
+    "id": "saw-theme",
+    "title": "Hello Zepp",
+    "artist": {
+      "name": "Charlie Clouser",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "horror",
+      "saw"
+    ],
+    "notation": "yui yuiuyuio yui yuiuyuio yui iop pas yui iop popas yui iop popas iuyuyty u i o poioiuy yyuuiiou yiou"
+  },
+  {
+    "id": "scott-joplin-the-entertainer",
+    "title": "The Entertainer",
+    "artist": {
+      "name": "Scott Joplin",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 90,
+    "timeSignature": "2/4",
+    "tags": [
+      "ragtime",
+      "classical"
+    ],
+    "notation": "[dz] [fx] [sl] [pj] [ak] [oh] [yd] [uf] [ts] [ep] [ar] [wi] [9y] [0u] [8t] [6e] [7r] [6e] W [5w] | [oadh] y Y u s u s u s [sfl] [dgz] [DGZ] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl] y Y u s u s u s [psj] [osh] [GI] [pj] [sl] [fx] [zd] [sl] [pj] [dgz] y Y u s u s u s [sfl] [dgz] [DGZ] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl] [sl] [dz] [fx] [sl] [dz] [fx] [sl] [dz] [sl] [fx] [sl] [dz] [fx] [sl] [dz] [sl] [fhx] [sfl] [dgz] [fhx] [adk] [dgz] [sfl]"
+  },
+  {
+    "id": "katy-perry-firework",
+    "title": "Firework",
+    "artist": {
+      "name": "Katy Perry",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 124,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "katy-perry"
+    ],
+    "notation": "tYYtt WEEWW WEEWW WWWEtt | tYYtt WEEWW WEEWW WWWEtt V YOOYY YYYiOO YOOYYYiYYtYY | tYYtt WEEWW WEEWW V WWEEWW | WEEWEt ET tY TYi OO YP OOPs O | oitYYtt WEEWW | WEEWW WWWEtt | tYYtt WEEWW WEEWW WWWEtt | YOOYY | YYYiOO YOOYYYiYYtYY | tYYtt WEEWW WEEWW WWEEWW | WEEWEt ET tY TYi OO YP OOPs O oi | YDSsPPOs DSsPPOs | DSsP PPP YYDSsP PPP | DSsPPOs DSsPPOs | DSsP PPP YYYDSsPPPPO"
+  },
+  {
+    "id": "katy-perry-the-one-that-got-away",
+    "title": "The One That Got Away",
+    "artist": {
+      "name": "Katy Perry",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 134,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "katy-perry"
+    ],
+    "notation": "kHfH kHfH kHDH kHDH LHfH LHfH Ljfj Ljfj CCCC x xxCC | k x CCCCx xx CCC | k x CCCCx xx C V C x Z L kk CCCCk xxCCCC | xxCCC x V C x Z L jjjH | jjjHGG | jjjjHHGfGHGfDS SSS aa [fk] [fk] [fk] HGG jjjHHGfGHGfDS aa SS Saa a GGGG f a fGG | a GGGG f a fGG fGGG fGHGfDS aSa fGGGf ff fGGG f GGGGf aHGfDS a jjjHH | jjjHGG | jjjHH GfGHGfDS SS Saa [fk] [fk] [fk] HGG aSSSaa GfGfG GfG [SH] f S a HG aSSSaa GfGfG GfG [SH] f S a [ak] [pj] [OH] [ISG] [OH] a jjjHH | jjjHGG jjjHHGfGHGfDS HH GG ff[af]"
+  },
+  {
+    "id": "katy-perry-the-one-that-got-away-v2",
+    "title": "The One That Got Away (v. 2)",
+    "artist": {
+      "name": "Katy Perry",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 134,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "katy-perry"
+    ],
+    "notation": "kHfH kHfH kHDH kHDH LHfH LHfH Ljfj Ljfj GGGG f ffGG # a f GGGGf ff GGG # a f GGGGf ff G H G f D S aa GGGGa ffGGGG # ffGGG f H G f D S pppO #pppOII # ppppOOIuIOIuYT TTT rr [ua] [ua] [ua] OII pppOOIuIOIuYT rr TT Trr r IIII u r uII # r IIII u r uII uIII uIOIuYT rTr uIIIu uu uIII u IIIIu rOIuYT r pppOO # pppOII # pppOO IuIOIuYT TT Trr [ua] [ua] [ua] OII [ua]O [ua]O [ua]O [ua] O [ua]O [ua]O [ua]O [ua] O rTTTrr IuIuI IuI [TO] u T r OI rTTTrr IuIuI IuI [TO] u T r [ra] [ep] [WO] [QTI] [WO] r pppOO # pppOII pppOOIuIOIuYT OO II uu[ru]"
+  },
+  {
+    "id": "kenshins-song",
+    "title": "Kenshin's Song",
+    "artist": {
+      "name": "Unknown",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "instrumental"
+    ],
+    "notation": "[psf] a s [ado] s a [spi] u [psf] a s [ado] s d [sfip] s [psf] a s [ado] s d [sfip] s f [ado] [sip] d s [ado] p o [sfp] u e [pe] t [au] [ts] [wd] r [sy] [ar] [qp] e [tu] e q [pe] t [au] [ts] [wd] r [sy] d [qfp] e [ts] e q [pe] t [au] [ts] [wd] r [sy] d [qfp] e [st] [fe] [wd] r y r [qst] d s [awy] p o [eup] [u0] [e6]"
+  },
+  {
+    "id": "krem-jenerik",
+    "title": "Krem - Jenerik",
+    "artist": {
+      "name": "Unknown",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "soundtrack"
+    ],
+    "notation": "uuu usau | iii ioiuy tetyuyt | rrrr rtrer uuu usau | iii ioiuy tetyuyt | rrrr rtrer o i ioiyuy | tet tet rrrr rtrer klkjk lkl f | lkl g klkjh ghgdf jklf llkjh mmnbv dfg jjH HjkjHj dfg jjH HjkjHj dfg jjH HjkjHj"
+  },
+  {
+    "id": "lady-gaga-telephone",
+    "title": "Telephone",
+    "artist": {
+      "name": "Lady Gaga",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 122,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "lady-gaga"
+    ],
+    "notation": "s P O i Y i g D d P i o O gg DD HH hh h DDD DD DD DDD gg sss gg DD HH hh h DDD DD DD DDD gg sss gg ss"
+  },
+  {
+    "id": "legs-of-love",
+    "title": "Legs of Love",
+    "artist": {
+      "name": "Unknown",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "instrumental"
+    ],
+    "notation": "T O I p O I O p T y r T y O I i I O r T T O I p O I O p S a a p O a p p O I p O i y T I T O I p O I O p T y r T y O I i I O r T T O I p O I O p S a a p O a p p O I p O I y u I S a p d d d I O a p O S S S f p p O I a a a d S a p a S S a p d d d I O a p O S S S f p p O I a a a p O T p O I"
+  },
+  {
+    "id": "les-miserables-castle-on-a-cloud",
+    "title": "Castle on a Cloud",
+    "artist": {
+      "name": "Claude-Michel Schönberg",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "3/4",
+    "tags": [
+      "musical",
+      "les-miserables"
+    ],
+    "notation": "[6p] a s [3a] [4p] [24p] [3O] [6p] p a s [5a] p o i [1u] [2y] u i [1u] p [3a] s [4p] [2y] u i [3u] y t r [6e]"
+  },
+  {
+    "id": "linkin-park-in-the-end",
+    "title": "In The End",
+    "artist": {
+      "name": "Linkin Park",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 105,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "alternative",
+      "linkin-park"
+    ],
+    "notation": "[9z] b b c [x8] x x x c [9z] b b c [x8] x x x c [9z] b b c [x8] x x c [8x] [9d] j j g [8f] f f f g [9d] j j g [8f] f f f g [9d] j j g [8f] f f f g [9d] j j g [8f] [9y] p p i [u8] u u u i [9y] p p i [u8] u u u i [9y] p p i [u8]"
+  },
+  {
+    "id": "lion-king-can-you-feel-the-love-tonight",
+    "title": "Can You Feel the Love Tonight",
+    "artist": {
+      "name": "Elton John",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 60,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lion-king"
+    ],
+    "notation": "[8u] w t w [5y] w o w [4i] q e i [8i] u t w [4e] q e t i [8t] w t q [29] 2 [30] 3 [4q] 4 [5w] 5 [4e] r [qt] [4y] t [80] w 5 8 0 [4e] r [qt] [8y] t 8 w 0 8 [4e] r [qt] [4t] [8y] [0t] w [8u] [9i] [eu] [9y] [eu] [5y] 9 w 9 [4e] r [qt] [4y] t [80] w 5 8 0 [4e] r [qt] [8y] t 8 w 0 8 [4e] r [qt] [4u] o 8 u 0 y y [8t] [9i] [eu] [9y] [eu] [5y] 9 w 9 [8o] 0 w [8u] [5y] 7 [9o] [7u] 6 [0r] [6t] [4e] 8 q 8 4 [80] w [9t] [8i] 9 e 9 [eu] [5y] 7 9 7 5 7 9 5 4 e r [8t] q 8 0 8 [0w] w [5o] 7 [6u] 0 [4t] t [8e] q 8 [9i] e [8u] 0 [9y] e [9u] [5y] 7 9 7 9 7 5 [7w] [8o] 0 w [8u] [5y] 7 [9o] [7u] 6 [0r] [6t] [4e] 8 q 8 4 [80] w [9t] [8i] 9 e 9 [eu] [5y] 7 9 7 5 7 9 5 4 e r [8t] q 8 0 8 [0w] w [5o] 7 [6u] 0 [4t] t [8e] q 8 [9i] e [8u] 0 [9y] e [9u] [5y] 7 9 w 9 [5wyo]"
+  },
+  {
+    "id": "lion-king-circle-of-life",
+    "title": "Circle of Life",
+    "artist": {
+      "name": "Elton John",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lion-king"
+    ],
+    "notation": "w u t u t t 0 t 0 q q 8 8 8 7 5 7 w 9 9 0 u t u t t 0 t 0 q q 8 8 8 7 5 0 q w 0 q w w e w q q 9 0 q q q q e w 0 5 8 9 0 9 8 w w t t t t e r t t y y e t y y u i u t y t r 0 q w w w w w e w q q 9 0 q q q q e w 0 5 8 9 0 9 8 w w t t t t e r t t y y e t y y u i u t y w w o u y u u i u i u u u i o i y y y i i o u y t t y t t w w i u y y y t r r w w o u y u y t t u u u i o o i i i Y y t t w w o u y t e w w w i u y t t i u i u t t w w w u u t t t i i i o i u i u y y w t y u t w w 0 w t t r t t t t y u i u y t y u y t y u u t t t i i i o i u i u y y w t y u t w w 0 w t t r t t t t y u i u y t t o w w o u y u u i u i u u u i o i y y y i i o u y t t y t y t w w i u y y y t r r w w o u y u y t t u u u i o o i i i Y y t t w w o u y t e w w w i u y t t t i u i u t t w 0 5 1 8 18"
+  },
+  {
+    "id": "lion-king-this-land",
+    "title": "This Land",
+    "artist": {
+      "name": "Hans Zimmer",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lion-king"
+    ],
+    "notation": "w t r e w e w e t t r e w e w e t t r t o o i u y i u t u y w t r e w e w e t t r e w e w e t t r t o o i u y i u t u y y u y e r e r y y u y e r e r w Q w Q 0 w t e r e w r e 9 w e r w Q w Q 0 y t r e w w r r u I o I p o u u o a f f d s a u I o I p o I u r u o I u Y Y u u y t r r e r t r e e 9 w e w 9 0 9 0 w w e w 9 0 9 0 w w e w y y t r e t r w r e w"
+  },
+  {
+    "id": "london-bridge-is-falling-down",
+    "title": "London Bridge is Falling Down",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "children",
+      "traditional"
+    ],
+    "notation": "hjhgfgh d h f s hjhgfgh d f g f g h hjhgfgh d h f s hjhgfgh d f g f g h"
+  },
+  {
+    "id": "lord-of-the-rings-many-meetings",
+    "title": "Many Meetings",
+    "artist": {
+      "name": "Howard Shore",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lord-of-the-rings"
+    ],
+    "notation": "[pdj] e T u i u T e | [60] e T u i [up] i [uf] [psg] q e t T t e q | [48] q e t T t e q [pfj] e T u i u T e | [60] e T u i [up] i [uf] [ipsf] q e t T t e q | [ips] q e t T t T t [pd] y I p P p I y | [269] y I p P p I y [oaf] y o a s a o y | [osf] t u o O o u t y [8wtu] o [0wru] y [qet] [0w] u o [4qtip] s [5wyo] o [30wtu] [29wry] [10wt] y u o u yuy[t0] u [ow] [tp] [sq] [ae] [eo] [1wtu] | i u [5wry] t y [0u] [to] [u8] yty[t0] u o [4p] [to] [uw] [5etu] i u [5ru] y | [6et] y u | e t e | e t e 6 | e t e | e t e [6u] | [ep] a [4ips] | 8 e 8 | [8a] e [8p] [5ru] | [iq] u y t y [6etu] t y [eu] [tu] p a [4ips] a p [5rto] [ry] [wt] y u o [wu] yuy[t8] u o [4tp] [sq] [wa] [oe] [1wtu] | i u [5wry] t y [18wto] t u o O o u t [18] t u i o O [ot] u o [30ru] u O a s a O u [30] u O a s a s a [9wyo] a d D d [9wo] | o a d D t y [8wtu] o [0wru] y [qet] | [0w] u o [etp] s [wrya] o [0wtu] [9wry] t y [8wtu] o [0wry] y [qet] | [0w] t u o [qetp] [0eto] [wu] [59wry] | [150wt]"
+  },
+  {
+    "id": "lord-of-the-rings-misty-mountains-cold",
+    "title": "Misty Mountains Cold",
+    "artist": {
+      "name": "Howard Shore",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lord-of-the-rings"
+    ],
+    "notation": "y i [ow5] P [4qip] | s d s P p [5wo] y i o [4qtip] | P [18] s P p [5wo] o y i o [4wyo] [5wyo] P [s4qi] P p i [5wo] y i o [4qyi] [4qyi] P [18] s P p o [4tip] 8 e 8 4 [8p] P [8p] [5o] 9 E 9 5 [9p] [EP] [9o] [2yip] 6 Q 6 2 [6y] [iq] [6o] [4tip] [8tip] e 8 4 8 P [8i] [5wo] [yd] [ig] [5oh] 9 E 9 5 9 [EPJ] [sl] [dz] [sl] [PJ] [pj] [5oh] 9 E 9 5 9 E 9 [yd] [ig] [oh] [4PJ] 8 E 8 4 8 [PJ] [sl] [PJ] [9oh] E 9 5 9 E 9 5 [yd] [ig] [oh] [odh] [odh] [EPJ] [sl] [PJ] [pj] [ig] [5oh] 9 E 9 5 9 E 9 [yd] [ig] [oh] [pj] [pj] [PJ] [sl] [PJ] [pj] [oh] [8pj] E 8 4 8 E 8 4 8 [epj] [PJ] [pj] [9dz] E 9 5 9 E 9 5 9 [ydq] [ig] [pj] [epj] 8 4 8 E 8 4 8 P i [5wo] P d h"
+  },
+  {
+    "id": "lord-of-the-rings-misty-mountains-cold-v2",
+    "title": "Misty Mountains Cold (v. 2)",
+    "artist": {
+      "name": "Howard Shore",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lord-of-the-rings"
+    ],
+    "notation": "uop sdfdsap uopa sdsapa sdsf sdsa uops saop fhj lzxzlkj fhjk lzlkjk lzlx lzlk fhjl lkhj"
+  },
+  {
+    "id": "lord-of-the-rings-rohan-theme",
+    "title": "Rohan Theme",
+    "artist": {
+      "name": "Howard Shore",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lord-of-the-rings"
+    ],
+    "notation": "0 e e e t [9wr] [0wt] [qey] e Q e w e e [0e] e e e t [9wr] [wtu] [ey] [yp] e y u y y [0e] u [up] [up] [up] [yoa] [uos] [uos] [ipd] [yp] [ua] o I o [uo] [tu] p p p s [yoa] [uos] [ipd] [yp] [ua] o I o [uo] [tu] [0e] e e e t [9wr] [0wt] [qey] e Q e w e e [0e] e e e t [9wr] [wtu] [ey] [yp] p p p s [yoa] [uos] [ipd] [yp] [ua] o I o [wo] [tu] [et] [qe] p p p I [yoa] [uos] [ipd] [yp] [ua] o I o [uo] [tu] [et] [qe] [0e] [60p]"
+  },
+  {
+    "id": "lord-of-the-rings-theme",
+    "title": "The Lord of the Rings Theme",
+    "artist": {
+      "name": "Howard Shore",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "lord-of-the-rings"
+    ],
+    "notation": "t y [80tu] o [70ru] y [68tu] [58] t u o [qeip] s [wroa] o [80tu] i u [79ry] t y [80tu] o [70ru] y [68tu] [58] t u o [qeip] [qeip] p o u [70ru] [680] e t u 8 6 [579] w r y 7 5 [80tu]"
+  },
+  {
+    "id": "lost-win-one-for-reaper",
+    "title": "Win One for Reaper",
+    "artist": {
+      "name": "Michael Giacchino",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "tv",
+      "soundtrack",
+      "lost"
+    ],
+    "notation": "[hwtu] [hwru] [wtu] [wru] [hwtu] f h f h f [hwru] k h [hwtu] [hwru] [wtu] [wru] [hwtu] f h f h f [hwru] k h [hqet] g h g h g [hwtu] g f g h [hqet] g h g h g [fwtu] [dwry] [s1wt]"
+  },
+  {
+    "id": "mafia-the-game",
+    "title": "Mafia (The Game)",
+    "artist": {
+      "name": "Vladimir Šimůnek",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "mafia"
+    ],
+    "notation": "[29dy] [gi] [30fu] s [4qdi] [p] [15uo] s [29dy] [gq] [30ft] [hw] [4eji] [q] [3wu] 0 [29jp] [qls] [30ho] 8 [49oh] [6u] [15y] t 8 f g [29yf] [qs] [30d] w [4eyd] q t [3we] [0w] [29pj] [qsl] [30oh] 8 [49oh] [6u] [15y] t 8 f g [29yf] [qs] [30d] w [4eyd] q t [3we] [0w] [59hz] d [5s] [5rdz] [5f] j [8toh] 8 [8ufl] [8k] j k [6ufj] i 6 [6ef] [6g] [uf] s [49pd] 4 [49pf] [4g] f s [59hz] d [5s] [5rdz] [5f] j [6tjx] c l [5j] [5tj] 5 [$tDz] Z k [$D] [$tD] [$h] g d [$rak] k d [$a] [$ra] $ [8s] P O o [$s] P [Ei] Y [4wP] O [Wo] O [!Ti]"
+  },
+  {
+    "id": "mandy-moore-only-hope",
+    "title": "Only Hope",
+    "artist": {
+      "name": "Mandy Moore",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "ballad"
+    ],
+    "notation": "k k [ke]jH HGf SDfDS s S SDfDS H f [pf] SDfDS a G ff DSS a p [pu] SDfDS a G f [fp] SDfDS a G ff DSS a p [pu] SS [SO] | [SH] s s | [IP] SS [SO] | [SH] s s | [GJ] SS sPsS | [GJ] SS sPsS"
+  },
+  {
+    "id": "maroon-5-moves-like-jagger",
+    "title": "Moves Like Jagger",
+    "artist": {
+      "name": "Maroon 5",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 128,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "maroon-5"
+    ],
+    "notation": "r rTyuI | 77 | QQIuu r rTyuI | 77 | rrIuu y | Iuyy | [0r][0r] | Iuyy | [0r][0r] | Iuyy 0[0r] r rTyuI | 77 | rrIuu r rTyuI | 77 | rrIuu y | Iuyy | [7r][7r] | Iuyy | [7r][7r] | Iuyy | [7r]7 [7r] e rr | a p I | yyu ry | 77 | a p Iu | yyu ry | yyu re | yyyu re | yyy | r y u a p Iu | yyu re"
+  },
+  {
+    "id": "mass-effect-3-an-end-once-and-for-all",
+    "title": "An End Once and For All",
+    "artist": {
+      "name": "Clint Mansell & Sam Hulick",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "mass-effect"
+    ],
+    "notation": "[3r]70 | [1t]58 | [2r]69 [3r]70 w e [3r]70Q [5y]9we [6t]0er [7y]QrT [3r]70Qert 1580ytr 269Qrer 370Qwer 370Q uau [y5]9we uau [t6]0er uau [y7]QrTy [370uw] | [158wu] [30wu] u u u u u [158wtu] u u u u [370wru] u u u u [59wryu] u u u u [60etu] u u u u [7ryu] [3a]70w[rp]aws 1580[wd]s0a 269Q[ea]pQa 370w[ro]pwa 370wr uau [5y]9we uau [t6]0er uau [y7] Q r T y [370af]"
+  },
+  {
+    "id": "mass-effect-3-i-was-lost-without-you",
+    "title": "I Was Lost Without You",
+    "artist": {
+      "name": "Sam Hulick",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "mass-effect"
+    ],
+    "notation": "[y9] [qe] y [q9] [y9] [qe] y [q9] [y9] [qe] uioiuytr yuy yuyuiopypytety [y9] [qe] y [q9] [y9] [qe] uyuiioiuy [y9] [qe] [y9] [qe] w [qe] ghghfsad ghgh fdfsapa oiui yiui yt E te rery iuiop u apa oiui y t r [tu] i [yo] ptypo [ip] asappo [yp] tyu [po] jjh [dj] klkjjhj sdf [od] hhg [dh] pasd app o [ip] [oa] s [ra] [ts] [yd] [uf] [ig] [oh] p jf jf jf jf jf jf jf j"
+  },
+  {
+    "id": "mass-effect-3-leaving-earth",
+    "title": "Leaving Earth",
+    "artist": {
+      "name": "Clint Mansell",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "mass-effect"
+    ],
+    "notation": "[30w] | [18w] | [29e] | [30r] | [37wk] k k k k [fk] k k | [59rk] k k k k k k k | [60tk] k k k k [fk] k k | [7yk] k k k k k k k | [370w] 3 | [1580] f k f | [370w] 3 | [370] f k f | [370] k k k k [fk] k [fk] | [59rk] k k k k k k [3k] | [3k] k k k k [fk] k [3fk] | [7yk] [rk] k k k k [7yk] [3k] | [3k] k k k k [fk] k [fk] | [150 fkx] | [26 fkx] t f k f | [37w] 3 | [37wok] k k k k [fk] k [fk] | [59rpk] k k k [ak] k k k | [60tsk] k k [rk] k [fk] [ek] [fk] | [7ydk] k k [rk] k k k k | [37wok] k k k k [fk] k [fk] | [59r ok] k k k k k k k | [60tpk] k k k k [fk] k [fk] | [7yak] k k k k k k k | [37wok] k k k k [fk] k [fk] | [59rak] k k k k k k k | [60tsk] k k k k [fk] k [fk] | [7ydk] k k k k k k k | [30kx] k k k k [fk] k [fk] | [18 kx] k k k k k k k | [6kx] k k k k [fk] k [fk] | [0ru kx] k k k k k k k | [0ru kx] k k k k [fk] k [fk] | 3"
+  },
+  {
+    "id": "massive-attack-teardrop",
+    "title": "Teardrop",
+    "artist": {
+      "name": "Massive Attack",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 78,
+    "timeSignature": "4/4",
+    "tags": [
+      "electronic",
+      "trip-hop"
+    ],
+    "notation": "e e u e y e [yu] e e u e y e y e 6 e u e y e [yu] 5 e u e y e [ye] 4 e u e y e y [yu] 5 e u e y e [ye] 6"
+  },
+  {
+    "id": "matrix-clubbed-to-death",
+    "title": "Clubbed to Death",
+    "artist": {
+      "name": "Rob Dougan",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 90,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "matrix"
+    ],
+    "notation": "5yoyPyoy 6yoysyoy 5yoydyPy 8PtYtpYsY 9yoyPodP hoPoDPh Phoao dagagosg DosDdyoyPyoy PtYPpty IowE yoyPodP hdJhzJv"
+  },
+  {
+    "id": "max-payne-theme",
+    "title": "Max Payne Theme",
+    "artist": {
+      "name": "Kärtsy Hatakka & Kimmo Kajasto",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "max-payne"
+    ],
+    "notation": "t Y i o s o P o Y r W w y w y Y r t Y i o s o P o Y r W w y w y Y [ts] [YD] [ig] [oh] [sl] [oh] [PJ] [oh] [YD] [ra] [WO] [wo] [yd] [wo] [yd] [YD] [ra] [ts] [YD] [ig] [oh] [sl] [oh] [PJ] [oh] [YD] [ra] [WO] [wo] [yd] [wo] [yd] [YD] [qi] | [qi] [wo] [WO] [yd] [ra] [wo] [YD] [yd] [qi] | [qi] [wo] [WO] [yd] [ts] [ra] [ep] [ra] | [tosh] [ts] [YD] [ig] [oh] [sl] [oh] [PJ] [oh] [YD] [adgh] [WO] [wo] [yd] [wo] [yd] [YD] [ash] [ts] [YD] [ig] [oh] [sl] [oh] [PJ] [oh] [YD] [adgh] [WO] [wo] [yd] [wo] [yd] [YD] [to]"
+  },
+  {
+    "id": "max-payne-theme-v2",
+    "title": "Max Payne Theme (v. 2)",
+    "artist": {
+      "name": "Kärtsy Hatakka & Kimmo Kajasto",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "max-payne"
+    ],
+    "notation": "sDghlhJhDa OododDa sDghlhJhDa OododD as"
+  },
+  {
+    "id": "max-payne-3-theme",
+    "title": "Max Payne 3 Theme",
+    "artist": {
+      "name": "Health",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "max-payne"
+    ],
+    "notation": "[18] t Y o s o P o Y [29] r W w [5wy] w y Y r [18t] Y i o s o P o Y [29r] W w [5wy] w y Y [18] [ts] [YD] [ig] [oh] [SL] [oh] [PJ] [oh] [YD] [29ra] [WO] [wo] [18yd] [wo] [yd] [YD] [29ra] [ts] [YD] [ig] [oh] [sl] [oh] [PJ] [oh] [YD] [18ra] [WO] [wo] [5wyd] [wo] [yd] [YD] [4qi] [qi] [wo] [WO] [yd] [5wra] [wo] [YD] [yd] [4qig] [ig] [oh] [OH] [yd] [5wts] [ra] [ep] [ra] [18osh]"
+  },
+  {
+    "id": "mercedes-lullaby-pans-labyrinth",
+    "title": "Mercedes Lullaby - Pan's Labyrinth",
+    "artist": {
+      "name": "Javier Navarrete",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "3/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "pans-labyrinth"
+    ],
+    "notation": "p o i o p P p p o i o p P o o i u i o p o p o p P s p"
+  },
+  {
+    "id": "metallica-nothing-else-matters",
+    "title": "Nothing Else Matters",
+    "artist": {
+      "name": "Metallica",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 142,
+    "timeSignature": "6/8",
+    "tags": [
+      "rock",
+      "metal",
+      "metallica"
+    ],
+    "notation": "3 w r u r w 3 w r u r w 3 w r u r w 3 w r u r a [3a] r w [ra] u r w 3 w [ra] [rs] a p [ra] p o I u [6u] t u I u t 6 t u u [6tu] [7u] [8tu] 8 t u t o u t [8tu] [9yu] 9 y I y u p u I r u 3 o a f r w 3 w r u r w 3 w r u r w 3 w r u r w I 3 0 r u [ao] 9 e y 8 w [tu] 3 0 r u [ao] 9 e y 8 w [tu] 3 0 r u [ao] 9 p I y 8 o u t 5 o y r 7 I Y r 3 w r u r w 3 w r u r w 3 w r o w u r w [capslock on] 9I [capslock off] 9 o y w [8o] y w 5 $ 3 w r o w u r w [9I] 9 y e w [8y] w y 5 $ 3 w r o w u r w [9I] 9 o y w [8y] y w 5 w [yo] [7er] I I r 3 w r u r w 3 w r u"
+  },
+  {
+    "id": "metro-2033-main-menu-theme",
+    "title": "Metro 2033 - Main Menu Theme",
+    "artist": {
+      "name": "Alexey Omelchuk",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "metro-2033"
+    ],
+    "notation": "e u [us] [id] e i d a e u [ya] [us] e u a p e u [us] [id] e i d a [ra] [wo] [eup] uasap e u [us] [id] e i d a e u [ya] [us] e u a p e u [us] [id] e i d a [ra] [wo] [eup] uasap e p [of] [pg] e p f [fd] e p [id] [of] e p f [fd] e p [us] [id] e i d a [ra] [wo] [ts] [ya] e p [of] [pg] e p f [fd] e p [id] [of] e p f [fd] e p [us] [id] e i d a [ra] [wo] [ts] [ya]"
+  },
+  {
+    "id": "metro-2033-main-menu-theme-v2",
+    "title": "Metro 2033 - Main Menu Theme (v. 2)",
+    "artist": {
+      "name": "Alexey Omelchuk",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "metro-2033"
+    ],
+    "notation": "6 0 [0t] [qy] 6 q y r 6 0 [9r] [0t] 6 0 r e 6 0 [0t] [qy] 6 q y r [7r] [5w] [60e] 0rtre 6 e [wu] [ei] 6 e u [uy] 6 e [qy] [wu] 6 e u [uy] 6 e [0t] [qy] 6 q y r [7r] [5w] [8t] [9r]"
+  },
+  {
+    "id": "minecraft-mice-on-venus",
+    "title": "Mice on Venus",
+    "artist": {
+      "name": "C418",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "minecraft"
+    ],
+    "notation": "[x8] z [whv] [egl] j [x8] z [ef]jl x [qgl] j [wadh] [wa] [5r] [efj] [gl] [whl] j [qgjl] [gj9] l [wkh] h [gd9] [qe] [wh0] f [qs] d s [esf] g h [qf] [qd] sd [esf] [h8] f [5d] [0f] [80x] zl [wh] z [gil] j [x8] z [fjl] [gl] [whl] j [qgl] [gj9] l [whk] h [gd9] [qe] Transcribed and Submitted by Brian"
+  },
+  {
+    "id": "minecraft-wet-hands",
+    "title": "Wet Hands",
+    "artist": {
+      "name": "C418",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "minecraft"
+    ],
+    "notation": "6 0 e r T r e 0 9 Q T u T e 6 0 e r T r e 0 9 Q T u T e O 0 e r T r [pe] 0 I Q T u T e u I O 0 e r T r [ea] S 9 [QI] T u T e S f [h5] 7 9 [GQ] [ed] Q [9p] [7a] 5 7 9 Q e [h5] 7 G Q [ed] Q [9p] [7a] 5 7 9 Q e p [6u] 0 e r T r e 0 6 0 e r T u p S | [7yd] 9 Q S p [uf] [IG] 7 [9yd] Q e T p S [5d] 7 S d e G S | r e [3r] % 7 0 W 0 7 % 3 % 7 0 W 0 6 5 7 9 Q e Q 9 7 6 ( 0 e T r e 0 3 % 7 0 W 3 % 7 0 W"
+  },
+  {
+    "id": "mission-impossible-theme",
+    "title": "Mission: Impossible Theme",
+    "artist": {
+      "name": "Lalo Schifrin",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 170,
+    "timeSignature": "5/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "mission-impossible"
+    ],
+    "notation": "5 5 6^ 8 5 5 4 4^ 5 5 6^ 8 5 5 4 4^ [5w] [5w] [E6] [t8] [5w] [5w] [q4] [Q4] [5wo] [5wo] [EP6] [t8s] [5wo] [5wo] [qi4] [QI4] Ew9 Ew* Ew8 6^ 8 Ewi Ewu EwY Yy Jhd JhS Jhs Ps Jhc Jhx JhZ Zz"
+  },
+  {
+    "id": "mortal-kombat-theme",
+    "title": "Mortal Kombat Theme",
+    "artist": {
+      "name": "The Immortals",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 127,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "mortal-kombat"
+    ],
+    "notation": "ppsp dp fd ssfs hs fs ooao so sa iipi ai ap ppsp dp fd ssfs hs fs ooao so sa iipi ai ap pppp os pppp ou pppp os pppp ppp pp pppp os pppp ou pppp os pppp ppp pp pfpspPpspPo pfpspPpspPo pfpspPpspPo pfpsoooopp"
+  },
+  {
+    "id": "mozart-molto-allegro",
+    "title": "Molto Allegro",
+    "artist": {
+      "name": "Wolfgang Amadeus Mozart",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 150,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "mozart"
+    ],
+    "notation": "gff gff gff l lkj jhg gfd fdd fdd fdd k kjh hgf fds lkkzHkjf lkkzHkjf"
+  },
+  {
+    "id": "mozart-music-for-angels",
+    "title": "Music for Angels",
+    "artist": {
+      "name": "Wolfgang Amadeus Mozart",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "mozart"
+    ],
+    "notation": "jHjHjfjd pS | jHjHjfjd pSjHjIpHj 9pdju pdp Sd[pf]Sa pOp upaS eu Sd[f6] 0T dS[a0] rO pSj Hj IpHj 9pdju pdp Sd[pf]L[k0][fr] kLkjH[jf] upaS eu Sd[f6] 0T dS[a0] r[uj]kjHjpfp jkjHjpfp | jkjHjkLzxLkjH a jkjHjpfp | jkjHjpfp | jkjHjkLzxLkjH a jkjHjpfp | jkjHjpfp | jkjHjkLzxLkjH a [0a]Ou pSjHjIpHj 9pdju pdp Sd[pf]Sa pOp upaS upaS uSdf uSdf udSa udSa O pSj Hj IpHj 9pdju pdp Sd[pf]L[k0][fr] kLkjH[jf] upaS upaS uSdf uSdf udSa uOa jkjHjpfp jjkjHj pfp | jjkjHj pfp | jjkjHjkLzxLkLkjH afa | jjkjHj pfp | jjkjHj pfp | jjkjHj pfp | jjkjHjkLzxLkLkjH afa | jjkjHj pfp | jjkjHj pfp | jjkjHj pfp | jjkjHjkLzxLkLkjH afa [0a]Ou pS [QT]HjH[uf]dOIT Sd[pf]Sa pOp upaS eu Sd[f6] 0T dS[a0] rO pSj Hj IpHj 9pdju pdp Sd[pf]L[k0][fr] kLkjH[jf] upaS eu | Sd[f6] 0T dS[a0] ru [QTO] $*)W eTOp SHj LVbVL | $"
+  },
+  {
+    "id": "secret-garden",
+    "title": "Secret Garden",
+    "artist": {
+      "name": "Secret Garden",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "new-age",
+      "instrumental"
+    ],
+    "notation": "u p a [6s] 0 t a [9s] e u [5s] [9d] [ra] p [0a] w u a [qa] s [ep] o [9p] e i o [0u] 7 0 Q W u p a [6s] 0 t a [9s] e i [5s] [9d] [ra] p [0a] w u a [qa] s [ep] o [9p] e i o [6p] 0 e r t u p a [6s] 0 t a [9s] e u [ws] [9d] [ra] p [0a] w u a [qa] s [ep] o [9p] e i o [0u] 7 0 Q W u p a [6s] 0 t a [9s] e i [ws] [9d] [ra] p [0a] w u a [qa] s [ep] o [9p] e i o [6p] 0 e r t a s h [qj] t p [9j] k [rh] [ig] [0h] r o a 6 [0a] [rs] [uf] [9g] e i p [5g] [9h] [af] [os] [0f] u r e a [5s] h [qj] t p [9j] k [rh] [ig] [0h] r o a [6h] j [rg] [uf] [9g] e i p [5g] [9h] [af] [od] [0f] r u I O u p a [6p] 0 e r t [qa] s [ep] o [9p] e i o [6p] 0 e r [6tup]"
+  },
+  {
+    "id": "shakira-waka-waka",
+    "title": "Waka Waka",
+    "artist": {
+      "name": "Shakira",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 127,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "world-cup"
+    ],
+    "notation": "9 yyyuy 6 TTTyT 7 yyTr ryyT r [r7] yyyury 9 yyyuI 6 TTTyu 7 yyTr yyT [r5] ryyyury 9 yu yI 6 ypI 7 yyuyI 5 ypI [y9] yyyy uy [u6] uuuIyu 7IIIyy r rrp 5 Iyyryy [y9] yyyy uy [u6] uuuIyu 7IIIyy r rrp 5 Iyyryy [y9] yyyy uy [u6] uuuIyu 7IIIyy r rrp 5 Iyyryy"
+  },
+  {
+    "id": "sherlock-holmes-theme",
+    "title": "Sherlock Holmes Theme",
+    "artist": {
+      "name": "David Arnold & Michael Price",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "tv",
+      "soundtrack",
+      "sherlock"
+    ],
+    "notation": "[2p] [9qep] O [2p] [9qe] P [2a] [9eq] i [2a] [9qe] s [2p] [9qp] O [2p] [9qe] [29] [9eu] [29] [9eu] [29] [9eu] [29] [9eu] e [e W e] [e W w] [w Q w] [w W e] [e W e] [e W w] [w Q w] q 0 9 [yp] [yp] e [e W e] [e W w] [w Q w] [w W e] [e W e] [e W w] [w Q w] q 0 9 [yp] [yp] p [p O p] [p O o] [o I o] [o O p] [p O p] [p O o] [o I o] i u y [yp] [yp]"
+  },
+  {
+    "id": "silent-hill-promise",
+    "title": "Promise",
+    "artist": {
+      "name": "Akira Yamaoka",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "silent-hill"
+    ],
+    "notation": "6 0 t 0 6 q t q 8 w t w 9 w r w 6 0 t 0 6 q t q 8 w t w 9 w r o [f6] 0 t 0 6 q t [qh] [s8] w t w 9 w r o [f6] 0 t 0 6 q t s [o8] w t w 9 w r w 6 0 [th] [0h] [6h] [qg] [tf]q 8 w t [wd] [9d] [wf] d s 6 0 [th] [0h] [6h] [qj] [th]q 8 w t [wl] [9l] w [rk] w 6 0 [th] [0h] [6h] [qg] [tf]q 8 w t [wd] [9d] [wf] d s 6 0 [th] [0h] [6h] [qj] [th]q 8 w t [wl] [9l] w [rk] w [6l] 0 t k [6j] q [tk] [ql] [8z] w [tl] w k w r w [6l] 0 t k [6j] q [tk] [ql] [8z] w [tl] w k w r w 6 0 t 0 6 q t q 8 w t w 9 w r w 6 0 t 0 6 q t q 8 w t w 9 w r w 8"
+  },
+  {
+    "id": "silent-hill-theme",
+    "title": "Silent Hill Theme",
+    "artist": {
+      "name": "Akira Yamaoka",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "silent-hill"
+    ],
+    "notation": "w y d y Y o [dv] o [uh] o s o Y o [sz] o w y d y Y o [dv] o [uh] o s o Y o [sz] [wo] p P s [od] s [PY] poo [od] p P [su] P p o [PY] p o i p o"
+  },
+  {
+    "id": "skylar-grey-coming-home",
+    "title": "Coming Home",
+    "artist": {
+      "name": "Skylar Grey",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "pop",
+      "ballad"
+    ],
+    "notation": "e y T [r5] | e y T [e9] y T [r7] | r y T [e6] y T [r5] | y T [e9] y T [r7] | r y T [e6] e y u I y u [e9] e y u I u y u T e y T [r5] | e y T [e9] y T [r7] | r y T e"
+  },
+  {
+    "id": "sleeping",
+    "title": "Sleeping",
+    "artist": {
+      "name": "Unknown",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "instrumental"
+    ],
+    "notation": "f f [hu] o # f f [hu] o # f h [lu] [ko] j [ji] [hu] d f [gy] [do] # d f [gy] o # d g [ky] j [ho] [ki] [lu] o s s [psl] t # j g [ush] t # f s [psg] [oh] [ij] [osf] t s s [pl] t # j g [uh] t # f s [pg] h g [of] [id] [us] o f f [uh] o # x x [flv]"
+  },
+  {
+    "id": "slumdog-millionaire-latikas-theme",
+    "title": "Latika's Theme",
+    "artist": {
+      "name": "A. R. Rahman",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "slumdog-millionaire"
+    ],
+    "notation": "[8td] f d f d a s [6ed] f d f d a s [4qd] f d g d a s [5wd] f d [8to] s a s [6es] a p o [4qo] s a s [5w] [8to] s a s [6es] a p o [4qo] s a s [5wa] [8dh] u o a s [6af] u a s [4j] o a s [5dk] o s a [8dh] u o a s [6af] u a s [4j] o a s [5dk] o s a [8td] [8f] 8 [8d] [8f] [8d] [8a] [8s] [6ed] [6f] 6 [6d] [6f] [6d] [6a] [6s] [4qd] [4f] 4 [4d] [4g] [4d] [4a] [4s] [5wd] [5f] 5 [5d] 5 5 5 [8to] [8s] [8a] [8s] 8 8 8 [6es] 6 6 [6a] [6p] 6 [6o] 6 [4qo] [4s] [4a] [4s] 4 4 4 [5w] 5 5 5 5 5 5 5 [8to] [8s] [8a] [8s] 8 8 8 [6es] 6 6 [6a] [6p] 6 [6o] 6 [4qo] [4s] [4a] [4s] 4 4 4 [5wa] 5 5 5 5 5 5 5 [8dh] [8u] [8o] [8a] 8 [8s] 8 8 [6af] 6 [6u] [6a] [6s] 6 6 [4j] 4 [4o] [4a] [4s] 4 4 [5dk] 5 5 [5o] [5s] [5a] 5 5 [8dh] [8u] [8o] [8a] 8 [8s] 8 8 [6af] 6 [6u] [6a] [6s] 6 6 [4j] 4 [4o] [4a] [4s] 4 4 [5dk] 5 5 [5o] [5s] [5a] 5 5 5 5 o [8ts] [8ts] a d [6es] [6es] a d [4qs] [4qs] a d [5ws] 9 w u o [8ts] [8ts] a d [6es] [6es] a d [4qs] [4qs] a d [5ws] 9 w u o [8ts] [8ts] a d [6es] [6es] a d [4qs] [4qs] a d [8tus] 1"
+  },
+  {
+    "id": "smurfs-theme",
+    "title": "The Smurfs Theme",
+    "artist": {
+      "name": "The Smurfs",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "tv",
+      "soundtrack",
+      "smurfs"
+    ],
+    "notation": "wew0ww opouoo hjhfhh hhjjk opouoi ioiyiu uiutuy yuyryt opouoi ioiyiu uiutuy yuyryt twt"
+  },
+  {
+    "id": "somewhere-over-the-rainbow",
+    "title": "Somewhere Over The Rainbow",
+    "artist": {
+      "name": "Harold Arlen",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "the-wizard-of-oz"
+    ],
+    "notation": "[1t] 5 8 0 [6s] 0 e t [3a] 7 o p a w s (E) [4t] 8 q e p e t i [3o] 8 0 w u w t w [4e] 8 q e i (W) t i [1u] 5 t y [6u] 0 i w [2y] 6 r t [5y] 9 u q [1t] 5 8 0 t [1t] 5 8 0 [6s] 0 e t [3a] 7 o p a w s (E) [4t] 8 q e p e t i [3o] 8 0 w u w t w [4e] 8 q e i (W) t i [1u] 5 t y [6u] 0 i w [2y] 6 r t [5y] 9 u q [1t] 5 8 0 t o [8u] o [wu] o [eu] o [wu] o [9i] o [qi] o [wi] o [ri] o p 8 0 w p 0 w t y r w q 9 o [8u] o [wu] o [eu] o [wu] o I p I p I p I p a 9 q e a q e t d 9 8 6 e 5 4 2 [1t] 5 8 0 [6s] 0 e t [3a] 7 o p a w s (E) [4t] 8 q e p e t i [3o] 8 0 w u w t w [4e] 8 q e i (W) t i [1u] 5 t y [6u] 0 i w [2y] 6 r t [5y] 9 u q [1t] 5 8 0 t o [8u] o [wu] o [eu] o [wu] o [9i] o [qi] o [wi] o [qp] a [8s] [wu] [to] [us] [of] [sh] [fl] [hx] [lxvm]"
+  },
+  {
+    "id": "star-wars-across-the-stars",
+    "title": "Across The Stars",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "3/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "pg d hgfg d gfdf s d s p pg d hgfg d gfdf s d s p pg ddfgh f jh j jlJjhhjJJh hlJj hGjz [zd] [gc] [ZD] [zd] [sl] [sl] [zd] [ZD] [ZD] [sl] [gc] [ZD] [zd] [sl] [ak] [dz] [hv]"
+  },
+  {
+    "id": "star-wars-celebration-theme",
+    "title": "Celebration Theme",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "d h z l | JjJ | jhj d h | z h d h z l | JjJ | jhj d h | d h z j J l | JjJ jhj d h | z h d h z j J l | JjJ jhj d h | z h [wo] [EP] [oh] | [ig] | [yd] | [wo] [EP] [yd] [oh] [ig] [yd] [ts] [ts] [EP] [ep] [wo] [wo] [EP] [yd] [oh] | [ig] | [yd] [wo] [EP] [yd] [YD] [yd] [ts] [EP] [ts] [ep] | w d h z l | JjJ | jhj d h | z h d h z j J l | JjJ jhj d s h [oh] [PJ] [dz] [hv] | [gc] | [dz] [oh] [PJ] [dz] [hv] [gc] [dz] [sl] [sl] [PJ] [pj] [oh] [oh] [PJ] [dz] [hv] | [igc] | [dz] [oh] [PJ] [dz] [DZ] [dz] [sl] [PJ] [sl] [pj] [oh] [oh] [PJ] [dz] [ohv] | [igc] | [dz] [oh] [PJ] [dz] [hv] [jb] [hv] [gb] [DB] | [ig] | [gv] v b [JB] v b B b v"
+  },
+  {
+    "id": "star-wars-imperial-march",
+    "title": "Imperial March",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 104,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "[5yo] [5yo] [5yo] [EY] P [5yo] [EY] P [5yo] 5 d d d [PD] [P] [YI] [EY] P [5yo] 5 [5odh] [5o] o [5odh] G g f D f O [TOS] s a [IP] p [IP] Y [YI] [EY] I P o P d 5 h o o [5oh] [DG] g f D f O [TOS] s a [IP] p [PI] Y [YI] [EY] P [5yo] [EY] P [5yo]"
+  },
+  {
+    "id": "star-wars-intro",
+    "title": "Star Wars Intro",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "www t o iuy s o iuy s o iuiy www t o iuy s o iuy s o iuiy wwe e iuyt tyuy er wwe e iuyt o yy wwe e iuyt tyuy er wwe e iuyt o yy"
+  },
+  {
+    "id": "star-wars-the-force",
+    "title": "The Force Theme",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "9 w e E t E 9 9 w e E 9 E 9 y t [y9] [wo] [ep] [EP] [st] [EP] [y9] [y9] [wo] [ep] [EP] [y9] [EP] [wo] [yd] [st] y [yo] [yp] o [do] P [yh] [EP] [ep] [wo] [dyo] [EP] [wo] [ey9] [ey9] [wyo]"
+  },
+  {
+    "id": "star-wars-the-force-v2",
+    "title": "The Force Theme (v. 2)",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "y o p P s P y y o p P y P y d s [dy] [ho] [jp] [JP] [sl] [JP] [dy] [dy] [ho] [jp] [JP] [dy] [JP] [ho] [zd] [sl] d [dh] [dj] h [zh] J [dv] [JP] [jp] [ho] [zdh] [JP] [ho] [dyp] [dyp] [dho]"
+  },
+  {
+    "id": "star-wars-the-force-v3",
+    "title": "The Force Theme (v. 3)",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "star-wars"
+    ],
+    "notation": "r u I opo r r u I o r ouap r u I o u a o f u oIua our r u"
+  },
+  {
+    "id": "stratovarius-forever",
+    "title": "Forever",
+    "artist": {
+      "name": "Stratovarius",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "metal",
+      "power-metal"
+    ],
+    "notation": "[lse] [xf] [zd0] [ls] [ka] [jpq] [ho] [gi] [fu5] [fu] [gi9] [ho] [jpq] [ls] [kaw] [jp6] [fu] [ls] [ka] [jp] a [s6] 0 e t [fu] e t u [d3] 7 0 w [sr] 0 [aw] r [p4] 8 q e t q [oe] [it] [o1] 5 8 9 0 w t [tw] [i2] 6 9 q [ue] 9 [yq] e [a3] 7 0 w [or] 0 w r [p6] 0 [ae] t [su] e t u [a3] 7 0 Q W r y [s6] 0 e t [fu] e t u [d3] 7 0 w [sr] 0 [aw] r [p4] 8 q e t q [oe] [it] [o1] 5 8 9 0 w t w [i2] 6 9 q [ue] 9 [yq] e [a3] 7 0 w [or] 0 w r [p6] [l0] [ke] [jt] [fu] [de] [st] [au] [put] s a [peq] | [ae] s [dw9] | [fw9] g [hw0] [dw9] d [se0] | [se0] a [peq] | [ae] s [dw9] [sw9] a [s6] 0 [ae] t [pu] e t u [ute] u s a [pe] | [ae] s [dw9] | [f81] [g92] [h03] [d92] d [s81] | [se0] a [peq] | s [dw9] a [s6] 0 [pe] t [pu] e t u [ute] [ls6] 0 e t [xfu] e t u [zd] 7 0 w [lsr] 0 [kaw] r [jp4] 8 q e t [ho] [gi] [fu1] 5 8 9 0 w t w [gi2] 6 9 q [fue] [dyq] [ka3] 7 0 w [hor] 0 w r [jp6] 0 [kae] t [lsu] e t u [ka3] 7 0 Q W r y [ls6] 0 e t [xfu] e t u [zd] 7 0 w [lsr] 0 [kaw] r [jp4] 8 q e t [ho] [gi] [fu1] 5 8 9 0 w t w [gi2] 6 9 q [fue] 9 [dyq] e [ka5] 9 w r [hoy] w r y [jp6] 0 e t u e t u [ute] s a [s6] 0 [pe] t u e t u [ute] s a [peq] | s [dw9] | a [se8] [aw9] [pe] | [e08] [6ep]"
+  },
+  {
+    "id": "super-mario-bros-theme",
+    "title": "Super Mario Bros. Theme",
+    "artist": {
+      "name": "Koji Kondo",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "super-mario"
+    ],
+    "notation": "fff s f h o spupa Ppo fhjghfsda spupa Ppo fhjghfsda hGgDf Opspsd hGgDf lll hGgDf Opspsd [DO] [id] [us] ssssdfspo ssssdf ssssdfspo fffsfho fsoopggpajjjhgfspo fsoopggp [ao] [dg] [dg] [dg] [sf] [ad] [os] u"
+  },
+  {
+    "id": "super-mario-theme",
+    "title": "Super Mario Theme",
+    "artist": {
+      "name": "Koji Kondo",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "super-mario"
+    ],
+    "notation": "uuutuo w tw0 ereW wuopi out yr tw0 ereW wuopi out yr oIiYu tty oIiYu sss oIiYu tty Y y t tttty utew tttty u tttty utew uuutuo w utw weiie rpppoi utew utw weiie riiiuyt eww"
+  },
+  {
+    "id": "superman-theme",
+    "title": "Superman Theme",
+    "artist": {
+      "name": "John Williams",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "superman"
+    ],
+    "notation": "o o t o o s o t o o t o o s o t [of] [od] [od] [ow] [ow] [t8] [ow] [ow] [st] [ow] [t8] [ow] [ow] [t8] [ow] [ow] [st] [ow] [t8] [of] [od] [od] sss [di][di][di] H hh"
+  },
+  {
+    "id": "swan-lake",
+    "title": "Swan Lake",
+    "artist": {
+      "name": "Pyotr Ilyich Tchaikovsky",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "tchaikovsky"
+    ],
+    "notation": "e t u t e t u t e t u t e t u t [ef] t u t [ep] [ya] [is] [yd] [ef] t u [ts] [ef] t u [ts] [ef] t u [tp] [qs] [ep] [0u] s [ep] t u t e [yd] [is] [ya] [ef] t u t [ep] [ya] [is] [yd] [ef] t u [ts] [ef] t u [ts] [ef] t u [tp] [qs] [ep] [0u] s [ep] t u t e"
+  },
+  {
+    "id": "tchaikovsky-swan-lake",
+    "title": "Swan Lake",
+    "artist": {
+      "name": "Pyotr Ilyich Tchaikovsky",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "classical",
+      "tchaikovsky"
+    ],
+    "notation": "I rTyuI yI yI I ryrwyr Gda I rTyuI yI yI I ryrwyr rTyuIop oI opa po paS aI yTrTyuIop oI opa po pa [tus] o [tu] os [TOS] O [TIPS][ry][ru][ry][ry][yo][EP][rya][ruoa][ry][ry][ry][ry][yo][EP][rya] r Tyu Iop oI opa po pa[TS] [ra]IyTrTyu Iop oI opa po pas[tuos][tuo][tuos] [ruoa] [ruoa][ETIP] [ETI] [ETIP] [ETIP] [tuos][tuo][tuos][ruoa] [ruoa][ETIP][ETI][ETIP][ruoa] [ruoa][tuos] [tuo] [tuos][tuos][tuo] [tuos][uo] [ETI] [tuos][tuo] [tuos] [tuos] [tuo][tuo] [tuos][uo] [ETI] [tuos] [tuo] [tuos] [tuos][tuo] [tuos][uo] [uo] [yid] [EP][yid] [yid] [EP][yid] [yud] [yud] [TIPS] [yud] [TIPS] [yud][TS] [IG][of]SPIuTEQ0(&[ad] aSdf[IG] [yd] [IG] [yd] [IG] [yd] [ra] [QI] [yd] [ra] I u I rTyuI yI yQ"
+  },
+  {
+    "id": "teoman-istanbulda-sonbahar",
+    "title": "Istanbul'da Sonbahar",
+    "artist": {
+      "name": "Teoman",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "rock"
+    ],
+    "notation": "pppsf fjhghg glkhkj fffgfsfd aaasapgf ggfg j ffdf p ggfg jhgf ggfg j ffdf p ggfg jhgf ggfg j ffd fp ssag ffpp jkjg jkjf jkjg hgdf jkjg jkjf jkjg hgdf"
+  },
+  {
+    "id": "terminator-theme",
+    "title": "Terminator Theme",
+    "artist": {
+      "name": "Brad Fiedel",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "terminator"
+    ],
+    "notation": "yui u t q yui u t p o yui u t w q 9 qq 0"
+  },
+  {
+    "id": "tes-morrowind",
+    "title": "Morrowind Theme",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-elder-scrolls"
+    ],
+    "notation": "tyY Yio oPi oiYyt tyY Yio oPs Pds sdDdsPOoi Yoi Yyt"
+  },
+  {
+    "id": "tes-morrowind-v2",
+    "title": "Morrowind Theme (v. 2)",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-elder-scrolls"
+    ],
+    "notation": "[up][oa][ps] [ps][ad][sf] [sf][sf][sh] [sf][sh][od] fd [os] a p [ip] [up][oa][ps] [ps][ad][sf] [sf][fh][gj] [fh] k [dj] [fj][hk][jl] k j [sh] g f [od] s f [od] [os]a[ip] [is][ua][ep]"
+  },
+  {
+    "id": "tes-oblivion-auriels-ascension",
+    "title": "Auriel's Ascension",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-elder-scrolls"
+    ],
+    "notation": "[fu] h G [fo] | [pd] a [fo] | f k [fu] | y [ft] [hr] G [fe] | [de] [aw] f | [fr] h [at] [u0] o I [uw] | [ey] r [uw] | u a [u0] | 9 [u8] [o7] I [u6] | [y6] [r5] u | [u7] o [r8] u o I u | y r u | u a u u o I u | y r u | u o r"
+  },
+  {
+    "id": "tes-oblivion-glory-of-cyrodiil",
+    "title": "Glory of Cyrodiil",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-elder-scrolls"
+    ],
+    "notation": "h l z Z | z l z | l J l | J h h l z Z | z l z | l J l | J l o s d D | d s d | s P s | P o o s d D | h g | D d o s d D | d s d | s P s | P o o s d D | d s d | s P s | P s o o i | i o O d a o o i | i o O d a | D d"
+  },
+  {
+    "id": "tes-oblivion-and-skyrim",
+    "title": "Oblivion and Skyrim Medley",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-elder-scrolls"
+    ],
+    "notation": "ert tyu uoy uytre ert tyu uop o ap p a s a p o i u y t uy trt trt rtytre ewe ewe wertre ert tyu uoy uytre ewe ewe wertre"
+  },
+  {
+    "id": "tes-skyrim-theme",
+    "title": "Skyrim Theme",
+    "artist": {
+      "name": "Jeremy Soule",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-elder-scrolls"
+    ],
+    "notation": "r r r [wr9] r r [er0] r r [r0] r T y r r r [wr9] r r [er0] r r [r0] r T y r T y 7 # 0 # [r79] # [e0] [r7] [u0] [ar] [ST] a a a a [ao] [ao] [ao] [ao] [ao] [ap] [ap] [ap] [au] [au] [au] a a a a [ao] [ao] [ao] [ao] [ao] [ap] [ap] [ap] [au] [au] [au] [ad] [ad] [ad] [ad] [ad] [ad] [ad] [ad] [ad] p p p [au] [au] [au] [ad] [ad] [ad] [ad] [ad] [ad] [ad] [ad] [ad] p p p [au] [ST] [dy] # [dy] [fu] [GI] [GI] [jp] [upf] # [dy] [ST] [aru] [ar] [ST] [dy] # [dy] [fu] [GI] [GI] [jp] [adk] # [jp] [SL] [ak] [ar] [ST] [dy] # [ST] [ar] [ep] # [wo] [QI] [u0] # [y9] [QI] [u0] [dy] [ST] [dy] # [dy] [ST] [dy] # [dy] [ST] [fu] [dy] [ST] [ary] [ary] [ep] [ary] [ar] [rp] [aru] [ep] [ar] [ST] [dy] [ep] [ary] [ST] [dy] # [dy][dy] [fu] [GI] [ST] [dy] [fu] [dy] [ST] [ary] [ar] [ep] [ary] [ep] [ar] [ST] [dy] [ep] [ary] a S d S S [GI] r T y I [aryo] y [ak] [jp] [ho] [GI] [fu] [u0] # 0 r [u0]"
+  },
+  {
+    "id": "tetris-theme",
+    "title": "Tetris Theme",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "tetris"
+    ],
+    "notation": "u rty tre etu ytr rty ut ee y ip oiu tuytr rty u te"
+  },
+  {
+    "id": "tetris-theme-v2",
+    "title": "Tetris Theme (v. 2)",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "tetris"
+    ],
+    "notation": "f asd sap psf dsa asd fs pp d gj hgf sfdsa asd f sp t"
+  },
+  {
+    "id": "tetris-theme-v3",
+    "title": "Tetris Theme (v. 3)",
+    "artist": {
+      "name": "Traditional",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "tetris"
+    ],
+    "notation": "0 789 876 680 987 789 08 66 9 qe wq0 80987 789 0 86 t"
+  },
+  {
+    "id": "the-beatles-let-it-be",
+    "title": "Let It Be",
+    "artist": {
+      "name": "The Beatles",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 70,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "pop",
+      "the-beatles"
+    ],
+    "notation": "[tuo] 1 [tuo] 1 [ryo] 5 [ryo] 5 [etu] 4 [etu] [wtu] [qeu] 2 [qey] 2 [wtu] 1 [wtu] 1 [wry] 5 [wry] 5 [tip] 1 [tuo] [tyi] [1tu] o o o o p u o o [s d] [f f] f d d s s [f f] g [f f] d f d s [0wt] [9qt] [80t] | [wtu] [wtu] [wry] [wry] [etu] [etu] [qet] [qet] [wtu] [wtu] [wry] [wry] [qet] [0wt] [9qt] [80t] | o [1o] o p [1u] [3o] [5o] [5s d 5] [6f f f] [5d d] [4s] s 4 3 [1f] [f 1g] [3h] f [5d] 4 5 [f d] [5s] 321 | o o o o p u o o [s d] [f f] f d d s s [f f] g [f f] d f d s [30] [29] [18] | f d [ups] [sf] h [adj] h h [ipf] d s [p o] [osf] s [osf] f [psh] f [osf] d f d [30] [29] [18] | [sfj] [sfh] [sdg] [osf] [iad] [ips] [yoa] [ops] [uos]"
+  },
+  {
+    "id": "the-beatles-yesterday",
+    "title": "Yesterday",
+    "artist": {
+      "name": "The Beatles",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 96,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "pop",
+      "the-beatles"
+    ],
+    "notation": "oii paSdfgf dd ddsPpoP pp oipoyi pp oii paSdfgf dd ddsPpoP pp oipoyi pp p p dfgfd fdsd p p p dfgfd fsPf g s P p oii paSdfgf dd ddsPpoPpp oipoyi pp p p dfgfd fdsd p p p dfgfd fsPf g oii paSdfgf dd ddsPpoPpp oipoyi pp ipoyi pp"
+  },
+  {
+    "id": "the-beatles-yesterday-v2",
+    "title": "Yesterday (v. 2)",
+    "artist": {
+      "name": "The Beatles",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 96,
+    "timeSignature": "4/4",
+    "tags": [
+      "rock",
+      "pop",
+      "the-beatles"
+    ],
+    "notation": "[oh][ig][ig] [pj][ak][SL][dz][fx][gc][fx][dz][dz] [dz][dz][sl][PJ][pj][oh][PJ][pj][pj] [oh] [ig] [pj] [oh] [yd] [ig] [pj][pj] [oh][ig][ig] [pj][ak][SL][dz][fx][gc][fx][dz][dz] [dz][dz][sl][PJ][pj][oh][PJ][pj][pj] [oh] [ig] [pj] [oh] [yd] [ig] [pj][pj] [pj] [pj] [dz][fx][gc][fx][dz][fx] [dz][sl][dz][pj] [pj] [pj] [dz][fx][gc][fx][dz][fx] [sl] [PJ] [fx] [gc] [sl] [PJ] [pj] [oh][ig][ig] [pj][ak][SL][dz][fx][gc][fx][dz][dz] [dz][dz][sl][PJ][pj][oh][PJ][pj][pj] [oh] [ig] [pj] [oh] [yd] [ig] [pj][pj] [pj] [pj] [dz][fx][gc][fx][dz][fx] [dz][sl][dz][pj] [pj] [pj] [dz][fx][gc][fx][dz][fx] [sl] [PJ] [fx] [gc] [oh] [ig][ig] [pj][ak][SL][dz][fx][gc][fx][dz][dz] [dz][dz][sl][PJ][pj][oh][PJ][pj][pj] [oh] [ig] [pj] [oh] [yd] [ig] [pj][pj] [ig] [pj] [oh] [yd] [ig] [pj][pj]"
+  },
+  {
+    "id": "the-legend-of-zelda-lost-woods",
+    "title": "Lost Woods",
+    "artist": {
+      "name": "Koji Kondo",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-legend-of-zelda"
+    ],
+    "notation": "g j k g j k g j k x z k l k h f d f h f g j k g j k g j k x z k l x k h k h d f y u i | o p a | s a u y u i | o p a | s d f y u i | o p a | s a u g f j h k j l k z l x z c k k l j k"
+  },
+  {
+    "id": "the-legend-of-zelda-sarias-song",
+    "title": "Saria's Song",
+    "artist": {
+      "name": "Koji Kondo",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 140,
+    "timeSignature": "4/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-legend-of-zelda"
+    ],
+    "notation": "i p a i p a i p a f d asaou yuou i p a i p a i p a f d asfao aoyu yui opa sau yui opa sdf yui opa sau u y i u o i p o a p s a d s fgdf"
+  },
+  {
+    "id": "the-legend-of-zelda-song-of-storms",
+    "title": "Song of Storms",
+    "artist": {
+      "name": "Koji Kondo",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 120,
+    "timeSignature": "3/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-legend-of-zelda"
+    ],
+    "notation": "9 [ip] [ip] 0 u [oa] | q [ps] [ps] 0 u [oa] 9 [ip] [ip] 0 u [oa] | q [ps] [ps] 0 u [oa] [9d] g [ipz] [ip] | [9d] g [oaz] [qx]cxcxl [aoj] j [ipd] g h [jq] [ip] j [ipd] g h [ef] [up] 9 [ip] [ip] 0 u [oa] | q [ps] [ps] 0 u [oa] 9 [ip] [ip] 0 u [oa] | q [ps] [ps] 0 u [oa] [9d] g [ipz] [ip] | [9d] g [oaz] [qx]cxcxl [aoj] j [ipd] g h [jq] [ip] j [ipd] g h [jq] [dz] 9 [ip] [ip] 0 u [oa] | q [ps] [ps] 0 u [oa] 9 [ip] [ip] 0 u [oa] | q [ps] [ps] 0 u [oa]"
+  },
+  {
+    "id": "the-legend-of-zelda-song-of-storms-v2",
+    "title": "Song of Storms (v. 2)",
+    "artist": {
+      "name": "Koji Kondo",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "3/4",
+    "tags": [
+      "game",
+      "soundtrack",
+      "the-legend-of-zelda"
+    ],
+    "notation": "9ey 9Ey uiuiute e9qwe e9qw0 9ey 9Ey uiuiute e9qwe e9"
+  },
+  {
+    "id": "the-national-anthem-of-usa",
+    "title": "The Star-Spangled Banner",
+    "artist": {
+      "name": "Francis Scott Key",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 80,
+    "timeSignature": "3/4",
+    "tags": [
+      "national-anthem",
+      "usa"
+    ],
+    "notation": "o u t u o s f d s u I o o o f d s a p a s s o u t o u t u o s f d s u I o o o f d s a p a s s o u t f f f g h h g f d f g g g f d s a p a s s u t o s s s a p p p d g f d s a o o s d f g h s d f g d s s"
+  },
+  {
+    "id": "the-salut-damour",
+    "title": "Salut d'Amour",
+    "artist": {
+      "name": "Edward Elgar",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "2/4",
+    "tags": [
+      "classical",
+      "romantic"
+    ],
+    "notation": "xhjxzlklc c c zxhjxzlklz z z Zxhjxzlklb b b vcx zlj k l"
+  },
+  {
+    "id": "the-walking-dead-reconciliation",
+    "title": "Reconciliation",
+    "artist": {
+      "name": "Bear McCreary",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "tv",
+      "soundtrack",
+      "the-walking-dead"
+    ],
+    "notation": "[WO] D s O D s O D O D s [wo] D s o D s o D s o D s [WD] Y t s Y t [WO] Y t [WP] g D w Y t w Y t w Y t w Y t [WD] Y t s Y t [OW] Y t s [YP] [to] w Y t w Y t w Y t w Y t [4WO] Y t s Y t [WD] Y t s [YD] D [wg] Y t w Y t w Y t w s P [WO] Y t s Y t [WD] Y t W Y D [WP] Y t W Y t [WD] Y t [WDZ] Y t [sl] Y t [WOH] Y t [WPJ] [gc] [DZ] w Y t w Y t w Y t w Y t [WDZ] Y t [sl] Y t [WOH] Y t [sl] [YPJ] [toh] w Y t w Y t w Y t w Y t [WOH] Y t [sl] Y t [WDZ] Y t W Y [stl] [WDZ] [vh] [ZD] w Y t w Y t w Y t w Y t [WOH] Y t [sl] Y t [WDZ] Y t W Y t W [sl] [PJ] w Y t w Y t w Y t w Y t [WO] D s O D s O D s O D s [5wo] D s o D s o D s o D s [WOD]"
+  },
+  {
+    "id": "the-walking-dead-theme",
+    "title": "The Walking Dead Theme",
+    "artist": {
+      "name": "Bear McCreary",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "tv",
+      "soundtrack",
+      "the-walking-dead"
+    ],
+    "notation": "o d j J j d o d j J j d o d j J o d j J j d o d j J j d o d j J o d j J j d o d j J j d o d j J [5w] y p P p y [5w] y p P p y [5w] y p P [5w] y p P p y [5w] y p P p y [5w] y p P [5w] y p P p y [5w] y p P p y [5w] y p P [30] r I o I r [30] r I o I r [30] r I o [30] r I o I r [30] r I o I r [30] r I o [30] r I o I r [30] r I o I r [30] r I o [18] w y Y y w [18] w y Y y w [18] w y Y [18] w y Y y w [18] w y Y y w [18] w y Y [18] w y Y y w [18] w y Y y w [18] w y Y [5w] y p P p y [5w] y p P p y [5w] y p P [5w] y p P p y [5w] y p P p y [5w] y p P [5w] y p P p y [5w] y p P p y [5w] y p P[5w]"
+  },
+  {
+    "id": "titanic-my-heart-will-go-on",
+    "title": "My Heart Will Go On",
+    "artist": {
+      "name": "Céline Dion",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 99,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "titanic"
+    ],
+    "notation": "[t8] ttt [r5] t r [r4] t y [u5] y [t8] ttt [r5] t t [w4] 5 [t8] ttt [r5] t r [r4] t y [u5] y [t8] ttt [r5] t y [w4] [w5] [t8] t [y5] w [o4] i u [y5] u i [u8] y t [r5] t r [e4] [w5] [t8] t [y5] w [o4] i u [y5] u i [u8] y t [r5] t r [r4] t y [u5] y [t8]"
+  },
+  {
+    "id": "transformers-arrival-to-earth",
+    "title": "Arrival to Earth",
+    "artist": {
+      "name": "Steve Jablonsky",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "transformers"
+    ],
+    "notation": "w t # w t Y E y q E t W t w t o Y i Y y t W t w t Y E y q E t W #t #E # Y y t w E t #E #y Y t # y Y i o s o s D P # d # i P s O s o s h # D # g D d s O # s P D d s o P s # P d D s t w Y # y E i # Y E I i T O # I T p # O u a # O u S p u S # O u S # a # #G d p d g s f o s d P d p d j g h g f d P d p d g s f o s d P d s g f d # p s d # s f g d [YP] [ips] [do] # [to] [yip] [YP] # [YP] [dp] [sip] [YP] p o # [si] P p # [YP] p o [ye] w w w w w 9 w E t y [et] q e t y Y E # ( e w q w 9 w E # q 9 E t # E e w # q w e y o o # i o y # t E E # t y y # I # p o # i o p #P p y o o p [yo] [yo] [eyp] # [wo]"
+  },
+  {
+    "id": "transformers-optimus",
+    "title": "Optimus",
+    "artist": {
+      "name": "Steve Jablonsky",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "transformers"
+    ],
+    "notation": "0 w e Etyt | q e E tyYE w ewqw | 0 w E yYit q e E tyYE | P poio q y | ty | q E | eE w y | ti | w t EE e o d | sd | o P | pP o d | sg | o s PP p u o p Psds | i p P sdDP o poio | u o P dDgs i p P sdDP | J jhgh i d | sd | i P | pP o d | sg | o s PP p h z | lz | h J | jJ h z | lc | h l JJ j h d h J g j s g h D h | h g Jjh d g h | h g | j J h"
+  },
+  {
+    "id": "transformers-scorponok-theme",
+    "title": "Scorponok Theme",
+    "artist": {
+      "name": "Steve Jablonsky",
+      "avatarUrl": ""
+    },
+    "difficulty": "easy",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "tags": [
+      "movie",
+      "soundtrack",
+      "transformers"
+    ],
+    "notation": "Q Q e Q Q e Q e e e T e e T e T T T u T T u T u r r Y r r Y e W Q Q e Q Q e Q e e e T e e T e T T T u T T u T u r r Y r r Y e W"
+  },
+  {
+    "id": "yiruma-when-love-falls",
+    "title": "When Love Falls",
+    "artist": {
+      "name": "Yiruma",
+      "avatarUrl": ""
+    },
+    "difficulty": "hard",
+    "tempo": 80,
+    "timeSignature": "4/4",
+    "tags": [
+      "new-age",
+      "instrumental",
+      "yiruma"
+    ],
+    "notation": "[s8] w Y s [d9] [iw] [oy] a [D(] [ot] s h [h0] P [su] P H O [hi] q g D Y o [st] s [i9] [OW] s [s5] t i a [s8] [ow] h g h [ir] [oy] o s Y h g [h0] P [su] h H O [hi] g D Y o s D g [d5] i [sr] a [s8] [ow] h g [h0] r y i s [st] Y h g [h0] t P h [gq] t [hi] g D Y o [s8] [D%] s g [h5] 9 r w l W Y O l D [kw] [ly] [zr] Z o t [zo] [ls] H J l h g D [dw] h [ai] D d s o P o [ls] W Y O [ls] D [kw] [ly] [zr] Z o t [zo] [ld] H J l h g D h [dw] [ly] k [li] o [s8] [ow] h g [h0] r y o s [st] Y h g [h0] t o h [gq] t [hi] [gq] D Y o [s8] [D%] g [d5] 9 [aw] [o5] s [s8] o h g [h0] r y o s [ot] Y h g [h0] t u P h [gq] t [hi] q g D Y o [st] D s g [h5] 9 [rw] [y5] [ls] W Y O [ls] D [k5] [ls] [zd] Z z [lt] H J l [h4] g D [dq] h a D [dw] [sy] w ^ w E ^ [ls] W Y O [ls] D [k5] [ls] [zd] Z z [lt] H J l [hs4] g D h [dq] l [kq] l D 8 w t Y o s D [ls] [ls] [kw] [ly] [zr] Z o t [zo] [ls] H J l [hw] g D [dw] h [ai] D [do] s o P o l W Y O l D [kw] [ly] [zr] Z o t [zo] [ls] H J l [hw] g D [hw] [ly] [ki] [lhot]"
+  },
+  {
+    "id": "zeki-muren-yildizlarin-altinda",
+    "title": "Yildizlarin Altinda",
+    "artist": {
+      "name": "Zeki Müren",
+      "avatarUrl": ""
+    },
+    "difficulty": "medium",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "tags": [
+      "turkish",
+      "classical"
+    ],
+    "notation": "jhgfdsdf | gfdsa [f d s a] dsasd f | s | asdsfsap [a s d f g h j] jhgfdsdf | gfdsa [f d s a] dsasd f | s | asdsfsap [p o i u y t r e] pasds g | f fggfdsf [p a s d f] dsasd f | s | asdsfsap [p o i u y t r e] pasds g | f fggfdsf [p a s d f] dsasd f | s | asdsfsap [a s d f g h j] [j j] hgf | h ggf | ggffdds | f dsas dsasd f | s | asdsfsap"
+  }
+]

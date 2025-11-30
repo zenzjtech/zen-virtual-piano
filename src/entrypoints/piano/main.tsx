@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './style.css';
 import { Provider } from 'react-redux'
-import { instantiateGlobalStore } from '@/store/index.ts';
+import { instantiateGlobalExtStore } from '@/store/index.ts';
 
 import '@/assets/tailwind.css'
 
@@ -19,7 +19,7 @@ import '@/lib/i18n';
 
 (async () => {
   initMixpanel();
-  const store = await instantiateGlobalStore()  
+  const store = await instantiateGlobalExtStore()  
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <Provider store={store}>

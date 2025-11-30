@@ -1,9 +1,9 @@
-import { instantiateGlobalStore } from '@/store';
+import { instantiateGlobalExtStore } from '@/store';
 import { getOrCreateUserId } from '@/utils/analytics';
 
 const main = () => {
   chrome.runtime.onInstalled.addListener(async function(details) {
-    const store = await instantiateGlobalStore();    
+    const store = await instantiateGlobalExtStore();    
     getOrCreateUserId(store);
   })
   
@@ -16,7 +16,7 @@ const main = () => {
 
   // Store related handlers
   (async () => {
-    const store = await instantiateGlobalStore();    
+    const store = await instantiateGlobalExtStore();    
     getOrCreateUserId(store);    
   })()   
   // globalErrorHandlerForServiceWorker()  

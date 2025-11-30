@@ -10,9 +10,13 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()]
   },
   renderer: {
+    publicDir: resolve('public'),     
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src')
+        '@renderer': resolve('src/renderer/src'),
+        '@shared': resolve('../src'),
+        '@': resolve('../src'),
+        '#imports': resolve('src/renderer/src/wxt-shim.ts')
       }
     },
     plugins: [react()]

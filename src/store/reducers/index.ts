@@ -1,3 +1,4 @@
+import { combineReducers } from '@reduxjs/toolkit';
 import pianoSettings from '@/store/reducers/piano-settings-slice'
 import user from '@/store/reducers/user-slice'
 import musicSheet from '@/store/reducers/music-sheet-slice'
@@ -7,7 +8,7 @@ import quoteSettings from '@/store/reducers/quote-settings-slice'
 import theme from '@/store/reducers/theme-slice'
 import i18n from '@/store/reducers/i18n-slice'
 
-export default {
+export default combineReducers({
     pianoSettings,
     user,
     musicSheet,
@@ -16,4 +17,4 @@ export default {
     quoteSettings,
     theme,
     i18n,
-}
+})
