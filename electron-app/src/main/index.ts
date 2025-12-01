@@ -1,6 +1,7 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import { readFile } from 'fs/promises'
 import icon from '../../resources/icon.png?asset'
 
 
@@ -21,11 +22,6 @@ function createWindow(): void {
   mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-  })
-
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
   })
 
   // HMR for renderer base on electron-vite cli.
@@ -53,6 +49,24 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
+
+  // Audio file loading handler
+  ipcMain.handle('load-audio-file', async (_, filePath: string) => {
+    try {
+      // From electron-app/src/main/ -> go up to extension/ then down to src/
+      const fullPath = join(__dirname, '../../../src', filePath)
+      const buffer = await readFile(fullPath)
+      // Convert to base64 data URL
+      const base64 = buffer.toString('base64')
+      return `data:audio/mpeg;base64,${base64}`
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      console.error('Audio load failed:', errorMessage)
+      throw error
+    }
+  })
+
+  console.log('🚀🚀🚀 IPC HANDLERS REGISTERED 🚀🚀🚀')
 
   createWindow()
 

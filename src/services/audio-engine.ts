@@ -6,6 +6,16 @@
 
 import * as Tone from 'tone';
 import { SoundSet, getSoundSet, buildSampleUrlsMap } from './sound-sets';
+import { isExtension } from '../utils/env';
+
+// Type declarations for Electron API
+declare global {
+  interface Window {
+    api?: {
+      loadAudioFile: (filePath: string) => Promise<string>;
+    };
+  }
+}
 
 export class AudioEngine {
   private sampler: Tone.Sampler | null = null;
@@ -47,40 +57,49 @@ export class AudioEngine {
    */
   private async initAudio(): Promise<void> {
     try {
-      // Import audio samples using Vite's lazy glob import
-      // This creates a map of import functions instead of eagerly loading all files
-      const sampleImporters = import.meta.glob('@/assets/audio/**/*.mp3', { 
-        query: '?url',
-        import: 'default'
-      });
-      
-      // Build the file path pattern for the current sound set
-      const basePath = `/src/assets/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}`;
-      
-      // Dynamically load only the files needed for the current sound set
-      const samples: Record<string, string> = {};
-      const loadPromises: Promise<void>[] = [];
-      
-      for (const [path, importer] of Object.entries(sampleImporters)) {
-        // Check if this file belongs to the current sound set
-        if (path.includes(`/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}/`)) {
-          const loadPromise = (importer as () => Promise<string>)().then((url) => {
-            samples[path] = url;
-          }).catch((error) => {
-            console.error(`Failed to load ${path}:`, error);
-          });
-          loadPromises.push(loadPromise);
+      let urlsMap: Record<string, string>;
+
+      if (isExtension()) {
+        // Browser extension: Use Vite's import.meta.glob
+        const sampleImporters = import.meta.glob('@/assets/audio/**/*.mp3', { 
+          query: '?url',
+          import: 'default'
+        });
+        
+        // Build the file path pattern for the current sound set
+        const basePath = `/src/assets/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}`;
+        
+        // Dynamically load only the files needed for the current sound set
+        const samples: Record<string, string> = {};
+        const loadPromises: Promise<void>[] = [];
+        
+        for (const [path, importer] of Object.entries(sampleImporters)) {
+          // Check if this file belongs to the current sound set
+          if (path.includes(`/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}/`)) {
+            const loadPromise = (importer as () => Promise<string>)().then((url) => {
+              samples[path] = url;
+            }).catch((error) => {
+              console.error(`Failed to load ${path}:`, error);
+            });
+            loadPromises.push(loadPromise);
+          }
         }
+        
+        // Wait for all required samples to load
+        await Promise.all(loadPromises);
+        
+        // Build the URLs map for the current sound set
+        urlsMap = buildSampleUrlsMap(this.currentSoundSet, samples);
+      } else {
+        // Electron: Use IPC approach
+        if (!window.api || !window.api.loadAudioFile) {
+          console.error('Electron API not available. window.api:', window.api);
+          throw new Error('Electron audio loading API not available');
+        }
+        urlsMap = await this.buildElectronUrlsMap();
       }
       
-      // Wait for all required samples to load
-      await Promise.all(loadPromises);
-      
-      // Build the URLs map for the current sound set
-      const urlsMap = buildSampleUrlsMap(this.currentSoundSet, samples);
-      
       console.log(`Loading ${this.currentSoundSet.name} samples...`, {
-        loaded: Object.keys(samples).length,
         urlsMap: Object.keys(urlsMap).length
       });
       
@@ -257,16 +276,74 @@ export class AudioEngine {
   }
 
   /**
-   * Clean up resources
+   * Try to load audio files via URLs (for Electron with Vite dev server)
    */
-  destroy(): void {
-    this.stopAll();
-    if (this.sampler) {
-      this.sampler.dispose();
+  private async tryLoadViaUrls(): Promise<Record<string, string>> {
+    const urlsMap: Record<string, string> = {};
+    const basePath = `http://localhost:5173/@shared/assets/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}`;
+
+    // For each sample note in the sound set, create URLs for all octaves (2-7)
+    // This matches the available sample files and Tone.js expectations
+    for (const note of this.currentSoundSet.sampleNotes) {
+      for (let octave = 2; octave <= 7; octave++) {
+        const fileName = `${note}${octave}.mp3`;
+        const url = `${basePath}/${fileName}`;
+        // Convert 's' suffix to '#' for Tone.js notation (Ds -> D#, Fs -> F#)
+        const toneNote = note.replace('s', '#');
+        urlsMap[`${toneNote}${octave}`] = url;
+      }
     }
-    if (this.volume) {
-      this.volume.dispose();
+
+    // Test if URLs are accessible by trying to fetch one
+    const testUrl = Object.values(urlsMap)[0];
+    try {
+      const response = await fetch(testUrl, { method: 'HEAD' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error('URL loading test failed:', error);
+      throw error;
     }
+
+    return urlsMap;
+  }
+
+  /**
+   * Build URLs map for Electron by loading audio files via IPC
+   * This bypasses Vite's import.meta.glob which doesn't work in Electron
+   */
+  private async buildElectronUrlsMap(): Promise<Record<string, string>> {
+    const urlsMap: Record<string, string> = {};
+    const basePath = `assets/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}`;
+
+    // For each sample note in the sound set, load files for all octaves (2-7)
+    const loadPromises: Promise<void>[] = [];
+
+    for (const note of this.currentSoundSet.sampleNotes) {
+      for (let octave = 2; octave <= 7; octave++) {
+        const fileName = `${note}${octave}.mp3`;
+        const filePath = `${basePath}/${fileName}`;
+        // Convert 's' suffix to '#' for Tone.js notation (Ds -> D#, Fs -> F#)
+        const toneNote = note.replace('s', '#');
+        const toneKey = `${toneNote}${octave}`;
+
+        const loadPromise = window.api!.loadAudioFile(filePath)
+          .then((dataUrl: string) => {
+            urlsMap[toneKey] = dataUrl;
+          })
+          .catch((error: any) => {
+            console.error(`Failed to load ${filePath}:`, error);
+          });
+        
+        loadPromises.push(loadPromise);
+      }
+    }
+
+    // Wait for all files to load
+    await Promise.all(loadPromises);
+
+    return urlsMap;
   }
 }
 
