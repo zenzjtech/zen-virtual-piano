@@ -56,16 +56,18 @@ export function usePianoRecording() {
    */
   const handleNotePress = useCallback((note: string, velocity?: number) => {
     // Dispatch always - the reducer checks isRecording state
-    dispatch(recordNotePress({ note, velocity }));
-  }, [dispatch]);
+    if (isRecording)
+      dispatch(recordNotePress({ note, velocity }));
+  }, [isRecording, dispatch]);
 
   /**
    * Record a note release event
    */
   const handleNoteRelease = useCallback((note: string) => {
     // Dispatch always - the reducer checks isRecording state  
-    dispatch(recordNoteRelease({ note }));
-  }, [dispatch]);
+    if (isRecording)
+      dispatch(recordNoteRelease({ note }));
+  }, [isRecording, dispatch]);
 
   /**
    * Export recording as JSON

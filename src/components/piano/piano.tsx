@@ -72,7 +72,7 @@ export const Piano: React.FC<PianoProps> = ({
         );
       }
     }
-  }, [onPressedNotesChange]);
+  }, [onPressedNotesChange, onRecordNotePress]);
 
   // Handle note stop
   const stopNote = useCallback((note: string) => {
@@ -105,7 +105,7 @@ export const Piano: React.FC<PianoProps> = ({
         currentNoteRef.current
       );
     }
-  }, [onPressedNotesChange]);
+  }, [onPressedNotesChange, onRecordNoteRelease]);
 
   // Use custom hooks for keyboard and mouse interactions
   usePianoKeyboard({
