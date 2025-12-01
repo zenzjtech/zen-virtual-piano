@@ -236,7 +236,7 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
               textShadow: '0 0 8px rgba(76, 175, 80, 0.3)',
             }}
           >
-            "{t('sheetsButton')}"
+            {t('sheetsButton')}
           </Box>{' '}
           {t('sampleSongLoadedEnd')}
         </Typography>
