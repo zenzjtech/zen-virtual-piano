@@ -273,9 +273,12 @@ export class AudioEngine {
 // Singleton instance
 let audioEngineInstance: AudioEngine | null = null;
 
-export function getAudioEngine(): AudioEngine {
+export function getAudioEngine(soundSetId?: string): AudioEngine {
   if (!audioEngineInstance) {
-    audioEngineInstance = new AudioEngine();
+    audioEngineInstance = new AudioEngine(soundSetId);
+  } else if (soundSetId && audioEngineInstance.getCurrentSoundSet().id !== soundSetId) {
+    // If instance exists but soundSetId differs, change the sound set
+    audioEngineInstance.changeSoundSet(soundSetId);
   }
   return audioEngineInstance;
 }

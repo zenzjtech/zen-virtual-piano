@@ -60,6 +60,7 @@ function App() {
   
   // Sound settings and metronome
   const soundSettings = useSoundSettings();
+  const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo, soundSettings.metronomeVolume);
   
   // Sheet search hook - shared between PianoUnit and AppDialogs
@@ -137,6 +138,11 @@ function App() {
   useEffect(() => {
     i18n.changeLanguage(locale);
   }, [locale]);
+
+  // Initialize AudioEngine with current soundSetId from Redux store
+  useEffect(() => {
+    getAudioEngine(soundSet);
+  }, [soundSet]);
 
 
   // Handle Escape key to close keyboard shortcuts dialog
