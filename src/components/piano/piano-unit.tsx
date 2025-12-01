@@ -239,6 +239,12 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
       setIsLoadingInstrument(false);
     }
   };
+  
+  // Sustain change handler - defined outside JSX to prevent recreation
+  const handleSustainChange = useCallback((value: number) => {
+    dispatch(setSustain(value));
+    getAudioEngine().setSustain(value);
+  }, [dispatch]);
 
   return (
     <>
@@ -296,10 +302,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
         anchorEl={soundSettingsPopup.anchorEl}
         onClose={handleSoundSettingsClose}
         sustain={sustain}
-        onSustainChange={(value) => {
-          dispatch(setSustain(value));
-          getAudioEngine().setSustain(value);
-        }}
+        onSustainChange={handleSustainChange}
         transpose={soundSettings.transpose}
         onTransposeChange={soundSettings.setTranspose}
         volume={soundSettings.volume}
