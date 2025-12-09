@@ -197,7 +197,7 @@ export class AudioEngine {
    */
   playNote(note: string, frequency?: number, velocity: number = 1.0): void {
     if (!this.sampler) {
-      console.warn('Sampler not initialized');
+      console.log('Sampler not initialized');
       return;
     }
 
@@ -208,7 +208,7 @@ export class AudioEngine {
 
     // Wait for samples to load before playing
     if (!this.isLoaded || this.isChangingSoundSet) {
-      console.warn('Piano samples still loading...');
+      console.log('Piano samples still loading...');
       return;
     }
 

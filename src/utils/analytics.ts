@@ -62,7 +62,7 @@ export const getPageLocationFromUrl = (currentUrl: string, defaultLocation?: str
             return pageName;
         }
     } catch (error) {
-        console.warn(`Could not determine page_location from URL "${currentUrl}", defaulting to "${defaultLocation}":`, error);
+        console.log(`Could not determine page_location from URL "${currentUrl}", defaulting to "${defaultLocation}":`, error);
     }
     return defaultLocation || '';
 };
@@ -76,7 +76,7 @@ export const getHashFragmentFromUrl = (currentUrl: string): string => {
         // Remove leading '#' if it exists, otherwise return empty string
         return hash ? hash.substring(1) : '';
     } catch (error) {
-        console.warn(`Could not determine hash fragment from URL "${currentUrl}":`, error);
+        console.log(`Could not determine hash fragment from URL "${currentUrl}":`, error);
         return '';
     }
 };
