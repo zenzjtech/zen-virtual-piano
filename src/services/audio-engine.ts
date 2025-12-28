@@ -13,6 +13,7 @@ declare global {
   interface Window {
     api?: {
       loadAudioFile: (filePath: string) => Promise<string>;
+      loadSheetData: () => Promise<any>;
     };
   }
 }

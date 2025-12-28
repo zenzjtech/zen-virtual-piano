@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: electron-app
+appId: com.zenvirtualpiano.app
+productName: Zen Virtual Piano
 directories:
   buildResources: build
 files:
@@ -9,6 +9,15 @@ files:
   - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+extraResources:
+  - from: '../src/assets/audio'
+    to: 'assets/audio'
+    filter:
+      - '**/*.mp3'
+  - from: 'public/data'
+    to: 'data'
+    filter:
+      - '**/*.json'
 asarUnpack:
   - resources/**
 win:

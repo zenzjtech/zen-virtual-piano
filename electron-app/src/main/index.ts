@@ -4,6 +4,21 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { readFile } from 'fs/promises'
 import icon from '../../resources/icon.png?asset'
 
+/**
+ * Get the resources path for loading static assets.
+ * In development, this points to the source directory.
+ * In production, this points to the extraResources directory.
+ */
+function getResourcesPath(): string {
+  if (is.dev) {
+    // In dev, go up from electron-app/src/main to extension/src
+    return join(__dirname, '../../../src')
+  } else {
+    // In production, use the resources path where extraResources are copied
+    return process.resourcesPath
+  }
+}
+
 
 
 function createWindow(): void {
@@ -19,7 +34,9 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  mainWindow.webContents.openDevTools()
+  if (is.dev) {
+    mainWindow.webContents.openDevTools()
+  }
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -53,8 +70,9 @@ app.whenReady().then(() => {
   // Audio file loading handler
   ipcMain.handle('load-audio-file', async (_, filePath: string) => {
     try {
-      // From electron-app/src/main/ -> go up to extension/ then down to src/
-      const fullPath = join(__dirname, '../../../src', filePath)
+      const resourcesPath = getResourcesPath()
+      const fullPath = join(resourcesPath, filePath)
+      console.log('Loading audio file:', fullPath)
       const buffer = await readFile(fullPath)
       // Convert to base64 data URL
       const base64 = buffer.toString('base64')
@@ -62,6 +80,24 @@ app.whenReady().then(() => {
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error)
       console.error('Audio load failed:', errorMessage)
+      throw error
+    }
+  })
+
+  // Sheet data loading handler
+  ipcMain.handle('load-sheet-data', async () => {
+    try {
+      // In dev: electron-app/public/data/sheet-data.json (from src/main -> ../../public)
+      // In prod: resources/data/sheet-data.json
+      const dataPath = is.dev 
+        ? join(__dirname, '../../public/data/sheet-data.json')
+        : join(process.resourcesPath, 'data/sheet-data.json')
+      console.log('Loading sheet data from:', dataPath)
+      const buffer = await readFile(dataPath, 'utf-8')
+      return JSON.parse(buffer)
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      console.error('Sheet data load failed:', errorMessage)
       throw error
     }
   })

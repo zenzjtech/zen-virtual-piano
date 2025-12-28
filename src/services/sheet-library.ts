@@ -17,14 +17,21 @@ export async function initSheetLibrary(): Promise<void> {
   if (SHEET_DATA.length > 0) return;
 
   try {
-    const url = isExtension() ? 
-      chrome.runtime.getURL('/data/sheet-data.json') : 
-      '/data/sheet-data.json';
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to load sheet data: ${response.statusText}`);
+    // Check if running in Electron with IPC available
+    if (!isExtension() && window.api?.loadSheetData) {
+      // Use IPC to load sheet data in Electron
+      SHEET_DATA = await window.api.loadSheetData();
+    } else {
+      // Use fetch for browser extension
+      const url = isExtension() ? 
+        chrome.runtime.getURL('/data/sheet-data.json') : 
+        '/data/sheet-data.json';
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to load sheet data: ${response.statusText}`);
+      }
+      SHEET_DATA = await response.json();
     }
-    SHEET_DATA = await response.json();
   } catch (error) {
     console.error('Error initializing sheet library:', error);
     throw error;
