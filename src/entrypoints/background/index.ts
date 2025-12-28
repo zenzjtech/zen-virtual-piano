@@ -6,6 +6,10 @@ const main = () => {
     const store = await instantiateGlobalStore();    
     analytics.init(store);
     analytics.getOrCreateUserId();
+
+    chrome.tabs.create({
+        url: 'piano.html'
+    });
   })
   
   // Handle extension icon click to open piano in new tab
