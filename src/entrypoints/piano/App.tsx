@@ -18,6 +18,7 @@ import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
 import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
+import { getResponsiveScale } from '@/utils/responsive-utils';
 import { useRecordingPlayback } from '@/hooks/use-recording-playback';
 import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
 import { useAutoThemeRotation } from '@/hooks/use-auto-theme-rotation';
@@ -311,13 +312,7 @@ function App() {
       <Container
         sx={{
           maxHeight: '100vh',
-          '@media (max-width: 1400px) and (max-height: 900px)': {
-            transform: 'scale(0.7)',
-            transformOrigin: 'top center',   
-            width: '125%',
-            // ml: '-12.5%',
-            // marginBottom: '-35vh', // Compensate for vertical gap left by scaling
-          },           
+          ...getResponsiveScale('top center', { width: '125%' }),
         }}
       >
         <Stack

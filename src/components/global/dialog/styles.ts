@@ -5,17 +5,13 @@
 
 import type { DialogTheme } from '@/hooks/use-global-dialog-theme';
 import type { SxProps, Theme } from '@mui/material';
+import { getResponsiveScale } from '@/utils/responsive-utils';
 
 /**
  * Responsive scaling for smaller screens
  * Scales down dialog content on laptops/smaller displays
  */
-export const responsiveDialogScaleSx: SxProps<Theme> = {
-  '@media (max-width: 1400px) and (max-height: 900px)': {
-    transform: 'scale(0.7)',
-    transformOrigin: 'top center',
-  },
-};
+export const responsiveDialogScaleSx: SxProps<Theme> = getResponsiveScale('top center');
 
 /**
  * Get standard dialog Paper props with theme-aware styling

@@ -1,5 +1,6 @@
 import { styled, Paper, Box, Chip, ListItem, ListItemButton, TextField, InputAdornment } from '@mui/material';
 import { PianoTheme } from './themes';
+import { getResponsiveScale } from '@/utils/responsive-utils';
 
 /**
  * Shared styled components for popup UI elements
@@ -54,10 +55,7 @@ export const StyledPopupPaper = styled(Paper, {
       background: pianoTheme.colors.accent,
     },
   },
-  '@media (max-width: 1400px) and (max-height: 900px)': {
-    transform: 'scale(0.7)',
-    transformOrigin: 'bottom left',  
-  }
+  ...getResponsiveScale('bottom left'),
 }));
 
 export const PopupHeaderBox = styled(Box, {
