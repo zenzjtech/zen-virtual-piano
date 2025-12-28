@@ -353,8 +353,11 @@ export class AudioEngine {
         const toneKey = `${toneNote}${octave}`;
 
         const loadPromise = window.api!.loadAudioFile(filePath)
-          .then((dataUrl: string) => {
-            urlsMap[toneKey] = dataUrl;
+          .then((dataUrl: string | null) => {
+            if (dataUrl) {
+              urlsMap[toneKey] = dataUrl;
+            }
+            // Missing files are normal - no error logging needed
           })
           .catch((error: any) => {
             console.error(`Failed to load ${filePath}:`, error);
