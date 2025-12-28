@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, styled } from '@mui/material';
 import { LibraryMusic as SheetMusicIcon } from '@mui/icons-material';
 import { PianoTheme } from './themes';
+import { useTranslation } from '@/hooks/use-translation';
 
 const StyledSheetButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'pianoTheme',
@@ -65,6 +66,7 @@ interface SheetButtonProps {
 }
 
 export const SheetButton: React.FC<SheetButtonProps> = ({ onClick, pianoTheme }) => {
+  const { t } = useTranslation('piano');
   return (
     <StyledSheetButton
       id="sheet-search-button"
@@ -73,7 +75,7 @@ export const SheetButton: React.FC<SheetButtonProps> = ({ onClick, pianoTheme })
       onClick={onClick}
       pianoTheme={pianoTheme}
     >
-      Sheets
+      {t('sheetsButton')}
     </StyledSheetButton>
   );
 };

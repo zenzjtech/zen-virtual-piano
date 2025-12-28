@@ -26,6 +26,8 @@ export class AudioEngine {
   private sustainTime: number = 10.5; // Default sustain time (like virtualpiano.net)
   private currentSoundSet: SoundSet;
   private isChangingSoundSet: boolean = false;
+  private initPromise: Promise<void> | null = null;
+  private initAbortController: AbortController | null = null;
 
   constructor(soundSetId: string = 'classical') {
     this.currentSoundSet = getSoundSet(soundSetId);
@@ -46,7 +48,7 @@ export class AudioEngine {
     // Resume context immediately (user interaction will have occurred)
     this.resume();
     
-    this.initAudio();
+    this.initPromise = this.initAudio();
   }
 
   /**
@@ -56,6 +58,13 @@ export class AudioEngine {
    * Uses lazy loading to only load audio files for the current instrument
    */
   private async initAudio(): Promise<void> {
+    // Abort any previous init in progress
+    if (this.initAbortController) {
+      this.initAbortController.abort();
+    }
+    this.initAbortController = new AbortController();
+    const abortSignal = this.initAbortController;
+    
     try {
       let urlsMap: Record<string, string>;
 
@@ -75,7 +84,7 @@ export class AudioEngine {
         
         for (const [path, importer] of Object.entries(sampleImporters)) {
           // Check if this file belongs to the current sound set
-          if (path.includes(`/audio/${this.currentSoundSet.type}/${this.currentSoundSet.path}/`)) {
+          if (path.includes(`${basePath}/`)) {
             const loadPromise = (importer as () => Promise<string>)().then((url) => {
               samples[path] = url;
             }).catch((error) => {
@@ -88,6 +97,11 @@ export class AudioEngine {
         // Wait for all required samples to load
         await Promise.all(loadPromises);
         
+        // Check if this init was aborted (another changeSoundSet was called)
+        if (abortSignal.signal.aborted) {
+          return;
+        }
+      
         // Build the URLs map for the current sound set
         urlsMap = buildSampleUrlsMap(this.currentSoundSet, samples);
       } else {
@@ -120,11 +134,19 @@ export class AudioEngine {
         attack: 0,
         release: 4, 
         onload: () => {
+          // Ignore callbacks from aborted inits
+          if (abortSignal.signal.aborted) {
+            return;
+          }
           this.isLoaded = true;
           this.isChangingSoundSet = false;
           console.log(`${this.currentSoundSet.name} samples loaded successfully`);
         },
         onerror: (error) => {
+          // Ignore errors from aborted inits (sound set was changed mid-load)
+          if (abortSignal.signal.aborted) {
+            return;
+          }
           console.error(`Failed to load ${this.currentSoundSet.name} samples:`, error);
           this.isChangingSoundSet = false;
         },
@@ -161,7 +183,8 @@ export class AudioEngine {
     this.currentSoundSet = getSoundSet(soundSetId);
     
     // Reinitialize audio with new sound set
-    await this.initAudio();
+    this.initPromise = this.initAudio();
+    await this.initPromise;
   }
 
   /**
@@ -193,7 +216,7 @@ export class AudioEngine {
    */
   playNote(note: string, frequency?: number, velocity: number = 1.0): void {
     if (!this.sampler) {
-      console.warn('Sampler not initialized');
+      console.log('Sampler not initialized');
       return;
     }
 
@@ -204,7 +227,7 @@ export class AudioEngine {
 
     // Wait for samples to load before playing
     if (!this.isLoaded || this.isChangingSoundSet) {
-      console.warn('Piano samples still loading...');
+      console.log('Piano samples still loading...');
       return;
     }
 
@@ -350,9 +373,12 @@ export class AudioEngine {
 // Singleton instance
 let audioEngineInstance: AudioEngine | null = null;
 
-export function getAudioEngine(): AudioEngine {
+export function getAudioEngine(soundSetId?: string): AudioEngine {
   if (!audioEngineInstance) {
-    audioEngineInstance = new AudioEngine();
+    audioEngineInstance = new AudioEngine(soundSetId);
+  } else if (soundSetId && audioEngineInstance.getCurrentSoundSet().id !== soundSetId) {
+    // If instance exists but soundSetId differs, change the sound set
+    audioEngineInstance.changeSoundSet(soundSetId);
   }
   return audioEngineInstance;
 }

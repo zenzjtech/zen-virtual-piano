@@ -8,7 +8,6 @@ export interface PianoSettingsState {
   isPianoEnabled: boolean;
   soundPopupOpen: boolean;
   soundPopupTargetSection?: string;
-  soundPopupPlacement?: 'top-start' | 'bottom-start';
   // Track if piano was disabled due to dialog opening (for restoration)
   wasDisabledByDialog: boolean;
 }
@@ -68,24 +67,20 @@ export const pianoSettingsSlice = createSlice({
         state.wasDisabledByDialog = false;
       }
     },
-    openSoundPopup: (state, action: PayloadAction<{ targetSection?: string; placement?: 'top-start' | 'bottom-start' } | string | undefined>) => {
+    openSoundPopup: (state, action: PayloadAction<{ targetSection?: string } | string | undefined>) => {
       state.soundPopupOpen = true;
       
       // Handle both old string format and new object format for backwards compatibility
       if (typeof action.payload === 'string') {
         state.soundPopupTargetSection = action.payload;
-        state.soundPopupPlacement = 'bottom-start'; // default
       } else if (action.payload) {
         state.soundPopupTargetSection = action.payload.targetSection;
-        state.soundPopupPlacement = action.payload.placement || 'bottom-start';
       } else {
-        state.soundPopupPlacement = 'bottom-start'; // default
       }
     },
     closeSoundPopup: (state) => {
       state.soundPopupOpen = false;
       state.soundPopupTargetSection = undefined;
-      state.soundPopupPlacement = undefined;
     },
   },
 });

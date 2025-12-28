@@ -18,6 +18,7 @@ import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { useSheetKeyboardControls } from '@/hooks/use-sheet-keyboard-controls';
 import { useAuthRestore } from '@/hooks/use-auth-restore';
 import { usePianoRecording } from '@/hooks/use-piano-recording';
+import { getResponsiveScale } from '@/utils/responsive-utils';
 import { useRecordingPlayback } from '@/hooks/use-recording-playback';
 import { usePlaybackMutex } from '@/hooks/use-playback-mutex';
 import { useAutoThemeRotation } from '@/hooks/use-auto-theme-rotation';
@@ -27,10 +28,11 @@ import { useHighlightAnimation } from '@/hooks/use-highlight-animation';
 import { useSettingsAnalytics, useSoundSettingsAnalytics } from '@/hooks/use-settings-analytics';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/definitions/background-themes';
 import './App.css';
-import { trackPageEvent, trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 import i18n from '@/lib/i18n/index';
 import { useTranslation } from '@/hooks/use-translation';
+import { incrementAppOpenCount } from '@/store/reducers/statistics-slice';
 
 function App() {
   // Redux state for persistent settings
@@ -60,6 +62,7 @@ function App() {
   
   // Sound settings and metronome
   const soundSettings = useSoundSettings();
+  const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
   useMetronome(soundSettings.metronomeEnabled, soundSettings.metronomeTempo, soundSettings.metronomeVolume);
   
   // Sheet search hook - shared between PianoUnit and AppDialogs
@@ -96,8 +99,13 @@ function App() {
   );
 
   useEffect(() => {    
-      trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
-  }, [uid]);
+      analytics.trackPageEvent(ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
+  }, []);
+
+  // Increment app open count on mount
+  useEffect(() => {
+    dispatch(incrementAppOpenCount());
+  }, [dispatch]);
 
   // Load built-in sheet library on mount
   useEffect(() => {
@@ -137,6 +145,11 @@ function App() {
   useEffect(() => {
     i18n.changeLanguage(locale);
   }, [locale]);
+
+  // Initialize AudioEngine with current soundSetId from Redux store
+  useEffect(() => {
+    getAudioEngine(soundSet);
+  }, [soundSet]);
 
 
   // Handle Escape key to close keyboard shortcuts dialog
@@ -220,13 +233,13 @@ function App() {
     recordingPlayback.stop();
     clearRecording();
     showNotification(t('recordingCleared'), 'info');
-    trackEvent(uid, ANALYTICS_ACTION.RECORD_CLEARED, {});
+    analytics.trackEvent(ANALYTICS_ACTION.RECORD_CLEARED, {});
   };
 
   const handleDownloadRecording = () => {
     downloadRecording();
     showNotification(t('recordingDownloaded'), 'success');
-    trackEvent(uid, ANALYTICS_ACTION.RECORD_DOWNLOADED, { note_count: noteCount });
+    analytics.trackEvent(ANALYTICS_ACTION.RECORD_DOWNLOADED, { note_count: noteCount });
   };
 
   
@@ -298,7 +311,8 @@ function App() {
 
       <Container
         sx={{
-          maxHeight: '100vh'
+          maxHeight: '100vh',
+          ...getResponsiveScale('top center', { width: '125%' }),
         }}
       >
         <Stack
@@ -307,14 +321,7 @@ function App() {
           sx={{
             textAlign: 'center',
             width: '100%',            
-            py: { xs: 2, md: 3, lg: 4 },
-            '@media (max-width: 1400px) and (max-height: 900px)': {
-              transform: 'scale(0.7)',
-              transformOrigin: 'top center',   
-              width: '125%',
-              ml: '-12.5%',
-              //marginBottom: '-35vh', // Compensate for vertical gap left by scaling
-            },            
+            py: { xs: 2, md: 3, lg: 4 },           
           }}          
         >
             {/* Music Stand - appears when sheet is loaded */}

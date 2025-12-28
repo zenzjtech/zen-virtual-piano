@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { setIsPianoEnabled } from '@/store/reducers/piano-settings-slice';
-import { trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 
 interface PopupHandlers {
@@ -79,7 +79,7 @@ export function useEscapeKeyHandler(
         // Priority 2: Enable piano if it's disabled and no popups are open
         else if (!isPianoEnabled) {
           dispatch(setIsPianoEnabled(true));
-          trackEvent(uid, ANALYTICS_ACTION.PIANO_ENABLED, {
+          analytics.trackEvent(ANALYTICS_ACTION.PIANO_ENABLED, {
             previous_state: false,
             new_state: true,
             trigger: 'escape_key',

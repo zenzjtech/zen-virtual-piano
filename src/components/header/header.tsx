@@ -14,6 +14,7 @@ import { SettingsDialog } from '../settings/settings-dialog';
 import { useHeaderHandlers } from './use-header-handlers';
 import { getAppBarStyles, toolbarStyles } from './header-styles';
 import { THEME_PRESETS } from '../piano/theme-presets';
+import { getResponsiveScale, getResponsiveStyle } from '@/utils/responsive-utils';
 import type { HeaderProps } from './types';
 
 export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShortcuts, recordingPlayback }: HeaderProps) => {
@@ -59,11 +60,21 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
     <AppBar
       position="sticky"
       elevation={0}
-      sx={getAppBarStyles(isDarkBackground)}
+      sx={{
+        ...getAppBarStyles(isDarkBackground),
+        ...getResponsiveStyle({
+          height: '48px',
+        })
+      }}
     >
       <Toolbar sx={toolbarStyles}>
         {/* Left: Logo and Title */}
-        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+        <Box sx={{ 
+          flex: 1, 
+          display: 'flex', 
+          justifyContent: 'flex-start',
+          ...getResponsiveScale('top left'),
+        }}>
           <HeaderLogo
             backgroundThemeId={backgroundThemeId}
             isDarkBackground={isDarkBackground}
@@ -74,9 +85,12 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
         </Box>
 
         {/* Center: Recording Playback Bar or Inspirational Quote */}
-        <Box sx={{ flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Box 
+          sx={{ 
+            flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center',
+          }}>
           {recordingPlayback?.hasRecording ? (
-            <Box sx={{ maxWidth: '700px', width: '100%' }}>
+            <Box sx={{ maxWidth: '700px', width: '100%', ...getResponsiveScale('top center') }}>
               <RecordingPlaybackBar
                 isPlaying={recordingPlayback.isPlaying}
                 currentPosition={recordingPlayback.currentPosition}
@@ -110,7 +124,14 @@ export const Header = ({ backgroundThemeId, isDarkBackground, onShowKeyboardShor
         </Box>
 
         {/* Right: Action Buttons */}
-        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+        <Box 
+          sx={{ 
+            flex: 1, 
+            display: 'flex', 
+            justifyContent: 'flex-end',
+            ...getResponsiveScale('top right'),
+          }}
+        >
           <HeaderActions
             isDarkBackground={isDarkBackground}
             isAuthenticated={isAuthenticated}

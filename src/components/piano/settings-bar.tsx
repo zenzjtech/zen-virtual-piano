@@ -12,7 +12,7 @@ import { useAppSelector } from '@/store/hook';
 import { getTheme } from './themes';
 import { InstrumentSetting } from './instrument-setting';
 import { BarContainer, SettingButton } from '@/components/global/components';
-import { trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -33,8 +33,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
   onSound,
   onStyles,
 }) => {
-  // Get state from Redux
-  const uid = useAppSelector((state) => state.user.uid);
+  // Get state from Redux  
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const isPianoEnabled = useAppSelector((state) => state.pianoSettings.isPianoEnabled);
   const isRecording = useAppSelector((state) => state.recording.isRecording);
@@ -45,7 +44,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
 
   const handleSoundClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Track sound settings opened
-    trackEvent(uid, ANALYTICS_ACTION.SOUND_SETTINGS_OPENED, {});
+    analytics.trackEvent(ANALYTICS_ACTION.SOUND_SETTINGS_OPENED, {});
     
     // Call the provided onSound handler if exists
     onSound?.(event);
@@ -53,7 +52,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
 
   const handleStylesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Track styles settings opened
-    trackEvent(uid, ANALYTICS_ACTION.STYLES_SETTINGS_OPENED, {});
+    analytics.trackEvent(ANALYTICS_ACTION.STYLES_SETTINGS_OPENED, {});
     
     // Call the provided onStyles handler if exists
     onStyles?.(event);
@@ -61,7 +60,7 @@ export const SettingsBar: React.FC<SettingsBarProps> = ({
 
   const handleKeyAssistClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Track key assist opened
-    trackEvent(uid, ANALYTICS_ACTION.KEY_ASSIST_OPENED, {});
+    analytics.trackEvent(ANALYTICS_ACTION.KEY_ASSIST_OPENED, {});
     
     // Call the provided onKeyAssist handler if exists
     onKeyAssist?.(event);

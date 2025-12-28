@@ -22,7 +22,7 @@ import { usePianoRecording } from '@/hooks/use-piano-recording';
 import { useEscapeKeyHandler } from '@/hooks/use-escape-key-handler';
 import { usePopupToggle } from '@/hooks/use-popup-toggle';
 import { useMetronome } from '@/hooks/use-metronome';
-import { trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -46,8 +46,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
   onSheetSearchOpen,
 }) => {
   // Redux state
-  const dispatch = useAppDispatch();
-  const uid = useAppSelector((state) => state.user.uid);
+  const dispatch = useAppDispatch();  
   const pianoThemeId = useAppSelector((state) => state.theme.pianoTheme);
   const patternThemeId = useAppSelector((state) => state.theme.patternTheme);
   const soundSet = useAppSelector((state) => state.pianoSettings.soundSet);
@@ -192,7 +191,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
     
     // Track analytics
     const eventAction = newState ? ANALYTICS_ACTION.PIANO_ENABLED : ANALYTICS_ACTION.PIANO_DISABLED;
-    trackEvent(uid, eventAction, {
+    analytics.trackEvent(eventAction, {
       previous_state: isPianoEnabled,
       new_state: newState,
     });
@@ -203,14 +202,14 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
     
     if (!isRecording) {
       showNotification(t('recordingStarted'), 'info');
-      trackEvent(uid, ANALYTICS_ACTION.RECORD_STARTED, {});
+      analytics.trackEvent(ANALYTICS_ACTION.RECORD_STARTED, {});
     } else {
       const duration = getFormattedDuration();
       showNotification(
         t('recordingStopped', { count: noteCount, duration }),
         'success'
       );
-      trackEvent(uid, ANALYTICS_ACTION.RECORD_STOPPED, {
+      analytics.trackEvent(ANALYTICS_ACTION.RECORD_STOPPED, {
         note_count: noteCount,
         duration,
       });
@@ -223,7 +222,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
     dispatch(setSoundSet(newSoundSetId));
     
     // Track instrument change
-    trackEvent(uid, ANALYTICS_ACTION.INSTRUMENT_CHANGED, {
+    analytics.trackEvent(ANALYTICS_ACTION.INSTRUMENT_CHANGED, {
       previous_instrument: previousSoundSetId,
       new_instrument: newSoundSetId,
     });
@@ -239,6 +238,12 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
       setIsLoadingInstrument(false);
     }
   };
+  
+  // Sustain change handler - defined outside JSX to prevent recreation
+  const handleSustainChange = useCallback((value: number) => {
+    dispatch(setSustain(value));
+    getAudioEngine().setSustain(value);
+  }, [dispatch]);
 
   return (
     <>
@@ -296,10 +301,7 @@ export const PianoUnit: React.FC<PianoUnitProps> = ({
         anchorEl={soundSettingsPopup.anchorEl}
         onClose={handleSoundSettingsClose}
         sustain={sustain}
-        onSustainChange={(value) => {
-          dispatch(setSustain(value));
-          getAudioEngine().setSustain(value);
-        }}
+        onSustainChange={handleSustainChange}
         transpose={soundSettings.transpose}
         onTransposeChange={soundSettings.setTranspose}
         volume={soundSettings.volume}

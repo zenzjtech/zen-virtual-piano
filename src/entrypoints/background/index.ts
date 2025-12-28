@@ -1,10 +1,14 @@
 import { instantiateGlobalExtStore } from '@/store';
-import { getOrCreateUserId } from '@/utils/analytics';
 
 const main = () => {
   chrome.runtime.onInstalled.addListener(async function(details) {
     const store = await instantiateGlobalExtStore();    
-    getOrCreateUserId(store);
+    analytics.init(store);
+    analytics.getOrCreateUserId();
+
+    chrome.tabs.create({
+        url: 'piano.html'
+    });
   })
   
   // Handle extension icon click to open piano in new tab
@@ -17,7 +21,8 @@ const main = () => {
   // Store related handlers
   (async () => {
     const store = await instantiateGlobalExtStore();    
-    getOrCreateUserId(store);    
+    analytics.init(store);
+    analytics.getOrCreateUserId();
   })()   
   // globalErrorHandlerForServiceWorker()  
 }

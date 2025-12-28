@@ -34,10 +34,12 @@ export const ThemeGalleryDialog: React.FC<ThemeGalleryDialogProps> = ({
       onClose={onClose}
       maxWidth="lg"
       fullWidth
-      PaperProps={{
-        sx: {
-          borderRadius: 3,
-          bgcolor: 'background.paper',
+      slotProps={{
+        paper: {
+          sx: {
+            borderRadius: 3,
+            bgcolor: 'background.paper',
+          },
         },
       }}
     >

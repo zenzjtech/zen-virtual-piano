@@ -37,10 +37,12 @@ export const DeleteSheetDialog: React.FC<DeleteSheetDialogProps> = ({
       onClose={onClose}
       maxWidth="xs"
       fullWidth
-      PaperProps={{
-        sx: {
-          borderRadius: 3,
-          bgcolor: 'background.paper',
+      slotProps={{
+        paper: {
+          sx: {
+            borderRadius: 3,
+            bgcolor: 'background.paper',
+          },
         },
       }}
     >

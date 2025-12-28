@@ -8,6 +8,7 @@ import { getHeaderTypographyStyle, getCategoryDefaultStyle } from '../header-typ
 import { useQuoteSelector } from './use-quote-selector';
 import { QuoteActionButtons } from './quote-action-buttons';
 import type { HeaderQuoteProps } from './types';
+import { getResponsiveStyle } from '@/utils/responsive-utils';
 
 export const HeaderQuote = ({
   isDarkBackground,
@@ -56,7 +57,10 @@ export const HeaderQuote = ({
         display: { xs: 'none', md: 'flex' },
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 1        
+        gap: 1,
+        ...getResponsiveStyle({
+          mt: -2
+        })    
       }}
     >
       {/* Quote Container */}
@@ -95,6 +99,9 @@ export const HeaderQuote = ({
             maxHeight: '38px',
             overflowY: 'auto',
             overflowX: 'hidden',
+            ...getResponsiveStyle({
+              fontSize: '0.7rem',
+            }),
           }}
         >
           "{currentQuote.text}"

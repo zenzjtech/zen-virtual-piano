@@ -122,7 +122,7 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
       const parsedNotation = parseVPNotation(notation, tempo);
 
       if (parsedNotation.warnings.length > 0) {
-        console.warn('Notation parsing warnings:', parsedNotation.warnings);
+        console.log('Notation parsing warnings:', parsedNotation.warnings);
       }
 
       // Create sheet object
@@ -164,8 +164,8 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      PaperProps={{
-        sx: getDialogStyles(theme),
+      slotProps={{
+        paper: { sx: getDialogStyles(theme) },
       }}
     >
       <DialogHeader

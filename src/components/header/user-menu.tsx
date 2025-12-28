@@ -33,19 +33,21 @@ export const UserMenu = ({
       onClick={onClose}
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      PaperProps={{
-        elevation: 3,
-        sx: {
-          mt: 1.5,
-          minWidth: 220,
-          backgroundColor: isDarkBackground 
-            ? 'rgba(40, 40, 40, 0.95)' 
-            : 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid',
-          borderColor: isDarkBackground 
-            ? 'rgba(255, 255, 255, 0.12)' 
-            : 'rgba(0, 0, 0, 0.08)',
+      slotProps={{
+        paper: {
+          elevation: 3,
+          sx: {
+            mt: 1.5,
+            minWidth: 220,
+            backgroundColor: isDarkBackground 
+              ? 'rgba(40, 40, 40, 0.95)' 
+              : 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(12px)',
+            border: '1px solid',
+            borderColor: isDarkBackground 
+              ? 'rgba(255, 255, 255, 0.12)' 
+              : 'rgba(0, 0, 0, 0.08)',
+          },
         },
       }}
     >

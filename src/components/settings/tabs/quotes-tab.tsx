@@ -90,20 +90,22 @@ export const QuotesTab = ({ theme }: QuotesTabProps) => {
                   },
                 }}
                 MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      bgcolor: theme.dialogBg,
-                      backgroundImage: 'none',
-                      backdropFilter: 'blur(20px)',
-                      '& .MuiMenuItem-root': {
-                        color: theme.textPrimary,
-                        '&:hover': {
-                          bgcolor: theme.hoverBg,
-                        },
-                        '&.Mui-selected': {
-                          bgcolor: theme.hoverBg,
+                  slotProps: {
+                    paper: {
+                      sx: {
+                        bgcolor: theme.dialogBg,
+                        backgroundImage: 'none',
+                        backdropFilter: 'blur(20px)',
+                        '& .MuiMenuItem-root': {
+                          color: theme.textPrimary,
                           '&:hover': {
-                            bgcolor: theme.highlightBg,
+                            bgcolor: theme.hoverBg,
+                          },
+                          '&.Mui-selected': {
+                            bgcolor: theme.hoverBg,
+                            '&:hover': {
+                              bgcolor: theme.highlightBg,
+                            },
                           },
                         },
                       },

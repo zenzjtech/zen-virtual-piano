@@ -92,20 +92,22 @@ export const GeneralTab = ({ theme: settingsTheme }: GeneralTabProps) => {
                   },
                 }}
                 MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      bgcolor: settingsTheme.dialogBg,
-                      backgroundImage: 'none',
-                      backdropFilter: 'blur(20px)',
-                      '& .MuiMenuItem-root': {
-                        color: settingsTheme.textPrimary,
-                        '&:hover': {
-                          bgcolor: settingsTheme.hoverBg,
-                        },
-                        '&.Mui-selected': {
-                          bgcolor: settingsTheme.hoverBg,
+                  slotProps: {
+                    paper: {
+                      sx: {
+                        bgcolor: settingsTheme.dialogBg,
+                        backgroundImage: 'none',
+                        backdropFilter: 'blur(20px)',
+                        '& .MuiMenuItem-root': {
+                          color: settingsTheme.textPrimary,
                           '&:hover': {
-                            bgcolor: settingsTheme.highlightBg,
+                            bgcolor: settingsTheme.hoverBg,
+                          },
+                          '&.Mui-selected': {
+                            bgcolor: settingsTheme.hoverBg,
+                            '&:hover': {
+                              bgcolor: settingsTheme.highlightBg,
+                            },
                           },
                         },
                       },

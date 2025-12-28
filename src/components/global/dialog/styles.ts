@@ -5,6 +5,13 @@
 
 import type { DialogTheme } from '@/hooks/use-global-dialog-theme';
 import type { SxProps, Theme } from '@mui/material';
+import { getResponsiveScale } from '@/utils/responsive-utils';
+
+/**
+ * Responsive scaling for smaller screens
+ * Scales down dialog content on laptops/smaller displays
+ */
+export const responsiveDialogScaleSx: SxProps<Theme> = getResponsiveScale('top center');
 
 /**
  * Get standard dialog Paper props with theme-aware styling
@@ -21,6 +28,8 @@ export const getDialogStyles = (theme: DialogTheme): SxProps<Theme> => ({
   `,
   maxHeight: '85vh',
   overflow: 'hidden',
+  // Responsive scaling for smaller screens
+  ...responsiveDialogScaleSx,
 });
 
 /**
