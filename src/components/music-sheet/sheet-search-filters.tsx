@@ -204,19 +204,21 @@ export const SheetSearchFilters: React.FC<SheetSearchFiltersProps> = ({
             onClose={onSortSelectClose}
             label={tSheet('sortBy')}
             MenuProps={{
-              PaperProps: {
-                sx: {
-                  backgroundColor: pianoTheme.colors.containerSolid,
-                  color: pianoTheme.colors.primary,
-                  '& .MuiMenuItem-root': {
-                    fontSize: '0.75rem',
-                    '&:hover': {
-                      backgroundColor: `${pianoTheme.colors.accent}22`,
-                    },
-                    '&.Mui-selected': {
-                      backgroundColor: `${pianoTheme.colors.accent}33`,
+              slotProps: {
+                paper: {
+                  sx: {
+                    backgroundColor: pianoTheme.colors.containerSolid,
+                    color: pianoTheme.colors.primary,
+                    '& .MuiMenuItem-root': {
+                      fontSize: '0.75rem',
                       '&:hover': {
-                        backgroundColor: `${pianoTheme.colors.accent}44`,
+                        backgroundColor: `${pianoTheme.colors.accent}22`,
+                      },
+                      '&.Mui-selected': {
+                        backgroundColor: `${pianoTheme.colors.accent}33`,
+                        '&:hover': {
+                          backgroundColor: `${pianoTheme.colors.accent}44`,
+                        },
                       },
                     },
                   },

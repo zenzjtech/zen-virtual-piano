@@ -102,27 +102,29 @@ export const LanguageSwitcher = ({ isDarkBackground }: LanguageSwitcherProps) =>
         MenuListProps={{
           'aria-labelledby': 'language-button',
         }}
-        PaperProps={{
-          sx: {
-            mt: 1.5,
-            minWidth: 150,
-            bgcolor: isDarkBackground ? 'rgba(30, 30, 30, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(10px)',
-            color: isDarkBackground ? 'white' : 'black',
-            '& .MuiMenuItem-root': {
-              fontSize: '0.9rem',
-              py: 1,
-              '&:hover': {
-                bgcolor: isDarkBackground ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-              },
-              '&.Mui-selected': {
-                bgcolor: isDarkBackground ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
+        slotProps={{
+          paper: {
+            sx: {
+              mt: 1.5,
+              minWidth: 150,
+              bgcolor: isDarkBackground ? 'rgba(30, 30, 30, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(10px)',
+              color: isDarkBackground ? 'white' : 'black',
+              '& .MuiMenuItem-root': {
+                fontSize: '0.9rem',
+                py: 1,
                 '&:hover': {
-                  bgcolor: isDarkBackground ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.15)',
+                  bgcolor: isDarkBackground ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                },
+                '&.Mui-selected': {
+                  bgcolor: isDarkBackground ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
+                  '&:hover': {
+                    bgcolor: isDarkBackground ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.15)',
+                  },
                 },
               },
             },
-          }
+          },
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}

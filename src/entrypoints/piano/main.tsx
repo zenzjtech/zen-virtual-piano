@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import './style.css';
 import { Provider } from 'react-redux'
 import { instantiateGlobalStore } from '@/store/index.ts';
 

@@ -164,8 +164,8 @@ export const AddSheetDialog: React.FC<AddSheetDialogProps> = ({ open, onClose })
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      PaperProps={{
-        sx: getDialogStyles(theme),
+      slotProps={{
+        paper: { sx: getDialogStyles(theme) },
       }}
     >
       <DialogHeader

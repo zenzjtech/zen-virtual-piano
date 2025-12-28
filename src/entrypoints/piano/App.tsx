@@ -304,7 +304,14 @@ function App() {
 
       <Container
         sx={{
-          maxHeight: '100vh'
+          maxHeight: '100vh',
+          '@media (max-width: 1400px) and (max-height: 900px)': {
+            transform: 'scale(0.7)',
+            transformOrigin: 'top center',   
+            width: '125%',
+            // ml: '-12.5%',
+            // marginBottom: '-35vh', // Compensate for vertical gap left by scaling
+          },           
         }}
       >
         <Stack
@@ -313,14 +320,7 @@ function App() {
           sx={{
             textAlign: 'center',
             width: '100%',            
-            py: { xs: 2, md: 3, lg: 4 },
-            '@media (max-width: 1400px) and (max-height: 900px)': {
-              transform: 'scale(0.7)',
-              transformOrigin: 'top center',   
-              width: '125%',
-              ml: '-12.5%',
-              //marginBottom: '-35vh', // Compensate for vertical gap left by scaling
-            },            
+            py: { xs: 2, md: 3, lg: 4 },           
           }}          
         >
             {/* Music Stand - appears when sheet is loaded */}

@@ -57,8 +57,8 @@ export const GoToPageDialog: React.FC<GoToPageDialogProps> = ({
       onClose={onClose}
       maxWidth="xs"
       fullWidth
-      PaperProps={{
-        sx: getDialogStyles(theme),
+      slotProps={{
+        paper: { sx: getDialogStyles(theme) },
       }}
     >
       {/* Header */}

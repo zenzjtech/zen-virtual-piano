@@ -71,8 +71,8 @@ export const SettingsDialog = ({
       maxWidth="md"
       fullWidth
       TransitionComponent={SubtleTransition}
-      PaperProps={{
-        sx: getDialogStyles(theme),
+      slotProps={{
+        paper: { sx: getDialogStyles(theme) },
       }}
     >
       {/* Header with theme/instrument info */}

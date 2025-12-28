@@ -149,7 +149,7 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
     <Popper
       open={open}
       anchorEl={anchorEl}
-      placement="top-end"
+      placement="top-start"
       style={{ zIndex: theme.zIndex.modal }}
       modifiers={[
         {
@@ -173,9 +173,9 @@ export const SheetSearchDialog: React.FC<SheetSearchDialogProps> = ({
           pianoTheme={pianoTheme}
           elevation={8}
           sx={{
-            width: 450,
-            maxWidth: '90vw',
-            maxHeight: '50vh',
+            // width: 450,
+            maxWidth: 'unset',
+            //maxHeight: '50vh',
             display: 'flex',
             flexDirection: 'column',
           }}

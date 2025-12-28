@@ -140,8 +140,6 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
   pianoTheme,
   targetSection,
 }) => {
-  // Read placement directly from Redux store
-  const placement = useAppSelector((state) => state.pianoSettings.soundPopupPlacement) || 'bottom-start';
   
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -263,16 +261,14 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
     <Popper
       open={open}
       anchorEl={anchorEl}
-      placement={placement}
+      placement="top-start"
       style={{ zIndex: 1300 }}
       modifiers={[
         {
           name: 'flip',
           enabled: true,
           options: {
-            fallbackPlacements: placement === 'top-start' 
-              ? ['bottom-start', 'top-start', 'bottom-end', 'top-end']
-              : ['top-start', 'bottom-start', 'bottom-end', 'top-end'],
+            fallbackPlacements: ['top-start', 'bottom-start']
           },
         },
         {
@@ -285,7 +281,13 @@ export const SoundSettingsPopup: React.FC<SoundSettingsPopupProps> = ({
       ]}
     >
       <ClickAwayListener onClickAway={onClose}>
-        <StyledPopupPaper elevation={8} pianoTheme={pianoTheme} sx={{ minWidth: '380px', maxWidth: '480px' }}>
+        <StyledPopupPaper 
+            elevation={8} 
+            pianoTheme={pianoTheme}
+            sx={{ 
+              //maxHeight: '40vh',
+            }}
+        >
           <PopupHeaderBox pianoTheme={pianoTheme}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <VolumeIcon

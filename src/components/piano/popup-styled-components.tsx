@@ -54,6 +54,10 @@ export const StyledPopupPaper = styled(Paper, {
       background: pianoTheme.colors.accent,
     },
   },
+  '@media (max-width: 1400px) and (max-height: 900px)': {
+    transform: 'scale(0.7)',
+    transformOrigin: 'bottom left',  
+  }
 }));
 
 export const PopupHeaderBox = styled(Box, {

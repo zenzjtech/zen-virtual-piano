@@ -101,8 +101,8 @@ export const KeyboardShortcutsDialog: React.FC<KeyboardShortcutsDialogProps> = (
       onClose={onClose}
       maxWidth="sm"
       fullWidth
-      PaperProps={{
-        sx: getDialogStyles(theme),
+      slotProps={{
+        paper: { sx: getDialogStyles(theme) },
       }}
       aria-labelledby="keyboard-shortcuts-dialog-title"
       aria-describedby="keyboard-shortcuts-dialog-description"
