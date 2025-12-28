@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from '@/store/hook';
-import { trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 
 /**
@@ -8,8 +8,6 @@ import { ANALYTICS_ACTION } from '@/utils/constants';
  * Includes debouncing for continuous settings to avoid excessive tracking
  */
 export function useSettingsAnalytics() {
-  const uid = useAppSelector((state) => state.user.uid);
-
   // Redux state selectors
   const sustain = useAppSelector((state) => state.pianoSettings.sustain);
   const showKeyboard = useAppSelector((state) => state.pianoSettings.showKeyboard);
@@ -74,80 +72,80 @@ export function useSettingsAnalytics() {
 
       // Set new timer
       debounceTimersRef.current.sustain = setTimeout(() => {
-        trackEvent(uid, ANALYTICS_ACTION.SUSTAIN_CHANGED, {
+        analytics.trackEvent(ANALYTICS_ACTION.SUSTAIN_CHANGED, {
           value: sustain,
           previous_value: prevValuesRef.current.sustain,
         });
         prevValuesRef.current.sustain = sustain;
       }, 500); // 500ms debounce
     }
-  }, [sustain, uid]);
+  }, [sustain]);
 
   // Track show keyboard toggle
   useEffect(() => {
     if (showKeyboard !== prevValuesRef.current.showKeyboard) {
-      trackEvent(uid, ANALYTICS_ACTION.KEYBOARD_DISPLAY_TOGGLED, {
+      analytics.trackEvent(ANALYTICS_ACTION.KEYBOARD_DISPLAY_TOGGLED, {
         enabled: showKeyboard,
         previous_state: prevValuesRef.current.showKeyboard,
       });
       prevValuesRef.current.showKeyboard = showKeyboard;
     }
-  }, [showKeyboard, uid]);
+  }, [showKeyboard]);
 
   // Track show note names toggle
   useEffect(() => {
     if (showNoteName !== prevValuesRef.current.showNoteName) {
-      trackEvent(uid, ANALYTICS_ACTION.NOTE_NAMES_TOGGLED, {
+      analytics.trackEvent(ANALYTICS_ACTION.NOTE_NAMES_TOGGLED, {
         enabled: showNoteName,
         previous_state: prevValuesRef.current.showNoteName,
       });
       prevValuesRef.current.showNoteName = showNoteName;
     }
-  }, [showNoteName, uid]);
+  }, [showNoteName]);
 
   // Track piano theme changes
   useEffect(() => {
     if (pianoThemeId !== prevValuesRef.current.pianoThemeId) {
-      trackEvent(uid, ANALYTICS_ACTION.PIANO_THEME_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.PIANO_THEME_CHANGED, {
         theme: pianoThemeId,
         previous_theme: prevValuesRef.current.pianoThemeId,
       });
       prevValuesRef.current.pianoThemeId = pianoThemeId;
     }
-  }, [pianoThemeId, uid]);
+  }, [pianoThemeId]);
 
   // Track background theme changes
   useEffect(() => {
     if (backgroundThemeId !== prevValuesRef.current.backgroundThemeId) {
-      trackEvent(uid, ANALYTICS_ACTION.BACKGROUND_THEME_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.BACKGROUND_THEME_CHANGED, {
         theme: backgroundThemeId,
         previous_theme: prevValuesRef.current.backgroundThemeId,
       });
       prevValuesRef.current.backgroundThemeId = backgroundThemeId;
     }
-  }, [backgroundThemeId, uid]);
+  }, [backgroundThemeId]);
 
   // Track music sheet theme changes
   useEffect(() => {
     if (musicSheetThemeId !== prevValuesRef.current.musicSheetThemeId) {
-      trackEvent(uid, ANALYTICS_ACTION.MUSIC_SHEET_THEME_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.MUSIC_SHEET_THEME_CHANGED, {
         theme: musicSheetThemeId,
         previous_theme: prevValuesRef.current.musicSheetThemeId,
       });
       prevValuesRef.current.musicSheetThemeId = musicSheetThemeId;
     }
-  }, [musicSheetThemeId, uid]);
+  }, [musicSheetThemeId]);
 
   // Track pattern theme changes
   useEffect(() => {
     if (patternThemeId !== prevValuesRef.current.patternThemeId) {
-      trackEvent(uid, ANALYTICS_ACTION.PATTERN_THEME_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.PATTERN_THEME_CHANGED, {
         theme: patternThemeId,
         previous_theme: prevValuesRef.current.patternThemeId,
       });
       prevValuesRef.current.patternThemeId = patternThemeId;
     }
-  }, [patternThemeId, uid]);
+  }, [patternThemeId]);
 
   // Track sheet changes
   useEffect(() => {
@@ -156,7 +154,7 @@ export function useSettingsAnalytics() {
     const prevSheetId = prevSheet?.id || null;
 
     if (currentSheetId !== prevSheetId) {
-      trackEvent(uid, ANALYTICS_ACTION.SHEET_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.SHEET_CHANGED, {
         sheet_id: currentSheetId,
         sheet_title: currentSheet?.title || null,
         previous_sheet_id: prevSheetId,
@@ -166,7 +164,7 @@ export function useSettingsAnalytics() {
       });
       prevValuesRef.current.currentSheet = currentSheet;
     }
-  }, [currentSheet, uid]);
+  }, [currentSheet]);
 
   // Track favorites changes
   useEffect(() => {
@@ -176,7 +174,7 @@ export function useSettingsAnalytics() {
     // Check if a sheet was added to favorites
     const addedFavorites = currentFavorites.filter(id => !prevFavorites.includes(id));
     addedFavorites.forEach(sheetId => {
-      trackEvent(uid, ANALYTICS_ACTION.SHEET_FAVORITED, {
+      analytics.trackEvent(ANALYTICS_ACTION.SHEET_FAVORITED, {
         sheet_id: sheetId,
       });
     });
@@ -184,13 +182,13 @@ export function useSettingsAnalytics() {
     // Check if a sheet was removed from favorites
     const removedFavorites = prevFavorites.filter(id => !currentFavorites.includes(id));
     removedFavorites.forEach(sheetId => {
-      trackEvent(uid, ANALYTICS_ACTION.SHEET_UNFAVORITED, {
+      analytics.trackEvent(ANALYTICS_ACTION.SHEET_UNFAVORITED, {
         sheet_id: sheetId,
       });
     });
 
     prevValuesRef.current.favorites = [...currentFavorites];
-  }, [favorites, uid]);
+  }, [favorites]);
 
   // Track custom sheets changes
   useEffect(() => {
@@ -204,7 +202,7 @@ export function useSettingsAnalytics() {
 
     addedSheetIds.forEach(sheetId => {
       const sheet = currentCustomSheets[sheetId];
-      trackEvent(uid, ANALYTICS_ACTION.CUSTOM_SHEET_ADDED, {
+      analytics.trackEvent(ANALYTICS_ACTION.CUSTOM_SHEET_ADDED, {
         sheet_id: sheetId,
         sheet_title: sheet.title,
         sheet_artist: sheet.artist,
@@ -213,7 +211,7 @@ export function useSettingsAnalytics() {
     });
 
     prevValuesRef.current.customSheets = { ...currentCustomSheets };
-  }, [customSheets, uid]);
+  }, [customSheets]);
 
   // Track deleted sheets changes
   useEffect(() => {
@@ -226,46 +224,46 @@ export function useSettingsAnalytics() {
     );
 
     newlyDeleted.forEach(sheetId => {
-      trackEvent(uid, ANALYTICS_ACTION.SHEET_DELETED, {
+      analytics.trackEvent(ANALYTICS_ACTION.SHEET_DELETED, {
         sheet_id: sheetId,
       });
     });
 
     prevValuesRef.current.deletedSheets = [...currentDeletedSheets];
-  }, [deletedSheets, uid]);
+  }, [deletedSheets]);
 
   // Track quote display toggle
   useEffect(() => {
     if (showQuote !== prevValuesRef.current.showQuote) {
-      trackEvent(uid, ANALYTICS_ACTION.QUOTE_DISPLAY_TOGGLED, {
+      analytics.trackEvent(ANALYTICS_ACTION.QUOTE_DISPLAY_TOGGLED, {
         enabled: showQuote,
         previous_state: prevValuesRef.current.showQuote,
       });
       prevValuesRef.current.showQuote = showQuote;
     }
-  }, [showQuote, uid]);
+  }, [showQuote]);
 
   // Track quote interval changes
   useEffect(() => {
     if (quoteInterval !== prevValuesRef.current.quoteInterval) {
-      trackEvent(uid, ANALYTICS_ACTION.QUOTE_INTERVAL_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.QUOTE_INTERVAL_CHANGED, {
         interval: quoteInterval,
         previous_interval: prevValuesRef.current.quoteInterval,
       });
       prevValuesRef.current.quoteInterval = quoteInterval;
     }
-  }, [quoteInterval, uid]);
+  }, [quoteInterval]);
 
   // Track show only favorites toggle
   useEffect(() => {
     if (showOnlyFavorites !== prevValuesRef.current.showOnlyFavorites) {
-      trackEvent(uid, ANALYTICS_ACTION.QUOTE_FAVORITES_FILTER_TOGGLED, {
+      analytics.trackEvent(ANALYTICS_ACTION.QUOTE_FAVORITES_FILTER_TOGGLED, {
         enabled: showOnlyFavorites,
         previous_state: prevValuesRef.current.showOnlyFavorites,
       });
       prevValuesRef.current.showOnlyFavorites = showOnlyFavorites;
     }
-  }, [showOnlyFavorites, uid]);
+  }, [showOnlyFavorites]);
 
   // Track quote favorites changes
   useEffect(() => {
@@ -275,7 +273,7 @@ export function useSettingsAnalytics() {
     // Check if a quote was added to favorites
     const addedFavorites = currentFavorites.filter(id => !prevFavorites.includes(id));
     addedFavorites.forEach(quoteId => {
-      trackEvent(uid, ANALYTICS_ACTION.QUOTE_FAVORITED, {
+      analytics.trackEvent(ANALYTICS_ACTION.QUOTE_FAVORITED, {
         quote_id: quoteId,
       });
     });
@@ -283,42 +281,42 @@ export function useSettingsAnalytics() {
     // Check if a quote was removed from favorites
     const removedFavorites = prevFavorites.filter(id => !currentFavorites.includes(id));
     removedFavorites.forEach(quoteId => {
-      trackEvent(uid, ANALYTICS_ACTION.QUOTE_UNFAVORITED, {
+      analytics.trackEvent(ANALYTICS_ACTION.QUOTE_UNFAVORITED, {
         quote_id: quoteId,
       });
     });
 
     prevValuesRef.current.favoriteQuoteIds = [...currentFavorites];
-  }, [favoriteQuoteIds, uid]);
+  }, [favoriteQuoteIds]);
 
   // Track playback state changes
   useEffect(() => {
     if (isPlaying !== prevValuesRef.current.isPlaying) {
       if (isPlaying) {
-        trackEvent(uid, ANALYTICS_ACTION.SHEET_PLAYBACK_STARTED, {
+        analytics.trackEvent(ANALYTICS_ACTION.SHEET_PLAYBACK_STARTED, {
           sheet_id: currentSheet?.id || null,
           sheet_title: currentSheet?.title || null,
         });
       } else if (!isPaused) {
         // Only track stopped if not paused (paused is a separate state)
-        trackEvent(uid, ANALYTICS_ACTION.SHEET_PLAYBACK_STOPPED, {
+        analytics.trackEvent(ANALYTICS_ACTION.SHEET_PLAYBACK_STOPPED, {
           sheet_id: currentSheet?.id || null,
           sheet_title: currentSheet?.title || null,
         });
       }
       prevValuesRef.current.isPlaying = isPlaying;
     }
-  }, [isPlaying, isPaused, currentSheet, uid]);
+  }, [isPlaying, isPaused, currentSheet]);
 
   useEffect(() => {
     if (isPaused !== prevValuesRef.current.isPaused && !isPlaying) {
-      trackEvent(uid, ANALYTICS_ACTION.SHEET_PLAYBACK_PAUSED, {
+      analytics.trackEvent(ANALYTICS_ACTION.SHEET_PLAYBACK_PAUSED, {
         sheet_id: currentSheet?.id || null,
         sheet_title: currentSheet?.title || null,
       });
       prevValuesRef.current.isPaused = isPaused;
     }
-  }, [isPaused, isPlaying, currentSheet, uid]);
+  }, [isPaused, isPlaying, currentSheet]);
 
   // Track page changes (with debouncing to avoid excessive tracking during navigation)
   useEffect(() => {
@@ -330,7 +328,7 @@ export function useSettingsAnalytics() {
 
       // Set new timer for page changes (short debounce since page changes are discrete)
       debounceTimersRef.current.page = setTimeout(() => {
-        trackEvent(uid, ANALYTICS_ACTION.SHEET_PAGE_CHANGED, {
+        analytics.trackEvent(ANALYTICS_ACTION.SHEET_PAGE_CHANGED, {
           sheet_id: currentSheet?.id || null,
           sheet_title: currentSheet?.title || null,
           page: currentPage,
@@ -339,7 +337,7 @@ export function useSettingsAnalytics() {
         prevValuesRef.current.currentPage = currentPage;
       }, 200); // 200ms debounce for page navigation
     }
-  }, [currentPage, currentSheet, uid]);
+  }, [currentPage, currentSheet]);
 
   // Track tempo changes with debouncing (since tempo can be adjusted rapidly with sliders)
   useEffect(() => {
@@ -351,7 +349,7 @@ export function useSettingsAnalytics() {
 
       // Set new timer for tempo changes
       debounceTimersRef.current.tempo = setTimeout(() => {
-        trackEvent(uid, ANALYTICS_ACTION.SHEET_TEMPO_CHANGED, {
+        analytics.trackEvent(ANALYTICS_ACTION.SHEET_TEMPO_CHANGED, {
           sheet_id: currentSheet?.id || null,
           sheet_title: currentSheet?.title || null,
           tempo: tempo,
@@ -360,7 +358,7 @@ export function useSettingsAnalytics() {
         prevValuesRef.current.tempo = tempo;
       }, 500); // 500ms debounce for tempo adjustments
     }
-  }, [tempo, currentSheet, uid]);
+  }, [tempo, currentSheet]);
 
   // Cleanup timers on unmount
   useEffect(() => {
@@ -403,13 +401,13 @@ export function useSoundSettingsAnalytics(
   // Track transpose changes (immediate, no debouncing needed)
   useEffect(() => {
     if (transpose !== soundPrevValuesRef.current.transpose) {
-      trackEvent(uid, ANALYTICS_ACTION.TRANSPOSE_CHANGED, {
+      analytics.trackEvent(ANALYTICS_ACTION.TRANSPOSE_CHANGED, {
         value: transpose,
         previous_value: soundPrevValuesRef.current.transpose,
       });
       soundPrevValuesRef.current.transpose = transpose;
     }
-  }, [transpose, uid]);
+  }, [transpose]);
 
   // Track volume changes with debouncing
   useEffect(() => {
@@ -421,25 +419,25 @@ export function useSoundSettingsAnalytics(
 
       // Set new timer
       soundDebounceTimersRef.current.volume = setTimeout(() => {
-        trackEvent(uid, ANALYTICS_ACTION.VOLUME_CHANGED, {
+        analytics.trackEvent(ANALYTICS_ACTION.VOLUME_CHANGED, {
           value: volume,
           previous_value: soundPrevValuesRef.current.volume,
         });
         soundPrevValuesRef.current.volume = volume;
       }, 500); // 500ms debounce
     }
-  }, [volume, uid]);
+  }, [volume]);
 
   // Track metronome toggle
   useEffect(() => {
     if (metronomeEnabled !== soundPrevValuesRef.current.metronomeEnabled) {
-      trackEvent(uid, ANALYTICS_ACTION.METRONOME_TOGGLED, {
+      analytics.trackEvent(ANALYTICS_ACTION.METRONOME_TOGGLED, {
         enabled: metronomeEnabled,
         previous_state: soundPrevValuesRef.current.metronomeEnabled,
       });
       soundPrevValuesRef.current.metronomeEnabled = metronomeEnabled;
     }
-  }, [metronomeEnabled, uid]);
+  }, [metronomeEnabled]);
 
   // Track metronome tempo changes with debouncing
   useEffect(() => {
@@ -451,14 +449,14 @@ export function useSoundSettingsAnalytics(
 
       // Set new timer
       soundDebounceTimersRef.current.metronomeTempo = setTimeout(() => {
-        trackEvent(uid, ANALYTICS_ACTION.METRONOME_TEMPO_CHANGED, {
+        analytics.trackEvent(ANALYTICS_ACTION.METRONOME_TEMPO_CHANGED, {
           value: metronomeTempo,
           previous_value: soundPrevValuesRef.current.metronomeTempo,
         });
         soundPrevValuesRef.current.metronomeTempo = metronomeTempo;
       }, 500); // 500ms debounce
     }
-  }, [metronomeTempo, uid]);
+  }, [metronomeTempo]);
 
   // Track metronome volume changes with debouncing
   useEffect(() => {
@@ -470,14 +468,14 @@ export function useSoundSettingsAnalytics(
 
       // Set new timer
       soundDebounceTimersRef.current.metronomeVolume = setTimeout(() => {
-        trackEvent(uid, ANALYTICS_ACTION.METRONOME_VOLUME_CHANGED, {
+        analytics.trackEvent(ANALYTICS_ACTION.METRONOME_VOLUME_CHANGED, {
           value: metronomeVolume,
           previous_value: soundPrevValuesRef.current.metronomeVolume,
         });
         soundPrevValuesRef.current.metronomeVolume = metronomeVolume;
       }, 500); // 500ms debounce
     }
-  }, [metronomeVolume, uid]);
+  }, [metronomeVolume]);
 
   // Cleanup timers on unmount
   useEffect(() => {

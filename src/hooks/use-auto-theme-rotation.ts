@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '@/store/hook';
 import { setPianoTheme, setBackgroundTheme, setMusicSheetTheme, setPatternTheme, setLastThemeChangeDate } from '@/store/reducers/theme-slice';
 import { getRandomPreset } from '@/components/piano/theme-presets';
 import { useNotification } from '@/contexts/notification-context';
-import { trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import type { ThemeChangeInterval } from '@/store/reducers/theme-slice';
 
 export const useAutoThemeRotation = (uid?: string) => {
@@ -66,9 +66,7 @@ export const useAutoThemeRotation = (uid?: string) => {
       showNotification(`🎨 Theme changed to "${randomPreset.name}"`, 'info');
       
       // Analytics
-      if (uid) {
-        trackEvent(uid, 'Auto theme change', { preset: randomPreset.name });
-      }
+      analytics.trackEvent('Auto theme change', { preset: randomPreset.name });
     };
 
     // Check every minute if theme should change

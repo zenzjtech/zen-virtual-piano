@@ -12,13 +12,13 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { muiTheme } from '@/theme/mui-theme';
-import { initMixpanel } from '@/utils/analytics.ts';
+import { analytics } from '@/utils/analytics.ts';
 import { NotificationProvider } from '@/contexts/notification-context';
 import '@/lib/i18n';
 
 (async () => {
-  initMixpanel();
-  const store = await instantiateGlobalStore()  
+  const store = await instantiateGlobalStore()
+  analytics.init(store);
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <Provider store={store}>

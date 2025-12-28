@@ -27,7 +27,7 @@ import { useHighlightAnimation } from '@/hooks/use-highlight-animation';
 import { useSettingsAnalytics, useSoundSettingsAnalytics } from '@/hooks/use-settings-analytics';
 import { getBackgroundStyle, isDarkBackgroundTheme } from '@/theme/definitions/background-themes';
 import './App.css';
-import { trackPageEvent, trackEvent } from '@/utils/analytics';
+import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 import i18n from '@/lib/i18n/index';
 import { useTranslation } from '@/hooks/use-translation';
@@ -97,8 +97,8 @@ function App() {
   );
 
   useEffect(() => {    
-      trackPageEvent(uid, ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
-  }, [uid]);
+      analytics.trackPageEvent(ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
+  }, []);
 
   // Load built-in sheet library on mount
   useEffect(() => {
@@ -226,13 +226,13 @@ function App() {
     recordingPlayback.stop();
     clearRecording();
     showNotification(t('recordingCleared'), 'info');
-    trackEvent(uid, ANALYTICS_ACTION.RECORD_CLEARED, {});
+    analytics.trackEvent(ANALYTICS_ACTION.RECORD_CLEARED, {});
   };
 
   const handleDownloadRecording = () => {
     downloadRecording();
     showNotification(t('recordingDownloaded'), 'success');
-    trackEvent(uid, ANALYTICS_ACTION.RECORD_DOWNLOADED, { note_count: noteCount });
+    analytics.trackEvent(ANALYTICS_ACTION.RECORD_DOWNLOADED, { note_count: noteCount });
   };
 
   
