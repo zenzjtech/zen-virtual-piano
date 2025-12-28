@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { readFile } from 'fs/promises'
@@ -34,9 +34,26 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+  })
+
+  mainWindow.on('show', () => {
+    console.log('Window show event fired, attempting to maximize...')
+    console.log('Window isMaximized before:', mainWindow.isMaximized())
+    console.log('Window bounds before:', mainWindow.getBounds())
+
+    // Since maximize() doesn't work, manually set bounds to fill screen
+    const primaryDisplay = screen.getPrimaryDisplay()
+    const { width, height } = primaryDisplay.workAreaSize
+    mainWindow.setBounds({ x: 0, y: 0, width, height })
+    console.log('Manually set bounds to:', { x: 0, y: 0, width, height })
+
+    setTimeout(() => {
+      console.log('Window isMaximized after:', mainWindow.isMaximized())
+      console.log('Window bounds after:', mainWindow.getBounds())
+    }, 100)
   })
 
   // HMR for renderer base on electron-vite cli.
@@ -77,8 +94,9 @@ app.whenReady().then(() => {
       return `data:audio/mpeg;base64,${base64}`
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error)
-      console.error('Audio load failed:', errorMessage)
-      throw error
+      // Don't throw errors for missing audio files - let the renderer handle gracefully
+      console.log(`Audio file not found (this is normal for missing samples): ${filePath}`)
+      return null
     }
   })
 
