@@ -102,7 +102,32 @@ class Analytics {
      * These settings are from the Analytics table (not Record page)
      */
     private getUserSettings(): Record<string, any> {
-        return {};
+        if (!this.store) {
+            return {};
+        }
+
+        const state: RootState = this.store.getState();
+        const theme = state.theme;
+        const pianoSettings = state.pianoSettings;
+        const locale = state.i18n.locale;
+
+        return {
+            settings: {
+                devicePixelRatio: window.devicePixelRatio,
+                locale,
+                theme: {
+                    pianoTheme: theme.pianoTheme,
+                    backgroundTheme: theme.backgroundTheme,
+                    musicSheetTheme: theme.musicSheetTheme,
+                    patternTheme: theme.patternTheme,
+                },
+                pianoSettings: {
+                    soundSet: pianoSettings.soundSet,
+                    sustain: pianoSettings.sustain,
+                    showKeyboard: pianoSettings.showKeyboard,
+                },
+            },
+        };
     }
 
     /**
