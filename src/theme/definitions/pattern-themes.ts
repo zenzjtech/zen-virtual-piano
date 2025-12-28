@@ -16,10 +16,7 @@ import {
   generateSacredPatterns,
   generateWoodHighlights,
   generateWoodRings,
-  generatePrayerWheelSpokes,
-  type WoodGrainConfig,
-  type WoodKnotConfig,
-  type SacredPatternConfig,
+  generatePrayerWheelSpokes,  
 } from './texture-generators';
 
 export interface PatternTheme {
