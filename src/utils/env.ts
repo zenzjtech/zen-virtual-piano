@@ -9,5 +9,5 @@ export const shouldTrackUserActivity = () => {
 }
 
 export const isExtension = () => {
-    return typeof chrome !== 'undefined' && chrome.runtime;
+    return !!(typeof chrome !== 'undefined' && chrome.runtime);
 }

@@ -34,9 +34,7 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  if (is.dev) {
-    mainWindow.webContents.openDevTools()
-  }
+  mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })

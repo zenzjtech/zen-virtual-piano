@@ -23,16 +23,17 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.3.9",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",
     "@electron-toolkit/eslint-config-ts": "^3.1.0",
-    "@electron-toolkit/tsconfig": "^2.0.0",    
+    "@electron-toolkit/tsconfig": "^2.0.0",
     "@vitejs/plugin-react": "^5.0.3",
     "electron": "38.1.2",
-    "electron-builder": "^26.0.12",     
-    "electron-vite": "^4.0.1",    
+    "electron-builder": "^26.0.12",
+    "electron-vite": "^4.0.1",
     "vite": "^7.1.6"
   }
 }
