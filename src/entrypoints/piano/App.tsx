@@ -31,6 +31,7 @@ import { analytics } from '@/utils/analytics';
 import { ANALYTICS_ACTION } from '@/utils/constants';
 import i18n from '@/lib/i18n/index';
 import { useTranslation } from '@/hooks/use-translation';
+import { incrementAppOpenCount } from '@/store/reducers/statistics-slice';
 
 function App() {
   // Redux state for persistent settings
@@ -99,6 +100,11 @@ function App() {
   useEffect(() => {    
       analytics.trackPageEvent(ANALYTICS_ACTION.PAGE_VIEW, 'Home', {}, document.URL);    
   }, []);
+
+  // Increment app open count on mount
+  useEffect(() => {
+    dispatch(incrementAppOpenCount());
+  }, [dispatch]);
 
   // Load built-in sheet library on mount
   useEffect(() => {

@@ -110,11 +110,13 @@ class Analytics {
         const theme = state.theme;
         const pianoSettings = state.pianoSettings;
         const locale = state.i18n.locale;
+        const statistics = state.statistics;
 
         return {
             settings: {
                 devicePixelRatio: window.devicePixelRatio,
                 locale,
+                appOpenCount: statistics.appOpenCount,
                 theme: {
                     pianoTheme: theme.pianoTheme,
                     backgroundTheme: theme.backgroundTheme,

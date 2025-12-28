@@ -6,6 +6,7 @@ import recording from '@/store/reducers/recording-slice'
 import quoteSettings from '@/store/reducers/quote-settings-slice'
 import theme from '@/store/reducers/theme-slice'
 import i18n from '@/store/reducers/i18n-slice'
+import statistics from '@/store/reducers/statistics-slice'
 
 export default {
     pianoSettings,
@@ -16,4 +17,5 @@ export default {
     quoteSettings,
     theme,
     i18n,
+    statistics,
 }
