@@ -23,20 +23,12 @@ asarUnpack:
 win:
   target:
     - nsis # Keep this for your website download
-    - appx # Add this for the Microsoft Store
-  executableName: zen-virtual-piano  
+  executableName: zen-virtual-piano
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
-appx:
-  applicationId: ZenVirtualPiano # No dots, alphanumeric only
-  identityName: 62624ZenCraft.ZenVirtualPiano # From Partner Center
-  publisher: "CN=94372727-E6D9-4A50-820A-5DFA767C9988" # From Partner Center
-  publisherDisplayName: "zenji tech" # From Partner Center
-  displayName: "Zen Virtual Piano"
-  languages: ["en-US"]  
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
