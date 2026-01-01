@@ -1,5 +1,10 @@
 appId: com.zenvirtualpiano.app
 productName: Zen Virtual Piano
+
+# --- SIGNING CONFIGURATION (Must be at Root) ---
+cscLink: ./zen-piano.pfx 
+cscKeyPassword: "1"
+
 directories:
   buildResources: build
 files:
@@ -20,21 +25,24 @@ extraResources:
       - '**/*.json'
 asarUnpack:
   - resources/**
-win:
+win:  
   target:
     - nsis # Keep this for your website download
     - appx # Add this for the Microsoft Store
-  executableName: zen-virtual-piano  
+  executableName: zen-virtual-piano
+  signtoolOptions:
+    timeStampServer: ""
+    rfc3161TimeStampServer: ""
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
 appx:
-  applicationId: ZenVirtualPiano # No dots, alphanumeric only
-  identityName: 62624ZenCraft.ZenVirtualPiano # From Partner Center
-  publisher: "CN=94372727-E6D9-4A50-820A-5DFA767C9988" # From Partner Center
-  publisherDisplayName: "zenji tech" # From Partner Center
+  applicationId: MyZenPiano # No dots, alphanumeric only
+  identityName: ZenAnalytics.MyZenPiano # From Partner Center
+  publisher: "CN=9DD5AD16-13C7-490B-A030-7201866AD654" # From Partner Center
+  publisherDisplayName: "	Zen Analytics" # From Partner Center
   displayName: "Zen Virtual Piano"
   languages: ["en-US"]  
 mac:
@@ -50,8 +58,14 @@ dmg:
 linux:
   target:
     - deb
-  maintainer: electronjs.org
-  category: Utility
+    - snap
+  maintainer: zen-piano.web.app
+  category: Music
+snap:
+  confinement: strict # "strict" is preferred for store approval
+  summary: "Virtual piano with 68 keys, 10+ studio instruments, and recording."
+  publish:
+    provider: snapStore  
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
