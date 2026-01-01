@@ -1,0 +1,16 @@
+- Professional 68-key virtual piano (C2-C7) for complex arrangements.
+- Zero-latency audio optimized for instant, realistic response.
+- Intuitive QWERTY keyboard control—no hardware required.
+- Fully offline capability—play anywhere without internet.
+- Polyphonic support for playing complex chords seamlessly.
+- Ad-free environment for distraction-free music practice.
+- Studio-quality instruments: Grand Piano, Cello, Violin, and more.
+- Built-in library of 250+ popular songs for immediate practice.
+- High-quality recording and playback to review your performance.
+- Import sheet music directly from the web to your library.
+- 100+ immersive visual themes to customize your experience.
+- Key Assist mode highlights notes to help beginners learn.
+- Integrated metronome with adjustable tempo for rhythm training.
+- Sustain pedal simulation for richer, resonant sound.
+- Easy management of your personal sheet music collection.
+- Native Windows app performance for maximum stability.
