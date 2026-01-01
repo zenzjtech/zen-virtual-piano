@@ -1,5 +1,5 @@
 {
-  "name": "electron-app",
+  "name": "zen-virtual-piano",
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
@@ -16,13 +16,19 @@
     "build": "cross-env DEBUG=electron-builder:* electron-vite build",
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
-    "build:win": "docker build -t zen-piano-builder . && docker run --rm -v $(pwd):/app zen-piano-builder",
+    "build:win-docker": "docker build -t zen-piano-builder . && docker run --rm -v $(pwd):/app zen-piano-builder",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:win": "electron-vite build && electron-builder --win",
+    "build:win-ns": "electron-vite build && electron-builder --win nsis",
+    "build:win-appx": "electron-vite build && electron-builder --win appx",
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "publish:linux": "electron-vite build && electron-builder --linux snap -p always",
+    "publish:linux:edge": "electron-vite build && electron-builder --linux snap -p always -c.snap.publish.channels=edge"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
+    "electron-log": "^5.4.3",
     "electron-updater": "^6.3.9",
     "redux-persist": "^6.0.0"
   },

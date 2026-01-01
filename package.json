@@ -1,5 +1,5 @@
 {
-  "name": "zen-virtual-piano",
+  "name": "root-zen-virtual-piano",
   "description": "68-key virtual piano (C2-C7) with multiple instruments, recording & practice tools for musicians and learners",
   "private": true,
   "version": "0.1.4",
