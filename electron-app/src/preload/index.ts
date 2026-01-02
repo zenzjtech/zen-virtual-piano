@@ -7,6 +7,7 @@ declare global {
     api?: {
       loadAudioFile: (filePath: string) => Promise<string>;
       loadSheetData: () => Promise<any>;
+      getAppVersion: () => Promise<string>;
     };
   }
 }
@@ -14,7 +15,8 @@ declare global {
 // Custom APIs for renderer
 const api = {
   loadAudioFile: (filePath: string) => ipcRenderer.invoke('load-audio-file', filePath),
-  loadSheetData: () => ipcRenderer.invoke('load-sheet-data')
+  loadSheetData: () => ipcRenderer.invoke('load-sheet-data'),
+  getAppVersion: () => ipcRenderer.invoke('get-app-version')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

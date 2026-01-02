@@ -1,6 +1,7 @@
 import { ExtendedStore } from "reduxed-chrome-storage";
 import { guid, wait } from "./misc";
 import mixpanel from 'mixpanel-browser/src/loaders/loader-module-core';
+import { isExtension } from "./env";
 import { setUserId } from "@/store/reducers/user-slice";
 import { shouldTrackUserActivity } from "./env";
 import { RootState } from "@/store";
@@ -42,22 +43,25 @@ class Analytics {
      * @param store - The Redux store instance from reduxed-chrome-storage
      * @param initMixpanel - Whether to initialize Mixpanel (defaults to true)
      */
-    public init(store: ExtendedStore, initMixpanel: boolean = true): void {
+    public init(store: any, initMixpanel: boolean = true): void {
         // Always update the store reference
         this.store = store;
         
         if (this.initialized || !initMixpanel) {
             return;
         }
+
+        const token = import.meta.env.WXT_MIXPANEL_TOKEN || import.meta.env.VITE_MIXPANEL_TOKEN || "";
+        const isDevEnv = import.meta.env.DEV;
         
-        mixpanel.init(import.meta.env.WXT_MIXPANEL_TOKEN || "", {
-            debug: import.meta.env.DEV,
+        mixpanel.init(token, {
+            debug: isDevEnv,
             cross_subdomain_cookie: false,
             persistence: 'localStorage',
             batch_requests: false,
             // @ts-ignore Not sure this prop exist
             track_pageview: false,
-            verbose: import.meta.env.DEV
+            verbose: isDevEnv
         });
         
         this.initialized = true;
@@ -94,7 +98,8 @@ class Analytics {
         if (!this.store) {
             return '';
         }
-        return this.store.getState().user.uid || '';
+        const uid = this.store.getState().user.uid || '';
+        return uid;
     }
 
     /**
@@ -148,14 +153,32 @@ class Analytics {
         if (props && props.page_location === 'toast-content') return;
 
         // Add extension version and user settings to all events
-        const extensionVersion = chrome.runtime.getManifest().version;
-        const browserLocale = chrome.i18n.getUILanguage();
+        let extensionVersion = '0.0.0';
+        let browserLocale = navigator.language;
+
+        if (isExtension()) {
+            try {
+                extensionVersion = chrome.runtime.getManifest().version;
+                browserLocale = chrome.i18n.getUILanguage();
+            } catch (e) {
+                console.warn('Analytics: Failed to get extension info', e);
+            }
+        } else {
+            // Electron
+            try {
+                extensionVersion = await (window.api as any)?.getAppVersion() || '1.0.0';
+            } catch (e) {
+                console.warn('Analytics: Failed to get app version', e);
+            }
+        }
+        
         const userSettings = this.getUserSettings();
         
         const enhancedProps = {
             ...props,
             extension_version: extensionVersion,
             browser_locale: browserLocale,
+            build_channel: import.meta.env.VITE_BUILD_CHANNEL,
             ...userSettings,
         };
 

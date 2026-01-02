@@ -5,7 +5,7 @@ export const isDev = ()  => {
 export const shouldTrackUserActivity = () => {
     if (!isDev())
         return true;
-    return import.meta.env.WXT_SHOULD_TRACK_USER_ACTIVITY === '1'
+    return import.meta.env.WXT_SHOULD_TRACK_USER_ACTIVITY === '1' || import.meta.env.VITE_SHOULD_TRACK_USER_ACTIVITY === '1'
 }
 
 export const isExtension = () => {

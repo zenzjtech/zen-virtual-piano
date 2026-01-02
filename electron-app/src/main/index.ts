@@ -34,7 +34,9 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  // mainWindow.webContents.openDevTools()
+  if (is.dev) {
+    mainWindow.webContents.openDevTools()
+  }
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -116,6 +118,11 @@ app.whenReady().then(() => {
       console.error('Sheet data load failed:', errorMessage)
       throw error
     }
+  })
+
+  // App version handler
+  ipcMain.handle('get-app-version', () => {
+    return app.getVersion()
   })
 
   console.log('🚀🚀🚀 IPC HANDLERS REGISTERED 🚀🚀🚀')
