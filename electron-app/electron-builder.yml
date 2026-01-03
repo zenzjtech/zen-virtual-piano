@@ -42,8 +42,10 @@ appx:
   applicationId: MyZenPiano # No dots, alphanumeric only
   identityName: ZenAnalytics.MyZenPiano # From Partner Center
   publisher: "CN=9DD5AD16-13C7-490B-A030-7201866AD654" # From Partner Center
-  publisherDisplayName: "	Zen Analytics" # From Partner Center
+  publisherDisplayName: "Zen Analytics" # From Partner Center
   displayName: "Zen Virtual Piano"
+  backgroundColor: "#FFFBF2"
+  showNameOnTiles: true
   languages: ["en-US"]  
 mac:
   entitlementsInherit: build/entitlements.mac.plist

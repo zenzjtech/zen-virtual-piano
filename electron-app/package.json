@@ -1,7 +1,7 @@
 {
   "name": "zen-virtual-piano",
-  "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "version": "1.0.1",
+  "description": "Zen Virtual Piano - A virtual piano application built with Electron, featuring keyboard mapping, audio recording, and realistic piano interface",
   "main": "./out/main/index.js",
   "author": "example.com",
   "homepage": "https://electron-vite.org",
@@ -22,8 +22,8 @@
     "build:win-ns": "VITE_BUILD_CHANNEL=standalone electron-vite build && electron-builder --win nsis",
     "build:win-appx": "VITE_BUILD_CHANNEL=msstore electron-vite build && electron-builder --win appx",
     "build:linux": "VITE_BUILD_CHANNEL=snap electron-vite build && electron-builder --linux",
-    "publish:linux": "electron-vite build && electron-builder --linux snap -p always",
-    "publish:linux:edge": "electron-vite build && electron-builder --linux snap -p always -c.snap.publish.channels=edge"
+    "publish:linux": "VITE_BUILD_CHANNEL=snap electron-vite build && electron-builder --linux snap -p always",
+    "publish:linux:edge": "VITE_BUILD_CHANNEL=snap electron-vite build && electron-builder --linux snap -p always -c.snap.publish.channels=edge"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
